@@ -325,7 +325,7 @@ calculate_dab_bounds(DabBounds *bb, float x, float y, float radius)
     bb->y1 = y1;
 }
 
-void render_dab_mask (uint16_t * mask,
+void render_dab_mask (float * mask,
                       DabBounds *bb,
                         float x, float y,
                         float radius,
@@ -408,15 +408,14 @@ void render_dab_mask (uint16_t * mask,
         float opa = calculate_opa(rr, hardness,
                                   segment1_offset, segment1_slope,
                                   segment2_offset, segment2_slope);
-        uint16_t opa_ = opa * (1<<15);
-        mask[offset] = opa_;
+        mask[offset] = opa;
     }
   }
 }
 
 // Must be threadsafe
 void
-process_op(uint16_t *rgba_p, uint16_t *mask,
+process_op(float *rgba_p, float *mask,
            int tx, int ty, OperationDataDrawDab *op)
 {
 
@@ -437,22 +436,27 @@ process_op(uint16_t *rgba_p, uint16_t *mask,
     if (op->normal) {
       if (op->color_a == 1.0) {
         draw_dab_pixels_BlendMode_Normal(mask, rgba_p, &bb,
-                                         op->color_r, op->color_g, op->color_b, op->normal*op->opaque*(1<<15));
+                                         op->color_r, op->color_g, op->color_b,
+                                         op->normal*op->opaque);
       } else {
         // normal case for brushes that use smudging (eg. watercolor)
         draw_dab_pixels_BlendMode_Normal_and_Eraser(mask, rgba_p, &bb,
-                                                    op->color_r, op->color_g, op->color_b, op->color_a*(1<<15), op->normal*op->opaque*(1<<15));
+                                                    op->color_r, op->color_g, op->color_b,
+                                                    op->color_a, op->normal*op->opaque);
       }
     }
 
     if (op->lock_alpha) {
       draw_dab_pixels_BlendMode_LockAlpha(mask, rgba_p, &bb,
-                                          op->color_r, op->color_g, op->color_b, op->lock_alpha*op->opaque*(1<<15));
+                                          op->color_r, op->color_g, op->color_b,
+                                          op->lock_alpha*op->opaque);
     }
+
     if (op->colorize) {
-      draw_dab_pixels_BlendMode_Color(mask, rgba_p, &bb,
-                                      op->color_r, op->color_g, op->color_b,
-                                      op->colorize*op->opaque*(1<<15));
+      assert(0);
+      //draw_dab_pixels_BlendMode_Color(mask, rgba_p, &bb,
+      //                                op->color_r, op->color_g, op->color_b,
+      //                                op->colorize*op->opaque*(1<<15));
     }
 }
 
@@ -471,13 +475,13 @@ process_tile(MyPaintTiledSurface *self, int tx, int ty)
     mypaint_tile_request_init(&request_data, mipmap_level, tx, ty, FALSE);
 
     mypaint_tiled_surface_tile_request_start(self, &request_data);
-    uint16_t * rgba_p = request_data.buffer;
+    float * rgba_p = request_data.buffer;
     if (!rgba_p) {
         printf("Warning: Unable to get tile!\n");
         return;
     }
 
-    uint16_t mask[TILE_SIZE*TILE_SIZE];
+    float mask[TILE_SIZE*TILE_SIZE];
 
     while (op) {
         process_op(rgba_p, mask, tile_index.x, tile_index.y, op);
@@ -537,9 +541,9 @@ gboolean draw_dab_internal (MyPaintTiledSurface *self, float x, float y,
     color_b = CLAMP(color_b, 0.0f, 1.0f);
     color_a = CLAMP(color_a, 0.0f, 1.0f);
 
-    op->color_r = color_r * (1<<15);
-    op->color_g = color_g * (1<<15);
-    op->color_b = color_b * (1<<15);
+    op->color_r = color_r;
+    op->color_g = color_g;
+    op->color_b = color_b;
     op->color_a = color_a;
 
     // blending mode preparation
@@ -651,14 +655,14 @@ void get_color (MyPaintSurface *surface, float x, float y,
         mypaint_tile_request_init(&request_data, mipmap_level, tx, ty, TRUE);
 
         mypaint_tiled_surface_tile_request_start(self, &request_data);
-        uint16_t * rgba_p = request_data.buffer;
+        float * rgba_p = request_data.buffer;
         if (!rgba_p) {
           printf("Warning: Unable to get tile!\n");
           break;
         }
 
         // first, we calculate the mask (opacity for each pixel)
-        uint16_t mask[MYPAINT_TILE_SIZE*MYPAINT_TILE_SIZE];
+        float mask[MYPAINT_TILE_SIZE*MYPAINT_TILE_SIZE];
         DabBounds bb;
 
         render_dab_mask(mask,

@@ -88,7 +88,7 @@ tile_request_start(MyPaintTiledSurface *tiled_surface, MyPaintTileRequest *reque
             g_critical("Unable to get tile aligned access to GeglBuffer");
             request->buffer = NULL;
         } else {
-            request->buffer = (uint16_t *)(iterator->data[0]);
+            request->buffer = (float *)(iterator->data[0]);
         }
 
         // So we can finish the iterator in tile_request_end()
@@ -209,7 +209,7 @@ mypaint_gegl_tiled_surface_new(void)
 
     gegl_rectangle_set(&self->extent_rect, 0, 0, 0, 0);
 
-    self->format = babl_format_new(babl_model ("R'aG'aB'aA"), babl_type ("u15"),
+    self->format = babl_format_new(babl_model ("R'aG'aB'aA"), babl_type ("float"),
                              babl_component("R'a"), babl_component("G'a"), babl_component("B'a"), babl_component("A"),
                              NULL);
     g_assert(self->format);

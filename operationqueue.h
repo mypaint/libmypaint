@@ -8,9 +8,9 @@ typedef struct {
     float x;
     float y;
     float radius;
-    uint16_t color_r;
-    uint16_t color_g;
-    uint16_t color_b;
+    float color_r;
+    float color_g;
+    float color_b;
     float color_a;
     float opaque;
     float hardness;

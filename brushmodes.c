@@ -42,27 +42,27 @@
 // resultAlpha = topAlpha + (1.0 - topAlpha) * bottomAlpha
 // resultColor = topColor + (1.0 - topAlpha) * bottomColor
 //
-void draw_dab_pixels_BlendMode_Normal (uint16_t *mask,
-                                       uint16_t * rgba_buffer, DabBounds *b,
-                                       uint16_t color_r,
-                                       uint16_t color_g,
-                                       uint16_t color_b,
-                                       uint16_t opacity) {
+void draw_dab_pixels_BlendMode_Normal (float *mask,
+                                       float *rgba_buffer, DabBounds *b,
+                                       float color_r,
+                                       float color_g,
+                                       float color_b,
+                                       float opacity) {
 
     for (int yp = b->y0; yp <= b->y1; yp++) {
       for (int xp = b->x0; xp <= b->x1; xp++) {
           const int offset = (yp*TILE_SIZE)+xp;
-          uint16_t *rgba = rgba_buffer + (offset*4);
+          float *rgba = rgba_buffer + (offset*4);
 
-          uint32_t opa_a = mask[offset]*(uint32_t)opacity/(1<<15); // topAlpha
-          uint32_t opa_b = (1<<15)-opa_a; // bottomAlpha
-          rgba[3] = opa_a + opa_b * rgba[3] / (1<<15);
-          rgba[0] = (opa_a*color_r + opa_b*rgba[0])/(1<<15);
-          rgba[1] = (opa_a*color_g + opa_b*rgba[1])/(1<<15);
-          rgba[2] = (opa_a*color_b + opa_b*rgba[2])/(1<<15);
+          float opa_a = mask[offset]*opacity; // topAlpha
+          float opa_b = 1.0-opa_a; // bottomAlpha
+          rgba[3] = opa_a + opa_b * rgba[3];
+          rgba[0] = (opa_a*color_r + opa_b*rgba[0]);
+          rgba[1] = (opa_a*color_g + opa_b*rgba[1]);
+          rgba[2] = (opa_a*color_b + opa_b*rgba[2]);
       }
     }
-};
+}
 
 
 
@@ -199,27 +199,27 @@ draw_dab_pixels_BlendMode_Color (uint16_t * mask,
 // and color_r/g/b will be ignored. This function can also do normal
 // blending (color_a=1.0).
 //
-void draw_dab_pixels_BlendMode_Normal_and_Eraser (uint16_t *mask,
-                                                  uint16_t * rgba_buffer,
+void draw_dab_pixels_BlendMode_Normal_and_Eraser (float *mask,
+                                                  float *rgba_buffer,
                                                   DabBounds *b,
-                                                  uint16_t color_r,
-                                                  uint16_t color_g,
-                                                  uint16_t color_b,
-                                                  uint16_t color_a,
-                                                  uint16_t opacity) {
+                                                  float color_r,
+                                                  float color_g,
+                                                  float color_b,
+                                                  float color_a,
+                                                  float opacity) {
 
     for (int yp = b->y0; yp <= b->y1; yp++) {
       for (int xp = b->x0; xp <= b->x1; xp++) {
           const int offset = (yp*TILE_SIZE)+xp;
-          uint16_t *rgba = rgba_buffer + (offset*4);
+          float *rgba = rgba_buffer + (offset*4);
 
-      uint32_t opa_a = mask[offset]*(uint32_t)opacity/(1<<15); // topAlpha
-      uint32_t opa_b = (1<<15)-opa_a; // bottomAlpha
-      opa_a = opa_a * color_a / (1<<15);
-      rgba[3] = opa_a + opa_b * rgba[3] / (1<<15);
-      rgba[0] = (opa_a*color_r + opa_b*rgba[0])/(1<<15);
-      rgba[1] = (opa_a*color_g + opa_b*rgba[1])/(1<<15);
-      rgba[2] = (opa_a*color_b + opa_b*rgba[2])/(1<<15);
+      float opa_a = mask[offset]*opacity; // topAlpha
+      float opa_b = 1.0-opa_a; // bottomAlpha
+      opa_a = opa_a * color_a;
+      rgba[3] = opa_a + opa_b * rgba[3];
+      rgba[0] = (opa_a*color_r + opa_b*rgba[0]);
+      rgba[1] = (opa_a*color_g + opa_b*rgba[1]);
+      rgba[2] = (opa_a*color_b + opa_b*rgba[2]);
 
     }
   }
@@ -227,28 +227,27 @@ void draw_dab_pixels_BlendMode_Normal_and_Eraser (uint16_t *mask,
 
 // This is BlendMode_Normal with locked alpha channel.
 //
-void draw_dab_pixels_BlendMode_LockAlpha (uint16_t * mask,
-                                          uint16_t * rgba_buffer,
+void draw_dab_pixels_BlendMode_LockAlpha (float * mask,
+                                          float * rgba_buffer,
                                           DabBounds *b,
-                                          uint16_t color_r,
-                                          uint16_t color_g,
-                                          uint16_t color_b,
-                                          uint16_t opacity) {
+                                          float color_r,
+                                          float color_g,
+                                          float color_b,
+                                          float opacity) {
 
     for (int yp = b->y0; yp <= b->y1; yp++) {
       for (int xp = b->x0; xp <= b->x1; xp++) {
           const int offset = (yp*TILE_SIZE)+xp;
-          uint16_t *rgba = rgba_buffer + (offset*4);
+          float *rgba = rgba_buffer + (offset*4);
 
-      uint32_t opa_a = mask[offset]*(uint32_t)opacity/(1<<15); // topAlpha
-      uint32_t opa_b = (1<<15)-opa_a; // bottomAlpha
+      float opa_a = mask[offset]*opacity; // topAlpha
+      float opa_b = 1.0-opa_a; // bottomAlpha
       
       opa_a *= rgba[3];
-      opa_a /= (1<<15);
           
-      rgba[0] = (opa_a*color_r + opa_b*rgba[0])/(1<<15);
-      rgba[1] = (opa_a*color_g + opa_b*rgba[1])/(1<<15);
-      rgba[2] = (opa_a*color_b + opa_b*rgba[2])/(1<<15);
+      rgba[0] = (opa_a*color_r + opa_b*rgba[0]);
+      rgba[1] = (opa_a*color_g + opa_b*rgba[1]);
+      rgba[2] = (opa_a*color_b + opa_b*rgba[2]);
     }
   }
 }
@@ -257,8 +256,8 @@ void draw_dab_pixels_BlendMode_LockAlpha (uint16_t * mask,
 // Sum up the color/alpha components inside the masked region.
 // Called by get_color().
 //
-void get_color_pixels_accumulate (uint16_t *mask,
-                                  uint16_t * rgba_buffer, DabBounds *bb,
+void get_color_pixels_accumulate (float *mask,
+                                  float *rgba_buffer, DabBounds *bb,
                                   float * sum_weight,
                                   float * sum_r,
                                   float * sum_g,
@@ -272,22 +271,22 @@ void get_color_pixels_accumulate (uint16_t *mask,
   // are processing a single tile at a time, so we can use integers.
   // But for the result we need floats.
 
-  uint32_t weight = 0;
-  uint32_t r = 0;
-  uint32_t g = 0;
-  uint32_t b = 0;
-  uint32_t a = 0;
+  float weight = 0;
+  float r = 0;
+  float g = 0;
+  float b = 0;
+  float a = 0;
   for (int yp = bb->y0; yp <= bb->y1; yp++) {
     for (int xp = bb->x0; xp <= bb->x1; xp++) {
         const int offset = (yp*TILE_SIZE)+xp;
-        uint16_t *rgba = rgba_buffer + (offset*4);
+        float *rgba = rgba_buffer + (offset*4);
 
-      uint32_t opa = mask[offset];
+      float opa = mask[offset];
       weight += opa;
-      r      += opa*rgba[0]/(1<<15);
-      g      += opa*rgba[1]/(1<<15);
-      b      += opa*rgba[2]/(1<<15);
-      a      += opa*rgba[3]/(1<<15);
+      r      += opa*rgba[0];
+      g      += opa*rgba[1];
+      b      += opa*rgba[2];
+      a      += opa*rgba[3];
 
     }
   }

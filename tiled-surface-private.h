@@ -1,7 +1,7 @@
 
 #include "brushmodes.h"
 
-void render_dab_mask (uint16_t * mask,
+void render_dab_mask (float * mask,
                         DabBounds *bb,
                         float x, float y,
                         float radius,

@@ -6,13 +6,14 @@
 
 #include <mypaint-fixed-tiled-surface.h>
 
+typedef float MyPaintPixelType;
 
 struct _MyPaintFixedTiledSurface {
     MyPaintTiledSurface parent;
 
     size_t tile_size; // Size (in bytes) of single tile
-    uint16_t *tile_buffer; // Stores tiles in a linear chunk of memory (16bpc RGBA)
-    uint16_t *null_tile; // Single tile that we hand out and ignore writes to
+    MyPaintPixelType *tile_buffer; // Stores tiles in a linear chunk of memory (16bpc RGBA)
+    MyPaintPixelType *null_tile; // Single tile that we hand out and ignore writes to
     int tiles_width; // width in tiles
     int tiles_height; // height in tiles
     int width; // width in pixels
@@ -35,7 +36,7 @@ tile_request_start(MyPaintTiledSurface *tiled_surface, MyPaintTileRequest *reque
     const int tx = request->tx;
     const int ty = request->ty;
 
-    uint16_t *tile_pointer = NULL;
+    MyPaintPixelType *tile_pointer = NULL;
 
     if (tx >= self->tiles_width || ty >= self->tiles_height || tx < 0 || ty < 0) {
         // Give it a tile which we will ignore writes to
@@ -47,7 +48,7 @@ tile_request_start(MyPaintTiledSurface *tiled_surface, MyPaintTileRequest *reque
         size_t x_offset = tx * self->tile_size;
         size_t tile_offset = (rowstride * ty) + x_offset;
 
-        tile_pointer = self->tile_buffer + tile_offset/sizeof(uint16_t);
+        tile_pointer = self->tile_buffer + tile_offset/sizeof(MyPaintPixelType);
     }
 
     request->buffer = tile_pointer;
@@ -104,14 +105,14 @@ mypaint_fixed_tiled_surface_new(int width, int height)
 
     const int tiles_width = ceil((float)width / tile_size_pixels);
     const int tiles_height = ceil((float)height / tile_size_pixels);
-    const size_t tile_size = tile_size_pixels * tile_size_pixels * 4 * sizeof(uint16_t);
+    const size_t tile_size = tile_size_pixels * tile_size_pixels * 4 * sizeof(MyPaintPixelType);
     const size_t buffer_size = tiles_width * tiles_height * tile_size;
 
     assert(tile_size_pixels*tiles_width >= width);
     assert(tile_size_pixels*tiles_height >= height);
-    assert(buffer_size >= width*height*4*sizeof(uint16_t));
+    assert(buffer_size >= width*height*4*sizeof(MyPaintPixelType));
 
-    uint16_t * buffer = (uint16_t *)malloc(buffer_size);
+    MyPaintPixelType * buffer = (MyPaintPixelType *)malloc(buffer_size);
     if (!buffer) {
         fprintf(stderr, "CRITICAL: unable to allocate enough memory: %Zu bytes", buffer_size);
         return NULL;
@@ -120,7 +121,7 @@ mypaint_fixed_tiled_surface_new(int width, int height)
 
     self->tile_buffer = buffer;
     self->tile_size = tile_size;
-    self->null_tile = (uint16_t *)malloc(tile_size);
+    self->null_tile = (MyPaintPixelType *)malloc(tile_size);
     self->tiles_width = tiles_width;
     self->tiles_height = tiles_height;
     self->height = height;

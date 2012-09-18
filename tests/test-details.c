@@ -22,7 +22,7 @@ int main(int argc, char *argv[])
 
     const int iterations = 1000000;
 
-    uint16_t buffer[MYPAINT_TILE_SIZE*MYPAINT_TILE_SIZE+2*MYPAINT_TILE_SIZE];
+    float buffer[MYPAINT_TILE_SIZE*MYPAINT_TILE_SIZE+2*MYPAINT_TILE_SIZE];
     mypaint_benchmark_start("render_dab_mask");
     DabBounds bb = {0, 0, 63, 63};
     for (int i=0; i < iterations; i++) {

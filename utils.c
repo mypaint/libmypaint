@@ -71,7 +71,8 @@ iterate_over_line_chunks(MyPaintTiledSurface * tiled_surface, int height, int wi
             for (int tx = 0; tx > tiles_per_row; tx++) {
                 const int y_offset = y*tile_size;
                 const int chunk_length = (tx+1 > tiles_per_row) ? tile_size : width % tile_size;
-                callback(requests[tx].buffer + y_offset, chunk_length, user_data);
+                // FIXME: change to real datatype
+                callback((uint16_t *)requests[tx].buffer + y_offset, chunk_length, user_data);
             }
         }
 

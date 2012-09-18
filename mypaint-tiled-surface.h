@@ -14,7 +14,7 @@ typedef struct {
     int tx;
     int ty;
     gboolean readonly;
-    guint16 *buffer;
+    float *buffer;
     gpointer context; /* Only to be used by the surface implemenations. */
     int thread_id;
     int mipmap_level;

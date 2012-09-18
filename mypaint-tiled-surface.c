@@ -306,7 +306,27 @@ calculate_opa(float rr, float hardness,
 }
 
 // Must be threadsafe
+inline void
+calculate_dab_bounds(DabBounds *bb, float x, float y, float radius)
+{
+    const float r_fringe = radius + 1.0f;
+    int x0 = floor (x - r_fringe);
+    int y0 = floor (y - r_fringe);
+    int x1 = ceil (x + r_fringe);
+    int y1 = ceil (y + r_fringe);
+    if (x0 < 0) x0 = 0;
+    if (y0 < 0) y0 = 0;
+    if (x1 > TILE_SIZE-1) x1 = TILE_SIZE-1;
+    if (y1 > TILE_SIZE-1) y1 = TILE_SIZE-1;
+
+    bb->x0 = x0;
+    bb->x1 = x1;
+    bb->y0 = y0;
+    bb->y1 = y1;
+}
+
 void render_dab_mask (uint16_t * mask,
+                      DabBounds *bb,
                         float x, float y,
                         float radius,
                         float hardness,
@@ -345,22 +365,13 @@ void render_dab_mask (uint16_t * mask,
     float angle_rad=angle/360*2*M_PI;
     float cs=cos(angle_rad);
     float sn=sin(angle_rad);
-
-    const float r_fringe = radius + 1.0f; // +1.0 should not be required, only to be sure
-    int x0 = floor (x - r_fringe);
-    int y0 = floor (y - r_fringe);
-    int x1 = floor (x + r_fringe);
-    int y1 = floor (y + r_fringe);
-    if (x0 < 0) x0 = 0;
-    if (y0 < 0) y0 = 0;
-    if (x1 > MYPAINT_TILE_SIZE-1) x1 = MYPAINT_TILE_SIZE-1;
-    if (y1 > MYPAINT_TILE_SIZE-1) y1 = MYPAINT_TILE_SIZE-1;
     const float one_over_radius2 = 1.0f/(radius*radius);
+    calculate_dab_bounds(bb, x, y, radius);
 
     // Pre-calculate rr and put it in the mask.
     // This an optimization that makes use of auto-vectorization
     // OPTIMIZE: if using floats for the brush engine, store these directly in the mask
-    float rr_mask[MYPAINT_TILE_SIZE*MYPAINT_TILE_SIZE+2*MYPAINT_TILE_SIZE];
+    float rr_mask[TILE_SIZE*TILE_SIZE];
 
     if (radius < 3.0f)
     {
@@ -368,8 +379,8 @@ void render_dab_mask (uint16_t * mask,
       float r_aa_start = ((radius>aa_border) ? (radius-aa_border) : 0);
       r_aa_start *= r_aa_start / aspect_ratio;
 
-      for (int yp = y0; yp <= y1; yp++) {
-        for (int xp = x0; xp <= x1; xp++) {
+      for (int yp = bb->y0; yp <= bb->y1; yp++) {
+        for (int xp = bb->x0; xp <= bb->x1; xp++) {
           const float rr = calculate_rr_antialiased(xp, yp,
                                   x, y, aspect_ratio,
                                   sn, cs, one_over_radius2,
@@ -380,8 +391,8 @@ void render_dab_mask (uint16_t * mask,
     }
     else
     {
-      for (int yp = y0; yp <= y1; yp++) {
-        for (int xp = x0; xp <= x1; xp++) {
+      for (int yp = bb->y0; yp <= bb->y1; yp++) {
+        for (int xp = bb->x0; xp <= bb->x1; xp++) {
           const float rr = calculate_rr(xp, yp,
                                   x, y, aspect_ratio,
                                   sn, cs, one_over_radius2);
@@ -390,38 +401,18 @@ void render_dab_mask (uint16_t * mask,
       }
     }
 
-    // we do run length encoding: if opacity is zero, the next
-    // value in the mask is the number of pixels that can be skipped.
-    uint16_t * mask_p = mask;
-    int skip=0;
-
-    skip += y0*MYPAINT_TILE_SIZE;
-    for (int yp = y0; yp <= y1; yp++) {
-      skip += x0;
-
-      int xp;
-      for (xp = x0; xp <= x1; xp++) {
-        const float rr = rr_mask[(yp*MYPAINT_TILE_SIZE)+xp];
-        const float opa = calculate_opa(rr, hardness,
+    for (int yp = bb->y0; yp <= bb->y1; yp++) {
+      for (int xp = bb->x0; xp <= bb->x1; xp++) {
+        const int offset = (yp*TILE_SIZE)+xp;
+        float rr = rr_mask[offset];
+        float opa = calculate_opa(rr, hardness,
                                   segment1_offset, segment1_slope,
                                   segment2_offset, segment2_slope);
-        const uint16_t opa_ = opa * (1<<15);
-        if (!opa_) {
-          skip++;
-        } else {
-          if (skip) {
-            *mask_p++ = 0;
-            *mask_p++ = skip*4;
-            skip = 0;
-          }
-          *mask_p++ = opa_;
-        }
-      }
-      skip += MYPAINT_TILE_SIZE-xp;
+        uint16_t opa_ = opa * (1<<15);
+        mask[offset] = opa_;
     }
-    *mask_p++ = 0;
-    *mask_p++ = 0;
   }
+}
 
 // Must be threadsafe
 void
@@ -429,8 +420,11 @@ process_op(uint16_t *rgba_p, uint16_t *mask,
            int tx, int ty, OperationDataDrawDab *op)
 {
 
+    DabBounds bb;
+
     // first, we calculate the mask (opacity for each pixel)
     render_dab_mask(mask,
+                    &bb,
                     op->x - tx*MYPAINT_TILE_SIZE,
                     op->y - ty*MYPAINT_TILE_SIZE,
                     op->radius,
@@ -442,21 +436,21 @@ process_op(uint16_t *rgba_p, uint16_t *mask,
 
     if (op->normal) {
       if (op->color_a == 1.0) {
-        draw_dab_pixels_BlendMode_Normal(mask, rgba_p,
+        draw_dab_pixels_BlendMode_Normal(mask, rgba_p, &bb,
                                          op->color_r, op->color_g, op->color_b, op->normal*op->opaque*(1<<15));
       } else {
         // normal case for brushes that use smudging (eg. watercolor)
-        draw_dab_pixels_BlendMode_Normal_and_Eraser(mask, rgba_p,
+        draw_dab_pixels_BlendMode_Normal_and_Eraser(mask, rgba_p, &bb,
                                                     op->color_r, op->color_g, op->color_b, op->color_a*(1<<15), op->normal*op->opaque*(1<<15));
       }
     }
 
     if (op->lock_alpha) {
-      draw_dab_pixels_BlendMode_LockAlpha(mask, rgba_p,
+      draw_dab_pixels_BlendMode_LockAlpha(mask, rgba_p, &bb,
                                           op->color_r, op->color_g, op->color_b, op->lock_alpha*op->opaque*(1<<15));
     }
     if (op->colorize) {
-      draw_dab_pixels_BlendMode_Color(mask, rgba_p,
+      draw_dab_pixels_BlendMode_Color(mask, rgba_p, &bb,
                                       op->color_r, op->color_g, op->color_b,
                                       op->colorize*op->opaque*(1<<15));
     }
@@ -483,7 +477,7 @@ process_tile(MyPaintTiledSurface *self, int tx, int ty)
         return;
     }
 
-    uint16_t mask[MYPAINT_TILE_SIZE*MYPAINT_TILE_SIZE+2*MYPAINT_TILE_SIZE];
+    uint16_t mask[TILE_SIZE*TILE_SIZE];
 
     while (op) {
         process_op(rgba_p, mask, tile_index.x, tile_index.y, op);
@@ -664,9 +658,11 @@ void get_color (MyPaintSurface *surface, float x, float y,
         }
 
         // first, we calculate the mask (opacity for each pixel)
-        uint16_t mask[MYPAINT_TILE_SIZE*MYPAINT_TILE_SIZE+2*MYPAINT_TILE_SIZE];
+        uint16_t mask[MYPAINT_TILE_SIZE*MYPAINT_TILE_SIZE];
+        DabBounds bb;
 
         render_dab_mask(mask,
+                        &bb,
                         x - tx*MYPAINT_TILE_SIZE,
                         y - ty*MYPAINT_TILE_SIZE,
                         radius,
@@ -677,7 +673,7 @@ void get_color (MyPaintSurface *surface, float x, float y,
         // TODO: try atomic operations instead
         #pragma omp critical
         {
-        get_color_pixels_accumulate (mask, rgba_p,
+        get_color_pixels_accumulate (mask, rgba_p, &bb,
                                      &sum_weight, &sum_r, &sum_g, &sum_b, &sum_a);
         }
 

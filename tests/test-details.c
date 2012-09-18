@@ -24,8 +24,9 @@ int main(int argc, char *argv[])
 
     uint16_t buffer[MYPAINT_TILE_SIZE*MYPAINT_TILE_SIZE+2*MYPAINT_TILE_SIZE];
     mypaint_benchmark_start("render_dab_mask");
+    DabBounds bb = {0, 0, 63, 63};
     for (int i=0; i < iterations; i++) {
-        render_dab_mask(buffer, x, y, radius, hardness, aspect_ratio, angle);
+        render_dab_mask(buffer, &bb, x, y, radius, hardness, aspect_ratio, angle);
     }
     const int duration = mypaint_benchmark_end();
     printf("render_dab_mask: %d ms\n", duration);

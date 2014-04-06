@@ -32,6 +32,30 @@ typedef struct _MyPaintGeglTiledSurface {
 
 void free_gegl_tiledsurf(MyPaintSurface *surface);
 
+static gboolean
+buffer_is_native(MyPaintGeglTiledSurface *self) {
+
+    return FALSE; // force using slow-but-generic codepaths
+
+    /* TODO: add proper logic
+    int tile_height = -1;
+    int tile_width = -1;
+    g_object_get(self->buffer, "tile-width", &tile_width, "tile-height", &tile_height, NULL);
+    g_assert(tile_height != -1);
+    g_assert(tile_width != -1);
+
+    const gboolean correct_format = gegl_buffer_get_format(self->buffer) == self->format;
+    const gboolean correct_tile_size = tile_height == self->tile_size && tile_with == self->tile_size;
+    return correct_format && correct_tile_size;
+    */
+}
+
+void *
+alloc_for_format(const Babl *format, int pixels) {
+    const size_t bytes = babl_format_get_bytes_per_pixel(format)*pixels;
+    return gegl_malloc(bytes);
+}
+
 static void
 tile_request_start(MyPaintTiledSurface *tiled_surface, MyPaintTileRequest *request)
 {
@@ -54,34 +78,57 @@ tile_request_start(MyPaintTiledSurface *tiled_surface, MyPaintTileRequest *reque
         g_assert(success);
     }
 
-    GeglBufferIterator *iterator = gegl_buffer_iterator_new(self->buffer, &tile_bbox, 0, self->format,
-                                  read_write_flags, GEGL_ABYSS_NONE);
+    if (buffer_is_native(self)) {
+        GeglBufferIterator *iterator = gegl_buffer_iterator_new(self->buffer, &tile_bbox, 0, self->format,
+                                      read_write_flags, GEGL_ABYSS_NONE);
 
-    // Read out
-    gboolean completed = gegl_buffer_iterator_next(iterator);
-    g_assert(completed);
+        // Read out
+        gboolean completed = gegl_buffer_iterator_next(iterator);
+        g_assert(completed);
 
-    if (iterator->length != tile_size*tile_size) {
-        g_critical("Unable to get tile aligned access to GeglBuffer");
-        request->buffer = NULL;
+        if (iterator->length != tile_size*tile_size) {
+            g_critical("Unable to get tile aligned access to GeglBuffer");
+            request->buffer = NULL;
+        } else {
+            request->buffer = (uint16_t *)(iterator->data[0]);
+        }
+
+        // So we can finish the iterator in tile_request_end()
+        request->context = (void *)iterator;
     } else {
-        request->buffer = (uint16_t *)(iterator->data[0]);
+        // Extract a linear rectangular chunk of appropriate BablFormat,
+        // potentially triggering copying and color conversions
+        request->buffer = alloc_for_format(self->format, tile_size*tile_size);
+        gegl_buffer_get(self->buffer, &tile_bbox, 1, self->format,
+                        request->buffer, GEGL_AUTO_ROWSTRIDE, GEGL_ABYSS_NONE);
+        g_assert(request->buffer);
     }
-
-    // So we can finish the iterator in tile_request_end()
-    request->context = (void *)iterator;
 }
 
 static void
 tile_request_end(MyPaintTiledSurface *tiled_surface, MyPaintTileRequest *request)
 {
     MyPaintGeglTiledSurface *self = (MyPaintGeglTiledSurface *)tiled_surface;
-    GeglBufferIterator *iterator = (GeglBufferIterator *)request->context;
 
-    if (iterator) {
-        gegl_buffer_iterator_next(iterator);
-        request->context = NULL;
+    if (buffer_is_native(self)) {
+        GeglBufferIterator *iterator = (GeglBufferIterator *)request->context;
+
+        if (iterator) {
+            gegl_buffer_iterator_next(iterator);
+            request->context = NULL;
+        }
+    } else {
+        // Push our linear buffer back into the GeglBuffer
+        const int tile_size = tiled_surface->tile_size;
+        GeglRectangle tile_bbox;
+
+        g_assert(request->buffer);
+        gegl_rectangle_set(&tile_bbox, request->tx*tile_size, request->ty*tile_size, tile_size, tile_size);
+        gegl_buffer_set(self->buffer, &tile_bbox, 1, self->format,
+                        request->buffer, GEGL_AUTO_ROWSTRIDE);
+        gegl_free(request->buffer);
     }
+
 }
 
 void
@@ -142,6 +189,9 @@ mypaint_gegl_tiled_surface_set_buffer(MyPaintGeglTiledSurface *self, GeglBuffer 
                           NULL));
     }
     g_assert(GEGL_IS_BUFFER(self->buffer));
+
+
+    self->parent.threadsafe_tile_requests = buffer_is_native(self);
 }
 
 MyPaintGeglTiledSurface *

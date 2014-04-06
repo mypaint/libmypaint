@@ -86,7 +86,7 @@ if env['enable_openmp']:
     env.Append(CFLAGS='-fopenmp')
     linkflags += ['-fopenmp']
 
-if env['enable_brushlib_i18n']:
+if env['enable_i18n']:
     env.Append(CPPDEFINES='HAVE_GETTEXT')
     if sys.platform == "darwin":
         libs += ['intl', 'gettextlib']
@@ -149,7 +149,7 @@ install_perms(env, '$prefix/include/libmypaint/glib', Glob("./glib/mypaint-*.h")
 install_perms(env, "$prefix/share/mypaint/brushlib", Glob("./*.py"))
 install_perms(env, "$prefix/share/mypaint/brushlib", "./brushsettings.json")
 
-if env['enable_brushlib_i18n']:
+if env['enable_i18n']:
     languages = SConscript('po/SConscript')
 
 # Optional: GEGL library

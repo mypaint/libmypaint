@@ -34,10 +34,8 @@ void free_gegl_tiledsurf(MyPaintSurface *surface);
 
 static gboolean
 buffer_is_native(MyPaintGeglTiledSurface *self) {
+    const int tile_size = self->parent.tile_size;
 
-    return FALSE; // force using slow-but-generic codepaths
-
-    /* TODO: add proper logic
     int tile_height = -1;
     int tile_width = -1;
     g_object_get(self->buffer, "tile-width", &tile_width, "tile-height", &tile_height, NULL);
@@ -45,9 +43,9 @@ buffer_is_native(MyPaintGeglTiledSurface *self) {
     g_assert(tile_width != -1);
 
     const gboolean correct_format = gegl_buffer_get_format(self->buffer) == self->format;
-    const gboolean correct_tile_size = tile_height == self->tile_size && tile_with == self->tile_size;
+    const gboolean correct_tile_size = tile_height == tile_size && tile_width == tile_size;
+
     return correct_format && correct_tile_size;
-    */
 }
 
 void *

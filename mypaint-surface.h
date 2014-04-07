@@ -48,7 +48,7 @@ typedef void (*MyPaintSurfaceSavePngFunction) (struct _MyPaintSurface *self, con
 
 typedef void (*MyPaintSurfaceBeginAtomicFunction) (struct _MyPaintSurface *self);
 
-typedef MyPaintRectangle *(*MyPaintSurfaceEndAtomicFunction) (struct _MyPaintSurface *self, MyPaintRectangle *roi);
+typedef void (*MyPaintSurfaceEndAtomicFunction) (struct _MyPaintSurface *self, MyPaintRectangle *roi);
 
 /**
   * MyPaintSurface:

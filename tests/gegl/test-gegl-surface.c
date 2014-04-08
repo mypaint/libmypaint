@@ -8,6 +8,10 @@ MyPaintSurface *
 gegl_surface_factory(gpointer user_data)
 {
     MyPaintGeglTiledSurface * surface = mypaint_gegl_tiled_surface_new();
+
+    GeglBuffer *buf = gegl_buffer_new(NULL, NULL);
+    mypaint_gegl_tiled_surface_set_buffer(surface, buf);
+
     return (MyPaintSurface *)surface;
 }
 

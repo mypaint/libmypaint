@@ -6,7 +6,7 @@
 #endif
 
 void
-ensure_max_threads_not_exceeded()
+ensure_max_threads_not_exceeded(void)
 {
 #ifdef _OPENMP
     const int max_threads = omp_get_max_threads();
@@ -17,7 +17,7 @@ ensure_max_threads_not_exceeded()
 }
 
 void
-mypaint_init()
+mypaint_init(void)
 {
     ensure_max_threads_not_exceeded();
     //bindtextdomain (GETTEXT_PACKAGE, LOCALEDIR);

@@ -29,7 +29,7 @@ typedef struct _MyPaintBrush MyPaintBrush;
 #include <glib/mypaint-brush.h>
 
 MyPaintBrush *
-mypaint_brush_new();
+mypaint_brush_new(void);
 
 void
 mypaint_brush_unref(MyPaintBrush *self);

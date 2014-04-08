@@ -23,7 +23,7 @@ typedef struct {
 
 typedef struct _OperationQueue OperationQueue;
 
-OperationQueue *operation_queue_new();
+OperationQueue *operation_queue_new(void);
 void operation_queue_free(OperationQueue *self);
 
 int operation_queue_get_dirty_tiles(OperationQueue *self, TileIndex** tiles_out);

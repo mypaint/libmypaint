@@ -193,7 +193,7 @@ mypaint_gegl_tiled_surface_set_buffer(MyPaintGeglTiledSurface *self, GeglBuffer 
 }
 
 MyPaintGeglTiledSurface *
-mypaint_gegl_tiled_surface_new()
+mypaint_gegl_tiled_surface_new(void)
 {
     MyPaintGeglTiledSurface *self = (MyPaintGeglTiledSurface *)malloc(sizeof(MyPaintGeglTiledSurface));
 

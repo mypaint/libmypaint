@@ -36,7 +36,7 @@ MyPaintSurface *
 mypaint_gegl_tiled_surface_interface(MyPaintGeglTiledSurface *self);
 
 MyPaintGeglTiledSurface *
-mypaint_gegl_tiled_surface_new();
+mypaint_gegl_tiled_surface_new(void);
 
 G_END_DECLS
 

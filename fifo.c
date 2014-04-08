@@ -36,7 +36,7 @@ struct fifo
  *
  * Allocate and initialize fifo structure. Add an empty item to the fifo.
  */
-struct fifo* fifo_new()
+struct fifo* fifo_new(void)
 {
     struct fifo *ret = (struct fifo *) malloc(sizeof(struct fifo));
     ret->first = NULL;

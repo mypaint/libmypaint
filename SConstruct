@@ -45,7 +45,7 @@ if os.environ.has_key('LDFLAGS'):
 opts.Update(env)
 
 env.Append(CXXFLAGS=' -Wall -Wno-sign-compare -Wno-write-strings')
-env.Append(CCFLAGS='-Wall')
+env.Append(CCFLAGS='-Wall -Wstrict-prototypes -Werror')
 env.Append(CFLAGS='-std=c99')
 
 env['GEGL_VERSION'] = 0.3

@@ -83,7 +83,7 @@ operation_queue_resize(OperationQueue *self, int new_size)
 }
 
 OperationQueue *
-operation_queue_new()
+operation_queue_new(void)
 {
     OperationQueue *self = (OperationQueue *)malloc(sizeof(OperationQueue));
 

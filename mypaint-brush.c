@@ -109,7 +109,7 @@ void settings_base_values_have_changed (MyPaintBrush *self);
   * Initial reference count is 1. Release references using mypaint_brush_unref()
   */
 MyPaintBrush *
-mypaint_brush_new()
+mypaint_brush_new(void)
 {
     MyPaintBrush *self = (MyPaintBrush *)malloc(sizeof(MyPaintBrush));
 

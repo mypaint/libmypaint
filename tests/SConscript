@@ -14,14 +14,14 @@ tests_sources = [fn for fn in os.listdir("./") if is_test(fn) and is_csource(fn)
 testlib_sources = [fn for fn in os.listdir("./") if not is_test(fn) and is_csource(fn)]
 
 testlib_env.Append(LIBS=['mypaint'])
-testlib_env.Append(CPPPATH=['../'], LIBPATH=['../..'])
+testlib_env.Append(CPPPATH=['../'], LIBPATH=['../'])
 
 if testlib_env['enable_gperftools']:
     testlib_env.ParseConfig('pkg-config --cflags --libs libprofiler')
     testlib_env.Append(CPPDEFINES='HAVE_GPERFTOOLS')
 
 lib_builder = testlib_env.SharedLibrary if env['use_sharedlib'] else testlib_env.StaticPicLibrary
-lib_builder(target='../../mypaint-tests', source=testlib_sources)
+lib_builder(target='../mypaint-tests', source=testlib_sources)
 
 tests_env = testlib_env.Clone()
 
@@ -40,7 +40,7 @@ gegl_tests_sources = [os.path.join('./gegl', fn) for fn in os.listdir("./gegl") 
 
 if gegl_tests_env['enable_gegl']:
     gegl_tests_env.Append(CPPPATH=['../gegl', '..'])
-    gegl_tests_env.Append(LIBPATH=['../..'])
+    gegl_tests_env.Append(LIBPATH=['..'])
     gegl_tests_env['LIBS'].remove('mypaint') # Workaround: ordering wrong when using Prepend on some systems
     gegl_tests_env.Prepend(LIBS=['mypaint-gegl', 'mypaint-tests', 'mypaint'])
 

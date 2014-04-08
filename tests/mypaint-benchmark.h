@@ -18,6 +18,6 @@
  */
 
 void mypaint_benchmark_start(const char *name);
-int mypaint_benchmark_end();
+int mypaint_benchmark_end(void);
 
 #endif // MYPAINTBENCHMARK_H

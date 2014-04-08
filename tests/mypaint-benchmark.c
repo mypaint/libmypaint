@@ -29,7 +29,7 @@
 
 #ifdef WIN32
 #include <windows.h>
-double get_time()
+double get_time(void)
 {
     LARGE_INTEGER t, f;
     QueryPerformanceCounter(&t);
@@ -40,7 +40,7 @@ double get_time()
 #else
 #include <sys/time.h>
 #include <sys/resource.h>
-double get_time()
+double get_time(void)
 {
     struct timeval t;
     gettimeofday(&t, NULL);
@@ -51,7 +51,7 @@ double get_time()
 static double g_start_time = 0.0;
 
 gboolean
-profiling_enabled()
+profiling_enabled(void)
 {
     char * enabled = getenv("MYPAINT_ENABLE_PROFILING");
     if (enabled != NULL && strcmp(enabled, "1") == 0) {
@@ -76,7 +76,7 @@ void mypaint_benchmark_start(const char *name)
 /**
  * returns number of milliseconds spent since _start()
  */
-int mypaint_benchmark_end()
+int mypaint_benchmark_end(void)
 {
     double time_spent = get_time() - g_start_time;
     g_start_time = 0.0;

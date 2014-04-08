@@ -54,7 +54,7 @@ struct _MyPaintUtilsStrokePlayer {
 };
 
 MyPaintUtilsStrokePlayer *
-mypaint_utils_stroke_player_new()
+mypaint_utils_stroke_player_new(void)
 {
     MyPaintUtilsStrokePlayer *self = (MyPaintUtilsStrokePlayer *)malloc(sizeof(MyPaintUtilsStrokePlayer));
 

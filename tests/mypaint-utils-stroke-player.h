@@ -23,7 +23,7 @@
 typedef struct _MyPaintUtilsStrokePlayer MyPaintUtilsStrokePlayer;
 
 MyPaintUtilsStrokePlayer *
-mypaint_utils_stroke_player_new();
+mypaint_utils_stroke_player_new(void);
 
 void
 mypaint_utils_stroke_player_free(MyPaintUtilsStrokePlayer *self);

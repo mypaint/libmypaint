@@ -8,8 +8,8 @@
 *#
 .emacs.*
 .sconsign.dblite
-brushlib/*-gen.h
-brushlib/mypaint-config.h
+*-gen.h
+mypaint-config.h
 options.cache
 *.mo
 *.pot

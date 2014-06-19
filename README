@@ -8,7 +8,7 @@ License: ICS, see COPYING for details
 == Prerequisites ==
 
 Build dependencies:
-json-c: https://github.com/json-c/json-c/wiki
+json-c (>= 0.11): https://github.com/json-c/json-c/wiki
 scons: http://scons.org/
 Python: http://python.org/
 

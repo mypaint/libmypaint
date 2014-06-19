@@ -1083,7 +1083,11 @@ gboolean
 update_settings_from_json_object(MyPaintBrush *self)
 {
     // Check version
-    json_object *version_object = json_object_object_get(self->brush_json, "version");
+    json_object *version_object = NULL;
+    if (! json_object_object_get_ex(self->brush_json, "version", &version_object)) {
+        fprintf(stderr, "Error: No 'version' field for brush\n");
+        return FALSE;
+    }
     const int version = json_object_get_int(version_object);
     if (version != 3) {
         fprintf(stderr, "Error: Unsupported brush setting version: %d\n", version);
@@ -1091,7 +1095,11 @@ update_settings_from_json_object(MyPaintBrush *self)
     }
 
     // Set settings
-    json_object *settings = json_object_object_get(self->brush_json, "settings");
+    json_object *settings = NULL;
+    if (! json_object_object_get_ex(self->brush_json, "settings", &settings)) {
+        fprintf(stderr, "Error: No 'settings' field for brush\n");
+        return FALSE;
+    }
 
     json_object_object_foreach(settings, setting_name, setting_obj) {
 
@@ -1103,12 +1111,20 @@ update_settings_from_json_object(MyPaintBrush *self)
         }
 
         // Base value
-        json_object *base_value_obj = json_object_object_get(setting_obj, "base_value");
+        json_object *base_value_obj = NULL;
+        if (! json_object_object_get_ex(setting_obj, "base_value", &base_value_obj)) {
+            fprintf(stderr, "Error: No 'base_value' field for setting: %s\n", setting_name);
+            return FALSE;
+        }
         const double base_value = json_object_get_double(base_value_obj);
         mypaint_brush_set_base_value(self, setting_id, base_value);
 
         // Inputs
-        json_object *inputs = json_object_object_get(setting_obj, "inputs");
+        json_object *inputs = NULL;
+        if (! json_object_object_get_ex(setting_obj, "inputs", &inputs)) {
+            fprintf(stderr, "Error: No 'inputs' field for setting: %s\n", setting_name);
+            return FALSE;
+        }
         json_object_object_foreach(inputs, input_name, input_obj) {
             MyPaintBrushInput input_id = mypaint_brush_input_from_cname(input_name);
 

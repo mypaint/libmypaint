@@ -1,0 +1,420 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="210mm"
+   height="297mm"
+   id="svg2"
+   version="1.1"
+   inkscape:version="0.48.4 r9939"
+   sodipodi:docname="stroke2dabs.svg">
+  <defs
+     id="defs4">
+    <marker
+       inkscape:stockid="Arrow2Mend"
+       orient="auto"
+       refY="0.0"
+       refX="0.0"
+       id="Arrow2Mend"
+       style="overflow:visible;">
+      <path
+         id="path3958"
+         style="fill-rule:evenodd;stroke-width:0.62500000;stroke-linejoin:round;"
+         d="M 8.7185878,4.0337352 L -2.2072895,0.016013256 L 8.7185884,-4.0017078 C 6.9730900,-1.6296469 6.9831476,1.6157441 8.7185878,4.0337352 z "
+         transform="scale(0.6) rotate(180) translate(0,0)" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow2Lend"
+       orient="auto"
+       refY="0.0"
+       refX="0.0"
+       id="Arrow2Lend"
+       style="overflow:visible;">
+      <path
+         id="path3952"
+         style="fill-rule:evenodd;stroke-width:0.62500000;stroke-linejoin:round;"
+         d="M 8.7185878,4.0337352 L -2.2072895,0.016013256 L 8.7185884,-4.0017078 C 6.9730900,-1.6296469 6.9831476,1.6157441 8.7185878,4.0337352 z "
+         transform="scale(1.1) rotate(180) translate(1,0)" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow1Lend"
+       orient="auto"
+       refY="0.0"
+       refX="0.0"
+       id="Arrow1Lend"
+       style="overflow:visible;">
+      <path
+         id="path3934"
+         d="M 0.0,0.0 L 5.0,-5.0 L -12.5,0.0 L 5.0,5.0 L 0.0,0.0 z "
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1.0pt;"
+         transform="scale(0.8) rotate(180) translate(12.5,0)" />
+    </marker>
+    <marker
+       inkscape:stockid="StopL"
+       orient="auto"
+       refY="0.0"
+       refX="0.0"
+       id="StopL"
+       style="overflow:visible">
+      <path
+         id="path4100"
+         d="M 0.0,5.65 L 0.0,-5.65"
+         style="fill:none;fill-opacity:0.75000000;fill-rule:evenodd;stroke:#000000;stroke-width:1.0pt"
+         transform="scale(0.8)" />
+    </marker>
+    <marker
+       inkscape:stockid="CurveOut"
+       orient="auto"
+       refY="0.0"
+       refX="0.0"
+       id="CurveOut"
+       style="overflow:visible">
+      <path
+         id="path4118"
+         d="M -5.4129913,-5.0456926 C -2.6529913,-5.0456926 -0.41299131,-2.8056926 -0.41299131,-0.045692580 C -0.41299131,2.7143074 -2.6529913,4.9543074 -5.4129913,4.9543074"
+         style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1.0pt"
+         transform="scale(0.6)" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="DistanceEnd"
+       refX="0.0"
+       refY="0.0"
+       orient="auto"
+       inkscape:stockid="DistanceEnd">
+      <g
+         id="g2301">
+        <path
+           style="fill:none;stroke:#ffffff;stroke-width:1.15;stroke-linecap:square"
+           d="M 0,0 L -2,0"
+           id="path2316" />
+        <path
+           style="fill:#000000;fill-rule:evenodd;stroke:none"
+           d="M 0,0 L -13,4 L -9,0 -13,-4 L 0,0 z "
+           id="path2312" />
+        <path
+           style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:square"
+           d="M 0,-4 L 0,40"
+           id="path2314" />
+      </g>
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="DistanceStart"
+       refX="0.0"
+       refY="0.0"
+       orient="auto"
+       inkscape:stockid="DistanceStart">
+      <g
+         id="g2300">
+        <path
+           style="fill:none;stroke:#ffffff;stroke-width:1.15;stroke-linecap:square"
+           d="M 0,0 L 2,0"
+           id="path2306" />
+        <path
+           style="fill:#000000;fill-rule:evenodd;stroke:none"
+           d="M 0,0 L 13,4 L 9,0 13,-4 L 0,0 z "
+           id="path2302" />
+        <path
+           style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:square"
+           d="M 0,-4 L 0,40"
+           id="path2304" />
+      </g>
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="DistanceStart-0"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="DistanceStart">
+      <g
+         id="g2300-8">
+        <path
+           inkscape:connector-curvature="0"
+           style="fill:none;stroke:#ffffff;stroke-width:1.14999998;stroke-linecap:square"
+           d="M 0,0 2,0"
+           id="path2306-2" />
+        <path
+           inkscape:connector-curvature="0"
+           style="fill:#000000;fill-rule:evenodd;stroke:none"
+           d="M 0,0 13,4 9,0 13,-4 0,0 z"
+           id="path2302-3" />
+        <path
+           inkscape:connector-curvature="0"
+           style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:square"
+           d="M 0,-4 0,40"
+           id="path2304-2" />
+      </g>
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="DistanceEnd-8"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="DistanceEnd">
+      <g
+         id="g2301-4">
+        <path
+           inkscape:connector-curvature="0"
+           style="fill:none;stroke:#ffffff;stroke-width:1.14999998;stroke-linecap:square"
+           d="M 0,0 -2,0"
+           id="path2316-6" />
+        <path
+           inkscape:connector-curvature="0"
+           style="fill:#000000;fill-rule:evenodd;stroke:none"
+           d="M 0,0 -13,4 -9,0 -13,-4 0,0 z"
+           id="path2312-9" />
+        <path
+           inkscape:connector-curvature="0"
+           style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:square"
+           d="M 0,-4 0,40"
+           id="path2314-9" />
+      </g>
+    </marker>
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="1"
+     inkscape:pageshadow="2"
+     inkscape:zoom="1.4"
+     inkscape:cx="405.21864"
+     inkscape:cy="542.5752"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:window-width="1920"
+     inkscape:window-height="1027"
+     inkscape:window-x="0"
+     inkscape:window-y="31"
+     inkscape:window-maximized="1" />
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Ebene 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <path
+       style="fill:none;stroke:#000000;stroke-width:3;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-end:url(#Arrow2Mend)"
+       d="M 98.571427,452.36218 235.71428,486.29075 492.13926,471.79327 595.96194,435.04346"
+       id="path2985"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cccc"
+       inkscape:export-filename="/home/martin/mypaint/brushlib/doc/images/stroke2dabs.png"
+       inkscape:export-xdpi="155.97"
+       inkscape:export-ydpi="155.97" />
+    <text
+       xml:space="preserve"
+       style="font-size:14px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+       x="162.47612"
+       y="351.02661"
+       id="text2987"
+       sodipodi:linespacing="125%"
+       inkscape:export-filename="/home/martin/mypaint/brushlib/doc/images/stroke2dabs.png"
+       inkscape:export-xdpi="155.97"
+       inkscape:export-ydpi="155.97"><tspan
+         sodipodi:role="line"
+         id="tspan2989"
+         x="162.47612"
+         y="351.02661">Task: move brush state to the current motion event,</tspan><tspan
+         sodipodi:role="line"
+         x="162.47612"
+         y="368.52661"
+         id="tspan2991">         and draw all dabs in-between.</tspan></text>
+    <path
+       sodipodi:type="arc"
+       style="fill:#000000;fill-opacity:1;stroke:none"
+       id="path3040"
+       sodipodi:cx="325.26913"
+       sodipodi:cy="633.65393"
+       sodipodi:rx="11.616749"
+       sodipodi:ry="11.616749"
+       d="m 336.88588,633.65393 a 11.616749,11.616749 0 1 1 -23.23349,0 11.616749,11.616749 0 1 1 23.23349,0 z"
+       transform="translate(-43.36477,-149.55335)"
+       inkscape:export-filename="/home/martin/mypaint/brushlib/doc/images/stroke2dabs.png"
+       inkscape:export-xdpi="155.97"
+       inkscape:export-ydpi="155.97" />
+    <path
+       sodipodi:type="arc"
+       style="fill:#000000;fill-opacity:1;stroke:none"
+       id="path3040-2"
+       sodipodi:cx="325.26913"
+       sodipodi:cy="633.65393"
+       sodipodi:rx="11.616749"
+       sodipodi:ry="11.616749"
+       d="m 336.88588,633.65393 a 11.616749,11.616749 0 1 1 -23.23349,0 11.616749,11.616749 0 1 1 23.23349,0 z"
+       transform="translate(72.435097,-155.26143)"
+       inkscape:export-filename="/home/martin/mypaint/brushlib/doc/images/stroke2dabs.png"
+       inkscape:export-xdpi="155.97"
+       inkscape:export-ydpi="155.97" />
+    <path
+       sodipodi:type="arc"
+       style="fill:#000000;fill-opacity:1;stroke:none"
+       id="path3040-2-1"
+       sodipodi:cx="325.26913"
+       sodipodi:cy="633.65393"
+       sodipodi:rx="11.616749"
+       sodipodi:ry="11.616749"
+       d="m 336.88588,633.65393 a 11.616749,11.616749 0 1 1 -23.23349,0 11.616749,11.616749 0 1 1 23.23349,0 z"
+       transform="translate(207.8822,-176.48952)"
+       inkscape:export-filename="/home/martin/mypaint/brushlib/doc/images/stroke2dabs.png"
+       inkscape:export-xdpi="155.97"
+       inkscape:export-ydpi="155.97" />
+    <path
+       style="fill:#800000;stroke:#375aff;stroke-width:3;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;fill-opacity:1;fill-rule:nonzero"
+       d="m 235.17857,466.11217 0.17857,40.00001"
+       id="path3892"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="/home/martin/mypaint/brushlib/doc/images/stroke2dabs.png"
+       inkscape:export-xdpi="155.97"
+       inkscape:export-ydpi="155.97" />
+    <path
+       sodipodi:type="arc"
+       style="fill:#000000;fill-opacity:1;stroke:none"
+       id="path3040-2-8"
+       sodipodi:cx="325.26913"
+       sodipodi:cy="633.65393"
+       sodipodi:rx="11.616749"
+       sodipodi:ry="11.616749"
+       d="m 336.88588,633.65393 a 11.616749,11.616749 0 1 1 -23.23349,0 11.616749,11.616749 0 1 1 23.23349,0 z"
+       transform="translate(-164.9584,-166.43171)"
+       inkscape:export-filename="/home/martin/mypaint/brushlib/doc/images/stroke2dabs.png"
+       inkscape:export-xdpi="155.97"
+       inkscape:export-ydpi="155.97" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-start:url(#DistanceStart);marker-mid:none;marker-end:url(#DistanceEnd)"
+       d="M 219.42058,546.17871 141.83827,518.88102"
+       id="path3925"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="/home/martin/mypaint/brushlib/doc/images/stroke2dabs.png"
+       inkscape:export-xdpi="155.97"
+       inkscape:export-ydpi="155.97" />
+    <text
+       xml:space="preserve"
+       style="font-size:14px;font-style:normal;font-weight:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+       x="338.29309"
+       y="470.53088"
+       id="text5346"
+       sodipodi:linespacing="125%"
+       transform="matrix(0.94871187,0.31614204,-0.31614204,0.94871187,0,0)"
+       inkscape:export-filename="/home/martin/mypaint/brushlib/doc/images/stroke2dabs.png"
+       inkscape:export-xdpi="155.97"
+       inkscape:export-ydpi="155.97"><tspan
+         sodipodi:role="line"
+         id="tspan5348"
+         x="338.29309"
+         y="470.53088">dabs_moved</tspan><tspan
+         sodipodi:role="line"
+         x="338.29309"
+         y="488.03088"
+         id="tspan6298">(PARTIAL_DABS)</tspan></text>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-start:url(#DistanceStart);marker-mid:none;marker-end:url(#DistanceEnd)"
+       d="M 496.87109,540.00923 239.0919,550.16768"
+       id="path3925-2"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="/home/martin/mypaint/brushlib/doc/images/stroke2dabs.png"
+       inkscape:export-xdpi="155.97"
+       inkscape:export-ydpi="155.97" />
+    <path
+       style="fill:none;stroke:#375aff;stroke-width:3;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 493.82958,449.77207 1.41943,43.26903"
+       id="path3892-4"
+       inkscape:connector-curvature="0"
+       inkscape:transform-center-x="4.53882"
+       sodipodi:nodetypes="cc"
+       inkscape:transform-center-y="0.097875"
+       inkscape:export-filename="/home/martin/mypaint/brushlib/doc/images/stroke2dabs.png"
+       inkscape:export-xdpi="155.97"
+       inkscape:export-ydpi="155.97" />
+    <text
+       xml:space="preserve"
+       style="font-size:14px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+       x="327.12091"
+       y="577.24005"
+       id="text5416"
+       sodipodi:linespacing="125%"
+       transform="matrix(0.99896601,-0.04546325,0.04546325,0.99896601,0,0)"
+       inkscape:export-filename="/home/martin/mypaint/brushlib/doc/images/stroke2dabs.png"
+       inkscape:export-xdpi="155.97"
+       inkscape:export-ydpi="155.97"><tspan
+         sodipodi:role="line"
+         id="tspan5418"
+         x="327.12091"
+         y="577.24005">dabs_todo</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:14px;font-style:normal;font-weight:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#375aff;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+       x="235.65791"
+       y="427.58282"
+       id="text6260"
+       sodipodi:linespacing="125%"
+       inkscape:export-filename="/home/martin/mypaint/brushlib/doc/images/stroke2dabs.png"
+       inkscape:export-xdpi="155.97"
+       inkscape:export-ydpi="155.97"><tspan
+         sodipodi:role="line"
+         id="tspan6262"
+         x="235.65791"
+         y="427.58282">previous</tspan><tspan
+         sodipodi:role="line"
+         x="235.65791"
+         y="445.08282"
+         id="tspan6264">motion event</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:14px;font-style:normal;font-weight:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#375aff;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+       x="488.26077"
+       y="417.0528"
+       id="text6260-5"
+       sodipodi:linespacing="125%"
+       inkscape:export-filename="/home/martin/mypaint/brushlib/doc/images/stroke2dabs.png"
+       inkscape:export-xdpi="155.97"
+       inkscape:export-ydpi="155.97"><tspan
+         sodipodi:role="line"
+         x="488.26077"
+         y="417.0528"
+         id="tspan6264-9">current</tspan><tspan
+         sodipodi:role="line"
+         x="488.26077"
+         y="434.5528"
+         id="tspan6294">motion event</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:14px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+       x="581.39606"
+       y="462.89975"
+       id="text6300"
+       sodipodi:linespacing="125%"
+       inkscape:export-xdpi="155.97"
+       inkscape:export-ydpi="155.97"
+       inkscape:export-filename="/home/martin/mypaint/brushlib/doc/images/stroke2dabs.png"><tspan
+         sodipodi:role="line"
+         id="tspan6302"
+         x="581.39606"
+         y="462.89975">stroke</tspan></text>
+  </g>
+</svg>

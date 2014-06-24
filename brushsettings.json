@@ -503,7 +503,7 @@
         "x",
         "y",
         "pressure",
-        "dist",
+        "partial_dabs",
         "actual_radius",
         "smudge_ra",
         "smudge_ga",

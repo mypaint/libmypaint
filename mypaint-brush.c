@@ -431,7 +431,7 @@ smallest_angular_difference(float a, float b)
   // mappings in critical places or extremely few events per second.
   //
   // note: parameters are is dx/ddab, ..., dtime/ddab (dab is the number, 5.0 = 5th dab)
-  void update_states_and_setting_values (MyPaintBrush *self, float step_dx, float step_dy, float step_dpressure, float step_declination, float step_ascension, float step_dtime)
+  void update_states_and_setting_values (MyPaintBrush *self, float step_ddab, float step_dx, float step_dy, float step_dpressure, float step_declination, float step_ascension, float step_dtime)
   {
     float pressure;
     float inputs[MYPAINT_BRUSH_INPUTS_COUNT];
@@ -504,8 +504,8 @@ smallest_angular_difference(float a, float b)
     }
 
     {
-      float fac = 1.0 - exp_decay (self->settings_value[MYPAINT_BRUSH_SETTING_SLOW_TRACKING_PER_DAB], 1.0);
-      self->states[MYPAINT_BRUSH_STATE_ACTUAL_X] += (self->states[MYPAINT_BRUSH_STATE_X] - self->states[MYPAINT_BRUSH_STATE_ACTUAL_X]) * fac; // FIXME: should this depend on base radius?
+      float fac = 1.0 - exp_decay (self->settings_value[MYPAINT_BRUSH_SETTING_SLOW_TRACKING_PER_DAB], step_ddab);
+      self->states[MYPAINT_BRUSH_STATE_ACTUAL_X] += (self->states[MYPAINT_BRUSH_STATE_X] - self->states[MYPAINT_BRUSH_STATE_ACTUAL_X]) * fac;
       self->states[MYPAINT_BRUSH_STATE_ACTUAL_Y] += (self->states[MYPAINT_BRUSH_STATE_Y] - self->states[MYPAINT_BRUSH_STATE_ACTUAL_Y]) * fac;
     }
 
@@ -971,19 +971,19 @@ smallest_angular_difference(float a, float b)
     enum { UNKNOWN, YES, NO } painted = UNKNOWN;
     double dtime_left = dtime;
 
-    float step_dx, step_dy, step_dpressure, step_dtime;
+    float step_ddab, step_dx, step_dy, step_dpressure, step_dtime;
     float step_declination, step_ascension;
     while (dist_moved + dist_todo >= 1.0) { // there are dabs pending
       { // linear interpolation (nonlinear variant was too slow, see SVN log)
         float frac; // fraction of the remaining distance to move
         if (dist_moved > 0) {
-          // "move" the brush exactly to the first dab (moving less than one dab)
-          frac = (1.0 - dist_moved) / dist_todo;
+          // "move" the brush exactly to the first dab
+          step_ddab = 1.0 - dist_moved; // the step "moves" the brush by a fraction of one dab
           dist_moved = 0;
         } else {
-          // "move" the brush from one dab to the next
-          frac = 1.0 / dist_todo;
+          step_ddab = 1.0; // the step "moves" the brush by exactly one dab
         }
+        frac = step_ddab / dist_todo;
         step_dx        = frac * (x - self->states[MYPAINT_BRUSH_STATE_X]);
         step_dy        = frac * (y - self->states[MYPAINT_BRUSH_STATE_Y]);
         step_dpressure = frac * (pressure - self->states[MYPAINT_BRUSH_STATE_PRESSURE]);
@@ -993,7 +993,7 @@ smallest_angular_difference(float a, float b)
         step_ascension   = frac * smallest_angular_difference(self->states[MYPAINT_BRUSH_STATE_ASCENSION], tilt_ascension);
       }
 
-      update_states_and_setting_values (self, step_dx, step_dy, step_dpressure, step_declination, step_ascension, step_dtime);
+      update_states_and_setting_values (self, step_ddab, step_dx, step_dy, step_dpressure, step_declination, step_ascension, step_dtime);
       gboolean painted_now = prepare_and_draw_dab (self, surface);
       if (painted_now) {
         painted = YES;
@@ -1012,6 +1012,7 @@ smallest_angular_difference(float a, float b)
       // depend on something that changes much faster than just every
       // dab.
 
+      step_ddab = dist_todo; // the step "moves" the brush by a fraction of one dab
       step_dx        = x - self->states[MYPAINT_BRUSH_STATE_X];
       step_dy        = y - self->states[MYPAINT_BRUSH_STATE_Y];
       step_dpressure = pressure - self->states[MYPAINT_BRUSH_STATE_PRESSURE];
@@ -1021,7 +1022,7 @@ smallest_angular_difference(float a, float b)
 
       //dtime_left = 0; but that value is not used any more
 
-      update_states_and_setting_values (self, step_dx, step_dy, step_dpressure, step_declination, step_ascension, step_dtime);
+      update_states_and_setting_values (self, step_ddab, step_dx, step_dy, step_dpressure, step_declination, step_ascension, step_dtime);
     }
 
     // save the fraction of a dab that is already done now

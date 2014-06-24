@@ -479,7 +479,7 @@ smallest_angular_difference(float a, float b)
     float norm_dx, norm_dy, norm_dist, norm_speed;
     norm_dx = step_dx / step_dtime / base_radius;
     norm_dy = step_dy / step_dtime / base_radius;
-    norm_speed = sqrt(SQR(norm_dx) + SQR(norm_dy));
+    norm_speed = hypotf(norm_dx, norm_dy);
     norm_dist = norm_speed * step_dtime;
 
     inputs[MYPAINT_BRUSH_INPUT_PRESSURE] = pressure * expf(mapping_get_base_value(self->settings[MYPAINT_BRUSH_SETTING_PRESSURE_GAIN_LOG]));
@@ -940,7 +940,7 @@ smallest_angular_difference(float a, float b)
 
     // draw many (or zero) dabs to the next position
 
-    // see doc/stroke2dabs.png
+    // see doc/images/stroke2dabs.png
     float dist_moved = self->states[MYPAINT_BRUSH_STATE_DIST];
     float dist_todo = count_dabs_to (self, x, y, pressure, dtime);
 
@@ -1009,8 +1009,8 @@ smallest_angular_difference(float a, float b)
       // "move" the brush to the current time (no more dab will happen)
       // Important to do this at least once every event, because
       // brush_count_dabs_to depends on the radius and the radius can
-      // depend on something that changes much faster than only every
-      // dab (eg speed).
+      // depend on something that changes much faster than just every
+      // dab.
 
       step_dx        = x - self->states[MYPAINT_BRUSH_STATE_X];
       step_dy        = y - self->states[MYPAINT_BRUSH_STATE_Y];

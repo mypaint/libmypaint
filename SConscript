@@ -66,9 +66,6 @@ if env['enable_introspection']:
     env['use_sharedlib'] = True
     print "Enabling glib because of enable_introspection=true"
     print "Building a shared lib instead of a static lib because of enable_introspection=true"
-else:
-    env['use_sharedlib'] = False
-    env['use_glib'] = False
 
 Export('env')
 

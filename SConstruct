@@ -24,6 +24,8 @@ opts.Add(BoolVariable('enable_introspection', 'enable GObject introspection supp
 opts.Add(BoolVariable('enable_docs', 'enable documentation build', False))
 opts.Add(BoolVariable('enable_gperftools', 'enable gperftools in build, for profiling', False))
 opts.Add(BoolVariable('enable_openmp', 'enable OpenMP for multithreaded processing (on by default)', True))
+opts.Add(BoolVariable('use_sharedlib', 'build a shared library instead of a static library (forced on by introspection)', False))
+opts.Add(BoolVariable('use_glib', 'enable glib (forced on by introspection)', False))
 opts.Add('python_binary', 'python executable to build for', default_python_binary)
 
 tools = ['default', 'textfile']

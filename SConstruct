@@ -32,6 +32,8 @@ tools = ['default', 'textfile']
 
 env = Environment(ENV=os.environ, options=opts, tools=tools)
 
+Help(opts.GenerateHelpText(env))
+
 # Respect some standard build environment stuff
 # See http://cgit.freedesktop.org/mesa/mesa/tree/scons/gallium.py
 # See https://wiki.gentoo.org/wiki/SCons#Missing_CC.2C_CFLAGS.2C_LDFLAGS

@@ -19,9 +19,14 @@ Optional dependencies:
 
 == Building ==
 
-From the toplevel MyPaint directory, run:
- scons brushlib_only=true prefix=/your/application/install/prefix
+    # Normal build
+    scons prefix=/your/application/install/prefix
 
+    # Show build options
+    scons -h
+
+
+You can also build a minimal version of libmypaint directly into your application by including "libmypaint.c"
 
 == Documentation ==
 

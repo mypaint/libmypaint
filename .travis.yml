@@ -1,5 +1,7 @@
 language: c
 install:
     - sudo apt-get update -qq
-    - sudo apt-get install -qq -y libjson0-dev
-script: scons
+    - sudo apt-get install -qq -y libjson0-dev python-nose
+script:
+    - scons
+    - nosetests

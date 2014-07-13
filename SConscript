@@ -1,6 +1,7 @@
 Import('env', 'install_perms')
 
 import os, sys
+import subprocess
 
 brushlib_version = '1.1'
 
@@ -75,7 +76,13 @@ if env['enable_docs']:
 env.Append(CPPPATH='./')
 
 env.Append(CPPDEFINES='HAVE_JSON_C')
-pkg_deps = ['json-c']
+json_pkgconfig = 'json-c'
+
+if subprocess.call(["pkg-config", json_pkgconfig]):
+    print "Could not find 'json-c' pkg-config, trying legacy 'json' instead"
+    json_pkgconfig = 'json'
+
+pkg_deps = [json_pkgconfig]
 libs = ['m']
 linkflags = []
 

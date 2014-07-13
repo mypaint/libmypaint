@@ -1078,12 +1078,27 @@ smallest_angular_difference(float a, float b)
   }
 
 #ifdef HAVE_JSON_C
-gboolean
+
+// Compat wrapper, for supporting libjson
+static gboolean
+obj_get(json_object *self, const gchar *key, json_object **obj_out) {
+#if JSON_C_MINOR_VERSION >= 10
+    return json_object_object_get_ex(self, key, obj_out);
+#else
+    json_object *o = json_object_object_get(self, key);
+    if (obj_out) {
+        *obj_out = o;
+    }
+    return (o != NULL);
+#endif
+}
+
+static gboolean
 update_settings_from_json_object(MyPaintBrush *self)
 {
     // Check version
     json_object *version_object = NULL;
-    if (! json_object_object_get_ex(self->brush_json, "version", &version_object)) {
+    if (! obj_get(self->brush_json, "version", &version_object)) {
         fprintf(stderr, "Error: No 'version' field for brush\n");
         return FALSE;
     }
@@ -1095,7 +1110,7 @@ update_settings_from_json_object(MyPaintBrush *self)
 
     // Set settings
     json_object *settings = NULL;
-    if (! json_object_object_get_ex(self->brush_json, "settings", &settings)) {
+    if (! obj_get(self->brush_json, "settings", &settings)) {
         fprintf(stderr, "Error: No 'settings' field for brush\n");
         return FALSE;
     }
@@ -1111,7 +1126,7 @@ update_settings_from_json_object(MyPaintBrush *self)
 
         // Base value
         json_object *base_value_obj = NULL;
-        if (! json_object_object_get_ex(setting_obj, "base_value", &base_value_obj)) {
+        if (! obj_get(setting_obj, "base_value", &base_value_obj)) {
             fprintf(stderr, "Error: No 'base_value' field for setting: %s\n", setting_name);
             return FALSE;
         }
@@ -1120,7 +1135,7 @@ update_settings_from_json_object(MyPaintBrush *self)
 
         // Inputs
         json_object *inputs = NULL;
-        if (! json_object_object_get_ex(setting_obj, "inputs", &inputs)) {
+        if (! obj_get(setting_obj, "inputs", &inputs)) {
             fprintf(stderr, "Error: No 'inputs' field for setting: %s\n", setting_name);
             return FALSE;
         }

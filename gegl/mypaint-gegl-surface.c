@@ -122,7 +122,7 @@ tile_request_end(MyPaintTiledSurface *tiled_surface, MyPaintTileRequest *request
 
         g_assert(request->buffer);
         gegl_rectangle_set(&tile_bbox, request->tx*tile_size, request->ty*tile_size, tile_size, tile_size);
-        gegl_buffer_set(self->buffer, &tile_bbox, 1, self->format,
+        gegl_buffer_set(self->buffer, &tile_bbox, 0, self->format,
                         request->buffer, GEGL_AUTO_ROWSTRIDE);
         gegl_free(request->buffer);
     }

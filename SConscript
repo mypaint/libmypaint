@@ -168,7 +168,7 @@ if env['enable_gegl']:
     install_perms(env, '$prefix/include/libmypaint-gegl', Glob("./gegl/mypaint-gegl-*.h"))
 
     create_pkgconfig_files(env, 'libmypaint-gegl', brushlib_version, 'MyPaint brush engine library, with GEGL integration',
-                           libname='mypaint', deps=deps + ['libmypaint'])
+                           libname='mypaint-gegl', deps=deps + ['libmypaint'])
 
     if gegl_env['enable_introspection']:
         gir, typelib = add_gobject_introspection(gegl_env, "MyPaintGegl", brushlib_version,

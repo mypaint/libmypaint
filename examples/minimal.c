@@ -29,7 +29,8 @@ main(int argc, char argv[]) {
     stroke_to(brush, (MyPaintSurface *)surface, 200.0, 200.0);
     stroke_to(brush, (MyPaintSurface *)surface, 0.0, 200.0);
     stroke_to(brush, (MyPaintSurface *)surface, 0.0, 0.0);
-    mypaint_surface_end_atomic((MyPaintSurface *)surface);
+    MyPaintRectangle roi;
+    mypaint_surface_end_atomic((MyPaintSurface *)surface, &roi);
 
 #if 0
     // FIXME: write_ppm is currently broken

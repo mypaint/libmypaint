@@ -1,0 +1,4 @@
+install:
+    - gcc examples/minimal.c -o examples/minimal -std=c99 -lm -I.
+test_script:
+    - ./examples/minimal

@@ -1,6 +1,7 @@
 libmypaint - MyPaint brush engine library
 ===========================================
-[![Build Status](https://travis-ci.org/mypaint/libmypaint.png?branch=master)](https://travis-ci.org/mypaint/libmypaint)
+[![Travis Build Status](https://travis-ci.org/mypaint/libmypaint.png?branch=master)](https://travis-ci.org/mypaint/libmypaint)
+[![Appveyor Build status](https://ci.appveyor.com/api/projects/status/vc6ejt4nba5ctd6r)](https://ci.appveyor.com/project/jonnor/libmypaint)
 
 This is a self-contained C library that is isolated from MyPaint.
 It allows other applications to make use of the MyPaint brush engine.

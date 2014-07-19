@@ -29,7 +29,9 @@
 #include "brushmodes.h"
 #include "operationqueue.h"
 
+#ifndef M_PI
 #define M_PI 3.14159265358979323846
+#endif
 
 void process_tile(MyPaintTiledSurface *self, int tx, int ty);
 

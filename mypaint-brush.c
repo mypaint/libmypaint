@@ -40,7 +40,9 @@
   static inline float  roundf  (float  x) { return x >= 0.0f ? floorf(x + 0.5f) : ceilf(x - 0.5f); }
 #endif
 
+#ifndef M_PI
 #define M_PI 3.14159265358979323846
+#endif
 
 #define ACTUAL_RADIUS_MIN 0.2
 #define ACTUAL_RADIUS_MAX 1000 // safety guard against radius like 1e20 and against rendering overload with unexpected brush dynamics

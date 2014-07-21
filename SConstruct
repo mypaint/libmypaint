@@ -7,23 +7,25 @@ EnsureSConsVersion(1, 0)
 
 SConsignFile() # no .scsonsign into $PREFIX please
 
+default_openmp = True
+default_prefix = '/usr/local/'
+
 if sys.platform == "darwin":
+    default_openmp = False
     default_prefix = '/opt/local/'
-else:
-    default_prefix = '/usr/local/'
 
 default_python_binary = 'python%d.%d' % (sys.version_info[0], sys.version_info[1])
 
 opts = Variables()
 opts.Add(PathVariable('prefix', 'autotools-style installation prefix', default_prefix, validator=PathVariable.PathIsDirCreate))
 opts.Add(BoolVariable('debug', 'enable HEAVY_DEBUG and disable optimizations', False))
-opts.Add(BoolVariable('enable_profiling', 'enable debug symbols for profiling purposes (on by default)', True))
+opts.Add(BoolVariable('enable_profiling', 'enable debug symbols for profiling purposes', True))
 opts.Add(BoolVariable('enable_i18n', 'enable i18n support for brushlib (requires gettext)', True))
 opts.Add(BoolVariable('enable_gegl', 'enable GEGL based code in build', False))
 opts.Add(BoolVariable('enable_introspection', 'enable GObject introspection support', False))
 opts.Add(BoolVariable('enable_docs', 'enable documentation build', False))
 opts.Add(BoolVariable('enable_gperftools', 'enable gperftools in build, for profiling', False))
-opts.Add(BoolVariable('enable_openmp', 'enable OpenMP for multithreaded processing (on by default)', True))
+opts.Add(BoolVariable('enable_openmp', 'enable OpenMP for multithreaded processing', default_openmp))
 opts.Add(BoolVariable('use_sharedlib', 'build a shared library instead of a static library (forced on by introspection)', False))
 opts.Add(BoolVariable('use_glib', 'enable glib (forced on by introspection)', False))
 opts.Add('python_binary', 'python executable to build for', default_python_binary)

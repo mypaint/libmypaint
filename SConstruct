@@ -12,7 +12,6 @@ default_prefix = '/usr/local/'
 
 if sys.platform == "darwin":
     default_openmp = False
-    default_prefix = '/opt/local/'
 
 default_python_binary = 'python%d.%d' % (sys.version_info[0], sys.version_info[1])
 

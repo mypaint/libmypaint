@@ -306,7 +306,7 @@ calculate_opa(float rr, float hardness,
 }
 
 // Must be threadsafe
-inline void
+static inline void
 calculate_dab_bounds(DabBounds *bb, float x, float y, float radius)
 {
     const float r_fringe = radius + 1.0f;

@@ -45,7 +45,7 @@ main(int argc, char argv[]) {
     int w = surface->tiles_width * surface->parent.tile_size;
     int h = surface->tiles_height * surface->parent.tile_size;
     fprintf(fp, "P3\n#Handwritten\n%d %d\n255\n", w, h);
-    uint16_t * data = surface->tile_buffer;
+    float * data = surface->tile_buffer;
     for (int y=0; y<h; y++) {
         for (int x=0; x<w; x++) {
             for (int c=0; c<4; c++) {

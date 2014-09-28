@@ -19,24 +19,26 @@ This is used to generate brushsettings.h (see generate.py)
 It is also imported at runtime.
 """
 
-import os, gettext
+import os
+import gettext
 
 
 settings_hidden = 'color_h color_s color_v'.split()
 
 settings_migrate = {
     # old cname              new cname        scale function
-    'color_hue'          : ('change_color_h', lambda y: y*64.0/360.0),
-    'color_saturation'   : ('change_color_hsv_s', lambda y: y*128.0/256.0),
-    'color_value'        : ('change_color_v', lambda y: y*128.0/256.0),
-    'speed_slowness'     : ('speed1_slowness', None),
-    'change_color_s'     : ('change_color_hsv_s', None),
-    'stroke_treshold'    : ('stroke_threshold', None),
-    }
+    'color_hue':           ('change_color_h', lambda y: y*64.0/360.0),
+    'color_saturation':    ('change_color_hsv_s', lambda y: y*128.0/256.0),
+    'color_value':         ('change_color_v', lambda y: y*128.0/256.0),
+    'speed_slowness':      ('speed1_slowness', None),
+    'change_color_s':      ('change_color_hsv_s', None),
+    'stroke_treshold':     ('stroke_threshold', None),
+}
 
 # Mapping between the the index of the parameter and the name
 input_params = ["id", "hard_minimum", "soft_minimum", "normal", "soft_maximum", "hard_maximum", "displayed_name", "tooltip"]
 settings_params = ["internal_name", "displayed_name", "constant", "minimum", "default", "maximum", "tooltip"]
+
 
 def load_brush_definitions_from_json(json_string):
 
@@ -80,6 +82,7 @@ for i_list in inputs_list:
     inputs.append(i)
     inputs_dict[i.name] = i
 
+
 class BrushSetting:
     pass
 
@@ -98,6 +101,7 @@ for s_list in settings_list:
 
 settings_visible = [s for s in settings if s.cname not in settings_hidden]
 
+
 class BrushState:
     pass
 
@@ -107,7 +111,8 @@ for line in states_list:
     line = line.split('#')[0]
     for cname in line.split(','):
         cname = cname.strip()
-        if not cname: continue
+        if not cname:
+            continue
         st = BrushState()
         st.cname = cname
         st.index = len(states)

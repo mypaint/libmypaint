@@ -3,6 +3,7 @@ from gi.repository import GeglGtk3 as GeglGtk
 from gi.repository import Gegl, Gtk
 from gi.repository import MyPaint, MyPaintGegl
 
+
 class Application(object):
 
     def __init__(self):
@@ -12,10 +13,10 @@ class Application(object):
         self.gegl_surface = MyPaintGegl.TiledSurface()
         self.surface = self.gegl_surface.interface()
 
-        self.graph = Gegl.Node();
+        self.graph = Gegl.Node()
 
         self.button_pressed = False
-        self.last_event = (0.0, 0.0, 0.0) # (x, y, time)
+        self.last_event = (0.0, 0.0, 0.0)  # (x, y, time)
 
         self.init_ui()
 
@@ -77,10 +78,9 @@ class Application(object):
 
     def draw_background(self, widget, cr, rect):
         # Draw white background
-        cr.set_source_rgba(1.0, 1.0, 1.0, 1.0);
-        cr.rectangle(rect.x, rect.y, rect.width, rect.height);
-        cr.fill();
-
+        cr.set_source_rgba(1.0, 1.0, 1.0, 1.0)
+        cr.rectangle(rect.x, rect.y, rect.width, rect.height)
+        cr.fill()
 
 
 def list_settings():
@@ -101,7 +101,7 @@ def list_settings():
 
     # TODO: rename "def_" to "default"
     print "Setting: %s\n\t Max: %f \n\t Default: %f \n\t Min: %f" % (info.cname, info.max, info.def_, info.min)
-    print "\t Name: %s\n\t Tooltip: '%s'\n" % (info.get_name(), info.get_tooltip()) # Use the getters so that i18n works
+    print "\t Name: %s\n\t Tooltip: '%s'\n" % (info.get_name(), info.get_tooltip())  # Use the getters so that i18n works
 
     # TODO: should be MyPaint.BrushSetting.from_cname
     # Same with MyPaint.Brush.input_from_cname
@@ -110,14 +110,14 @@ def list_settings():
     # Get/Set current base value for the given setting
     print "Base value is: %f" % brush.get_base_value(setting)
     brush.set_base_value(setting, 2.0)
-    assert brush.get_base_value(setting) ==  2.0
+    assert brush.get_base_value(setting) == 2.0
 
     # Get dynamics for given setting
     inputs = [getattr(MyPaint.BrushInput, a) for a in dir(MyPaint.BrushInput) if a.startswith('INPUT_')]
     if not brush.is_constant(setting):
         for input in inputs:
             mapping_points = brush.get_mapping_n(setting, input)
-            if mapping_points > 1: # If 0, no dynamics for this input
+            if mapping_points > 1:  # If 0, no dynamics for this input
                 points = [brush.get_mapping_point(setting, input, i) for i in range(mapping_points)]
                 print "Has dynamics for input %s:\n%s" % (input, str(points))
 
@@ -132,4 +132,3 @@ if __name__ == '__main__':
     app.run()
 
     Gegl.exit()
-

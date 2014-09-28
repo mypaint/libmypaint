@@ -14,15 +14,19 @@
 # OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 
 "Code generator, part of the build process."
-import os, sys
+import os
+import sys
+import gettext
+import brushsettings
 from os.path import basename
 
-import gettext
+
 # workaround for https://gna.org/bugs/index.php?20281
 def do_not_translate(domain, s):
     return s
+
 gettext.dgettext = do_not_translate
-import brushsettings
+
 
 def writefile(filename, s):
     "write generated code if changed"
@@ -33,6 +37,7 @@ def writefile(filename, s):
     else:
         print 'Writing', filename
         open(filename, 'w').write(s)
+
 
 def generate_enum(enum_name, enum_prefix, count_name, name_list, value_list):
     # Can only generate an enum which starts at 0, and where each value is 1 more than the former
@@ -50,6 +55,7 @@ def generate_enum(enum_name, enum_prefix, count_name, name_list, value_list):
 
     return begin + ",\n".join(entries) + "\n" + end
 
+
 def generate_static_struct_array(struct_type, instance_name, entries_list):
 
     indent = " " * 4
@@ -62,6 +68,7 @@ def generate_static_struct_array(struct_type, instance_name, entries_list):
     entries.append("\n")
 
     return begin + ", \n".join(entries) + end
+
 
 def generate_internal_settings_code():
     content = ''
@@ -99,6 +106,7 @@ def generate_internal_settings_code():
                                             [input_info_struct(i) for i in brushsettings.inputs])
 
     return content
+
 
 def generate_public_settings_code():
     content = ''

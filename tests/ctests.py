@@ -9,6 +9,7 @@ import os
 tests_dir = os.path.dirname(os.path.abspath(__file__))
 lib_dir = os.path.abspath(os.path.join(tests_dir, '../..'))
 
+
 def run_ctest(executable):
     import subprocess
 

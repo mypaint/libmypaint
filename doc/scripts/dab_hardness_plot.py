@@ -10,7 +10,7 @@ l = dab[500, :, 3]
 r = hstack((linspace(1, 0, 500), linspace(0, 1, 500)[1:]))
 #plot(r, label="$r$")
 
-rr = r**2 
+rr = r**2
 o = 1.0-rr
 #plot(o, label="$1-r^2$")
 
@@ -21,8 +21,8 @@ for i in [1, 2]:
         if i == 2:
             rr = linspace(0, 1, 1000)
         opa = rr.copy()
-        opa[rr<hardness] = rr[rr<hardness] + 1-(rr[rr<hardness]/hardness)
-        opa[rr>=hardness] = hardness/(1-hardness)*(1-rr[rr>=hardness])
+        opa[rr < hardness] = rr[rr < hardness] + 1-(rr[rr < hardness]/hardness)
+        opa[rr >= hardness] = hardness/(1-hardness)*(1-rr[rr >= hardness])
         plot(opa, label="h=%.1f" % hardness)
         if i == 2:
             xlabel("$r^2$")

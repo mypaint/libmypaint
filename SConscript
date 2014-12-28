@@ -93,7 +93,7 @@ if env['enable_openmp']:
 if env['enable_i18n']:
     env.Append(CPPDEFINES='HAVE_GETTEXT')
     if sys.platform == "darwin":
-        libs += ['intl', 'gettextlib']
+        libs += ['intl']
 
 
 config_defines = ''

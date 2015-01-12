@@ -17,6 +17,8 @@
 import os
 import sys
 import gettext
+if os.path.exists("brushlib"):
+    sys.path.append("brushlib")
 import brushsettings
 from os.path import basename
 

@@ -27,7 +27,7 @@
 #include <gperftools/profiler.h>
 #endif
 
-#ifdef WIN32
+#ifdef _WIN32
 #include <windows.h>
 double get_time(void)
 {

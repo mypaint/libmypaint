@@ -21,3 +21,4 @@ POTFILES.in
 *.gir
 *.typelib
 tests/test-details
+tests/*.exe

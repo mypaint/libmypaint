@@ -19,15 +19,18 @@ import sys
 import gettext
 if os.path.exists("brushlib"):
     sys.path.append("brushlib")
-import brushsettings
 from os.path import basename
 
 
 # workaround for https://gna.org/bugs/index.php?20281
+# This MUST precede the brushsettings import:
+# see https://github.com/mypaint/libmypaint/issues/14
 def do_not_translate(domain, s):
     return s
 
 gettext.dgettext = do_not_translate
+
+import brushsettings
 
 
 def writefile(filename, s):

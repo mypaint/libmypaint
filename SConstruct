@@ -42,6 +42,7 @@ if os.environ.has_key('CC'):
    env['CC'] = os.environ['CC']
 if os.environ.has_key('CFLAGS'):
    env['CCFLAGS'] += SCons.Util.CLVar(os.environ['CFLAGS'])
+if os.environ.has_key('CPPFLAGS'):
    env['CCFLAGS'] += SCons.Util.CLVar(os.environ['CPPFLAGS'])
 if os.environ.has_key('LDFLAGS'):
     # LDFLAGS is omitted in SHLINKFLAGS, which is derived from LINKFLAGS
@@ -154,4 +155,3 @@ env.Alias('install', '$prefix')
 Export('env', 'install_tree', 'install_perms')
 
 brushlib = SConscript('./SConscript')
-

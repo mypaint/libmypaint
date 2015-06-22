@@ -15,8 +15,15 @@ if sys.platform == "darwin":
 
 default_python_binary = 'python%d.%d' % (sys.version_info[0], sys.version_info[1])
 
+def isabs(key, dirname, env):
+    assert os.path.isabs(dirname), "%r must have absolute path syntax" % (key,)
+
 opts = Variables()
-opts.Add(PathVariable('prefix', 'autotools-style installation prefix', default_prefix, validator=PathVariable.PathIsDirCreate))
+opts.Add(
+    'prefix', 'autotools-style installation prefix',
+    default=default_prefix,
+    validator=isabs,
+)
 opts.Add(BoolVariable('debug', 'enable HEAVY_DEBUG and disable optimizations', False))
 opts.Add(BoolVariable('enable_profiling', 'enable debug symbols for profiling purposes', True))
 opts.Add(BoolVariable('enable_i18n', 'enable i18n support for brushlib (requires gettext)', True))

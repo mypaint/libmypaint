@@ -6,7 +6,7 @@ libmypaint - MyPaint brush engine library
 This is a self-contained C library that is isolated from MyPaint.
 It allows other applications to make use of the MyPaint brush engine.
 
-License: ICS, see [COPYING](./COPYING) for details
+License: ISC, see [COPYING](./COPYING) for details
 
 Prerequisites
 ---------------

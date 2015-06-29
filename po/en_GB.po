@@ -8,10 +8,10 @@ msgstr ""
 "Project-Id-Version: mypaint 1.2.0-alpha\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-06-29 22:37+0100\n"
-"PO-Revision-Date: 2015-06-29 22:31+0200\n"
+"PO-Revision-Date: 2015-06-30 00:24+0200\n"
 "Last-Translator: Isabell Long <isabell@issyl0.co.uk>\n"
-"Language-Team: English (United Kingdom) <https://hosted.weblate.org/projects/"
-"mypaint/libmypaint/en_GB/>\n"
+"Language-Team: English (United Kingdom) "
+"<https://hosted.weblate.org/projects/mypaint/libmypaint/en_GB/>\n"
 "Language: en_GB\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -101,7 +101,7 @@ msgstr ""
 
 #: ../brushsettings-gen.h:9
 msgid "Pixel feather"
-msgstr ""
+msgstr "Pixel feather"
 
 #: ../brushsettings-gen.h:9
 msgid ""
@@ -111,38 +111,47 @@ msgid ""
 " 1.0 blur one pixel (good value)\n"
 " 5.0 notable blur, thin strokes will disappear"
 msgstr ""
+"This setting decreases the hardness when necessary to prevent a pixel "
+"staircase effect (aliasing) by making the dab more blurred.\n"
+" 0.0 disable (for very strong erasers and pixel brushes)\n"
+" 1.0 blur one pixel (good value)\n"
+" 5.0 notable blur, thin strokes will disappear"
 
 #: ../brushsettings-gen.h:10
 msgid "Dabs per basic radius"
-msgstr ""
+msgstr "Dabs per basic radius"
 
 #: ../brushsettings-gen.h:10
 msgid ""
 "How many dabs to draw while the pointer moves a distance of one brush radius "
 "(more precise: the base value of the radius)"
 msgstr ""
+"How many dabs to draw while the pointer moves a distance of one brush radius "
+"(more precise: the base value of the radius)"
 
 #: ../brushsettings-gen.h:11
 msgid "Dabs per actual radius"
-msgstr ""
+msgstr "Dabs per actual radius"
 
 #: ../brushsettings-gen.h:11
 msgid ""
 "Same as above, but the radius actually drawn is used, which can change "
 "dynamically"
 msgstr ""
+"Same as above, but the radius actually drawn is used, which can change "
+"dynamically"
 
 #: ../brushsettings-gen.h:12
 msgid "Dabs per second"
-msgstr ""
+msgstr "Dabs per second"
 
 #: ../brushsettings-gen.h:12
 msgid "Dabs to draw each second, no matter how far the pointer moves"
-msgstr ""
+msgstr "Dabs to draw each second, no matter how far the pointer moves"
 
 #: ../brushsettings-gen.h:13
 msgid "Radius by random"
-msgstr ""
+msgstr "Radius by random"
 
 #: ../brushsettings-gen.h:13
 msgid ""
@@ -152,28 +161,35 @@ msgid ""
 "transparent\n"
 "2) it will not change the actual radius seen by dabs_per_actual_radius"
 msgstr ""
+"Alter the radius randomly each dab. You can also do this with the by_random "
+"input on the radius setting. If you do it here, there are two differences:\n"
+"1) the opaque value will be corrected such that a big-radius dabs is more "
+"transparent\n"
+"2) it will not change the actual radius seen by dabs_per_actual_radius"
 
 #: ../brushsettings-gen.h:14
 msgid "Fine speed filter"
-msgstr ""
+msgstr "Fine speed filter"
 
 #: ../brushsettings-gen.h:14
 msgid ""
 "How slow the input fine speed is following the real speed\n"
 "0.0 change immediately as your speed changes (not recommended, but try it)"
 msgstr ""
+"How slow the input fine speed is following the real speed\n"
+"0.0 change immediately as your speed changes (not recommended, but try it)"
 
 #: ../brushsettings-gen.h:15
 msgid "Gross speed filter"
-msgstr ""
+msgstr "Gross speed filter"
 
 #: ../brushsettings-gen.h:15
 msgid "Same as 'fine speed filter', but note that the range is different"
-msgstr ""
+msgstr "Same as 'fine speed filter', but note that the range is different"
 
 #: ../brushsettings-gen.h:16
 msgid "Fine speed gamma"
-msgstr ""
+msgstr "Fine speed gamma"
 
 #: ../brushsettings-gen.h:16
 msgid ""
@@ -184,18 +200,24 @@ msgid ""
 "+8.0 very fast speed increases 'fine speed' a lot\n"
 "For very slow speed the opposite happens."
 msgstr ""
+"This changes the reaction of the 'fine speed' input to extreme physical "
+"speed. You will see the difference best if 'fine speed' is mapped to the "
+"radius.\n"
+"-8.0 very fast speed does not increase 'fine speed' much more\n"
+"+8.0 very fast speed increases 'fine speed' a lot\n"
+"For very slow speed the opposite happens."
 
 #: ../brushsettings-gen.h:17
 msgid "Gross speed gamma"
-msgstr ""
+msgstr "Gross speed gamma"
 
 #: ../brushsettings-gen.h:17
 msgid "Same as 'fine speed gamma' for gross speed"
-msgstr ""
+msgstr "Same as 'fine speed gamma' for gross speed"
 
 #: ../brushsettings-gen.h:18
 msgid "Jitter"
-msgstr ""
+msgstr "Jitter"
 
 #: ../brushsettings-gen.h:18
 msgid ""
@@ -204,10 +226,14 @@ msgid ""
 " 1.0 standard deviation is one basic radius away\n"
 "<0.0 negative values produce no jitter"
 msgstr ""
+"Add a random offset to the position where each dab is drawn\n"
+" 0.0 disabled\n"
+" 1.0 standard deviation is one basic radius away\n"
+"<0.0 negative values produce no jitter"
 
 #: ../brushsettings-gen.h:19
 msgid "Offset by speed"
-msgstr ""
+msgstr "Offset by speed"
 
 #: ../brushsettings-gen.h:19
 msgid ""
@@ -216,64 +242,74 @@ msgid ""
 "> 0 draw where the pointer moves to\n"
 "< 0 draw where the pointer comes from"
 msgstr ""
+"Change position depending on pointer speed\n"
+"= 0 disable\n"
+"> 0 draw where the pointer moves to\n"
+"< 0 draw where the pointer comes from"
 
 #: ../brushsettings-gen.h:20
 msgid "Offset by speed filter"
-msgstr ""
+msgstr "Offset by speed filter"
 
 #: ../brushsettings-gen.h:20
 msgid "How slow the offset goes back to zero when the cursor stops moving"
-msgstr ""
+msgstr "How slow the offset goes back to zero when the cursor stops moving"
 
 #: ../brushsettings-gen.h:21
 msgid "Slow position tracking"
-msgstr ""
+msgstr "Slow position tracking"
 
 #: ../brushsettings-gen.h:21
 msgid ""
 "Slowdown pointer tracking speed. 0 disables it, higher values remove more "
 "jitter in cursor movements. Useful for drawing smooth, comic-like outlines."
 msgstr ""
+"Slowdown pointer tracking speed. 0 disables it, higher values remove more "
+"jitter in cursor movements. Useful for drawing smooth, comic-like outlines."
 
 #: ../brushsettings-gen.h:22
 msgid "Slow tracking per dab"
-msgstr ""
+msgstr "Slow tracking per dab"
 
 #: ../brushsettings-gen.h:22
 msgid ""
 "Similar as above but at brushdab level (ignoring how much time has passed if "
 "brushdabs do not depend on time)"
 msgstr ""
+"Similar as above but at brushdab level (ignoring how much time has passed if "
+"brushdabs do not depend on time)"
 
 #: ../brushsettings-gen.h:23
 msgid "Tracking noise"
-msgstr ""
+msgstr "Tracking noise"
 
 #: ../brushsettings-gen.h:23
 msgid ""
 "Add randomness to the mouse pointer; this usually generates many small lines "
 "in random directions; maybe try this together with 'slow tracking'"
 msgstr ""
+"Add randomness to the mouse pointer; this usually generates many small lines "
+"in random directions; maybe try this together with 'slow tracking'"
 
 #: ../brushsettings-gen.h:24
 msgid "Color hue"
-msgstr ""
+msgstr "Colour hue"
 
 #: ../brushsettings-gen.h:25
 msgid "Color saturation"
-msgstr ""
+msgstr "Colour saturation"
 
 #: ../brushsettings-gen.h:26
 msgid "Color value"
-msgstr ""
+msgstr "Colour value"
 
 #: ../brushsettings-gen.h:26
 msgid "Color value (brightness, intensity)"
-msgstr ""
+msgstr "Colour value (brightness, intensity)"
 
 #: ../brushsettings-gen.h:27
 msgid "Save color"
-msgstr ""
+msgstr "Save colour"
 
 #: ../brushsettings-gen.h:27
 msgid ""
@@ -283,10 +319,15 @@ msgid ""
 " 0.5 change active color towards brush color\n"
 " 1.0 set the active color to the brush color when selected"
 msgstr ""
+"When selecting a brush, the colour can be restored to the colour that the "
+"brush was saved with.\n"
+" 0.0 do not modify the active colour when selecting this brush\n"
+" 0.5 change active colour towards brush colour\n"
+" 1.0 set the active colour to the brush colour when selected"
 
 #: ../brushsettings-gen.h:28
 msgid "Change color hue"
-msgstr ""
+msgstr "Change colour hue"
 
 #: ../brushsettings-gen.h:28
 msgid ""
@@ -295,10 +336,14 @@ msgid ""
 " 0.0 disable\n"
 " 0.5 counterclockwise hue shift by 180 degrees"
 msgstr ""
+"Change colour hue.\n"
+"-0.1 small clockwise colour hue shift\n"
+" 0.0 disable\n"
+" 0.5 counterclockwise hue shift by 180 degrees"
 
 #: ../brushsettings-gen.h:29
 msgid "Change color lightness (HSL)"
-msgstr ""
+msgstr "Change colour lightness (HSL)"
 
 #: ../brushsettings-gen.h:29
 msgid ""
@@ -307,10 +352,14 @@ msgid ""
 " 0.0 disable\n"
 " 1.0 whiter"
 msgstr ""
+"Change the colour lightness (luminance) using the HSL color model.\n"
+"-1.0 blacker\n"
+" 0.0 disable\n"
+" 1.0 whiter"
 
 #: ../brushsettings-gen.h:30
 msgid "Change color satur. (HSL)"
-msgstr ""
+msgstr "Change colour satur. (HSL)"
 
 #: ../brushsettings-gen.h:30
 msgid ""
@@ -319,10 +368,14 @@ msgid ""
 " 0.0 disable\n"
 " 1.0 more saturated"
 msgstr ""
+"Change the colour saturation using the HSL colour model.\n"
+"-1.0 more grayish\n"
+" 0.0 disable\n"
+" 1.0 more saturated"
 
 #: ../brushsettings-gen.h:31
 msgid "Change color value (HSV)"
-msgstr ""
+msgstr "Change colour value (HSV)"
 
 #: ../brushsettings-gen.h:31
 msgid ""
@@ -332,10 +385,15 @@ msgid ""
 " 0.0 disable\n"
 " 1.0 brigher"
 msgstr ""
+"Change the colour value (brightness, intensity) using the HSV colour model. "
+"HSV changes are applied before HSL.\n"
+"-1.0 darker\n"
+" 0.0 disable\n"
+" 1.0 brigher"
 
 #: ../brushsettings-gen.h:32
 msgid "Change color satur. (HSV)"
-msgstr ""
+msgstr "Change colour satur. (HSV)"
 
 #: ../brushsettings-gen.h:32
 msgid ""
@@ -345,10 +403,15 @@ msgid ""
 " 0.0 disable\n"
 " 1.0 more saturated"
 msgstr ""
+"Change the colour saturation using the HSV colour model. HSV changes are "
+"applied before HSL.\n"
+"-1.0 more grayish\n"
+" 0.0 disable\n"
+" 1.0 more saturated"
 
 #: ../brushsettings-gen.h:33
 msgid "Smudge"
-msgstr ""
+msgstr "Smudge"
 
 #: ../brushsettings-gen.h:33
 msgid ""
@@ -358,10 +421,15 @@ msgid ""
 " 0.5 mix the smudge color with the brush color\n"
 " 1.0 use only the smudge color"
 msgstr ""
+"Paint with the smudge colour instead of the brush colour. The smudge colour "
+"is slowly changed to the colour you are painting on.\n"
+" 0.0 do not use the smudge colour\n"
+" 0.5 mix the smudge colour with the brush colour\n"
+" 1.0 use only the smudge colour"
 
 #: ../brushsettings-gen.h:34
 msgid "Smudge length"
-msgstr ""
+msgstr "Smudge length"
 
 #: ../brushsettings-gen.h:34
 msgid ""
@@ -372,10 +440,16 @@ msgid ""
 "0.5 change the smudge color steadily towards the canvas color\n"
 "1.0 never change the smudge color"
 msgstr ""
+"This controls how fast the smudge colour becomes the colour you are painting "
+"on.\n"
+"0.0 immediately update the smudge colour (requires more CPU cycles because "
+"of the frequent colour checks)\n"
+"0.5 change the smudge colour steadily towards the canvas colour\n"
+"1.0 never change the smudge colour"
 
 #: ../brushsettings-gen.h:35
 msgid "Smudge radius"
-msgstr ""
+msgstr "Smudge radius"
 
 #: ../brushsettings-gen.h:35
 msgid ""
@@ -386,42 +460,58 @@ msgid ""
 "+0.7 twice the brush radius\n"
 "+1.6 five times the brush radius (slow performance)"
 msgstr ""
+"This modifies the radius of the circle where colour is picked up for "
+"smudging.\n"
+" 0.0 use the brush radius\n"
+"-0.7 half the brush radius (fast, but not always intuitive)\n"
+"+0.7 twice the brush radius\n"
+"+1.6 five times the brush radius (slow performance)"
 
 #: ../brushsettings-gen.h:36
+#, fuzzy
 msgid "Eraser"
-msgstr ""
+msgstr "Rubber"
 
 #: ../brushsettings-gen.h:36
+#, fuzzy
 msgid ""
 "how much this tool behaves like an eraser\n"
 " 0.0 normal painting\n"
 " 1.0 standard eraser\n"
 " 0.5 pixels go towards 50% transparency"
 msgstr ""
+"how much this tool behaves like a rubber\n"
+" 0.0 normal painting\n"
+" 1.0 standard rubber\n"
+" 0.5 pixels go towards 50% transparency"
 
 #: ../brushsettings-gen.h:37
 msgid "Stroke threshold"
-msgstr ""
+msgstr "Stroke threshold"
 
 #: ../brushsettings-gen.h:37
 msgid ""
 "How much pressure is needed to start a stroke. This affects the stroke input "
 "only. Mypaint does not need a minimal pressure to start drawing."
 msgstr ""
+"How much pressure is needed to start a stroke. This affects the stroke input "
+"only. Mypaint does not need a minimal pressure to start drawing."
 
 #: ../brushsettings-gen.h:38
 msgid "Stroke duration"
-msgstr ""
+msgstr "Stroke duration"
 
 #: ../brushsettings-gen.h:38
 msgid ""
 "How far you have to move until the stroke input reaches 1.0. This value is "
 "logarithmic (negative values will not inverse the process)."
 msgstr ""
+"How far you have to move until the stroke input reaches 1.0. This value is "
+"logarithmic (negative values will not inverse the process)."
 
 #: ../brushsettings-gen.h:39
 msgid "Stroke hold time"
-msgstr ""
+msgstr "Stroke hold time"
 
 #: ../brushsettings-gen.h:39
 msgid ""
@@ -431,10 +521,15 @@ msgid ""
 "2.0 means twice as long as it takes to go from 0.0 to 1.0\n"
 "9.9 and bigger stands for infinite"
 msgstr ""
+"This defines how long the stroke input stays at 1.0. After that it will "
+"reset to 0.0 and start growing again, even if the stroke is not yet finished."
+"\n"
+"2.0 means twice as long as it takes to go from 0.0 to 1.0\n"
+"9.9 and bigger stands for infinite"
 
 #: ../brushsettings-gen.h:40
 msgid "Custom input"
-msgstr ""
+msgstr "Custom input"
 
 #: ../brushsettings-gen.h:40
 msgid ""

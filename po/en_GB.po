@@ -8,29 +8,34 @@ msgstr ""
 "Project-Id-Version: mypaint 1.2.0-alpha\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-06-29 20:26+0100\n"
-"PO-Revision-Date: 2012-11-28 01:00+0000\n"
-"Last-Translator: Andrew Chadwick <a.t.chadwick@gmail.com>\n"
-"Language: British English (Oxford spelling)\n"
+"PO-Revision-Date: 2015-06-29 22:31+0200\n"
+"Last-Translator: Isabell Long <isabell@issyl0.co.uk>\n"
+"Language-Team: English (United Kingdom) "
+"<https://hosted.weblate.org/projects/mypaint/libmypaint/en_GB/>\n"
+"Language: en_GB\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n!=1);\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 2.4-dev\n"
 "X-Language: en_GB\n"
 "X-Source-Language: C\n"
 
 #: ../brushsettings-gen.h:4
 msgid "Opacity"
-msgstr ""
+msgstr "Opacity"
 
 #: ../brushsettings-gen.h:4
 msgid ""
 "0 means brush is transparent, 1 fully visible\n"
 "(also known as alpha or opacity)"
 msgstr ""
+"0 means brush is transparent, 1 fully visible\n"
+"(also known as alpha or opacity)"
 
 #: ../brushsettings-gen.h:5
 msgid "Opacity multiply"
-msgstr ""
+msgstr "Opacity multiply"
 
 #: ../brushsettings-gen.h:5
 msgid ""
@@ -39,10 +44,14 @@ msgid ""
 "This setting is responsible to stop painting when there is zero pressure. "
 "This is just a convention, the behaviour is identical to 'opaque'."
 msgstr ""
+"This gets multiplied with opaque. You should only change the pressure input "
+"of this setting. Use 'opaque' instead to make opacity depend on speed.\n"
+"This setting is responsible to stop painting when there is zero pressure. "
+"This is just a convention, the behaviour is identical to 'opaque'."
 
 #: ../brushsettings-gen.h:6
 msgid "Opacity linearize"
-msgstr ""
+msgstr "Opacity linearize"
 
 #: ../brushsettings-gen.h:6
 msgid ""
@@ -55,10 +64,18 @@ msgid ""
 "1.0 the opaque value above is for the final brush stroke, assuming each "
 "pixel gets (dabs_per_radius*2) brushdabs on average during a stroke"
 msgstr ""
+"Correct the nonlinearity introduced by blending multiple dabs on top of each "
+"other. This correction should get you a linear (\"natural\") pressure "
+"response when pressure is mapped to opaque_multiply, as it is usually done. "
+"0.9 is good for standard strokes, set it smaller if your brush scatters a "
+"lot, or higher if you use dabs_per_second.\n"
+"0.0 the opaque value above is for the individual dabs\n"
+"1.0 the opaque value above is for the final brush stroke, assuming each "
+"pixel gets (dabs_per_radius*2) brushdabs on average during a stroke"
 
 #: ../brushsettings-gen.h:7
 msgid "Radius"
-msgstr ""
+msgstr "Radius"
 
 #: ../brushsettings-gen.h:7
 msgid ""
@@ -66,16 +83,21 @@ msgid ""
 " 0.7 means 2 pixels\n"
 " 3.0 means 20 pixels"
 msgstr ""
+"Basic brush radius (logarithmic)\n"
+" 0.7 means 2 pixels\n"
+" 3.0 means 20 pixels"
 
 #: ../brushsettings-gen.h:8
 msgid "Hardness"
-msgstr ""
+msgstr "Hardness"
 
 #: ../brushsettings-gen.h:8
 msgid ""
 "Hard brush-circle borders (setting to zero will draw nothing). To reach the "
 "maximum hardness, you need to disable Pixel feather."
 msgstr ""
+"Hard brush-circle borders (setting to zero will draw nothing). To reach the "
+"maximum hardness, you need to disable Pixel feather."
 
 #: ../brushsettings-gen.h:9
 msgid "Pixel feather"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.9.0-git\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-12-17 21:24+0100\n"
+"POT-Creation-Date: 2015-06-29 19:05+0100\n"
 "PO-Revision-Date: 2012-12-15 16:35-0200\n"
 "Last-Translator: João S. O. Bueno <jsbueno@python.org.br>\n"
 "Language-Team: Brazilian Portuguese <>\n"
@@ -96,22 +96,24 @@ msgid "Hardness"
 msgstr "Dureza"
 
 #: ../brushsettings-gen.h:8
+#, fuzzy
 msgid ""
 "Hard brush-circle borders (setting to zero will draw nothing). To reach the "
-"maximum hardness, you need to disable Anti-aliasing."
+"maximum hardness, you need to disable Pixel feather."
 msgstr ""
 "bordas circulares do pincel são duras ou suaves (se for zero não vai "
 "desenhar nada). Para ter o máximo de dureza, você deve desabilitar o anti-"
 "serrilhamento "
 
 #: ../brushsettings-gen.h:9
-msgid "Anti-aliasing"
-msgstr "Anti-serrilhamento"
+msgid "Pixel feather"
+msgstr ""
 
 #: ../brushsettings-gen.h:9
+#, fuzzy
 msgid ""
 "This setting decreases the hardness when necessary to prevent a pixel "
-"staircase effect.\n"
+"staircase effect (aliasing) by making the dab more blurred.\n"
 " 0.0 disable (for very strong erasers and pixel brushes)\n"
 " 1.0 blur one pixel (good value)\n"
 " 5.0 notable blur, thin strokes will disappear"
@@ -649,23 +651,46 @@ msgstr ""
 "Coloriza a camada alvo, usando o matiz e a saturação do pincel ativo e "
 "mantendo o valor e alfa da camada."
 
-#: ../brushsettings-gen.h:51
+#: ../brushsettings-gen.h:47
+msgid "Snap to pixel"
+msgstr ""
+
+#: ../brushsettings-gen.h:47
+msgid ""
+"Snap brush dab's center and it's radius to pixels. Set this to 1.0 for a "
+"thin pixel brush."
+msgstr ""
+
+#: ../brushsettings-gen.h:48
+#, fuzzy
+msgid "Pressure gain"
+msgstr "Pressão"
+
+#: ../brushsettings-gen.h:48
+msgid ""
+"This changes how hard you have to press. It multiplies tablet pressure by a "
+"constant factor."
+msgstr ""
+
+#: ../brushsettings-gen.h:53
 msgid "Pressure"
 msgstr "Pressão"
 
-#: ../brushsettings-gen.h:51
+#: ../brushsettings-gen.h:53
+#, fuzzy
 msgid ""
-"The pressure reported by the tablet, between 0.0 and 1.0. If you use the "
-"mouse, it will be 0.5 when a button is pressed and 0.0 otherwise."
+"The pressure reported by the tablet. Usually between 0.0 and 1.0, but it may "
+"get larger when a pressure gain is used. If you use the mouse, it will be "
+"0.5 when a button is pressed and 0.0 otherwise."
 msgstr ""
 "A pressão reportada pelo tablet, entre 0.0 e 1.0. Se você estiver usando o "
 "mouse, ela será 0.5 com o botão pressionado, ou 0.0. "
 
-#: ../brushsettings-gen.h:52
+#: ../brushsettings-gen.h:54
 msgid "Fine speed"
 msgstr "Velocidade fina"
 
-#: ../brushsettings-gen.h:52
+#: ../brushsettings-gen.h:54
 msgid ""
 "How fast you currently move. This can change very quickly. Try 'print input "
 "values' from the 'help' menu to get a feeling for the range; negative values "
@@ -676,11 +701,11 @@ msgstr ""
 "qual é a faixa de números usada; valores negativos são raros, mas possíveis "
 "para velocidades muito baixas."
 
-#: ../brushsettings-gen.h:53
+#: ../brushsettings-gen.h:55
 msgid "Gross speed"
 msgstr "Velocidade bruta"
 
-#: ../brushsettings-gen.h:53
+#: ../brushsettings-gen.h:55
 msgid ""
 "Same as fine speed, but changes slower. Also look at the 'gross speed "
 "filter' setting."
@@ -688,11 +713,11 @@ msgstr ""
 "O mesmo que a velocidade fina, mas muda mais lentamente. Veja também a "
 "configuração de 'Filtro de velocidade bruta'."
 
-#: ../brushsettings-gen.h:54
+#: ../brushsettings-gen.h:56
 msgid "Random"
 msgstr "Aleatório"
 
-#: ../brushsettings-gen.h:54
+#: ../brushsettings-gen.h:56
 msgid ""
 "Fast random noise, changing at each evaluation. Evenly distributed between 0 "
 "and 1."
@@ -700,11 +725,11 @@ msgstr ""
 "Ruído aleatório rápido, mudando a cada iteração. Distribuição uniforme entre "
 "0 e 1"
 
-#: ../brushsettings-gen.h:55
+#: ../brushsettings-gen.h:57
 msgid "Stroke"
 msgstr "Traço"
 
-#: ../brushsettings-gen.h:55
+#: ../brushsettings-gen.h:57
 msgid ""
 "This input slowly goes from zero to one while you draw a stroke. It can also "
 "be configured to jump back to zero periodically while you move. Look at the "
@@ -715,11 +740,11 @@ msgstr ""
 "desenha, Veja as configurações de \"duração do traço\" e \"tempo de "
 "manutenção do traço\"."
 
-#: ../brushsettings-gen.h:56
+#: ../brushsettings-gen.h:58
 msgid "Direction"
 msgstr "Direção"
 
-#: ../brushsettings-gen.h:56
+#: ../brushsettings-gen.h:58
 msgid ""
 "The angle of the stroke, in degrees. The value will stay between 0.0 and "
 "180.0, effectively ignoring turns of 180 degrees."
@@ -727,11 +752,11 @@ msgstr ""
 "O ângulo do traço, em graus. Este valor fica entre 0.0 e 180.0, efetivamente "
 "ignorando mudanças de 180 graus."
 
-#: ../brushsettings-gen.h:57
+#: ../brushsettings-gen.h:59
 msgid "Declination"
 msgstr "Declinação"
 
-#: ../brushsettings-gen.h:57
+#: ../brushsettings-gen.h:59
 msgid ""
 "Declination of stylus tilt. 0 when stylus is parallel to tablet and 90.0 "
 "when it's perpendicular to tablet."
@@ -739,11 +764,11 @@ msgstr ""
 "Declinação é a inclinação da caneta. 0.0º quando a caneta está paralela ao "
 "tablet e 90º quando estiver perpendicular ao tablet."
 
-#: ../brushsettings-gen.h:58
+#: ../brushsettings-gen.h:60
 msgid "Ascension"
 msgstr "Ascensão"
 
-#: ../brushsettings-gen.h:58
+#: ../brushsettings-gen.h:60
 msgid ""
 "Right ascension of stylus tilt. 0 when stylus working end points to you, +90 "
 "when rotated 90 degrees clockwise, -90 when rotated 90 degrees "
@@ -753,13 +778,16 @@ msgstr ""
 "para você, +90º quando girada 90 graus no sentido horário, -90º no sentido "
 "anti-horário."
 
-#: ../brushsettings-gen.h:59
+#: ../brushsettings-gen.h:61
 msgid "Custom"
 msgstr "Personalizado"
 
-#: ../brushsettings-gen.h:59
+#: ../brushsettings-gen.h:61
 msgid ""
 "This is a user defined input. Look at the 'custom input' setting for details."
 msgstr ""
 "Esta é uma entrada definida pelo usuário. Verifique a configuração \"Entrada "
 "personalizada\" para detalhes."
+
+#~ msgid "Anti-aliasing"
+#~ msgstr "Anti-serrilhamento"

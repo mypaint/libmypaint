@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MyPaint 1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-11-27 18:54+0100\n"
+"POT-Creation-Date: 2015-06-29 19:05+0100\n"
 "PO-Revision-Date: 2011-11-21 12:30+0400\n"
 "Last-Translator: Александр Прокудин <alexandre.prokoudine@gmail.com>\n"
 "Language-Team: Russian <gnome-cyr@lists.gnome.org>\n"
@@ -30,7 +30,8 @@ msgstr "Непрозрачность"
 #: ../brushsettings-gen.h:4
 #, fuzzy
 msgid ""
-"0 means brush is transparent, 1 fully visible(also known as alpha or opacity)"
+"0 means brush is transparent, 1 fully visible\n"
+"(also known as alpha or opacity)"
 msgstr ""
 "0 означает, что кисть прозрачна, 1 — полностью видима\n"
 "(также известно как альфа-канал или непрозрачность)"
@@ -43,9 +44,9 @@ msgstr "Множитель непрозрачности"
 #, fuzzy
 msgid ""
 "This gets multiplied with opaque. You should only change the pressure input "
-"of this setting. Use 'opaque' instead to make opacity depend on speed.This "
-"setting is responsible to stop painting when there is zero pressure. This is "
-"just a convention, the behaviour is identical to 'opaque'."
+"of this setting. Use 'opaque' instead to make opacity depend on speed.\n"
+"This setting is responsible to stop painting when there is zero pressure. "
+"This is just a convention, the behaviour is identical to 'opaque'."
 msgstr ""
 "Это число умножается на непрозрачность. Вы должны изменять только ввод 'сила "
 "нажатия' для этой настройки. Используйте 'непрозрачность' вместо этой "
@@ -64,10 +65,10 @@ msgid ""
 "other. This correction should get you a linear (\"natural\") pressure "
 "response when pressure is mapped to opaque_multiply, as it is usually done. "
 "0.9 is good for standard strokes, set it smaller if your brush scatters a "
-"lot, or higher if you use dabs_per_second.0.0 the opaque value above is for "
-"the individual dabs1.0 the opaque value above is for the final brush stroke, "
-"assuming each pixel gets (dabs_per_radius*2) brushdabs on average during a "
-"stroke"
+"lot, or higher if you use dabs_per_second.\n"
+"0.0 the opaque value above is for the individual dabs\n"
+"1.0 the opaque value above is for the final brush stroke, assuming each "
+"pixel gets (dabs_per_radius*2) brushdabs on average during a stroke"
 msgstr ""
 "Корректировать нелинейность, появляющуюся из-за многих мазков друг на друге. "
 "Эта коррекция должна дать линейный (\"естественный\") отклик на нажатие, "
@@ -84,7 +85,10 @@ msgstr "Радиус"
 
 #: ../brushsettings-gen.h:7
 #, fuzzy
-msgid "Basic brush radius (logarithmic) 0.7 means 2 pixels 3.0 means 20 pixels"
+msgid ""
+"Basic brush radius (logarithmic)\n"
+" 0.7 means 2 pixels\n"
+" 3.0 means 20 pixels"
 msgstr ""
 "Основной радиус кисти (логарифмический)\n"
 " 0.7 означает 2 пиксела\n"
@@ -98,18 +102,20 @@ msgstr "Жёсткость"
 #, fuzzy
 msgid ""
 "Hard brush-circle borders (setting to zero will draw nothing). To reach the "
-"maximum hardness, you need to disable Anti-aliasing."
+"maximum hardness, you need to disable Pixel feather."
 msgstr "Жёсткость краёв мазка. Если 0, не рисуется ничего."
 
 #: ../brushsettings-gen.h:9
-msgid "Anti-aliasing"
-msgstr "Сглаживание"
+msgid "Pixel feather"
+msgstr ""
 
 #: ../brushsettings-gen.h:9
 msgid ""
 "This setting decreases the hardness when necessary to prevent a pixel "
-"staircase effect. 0.0 disable (for very strong erasers and pixel brushes) "
-"1.0 blur one pixel (good value) 5.0 notable blur, thin strokes will disappear"
+"staircase effect (aliasing) by making the dab more blurred.\n"
+" 0.0 disable (for very strong erasers and pixel brushes)\n"
+" 1.0 blur one pixel (good value)\n"
+" 5.0 notable blur, thin strokes will disappear"
 msgstr ""
 
 #: ../brushsettings-gen.h:10
@@ -156,10 +162,10 @@ msgstr "Случайный радиус"
 #, fuzzy
 msgid ""
 "Alter the radius randomly each dab. You can also do this with the by_random "
-"input on the radius setting. If you do it here, there are two differences:1) "
-"the opaque value will be corrected such that a big-radius dabs is more "
-"transparent2) it will not change the actual radius seen by "
-"dabs_per_actual_radius"
+"input on the radius setting. If you do it here, there are two differences:\n"
+"1) the opaque value will be corrected such that a big-radius dabs is more "
+"transparent\n"
+"2) it will not change the actual radius seen by dabs_per_actual_radius"
 msgstr "Изменять радиус случайно для каждого мазка."
 
 #: ../brushsettings-gen.h:14
@@ -169,8 +175,8 @@ msgstr "Фильтр точной скорости"
 #: ../brushsettings-gen.h:14
 #, fuzzy
 msgid ""
-"How slow the input fine speed is following the real speed0.0 change "
-"immediately as your speed changes (not recommended, but try it)"
+"How slow the input fine speed is following the real speed\n"
+"0.0 change immediately as your speed changes (not recommended, but try it)"
 msgstr ""
 "Насколько медленно ввод 'Точная скорость' следует за реальной скоростью\n"
 "0.0 - изменяться одновременно с изменением реальной скорости (не "
@@ -195,9 +201,10 @@ msgstr "Гамма точной скорости"
 msgid ""
 "This changes the reaction of the 'fine speed' input to extreme physical "
 "speed. You will see the difference best if 'fine speed' is mapped to the "
-"radius.-8.0 very fast speed does not increase 'fine speed' much more+8.0 "
-"very fast speed increases 'fine speed' a lotFor very slow speed the opposite "
-"happens."
+"radius.\n"
+"-8.0 very fast speed does not increase 'fine speed' much more\n"
+"+8.0 very fast speed increases 'fine speed' a lot\n"
+"For very slow speed the opposite happens."
 msgstr ""
 "Это изменяет реакцию ввода 'точная скорость' на большую физическую скорость. "
 "Вы увидите разницу особенно хорошо, если 'точная скорость' связана с "
@@ -222,9 +229,10 @@ msgstr "Дрожание"
 #: ../brushsettings-gen.h:18
 #, fuzzy
 msgid ""
-"Add a random offset to the position where each dab is drawn 0.0 disabled 1.0 "
-"standard deviation is one basic radius away<0.0 negative values produce no "
-"jitter"
+"Add a random offset to the position where each dab is drawn\n"
+" 0.0 disabled\n"
+" 1.0 standard deviation is one basic radius away\n"
+"<0.0 negative values produce no jitter"
 msgstr ""
 "Добавить случайное смещение к положению каждого мазка.\n"
 " 0.0 --- отключено 1.0 --- стандартное отклонение равно основной величине "
@@ -237,8 +245,10 @@ msgstr "Смещение вдоль скорости"
 #: ../brushsettings-gen.h:19
 #, fuzzy
 msgid ""
-"Change position depending on pointer speed= 0 disable> 0 draw where the "
-"pointer moves to< 0 draw where the pointer comes from"
+"Change position depending on pointer speed\n"
+"= 0 disable\n"
+"> 0 draw where the pointer moves to\n"
+"< 0 draw where the pointer comes from"
 msgstr ""
 "Изменять положение в зависимости от скорости\n"
 " =0 - отключено\n"
@@ -317,9 +327,10 @@ msgstr "Сохранить цвет"
 #: ../brushsettings-gen.h:27
 msgid ""
 "When selecting a brush, the color can be restored to the color that the "
-"brush was saved with. 0.0 do not modify the active color when selecting this "
-"brush 0.5 change active color towards brush color 1.0 set the active color "
-"to the brush color when selected"
+"brush was saved with.\n"
+" 0.0 do not modify the active color when selecting this brush\n"
+" 0.5 change active color towards brush color\n"
+" 1.0 set the active color to the brush color when selected"
 msgstr ""
 
 #: ../brushsettings-gen.h:28
@@ -329,8 +340,10 @@ msgstr "Изменение оттенка"
 #: ../brushsettings-gen.h:28
 #, fuzzy
 msgid ""
-"Change color hue.-0.1 small clockwise color hue shift 0.0 disable 0.5 "
-"counterclockwise hue shift by 180 degrees"
+"Change color hue.\n"
+"-0.1 small clockwise color hue shift\n"
+" 0.0 disable\n"
+" 0.5 counterclockwise hue shift by 180 degrees"
 msgstr ""
 "Изменять оттенок цвета.\n"
 "-0.1 небольшое изменение по часовой стрелке\n"
@@ -344,8 +357,10 @@ msgstr "Изменение светлоты (HSL)"
 #: ../brushsettings-gen.h:29
 #, fuzzy
 msgid ""
-"Change the color lightness (luminance) using the HSL color model.-1.0 "
-"blacker 0.0 disable 1.0 whiter"
+"Change the color lightness (luminance) using the HSL color model.\n"
+"-1.0 blacker\n"
+" 0.0 disable\n"
+" 1.0 whiter"
 msgstr ""
 "Изменять светлоту цвета, используя модель HSL\n"
 "-1.0 чернее\n"
@@ -359,8 +374,10 @@ msgstr "Изменение насыщенности (HSL)"
 #: ../brushsettings-gen.h:30
 #, fuzzy
 msgid ""
-"Change the color saturation using the HSL color model.-1.0 more grayish 0.0 "
-"disable 1.0 more saturated"
+"Change the color saturation using the HSL color model.\n"
+"-1.0 more grayish\n"
+" 0.0 disable\n"
+" 1.0 more saturated"
 msgstr ""
 "Изменять насыщенность цвета, используя модель HSL.\n"
 "-1.0 серее\n"
@@ -375,7 +392,10 @@ msgstr "Изменение значения (HSV)"
 #, fuzzy
 msgid ""
 "Change the color value (brightness, intensity) using the HSV color model. "
-"HSV changes are applied before HSL.-1.0 darker 0.0 disable 1.0 brigher"
+"HSV changes are applied before HSL.\n"
+"-1.0 darker\n"
+" 0.0 disable\n"
+" 1.0 brigher"
 msgstr ""
 "Изменять значение света (яркость, интенсивность) используя модель HSV."
 "Изменения в HSV применяются до HSL.\n"
@@ -391,7 +411,10 @@ msgstr "Изменение насыщенности (HSV)"
 #, fuzzy
 msgid ""
 "Change the color saturation using the HSV color model. HSV changes are "
-"applied before HSL.-1.0 more grayish 0.0 disable 1.0 more saturated"
+"applied before HSL.\n"
+"-1.0 more grayish\n"
+" 0.0 disable\n"
+" 1.0 more saturated"
 msgstr ""
 "Изменять насыщенность цвета, используя модель HSV. Изменения в HSV "
 "применяются до HSL.\n"
@@ -407,9 +430,10 @@ msgstr "Размазывание"
 #, fuzzy
 msgid ""
 "Paint with the smudge color instead of the brush color. The smudge color is "
-"slowly changed to the color you are painting on. 0.0 do not use the smudge "
-"color 0.5 mix the smudge color with the brush color 1.0 use only the smudge "
-"color"
+"slowly changed to the color you are painting on.\n"
+" 0.0 do not use the smudge color\n"
+" 0.5 mix the smudge color with the brush color\n"
+" 1.0 use only the smudge color"
 msgstr ""
 "Рисовать смазанным цветом вместо цвета кисти. Смазанный цвет медленно "
 "меняется к цвету, на котором вы рисуете.\n"
@@ -425,9 +449,11 @@ msgstr "Длина размазывания"
 #, fuzzy
 msgid ""
 "This controls how fast the smudge color becomes the color you are painting "
-"on.0.0 immediately update the smudge color (requires more CPU cycles because "
-"of the frequent color checks)0.5 change the smudge color steadily towards "
-"the canvas color1.0 never change the smudge color"
+"on.\n"
+"0.0 immediately update the smudge color (requires more CPU cycles because of "
+"the frequent color checks)\n"
+"0.5 change the smudge color steadily towards the canvas color\n"
+"1.0 never change the smudge color"
 msgstr ""
 "Управляет тем, насколько быстро смазанный цвет становится тем цветом, на "
 "котором вы рисуете.\n"
@@ -442,9 +468,11 @@ msgstr "Радиус"
 #, fuzzy
 msgid ""
 "This modifies the radius of the circle where color is picked up for "
-"smudging. 0.0 use the brush radius-0.7 half the brush radius (fast, but not "
-"always intuitive)+0.7 twice the brush radius+1.6 five times the brush radius "
-"(slow performance)"
+"smudging.\n"
+" 0.0 use the brush radius\n"
+"-0.7 half the brush radius (fast, but not always intuitive)\n"
+"+0.7 twice the brush radius\n"
+"+1.6 five times the brush radius (slow performance)"
 msgstr ""
 "Это изменяет радиус круга, из которого берётся цвет для размазывания.\n"
 "0.0 использовать радиус кисти\n"
@@ -458,8 +486,10 @@ msgstr "Ластик"
 #: ../brushsettings-gen.h:36
 #, fuzzy
 msgid ""
-"how much this tool behaves like an eraser 0.0 normal painting 1.0 standard "
-"eraser 0.5 pixels go towards 50% transparency"
+"how much this tool behaves like an eraser\n"
+" 0.0 normal painting\n"
+" 1.0 standard eraser\n"
+" 0.5 pixels go towards 50% transparency"
 msgstr ""
 "Насколько этот инструмент ведёт себя похоже на ластик\n"
 " 0.0 - обычное рисование\n"
@@ -499,8 +529,9 @@ msgstr "Время удержания штриха"
 msgid ""
 "This defines how long the stroke input stays at 1.0. After that it will "
 "reset to 0.0 and start growing again, even if the stroke is not yet "
-"finished.2.0 means twice as long as it takes to go from 0.0 to 1.09.9 and "
-"bigger stands for infinite"
+"finished.\n"
+"2.0 means twice as long as it takes to go from 0.0 to 1.0\n"
+"9.9 and bigger stands for infinite"
 msgstr ""
 "Этот параметр определяет, как долго вход 'stroke' будет оставаться в "
 "значении 1.0. После этого он будет сброшен в 0.0 и начнёт расти снова, даже "
@@ -519,8 +550,9 @@ msgid ""
 "this value (see below). The idea is that you make this input depend on a "
 "mixture of pressure/speed/whatever, and then make other settings depend on "
 "this 'custom input' instead of repeating this combination everywhere you "
-"need it.If you make it change 'by random' you can generate a slow (smooth) "
-"random input."
+"need it.\n"
+"If you make it change 'by random' you can generate a slow (smooth) random "
+"input."
 msgstr ""
 "Установить пользовательский ввод в это значение. Если этот параметр "
 "замедлен, то изменять его к этому значению (см. ниже). Идея состоит в том, "
@@ -540,7 +572,8 @@ msgstr "Фильтр ввода пользователя"
 msgid ""
 "How slow the custom input actually follows the desired value (the one "
 "above). This happens at brushdab level (ignoring how much time has past, if "
-"brushdabs do not depend on time).0.0 no slowdown (changes apply instantly)"
+"brushdabs do not depend on time).\n"
+"0.0 no slowdown (changes apply instantly)"
 msgstr ""
 "Насколько медленно пользовательский ввод будет изменяться к установленному "
 "значению (см. выше). Это вычисляется на уровне мазка кисти.\n"
@@ -566,8 +599,10 @@ msgstr "Эллиптический мазок: угол"
 #: ../brushsettings-gen.h:43
 #, fuzzy
 msgid ""
-"Angle by which elliptical dabs are tilted 0.0 horizontal dabs 45.0 45 "
-"degrees, turned clockwise 180.0 horizontal again"
+"Angle by which elliptical dabs are tilted\n"
+" 0.0 horizontal dabs\n"
+" 45.0 45 degrees, turned clockwise\n"
+" 180.0 horizontal again"
 msgstr ""
 "Это определяет угол, под которым будут наколнены эллиптические мазки\n"
 " 0 - горизонтальные мазки\n"
@@ -594,8 +629,10 @@ msgstr "Блокирование альфа-канала"
 #: ../brushsettings-gen.h:45
 msgid ""
 "Do not modify the alpha channel of the layer (paint only where there is "
-"paint already) 0.0 normal painting 0.5 half of the paint gets applied "
-"normally 1.0 alpha channel fully locked"
+"paint already)\n"
+" 0.0 normal painting\n"
+" 0.5 half of the paint gets applied normally\n"
+" 1.0 alpha channel fully locked"
 msgstr ""
 
 #: ../brushsettings-gen.h:46
@@ -609,23 +646,46 @@ msgid ""
 "brush colour while retaining its value and alpha."
 msgstr ""
 
-#: ../brushsettings-gen.h:51
+#: ../brushsettings-gen.h:47
+msgid "Snap to pixel"
+msgstr ""
+
+#: ../brushsettings-gen.h:47
+msgid ""
+"Snap brush dab's center and it's radius to pixels. Set this to 1.0 for a "
+"thin pixel brush."
+msgstr ""
+
+#: ../brushsettings-gen.h:48
+#, fuzzy
+msgid "Pressure gain"
+msgstr "Сила нажатия"
+
+#: ../brushsettings-gen.h:48
+msgid ""
+"This changes how hard you have to press. It multiplies tablet pressure by a "
+"constant factor."
+msgstr ""
+
+#: ../brushsettings-gen.h:53
 msgid "Pressure"
 msgstr "Сила нажатия"
 
-#: ../brushsettings-gen.h:51
+#: ../brushsettings-gen.h:53
+#, fuzzy
 msgid ""
-"The pressure reported by the tablet, between 0.0 and 1.0. If you use the "
-"mouse, it will be 0.5 when a button is pressed and 0.0 otherwise."
+"The pressure reported by the tablet. Usually between 0.0 and 1.0, but it may "
+"get larger when a pressure gain is used. If you use the mouse, it will be "
+"0.5 when a button is pressed and 0.0 otherwise."
 msgstr ""
 "Сила нажатия, сообщаемая планшетом, между 0.0 и 1.0. При использовании мыши, "
 "будет 0.5 при нажатой кнопке и 0 при отпущенной."
 
-#: ../brushsettings-gen.h:52
+#: ../brushsettings-gen.h:54
 msgid "Fine speed"
 msgstr "Точная скорость"
 
-#: ../brushsettings-gen.h:52
+#: ../brushsettings-gen.h:54
 msgid ""
 "How fast you currently move. This can change very quickly. Try 'print input "
 "values' from the 'help' menu to get a feeling for the range; negative values "
@@ -634,11 +694,11 @@ msgstr ""
 "Скорость движения. Может изменяться очень быстро. Отрицательные значения "
 "соответствуют очень медленному движению."
 
-#: ../brushsettings-gen.h:53
+#: ../brushsettings-gen.h:55
 msgid "Gross speed"
 msgstr "Главная скорость"
 
-#: ../brushsettings-gen.h:53
+#: ../brushsettings-gen.h:55
 msgid ""
 "Same as fine speed, but changes slower. Also look at the 'gross speed "
 "filter' setting."
@@ -646,22 +706,22 @@ msgstr ""
 "То же, что Точная скорость, но меняется медленнее. См. также 'Фильтр главной "
 "скорости'."
 
-#: ../brushsettings-gen.h:54
+#: ../brushsettings-gen.h:56
 msgid "Random"
 msgstr "Случайность"
 
-#: ../brushsettings-gen.h:54
+#: ../brushsettings-gen.h:56
 msgid ""
 "Fast random noise, changing at each evaluation. Evenly distributed between 0 "
 "and 1."
 msgstr ""
 "Случайное постоянно меняющееся значение. Равномерно распределено между 0 и 1."
 
-#: ../brushsettings-gen.h:55
+#: ../brushsettings-gen.h:57
 msgid "Stroke"
 msgstr "Штрих"
 
-#: ../brushsettings-gen.h:55
+#: ../brushsettings-gen.h:57
 msgid ""
 "This input slowly goes from zero to one while you draw a stroke. It can also "
 "be configured to jump back to zero periodically while you move. Look at the "
@@ -671,21 +731,21 @@ msgstr ""
 "периодически сбрасывалось обратно в 0. См. 'Длительность штриха' и 'Время "
 "удержания штриха'."
 
-#: ../brushsettings-gen.h:56
+#: ../brushsettings-gen.h:58
 msgid "Direction"
 msgstr "Направление"
 
-#: ../brushsettings-gen.h:56
+#: ../brushsettings-gen.h:58
 msgid ""
 "The angle of the stroke, in degrees. The value will stay between 0.0 and "
 "180.0, effectively ignoring turns of 180 degrees."
 msgstr "Угол штриха, в градусах, от 0 до 180."
 
-#: ../brushsettings-gen.h:57
+#: ../brushsettings-gen.h:59
 msgid "Declination"
 msgstr "Склонение"
 
-#: ../brushsettings-gen.h:57
+#: ../brushsettings-gen.h:59
 msgid ""
 "Declination of stylus tilt. 0 when stylus is parallel to tablet and 90.0 "
 "when it's perpendicular to tablet."
@@ -693,11 +753,11 @@ msgstr ""
 "Склонение наклона пера. 0, когда перо параллельно планшету и 90.0, когда оно "
 "перпендикулярно планшету."
 
-#: ../brushsettings-gen.h:58
+#: ../brushsettings-gen.h:60
 msgid "Ascension"
 msgstr "Восхождение"
 
-#: ../brushsettings-gen.h:58
+#: ../brushsettings-gen.h:60
 msgid ""
 "Right ascension of stylus tilt. 0 when stylus working end points to you, +90 "
 "when rotated 90 degrees clockwise, -90 when rotated 90 degrees "
@@ -707,11 +767,14 @@ msgstr ""
 "вас, +90 когда перо повёрнуто на 90 градусов по часовой стрелке, -90 когда "
 "повёрнуто на 90 градусов против часовой стрелки."
 
-#: ../brushsettings-gen.h:59
+#: ../brushsettings-gen.h:61
 msgid "Custom"
 msgstr "Пользовательский"
 
-#: ../brushsettings-gen.h:59
+#: ../brushsettings-gen.h:61
 msgid ""
 "This is a user defined input. Look at the 'custom input' setting for details."
 msgstr "Ввод пользователя. См. также 'Ввод пользователя'"
+
+#~ msgid "Anti-aliasing"
+#~ msgstr "Сглаживание"

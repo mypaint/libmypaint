@@ -1,5 +1,6 @@
 libmypaint - MyPaint brush engine library
 ===========================================
+[![Translation status](https://hosted.weblate.org/widgets/mypaint/-/svg-badge.svg)](https://hosted.weblate.org/engage/mypaint/?utm_source=widget)
 [![Travis Build Status](https://travis-ci.org/mypaint/libmypaint.png?branch=master)](https://travis-ci.org/mypaint/libmypaint)
 [![Appveyor Build status](https://ci.appveyor.com/api/projects/status/vc6ejt4nba5ctd6r)](https://ci.appveyor.com/project/jonnor/libmypaint)
 

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MyPaint GIT\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-06-29 19:05+0100\n"
+"POT-Creation-Date: 2015-06-29 22:37+0100\n"
 "PO-Revision-Date: 2015-06-29 14:28+0200\n"
 "Last-Translator: Till Hartmann <till.hartmannn@googlemail.com>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/mypaint/"
@@ -250,7 +250,7 @@ msgstr ""
 
 #: ../brushsettings-gen.h:22
 msgid ""
-"Similar as above but at brushdab level (ignoring how much time has past, if "
+"Similar as above but at brushdab level (ignoring how much time has passed if "
 "brushdabs do not depend on time)"
 msgstr ""
 
@@ -507,8 +507,8 @@ msgstr ""
 #: ../brushsettings-gen.h:41
 msgid ""
 "How slow the custom input actually follows the desired value (the one "
-"above). This happens at brushdab level (ignoring how much time has past, if "
-"brushdabs do not depend on time).\n"
+"above). This happens at brushdab level (ignoring how much time has passed, "
+"if brushdabs do not depend on time).\n"
 "0.0 no slowdown (changes apply instantly)"
 msgstr ""
 

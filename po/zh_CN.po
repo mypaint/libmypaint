@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.7.1-git\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-06-29 19:05+0100\n"
+"POT-Creation-Date: 2015-06-29 22:37+0100\n"
 "PO-Revision-Date: 2010-01-20 01:09+0100\n"
 "Last-Translator: Popolon <popolon@popolon.org>\n"
 "Language-Team: Simplified Chinese <zh@li.org>\n"
@@ -235,7 +235,7 @@ msgstr "每個筆觸緩慢描繪"
 
 #: ../brushsettings-gen.h:22
 msgid ""
-"Similar as above but at brushdab level (ignoring how much time has past, if "
+"Similar as above but at brushdab level (ignoring how much time has passed if "
 "brushdabs do not depend on time)"
 msgstr ""
 
@@ -468,8 +468,8 @@ msgstr "自定义输入过滤程序"
 #: ../brushsettings-gen.h:41
 msgid ""
 "How slow the custom input actually follows the desired value (the one "
-"above). This happens at brushdab level (ignoring how much time has past, if "
-"brushdabs do not depend on time).\n"
+"above). This happens at brushdab level (ignoring how much time has passed, "
+"if brushdabs do not depend on time).\n"
 "0.0 no slowdown (changes apply instantly)"
 msgstr ""
 

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.9.0-git\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-06-29 19:05+0100\n"
+"POT-Creation-Date: 2015-06-29 22:37+0100\n"
 "PO-Revision-Date: 2012-12-15 16:35-0200\n"
 "Last-Translator: João S. O. Bueno <jsbueno@python.org.br>\n"
 "Language-Team: Brazilian Portuguese <>\n"
@@ -289,8 +289,9 @@ msgid "Slow tracking per dab"
 msgstr "Acompanhamento lento das amostras"
 
 #: ../brushsettings-gen.h:22
+#, fuzzy
 msgid ""
-"Similar as above but at brushdab level (ignoring how much time has past, if "
+"Similar as above but at brushdab level (ignoring how much time has passed if "
 "brushdabs do not depend on time)"
 msgstr ""
 "Como acima, mas no nível de amostra de pincel (ignorando quando tempo "
@@ -569,10 +570,11 @@ msgid "Custom input filter"
 msgstr "Filtro de entrada personalizada"
 
 #: ../brushsettings-gen.h:41
+#, fuzzy
 msgid ""
 "How slow the custom input actually follows the desired value (the one "
-"above). This happens at brushdab level (ignoring how much time has past, if "
-"brushdabs do not depend on time).\n"
+"above). This happens at brushdab level (ignoring how much time has passed, "
+"if brushdabs do not depend on time).\n"
 "0.0 no slowdown (changes apply instantly)"
 msgstr ""
 "Quão lentamente a entrada personalizada acompanha o valor desejado (o valor "

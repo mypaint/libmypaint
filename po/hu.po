@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MyPaint git\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-06-29 19:05+0100\n"
+"POT-Creation-Date: 2015-06-29 22:37+0100\n"
 "PO-Revision-Date: 2011-11-16 21:21+0100\n"
 "Last-Translator: Gergely Aradszki\n"
 "Language: hu\n"
@@ -276,8 +276,9 @@ msgid "Slow tracking per dab"
 msgstr "Lassú pozíció-követés foltonként"
 
 #: ../brushsettings-gen.h:22
+#, fuzzy
 msgid ""
-"Similar as above but at brushdab level (ignoring how much time has past, if "
+"Similar as above but at brushdab level (ignoring how much time has passed if "
 "brushdabs do not depend on time)"
 msgstr ""
 "Hasonló a felette lévőhöz, de folt-szinten. (Nem veszi figyelembe az eltelt "
@@ -556,10 +557,11 @@ msgid "Custom input filter"
 msgstr "Saját bemenet szűrő"
 
 #: ../brushsettings-gen.h:41
+#, fuzzy
 msgid ""
 "How slow the custom input actually follows the desired value (the one "
-"above). This happens at brushdab level (ignoring how much time has past, if "
-"brushdabs do not depend on time).\n"
+"above). This happens at brushdab level (ignoring how much time has passed, "
+"if brushdabs do not depend on time).\n"
 "0.0 no slowdown (changes apply instantly)"
 msgstr ""
 "Milyen lassan követi a saját bemenet a kívánt értéket (a fentebb lévőt). Ez "

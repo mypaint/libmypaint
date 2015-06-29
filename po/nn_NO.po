@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.7.1-git\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-06-29 19:05+0100\n"
+"POT-Creation-Date: 2015-06-29 22:37+0100\n"
 "PO-Revision-Date: 2011-11-15 20:27+0100\n"
 "Last-Translator: Tor Egil Hoftun Kvæstad <toregilhk@hotmail.com>\n"
 "Language-Team: Norsk (nynorsk) <>\n"
@@ -259,7 +259,7 @@ msgstr "Sakte sporing per klatt"
 
 #: ../brushsettings-gen.h:22
 msgid ""
-"Similar as above but at brushdab level (ignoring how much time has past, if "
+"Similar as above but at brushdab level (ignoring how much time has passed if "
 "brushdabs do not depend on time)"
 msgstr ""
 
@@ -538,8 +538,8 @@ msgstr ""
 #: ../brushsettings-gen.h:41
 msgid ""
 "How slow the custom input actually follows the desired value (the one "
-"above). This happens at brushdab level (ignoring how much time has past, if "
-"brushdabs do not depend on time).\n"
+"above). This happens at brushdab level (ignoring how much time has passed, "
+"if brushdabs do not depend on time).\n"
 "0.0 no slowdown (changes apply instantly)"
 msgstr ""
 

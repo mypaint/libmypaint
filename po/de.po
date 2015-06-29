@@ -3,13 +3,16 @@ msgstr ""
 "Project-Id-Version: MyPaint GIT\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-11-27 18:54+0100\n"
-"PO-Revision-Date: 2010-05-14 00:52+0200\n"
-"Last-Translator: Julian Aloofi <julian.fedora@googlemail.com>\n"
-"Language-Team: Tobias Jakobs <tobias.jakobs@googlemail.com>\n"
-"Language: \n"
+"PO-Revision-Date: 2015-06-29 14:28+0200\n"
+"Last-Translator: Till Hartmann <till.hartmannn@googlemail.com>\n"
+"Language-Team: German "
+"<https://hosted.weblate.org/projects/mypaint/libmypaint/de/>\n"
+"Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 2.4-dev\n"
 "X-Poedit-Language: German\n"
 "X-Poedit-Country: GERMANY\n"
 "X-Poedit-SourceCharset: utf-8\n"
@@ -84,34 +87,48 @@ msgid ""
 "staircase effect. 0.0 disable (for very strong erasers and pixel brushes) "
 "1.0 blur one pixel (good value) 5.0 notable blur, thin strokes will disappear"
 msgstr ""
+"Diese Einstellung vermindert - falls nötig - die Härte, um einen Pixel-"
+"Treppeneffekt zu verhindern.\n"
+"0.0: deaktiviert (für sehr kantige Radierer oder Pixel-Pinsel)\n"
+"1.0: verwische einen Pixel (guter Wert)\n"
+"5.0: deutliches Verwischen, dünne Striche nicht mehr sichtbar"
 
 #: ../brushsettings-gen.h:10
 msgid "Dabs per basic radius"
-msgstr ""
+msgstr "Tupfer pro Grundradius"
 
 #: ../brushsettings-gen.h:10
+#, fuzzy
 msgid ""
 "How many dabs to draw while the pointer moves a distance of one brush radius "
 "(more precise: the base value of the radius)"
 msgstr ""
+"Wie viele Tupfer gezeichnet werden sollen während der Zeiger eine Strecke "
+"von einem Pinselradius zurücklegt (genauer: der Grundwert des Radius)"
 
 #: ../brushsettings-gen.h:11
+#, fuzzy
 msgid "Dabs per actual radius"
-msgstr ""
+msgstr "Tupfer pro tatsächlichem Radius"
 
 #: ../brushsettings-gen.h:11
+#, fuzzy
 msgid ""
 "Same as above, but the radius actually drawn is used, which can change "
 "dynamically"
 msgstr ""
+"Wie oben, allerdings ist der tatsächlich gezeichnete Radius Grundlage und "
+"dieser kann sich dynamisch ändern"
 
 #: ../brushsettings-gen.h:12
 msgid "Dabs per second"
-msgstr ""
+msgstr "Tupfer pro Sekunde"
 
 #: ../brushsettings-gen.h:12
 msgid "Dabs to draw each second, no matter how far the pointer moves"
 msgstr ""
+"Tupfer die pro Sekunde gezeichnet werden sollen, egal wie weit der Zeiger "
+"sich bewegt"
 
 #: ../brushsettings-gen.h:13
 msgid "Radius by random"

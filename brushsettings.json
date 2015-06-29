@@ -261,7 +261,7 @@
             "internal_name": "slow_tracking_per_dab", 
             "maximum": 10.0, 
             "minimum": 0.0, 
-            "tooltip": "Similar as above but at brushdab level (ignoring how much time has past, if brushdabs do not depend on time)"
+            "tooltip": "Similar as above but at brushdab level (ignoring how much time has passed if brushdabs do not depend on time)"
         }, 
         {
             "constant": true, 
@@ -432,7 +432,7 @@
             "internal_name": "custom_input_slowness", 
             "maximum": 10.0, 
             "minimum": 0.0, 
-            "tooltip": "How slow the custom input actually follows the desired value (the one above). This happens at brushdab level (ignoring how much time has past, if brushdabs do not depend on time).\n0.0 no slowdown (changes apply instantly)"
+            "tooltip": "How slow the custom input actually follows the desired value (the one above). This happens at brushdab level (ignoring how much time has passed, if brushdabs do not depend on time).\n0.0 no slowdown (changes apply instantly)"
         }, 
         {
             "constant": false, 

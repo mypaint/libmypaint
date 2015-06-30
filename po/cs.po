@@ -8,10 +8,10 @@ msgstr ""
 "Project-Id-Version: 0.7.1-git\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-06-29 22:37+0100\n"
-"PO-Revision-Date: 2015-06-29 11:16+0200\n"
-"Last-Translator: Michal Čihař <michal@cihar.com>\n"
-"Language-Team: Czech <https://hosted.weblate.org/projects/mypaint/libmypaint/"
-"cs/>\n"
+"PO-Revision-Date: 2015-06-30 05:47+0200\n"
+"Last-Translator: Martin Tabačan <tabycz@gmail.com>\n"
+"Language-Team: Czech "
+"<https://hosted.weblate.org/projects/mypaint/libmypaint/cs/>\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -24,7 +24,7 @@ msgstr ""
 #: ../brushsettings-gen.h:4
 #, fuzzy
 msgid "Opacity"
-msgstr "Krytí:"
+msgstr "Krytí"
 
 #: ../brushsettings-gen.h:4
 #, fuzzy
@@ -32,8 +32,8 @@ msgid ""
 "0 means brush is transparent, 1 fully visible\n"
 "(also known as alpha or opacity)"
 msgstr ""
-"0 znamená průhledný štětec, 1 plně viditelný (také známé jako alfa nebo "
-"neprůhledný)"
+"0 znamená průhledný štětec, 1 plně viditelný \n"
+"(také známé jako alfa nebo neprůhledný)"
 
 #: ../brushsettings-gen.h:5
 #, fuzzy
@@ -483,9 +483,8 @@ msgid ""
 msgstr ""
 
 #: ../brushsettings-gen.h:36
-#, fuzzy
 msgid "Eraser"
-msgstr "guma"
+msgstr "Guma"
 
 #: ../brushsettings-gen.h:36
 #, fuzzy

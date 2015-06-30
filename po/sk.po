@@ -20,17 +20,19 @@ msgstr ""
 
 #: ../brushsettings-gen.h:4
 msgid "Opacity"
-msgstr ""
+msgstr "Krytie"
 
 #: ../brushsettings-gen.h:4
 msgid ""
 "0 means brush is transparent, 1 fully visible\n"
 "(also known as alpha or opacity)"
 msgstr ""
+"0 znamená, že štetec je priehľadný, 1 znamená plnú viditeľnosť\n"
+"(tiež známe ako alfa kanál alebo krytie)"
 
 #: ../brushsettings-gen.h:5
 msgid "Opacity multiply"
-msgstr ""
+msgstr "Násobenie krytia"
 
 #: ../brushsettings-gen.h:5
 msgid ""
@@ -58,7 +60,7 @@ msgstr ""
 
 #: ../brushsettings-gen.h:7
 msgid "Radius"
-msgstr ""
+msgstr "Polomer"
 
 #: ../brushsettings-gen.h:7
 msgid ""
@@ -66,20 +68,25 @@ msgid ""
 " 0.7 means 2 pixels\n"
 " 3.0 means 20 pixels"
 msgstr ""
+"Základný polomer štetca (logaritmický)\n"
+"0,7 znamená 2 pixely\n"
+"3,0 znamená 20 pixelov"
 
 #: ../brushsettings-gen.h:8
 msgid "Hardness"
-msgstr ""
+msgstr "Tvrdosť"
 
 #: ../brushsettings-gen.h:8
 msgid ""
 "Hard brush-circle borders (setting to zero will draw nothing). To reach the "
 "maximum hardness, you need to disable Pixel feather."
 msgstr ""
+"Tvrdé okraje kruhu štetca (nastavením na nulu sa nič nenakreslí). Na "
+"dosiahnutie najvyššej tvrdosti, musíte zakázať Zjemnenie pixelov."
 
 #: ../brushsettings-gen.h:9
 msgid "Pixel feather"
-msgstr ""
+msgstr "Zjemnenie pixelov"
 
 #: ../brushsettings-gen.h:9
 msgid ""
@@ -235,23 +242,23 @@ msgstr ""
 
 #: ../brushsettings-gen.h:24
 msgid "Color hue"
-msgstr ""
+msgstr "Odtieň farby"
 
 #: ../brushsettings-gen.h:25
 msgid "Color saturation"
-msgstr ""
+msgstr "Sýtosť farby"
 
 #: ../brushsettings-gen.h:26
 msgid "Color value"
-msgstr ""
+msgstr "Hodnota farby"
 
 #: ../brushsettings-gen.h:26
 msgid "Color value (brightness, intensity)"
-msgstr ""
+msgstr "Hodnota farby (jas, intenzita)"
 
 #: ../brushsettings-gen.h:27
 msgid "Save color"
-msgstr ""
+msgstr "Uloženie farby"
 
 #: ../brushsettings-gen.h:27
 msgid ""
@@ -484,13 +491,15 @@ msgstr ""
 
 #: ../brushsettings-gen.h:46
 msgid "Colorize"
-msgstr ""
+msgstr "Ofarbenie"
 
 #: ../brushsettings-gen.h:46
 msgid ""
 "Colorize the target layer, setting its hue and saturation from the active "
 "brush colour while retaining its value and alpha."
 msgstr ""
+"Ofarbenie cieľovej vrstvy nastavením jej odtieňu a sýtosti z aktívnej farby "
+"štetca so zachovaním svojej hodnoty a alfa kanálu."
 
 #: ../brushsettings-gen.h:47
 msgid "Snap to pixel"
@@ -504,17 +513,18 @@ msgstr ""
 
 #: ../brushsettings-gen.h:48
 msgid "Pressure gain"
-msgstr ""
+msgstr "Zosilnenie tlaku"
 
 #: ../brushsettings-gen.h:48
 msgid ""
 "This changes how hard you have to press. It multiplies tablet pressure by a "
 "constant factor."
 msgstr ""
+"Týmto sa zmení ako tvrdo tlačíte. Násobí tlak tabletu konštantným násobkom."
 
 #: ../brushsettings-gen.h:53
 msgid "Pressure"
-msgstr ""
+msgstr "Tlak"
 
 #: ../brushsettings-gen.h:53
 msgid ""
@@ -522,6 +532,9 @@ msgid ""
 "get larger when a pressure gain is used. If you use the mouse, it will be "
 "0.5 when a button is pressed and 0.0 otherwise."
 msgstr ""
+"Tlak hlásený tabletom. Obvykle býva v rozsahu 0,0 a 1,0 ale môže byť väčší "
+"pri použití zosilnenia tlaku. Ak používate myš, hodnota bude 0,5 pri "
+"stlačení tlačidla a 0,0 pri uvoľnení tlačidla."
 
 #: ../brushsettings-gen.h:54
 msgid "Fine speed"

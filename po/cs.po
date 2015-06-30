@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: 0.7.1-git\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-06-29 22:37+0100\n"
-"PO-Revision-Date: 2015-06-30 05:47+0200\n"
-"Last-Translator: Martin Tabačan <tabycz@gmail.com>\n"
+"PO-Revision-Date: 2015-06-30 08:50+0200\n"
+"Last-Translator: Michal Čihař <michal@cihar.com>\n"
 "Language-Team: Czech "
 "<https://hosted.weblate.org/projects/mypaint/libmypaint/cs/>\n"
 "Language: cs\n"
@@ -22,23 +22,20 @@ msgstr ""
 "X-Poedit-Country: CZECH REPUBLIC\n"
 
 #: ../brushsettings-gen.h:4
-#, fuzzy
 msgid "Opacity"
 msgstr "Krytí"
 
 #: ../brushsettings-gen.h:4
-#, fuzzy
 msgid ""
 "0 means brush is transparent, 1 fully visible\n"
 "(also known as alpha or opacity)"
 msgstr ""
 "0 znamená průhledný štětec, 1 plně viditelný \n"
-"(také známé jako alfa nebo neprůhledný)"
+"(také známé jako alfa nebo průhlednost)"
 
 #: ../brushsettings-gen.h:5
-#, fuzzy
 msgid "Opacity multiply"
-msgstr "vicenásobné krytí"
+msgstr "Vicenásobné krytí"
 
 #: ../brushsettings-gen.h:5
 msgid ""
@@ -75,18 +72,16 @@ msgstr ""
 "každý pixel dostane průměrně (kapky_v_dosahu*2) kapek štětce během tahu."
 
 #: ../brushsettings-gen.h:7
-#, fuzzy
 msgid "Radius"
-msgstr "dosah"
+msgstr "Poloměr"
 
 #: ../brushsettings-gen.h:7
-#, fuzzy
 msgid ""
 "Basic brush radius (logarithmic)\n"
 " 0.7 means 2 pixels\n"
 " 3.0 means 20 pixels"
 msgstr ""
-"základní dosah štětce (logaritmický)\n"
+"Základní poloměr štětce (logaritmický)\n"
 " 0,7 znamená 2 pixely\n"
 " 3,0 znamená 20 pixelů"
 

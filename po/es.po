@@ -130,7 +130,7 @@ msgid ""
 "(more precise: the base value of the radius)"
 msgstr ""
 "Cuántas pinceladas dibujar mientras el puntero se mueve una distancia de un "
-"radio de la brocha (más precisamente: el valor base de ese radio)."
+"radio de la brocha (más precisamente: el valor base de ese radio)"
 
 #: ../brushsettings-gen.h:11
 msgid "Dabs per actual radius"
@@ -285,7 +285,7 @@ msgid ""
 "brushdabs do not depend on time)"
 msgstr ""
 "Similar al de arriba, pero a nivel de pincelada (ignora cuánto tiempo ha "
-"pasado si las pinceladas no dependen del tiempo)."
+"pasado si las pinceladas no dependen del tiempo)"
 
 #: ../brushsettings-gen.h:23
 msgid "Tracking noise"

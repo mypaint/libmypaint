@@ -8,18 +8,20 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-01 02:05+0100\n"
-"PO-Revision-Date: 2015-07-01 02:05+0100\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"PO-Revision-Date: 2015-07-02 22:07+0200\n"
+"Last-Translator: tommis <tommivs@gmail.com>\n"
+"Language-Team: Finnish "
+"<https://hosted.weblate.org/projects/mypaint/libmypaint/fi/>\n"
 "Language: fi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 2.4-dev\n"
 
 #: ../brushsettings-gen.h:4
 msgid "Opacity"
-msgstr ""
+msgstr "Läpinäkyvyys"
 
 #: ../brushsettings-gen.h:4
 msgid ""
@@ -57,7 +59,7 @@ msgstr ""
 
 #: ../brushsettings-gen.h:7
 msgid "Radius"
-msgstr ""
+msgstr "Säde"
 
 #: ../brushsettings-gen.h:7
 msgid ""
@@ -65,10 +67,14 @@ msgid ""
 " 0.7 means 2 pixels\n"
 " 3.0 means 20 pixels"
 msgstr ""
+"Perus siveltimen säde (logaritminen)\n"
+" 0.7 tarkoittaa 2 pikseliä\n"
+" 3.0 tarkoitaa 20 pikseliä"
 
 #: ../brushsettings-gen.h:8
+#, fuzzy
 msgid "Hardness"
-msgstr ""
+msgstr "Kovuus"
 
 #: ../brushsettings-gen.h:8
 msgid ""

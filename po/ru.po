@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: MyPaint 1.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-06-29 22:37+0100\n"
-"PO-Revision-Date: 2015-07-02 16:20+0200\n"
-"Last-Translator: George Shuklin <george.shuklin@gmail.com>\n"
+"PO-Revision-Date: 2015-07-02 20:20+0200\n"
+"Last-Translator: portnov <portnov@bk.ru>\n"
 "Language-Team: Russian "
 "<https://hosted.weblate.org/projects/mypaint/libmypaint/ru/>\n"
 "Language: ru\n"
@@ -28,7 +28,6 @@ msgid "Opacity"
 msgstr "Непрозрачность"
 
 #: ../brushsettings-gen.h:4
-#, fuzzy
 msgid ""
 "0 means brush is transparent, 1 fully visible\n"
 "(also known as alpha or opacity)"

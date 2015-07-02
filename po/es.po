@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: MyPaint 0.7.1+git\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-06-29 22:37+0100\n"
-"PO-Revision-Date: 2015-07-02 22:50+0200\n"
+"PO-Revision-Date: 2015-07-02 22:52+0200\n"
 "Last-Translator: Raimon Guarro i Nogués <glorund@gmail.com>\n"
 "Language-Team: Spanish "
 "<https://hosted.weblate.org/projects/mypaint/libmypaint/es/>\n"
@@ -99,11 +99,11 @@ msgid ""
 "maximum hardness, you need to disable Pixel feather."
 msgstr ""
 "Bordes de brocha circular duros (si se coloca en cero no se dibujará nada). "
-"Para alcanzar la mayor dureza, debe desactivar Píxeles dentados."
+"Para alcanzar la mayor dureza, debe desactivar Suavizado del píxel."
 
 #: ../brushsettings-gen.h:9
 msgid "Pixel feather"
-msgstr "Píxeles dentados"
+msgstr "Suavizado del píxel"
 
 #: ../brushsettings-gen.h:9
 msgid ""

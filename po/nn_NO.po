@@ -7,14 +7,16 @@ msgstr ""
 "Project-Id-Version: 0.7.1-git\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-06-29 22:37+0100\n"
-"PO-Revision-Date: 2011-11-15 20:27+0100\n"
+"PO-Revision-Date: 2015-07-02 22:42+0200\n"
 "Last-Translator: Tor Egil Hoftun Kvæstad <toregilhk@hotmail.com>\n"
-"Language-Team: Norsk (nynorsk) <>\n"
-"Language: nn\n"
+"Language-Team: Norwegian Nynorsk "
+"<https://hosted.weblate.org/projects/mypaint/libmypaint/nn/>\n"
+"Language: nn_NO\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bits\n"
-"Plural-Forms: nplurals=2; plural=(n!=1);\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 2.4-dev\n"
 
 #: ../brushsettings-gen.h:4
 msgid "Opacity"
@@ -258,10 +260,13 @@ msgid "Slow tracking per dab"
 msgstr "Sakte sporing per klatt"
 
 #: ../brushsettings-gen.h:22
+#, fuzzy
 msgid ""
 "Similar as above but at brushdab level (ignoring how much time has passed if "
 "brushdabs do not depend on time)"
 msgstr ""
+"Liknar på den ovanfor, men på penselklatt-nivå (ignorerer kor mykje tid som "
+"har gått dersom penselklattar ikkje er avhengige av tid)"
 
 #: ../brushsettings-gen.h:23
 #, fuzzy
@@ -292,7 +297,7 @@ msgstr "Fargeverdi"
 
 #: ../brushsettings-gen.h:26
 msgid "Color value (brightness, intensity)"
-msgstr ""
+msgstr "Fargeverdi (lysstyrke, intensitet)"
 
 #: ../brushsettings-gen.h:27
 msgid "Save color"
@@ -447,7 +452,6 @@ msgid "Smudge radius"
 msgstr "Utgnidingsradius"
 
 #: ../brushsettings-gen.h:35
-#, fuzzy
 msgid ""
 "This modifies the radius of the circle where color is picked up for "
 "smudging.\n"
@@ -456,7 +460,7 @@ msgid ""
 "+0.7 twice the brush radius\n"
 "+1.6 five times the brush radius (slow performance)"
 msgstr ""
-"Dette endrer radiusen til sirkeler der farge vert plukka opp for utgniding.\n"
+"Dette endrer radiusen til sirkelen der farge vert plukka opp for utgniding.\n"
 " 0.0 bruk penselradiusen\n"
 "-0.7 halve penselradiusen (raskt, men ikkje alltid intuitivt)\n"
 "+0.7 den doble penselradiusen\n"
@@ -489,7 +493,7 @@ msgid ""
 "only. Mypaint does not need a minimal pressure to start drawing."
 msgstr ""
 "Kor mykje trykk som trengs for å starte eit strok. Dette påverkar berre "
-"strokdata. Mypaint treng ikkje eit minimumstrykk for å starte å teikne"
+"strokdata. Mypaint treng ikkje eit minimumstrykk for å starte å teikne."
 
 #: ../brushsettings-gen.h:38
 msgid "Stroke duration"
@@ -636,6 +640,8 @@ msgid ""
 "This changes how hard you have to press. It multiplies tablet pressure by a "
 "constant factor."
 msgstr ""
+"Dette endrar kor hardt du må trykke. Det multipliserer teiknebrett-trykket "
+"med ein konstant faktor."
 
 #: ../brushsettings-gen.h:53
 msgid "Pressure"
@@ -648,7 +654,9 @@ msgid ""
 "The pressure reported by the tablet. Usually between 0.0 and 1.0, but it may "
 "get larger when a pressure gain is used. If you use the mouse, it will be "
 "0.5 when a button is pressed and 0.0 otherwise."
-msgstr "Trykket som vert rapportert av "
+msgstr ""
+"Trykket som vert rapportert av teiknebrettet. Vanlegvis mellom 0,0 og 1,0, "
+"men det kan verte høgare når"
 
 #: ../brushsettings-gen.h:54
 msgid "Fine speed"
@@ -710,13 +718,15 @@ msgstr ""
 
 #: ../brushsettings-gen.h:59
 msgid "Declination"
-msgstr ""
+msgstr "Vinkelavstand"
 
 #: ../brushsettings-gen.h:59
 msgid ""
 "Declination of stylus tilt. 0 when stylus is parallel to tablet and 90.0 "
 "when it's perpendicular to tablet."
 msgstr ""
+"Vinkelavstand for pennetilt. 0 når pennen er parallell med teiknebrettet og "
+"90,0 når den er vinkelrett i forhold til teiknebrettet."
 
 #: ../brushsettings-gen.h:60
 msgid "Ascension"

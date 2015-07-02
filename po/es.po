@@ -9,15 +9,16 @@ msgstr ""
 "Project-Id-Version: MyPaint 0.7.1+git\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-06-29 22:37+0100\n"
-"PO-Revision-Date: 2012-12-16 11:27-0300\n"
-"Last-Translator: Manuel Quiñones <manuq@laptop.org>\n"
-"Language-Team: Español; Castellano <manuq@laptop.org>\n"
+"PO-Revision-Date: 2015-07-02 13:36+0200\n"
+"Last-Translator: Manuel Quinones <manuel.por.aca@gmail.com>\n"
+"Language-Team: Spanish "
+"<https://hosted.weblate.org/projects/mypaint/libmypaint/es/>\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bits\n"
-"Plural-Forms: nplurals=2; plural=(n!=1);\n"
-"X-Generator: Gtranslator 2.91.5\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 2.4-dev\n"
 
 #: ../brushsettings-gen.h:4
 msgid "Opacity"
@@ -94,20 +95,18 @@ msgid "Hardness"
 msgstr "Dureza"
 
 #: ../brushsettings-gen.h:8
-#, fuzzy
 msgid ""
 "Hard brush-circle borders (setting to zero will draw nothing). To reach the "
 "maximum hardness, you need to disable Pixel feather."
 msgstr ""
 "Bordes de brocha circular duros (si se coloca en cero no se dibujará nada). "
-"Para alcanzar la mayor dureza, debe desactivar el Anti-aliasing."
+"Para alcanzar la mayor dureza, debe desactivar Píxeles dentados."
 
 #: ../brushsettings-gen.h:9
 msgid "Pixel feather"
-msgstr ""
+msgstr "Píxeles dentados"
 
 #: ../brushsettings-gen.h:9
-#, fuzzy
 msgid ""
 "This setting decreases the hardness when necessary to prevent a pixel "
 "staircase effect (aliasing) by making the dab more blurred.\n"
@@ -115,11 +114,11 @@ msgid ""
 " 1.0 blur one pixel (good value)\n"
 " 5.0 notable blur, thin strokes will disappear"
 msgstr ""
-"Este ajuste decrementa la dureza cuando es necesario prevenir el efecto de "
-"pixel escalonado.\n"
+"Este ajuste decrementa la dureza cuando sea necesario prevenir el efecto de "
+"píxel dentado (aliasing), difuminando las pinceladas.\n"
 " 0.0 desactiva (para gomas de borrar fuertes y brochas de píxeles)\n"
 " 1.0 difumina un pixel (buen valor)\n"
-" 5.0 notablemente difuminado, pinceladas finas desaparecerán "
+" 5.0 notablemente difuminado, pinceladas finas desaparecerán"
 
 #: ../brushsettings-gen.h:10
 msgid "Dabs per basic radius"
@@ -281,7 +280,6 @@ msgid "Slow tracking per dab"
 msgstr "Seguimiento lento por pincelada"
 
 #: ../brushsettings-gen.h:22
-#, fuzzy
 msgid ""
 "Similar as above but at brushdab level (ignoring how much time has passed if "
 "brushdabs do not depend on time)"
@@ -563,16 +561,15 @@ msgid "Custom input filter"
 msgstr "Filtro personalizado de entrada"
 
 #: ../brushsettings-gen.h:41
-#, fuzzy
 msgid ""
 "How slow the custom input actually follows the desired value (the one "
 "above). This happens at brushdab level (ignoring how much time has passed, "
 "if brushdabs do not depend on time).\n"
 "0.0 no slowdown (changes apply instantly)"
 msgstr ""
-"Qué tan lento la entrada personalizada sigue realmente el valor buscado (el "
-"de arriba). Esto sucede a nivel de pincelada (ignorando cuánto tiempo ha "
-"pasado si la pincelada no depende del tiempo).\n"
+"Qué tan lento la entrada personalizada sigue el valor buscado (el de arriba)"
+". Esto sucede a nivel de pincelada (ignorando cuánto tiempo ha pasado, si la "
+"pincelada no depende del tiempo).\n"
 "0.0 no reduce la velocidad (los cambios se aplican instantáneamente)"
 
 #: ../brushsettings-gen.h:42
@@ -646,38 +643,41 @@ msgstr ""
 
 #: ../brushsettings-gen.h:47
 msgid "Snap to pixel"
-msgstr ""
+msgstr "Ajustar a píxeles"
 
 #: ../brushsettings-gen.h:47
 msgid ""
 "Snap brush dab's center and it's radius to pixels. Set this to 1.0 for a "
 "thin pixel brush."
 msgstr ""
+"Ajusta el centro de la brocha y su radio a los píxeles. Asigne 1.0 para "
+"obtener una brocha fina de píxeles."
 
 #: ../brushsettings-gen.h:48
-#, fuzzy
 msgid "Pressure gain"
-msgstr "Presión"
+msgstr "Ganancia de presión"
 
 #: ../brushsettings-gen.h:48
 msgid ""
 "This changes how hard you have to press. It multiplies tablet pressure by a "
 "constant factor."
 msgstr ""
+"Modifica qué tan fuerte se tiene que presionar. Multiplica la presión de la "
+"tableta por un factor constante."
 
 #: ../brushsettings-gen.h:53
 msgid "Pressure"
 msgstr "Presión"
 
 #: ../brushsettings-gen.h:53
-#, fuzzy
 msgid ""
 "The pressure reported by the tablet. Usually between 0.0 and 1.0, but it may "
 "get larger when a pressure gain is used. If you use the mouse, it will be "
 "0.5 when a button is pressed and 0.0 otherwise."
 msgstr ""
-"La presión reportada por la tableta, entre 0.0 y 1.0. Si usa el ratón será "
-"0.5 cuando se presione un botón y 0.0 en otro caso."
+"La presión reportada por la tableta. Usualmente entre 0.0 y 1.0, pero puede "
+"ser mayor cuando se utiliza la ganancia de presión. Si usa el ratón será 0.5 "
+"cuando se presione un botón y 0.0 en otro caso."
 
 #: ../brushsettings-gen.h:54
 msgid "Fine speed"

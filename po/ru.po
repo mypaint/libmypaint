@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: MyPaint 1.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-06-29 22:37+0100\n"
-"PO-Revision-Date: 2015-07-03 14:23+0200\n"
-"Last-Translator: portnov <portnov@bk.ru>\n"
+"PO-Revision-Date: 2015-07-03 14:27+0200\n"
+"Last-Translator: George Shuklin <george.shuklin@gmail.com>\n"
 "Language-Team: Russian "
 "<https://hosted.weblate.org/projects/mypaint/libmypaint/ru/>\n"
 "Language: ru\n"
@@ -33,7 +33,7 @@ msgid ""
 "(also known as alpha or opacity)"
 msgstr ""
 "0 означает, что кисть прозрачна, 1 — полностью видима\n"
-"(также известно как альфа-канал или непрозрачность)"
+"(оно же \"альфа-канал\" или \"непрозрачность\")"
 
 #: ../brushsettings-gen.h:5
 msgid "Opacity multiply"
@@ -320,7 +320,7 @@ msgstr "Значение цвета (яркость, интенсивность)
 
 #: ../brushsettings-gen.h:27
 msgid "Save color"
-msgstr "Сохранить цвет"
+msgstr "Сохранять цвет"
 
 #: ../brushsettings-gen.h:27
 msgid ""
@@ -338,7 +338,7 @@ msgstr ""
 
 #: ../brushsettings-gen.h:28
 msgid "Change color hue"
-msgstr "Изменение оттенка"
+msgstr "Изменять оттенок"
 
 #: ../brushsettings-gen.h:28
 msgid ""
@@ -653,8 +653,8 @@ msgid ""
 "Snap brush dab's center and it's radius to pixels. Set this to 1.0 for a "
 "thin pixel brush."
 msgstr ""
-"Привязывать центр мазка и его радиус к пикселам. Установите это в 1.0, чтобы "
-"получить тонкую пиксельную кисть."
+"Привязывать центр мазка и его радиус к пикселам. Значние 1.0 даёт тонкую "
+"пиксельную кисть."
 
 #: ../brushsettings-gen.h:48
 msgid "Pressure gain"

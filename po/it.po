@@ -8,15 +8,16 @@ msgstr ""
 "Project-Id-Version: 0.7.1-git\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-06-29 22:37+0100\n"
-"PO-Revision-Date: 2012-12-14 22:19+0100\n"
+"PO-Revision-Date: 2015-07-03 09:18+0200\n"
 "Last-Translator: Lamberto Tedaldi <lamberto.tedaldi@officinepixel.com>\n"
-"Language-Team: Officine Pixel\n"
+"Language-Team: Italian "
+"<https://hosted.weblate.org/projects/mypaint/libmypaint/it/>\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Virtaal 0.7.1\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 2.4-dev\n"
 "X-Poedit-Language: Italian\n"
 "X-Poedit-Country: ITALY\n"
 "X-Poedit-SourceCharset: utf-8\n"
@@ -96,20 +97,19 @@ msgid "Hardness"
 msgstr "Durezza"
 
 #: ../brushsettings-gen.h:8
-#, fuzzy
 msgid ""
 "Hard brush-circle borders (setting to zero will draw nothing). To reach the "
 "maximum hardness, you need to disable Pixel feather."
 msgstr ""
 "Durezza del bordo del pennello (impostando il valore a zero non si disegna "
-"nulla). Per raggiungere la massima durezza devi disabilitare l'anti-aliasing."
+"nulla). Per raggiungere la massima durezza devi disabilitare la Sfumatura "
+"pixel."
 
 #: ../brushsettings-gen.h:9
 msgid "Pixel feather"
-msgstr ""
+msgstr "Sfumatura pixel"
 
 #: ../brushsettings-gen.h:9
-#, fuzzy
 msgid ""
 "This setting decreases the hardness when necessary to prevent a pixel "
 "staircase effect (aliasing) by making the dab more blurred.\n"
@@ -118,7 +118,7 @@ msgid ""
 " 5.0 notable blur, thin strokes will disappear"
 msgstr ""
 "Questa impostazione riduce la durezza, quando necessario, per evitare "
-"l'effetto scalettatura dei pixel.\n"
+"l'effetto scalettatura dei pixel rendendo la pennellata più sfocata.\n"
 "0.0 disattiva (per gomme molto forti e pennelli a pixel)\n"
 "1.0 sfocatura di un pixel (un buon rapporto)\n"
 "5.0 sfocatura notevole, i tratti sottili scompariranno"
@@ -292,7 +292,6 @@ msgid "Slow tracking per dab"
 msgstr "Ritardo tracciamento per pennellata"
 
 #: ../brushsettings-gen.h:22
-#, fuzzy
 msgid ""
 "Similar as above but at brushdab level (ignoring how much time has passed if "
 "brushdabs do not depend on time)"
@@ -576,7 +575,6 @@ msgid "Custom input filter"
 msgstr "Filtro ingresso personalizzato"
 
 #: ../brushsettings-gen.h:41
-#, fuzzy
 msgid ""
 "How slow the custom input actually follows the desired value (the one "
 "above). This happens at brushdab level (ignoring how much time has passed, "
@@ -584,9 +582,9 @@ msgid ""
 "0.0 no slowdown (changes apply instantly)"
 msgstr ""
 "Quanto lentamente l'ingresso personalizzato realmente segue il valore "
-"desiderato (quello sovrastante). Questo avviene a livello di pennellata "
-"(ignorando quanto tempo è trascorso se le pennellate non dipendono dal "
-"tempo).\n"
+"desiderato (quello sovrastante). Questo avviene a livello di pennellata ("
+"ignorando quanto tempo è trascorso se le pennellate non dipendono dal tempo)."
+"\n"
 "0.0 nessun rallentamento (i cambiamenti vengono applicati istantaneamente)"
 
 #: ../brushsettings-gen.h:42
@@ -662,39 +660,42 @@ msgstr ""
 
 #: ../brushsettings-gen.h:47
 msgid "Snap to pixel"
-msgstr ""
+msgstr "Aggancia al pixel"
 
 #: ../brushsettings-gen.h:47
 msgid ""
 "Snap brush dab's center and it's radius to pixels. Set this to 1.0 for a "
 "thin pixel brush."
 msgstr ""
+"Aggancia il centro della pennellata e il raggio del pennello ai pixel. "
+"Imposta questo valore a 1.0 per un sottile  pennello di un pixel."
 
 #: ../brushsettings-gen.h:48
-#, fuzzy
 msgid "Pressure gain"
-msgstr "Pressione"
+msgstr "Guadagno pressione"
 
 #: ../brushsettings-gen.h:48
 msgid ""
 "This changes how hard you have to press. It multiplies tablet pressure by a "
 "constant factor."
 msgstr ""
+"Questo valore modifica quanto forte devi premere. Moltiplica la pressione "
+"rilevata dalla tavoletta grafica per un fattore costante."
 
 #: ../brushsettings-gen.h:53
 msgid "Pressure"
 msgstr "Pressione"
 
 #: ../brushsettings-gen.h:53
-#, fuzzy
 msgid ""
 "The pressure reported by the tablet. Usually between 0.0 and 1.0, but it may "
 "get larger when a pressure gain is used. If you use the mouse, it will be "
 "0.5 when a button is pressed and 0.0 otherwise."
 msgstr ""
-"La pressione riportata dalla tavoletta grafica varia tra 0.0 e 1.0. Se "
-"invece stai usando il mouse, questa sarà 0.5 con il pulsante e 0.0 quando "
-"non premuto."
+"La pressione riportata dalla tavoletta grafica varia tra 0.0 e 1.0, ma può "
+"assumere valori maggiori quando si usa un guadagno di pressione. Se stai "
+"usando il mouse, quanto il pulsante è premuto il valore sarà 0.5, altrimenti "
+"sarà 0.0."
 
 #: ../brushsettings-gen.h:54
 msgid "Fine speed"

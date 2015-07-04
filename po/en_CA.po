@@ -8,13 +8,16 @@ msgstr ""
 "Project-Id-Version: 0.7.1-git\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-04 18:33+0100\n"
-"PO-Revision-Date: 2011-02-17 23:44+0100\n"
+"PO-Revision-Date: 2015-07-04 22:11+0200\n"
 "Last-Translator: Elliott Sales de Andrade <quantum.analyst@gmail.com>\n"
-"Language: Canadian English\n"
+"Language-Team: English (Canada) "
+"<https://hosted.weblate.org/projects/mypaint/libmypaint/en_CA/>\n"
+"Language: en_CA\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 2.4-dev\n"
 "X-Language: en_CA\n"
 "X-Source-Language: C\n"
 
@@ -288,14 +291,13 @@ msgid "Change color lightness (HSL)"
 msgstr "Change colour lightness (HSL)"
 
 #: ../brushsettings-gen.h:29
-#, fuzzy
 msgid ""
 "Change the color lightness using the HSL color model.\n"
 "-1.0 blacker\n"
 " 0.0 disable\n"
 " 1.0 whiter"
 msgstr ""
-"Change the colour lightness (luminance) using the HSL colour model.\n"
+"Change the colour lightness using the HSL colour model.\n"
 "-1.0 blacker\n"
 " 0.0 disable\n"
 " 1.0 whiter"
@@ -427,33 +429,26 @@ msgid "Stroke threshold"
 msgstr ""
 
 #: ../brushsettings-gen.h:37
-#, fuzzy
 msgid ""
 "How much pressure is needed to start a stroke. This affects the stroke input "
 "only. MyPaint does not need a minimum pressure to start drawing."
 msgstr ""
-"How much pressure is needed to start a stroke. This affects the stroke input "
-"only. MyPaint does not need a minimal pressure to start drawing."
 
 #: ../brushsettings-gen.h:38
 msgid "Stroke duration"
 msgstr ""
 
 #: ../brushsettings-gen.h:38
-#, fuzzy
 msgid ""
 "How far you have to move until the stroke input reaches 1.0. This value is "
 "logarithmic (negative values will not invert the process)."
 msgstr ""
-"How far you have to move until the stroke input reaches 1.0. This value is "
-"logarithmic (negative values will not invert the process)."
 
 #: ../brushsettings-gen.h:39
 msgid "Stroke hold time"
 msgstr ""
 
 #: ../brushsettings-gen.h:39
-#, fuzzy
 msgid ""
 "This defines how long the stroke input stays at 1.0. After that it will "
 "reset to 0.0 and start growing again, even if the stroke is not yet "
@@ -461,11 +456,6 @@ msgid ""
 "2.0 means twice as long as it takes to go from 0.0 to 1.0\n"
 "9.9 or higher stands for infinite"
 msgstr ""
-"This defines how long the stroke input stays at 1.0. After that it will "
-"reset to 0.0 and start growing again, even if the stroke is not yet "
-"finished.\n"
-"2.0 means twice as long as it takes to go from 0.0 to 1.0\n"
-"9.9 or higher stands for infinite"
 
 #: ../brushsettings-gen.h:40
 msgid "Custom input"
@@ -544,7 +534,6 @@ msgid "Colorize"
 msgstr "Colourize"
 
 #: ../brushsettings-gen.h:46
-#, fuzzy
 msgid ""
 "Colorize the target layer, setting its hue and saturation from the active "
 "brush color while retaining its value and alpha."
@@ -557,7 +546,6 @@ msgid "Snap to pixel"
 msgstr ""
 
 #: ../brushsettings-gen.h:47
-#, fuzzy
 msgid ""
 "Snap brush dab's center and its radius to pixels. Set this to 1.0 for a thin "
 "pixel brush."

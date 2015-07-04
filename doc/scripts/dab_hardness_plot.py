@@ -1,5 +1,8 @@
+from __future__ import absolute_import
+
 import numpy as np
 import matplotlib.pyplot as plt
+
 
 dab = plt.imread('parametric_dab.png')
 

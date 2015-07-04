@@ -18,6 +18,8 @@
 
 "Code generator, part of the build process."
 
+from __future__ import absolute_import
+
 import os
 import sys
 from os.path import basename

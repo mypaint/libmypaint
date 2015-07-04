@@ -1,4 +1,6 @@
 
+from __future__ import absolute_import
+
 import os
 
 # TODO: get more fine grained test setup

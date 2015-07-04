@@ -1,4 +1,6 @@
 
+from __future__ import absolute_import
+
 from gi.repository import GeglGtk3 as GeglGtk
 from gi.repository import Gegl, Gtk
 from gi.repository import MyPaint, MyPaintGegl

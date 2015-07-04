@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.7.1-git\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-06-29 22:37+0100\n"
+"POT-Creation-Date: 2015-07-04 01:35-0400\n"
 "PO-Revision-Date: 2011-02-17 23:44+0100\n"
 "Last-Translator: Elliott Sales de Andrade <quantum.analyst@gmail.com>\n"
 "Language: Canadian English\n"
@@ -254,7 +254,6 @@ msgid "Save color"
 msgstr "Save colour"
 
 #: ../brushsettings-gen.h:27
-#, fuzzy
 msgid ""
 "When selecting a brush, the color can be restored to the color that the "
 "brush was saved with.\n"
@@ -263,61 +262,64 @@ msgid ""
 " 1.0 set the active color to the brush color when selected"
 msgstr ""
 "When selecting a brush, the colour can be restored to the colour that the "
-"brush was saved with. 0.0 do not modify the active colour when selecting "
-"this brush 0.5 change active colour towards brush colour 1.0 set the active "
-"colour to the brush colour when selected"
+"brush was saved with.\n"
+" 0.0 do not modify the active colour when selecting this brush\n"
+" 0.5 change active colour towards brush colour\n"
+" 1.0 set the active colour to the brush colour when selected"
 
 #: ../brushsettings-gen.h:28
 msgid "Change color hue"
 msgstr "Change colour hue"
 
 #: ../brushsettings-gen.h:28
-#, fuzzy
 msgid ""
 "Change color hue.\n"
 "-0.1 small clockwise color hue shift\n"
 " 0.0 disable\n"
 " 0.5 counterclockwise hue shift by 180 degrees"
 msgstr ""
-"Change colour hue.-0.1 small clockwise colour hue shift 0.0 disable 0.5 "
-"counterclockwise hue shift by 180 degrees"
+"Change colour hue.\n"
+"-0.1 small clockwise colour hue shift\n"
+" 0.0 disable\n"
+" 0.5 counterclockwise hue shift by 180 degrees"
 
 #: ../brushsettings-gen.h:29
 msgid "Change color lightness (HSL)"
 msgstr "Change colour lightness (HSL)"
 
 #: ../brushsettings-gen.h:29
-#, fuzzy
 msgid ""
 "Change the color lightness (luminance) using the HSL color model.\n"
 "-1.0 blacker\n"
 " 0.0 disable\n"
 " 1.0 whiter"
 msgstr ""
-"Change the colour lightness (luminance) using the HSL colour model.-1.0 "
-"blacker 0.0 disable 1.0 whiter"
+"Change the colour lightness (luminance) using the HSL colour model.\n"
+"-1.0 blacker\n"
+" 0.0 disable\n"
+" 1.0 whiter"
 
 #: ../brushsettings-gen.h:30
 msgid "Change color satur. (HSL)"
 msgstr "Change colour satur. (HSL)"
 
 #: ../brushsettings-gen.h:30
-#, fuzzy
 msgid ""
 "Change the color saturation using the HSL color model.\n"
 "-1.0 more grayish\n"
 " 0.0 disable\n"
 " 1.0 more saturated"
 msgstr ""
-"Change the colour saturation using the HSL colour model-1.0 more greyish 0.0 "
-"disable 1.0 more saturated"
+"Change the colour saturation using the HSL colour model\n"
+"-1.0 more greyish\n"
+" 0.0 disable\n"
+" 1.0 more saturated"
 
 #: ../brushsettings-gen.h:31
 msgid "Change color value (HSV)"
 msgstr "Change colour value (HSV)"
 
 #: ../brushsettings-gen.h:31
-#, fuzzy
 msgid ""
 "Change the color value (brightness, intensity) using the HSV color model. "
 "HSV changes are applied before HSL.\n"
@@ -326,14 +328,16 @@ msgid ""
 " 1.0 brigher"
 msgstr ""
 "Change the colour value (brightness, intensity) using the HSV colour model. "
-"HSV changes are applied before HSL.-1.0 darker 0.0 disable 1.0 brighter"
+"HSV changes are applied before HSL.\n"
+"-1.0 darker\n"
+" 0.0 disable\n"
+" 1.0 brighter"
 
 #: ../brushsettings-gen.h:32
 msgid "Change color satur. (HSV)"
 msgstr "Change colour satur. (HSV)"
 
 #: ../brushsettings-gen.h:32
-#, fuzzy
 msgid ""
 "Change the color saturation using the HSV color model. HSV changes are "
 "applied before HSL.\n"
@@ -342,14 +346,16 @@ msgid ""
 " 1.0 more saturated"
 msgstr ""
 "Change the colour saturation using the HSV colour model. HSV changes are "
-"applied before HSL.-1.0 more greyish 0.0 disable 1.0 more saturated"
+"applied before HSL.\n"
+"-1.0 more greyish\n"
+" 0.0 disable\n"
+" 1.0 more saturated"
 
 #: ../brushsettings-gen.h:33
 msgid "Smudge"
 msgstr ""
 
 #: ../brushsettings-gen.h:33
-#, fuzzy
 msgid ""
 "Paint with the smudge color instead of the brush color. The smudge color is "
 "slowly changed to the color you are painting on.\n"
@@ -358,16 +364,16 @@ msgid ""
 " 1.0 use only the smudge color"
 msgstr ""
 "Paint with the smudge colour instead of the brush colour. The smudge colour "
-"is slowly changed to the colour you are painting on. 0.0 do not use the "
-"smudge colour 0.5 mix the smudge colour with the brush colour 1.0 use only "
-"the smudge colour"
+"is slowly changed to the colour you are painting on.\n"
+" 0.0 do not use the smudge colour\n"
+" 0.5 mix the smudge colour with the brush colour\n"
+" 1.0 use only the smudge colour"
 
 #: ../brushsettings-gen.h:34
 msgid "Smudge length"
 msgstr ""
 
 #: ../brushsettings-gen.h:34
-#, fuzzy
 msgid ""
 "This controls how fast the smudge color becomes the color you are painting "
 "on.\n"
@@ -377,14 +383,17 @@ msgid ""
 "1.0 never change the smudge color"
 msgstr ""
 "This controls how fast the smudge colour becomes the colour you are painting "
-"on.0.0 immediately change the smudge colour1.0 never change the smudge colour"
+"on.\n"
+"0.0 immediately update the smudge colour (requires more CPU cycles because "
+"of the frequent colour checks)\n"
+"0.5 change the smudge colour steadily towards the canvas colour\n"
+"1.0 never change the smudge colour"
 
 #: ../brushsettings-gen.h:35
 msgid "Smudge radius"
 msgstr ""
 
 #: ../brushsettings-gen.h:35
-#, fuzzy
 msgid ""
 "This modifies the radius of the circle where color is picked up for "
 "smudging.\n"
@@ -394,9 +403,11 @@ msgid ""
 "+1.6 five times the brush radius (slow performance)"
 msgstr ""
 "This modifies the radius of the circle where colour is picked up for "
-"smudging. 0.0 use the brush radius-0.7 half the brush radius (fast, but not "
-"always intuitive)+0.7 twice the brush radius+1.6 five times the brush radius "
-"(slow performance)"
+"smudging.\n"
+" 0.0 use the brush radius\n"
+"-0.7 half the brush radius (fast, but not always intuitive)\n"
+"+0.7 twice the brush radius\n"
+"+1.6 five times the brush radius (slow performance)"
 
 #: ../brushsettings-gen.h:36
 msgid "Eraser"
@@ -419,6 +430,8 @@ msgid ""
 "How much pressure is needed to start a stroke. This affects the stroke input "
 "only. Mypaint does not need a minimal pressure to start drawing."
 msgstr ""
+"How much pressure is needed to start a stroke. This affects the stroke input "
+"only. MyPaint does not need a minimal pressure to start drawing."
 
 #: ../brushsettings-gen.h:38
 msgid "Stroke duration"
@@ -429,6 +442,8 @@ msgid ""
 "How far you have to move until the stroke input reaches 1.0. This value is "
 "logarithmic (negative values will not inverse the process)."
 msgstr ""
+"How far you have to move until the stroke input reaches 1.0. This value is "
+"logarithmic (negative values will not invert the process)."
 
 #: ../brushsettings-gen.h:39
 msgid "Stroke hold time"
@@ -442,6 +457,11 @@ msgid ""
 "2.0 means twice as long as it takes to go from 0.0 to 1.0\n"
 "9.9 and bigger stands for infinite"
 msgstr ""
+"This defines how long the stroke input stays at 1.0. After that it will "
+"reset to 0.0 and start growing again, even if the stroke is not yet "
+"finished.\n"
+"2.0 means twice as long as it takes to go from 0.0 to 1.0\n"
+"9.9 or higher stands for infinite"
 
 #: ../brushsettings-gen.h:40
 msgid "Custom input"
@@ -536,6 +556,8 @@ msgid ""
 "Snap brush dab's center and it's radius to pixels. Set this to 1.0 for a "
 "thin pixel brush."
 msgstr ""
+"Snap brush dab's centre and its radius to pixels. Set this to 1.0 for a thin "
+"pixel brush."
 
 #: ../brushsettings-gen.h:48
 msgid "Pressure gain"

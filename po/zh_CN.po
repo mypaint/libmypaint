@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.7.1-git\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-06-29 22:37+0100\n"
+"POT-Creation-Date: 2015-07-04 18:33+0100\n"
 "PO-Revision-Date: 2010-01-20 01:09+0100\n"
 "Last-Translator: Popolon <popolon@popolon.org>\n"
 "Language-Team: Simplified Chinese <zh@li.org>\n"
@@ -304,7 +304,7 @@ msgstr "修改色度（HSL）"
 
 #: ../brushsettings-gen.h:29
 msgid ""
-"Change the color lightness (luminance) using the HSL color model.\n"
+"Change the color lightness using the HSL color model.\n"
 "-1.0 blacker\n"
 " 0.0 disable\n"
 " 1.0 whiter"
@@ -416,7 +416,7 @@ msgstr "勾画起点"
 #: ../brushsettings-gen.h:37
 msgid ""
 "How much pressure is needed to start a stroke. This affects the stroke input "
-"only. Mypaint does not need a minimal pressure to start drawing."
+"only. MyPaint does not need a minimum pressure to start drawing."
 msgstr ""
 
 #: ../brushsettings-gen.h:38
@@ -427,7 +427,7 @@ msgstr "勾画时间"
 #: ../brushsettings-gen.h:38
 msgid ""
 "How far you have to move until the stroke input reaches 1.0. This value is "
-"logarithmic (negative values will not inverse the process)."
+"logarithmic (negative values will not invert the process)."
 msgstr ""
 
 #: ../brushsettings-gen.h:39
@@ -441,7 +441,7 @@ msgid ""
 "reset to 0.0 and start growing again, even if the stroke is not yet "
 "finished.\n"
 "2.0 means twice as long as it takes to go from 0.0 to 1.0\n"
-"9.9 and bigger stands for infinite"
+"9.9 or higher stands for infinite"
 msgstr ""
 
 #: ../brushsettings-gen.h:40
@@ -529,7 +529,7 @@ msgstr "颜色"
 #: ../brushsettings-gen.h:46
 msgid ""
 "Colorize the target layer, setting its hue and saturation from the active "
-"brush colour while retaining its value and alpha."
+"brush color while retaining its value and alpha."
 msgstr ""
 
 #: ../brushsettings-gen.h:47
@@ -538,8 +538,8 @@ msgstr ""
 
 #: ../brushsettings-gen.h:47
 msgid ""
-"Snap brush dab's center and it's radius to pixels. Set this to 1.0 for a "
-"thin pixel brush."
+"Snap brush dab's center and its radius to pixels. Set this to 1.0 for a thin "
+"pixel brush."
 msgstr ""
 
 #: ../brushsettings-gen.h:48

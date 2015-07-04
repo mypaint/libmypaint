@@ -8,11 +8,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.9.0-git\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-06-29 22:37+0100\n"
+"POT-Creation-Date: 2015-07-04 18:33+0100\n"
 "PO-Revision-Date: 2015-07-03 18:44+0200\n"
 "Last-Translator: João Sebastião de Oliveira Bue <gwidion@gmail.com>\n"
-"Language-Team: Portuguese (Brazil) "
-"<https://hosted.weblate.org/projects/mypaint/libmypaint/pt_BR/>\n"
+"Language-Team: Portuguese (Brazil) <https://hosted.weblate.org/projects/"
+"mypaint/libmypaint/pt_BR/>\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -364,8 +364,9 @@ msgid "Change color lightness (HSL)"
 msgstr "Alterar brilho da cor (HSL)"
 
 #: ../brushsettings-gen.h:29
+#, fuzzy
 msgid ""
-"Change the color lightness (luminance) using the HSL color model.\n"
+"Change the color lightness using the HSL color model.\n"
 "-1.0 blacker\n"
 " 0.0 disable\n"
 " 1.0 whiter"
@@ -504,9 +505,10 @@ msgid "Stroke threshold"
 msgstr "Limite de pintura"
 
 #: ../brushsettings-gen.h:37
+#, fuzzy
 msgid ""
 "How much pressure is needed to start a stroke. This affects the stroke input "
-"only. Mypaint does not need a minimal pressure to start drawing."
+"only. MyPaint does not need a minimum pressure to start drawing."
 msgstr ""
 "Quanta pressão é necessária para iniciar um traço. Afeta apenas a entrada de "
 "Traço. O Mypaint não precisa de uma pressão mínima para começar a desenhar"
@@ -516,9 +518,10 @@ msgid "Stroke duration"
 msgstr "Duração do traço"
 
 #: ../brushsettings-gen.h:38
+#, fuzzy
 msgid ""
 "How far you have to move until the stroke input reaches 1.0. This value is "
-"logarithmic (negative values will not inverse the process)."
+"logarithmic (negative values will not invert the process)."
 msgstr ""
 "Quanto você tem que mover o ponteiro até que a entrada de Traço atingir 10. "
 "Este valor é logarítmico (valores negativos não inverterão o processo)"
@@ -528,12 +531,13 @@ msgid "Stroke hold time"
 msgstr "Tempo de manutenção do traço"
 
 #: ../brushsettings-gen.h:39
+#, fuzzy
 msgid ""
 "This defines how long the stroke input stays at 1.0. After that it will "
 "reset to 0.0 and start growing again, even if the stroke is not yet "
 "finished.\n"
 "2.0 means twice as long as it takes to go from 0.0 to 1.0\n"
-"9.9 and bigger stands for infinite"
+"9.9 or higher stands for infinite"
 msgstr ""
 "Isto define quanto a entrada de Traço fica em 1.0. Depois desse tempo ela "
 "retorna a 0.0 e começa a aumentar de novo, mesmo que o traço ainda não "
@@ -645,9 +649,10 @@ msgid "Colorize"
 msgstr "Colorizar"
 
 #: ../brushsettings-gen.h:46
+#, fuzzy
 msgid ""
 "Colorize the target layer, setting its hue and saturation from the active "
-"brush colour while retaining its value and alpha."
+"brush color while retaining its value and alpha."
 msgstr ""
 "Coloriza a camada alvo, usando o matiz e a saturação do pincel ativo e "
 "mantendo o valor e alfa da camada."
@@ -658,8 +663,8 @@ msgstr ""
 
 #: ../brushsettings-gen.h:47
 msgid ""
-"Snap brush dab's center and it's radius to pixels. Set this to 1.0 for a "
-"thin pixel brush."
+"Snap brush dab's center and its radius to pixels. Set this to 1.0 for a thin "
+"pixel brush."
 msgstr ""
 
 #: ../brushsettings-gen.h:48

@@ -8,11 +8,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mypaint\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-06-29 22:37+0100\n"
+"POT-Creation-Date: 2015-07-04 18:33+0100\n"
 "PO-Revision-Date: 2015-06-30 13:59+0200\n"
 "Last-Translator: Chang-Chia Tseng <pswo10680@gmail.com>\n"
-"Language-Team: Chinese (Taiwan) "
-"<https://hosted.weblate.org/projects/mypaint/libmypaint/zh_TW/>\n"
+"Language-Team: Chinese (Taiwan) <https://hosted.weblate.org/projects/mypaint/"
+"libmypaint/zh_TW/>\n"
 "Language: zh_TW\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -43,7 +43,8 @@ msgid ""
 "This setting is responsible to stop painting when there is zero pressure. "
 "This is just a convention, the behaviour is identical to 'opaque'."
 msgstr ""
-"這會與不透明度相乘。您應該只需改變此設定值的壓力輸入。改用「不透明」以根據速度決定不透明度。\n"
+"這會與不透明度相乘。您應該只需改變此設定值的壓力輸入。改用「不透明」以根據速"
+"度決定不透明度。\n"
 "當壓力為零時，此設定值負責停止繪畫。這只是個慣例，行為與「不透明」相同。"
 
 #: ../brushsettings-gen.h:6
@@ -330,7 +331,7 @@ msgstr "改變色彩明度 (HSL)"
 #: ../brushsettings-gen.h:29
 #, fuzzy
 msgid ""
-"Change the color lightness (luminance) using the HSL color model.\n"
+"Change the color lightness using the HSL color model.\n"
 "-1.0 blacker\n"
 " 0.0 disable\n"
 " 1.0 whiter"
@@ -451,9 +452,10 @@ msgid "Stroke threshold"
 msgstr "筆劃閾值"
 
 #: ../brushsettings-gen.h:37
+#, fuzzy
 msgid ""
 "How much pressure is needed to start a stroke. This affects the stroke input "
-"only. Mypaint does not need a minimal pressure to start drawing."
+"only. MyPaint does not need a minimum pressure to start drawing."
 msgstr ""
 "需要多少壓力才會開始筆畫。這會只影響筆畫的輸入。Mypaint 不需要開始繪畫的最小"
 "壓力值。"
@@ -463,9 +465,10 @@ msgid "Stroke duration"
 msgstr "筆劃持續長度"
 
 #: ../brushsettings-gen.h:38
+#, fuzzy
 msgid ""
 "How far you have to move until the stroke input reaches 1.0. This value is "
-"logarithmic (negative values will not inverse the process)."
+"logarithmic (negative values will not invert the process)."
 msgstr ""
 "您必須移動多遠直到筆畫輸入達到 1.0。這項數值為對數 (數值為負不會反向處理)。"
 
@@ -480,7 +483,7 @@ msgid ""
 "reset to 0.0 and start growing again, even if the stroke is not yet "
 "finished.\n"
 "2.0 means twice as long as it takes to go from 0.0 to 1.0\n"
-"9.9 and bigger stands for infinite"
+"9.9 or higher stands for infinite"
 msgstr ""
 "這項數值可定義筆劃輸入會停留在 1.0 多長的時間。從那之後會重設為 0.0 並再一次"
 "開始增長，即使這道筆畫還未結束。2.0 代表從 0.0 開始到 1.0 期間的兩倍 9.9 和更"
@@ -577,9 +580,10 @@ msgid "Colorize"
 msgstr "上色"
 
 #: ../brushsettings-gen.h:46
+#, fuzzy
 msgid ""
 "Colorize the target layer, setting its hue and saturation from the active "
-"brush colour while retaining its value and alpha."
+"brush color while retaining its value and alpha."
 msgstr ""
 "對目標圖層上色，以使用中筆刷色彩設定其色相與飽和度，但仍留存其明度與 alpha。"
 
@@ -589,8 +593,8 @@ msgstr ""
 
 #: ../brushsettings-gen.h:47
 msgid ""
-"Snap brush dab's center and it's radius to pixels. Set this to 1.0 for a "
-"thin pixel brush."
+"Snap brush dab's center and its radius to pixels. Set this to 1.0 for a thin "
+"pixel brush."
 msgstr ""
 
 #: ../brushsettings-gen.h:48

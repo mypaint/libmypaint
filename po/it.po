@@ -7,11 +7,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.7.1-git\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-06-29 22:37+0100\n"
+"POT-Creation-Date: 2015-07-04 18:33+0100\n"
 "PO-Revision-Date: 2015-07-03 09:37+0200\n"
 "Last-Translator: Lamberto Tedaldi <lamberto.tedaldi@officinepixel.com>\n"
-"Language-Team: Italian "
-"<https://hosted.weblate.org/projects/mypaint/libmypaint/it/>\n"
+"Language-Team: Italian <https://hosted.weblate.org/projects/mypaint/"
+"libmypaint/it/>\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -367,8 +367,9 @@ msgid "Change color lightness (HSL)"
 msgstr "Cambia luminosità colore (HSL)"
 
 #: ../brushsettings-gen.h:29
+#, fuzzy
 msgid ""
-"Change the color lightness (luminance) using the HSL color model.\n"
+"Change the color lightness using the HSL color model.\n"
 "-1.0 blacker\n"
 " 0.0 disable\n"
 " 1.0 whiter"
@@ -510,9 +511,10 @@ msgid "Stroke threshold"
 msgstr "Soglia tratto"
 
 #: ../brushsettings-gen.h:37
+#, fuzzy
 msgid ""
 "How much pressure is needed to start a stroke. This affects the stroke input "
-"only. Mypaint does not need a minimal pressure to start drawing."
+"only. MyPaint does not need a minimum pressure to start drawing."
 msgstr ""
 "Quanta pressione è necessaria affinché inizi un tratto. Questo valore "
 "influisce solamente sull'input della pennellata. MyPaint non necessita di "
@@ -523,9 +525,10 @@ msgid "Stroke duration"
 msgstr "Durata del tratto"
 
 #: ../brushsettings-gen.h:38
+#, fuzzy
 msgid ""
 "How far you have to move until the stroke input reaches 1.0. This value is "
-"logarithmic (negative values will not inverse the process)."
+"logarithmic (negative values will not invert the process)."
 msgstr ""
 "Quanto il puntatore del mouse deve muoversi affinché l'ingresso del tratto "
 "raggiunga valore 1.0. Questo valore è logaritmico (valori negativi non "
@@ -536,12 +539,13 @@ msgid "Stroke hold time"
 msgstr "Tempo mantenimento tratto"
 
 #: ../brushsettings-gen.h:39
+#, fuzzy
 msgid ""
 "This defines how long the stroke input stays at 1.0. After that it will "
 "reset to 0.0 and start growing again, even if the stroke is not yet "
 "finished.\n"
 "2.0 means twice as long as it takes to go from 0.0 to 1.0\n"
-"9.9 and bigger stands for infinite"
+"9.9 or higher stands for infinite"
 msgstr ""
 "Questo definisce quanto a lungo l'ingresso tratto sta a 1.0 dopodiché questo "
 "viene reimpostato a 0.0 e inizia a crescere nuovamente anche se il tratto "
@@ -582,9 +586,9 @@ msgid ""
 "0.0 no slowdown (changes apply instantly)"
 msgstr ""
 "Quanto lentamente l'ingresso personalizzato realmente segue il valore "
-"desiderato (quello sovrastante). Questo avviene a livello di pennellata ("
-"ignorando quanto tempo è trascorso se le pennellate non dipendono dal tempo)."
-"\n"
+"desiderato (quello sovrastante). Questo avviene a livello di pennellata "
+"(ignorando quanto tempo è trascorso se le pennellate non dipendono dal "
+"tempo).\n"
 "0.0 nessun rallentamento (i cambiamenti vengono applicati istantaneamente)"
 
 #: ../brushsettings-gen.h:42
@@ -651,9 +655,10 @@ msgid "Colorize"
 msgstr "Colora"
 
 #: ../brushsettings-gen.h:46
+#, fuzzy
 msgid ""
 "Colorize the target layer, setting its hue and saturation from the active "
-"brush colour while retaining its value and alpha."
+"brush color while retaining its value and alpha."
 msgstr ""
 "Colora il livello di destinazione, impostando la sua tonalità e  saturazione "
 "dal colore del pennello attivo, pur mantenendo valore e trasparenza."
@@ -663,9 +668,10 @@ msgid "Snap to pixel"
 msgstr "Aggancia al pixel"
 
 #: ../brushsettings-gen.h:47
+#, fuzzy
 msgid ""
-"Snap brush dab's center and it's radius to pixels. Set this to 1.0 for a "
-"thin pixel brush."
+"Snap brush dab's center and its radius to pixels. Set this to 1.0 for a thin "
+"pixel brush."
 msgstr ""
 "Aggancia il centro della pennellata e il raggio del pennello ai pixel. "
 "Imposta questo valore a 1.0 per un sottile  pennello di un pixel."

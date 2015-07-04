@@ -1,4 +1,5 @@
-# Information for translators
+# Translating libmypaint
+
 [![Translation status](https://hosted.weblate.org/widgets/mypaint/-/svg-badge.svg)](https://hosted.weblate.org/engage/mypaint/?utm_source=widget)
 
 libmypaint uses WebLate for its translations.
@@ -27,6 +28,8 @@ without having to ask us.
 
 The `.pot` file alone can be updated by running `scons translate=pot`,
 if all you want to do is compare diffs.
+
+# Information for translators
 
 ## New translation (manual)
 

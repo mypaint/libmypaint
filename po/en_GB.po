@@ -8,10 +8,10 @@ msgstr ""
 "Project-Id-Version: mypaint 1.2.0-alpha\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-04 18:33+0100\n"
-"PO-Revision-Date: 2015-07-01 06:41+0200\n"
+"PO-Revision-Date: 2015-07-04 19:38+0200\n"
 "Last-Translator: Andrew Chadwick <a.t.chadwick@gmail.com>\n"
-"Language-Team: English (United Kingdom) <https://hosted.weblate.org/projects/"
-"mypaint/libmypaint/en_GB/>\n"
+"Language-Team: English (United Kingdom) "
+"<https://hosted.weblate.org/projects/mypaint/libmypaint/en_GB/>\n"
 "Language: en_GB\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -346,14 +346,13 @@ msgid "Change color lightness (HSL)"
 msgstr "Change colour lightness (HSL)"
 
 #: ../brushsettings-gen.h:29
-#, fuzzy
 msgid ""
 "Change the color lightness using the HSL color model.\n"
 "-1.0 blacker\n"
 " 0.0 disable\n"
 " 1.0 whiter"
 msgstr ""
-"Change the colour lightness (luminance) using the HSL color model.\n"
+"Change the colour lightness using the HSL colour model.\n"
 "-1.0 blacker\n"
 " 0.0 disable\n"
 " 1.0 whiter"
@@ -489,33 +488,30 @@ msgid "Stroke threshold"
 msgstr "Stroke threshold"
 
 #: ../brushsettings-gen.h:37
-#, fuzzy
 msgid ""
 "How much pressure is needed to start a stroke. This affects the stroke input "
 "only. MyPaint does not need a minimum pressure to start drawing."
 msgstr ""
 "How much pressure is needed to start a stroke. This affects the stroke input "
-"only. Mypaint does not need a minimal pressure to start drawing."
+"only. MyPaint does not need a minimum pressure to start drawing."
 
 #: ../brushsettings-gen.h:38
 msgid "Stroke duration"
 msgstr "Stroke duration"
 
 #: ../brushsettings-gen.h:38
-#, fuzzy
 msgid ""
 "How far you have to move until the stroke input reaches 1.0. This value is "
 "logarithmic (negative values will not invert the process)."
 msgstr ""
 "How far you have to move until the stroke input reaches 1.0. This value is "
-"logarithmic (negative values will not inverse the process)."
+"logarithmic (negative values will not invert the process)."
 
 #: ../brushsettings-gen.h:39
 msgid "Stroke hold time"
 msgstr "Stroke hold time"
 
 #: ../brushsettings-gen.h:39
-#, fuzzy
 msgid ""
 "This defines how long the stroke input stays at 1.0. After that it will "
 "reset to 0.0 and start growing again, even if the stroke is not yet "
@@ -524,10 +520,10 @@ msgid ""
 "9.9 or higher stands for infinite"
 msgstr ""
 "This defines how long the stroke input stays at 1.0. After that it will "
-"reset to 0.0 and start growing again, even if the stroke is not yet "
-"finished.\n"
+"reset to 0.0 and start growing again, even if the stroke is not yet finished."
+"\n"
 "2.0 means twice as long as it takes to go from 0.0 to 1.0\n"
-"9.9 and bigger stands for infinite"
+"9.9 or higher stands for infinite"
 
 #: ../brushsettings-gen.h:40
 msgid "Custom input"
@@ -630,7 +626,6 @@ msgid "Colorize"
 msgstr "Colourize"
 
 #: ../brushsettings-gen.h:46
-#, fuzzy
 msgid ""
 "Colorize the target layer, setting its hue and saturation from the active "
 "brush color while retaining its value and alpha."
@@ -643,13 +638,12 @@ msgid "Snap to pixel"
 msgstr "Snap to pixel"
 
 #: ../brushsettings-gen.h:47
-#, fuzzy
 msgid ""
 "Snap brush dab's center and its radius to pixels. Set this to 1.0 for a thin "
 "pixel brush."
 msgstr ""
-"Snap brush dab's center and it's radius to pixels. Set this to 1.0 for a "
-"thin pixel brush."
+"Snap brush dab's centre and its radius to pixels. Set this to 1.0 for a thin "
+"pixel brush."
 
 #: ../brushsettings-gen.h:48
 msgid "Pressure gain"

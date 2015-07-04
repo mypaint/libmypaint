@@ -27,7 +27,7 @@ if lang:
     elif lang == 'pot':
         # For programmers and program maintainers.
         # Update the .pot file only.
-        # Handle for doing local diffs,
+        # Handy for doing local diffs,
         # but it's best not to commit alone - .po files on
         # WebLate sould be kept in sync with their .pot.
         env.Execute('cd .. && ls *.[ch] | sort > po/POTFILES.in')

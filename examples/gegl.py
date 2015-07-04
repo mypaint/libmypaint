@@ -1,5 +1,5 @@
 
-from __future__ import absolute_import
+from __future__ import absolute_import, print_function
 
 from gi.repository import GeglGtk3 as GeglGtk
 from gi.repository import Gegl, Gtk
@@ -95,22 +95,25 @@ def list_settings():
     # List all settings
     # TODO: Is there a better way to list all enums with GI?
     settings = [str(getattr(MyPaint.BrushSetting, attr)) for attr in dir(MyPaint.BrushSetting) if attr.startswith("SETTING_")]
-    print "Available settings: %s\n" % "\n".join(settings)
+    print("Available settings: %s\n" % "\n".join(settings))
 
     # Get info about a given setting
     setting = MyPaint.BrushSetting.SETTING_RADIUS_LOGARITHMIC
     info = MyPaint.brush_setting_info(setting)
 
     # TODO: rename "def_" to "default"
-    print "Setting: %s\n\t Max: %f \n\t Default: %f \n\t Min: %f" % (info.cname, info.max, info.def_, info.min)
-    print "\t Name: %s\n\t Tooltip: '%s'\n" % (info.get_name(), info.get_tooltip())  # Use the getters so that i18n works
+    print("Setting: %s\n\t Max: %f \n\t Default: %f \n\t Min: %f" % (
+        info.cname, info.max, info.def_, info.min))
+    # Use the getters so that i18n works
+    print("\t Name: %s\n\t Tooltip: '%s'\n" % (info.get_name(),
+                                               info.get_tooltip()))
 
     # TODO: should be MyPaint.BrushSetting.from_cname
     # Same with MyPaint.Brush.input_from_cname
     assert (MyPaint.Brush.setting_from_cname(info.cname) == setting)
 
     # Get/Set current base value for the given setting
-    print "Base value is: %f" % brush.get_base_value(setting)
+    print("Base value is: %f" % brush.get_base_value(setting))
     brush.set_base_value(setting, 2.0)
     assert brush.get_base_value(setting) == 2.0
 
@@ -121,7 +124,7 @@ def list_settings():
             mapping_points = brush.get_mapping_n(setting, input)
             if mapping_points > 1:  # If 0, no dynamics for this input
                 points = [brush.get_mapping_point(setting, input, i) for i in range(mapping_points)]
-                print "Has dynamics for input %s:\n%s" % (input, str(points))
+                print("Has dynamics for input %s:\n%s" % (input, str(points)))
 
 
 if __name__ == '__main__':

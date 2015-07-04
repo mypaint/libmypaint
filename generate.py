@@ -18,7 +18,7 @@
 
 "Code generator, part of the build process."
 
-from __future__ import absolute_import
+from __future__ import absolute_import, print_function
 
 import os
 import sys
@@ -229,7 +229,7 @@ if __name__ == '__main__':
         public_header_file, internal_header_file = sys.argv[1:]
     except:
         msg = "usage: {} PUBLICdotH INTERNALdotH".format(script)
-        print >>sys.stderr, msg
+        print(msg, file=sys.stderr)
         sys.exit(2)
     writefile(public_header_file, generate_public_settings_code())
     writefile(internal_header_file, generate_internal_settings_code())

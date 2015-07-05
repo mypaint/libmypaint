@@ -9,10 +9,10 @@ msgstr ""
 "Project-Id-Version: MyPaint 0.7.1+git\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-04 18:33+0100\n"
-"PO-Revision-Date: 2015-07-02 23:01+0200\n"
-"Last-Translator: Raimon Guarro i Nogués <glorund@gmail.com>\n"
-"Language-Team: Spanish <https://hosted.weblate.org/projects/mypaint/"
-"libmypaint/es/>\n"
+"PO-Revision-Date: 2015-07-05 15:43+0200\n"
+"Last-Translator: Víctor Gómez <crivote@gmail.com>\n"
+"Language-Team: Spanish "
+"<https://hosted.weblate.org/projects/mypaint/libmypaint/es/>\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -330,7 +330,7 @@ msgstr ""
 "color con que se guardó la brocha.\n"
 " 0.0 no modificar el color activo al seleccionar esta brocha\n"
 " 0.5 cambiar el color activo hacia el color de la brocha\n"
-" 1.0 poner el color color de la brocha como color activo al seleccionarla "
+" 1.0 poner el color color de la brocha como color activo al seleccionarla"
 
 #: ../brushsettings-gen.h:28
 msgid "Change color hue"
@@ -353,17 +353,16 @@ msgid "Change color lightness (HSL)"
 msgstr "Cambiar la claridad del color (HSL)"
 
 #: ../brushsettings-gen.h:29
-#, fuzzy
 msgid ""
 "Change the color lightness using the HSL color model.\n"
 "-1.0 blacker\n"
 " 0.0 disable\n"
 " 1.0 whiter"
 msgstr ""
-"Cambia la claridad (luminocidad) del color, usando el modelo de color HSL.\n"
-"-1.0 más negro\n"
+"Cambia la luminosidad del color, usando el modelo de color HSL.\n"
+"-1.0 más oscuro\n"
 " 0.0 desactivado\n"
-" 1.0 más blanco"
+" 1.0 más claro"
 
 #: ../brushsettings-gen.h:30
 msgid "Change color satur. (HSL)"
@@ -511,12 +510,11 @@ msgid "Stroke duration"
 msgstr "Duración del trazo"
 
 #: ../brushsettings-gen.h:38
-#, fuzzy
 msgid ""
 "How far you have to move until the stroke input reaches 1.0. This value is "
 "logarithmic (negative values will not invert the process)."
 msgstr ""
-"Qué tan lejos se debe mover para que la entrada del trazo alcance 1.0. Este "
+"Hasta dónde debe moverse para que la entrada del trazo alcance 1.0. Este "
 "valor es logarítmico (valores negativos no invierten el proceso)."
 
 #: ../brushsettings-gen.h:39
@@ -524,7 +522,6 @@ msgid "Stroke hold time"
 msgstr "Tiempo en que se mantiene el trazo"
 
 #: ../brushsettings-gen.h:39
-#, fuzzy
 msgid ""
 "This defines how long the stroke input stays at 1.0. After that it will "
 "reset to 0.0 and start growing again, even if the stroke is not yet "
@@ -536,7 +533,7 @@ msgstr ""
 "esto se vuelve a 0.0 y comienza a crecer nuevamente, incluso si el trazo no "
 "se ha finalizado.\n"
 "2.0 significa dos veces lo que le toma ir de 0.0 a 1.0\n"
-"9.9 y mayores, se mantiene infinitamente"
+"9.9 o más se corresponde a un valor infinito"
 
 #: ../brushsettings-gen.h:40
 msgid "Custom input"
@@ -585,7 +582,8 @@ msgid ""
 "dab. TODO: linearize? start at 0.0 maybe, or log?"
 msgstr ""
 "Tasa de aspecto de las pinceladas. Debe ser >= 1.0, en donde 1.0 significa "
-"una pincelada perfectamente circular."
+"una pincelada perfectamente circular. PENDIENTE: ¿Linearizar? ¿Comenzar en "
+"0.0 quizá, o almacenar?"
 
 #: ../brushsettings-gen.h:43
 msgid "Elliptical dab: angle"
@@ -637,26 +635,24 @@ msgid "Colorize"
 msgstr "Colorear"
 
 #: ../brushsettings-gen.h:46
-#, fuzzy
 msgid ""
 "Colorize the target layer, setting its hue and saturation from the active "
 "brush color while retaining its value and alpha."
 msgstr ""
-"Colorea la capa objetivo, cambiando su tono y saturación al color de la "
-"brocha activa, sin modificar su valor y alfa."
+"Colorea la capa objetivo, cambiando su tono y saturación a los de la brocha "
+"activa, sin modificar su valor y alfa."
 
 #: ../brushsettings-gen.h:47
 msgid "Snap to pixel"
 msgstr "Ajustar a píxeles"
 
 #: ../brushsettings-gen.h:47
-#, fuzzy
 msgid ""
 "Snap brush dab's center and its radius to pixels. Set this to 1.0 for a thin "
 "pixel brush."
 msgstr ""
 "Ajusta el centro de la brocha y su radio a los píxeles. Asigne 1.0 para "
-"obtener una brocha fina de píxeles."
+"obtener una brocha fina de 1 píxel."
 
 #: ../brushsettings-gen.h:48
 msgid "Pressure gain"

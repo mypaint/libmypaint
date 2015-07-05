@@ -3,10 +3,10 @@ msgstr ""
 "Project-Id-Version: MyPaint GIT\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-04 18:33+0100\n"
-"PO-Revision-Date: 2015-06-29 14:28+0200\n"
-"Last-Translator: Till Hartmann <till.hartmannn@googlemail.com>\n"
-"Language-Team: German <https://hosted.weblate.org/projects/mypaint/"
-"libmypaint/de/>\n"
+"PO-Revision-Date: 2015-07-05 17:52+0200\n"
+"Last-Translator: Marco Weidner <cokai@ymail.com>\n"
+"Language-Team: German "
+"<https://hosted.weblate.org/projects/mypaint/libmypaint/de/>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -30,7 +30,7 @@ msgstr "0 bedeutet transparent, 1 vollständig deckend"
 
 #: ../brushsettings-gen.h:5
 msgid "Opacity multiply"
-msgstr ""
+msgstr "mehrfache Opazität (Deckkraft)"
 
 #: ../brushsettings-gen.h:5
 msgid ""

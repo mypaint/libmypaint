@@ -8,10 +8,10 @@ msgstr ""
 "Project-Id-Version: libmypaint for mypaint 1.2.0-alpha\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-04 18:33+0100\n"
-"PO-Revision-Date: 2015-07-01 04:07+0200\n"
+"PO-Revision-Date: 2015-07-05 06:14+0200\n"
 "Last-Translator: Farzad Jenabi <farzadjen@yahoo.com>\n"
-"Language-Team: Persian <https://hosted.weblate.org/projects/mypaint/"
-"libmypaint/fa/>\n"
+"Language-Team: Persian "
+"<https://hosted.weblate.org/projects/mypaint/libmypaint/fa/>\n"
 "Language: fa\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -69,6 +69,9 @@ msgid ""
 " 0.7 means 2 pixels\n"
 " 3.0 means 20 pixels"
 msgstr ""
+"شعاع ساده قلم (لوگاریتمی)\n"
+" 0.7 برابر 2 نقطه\n"
+" 3.0 برابر 20 نقطه"
 
 #: ../brushsettings-gen.h:8
 msgid "Hardness"
@@ -136,7 +139,7 @@ msgstr ""
 
 #: ../brushsettings-gen.h:14
 msgid "Fine speed filter"
-msgstr ""
+msgstr "فیلتر سرعت خوب"
 
 #: ../brushsettings-gen.h:14
 msgid ""
@@ -208,7 +211,7 @@ msgstr ""
 
 #: ../brushsettings-gen.h:21
 msgid "Slow position tracking"
-msgstr ""
+msgstr "دنبال کننده سرعت پایین"
 
 #: ../brushsettings-gen.h:21
 msgid ""
@@ -228,7 +231,7 @@ msgstr ""
 
 #: ../brushsettings-gen.h:23
 msgid "Tracking noise"
-msgstr ""
+msgstr "خطای دنبال کننده"
 
 #: ../brushsettings-gen.h:23
 msgid ""
@@ -238,7 +241,7 @@ msgstr ""
 
 #: ../brushsettings-gen.h:24
 msgid "Color hue"
-msgstr ""
+msgstr "فام رنگ"
 
 #: ../brushsettings-gen.h:25
 msgid "Color saturation"
@@ -246,11 +249,11 @@ msgstr "غنای رنگ"
 
 #: ../brushsettings-gen.h:26
 msgid "Color value"
-msgstr ""
+msgstr "شدت رنگ"
 
 #: ../brushsettings-gen.h:26
 msgid "Color value (brightness, intensity)"
-msgstr ""
+msgstr "مقدار رنگ (درخشندگی، شدت)"
 
 #: ../brushsettings-gen.h:27
 msgid "Save color"
@@ -267,7 +270,7 @@ msgstr ""
 
 #: ../brushsettings-gen.h:28
 msgid "Change color hue"
-msgstr ""
+msgstr "تغییر فام رنگ"
 
 #: ../brushsettings-gen.h:28
 msgid ""
@@ -291,7 +294,7 @@ msgstr ""
 
 #: ../brushsettings-gen.h:30
 msgid "Change color satur. (HSL)"
-msgstr ""
+msgstr "تغییر شدت رنگ"
 
 #: ../brushsettings-gen.h:30
 msgid ""
@@ -430,7 +433,7 @@ msgstr ""
 
 #: ../brushsettings-gen.h:41
 msgid "Custom input filter"
-msgstr ""
+msgstr "فیلتر ورودی سفارشی"
 
 #: ../brushsettings-gen.h:41
 msgid ""
@@ -464,7 +467,7 @@ msgstr ""
 
 #: ../brushsettings-gen.h:44
 msgid "Direction filter"
-msgstr ""
+msgstr "فیلتر سمتی"
 
 #: ../brushsettings-gen.h:44
 msgid ""
@@ -474,7 +477,7 @@ msgstr ""
 
 #: ../brushsettings-gen.h:45
 msgid "Lock alpha"
-msgstr ""
+msgstr "قفل آلفا"
 
 #: ../brushsettings-gen.h:45
 msgid ""
@@ -487,7 +490,7 @@ msgstr ""
 
 #: ../brushsettings-gen.h:46
 msgid "Colorize"
-msgstr ""
+msgstr "رنگی"
 
 #: ../brushsettings-gen.h:46
 msgid ""
@@ -497,7 +500,7 @@ msgstr ""
 
 #: ../brushsettings-gen.h:47
 msgid "Snap to pixel"
-msgstr ""
+msgstr "چسبیدن به نقطه"
 
 #: ../brushsettings-gen.h:47
 msgid ""

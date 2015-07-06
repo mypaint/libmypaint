@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: MyPaint GIT\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-04 18:33+0100\n"
-"PO-Revision-Date: 2015-07-06 18:05+0200\n"
+"PO-Revision-Date: 2015-07-06 19:41+0200\n"
 "Last-Translator: Till Hartmann <till.hartmannn@googlemail.com>\n"
 "Language-Team: German "
 "<https://hosted.weblate.org/projects/mypaint/libmypaint/de/>\n"
@@ -34,16 +34,23 @@ msgid "Opacity multiply"
 msgstr "mehrfache Opazität (Deckkraft)"
 
 #: ../brushsettings-gen.h:5
+#, fuzzy
 msgid ""
 "This gets multiplied with opaque. You should only change the pressure input "
 "of this setting. Use 'opaque' instead to make opacity depend on speed.\n"
 "This setting is responsible to stop painting when there is zero pressure. "
 "This is just a convention, the behaviour is identical to 'opaque'."
 msgstr ""
+"Wird mit Deckkraft multipliziert. Nur die Druckeingabe(?) dieser Einstellung "
+"ändern. Verwende stattdessen 'Deckkraft'(?) um die Deckkraft von der "
+"Geschwindigkeit abhängig zu machen.\n"
+"Diese Einstellung sorgt dafür, dass bei ausbleibendem Druck nicht gemalt "
+"wird. Dies ist nur eine Konvention; das Verhalten ist identisch zu "
+"'Deckkraft'"
 
 #: ../brushsettings-gen.h:6
 msgid "Opacity linearize"
-msgstr ""
+msgstr "Deckkraft Linearisierung"
 
 #: ../brushsettings-gen.h:6
 msgid ""
@@ -62,7 +69,6 @@ msgid "Radius"
 msgstr "Radius"
 
 #: ../brushsettings-gen.h:7
-#, fuzzy
 msgid ""
 "Basic brush radius (logarithmic)\n"
 " 0.7 means 2 pixels\n"
@@ -70,7 +76,7 @@ msgid ""
 msgstr ""
 "Grundlegender Pinsel Radius (logarithmisch)\n"
 " 0.7 entspricht 2px\n"
-" 3.0 entspricht 20 px"
+" 3.0 entspricht 20px"
 
 #: ../brushsettings-gen.h:8
 msgid "Hardness"

@@ -1,4 +1,4 @@
-Import('env', 'gegl_env')
+Import('env', 'gegl_env', 'parse_pkg_config')
 
 import os
 import sys
@@ -17,10 +17,12 @@ testlib_sources = [fn for fn in os.listdir("./") if not is_test(fn) and is_csour
 testlib_env.Append(LIBS=['mypaint'])
 if sys.platform == 'win32':
     testlib_env.Append(LIBS=['intl'])
+elif sys.platform == "msys" and os.environ.get("MSYSTEM") != "MSYS":
+    testlib_env.Append(LIBS=['intl'])
 testlib_env.Append(CPPPATH=['../'], LIBPATH=['../'])
 
 if testlib_env['enable_gperftools']:
-    testlib_env.ParseConfig('pkg-config --cflags --libs libprofiler')
+    parse_pkg_config(testlib_env, "libprofiler")
     testlib_env.Append(CPPDEFINES='HAVE_GPERFTOOLS')
 
 lib_builder = testlib_env.SharedLibrary if env['use_sharedlib'] else testlib_env.StaticPicLibrary
@@ -48,7 +50,7 @@ if gegl_tests_env['enable_gegl']:
     gegl_tests_env.Prepend(LIBS=['mypaint-gegl', 'mypaint-tests', 'mypaint'])
 
     if gegl_tests_env['enable_gperftools']:
-        gegl_tests_env.ParseConfig('pkg-config --cflags --libs libprofiler')
+        parse_pkg_config(gegl_tests_env, "libprofiler")
 
     for source in gegl_tests_sources:
         target = os.path.splitext(source)[0]

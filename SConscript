@@ -57,6 +57,22 @@ def create_pkgconfig_files(env, pkgconfig_name, version, description,
     return pc_file
 
 
+# Helper for ParseConfig
+
+def parse_pkg_config(env, libname):
+    extras = ""
+    if sys.platform == "msys" and os.environ.get("MSYSTEM") != "MSYS":
+        # Building on e.g. MINGW32 using MSYS scons.
+        # Paths will have drive letters & mess up scons's os.path.join()s
+        # unless we do this:
+        extras += " --dont-define-prefix"
+    cmd = "pkg-config --cflags --libs {libname} {extras}".format(
+        libname = libname,
+        extras = extras,
+    )
+    env.ParseConfig(cmd)
+
+
 # NOTE: We use a copy of the environment, to be able to both inherit common options,
 # and also add our own specifics ones without affecting the other builds
 top_env = env
@@ -125,7 +141,9 @@ env.Clean('.', Glob('*.o'))
 
 env.Append(LINKFLAGS=linkflags)
 env.Append(LIBS=libs)
-env.ParseConfig('pkg-config --cflags --libs %s' % ' '.join(pkg_deps))
+
+for pkg in pkg_deps:
+    parse_pkg_config(env, pkg)
 
 lib_builder = env.SharedLibrary if env['use_sharedlib'] else env.StaticPicLibrary
 sources = Glob("*.c")
@@ -158,7 +176,8 @@ if env['enable_i18n']:
 gegl_env = env.Clone()
 if env['enable_gegl']:
     deps = ['gegl-%s' % env['GEGL_VERSION']]
-    gegl_env.ParseConfig('pkg-config --cflags --libs %s' % ' '.join(deps))
+    for d in deps:
+        parse_pkg_config(gegl_env, d)
     gegl_env.Append(LIBPATH=['.'], LIBS=['mypaint'])
 
     lib_builder = gegl_env.SharedLibrary if env['use_sharedlib'] else gegl_env.StaticPicLibrary
@@ -182,7 +201,7 @@ if env['enable_gegl']:
         install_perms(env, '$prefix/share/gir-1.0', gir)
         install_perms(env, '$prefix/lib/girepository-1.0', typelib)
 
-Export('gegl_env', 'env')
+Export('gegl_env', 'env', 'parse_pkg_config')
 tests = SConscript('tests/SConscript')
 
 Return('brushlib')

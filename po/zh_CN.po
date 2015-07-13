@@ -8,29 +8,32 @@ msgstr ""
 "Project-Id-Version: 0.7.1-git\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-04 18:33+0100\n"
-"PO-Revision-Date: 2010-01-20 01:09+0100\n"
-"Last-Translator: Popolon <popolon@popolon.org>\n"
-"Language-Team: Simplified Chinese <zh@li.org>\n"
-"Language: \n"
+"PO-Revision-Date: 2015-07-13 15:03+0200\n"
+"Last-Translator: Shen Rui <ilovepumpkin@126.com>\n"
+"Language-Team: Chinese (China) "
+"<https://hosted.weblate.org/projects/mypaint/libmypaint/zh_CN/>\n"
+"Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 2.4-dev\n"
 
 #: ../brushsettings-gen.h:4
-#, fuzzy
 msgid "Opacity"
-msgstr "不透明度:"
+msgstr "不透明度"
 
 #: ../brushsettings-gen.h:4
 msgid ""
 "0 means brush is transparent, 1 fully visible\n"
 "(also known as alpha or opacity)"
 msgstr ""
+"0 表示笔刷是透明的，1 表示笔刷全部可见\n"
+"（也称为透明度或者不透明度）"
 
 #: ../brushsettings-gen.h:5
-#, fuzzy
 msgid "Opacity multiply"
-msgstr "不透明相乘"
+msgstr "不透明叠加"
 
 #: ../brushsettings-gen.h:5
 msgid ""
@@ -39,11 +42,12 @@ msgid ""
 "This setting is responsible to stop painting when there is zero pressure. "
 "This is just a convention, the behaviour is identical to 'opaque'."
 msgstr ""
+"该设置使得不透明度叠加。你应该只修改该设置的压力值。使用“不透明度”而不是让不透明度依赖速度。\n"
+"该设置使得当笔压为零时停止绘图。该行为仅仅是惯例，并且该行为与“不透明度”设置一致。"
 
 #: ../brushsettings-gen.h:6
-#, fuzzy
 msgid "Opacity linearize"
-msgstr "不透明线性化"
+msgstr "线性化不透明度"
 
 #: ../brushsettings-gen.h:6
 msgid ""
@@ -78,11 +82,11 @@ msgstr "硬度"
 msgid ""
 "Hard brush-circle borders (setting to zero will draw nothing). To reach the "
 "maximum hardness, you need to disable Pixel feather."
-msgstr ""
+msgstr "硬笔刷圆形边框（设置成零将什么都不画）。要达到最大硬度，你需要禁用像素羽化。"
 
 #: ../brushsettings-gen.h:9
 msgid "Pixel feather"
-msgstr ""
+msgstr "像素羽化"
 
 #: ../brushsettings-gen.h:9
 msgid ""
@@ -92,11 +96,14 @@ msgid ""
 " 1.0 blur one pixel (good value)\n"
 " 5.0 notable blur, thin strokes will disappear"
 msgstr ""
+"该设置在必要时减小硬度，通过使点更模糊的方式防止出现“像素阶梯效果”（别名）。\n"
+"0.0 禁用 （针对非常硬的橡皮擦和像素笔刷）\n"
+"1.0 模糊一个像素 （建议值）\n"
+"5.0 明显的模糊，细的笔触将消失"
 
 #: ../brushsettings-gen.h:10
-#, fuzzy
 msgid "Dabs per basic radius"
-msgstr "每基本半径的笔触数量"
+msgstr "每基本半径的触点数量"
 
 #: ../brushsettings-gen.h:10
 msgid ""

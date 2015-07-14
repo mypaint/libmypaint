@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: MyPaint 0.7.1+git\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-04 18:33+0100\n"
-"PO-Revision-Date: 2015-07-05 15:43+0200\n"
-"Last-Translator: Víctor Gómez <crivote@gmail.com>\n"
+"PO-Revision-Date: 2015-07-11 22:37+0200\n"
+"Last-Translator: David Gámiz Jiménez <david.gamiz@gmail.com>\n"
 "Language-Team: Spanish "
 "<https://hosted.weblate.org/projects/mypaint/libmypaint/es/>\n"
 "Language: es\n"
@@ -496,7 +496,6 @@ msgid "Stroke threshold"
 msgstr "Umbral del trazo"
 
 #: ../brushsettings-gen.h:37
-#, fuzzy
 msgid ""
 "How much pressure is needed to start a stroke. This affects the stroke input "
 "only. MyPaint does not need a minimum pressure to start drawing."

@@ -9,10 +9,10 @@ msgstr ""
 "Project-Id-Version: mypaint\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-04 18:33+0100\n"
-"PO-Revision-Date: 2015-06-30 13:59+0200\n"
-"Last-Translator: Chang-Chia Tseng <pswo10680@gmail.com>\n"
-"Language-Team: Chinese (Taiwan) <https://hosted.weblate.org/projects/mypaint/"
-"libmypaint/zh_TW/>\n"
+"PO-Revision-Date: 2015-07-14 23:36+0200\n"
+"Last-Translator: hokkeiv <hokkeiv@live.com>\n"
+"Language-Team: Chinese (Taiwan) "
+"<https://hosted.weblate.org/projects/mypaint/libmypaint/zh_TW/>\n"
 "Language: zh_TW\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -22,7 +22,7 @@ msgstr ""
 
 #: ../brushsettings-gen.h:4
 msgid "Opacity"
-msgstr "不透明"
+msgstr "不透明度"
 
 #: ../brushsettings-gen.h:4
 msgid ""
@@ -34,7 +34,7 @@ msgstr ""
 
 #: ../brushsettings-gen.h:5
 msgid "Opacity multiply"
-msgstr "不透明相乘"
+msgstr "不透明度相乘"
 
 #: ../brushsettings-gen.h:5
 msgid ""
@@ -43,16 +43,14 @@ msgid ""
 "This setting is responsible to stop painting when there is zero pressure. "
 "This is just a convention, the behaviour is identical to 'opaque'."
 msgstr ""
-"這會與不透明度相乘。您應該只需改變此設定值的壓力輸入。改用「不透明」以根據速"
-"度決定不透明度。\n"
+"這會與不透明度相乘。您應該只需改變此設定值的壓力輸入。改用「不透明」以根據速度決定不透明度。\n"
 "當壓力為零時，此設定值負責停止繪畫。這只是個慣例，行為與「不透明」相同。"
 
 #: ../brushsettings-gen.h:6
 msgid "Opacity linearize"
-msgstr "不透明線性化"
+msgstr "不透明度線性化"
 
 #: ../brushsettings-gen.h:6
-#, fuzzy
 msgid ""
 "Correct the nonlinearity introduced by blending multiple dabs on top of each "
 "other. This correction should get you a linear (\"natural\") pressure "
@@ -63,43 +61,40 @@ msgid ""
 "1.0 the opaque value above is for the final brush stroke, assuming each "
 "pixel gets (dabs_per_radius*2) brushdabs on average during a stroke"
 msgstr ""
-"藉由混合多個筆劃彼此的頂部進行非線性修正。因為通常已經完成，所以當壓力對應到"
-"「不透明相乘」時，這項修正應該給您一種線性的 (自然的) 壓力感應。0.9 有利於標"
-"準筆畫，如果您的筆刷散佈很廣則設定較小的值，或者您使用「每秒筆劃數量」的話就"
-"設定較高的數值。0.0 以上的不透明值是針對個別筆劃 1.0 以上的不透明值是針對最終"
-"筆刷筆畫，假定一道筆畫中每個像素平均獲得 (每半徑筆劃數量*2) 筆刷筆劃數量"
+"修正在混合重疊筆觸時的非線性表現。當壓力控制套用到「不透明度相乘」時，這項修正會讓您得到如平常表現一樣的線性（亦即是「自然」）壓力反應。0.9適用於一般筆"
+"觸，如果筆刷表現分散的話請將設定值調低，使用「每秒筆觸數量」的話則將設定值調高。\n"
+"0.0 以上的不透明值是針對個別筆觸\n"
+"1.0 以上的不透明值是針對最終筆畫，假設一道筆畫中每個像素平均會有 (每半徑筆觸數量*2) 個筆刷筆觸"
 
 #: ../brushsettings-gen.h:7
 msgid "Radius"
 msgstr "半徑"
 
 #: ../brushsettings-gen.h:7
-#, fuzzy
 msgid ""
 "Basic brush radius (logarithmic)\n"
 " 0.7 means 2 pixels\n"
 " 3.0 means 20 pixels"
-msgstr "基本筆刷半徑 (對數) 0.7 代表 2 像素 3.0 代表 20 像素"
+msgstr ""
+"基本筆刷半徑 (對數)\n"
+"0.7 代表 2 像素\n"
+"3.0 代表 20 像素"
 
 #: ../brushsettings-gen.h:8
 msgid "Hardness"
 msgstr "硬度"
 
 #: ../brushsettings-gen.h:8
-#, fuzzy
 msgid ""
 "Hard brush-circle borders (setting to zero will draw nothing). To reach the "
 "maximum hardness, you need to disable Pixel feather."
-msgstr ""
-"剛硬圓形筆刷邊緣 (設定值為零會畫不出東西)。若要達到最大硬度，您需要停用防鋸齒"
-"功能。"
+msgstr "硬質筆刷圓圈邊界 (設定值為零時將會畫不出東西)。若要達到最大硬度，您需要停用像素柔化功能。"
 
 #: ../brushsettings-gen.h:9
 msgid "Pixel feather"
-msgstr ""
+msgstr "像素柔化"
 
 #: ../brushsettings-gen.h:9
-#, fuzzy
 msgid ""
 "This setting decreases the hardness when necessary to prevent a pixel "
 "staircase effect (aliasing) by making the dab more blurred.\n"
@@ -107,9 +102,10 @@ msgid ""
 " 1.0 blur one pixel (good value)\n"
 " 5.0 notable blur, thin strokes will disappear"
 msgstr ""
-"此設定值可在適當時機降低硬度，可以避免螢幕上呈現像素階梯狀效應。0.0 停用 (非"
-"常堅硬的橡皮擦與像素筆刷)  1.0 模糊 1 像素 (良好的設定值) 5.0 明顯模糊，細的"
-"筆劃會消失"
+"這項設定可以在有需要時模糊筆觸來防止像素階梯效應 (鋸齒失真) 。\n"
+"0.0 無效 (非常堅硬的橡皮擦與像素筆刷) \n"
+"1.0 模糊 1 像素 (良好的設定值)\n"
+"5.0 顯著模糊，幼細筆劃將會消失"
 
 #: ../brushsettings-gen.h:10
 msgid "Dabs per basic radius"
@@ -145,7 +141,6 @@ msgid "Radius by random"
 msgstr "隨機半徑"
 
 #: ../brushsettings-gen.h:13
-#, fuzzy
 msgid ""
 "Alter the radius randomly each dab. You can also do this with the by_random "
 "input on the radius setting. If you do it here, there are two differences:\n"
@@ -153,22 +148,21 @@ msgid ""
 "transparent\n"
 "2) it will not change the actual radius seen by dabs_per_actual_radius"
 msgstr ""
-"每個筆觸隨機改變半徑。您也可以用半徑設定值上的「隨機」 輸入來做出這種效果。如"
-"果您在這裡做會有兩點不同的地方：1) 不透明度會進行修正使得大半徑的筆觸更透明。"
-"2) 不會改變「每實際半徑的筆觸數量」所見的實際半徑"
+"隨機改變每個筆觸的半徑。您也可以使用半徑設定值上的「隨機」 輸入來做出相同效果。如果您在這裡進行設定的話會有兩個不同的地方：\n"
+"1) 不透明度會被修正使大半徑的筆觸變得更透明。\n"
+"2) 「每實際半徑的筆觸數量」所見的實際半徑將不會被改變"
 
 #: ../brushsettings-gen.h:14
 msgid "Fine speed filter"
 msgstr "精細速度過濾"
 
 #: ../brushsettings-gen.h:14
-#, fuzzy
 msgid ""
 "How slow the input fine speed is following the real speed\n"
 "0.0 change immediately as your speed changes (not recommended, but try it)"
 msgstr ""
-"跟隨真實速度的輸入精細速度要多慢 0.0 您的速度改變時會立刻跟著改變 (不推薦，但"
-"可以試試)"
+"精細速度的輸入有多慢地跟隨真實速度的輸入\n"
+"0.0 您的速度改變時就會立刻跟著改變 (不推薦，但可以試試)"
 
 #: ../brushsettings-gen.h:15
 msgid "Gross speed filter"
@@ -183,7 +177,6 @@ msgid "Fine speed gamma"
 msgstr "精細速度 Gamma 值"
 
 #: ../brushsettings-gen.h:16
-#, fuzzy
 msgid ""
 "This changes the reaction of the 'fine speed' input to extreme physical "
 "speed. You will see the difference best if 'fine speed' is mapped to the "
@@ -192,9 +185,10 @@ msgid ""
 "+8.0 very fast speed increases 'fine speed' a lot\n"
 "For very slow speed the opposite happens."
 msgstr ""
-"這會將「精細速度」的反應變為物理速度的極限。如果「精細速度」對應到半徑，您會"
-"看到明顯差別。 -8.0  非常快的速度不會增加更多「精細速度」 +8.0 非常快的速度會"
-"大大增加「精細速度」 若速度非常慢則為相反情況。"
+"這會將「精細速度」的反應改變為極端的物理速度。如果將「精細速度」套用到半徑上，您會看到明顯的差別。\n"
+"-8.0 非常快的速度但不會再增加「精細速度」\n"
+"+8.0 非常快的速度並會大幅增加「精細速度」\n"
+"若速度非常慢則會有相反表現。"
 
 #: ../brushsettings-gen.h:17
 msgid "Gross speed gamma"
@@ -209,29 +203,32 @@ msgid "Jitter"
 msgstr "抖動"
 
 #: ../brushsettings-gen.h:18
-#, fuzzy
 msgid ""
 "Add a random offset to the position where each dab is drawn\n"
 " 0.0 disabled\n"
 " 1.0 standard deviation is one basic radius away\n"
 "<0.0 negative values produce no jitter"
 msgstr ""
-"讓每個筆觸繪製的位置隨機偏移 0.0 停用 1.0 標準差是一個基本半徑的距離 <0.0 負"
-"值不會產生抖動"
+"讓每個筆觸繪製的位置隨機偏移\n"
+"0.0 無效\n"
+"1.0 標準差即是偏移一個基本半徑的距離\n"
+"<0.0 負值不會產生抖動"
 
 #: ../brushsettings-gen.h:19
 msgid "Offset by speed"
 msgstr "依速度偏移"
 
 #: ../brushsettings-gen.h:19
-#, fuzzy
 msgid ""
 "Change position depending on pointer speed\n"
 "= 0 disable\n"
 "> 0 draw where the pointer moves to\n"
 "< 0 draw where the pointer comes from"
 msgstr ""
-"根據指標速度改變位置 = 0 停用 > 0 繪製指標移到的地方 < 0 繪製指標原來的地方"
+"根據指標速度改變位置\n"
+"= 0 無效\n"
+"> 0 在指標後往的方向進行塗繪\n"
+"< 0 在指標前來的方向進行塗繪"
 
 #: ../brushsettings-gen.h:20
 msgid "Offset by speed filter"
@@ -258,13 +255,10 @@ msgid "Slow tracking per dab"
 msgstr "每個筆觸緩慢曳跡"
 
 #: ../brushsettings-gen.h:22
-#, fuzzy
 msgid ""
 "Similar as above but at brushdab level (ignoring how much time has passed if "
 "brushdabs do not depend on time)"
-msgstr ""
-"和上面類似，但屬於筆刷筆觸層級 (如果筆刷筆觸不由時間決定，則忽略已經過了多少"
-"時間)"
+msgstr "跟上面類似但在筆觸層級實行 (如果筆觸不受時間影響，則會忽略經過時間)"
 
 #: ../brushsettings-gen.h:23
 msgid "Tracking noise"
@@ -299,7 +293,6 @@ msgid "Save color"
 msgstr "儲存色彩"
 
 #: ../brushsettings-gen.h:27
-#, fuzzy
 msgid ""
 "When selecting a brush, the color can be restored to the color that the "
 "brush was saved with.\n"
@@ -307,55 +300,64 @@ msgid ""
 " 0.5 change active color towards brush color\n"
 " 1.0 set the active color to the brush color when selected"
 msgstr ""
-"當選取筆刷時，色彩可以從儲存的筆刷中還原。0.0 當選取筆刷時不會修改使用中的色"
-"彩 0.5 會根據筆刷色彩改變使用中的色彩 1.0 選取時將使用中的色彩設定至筆刷色彩"
+"在選取筆刷時，使用筆刷中所儲存的顏色。\n"
+"0.0 選取筆刷時不改變現行顏色\n"
+"0.5 根據筆刷色彩改變現行顏色\n"
+"1.0 選取筆刷時將現行顏色設定至筆刷顏色"
 
 #: ../brushsettings-gen.h:28
 msgid "Change color hue"
 msgstr "改變色相"
 
 #: ../brushsettings-gen.h:28
-#, fuzzy
 msgid ""
 "Change color hue.\n"
 "-0.1 small clockwise color hue shift\n"
 " 0.0 disable\n"
 " 0.5 counterclockwise hue shift by 180 degrees"
 msgstr ""
-"改變色相。-0.1 色相稍微向順時針偏移 0.0 停用 0.5 以 180 度逆時針偏移色相"
+"改變色相。\n"
+"-0.1 色相稍微順時針偏移\n"
+"0.0 無效\n"
+"0.5 色相以180 度逆時針偏移"
 
 #: ../brushsettings-gen.h:29
 msgid "Change color lightness (HSL)"
 msgstr "改變色彩明度 (HSL)"
 
 #: ../brushsettings-gen.h:29
-#, fuzzy
 msgid ""
 "Change the color lightness using the HSL color model.\n"
 "-1.0 blacker\n"
 " 0.0 disable\n"
 " 1.0 whiter"
-msgstr "使用 HSL 色彩模型改變色彩亮度 (明度)。-1.0 較黑 0.0 停用 1.0 較白"
+msgstr ""
+"使用 HSL 色彩模型來改變色彩的亮度。\n"
+"-1.0 更黑\n"
+"0.0 無效\n"
+"1.0 更白"
 
 #: ../brushsettings-gen.h:30
 msgid "Change color satur. (HSL)"
 msgstr "改變色彩飽和度 (HSL)"
 
 #: ../brushsettings-gen.h:30
-#, fuzzy
 msgid ""
 "Change the color saturation using the HSL color model.\n"
 "-1.0 more grayish\n"
 " 0.0 disable\n"
 " 1.0 more saturated"
-msgstr "使用 HSL 色彩模型改變色彩飽和度。-1.0 更灰白 0.0 停用 1.0 更飽和"
+msgstr ""
+"使用 HSL 色彩模型來改變色彩的飽和度。\n"
+"-1.0 更灰淡\n"
+"0.0 無效\n"
+"1.0 更飽和"
 
 #: ../brushsettings-gen.h:31
 msgid "Change color value (HSV)"
 msgstr "改變色彩明度 (HSV)"
 
 #: ../brushsettings-gen.h:31
-#, fuzzy
 msgid ""
 "Change the color value (brightness, intensity) using the HSV color model. "
 "HSV changes are applied before HSL.\n"
@@ -363,15 +365,16 @@ msgid ""
 " 0.0 disable\n"
 " 1.0 brigher"
 msgstr ""
-"使用 HSV 色彩模型改變色彩的明度 (亮度，光強度)。HSV 改變會在 HSL 之前套"
-"用。-1.0 更暗 0.0 停用 1.0 更亮"
+"使用 HSV 色彩模型來改變色彩的明度 (亮度，強度)。HSV 的改變會在 HSL 之前套用。\n"
+"-1.0 更暗\n"
+"0.0 停用\n"
+"1.0 更亮"
 
 #: ../brushsettings-gen.h:32
 msgid "Change color satur. (HSV)"
 msgstr "改變色彩飽和度 (HSV)"
 
 #: ../brushsettings-gen.h:32
-#, fuzzy
 msgid ""
 "Change the color saturation using the HSV color model. HSV changes are "
 "applied before HSL.\n"
@@ -379,15 +382,16 @@ msgid ""
 " 0.0 disable\n"
 " 1.0 more saturated"
 msgstr ""
-"使用 HSV 色彩模型改變色彩飽和度。HSV 改變會在 HSL 之前套用。-1.0 更灰白 0.0 "
-"停用 1.0 更飽和"
+"使用 HSV 色彩模型來改變色彩的飽和度。HSV 的改變會在 HSL 之前套用。\n"
+"-1.0 更灰淡\n"
+"0.0 無效\n"
+"1.0 更飽和"
 
 #: ../brushsettings-gen.h:33
 msgid "Smudge"
 msgstr "塗抹"
 
 #: ../brushsettings-gen.h:33
-#, fuzzy
 msgid ""
 "Paint with the smudge color instead of the brush color. The smudge color is "
 "slowly changed to the color you are painting on.\n"
@@ -395,15 +399,16 @@ msgid ""
 " 0.5 mix the smudge color with the brush color\n"
 " 1.0 use only the smudge color"
 msgstr ""
-"用塗抹色彩替代筆刷色彩來塗繪。此塗抹色彩會慢慢變成您正在繪畫的色彩。0.0 不使"
-"用塗抹色彩 0.5 塗抹色彩與筆刷色彩混合 1.0 只使用塗抹色彩"
+"用塗抹顏色取代筆刷色彩來塗繪。塗抹顏色會慢慢變成您正在塗繪的顏色。\n"
+"0.0 不使用塗抹顏色\n"
+"0.5 混合塗抹顏色與筆刷顏色\n"
+"1.0 只使用塗抹顏色"
 
 #: ../brushsettings-gen.h:34
 msgid "Smudge length"
 msgstr "塗抹長度"
 
 #: ../brushsettings-gen.h:34
-#, fuzzy
 msgid ""
 "This controls how fast the smudge color becomes the color you are painting "
 "on.\n"
@@ -412,16 +417,16 @@ msgid ""
 "0.5 change the smudge color steadily towards the canvas color\n"
 "1.0 never change the smudge color"
 msgstr ""
-"它控制塗抹的色彩變成您正在繪畫的色彩的速度。0.0 立即更新塗抹色彩 (需要更多 "
-"CPU 週期，因為色彩檢查的頻率更頻繁) 0.5 讓塗抹色彩穩定朝畫布色彩改變 1.0 永不"
-"改變塗抹色彩"
+"這會控制塗抹的顏色變成您正在塗繪的顏色的速度。\n"
+"0.0 即時更新塗抹顏色 (因為顏色檢查的頻率更頻繁而需要更多 CPU 週期完成)\n"
+"0.5 讓塗抹顏色穩定地朝著畫布顏色改變\n"
+"1.0 永不改變塗抹顏色"
 
 #: ../brushsettings-gen.h:35
 msgid "Smudge radius"
 msgstr "塗抹半徑"
 
 #: ../brushsettings-gen.h:35
-#, fuzzy
 msgid ""
 "This modifies the radius of the circle where color is picked up for "
 "smudging.\n"
@@ -430,54 +435,53 @@ msgid ""
 "+0.7 twice the brush radius\n"
 "+1.6 five times the brush radius (slow performance)"
 msgstr ""
-"這會修改揀選塗抹色彩圓的半徑。 0.0 採用筆刷半徑 -0.7 筆刷半徑一半 (快速，但不"
-"是很直覺) +0.7 筆刷半徑兩倍 +1.6 筆刷半徑五倍 (效能緩慢)"
+"這會修改塗抹時撿取顏色的半徑。\n"
+"0.0 採用筆刷的半徑\n"
+"-0.7 筆刷半徑的一半 (表現快速，但不一定流暢)\n"
+"+0.7 筆刷半徑的 2 倍\n"
+"+1.6 筆刷半徑的 5 倍 (表現緩慢)"
 
 #: ../brushsettings-gen.h:36
 msgid "Eraser"
 msgstr "橡皮擦"
 
 #: ../brushsettings-gen.h:36
-#, fuzzy
 msgid ""
 "how much this tool behaves like an eraser\n"
 " 0.0 normal painting\n"
 " 1.0 standard eraser\n"
 " 0.5 pixels go towards 50% transparency"
 msgstr ""
-"此工具模擬橡皮擦的程度 0.0 一般塗繪 1.0 標準橡皮擦 0.5 像素會變為 50 % 透明"
+"此工具所表現的橡皮擦特性\n"
+"0.0 一般塗繪\n"
+"1.0 標準橡皮擦\n"
+"0.5 像素會趨向 50 % 透明"
 
 #: ../brushsettings-gen.h:37
 msgid "Stroke threshold"
 msgstr "筆劃閾值"
 
 #: ../brushsettings-gen.h:37
-#, fuzzy
 msgid ""
 "How much pressure is needed to start a stroke. This affects the stroke input "
 "only. MyPaint does not need a minimum pressure to start drawing."
-msgstr ""
-"需要多少壓力才會開始筆畫。這會只影響筆畫的輸入。Mypaint 不需要開始繪畫的最小"
-"壓力值。"
+msgstr "需要多少壓力才會開始一個筆畫。這會只影響筆畫的輸入，MyPaint 並不需要通過最小壓力值來開始繪畫。"
 
 #: ../brushsettings-gen.h:38
 msgid "Stroke duration"
 msgstr "筆劃持續長度"
 
 #: ../brushsettings-gen.h:38
-#, fuzzy
 msgid ""
 "How far you have to move until the stroke input reaches 1.0. This value is "
 "logarithmic (negative values will not invert the process)."
-msgstr ""
-"您必須移動多遠直到筆畫輸入達到 1.0。這項數值為對數 (數值為負不會反向處理)。"
+msgstr "您需要移動多遠筆畫輸入才會達到 1.0。這項數值為對數 (負數數值並不會相反處理)。"
 
 #: ../brushsettings-gen.h:39
 msgid "Stroke hold time"
 msgstr "筆劃停留時間"
 
 #: ../brushsettings-gen.h:39
-#, fuzzy
 msgid ""
 "This defines how long the stroke input stays at 1.0. After that it will "
 "reset to 0.0 and start growing again, even if the stroke is not yet "
@@ -485,16 +489,15 @@ msgid ""
 "2.0 means twice as long as it takes to go from 0.0 to 1.0\n"
 "9.9 or higher stands for infinite"
 msgstr ""
-"這項數值可定義筆劃輸入會停留在 1.0 多長的時間。從那之後會重設為 0.0 並再一次"
-"開始增長，即使這道筆畫還未結束。2.0 代表從 0.0 開始到 1.0 期間的兩倍 9.9 和更"
-"大的數值代表無限大"
+"這項設定可定義筆劃輸入保持停留在 1.0 的時間，然後會重設為 0.0 重新開始增長，即使筆畫尚未結束。\n"
+"2.0 代表從 0.0 到 1.0 需要 2 倍時間\n"
+"9.9 或更大的數值代表無限大"
 
 #: ../brushsettings-gen.h:40
 msgid "Custom input"
 msgstr "自訂輸入"
 
 #: ../brushsettings-gen.h:40
-#, fuzzy
 msgid ""
 "Set the custom input to this value. If it is slowed down, move it towards "
 "this value (see below). The idea is that you make this input depend on a "
@@ -504,25 +507,23 @@ msgid ""
 "If you make it change 'by random' you can generate a slow (smooth) random "
 "input."
 msgstr ""
-"將自訂輸入設為這個數值。如果減速，將它往這個數值移動 (如下面所示)。概念是您讓"
-"壓力/速度/其他等混合因素來決定這個輸入，然後由這個「自訂輸入」決定其他設定"
-"值，而不是每當您需要它時需重複這樣的組合。如果您讓它「隨機」改變，就可以產生"
-"一種緩慢 (平滑) 隨機輸入。"
+"將自訂輸入設定為這數值。如果速度減慢的話，就將它調至這個數值 "
+"(如下面所示)。這是讓您將壓力/速度/其他控制組合設定成這個輸入，然後只要於需要時在其他設定上參照這個「自訂輸入」就無須重覆進行相同的設定。\n"
+"如果您設定成「隨機」改變，就可以產生出緩慢 (順滑) 的隨機輸入。"
 
 #: ../brushsettings-gen.h:41
 msgid "Custom input filter"
 msgstr "自訂輸入過濾"
 
 #: ../brushsettings-gen.h:41
-#, fuzzy
 msgid ""
 "How slow the custom input actually follows the desired value (the one "
 "above). This happens at brushdab level (ignoring how much time has passed, "
 "if brushdabs do not depend on time).\n"
 "0.0 no slowdown (changes apply instantly)"
 msgstr ""
-"自訂輸入實際上多慢達到期望值 (上面一項)。這發生在筆刷筆觸層級 (如果筆刷筆觸並"
-"非取決於時間，將忽略經過多少時間)。0.0 不減速 (立即套用變更)"
+"自訂輸入實際跟隨期望設定值 (上面一項) 的減慢速度。這會在筆觸層級發生影響 (如果筆觸不受時間影響，則會忽略經過時間)。\n"
+"0.0 不減速 (變更會即時生效)"
 
 #: ../brushsettings-gen.h:42
 msgid "Elliptical dab: ratio"
@@ -541,13 +542,16 @@ msgid "Elliptical dab: angle"
 msgstr "橢圓筆觸：角度"
 
 #: ../brushsettings-gen.h:43
-#, fuzzy
 msgid ""
 "Angle by which elliptical dabs are tilted\n"
 " 0.0 horizontal dabs\n"
 " 45.0 45 degrees, turned clockwise\n"
 " 180.0 horizontal again"
-msgstr "橢圓筆觸傾斜的角度 0.0 水平筆觸 45.0 45 度，順時針轉動 180.0 再次水平"
+msgstr ""
+"橢圓筆觸的傾斜角度\n"
+"0.0 水平筆觸\n"
+"45.0 順時針轉 45 度\n"
+"180.0 再次水平"
 
 #: ../brushsettings-gen.h:44
 msgid "Direction filter"
@@ -564,7 +568,6 @@ msgid "Lock alpha"
 msgstr "鎖定 alpha"
 
 #: ../brushsettings-gen.h:45
-#, fuzzy
 msgid ""
 "Do not modify the alpha channel of the layer (paint only where there is "
 "paint already)\n"
@@ -572,55 +575,53 @@ msgid ""
 " 0.5 half of the paint gets applied normally\n"
 " 1.0 alpha channel fully locked"
 msgstr ""
-"不要修改圖層的 alpha 透明版 (僅會畫在已畫過的地方)  0.0 一般繪圖 0.5 一半的繪"
-"圖會正常套用 1.0 alpha 透明版完全上鎖"
+"不改動圖層的 alpha 色版 (只在有顏色的地方進行塗繪) \n"
+"0.0 正常塗繪\n"
+"0.5 一半的顏色會被正常塗繪\n"
+"1.0 alpha 色版完全上鎖"
 
 #: ../brushsettings-gen.h:46
 msgid "Colorize"
 msgstr "上色"
 
 #: ../brushsettings-gen.h:46
-#, fuzzy
 msgid ""
 "Colorize the target layer, setting its hue and saturation from the active "
 "brush color while retaining its value and alpha."
-msgstr ""
-"對目標圖層上色，以使用中筆刷色彩設定其色相與飽和度，但仍留存其明度與 alpha。"
+msgstr "對目標圖層上色，根據現行筆刷顏色設定圖層的色相與飽和度，同時保留圖層的明度與 alpha。"
 
 #: ../brushsettings-gen.h:47
 msgid "Snap to pixel"
-msgstr ""
+msgstr "對齊至像素"
 
 #: ../brushsettings-gen.h:47
 msgid ""
 "Snap brush dab's center and its radius to pixels. Set this to 1.0 for a thin "
 "pixel brush."
-msgstr ""
+msgstr "對齊筆觸及其半徑至像素。幼細的像素筆請將此設定為 1.0 。"
 
 #: ../brushsettings-gen.h:48
-#, fuzzy
 msgid "Pressure gain"
-msgstr "壓力"
+msgstr "壓力增益"
 
 #: ../brushsettings-gen.h:48
 msgid ""
 "This changes how hard you have to press. It multiplies tablet pressure by a "
 "constant factor."
-msgstr ""
+msgstr "這會改變您所需要按壓的力度，將繪圖板的壓力乘以固定倍率。"
 
 #: ../brushsettings-gen.h:53
 msgid "Pressure"
 msgstr "壓力"
 
 #: ../brushsettings-gen.h:53
-#, fuzzy
 msgid ""
 "The pressure reported by the tablet. Usually between 0.0 and 1.0, but it may "
 "get larger when a pressure gain is used. If you use the mouse, it will be "
 "0.5 when a button is pressed and 0.0 otherwise."
 msgstr ""
-"由繪圖板回報的壓力，在 0.0 和 1.0 之間。如果您使用滑鼠，按下右鍵時壓力為 "
-"0.5，反之為 0.0。"
+"由繪圖板回報的壓力。數值通常在 0.0 和 1.0 之間，但如果使用壓力增益的話可能會更大。如果您使用滑鼠的話，在按下右鍵時壓力為 0.5，放開時為 "
+"0.0。"
 
 #: ../brushsettings-gen.h:54
 msgid "Fine speed"

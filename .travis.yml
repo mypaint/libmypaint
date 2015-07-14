@@ -1,7 +1,14 @@
 language: c
-install:
-    - sudo apt-get update -qq
-    - sudo apt-get install -qq -y libjson0-dev python-nose
+
+sudo: false
+
+addons:
+  apt:
+    packages:
+      - libjson0-dev
+      - scons
+      - python-nose
+
 script:
     - scons
     - nosetests

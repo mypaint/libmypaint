@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: 0.7.1-git\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-04 18:33+0100\n"
-"PO-Revision-Date: 2015-07-14 01:56+0200\n"
-"Last-Translator: Frederic Mommeja <fmommeja@free.fr>\n"
+"PO-Revision-Date: 2015-07-15 19:44+0200\n"
+"Last-Translator: Kaerhon <kaerhon@gmail.com>\n"
 "Language-Team: French "
 "<https://hosted.weblate.org/projects/mypaint/libmypaint/fr/>\n"
 "Language: fr\n"
@@ -34,7 +34,7 @@ msgstr ""
 
 #: ../brushsettings-gen.h:5
 msgid "Opacity multiply"
-msgstr " Multiplier par l'opacité"
+msgstr "Multiplier par l'opacité"
 
 #: ../brushsettings-gen.h:5
 #, fuzzy

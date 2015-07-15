@@ -21,6 +21,7 @@ msgstr ""
 "X-Poedit-SourceCharset: UTF-8\n"
 
 #: ../brushsettings-gen.h:4
+#, fuzzy
 msgid "Opacity"
 msgstr "불투명도"
 
@@ -374,6 +375,7 @@ msgstr ""
 "1.0 채도를 높이기"
 
 #: ../brushsettings-gen.h:33
+#, fuzzy
 msgid "Smudge"
 msgstr "자국"
 
@@ -415,6 +417,7 @@ msgid ""
 msgstr ""
 
 #: ../brushsettings-gen.h:36
+#, fuzzy
 msgid "Eraser"
 msgstr "지우개"
 
@@ -575,8 +578,9 @@ msgid ""
 msgstr ""
 
 #: ../brushsettings-gen.h:53
+#, fuzzy
 msgid "Pressure"
-msgstr "압력"
+msgstr "Pressure"
 
 #: ../brushsettings-gen.h:53
 msgid ""
@@ -619,8 +623,9 @@ msgid ""
 msgstr "빠른 무작위 노이즈, 각 평가에서 변화. 균등하게 0과 1 사이에 분포."
 
 #: ../brushsettings-gen.h:57
+#, fuzzy
 msgid "Stroke"
-msgstr "획"
+msgstr "선획"
 
 #: ../brushsettings-gen.h:57
 msgid ""
@@ -661,6 +666,7 @@ msgid ""
 msgstr ""
 
 #: ../brushsettings-gen.h:61
+#, fuzzy
 msgid "Custom"
 msgstr "사용자 정의"
 

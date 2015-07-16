@@ -580,7 +580,7 @@ msgstr ""
 #: ../brushsettings-gen.h:53
 #, fuzzy
 msgid "Pressure"
-msgstr "Pressure"
+msgstr "압력"
 
 #: ../brushsettings-gen.h:53
 msgid ""

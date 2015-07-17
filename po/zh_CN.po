@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: 0.7.1-git\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-04 18:33+0100\n"
-"PO-Revision-Date: 2015-07-13 15:03+0200\n"
+"PO-Revision-Date: 2015-07-17 07:00+0200\n"
 "Last-Translator: Shen Rui <ilovepumpkin@126.com>\n"
 "Language-Team: Chinese (China) "
 "<https://hosted.weblate.org/projects/mypaint/libmypaint/zh_CN/>\n"
@@ -50,6 +50,7 @@ msgid "Opacity linearize"
 msgstr "线性化不透明度"
 
 #: ../brushsettings-gen.h:6
+#, fuzzy
 msgid ""
 "Correct the nonlinearity introduced by blending multiple dabs on top of each "
 "other. This correction should get you a linear (\"natural\") pressure "
@@ -59,7 +60,7 @@ msgid ""
 "0.0 the opaque value above is for the individual dabs\n"
 "1.0 the opaque value above is for the final brush stroke, assuming each "
 "pixel gets (dabs_per_radius*2) brushdabs on average during a stroke"
-msgstr ""
+msgstr "纠正由多个笔触点互相叠加导致的非线性。当笔压映射到opaque_multiply时，通常该校正会为你生成线性的（自然的）压力响应。"
 
 #: ../brushsettings-gen.h:7
 #, fuzzy

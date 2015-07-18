@@ -21,6 +21,7 @@ msgstr ""
 "X-Generator: Weblate 2.4-dev\n"
 
 #: ../brushsettings-gen.h:4
+#, fuzzy
 msgid "Opacity"
 msgstr "不透明度"
 
@@ -388,6 +389,7 @@ msgstr ""
 "1.0 更飽和"
 
 #: ../brushsettings-gen.h:33
+#, fuzzy
 msgid "Smudge"
 msgstr "塗抹"
 
@@ -442,6 +444,7 @@ msgstr ""
 "+1.6 筆刷半徑的 5 倍 (表現緩慢)"
 
 #: ../brushsettings-gen.h:36
+#, fuzzy
 msgid "Eraser"
 msgstr "橡皮擦"
 
@@ -611,6 +614,7 @@ msgid ""
 msgstr "這會改變您所需要按壓的力度，將繪圖板的壓力乘以固定倍率。"
 
 #: ../brushsettings-gen.h:53
+#, fuzzy
 msgid "Pressure"
 msgstr "壓力"
 
@@ -657,6 +661,7 @@ msgid ""
 msgstr "快速隨機噪點，於每次評估時改變。在 0 和 1 之間均勻分佈。"
 
 #: ../brushsettings-gen.h:57
+#, fuzzy
 msgid "Stroke"
 msgstr "筆畫"
 
@@ -704,6 +709,7 @@ msgstr ""
 "尖逆時鐘旋轉 90 度。"
 
 #: ../brushsettings-gen.h:61
+#, fuzzy
 msgid "Custom"
 msgstr "自訂"
 

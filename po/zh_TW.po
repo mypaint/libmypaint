@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: mypaint\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-04 18:33+0100\n"
-"PO-Revision-Date: 2015-07-17 21:25+0200\n"
+"PO-Revision-Date: 2015-07-18 18:01+0200\n"
 "Last-Translator: hokkeiv <hokkeiv@live.com>\n"
 "Language-Team: Chinese (Taiwan) "
 "<https://hosted.weblate.org/projects/mypaint/libmypaint/zh_TW/>\n"
@@ -21,7 +21,6 @@ msgstr ""
 "X-Generator: Weblate 2.4-dev\n"
 
 #: ../brushsettings-gen.h:4
-#, fuzzy
 msgid "Opacity"
 msgstr "不透明度"
 
@@ -301,10 +300,10 @@ msgid ""
 " 0.5 change active color towards brush color\n"
 " 1.0 set the active color to the brush color when selected"
 msgstr ""
-"在選取筆刷時，使用筆刷中所儲存的顏色。\n"
-"0.0 選取筆刷時不改變現行顏色\n"
-"0.5 根據筆刷色彩改變現行顏色\n"
-"1.0 選取筆刷時將現行顏色設定至筆刷顏色"
+"在選取筆刷時，使用筆刷中所儲存的色彩。\n"
+"0.0 選取筆刷時不改變現行色彩\n"
+"0.5 根據筆刷色彩改變現行色彩\n"
+"1.0 選取筆刷時將現行色彩設定至筆刷色彩"
 
 #: ../brushsettings-gen.h:28
 msgid "Change color hue"
@@ -389,7 +388,6 @@ msgstr ""
 "1.0 更飽和"
 
 #: ../brushsettings-gen.h:33
-#, fuzzy
 msgid "Smudge"
 msgstr "塗抹"
 
@@ -401,10 +399,10 @@ msgid ""
 " 0.5 mix the smudge color with the brush color\n"
 " 1.0 use only the smudge color"
 msgstr ""
-"用塗抹顏色取代筆刷色彩來塗繪。塗抹顏色會慢慢變成您正在塗繪的顏色。\n"
-"0.0 不使用塗抹顏色\n"
-"0.5 混合塗抹顏色與筆刷顏色\n"
-"1.0 只使用塗抹顏色"
+"用塗抹色彩取代筆刷色彩來塗繪。塗抹色彩會慢慢變成您正在塗繪的色彩。\n"
+"0.0 不使用塗抹色彩\n"
+"0.5 混合塗抹色彩與筆刷色彩\n"
+"1.0 只使用塗抹色彩"
 
 #: ../brushsettings-gen.h:34
 msgid "Smudge length"
@@ -419,10 +417,10 @@ msgid ""
 "0.5 change the smudge color steadily towards the canvas color\n"
 "1.0 never change the smudge color"
 msgstr ""
-"這會控制塗抹的顏色變成您正在塗繪的顏色的速度。\n"
-"0.0 即時更新塗抹顏色 (因為顏色檢查的頻率更頻繁而需要更多 CPU 週期完成)\n"
-"0.5 讓塗抹顏色穩定地朝著畫布顏色改變\n"
-"1.0 永不改變塗抹顏色"
+"這會控制塗抹的色彩變成您正在塗繪的色彩的速度。\n"
+"0.0 即時更新塗抹色彩 (因為色彩檢查的頻率更頻繁而需要更多 CPU 週期完成)\n"
+"0.5 讓塗抹色彩穩定地朝著畫布色彩改變\n"
+"1.0 永不改變塗抹色彩"
 
 #: ../brushsettings-gen.h:35
 msgid "Smudge radius"
@@ -437,14 +435,13 @@ msgid ""
 "+0.7 twice the brush radius\n"
 "+1.6 five times the brush radius (slow performance)"
 msgstr ""
-"這會修改塗抹時撿取顏色的半徑。\n"
+"這會修改塗抹時撿取色彩的半徑。\n"
 "0.0 採用筆刷的半徑\n"
 "-0.7 筆刷半徑的一半 (表現快速，但不一定流暢)\n"
 "+0.7 筆刷半徑的 2 倍\n"
 "+1.6 筆刷半徑的 5 倍 (表現緩慢)"
 
 #: ../brushsettings-gen.h:36
-#, fuzzy
 msgid "Eraser"
 msgstr "橡皮擦"
 
@@ -591,7 +588,7 @@ msgstr "上色"
 msgid ""
 "Colorize the target layer, setting its hue and saturation from the active "
 "brush color while retaining its value and alpha."
-msgstr "對目標圖層上色，根據現行筆刷顏色設定圖層的色相與飽和度，同時保留圖層的明度與 alpha。"
+msgstr "對目標圖層上色，根據現行筆刷色彩設定圖層的色相與飽和度，同時保留圖層的明度與 alpha。"
 
 #: ../brushsettings-gen.h:47
 msgid "Snap to pixel"
@@ -614,7 +611,6 @@ msgid ""
 msgstr "這會改變您所需要按壓的力度，將繪圖板的壓力乘以固定倍率。"
 
 #: ../brushsettings-gen.h:53
-#, fuzzy
 msgid "Pressure"
 msgstr "壓力"
 
@@ -661,7 +657,6 @@ msgid ""
 msgstr "快速隨機噪點，於每次評估時改變。在 0 和 1 之間均勻分佈。"
 
 #: ../brushsettings-gen.h:57
-#, fuzzy
 msgid "Stroke"
 msgstr "筆畫"
 
@@ -709,7 +704,6 @@ msgstr ""
 "尖逆時鐘旋轉 90 度。"
 
 #: ../brushsettings-gen.h:61
-#, fuzzy
 msgid "Custom"
 msgstr "自訂"
 

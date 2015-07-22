@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: MyPaint GIT\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-04 18:33+0100\n"
-"PO-Revision-Date: 2015-07-21 00:01+0200\n"
+"PO-Revision-Date: 2015-07-22 21:50+0200\n"
 "Last-Translator: cortexer <manuelstumpf@web.de>\n"
 "Language-Team: German "
 "<https://hosted.weblate.org/projects/mypaint/libmypaint/de/>\n"
@@ -31,7 +31,7 @@ msgstr ""
 
 #: ../brushsettings-gen.h:5
 msgid "Opacity multiply"
-msgstr "mehrfache Opazität (Deckkraft)"
+msgstr "Deckkraft Multiplikation"
 
 #: ../brushsettings-gen.h:5
 #, fuzzy
@@ -121,7 +121,6 @@ msgstr ""
 "von einem Pinselradius zurücklegt (genauer: der Grundwert des Radius)"
 
 #: ../brushsettings-gen.h:11
-#, fuzzy
 msgid "Dabs per actual radius"
 msgstr "Tupfer pro tatsächlichem Radius"
 
@@ -220,10 +219,14 @@ msgid ""
 " 1.0 standard deviation is one basic radius away\n"
 "<0.0 negative values produce no jitter"
 msgstr ""
+"Zeichne Tupfer zufällig versetzt zum Mittelpunkt\n"
+"0.0 deaktiviert\n"
+"1.0 Standardabweichung entspricht Grundradius\n"
+"<0.0 negative Werte haben keinen Effekt"
 
 #: ../brushsettings-gen.h:19
 msgid "Offset by speed"
-msgstr ""
+msgstr "Versatz durch Geschwindigkeit"
 
 #: ../brushsettings-gen.h:19
 msgid ""
@@ -240,6 +243,7 @@ msgstr ""
 #: ../brushsettings-gen.h:20
 msgid "How slow the offset goes back to zero when the cursor stops moving"
 msgstr ""
+"Wie langsam der Versatz auf Null zurückggeht, wenn der Zeiger stehen bleibt"
 
 #: ../brushsettings-gen.h:21
 msgid "Slow position tracking"
@@ -302,10 +306,9 @@ msgstr ""
 
 #: ../brushsettings-gen.h:28
 msgid "Change color hue"
-msgstr "Farbton"
+msgstr "Farbton ändern"
 
 #: ../brushsettings-gen.h:28
-#, fuzzy
 msgid ""
 "Change color hue.\n"
 "-0.1 small clockwise color hue shift\n"
@@ -319,10 +322,9 @@ msgstr ""
 
 #: ../brushsettings-gen.h:29
 msgid "Change color lightness (HSL)"
-msgstr "Helligkeit (HSL)"
+msgstr "Helligkeit ändern (HSL)"
 
 #: ../brushsettings-gen.h:29
-#, fuzzy
 msgid ""
 "Change the color lightness using the HSL color model.\n"
 "-1.0 blacker\n"
@@ -336,7 +338,7 @@ msgstr ""
 
 #: ../brushsettings-gen.h:30
 msgid "Change color satur. (HSL)"
-msgstr "Sättigung (HSL)"
+msgstr "Sättigung ändern (HSL)"
 
 #: ../brushsettings-gen.h:30
 msgid ""
@@ -355,7 +357,6 @@ msgid "Change color value (HSV)"
 msgstr "Helligkeit (HSV)"
 
 #: ../brushsettings-gen.h:31
-#, fuzzy
 msgid ""
 "Change the color value (brightness, intensity) using the HSV color model. "
 "HSV changes are applied before HSL.\n"
@@ -392,7 +393,6 @@ msgid "Smudge"
 msgstr "Schmieren"
 
 #: ../brushsettings-gen.h:33
-#, fuzzy
 msgid ""
 "Paint with the smudge color instead of the brush color. The smudge color is "
 "slowly changed to the color you are painting on.\n"
@@ -578,12 +578,10 @@ msgid ""
 msgstr ""
 
 #: ../brushsettings-gen.h:46
-#, fuzzy
 msgid "Colorize"
-msgstr "Farbe"
+msgstr "Färben"
 
 #: ../brushsettings-gen.h:46
-#, fuzzy
 msgid ""
 "Colorize the target layer, setting its hue and saturation from the active "
 "brush color while retaining its value and alpha."

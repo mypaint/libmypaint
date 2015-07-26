@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: MyPaint 1.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-04 18:33+0100\n"
-"PO-Revision-Date: 2015-07-21 19:18+0200\n"
-"Last-Translator: Zerobaka <zb13y@mail.ru>\n"
+"PO-Revision-Date: 2015-07-26 05:05+0200\n"
+"Last-Translator: zb13y <zb13y@mail.ru>\n"
 "Language-Team: Russian "
 "<https://hosted.weblate.org/projects/mypaint/libmypaint/ru/>\n"
 "Language: ru\n"
@@ -96,18 +96,16 @@ msgid "Hardness"
 msgstr "Жёсткость"
 
 #: ../brushsettings-gen.h:8
-#, fuzzy
 msgid ""
 "Hard brush-circle borders (setting to zero will draw nothing). To reach the "
 "maximum hardness, you need to disable Pixel feather."
 msgstr ""
 "Жёсткие края мазка (если установить в ноль, не рисуется ничего). Для "
-"максимальной жёсткости нужно отключить опцию \"Pixel feather\"."
+"максимальной жёсткости нужно отключить опцию \"Четкость пикселей\"."
 
 #: ../brushsettings-gen.h:9
-#, fuzzy
 msgid "Pixel feather"
-msgstr "Pixel feather"
+msgstr "Четкость пикселей"
 
 #: ../brushsettings-gen.h:9
 msgid ""

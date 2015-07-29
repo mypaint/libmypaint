@@ -5,13 +5,16 @@ msgstr ""
 "Project-Id-Version: 0.8\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-04 18:33+0100\n"
-"PO-Revision-Date: 2011-10-29 18:51SE Asiile\n"
-"Last-Translator: Tumagonx <mr_tiar@gmail.com>\n"
-"Language-Team: Indonesian <id@li.org>\n"
+"PO-Revision-Date: 2015-07-29 20:51+0200\n"
+"Last-Translator: Irvan Satria <irvsat@yahoo.com>\n"
+"Language-Team: Indonesian "
+"<https://hosted.weblate.org/projects/mypaint/libmypaint/id/>\n"
 "Language: id\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 2.4-dev\n"
 
 #: ../brushsettings-gen.h:4
 #, fuzzy
@@ -265,7 +268,7 @@ msgid ""
 msgstr ""
 "Pelankan kecepatan pelacakan pointer. 0 untuk mematikan, nilai yg lebih "
 "tinggi menghapus banyak kerlipan pada pergerakkan cursor. Berguna utuk "
-"menggambar halus, outline seperti komik"
+"menggambar halus, outline seperti komik."
 
 #: ../brushsettings-gen.h:22
 msgid "Slow tracking per dab"
@@ -281,6 +284,7 @@ msgstr ""
 "berlalu, jika dabs tidak bergantung pada waktu)"
 
 #: ../brushsettings-gen.h:23
+#, fuzzy
 msgid "Tracking noise"
 msgstr "Tracking noise"
 
@@ -416,6 +420,7 @@ msgstr ""
 " 1.0 lebih jenuh"
 
 #: ../brushsettings-gen.h:33
+#, fuzzy
 msgid "Smudge"
 msgstr "Smudge"
 
@@ -537,6 +542,7 @@ msgstr ""
 "9.9 dan nilai yg lebih besar berarti tak terhingga"
 
 #: ../brushsettings-gen.h:40
+#, fuzzy
 msgid "Custom input"
 msgstr "Custom input"
 
@@ -768,6 +774,7 @@ msgstr ""
 "derajat melawan jarum jam."
 
 #: ../brushsettings-gen.h:61
+#, fuzzy
 msgid "Custom"
 msgstr "Custom"
 

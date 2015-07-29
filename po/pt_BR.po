@@ -9,10 +9,10 @@ msgstr ""
 "Project-Id-Version: 0.9.0-git\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-04 18:33+0100\n"
-"PO-Revision-Date: 2015-07-03 18:44+0200\n"
-"Last-Translator: João Sebastião de Oliveira Bue <gwidion@gmail.com>\n"
-"Language-Team: Portuguese (Brazil) <https://hosted.weblate.org/projects/"
-"mypaint/libmypaint/pt_BR/>\n"
+"PO-Revision-Date: 2015-07-29 19:08+0200\n"
+"Last-Translator: Leonardo Azenha <azenha.leonardo@gmail.com>\n"
+"Language-Team: Portuguese (Brazil) "
+"<https://hosted.weblate.org/projects/mypaint/libmypaint/pt_BR/>\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -288,13 +288,12 @@ msgid "Slow tracking per dab"
 msgstr "Acompanhamento lento das amostras"
 
 #: ../brushsettings-gen.h:22
-#, fuzzy
 msgid ""
 "Similar as above but at brushdab level (ignoring how much time has passed if "
 "brushdabs do not depend on time)"
 msgstr ""
-"Como acima, mas no nível de amostra de pincel (ignorando quando tempo "
-"passou, se as amostras de pincel não dependem do tempo)"
+"Como acima, mas no nível de amostra de pincel (ignorando quanto tempo "
+"passou, se as amostras de pincel não dependerem do tempo)"
 
 #: ../brushsettings-gen.h:23
 msgid "Tracking noise"
@@ -364,7 +363,6 @@ msgid "Change color lightness (HSL)"
 msgstr "Alterar brilho da cor (HSL)"
 
 #: ../brushsettings-gen.h:29
-#, fuzzy
 msgid ""
 "Change the color lightness using the HSL color model.\n"
 "-1.0 blacker\n"
@@ -373,8 +371,8 @@ msgid ""
 msgstr ""
 "Altera o brilho da cor (lightness, luminance),  usando o modelo de cor HSL.\n"
 "-1.0 mais escuro\n"
-"0.0 desligado\n"
-" 1.0 mais branco "
+" 0.0 desligado\n"
+" 1.0 mais branco"
 
 #: ../brushsettings-gen.h:30
 msgid "Change color satur. (HSL)"
@@ -505,33 +503,30 @@ msgid "Stroke threshold"
 msgstr "Limite de pintura"
 
 #: ../brushsettings-gen.h:37
-#, fuzzy
 msgid ""
 "How much pressure is needed to start a stroke. This affects the stroke input "
 "only. MyPaint does not need a minimum pressure to start drawing."
 msgstr ""
 "Quanta pressão é necessária para iniciar um traço. Afeta apenas a entrada de "
-"Traço. O Mypaint não precisa de uma pressão mínima para começar a desenhar"
+"Traço. O MyPaint não precisa de uma pressão mínima para começar a desenhar."
 
 #: ../brushsettings-gen.h:38
 msgid "Stroke duration"
 msgstr "Duração do traço"
 
 #: ../brushsettings-gen.h:38
-#, fuzzy
 msgid ""
 "How far you have to move until the stroke input reaches 1.0. This value is "
 "logarithmic (negative values will not invert the process)."
 msgstr ""
-"Quanto você tem que mover o ponteiro até que a entrada de Traço atingir 10. "
-"Este valor é logarítmico (valores negativos não inverterão o processo)"
+"Quanto você tem que mover o ponteiro até que a entrada de Traço atingir 1.0. "
+"Este valor é logarítmico (valores negativos não inverterão o processo)."
 
 #: ../brushsettings-gen.h:39
 msgid "Stroke hold time"
 msgstr "Tempo de manutenção do traço"
 
 #: ../brushsettings-gen.h:39
-#, fuzzy
 msgid ""
 "This defines how long the stroke input stays at 1.0. After that it will "
 "reset to 0.0 and start growing again, even if the stroke is not yet "
@@ -542,8 +537,7 @@ msgstr ""
 "Isto define quanto a entrada de Traço fica em 1.0. Depois desse tempo ela "
 "retorna a 0.0 e começa a aumentar de novo, mesmo que o traço ainda não "
 "esteja terminado.\n"
-"2.0 significa duas vezes o tempo que leva para a entrada passar de 0.0  a "
-"1.0\n"
+"2.0 significa o dobro do tempo que leva para ir de 0.0 a 1.0\n"
 "9.9 ou mais significa infinito"
 
 #: ../brushsettings-gen.h:40
@@ -573,7 +567,6 @@ msgid "Custom input filter"
 msgstr "Filtro de entrada personalizada"
 
 #: ../brushsettings-gen.h:41
-#, fuzzy
 msgid ""
 "How slow the custom input actually follows the desired value (the one "
 "above). This happens at brushdab level (ignoring how much time has passed, "
@@ -649,26 +642,26 @@ msgid "Colorize"
 msgstr "Colorizar"
 
 #: ../brushsettings-gen.h:46
-#, fuzzy
 msgid ""
 "Colorize the target layer, setting its hue and saturation from the active "
 "brush color while retaining its value and alpha."
 msgstr ""
-"Coloriza a camada alvo, usando o matiz e a saturação do pincel ativo e "
-"mantendo o valor e alfa da camada."
+"Coloriza a camada alvo, usando o matiz e a saturação da cor do pincel ativo, "
+"mantendo o seu valor e alfa."
 
 #: ../brushsettings-gen.h:47
 msgid "Snap to pixel"
-msgstr ""
+msgstr "Encaixar em pixel"
 
 #: ../brushsettings-gen.h:47
 msgid ""
 "Snap brush dab's center and its radius to pixels. Set this to 1.0 for a thin "
 "pixel brush."
 msgstr ""
+"Encaixa o centro da pincelada do pincel e seu raio nos pixels. Defina esta "
+"opção para 1.0 para um pincel de um pixel de espessura."
 
 #: ../brushsettings-gen.h:48
-#, fuzzy
 msgid "Pressure gain"
 msgstr "Pressão"
 
@@ -677,20 +670,22 @@ msgid ""
 "This changes how hard you have to press. It multiplies tablet pressure by a "
 "constant factor."
 msgstr ""
+"Isto altera o quanto você tem que pressionar. Multiplica a pressão da mesa "
+"de captura por um fator constante."
 
 #: ../brushsettings-gen.h:53
 msgid "Pressure"
 msgstr "Pressão"
 
 #: ../brushsettings-gen.h:53
-#, fuzzy
 msgid ""
 "The pressure reported by the tablet. Usually between 0.0 and 1.0, but it may "
 "get larger when a pressure gain is used. If you use the mouse, it will be "
 "0.5 when a button is pressed and 0.0 otherwise."
 msgstr ""
-"A pressão reportada pelo tablet, entre 0.0 e 1.0. Se você estiver usando o "
-"mouse, ela será 0.5 com o botão pressionado, ou 0.0. "
+"A pressão reportada pela mesa de captura. Normalmente, entre 0.0 e 1.0, mas "
+"pode obter um ganho maior quando a pressão é utilizada. Se você estiver "
+"usando o mouse, ela será 0.5 com o botão pressionado, ou 0.0 caso contrário."
 
 #: ../brushsettings-gen.h:54
 msgid "Fine speed"

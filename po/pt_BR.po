@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: 0.9.0-git\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-04 18:33+0100\n"
-"PO-Revision-Date: 2015-07-29 19:08+0200\n"
+"PO-Revision-Date: 2015-07-29 19:22+0200\n"
 "Last-Translator: Leonardo Azenha <azenha.leonardo@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) "
 "<https://hosted.weblate.org/projects/mypaint/libmypaint/pt_BR/>\n"
@@ -68,15 +68,15 @@ msgid ""
 "pixel gets (dabs_per_radius*2) brushdabs on average during a stroke"
 msgstr ""
 "Corrige os fatores não lineares introduzidos ao se ter múltiplas amostras "
-"umas sobre as outros. Esta correção deve resultar numa  resposta linear a "
+"umas sobre as outros. Esta correção deve resultar numa resposta linear a "
 "pressão (mais \"natural\") quando a pressão é mapeada para "
 "multiplicar_opacidade, como normalmente é feito. O valor 0.9 é um fator bom "
 "para traços normais, use menos se sua pincelada se espalha muito, ou mais "
-"alto se você usa muitas amostras por segundo\n"
+"alto se você usa muitas amostras por segundo.\n"
 "O valor opaco 0.0 acima é para amostras individuais\n"
 "O valor opaco 1.0 acima é usado para o traço final do pincel, assumindo que "
 "cada pixel coleta (amostra por raio * 2) amostras de pincel em média para "
-"cada traço."
+"cada traço"
 
 #: ../brushsettings-gen.h:7
 msgid "Radius"
@@ -144,7 +144,7 @@ msgid ""
 "Same as above, but the radius actually drawn is used, which can change "
 "dynamically"
 msgstr ""
-"O mesmo que acima, mas é usado o  raio de fato desenhado, que pode variar "
+"O mesmo que acima, mas é usado o raio de fato desenhado, que pode variar "
 "dinamicamente."
 
 #: ../brushsettings-gen.h:12
@@ -158,7 +158,7 @@ msgstr ""
 
 #: ../brushsettings-gen.h:13
 msgid "Radius by random"
-msgstr "Raios por aleatório "
+msgstr "Raios por aleatório"
 
 #: ../brushsettings-gen.h:13
 msgid ""
@@ -173,7 +173,7 @@ msgstr ""
 "aqui, há duas diferenças: \n"
 "1) o valor de opacidade será corrigido de forma que as amostras de um raio "
 "grande serão mais transparentes\n"
-"2) não vai aletrar o valor real do raio visto por amostras_por_raio_real"
+"2) não vai alterar o valor real do raio visto por amostras_por_raio_real"
 
 #: ../brushsettings-gen.h:14
 msgid "Fine speed filter"
@@ -217,7 +217,7 @@ msgstr ""
 "raio.\n"
 "-8.0: velocidade muito rápida não altera a muito 'velocidade fina'\n"
 "+8.0: velocidade muito rápida aumenta muito a 'velocidade fina'\n"
-"Para velocidades lentas, ocorre o oposto. "
+"Para velocidades lentas, ocorre o oposto."
 
 #: ../brushsettings-gen.h:17
 msgid "Gross speed gamma"
@@ -376,7 +376,7 @@ msgstr ""
 
 #: ../brushsettings-gen.h:30
 msgid "Change color satur. (HSL)"
-msgstr "Alterar a saturação da cor (HSL) "
+msgstr "Alterar a saturação da cor (HSL)"
 
 #: ../brushsettings-gen.h:30
 msgid ""
@@ -392,7 +392,7 @@ msgstr ""
 
 #: ../brushsettings-gen.h:31
 msgid "Change color value (HSV)"
-msgstr "Mudar o valor da cor (HSV) "
+msgstr "Mudar o valor da cor (HSV)"
 
 #: ../brushsettings-gen.h:31
 msgid ""
@@ -439,9 +439,9 @@ msgid ""
 msgstr ""
 "Pinta com a cor de borrão ao invés da cor do pincel. A cor de borrão se "
 "altera lentamente para a cor sobre a qual você está pintando.\n"
-"0.0 não usa a cor de borrão\n"
-"0.5 mistura a cor de borrão com a cor do pincel\n"
-"1.0 usa somente a cor de borrão "
+" 0.0 não usa a cor de borrão\n"
+" 0.5 mistura a cor de borrão com a cor do pincel\n"
+" 1.0 usa somente a cor de borrão"
 
 #: ../brushsettings-gen.h:34
 msgid "Smudge length"
@@ -587,9 +587,9 @@ msgid ""
 "Aspect ratio of the dabs; must be >= 1.0, where 1.0 means a perfectly round "
 "dab. TODO: linearize? start at 0.0 maybe, or log?"
 msgstr ""
-"proporção das amostras; tem que ser >= 1.0, onde 1.0 significa amostras "
+"Proporção das amostras; tem que ser >= 1.0, onde 1.0 significa amostras "
 "perfeitamente redondas. PARAFAZER: Linearizar? Começar em 0.0, talvez? ou "
-"logarítmico? "
+"logarítmico?"
 
 #: ../brushsettings-gen.h:43
 msgid "Elliptical dab: angle"
@@ -617,7 +617,7 @@ msgid ""
 "will make it smoother"
 msgstr ""
 "Um valor baixo significa que a entrada de direção se adapta mais "
-"rapidamente, um valor maior fará com que ela seja mais suave."
+"rapidamente, um valor maior fará com que ela seja mais suave"
 
 #: ../brushsettings-gen.h:45
 msgid "Lock alpha"
@@ -698,7 +698,7 @@ msgid ""
 "are rare but possible for very low speed."
 msgstr ""
 "Quão rápido você move o ponteiro. Este fator pode mudar rapidamente. Tente "
-"usar a opção 'imprimir valores de entrada' do menu de ajuda para entender "
+"usar a opção 'imprimir valores de entrada' do menu de 'ajuda' para entender "
 "qual é a faixa de números usada; valores negativos são raros, mas possíveis "
 "para velocidades muito baixas."
 
@@ -724,7 +724,7 @@ msgid ""
 "and 1."
 msgstr ""
 "Ruído aleatório rápido, mudando a cada iteração. Distribuição uniforme entre "
-"0 e 1"
+"0 e 1."
 
 #: ../brushsettings-gen.h:57
 msgid "Stroke"

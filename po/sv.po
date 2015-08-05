@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: 0.7.1-git\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-04 18:33+0100\n"
-"PO-Revision-Date: 2015-08-03 21:16+0200\n"
+"PO-Revision-Date: 2015-08-05 13:37+0200\n"
 "Last-Translator: Martin Trokenheim <martin.trokenheim@aol.se>\n"
 "Language-Team: Swedish "
 "<https://hosted.weblate.org/projects/mypaint/libmypaint/sv/>\n"
@@ -503,7 +503,7 @@ msgstr ""
 
 #: ../brushsettings-gen.h:38
 msgid "Stroke duration"
-msgstr "Penseldragets längd"
+msgstr "Penseldragets varaktighet"
 
 #: ../brushsettings-gen.h:38
 msgid ""
@@ -533,7 +533,7 @@ msgstr ""
 
 #: ../brushsettings-gen.h:40
 msgid "Custom input"
-msgstr "Användardefinierat filter"
+msgstr "Användardefinierad indata"
 
 #: ../brushsettings-gen.h:40
 #, fuzzy
@@ -546,11 +546,11 @@ msgid ""
 "If you make it change 'by random' you can generate a slow (smooth) random "
 "input."
 msgstr ""
-"Sätt de användardefinierade ingångsparametern till detta värde. Om det har "
-"saktats ner, justera det mot detta värde (se nedan). Tanken är att ser till "
-"att låta denna parameter bero på tryck/hastighet/etc och kan sedan låta "
-"andra parametrar bero på denna parameter i sin tur istället för att upprepa "
-"denna konfiguration på alla ställen den behövs.\n"
+"Sätt de användardefinierade ingångsparametern till detta värde. Om det blir "
+"långsammare, justera det mot detta värde (se nedan). Tanken är att låta "
+"denna parameter bero på en mix av tryck, hastighet, etc - och sedan låta "
+"andra parametrar bero på denna i sin tur - istället för att upprepa denna "
+"konfiguration där den behövs.\n"
 "Om du låter parametern variera slumpmässigt kan du skapa en mjuk, långsam "
 "rörelse."
 
@@ -580,7 +580,7 @@ msgid ""
 "dab. TODO: linearize? start at 0.0 maybe, or log?"
 msgstr ""
 "Penselnedslagens förhållande; måste vara >= 1.0, där 1.0 motsvarar ett "
-"perfekt runt penselnedslag"
+"perfekt cirkelformat penselnedslag"
 
 #: ../brushsettings-gen.h:43
 msgid "Elliptical dab: angle"

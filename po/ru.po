@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: MyPaint 1.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-04 18:33+0100\n"
-"PO-Revision-Date: 2015-07-26 05:05+0200\n"
+"PO-Revision-Date: 2015-08-06 18:52+0200\n"
 "Last-Translator: zb13y <zb13y@mail.ru>\n"
 "Language-Team: Russian "
 "<https://hosted.weblate.org/projects/mypaint/libmypaint/ru/>\n"
@@ -312,7 +312,7 @@ msgstr "Насыщенность"
 
 #: ../brushsettings-gen.h:26
 msgid "Color value"
-msgstr "Светлота"
+msgstr "Значение"
 
 #: ../brushsettings-gen.h:26
 msgid "Color value (brightness, intensity)"

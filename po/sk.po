@@ -8,10 +8,10 @@ msgstr ""
 "Project-Id-Version: libmypaint for mypaint 1.2.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-04 18:33+0100\n"
-"PO-Revision-Date: 2015-07-14 12:31+0200\n"
+"PO-Revision-Date: 2015-10-06 10:33+0200\n"
 "Last-Translator: Dušan Kazik <prescott66@gmail.com>\n"
 "Language-Team: Slovak "
-"<https://hosted.weblate.org/projects/mypaint/libmypaint/sk/>\n"
+"<https://hosted.weblate.org/projects/mypaint/mypaint/sk/>\n"
 "Language: sk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -20,6 +20,7 @@ msgstr ""
 "X-Generator: Weblate 2.4-dev\n"
 
 #: ../brushsettings-gen.h:4
+#, fuzzy
 msgid "Opacity"
 msgstr "Krytie"
 
@@ -333,8 +334,9 @@ msgid ""
 msgstr ""
 
 #: ../brushsettings-gen.h:33
+#, fuzzy
 msgid "Smudge"
-msgstr ""
+msgstr "Rozmazanie"
 
 #: ../brushsettings-gen.h:33
 msgid ""
@@ -374,6 +376,7 @@ msgid ""
 msgstr ""
 
 #: ../brushsettings-gen.h:36
+#, fuzzy
 msgid "Eraser"
 msgstr "Guma"
 
@@ -525,6 +528,7 @@ msgstr ""
 "Týmto sa zmení ako tvrdo tlačíte. Násobí tlak tabletu konštantným násobkom."
 
 #: ../brushsettings-gen.h:53
+#, fuzzy
 msgid "Pressure"
 msgstr "Tlak"
 
@@ -570,8 +574,9 @@ msgid ""
 msgstr ""
 
 #: ../brushsettings-gen.h:57
+#, fuzzy
 msgid "Stroke"
-msgstr ""
+msgstr "Ťah"
 
 #: ../brushsettings-gen.h:57
 msgid ""
@@ -612,6 +617,7 @@ msgid ""
 msgstr ""
 
 #: ../brushsettings-gen.h:61
+#, fuzzy
 msgid "Custom"
 msgstr "Vlastné"
 

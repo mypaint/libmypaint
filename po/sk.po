@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: libmypaint for mypaint 1.2.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-04 18:33+0100\n"
-"PO-Revision-Date: 2015-10-06 10:33+0200\n"
+"PO-Revision-Date: 2015-10-06 14:36+0200\n"
 "Last-Translator: Dušan Kazik <prescott66@gmail.com>\n"
 "Language-Team: Slovak "
 "<https://hosted.weblate.org/projects/mypaint/mypaint/sk/>\n"
@@ -20,7 +20,6 @@ msgstr ""
 "X-Generator: Weblate 2.4-dev\n"
 
 #: ../brushsettings-gen.h:4
-#, fuzzy
 msgid "Opacity"
 msgstr "Krytie"
 
@@ -194,7 +193,7 @@ msgstr ""
 
 #: ../brushsettings-gen.h:19
 msgid "Offset by speed"
-msgstr ""
+msgstr "Posun podľa rýchlosti"
 
 #: ../brushsettings-gen.h:19
 msgid ""
@@ -203,6 +202,10 @@ msgid ""
 "> 0 draw where the pointer moves to\n"
 "< 0 draw where the pointer comes from"
 msgstr ""
+"Zmení pozíciu v závislosti od rýchlosti ukazovateľa\n"
+"= 0 zakázaný\n"
+"> 0 kreslenie tam, kam sa posúva ukazovateľ\n"
+"< 0 kreslenie tam, odkiaľ prichádza ukazovateľ"
 
 #: ../brushsettings-gen.h:20
 msgid "Offset by speed filter"
@@ -334,7 +337,6 @@ msgid ""
 msgstr ""
 
 #: ../brushsettings-gen.h:33
-#, fuzzy
 msgid "Smudge"
 msgstr "Rozmazanie"
 
@@ -376,7 +378,6 @@ msgid ""
 msgstr ""
 
 #: ../brushsettings-gen.h:36
-#, fuzzy
 msgid "Eraser"
 msgstr "Guma"
 
@@ -482,7 +483,7 @@ msgstr ""
 
 #: ../brushsettings-gen.h:45
 msgid "Lock alpha"
-msgstr ""
+msgstr "Uzamknúť alfa kanál"
 
 #: ../brushsettings-gen.h:45
 msgid ""
@@ -492,13 +493,16 @@ msgid ""
 " 0.5 half of the paint gets applied normally\n"
 " 1.0 alpha channel fully locked"
 msgstr ""
+"Nezmení alfa kanál vrstvy (kreslenie iba tam, kde už je farba)\n"
+" 0.0 normálne kreslenie\n"
+" 0.5 polovica farby je normálne použitá\n"
+" 1.0 alfa kanál plne uzamknutý"
 
 #: ../brushsettings-gen.h:46
 msgid "Colorize"
 msgstr "Ofarbenie"
 
 #: ../brushsettings-gen.h:46
-#, fuzzy
 msgid ""
 "Colorize the target layer, setting its hue and saturation from the active "
 "brush color while retaining its value and alpha."
@@ -528,7 +532,6 @@ msgstr ""
 "Týmto sa zmení ako tvrdo tlačíte. Násobí tlak tabletu konštantným násobkom."
 
 #: ../brushsettings-gen.h:53
-#, fuzzy
 msgid "Pressure"
 msgstr "Tlak"
 
@@ -574,7 +577,6 @@ msgid ""
 msgstr ""
 
 #: ../brushsettings-gen.h:57
-#, fuzzy
 msgid "Stroke"
 msgstr "Ťah"
 
@@ -617,7 +619,6 @@ msgid ""
 msgstr ""
 
 #: ../brushsettings-gen.h:61
-#, fuzzy
 msgid "Custom"
 msgstr "Vlastné"
 

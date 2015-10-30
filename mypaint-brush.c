@@ -35,9 +35,11 @@
 #endif // HAVE_JSON_C
 
 #ifdef _MSC_VER
+#if _MSC_VER < 1700     // Visual Studio 2012 and later has isfinite and roundf
   #include <float.h>
   static inline int    isfinite(double x) { return _finite(x); }
   static inline float  roundf  (float  x) { return x >= 0.0f ? floorf(x + 0.5f) : ceilf(x - 0.5f); }
+#endif
 #endif
 
 #ifndef M_PI

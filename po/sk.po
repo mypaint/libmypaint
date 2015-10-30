@@ -8,19 +8,18 @@ msgstr ""
 "Project-Id-Version: libmypaint for mypaint 1.2.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-04 18:33+0100\n"
-"PO-Revision-Date: 2015-10-06 14:37+0200\n"
-"Last-Translator: Dušan Kazik <prescott66@gmail.com>\n"
+"PO-Revision-Date: 2015-10-30 02:33+0200\n"
+"Last-Translator: Blake <adam.otruba@gmail.com>\n"
 "Language-Team: Slovak "
-"<https://hosted.weblate.org/projects/mypaint/mypaint/sk/>\n"
+"<https://hosted.weblate.org/projects/mypaint/libmypaint/sk/>\n"
 "Language: sk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Generator: Weblate 2.4-dev\n"
+"X-Generator: Weblate 2.5-dev\n"
 
 #: ../brushsettings-gen.h:4
-#, fuzzy
 msgid "Opacity"
 msgstr "Krytie"
 
@@ -43,10 +42,15 @@ msgid ""
 "This setting is responsible to stop painting when there is zero pressure. "
 "This is just a convention, the behaviour is identical to 'opaque'."
 msgstr ""
+"Znásobuje sa s nastavením krytia. Iba tlakový vstup tohto nastavenia by mal "
+"byť menený, na určenie závislosti krytia od rýchlosti preferujte použitie "
+"nastavenia \"krytie\", \n"
+"Toto nastavenie je zodpovedné za zastavenie maľovania, ak je tlak nulový. "
+"Ide iba o konvenciu, správanie je identické s nastavením \"krytie\"."
 
 #: ../brushsettings-gen.h:6
 msgid "Opacity linearize"
-msgstr ""
+msgstr "Linearizácia krytia"
 
 #: ../brushsettings-gen.h:6
 msgid ""
@@ -59,6 +63,15 @@ msgid ""
 "1.0 the opaque value above is for the final brush stroke, assuming each "
 "pixel gets (dabs_per_radius*2) brushdabs on average during a stroke"
 msgstr ""
+"Napráva nelineárnosť spôsobenú prekrývaním viacerých kvapiek. Táto náprava "
+"by mala mať za výsledok lineárny (\"prirodzenú\") odozvu na tlak, ak je tlak "
+"priradený k nastaveniu \"násobenie_krytia\", ako je zvykom. 0,9 je vhodné "
+"pre bežné ťahy, nastavte menšie hodnoty, ak má váš štetec priveľký rozptyl, "
+"alebo väčšie, ak používate nastavenie \"kvapky_za_sekundu\".\n"
+"Pri hodnote 0,0 sa hodnota krytia počíta pre individuálne kvapky\n"
+"Pri hodnote 1,0 sa hodnota krytia počíta pre výsledný ťah, predpokladajúc, "
+"že na každý pixel v priemere pripadá (kvapiek_na_polomer*2) kvapiek počas "
+"ťahu"
 
 #: ../brushsettings-gen.h:7
 msgid "Radius"
@@ -98,38 +111,50 @@ msgid ""
 " 1.0 blur one pixel (good value)\n"
 " 5.0 notable blur, thin strokes will disappear"
 msgstr ""
+"Toto nastavenie znižuje tvrdosť, ak je potrebné, aby sa vyhlo aliasingu ("
+"efekt \"pixelových schodov\") tým, že mierne rozmaže kvapku.\n"
+"\n"
+" 0,0 funkciu vypína (pre veľmi silné gumy a pixelové štetce)\n"
+" 1,0 rozmaže jeden pixel (vhodná hodnota)\n"
+" 5,0 značne rozmaže, tenké ťahy zmiznú"
 
 #: ../brushsettings-gen.h:10
 msgid "Dabs per basic radius"
-msgstr ""
+msgstr "Kvapiek na základný polomer"
 
 #: ../brushsettings-gen.h:10
 msgid ""
 "How many dabs to draw while the pointer moves a distance of one brush radius "
 "(more precise: the base value of the radius)"
 msgstr ""
+"Určuje počet kvapiek, ktorý sa nakreslí počas pohybu ukazovateľa o jeden "
+"polomer štetca (presnejšie o základnú hodnotu polomeru)"
 
 #: ../brushsettings-gen.h:11
 msgid "Dabs per actual radius"
-msgstr ""
+msgstr "Kvapiek na skutočný polomer"
 
 #: ../brushsettings-gen.h:11
 msgid ""
 "Same as above, but the radius actually drawn is used, which can change "
 "dynamically"
 msgstr ""
+"Rovnaké ako vyššie, avšak použitý je práve vykreslený polomer, ktorý sa môže "
+"meniť dynamicky"
 
 #: ../brushsettings-gen.h:12
 msgid "Dabs per second"
-msgstr ""
+msgstr "Kvapiek za sekundu"
 
 #: ../brushsettings-gen.h:12
 msgid "Dabs to draw each second, no matter how far the pointer moves"
 msgstr ""
+"Počet kvapiek, ktorý sa nakreslí každú sekundu, bez ohľadu na prejdenú dráhu "
+"ukazovateľa"
 
 #: ../brushsettings-gen.h:13
 msgid "Radius by random"
-msgstr ""
+msgstr "Náhodný polomer"
 
 #: ../brushsettings-gen.h:13
 msgid ""
@@ -139,24 +164,35 @@ msgid ""
 "transparent\n"
 "2) it will not change the actual radius seen by dabs_per_actual_radius"
 msgstr ""
+"Mení polomer náhodne s každou kvapkou. Toto môžete tiež dosiahnuť úpravou "
+"vstupu \"Náhodne\" v nastavení \"Polomer\". Učinením tu dosiahnete dvoch "
+"rozdielov:\n"
+"1) hodnota krytia bude upravená tak, aby boli kvapky s väčším polomerom "
+"priesvitnejšie\n"
+"2) skutočný polomer dosadzovaný do premennej \"Kvapiek na skutočný polomer\" "
+"sa nezmení"
 
 #: ../brushsettings-gen.h:14
 msgid "Fine speed filter"
-msgstr ""
+msgstr "Filter jemnej rýchlosti"
 
 #: ../brushsettings-gen.h:14
 msgid ""
 "How slow the input fine speed is following the real speed\n"
 "0.0 change immediately as your speed changes (not recommended, but try it)"
 msgstr ""
+"Ako rýchlo (pomaly) vstup \"Jemná rýchlosť\" nasleduje skutočnú rýchlosť.\n"
+"0,0 mení rýchlosť rovnako, ako vaša skutočná (neodporúča sa, ale vyskúšajte "
+"to)"
 
 #: ../brushsettings-gen.h:15
 msgid "Gross speed filter"
-msgstr ""
+msgstr "Filter hrubej rýchlosti"
 
 #: ../brushsettings-gen.h:15
 msgid "Same as 'fine speed filter', but note that the range is different"
 msgstr ""
+"Rovnaké ako \"Filter jemnej rýchlosti, no všimnite si, že rozsah je rozličný"
 
 #: ../brushsettings-gen.h:16
 msgid "Fine speed gamma"
@@ -454,7 +490,7 @@ msgstr ""
 
 #: ../brushsettings-gen.h:42
 msgid "Elliptical dab: ratio"
-msgstr ""
+msgstr "Eliptická kvapka: pomer"
 
 #: ../brushsettings-gen.h:42
 msgid ""
@@ -464,7 +500,7 @@ msgstr ""
 
 #: ../brushsettings-gen.h:43
 msgid "Elliptical dab: angle"
-msgstr ""
+msgstr "Eliptická kvapka: uhol"
 
 #: ../brushsettings-gen.h:43
 msgid ""
@@ -551,7 +587,7 @@ msgstr ""
 
 #: ../brushsettings-gen.h:54
 msgid "Fine speed"
-msgstr ""
+msgstr "Jemná rýchlosť"
 
 #: ../brushsettings-gen.h:54
 msgid ""
@@ -562,26 +598,31 @@ msgstr ""
 
 #: ../brushsettings-gen.h:55
 msgid "Gross speed"
-msgstr ""
+msgstr "Hrubá rýchlosť"
 
 #: ../brushsettings-gen.h:55
+#, fuzzy
 msgid ""
 "Same as fine speed, but changes slower. Also look at the 'gross speed "
 "filter' setting."
 msgstr ""
+"Rovnaké ako jemná rýchlosť, ale s pomalšími zmenami. Tiež pozri súvisiace "
+"nastavenie \"filter hrubej rýchlosti\"."
 
 #: ../brushsettings-gen.h:56
 msgid "Random"
-msgstr ""
+msgstr "Náhodnosť"
 
 #: ../brushsettings-gen.h:56
+#, fuzzy
 msgid ""
 "Fast random noise, changing at each evaluation. Evenly distributed between 0 "
 "and 1."
 msgstr ""
+"Náhodný šum, meniaci sa pri každom vyhodnocovaní. Hodnoty sú rovnomerne "
+"rozložené medzi 0 a 1."
 
 #: ../brushsettings-gen.h:57
-#, fuzzy
 msgid "Stroke"
 msgstr "Ťah"
 
@@ -594,27 +635,31 @@ msgstr ""
 
 #: ../brushsettings-gen.h:58
 msgid "Direction"
-msgstr ""
+msgstr "Smerovanie"
 
 #: ../brushsettings-gen.h:58
 msgid ""
 "The angle of the stroke, in degrees. The value will stay between 0.0 and "
 "180.0, effectively ignoring turns of 180 degrees."
 msgstr ""
+"Uhol ťahu v stupňoch. Hodnota ostáva v rozmedzí 0,0 až 180,0, účinne "
+"ignorujúc otočenia o 180 stupňov."
 
 #: ../brushsettings-gen.h:59
 msgid "Declination"
-msgstr ""
+msgstr "Deklinácia"
 
 #: ../brushsettings-gen.h:59
 msgid ""
 "Declination of stylus tilt. 0 when stylus is parallel to tablet and 90.0 "
 "when it's perpendicular to tablet."
 msgstr ""
+"Deklinácia stylusu. 0 ak je stylus rovnobežne s tabletom, 90 ak je na tablet "
+"kolmo."
 
 #: ../brushsettings-gen.h:60
 msgid "Ascension"
-msgstr ""
+msgstr "Rektascenzia"
 
 #: ../brushsettings-gen.h:60
 msgid ""
@@ -622,6 +667,9 @@ msgid ""
 "when rotated 90 degrees clockwise, -90 when rotated 90 degrees "
 "counterclockwise."
 msgstr ""
+"Rektascenzia stylusu. 0 ak kontaktná špička stylusu smeruje k vám, +90 ak je "
+"otočená 90 stupňov po smere hod. ručičiek, -90 ak je otočená 90 stupňov "
+"proti smeru hod. ručičiek."
 
 #: ../brushsettings-gen.h:61
 #, fuzzy

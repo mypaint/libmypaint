@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: libmypaint for mypaint 1.2.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-04 18:33+0100\n"
-"PO-Revision-Date: 2015-10-30 02:33+0200\n"
+"PO-Revision-Date: 2015-11-02 14:05+0200\n"
 "Last-Translator: Blake <adam.otruba@gmail.com>\n"
 "Language-Team: Slovak "
 "<https://hosted.weblate.org/projects/mypaint/libmypaint/sk/>\n"
@@ -196,7 +196,7 @@ msgstr ""
 
 #: ../brushsettings-gen.h:16
 msgid "Fine speed gamma"
-msgstr ""
+msgstr "Gama jemnej rýchlosti"
 
 #: ../brushsettings-gen.h:16
 msgid ""
@@ -207,6 +207,11 @@ msgid ""
 "+8.0 very fast speed increases 'fine speed' a lot\n"
 "For very slow speed the opposite happens."
 msgstr ""
+"Mení reakciu vstupu \"Jemná rýchlosť\" na extrémnu fyzickú rýchlosť. Rozdiel "
+"je najviditeľnejší, ak je \"Jemná rýchlosť\" priradená k polomeru.\n"
+"pri -8,0, veľmi vysoká rýchlosť príliš \"jemnú rýchlosť\" nezvyšuje\n"
+"pri +8,0 veľmi vysoká rýchlosť zvyšuje \"jemnú rýchlosť\" značne\n"
+"Presný opak sa deje pre veľmi nízku rýchlosť."
 
 #: ../brushsettings-gen.h:17
 msgid "Gross speed gamma"
@@ -218,7 +223,7 @@ msgstr ""
 
 #: ../brushsettings-gen.h:18
 msgid "Jitter"
-msgstr ""
+msgstr "Rozptyl"
 
 #: ../brushsettings-gen.h:18
 msgid ""
@@ -227,6 +232,10 @@ msgid ""
 " 1.0 standard deviation is one basic radius away\n"
 "<0.0 negative values produce no jitter"
 msgstr ""
+"Pridá náhodný posun k pozícii každej nakreslenej kvapky\n"
+"pri 0,0 je funkcia vypnutá\n"
+"pri 1,0 má štandardná odchýlka hodnotu jedného základného polomeru\n"
+"Záporné hodnoty (<0,0) neprodukujú žiaden rozptyl"
 
 #: ../brushsettings-gen.h:19
 msgid "Offset by speed"

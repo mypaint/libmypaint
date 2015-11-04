@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: libmypaint for mypaint 1.2.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-04 18:33+0100\n"
-"PO-Revision-Date: 2015-11-02 14:05+0200\n"
+"PO-Revision-Date: 2015-11-04 19:30+0000\n"
 "Last-Translator: Blake <adam.otruba@gmail.com>\n"
 "Language-Team: Slovak "
 "<https://hosted.weblate.org/projects/mypaint/libmypaint/sk/>\n"
@@ -215,11 +215,11 @@ msgstr ""
 
 #: ../brushsettings-gen.h:17
 msgid "Gross speed gamma"
-msgstr ""
+msgstr "Gama hrubej rýchlosti"
 
 #: ../brushsettings-gen.h:17
 msgid "Same as 'fine speed gamma' for gross speed"
-msgstr ""
+msgstr "Rovnaké ako \"gama jemnej rýchlosti\", ale pre hrubú rýchlosť"
 
 #: ../brushsettings-gen.h:18
 msgid "Jitter"
@@ -255,41 +255,48 @@ msgstr ""
 
 #: ../brushsettings-gen.h:20
 msgid "Offset by speed filter"
-msgstr ""
+msgstr "Filter posunu podľa rýchlosti"
 
 #: ../brushsettings-gen.h:20
 msgid "How slow the offset goes back to zero when the cursor stops moving"
-msgstr ""
+msgstr "Ako pomaly sa posun vracia k nule, keď kurzor zastaví"
 
 #: ../brushsettings-gen.h:21
 msgid "Slow position tracking"
-msgstr ""
+msgstr "Pomalé sledovanie pozície"
 
 #: ../brushsettings-gen.h:21
 msgid ""
 "Slowdown pointer tracking speed. 0 disables it, higher values remove more "
 "jitter in cursor movements. Useful for drawing smooth, comic-like outlines."
 msgstr ""
+"Spomaľuje sledovanie ukazovateľa. 0 funkciu vypína, vyššie hodnoty "
+"odstraňujú viac rozptylu v pohyboch kurzora. Užitočné na kreslenie "
+"uhladnených, komixových obrysov."
 
 #: ../brushsettings-gen.h:22
 msgid "Slow tracking per dab"
-msgstr ""
+msgstr "Pomalé sledovanie v závislosti na kvapke"
 
 #: ../brushsettings-gen.h:22
 msgid ""
 "Similar as above but at brushdab level (ignoring how much time has passed if "
 "brushdabs do not depend on time)"
 msgstr ""
+"Podobné ako vyššie, ale na úrovni kvapiek (ignoruje koľko času prešlo, ak "
+"kvapky nezávisia od času)"
 
 #: ../brushsettings-gen.h:23
 msgid "Tracking noise"
-msgstr ""
+msgstr "Šum sledovania"
 
 #: ../brushsettings-gen.h:23
 msgid ""
 "Add randomness to the mouse pointer; this usually generates many small lines "
 "in random directions; maybe try this together with 'slow tracking'"
 msgstr ""
+"Pridá náhodnosť ukazovateľu myši, čo zvyčajne generuje mnoho malých čiar v "
+"náhodných smeroch. Možno použiť spolu s \"pomalým sledovaním\""
 
 #: ../brushsettings-gen.h:24
 msgid "Color hue"
@@ -319,10 +326,14 @@ msgid ""
 " 0.5 change active color towards brush color\n"
 " 1.0 set the active color to the brush color when selected"
 msgstr ""
+"Pri voľbe štetca môže byť obnovená farba, s ktorou bol štetec uložený.\n"
+" 0,0 farbu pri zvolení tohto štetca nezmení\n"
+" 0,5 priblíži aktívnu farbu tej, ktorá bola uložená so štetcom\n"
+" 1,0 nastaví aktívnu farbu na tú uloženú so štetcom"
 
 #: ../brushsettings-gen.h:28
 msgid "Change color hue"
-msgstr ""
+msgstr "Zmena odtieňa farby"
 
 #: ../brushsettings-gen.h:28
 msgid ""
@@ -331,10 +342,14 @@ msgid ""
 " 0.0 disable\n"
 " 0.5 counterclockwise hue shift by 180 degrees"
 msgstr ""
+"Mení odtieň farby.\n"
+"-0,1 mierne posunie odtieň po smere hod. ručičiek\n"
+" 0,0 funkciu vypína\n"
+" 0,5 posunie odtieň o 180 stupňov proti smeru hod. ručičiek"
 
 #: ../brushsettings-gen.h:29
 msgid "Change color lightness (HSL)"
-msgstr ""
+msgstr "Zmena svetlosti farby (HSL)"
 
 #: ../brushsettings-gen.h:29
 msgid ""
@@ -580,7 +595,6 @@ msgstr ""
 "Týmto sa zmení ako tvrdo tlačíte. Násobí tlak tabletu konštantným násobkom."
 
 #: ../brushsettings-gen.h:53
-#, fuzzy
 msgid "Pressure"
 msgstr "Tlak"
 
@@ -610,7 +624,6 @@ msgid "Gross speed"
 msgstr "Hrubá rýchlosť"
 
 #: ../brushsettings-gen.h:55
-#, fuzzy
 msgid ""
 "Same as fine speed, but changes slower. Also look at the 'gross speed "
 "filter' setting."
@@ -623,7 +636,6 @@ msgid "Random"
 msgstr "Náhodnosť"
 
 #: ../brushsettings-gen.h:56
-#, fuzzy
 msgid ""
 "Fast random noise, changing at each evaluation. Evenly distributed between 0 "
 "and 1."
@@ -681,7 +693,6 @@ msgstr ""
 "proti smeru hod. ručičiek."
 
 #: ../brushsettings-gen.h:61
-#, fuzzy
 msgid "Custom"
 msgstr "Vlastné"
 

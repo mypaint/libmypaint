@@ -8,28 +8,32 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-04 18:33+0100\n"
-"PO-Revision-Date: 2015-07-04 18:33+0100\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"PO-Revision-Date: 2015-11-12 23:00+0000\n"
+"Last-Translator: Karsten Reitan Sørensen <karsten.reitan@gmail.com>\n"
+"Language-Team: Danish "
+"<https://hosted.weblate.org/projects/mypaint/libmypaint/da/>\n"
 "Language: da\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 2.5-dev\n"
 
 #: ../brushsettings-gen.h:4
 msgid "Opacity"
-msgstr ""
+msgstr "Opacitet"
 
 #: ../brushsettings-gen.h:4
 msgid ""
 "0 means brush is transparent, 1 fully visible\n"
 "(also known as alpha or opacity)"
 msgstr ""
+"0 betyder penslen er gennemsigtig, 1 fuldt synlig (også kendt som alfa eller "
+"opacitet)"
 
 #: ../brushsettings-gen.h:5
 msgid "Opacity multiply"
-msgstr ""
+msgstr "Opacitet multiplicer"
 
 #: ../brushsettings-gen.h:5
 msgid ""
@@ -38,6 +42,11 @@ msgid ""
 "This setting is responsible to stop painting when there is zero pressure. "
 "This is just a convention, the behaviour is identical to 'opaque'."
 msgstr ""
+"Dette bliver multipliceret med uigennemsigtig. Du bør kun ændre tryk input "
+"for denne indstilling. Brug 'uigennemsigtig' i stedet for for at gøre "
+"opacitet afhængig af hastigheden.\n"
+"Denne indstilling er ansvarlig for at stoppe maleri, når der er nul tryk. "
+"Dette er bare et vedtagelse og er identisk med 'uigennemsigtig' adfærd."
 
 #: ../brushsettings-gen.h:6
 msgid "Opacity linearize"
@@ -57,7 +66,7 @@ msgstr ""
 
 #: ../brushsettings-gen.h:7
 msgid "Radius"
-msgstr ""
+msgstr "Radius"
 
 #: ../brushsettings-gen.h:7
 msgid ""
@@ -65,20 +74,26 @@ msgid ""
 " 0.7 means 2 pixels\n"
 " 3.0 means 20 pixels"
 msgstr ""
+"Grundlæggende pensel radius (logaritmisk)\n"
+" 0,7 betyder 2 pixel\n"
+" 3.0 betyder 20 pixels"
 
 #: ../brushsettings-gen.h:8
 msgid "Hardness"
-msgstr ""
+msgstr "Hårdhed"
 
 #: ../brushsettings-gen.h:8
+#, fuzzy
 msgid ""
 "Hard brush-circle borders (setting to zero will draw nothing). To reach the "
 "maximum hardness, you need to disable Pixel feather."
 msgstr ""
+"Hård pensel-cirkel grænser (indstilling til nul vil intet trække). For at nå "
+"det maksimal hårdhed, skal du deaktivere Pixel fjer."
 
 #: ../brushsettings-gen.h:9
 msgid "Pixel feather"
-msgstr ""
+msgstr "Pixel fjer"
 
 #: ../brushsettings-gen.h:9
 msgid ""
@@ -91,23 +106,27 @@ msgstr ""
 
 #: ../brushsettings-gen.h:10
 msgid "Dabs per basic radius"
-msgstr ""
+msgstr "Klatter pr. grundlæggende radius"
 
 #: ../brushsettings-gen.h:10
 msgid ""
 "How many dabs to draw while the pointer moves a distance of one brush radius "
 "(more precise: the base value of the radius)"
 msgstr ""
+"Hvor mange klatter der tegnes, mens markøren flytter en afstand af én pensel "
+"radius (mere præcist: basisværdien af radius)"
 
 #: ../brushsettings-gen.h:11
 msgid "Dabs per actual radius"
-msgstr ""
+msgstr "Klatter pr. faktiske radius"
 
 #: ../brushsettings-gen.h:11
 msgid ""
 "Same as above, but the radius actually drawn is used, which can change "
 "dynamically"
 msgstr ""
+"Samme som ovenfor, men det er radius som faktisk er tegnet der bruges, som "
+"kan ændre sig dynamisk"
 
 #: ../brushsettings-gen.h:12
 msgid "Dabs per second"

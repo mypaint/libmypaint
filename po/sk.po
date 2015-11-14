@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: libmypaint for mypaint 1.2.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-04 18:33+0100\n"
-"PO-Revision-Date: 2015-11-11 22:15+0000\n"
+"PO-Revision-Date: 2015-11-14 21:01+0000\n"
 "Last-Translator: Blake <adam.otruba@gmail.com>\n"
 "Language-Team: Slovak "
 "<https://hosted.weblate.org/projects/mypaint/libmypaint/sk/>\n"
@@ -513,7 +513,7 @@ msgstr ""
 
 #: ../brushsettings-gen.h:39
 msgid "Stroke hold time"
-msgstr ""
+msgstr "Trvanie ťahu"
 
 #: ../brushsettings-gen.h:39
 msgid ""
@@ -523,6 +523,10 @@ msgid ""
 "2.0 means twice as long as it takes to go from 0.0 to 1.0\n"
 "9.9 or higher stands for infinite"
 msgstr ""
+"Ako dlho ostane vstup \"Ťah\" na hodnote 1,0. Po uplynutí sa vráti na 0,0 a "
+"začne znovu narastať, aj v prípade, že ťah nie je dokončený.\n"
+"2,0 znamená dvakrát dlhšie, než by trval nárast z 0,0 na 1,0\n"
+"9,9 a viac znamená nekonečno"
 
 #: ../brushsettings-gen.h:40
 msgid "Custom input"
@@ -581,13 +585,15 @@ msgstr ""
 
 #: ../brushsettings-gen.h:44
 msgid "Direction filter"
-msgstr ""
+msgstr "Smerový filter"
 
 #: ../brushsettings-gen.h:44
 msgid ""
 "A low value will make the direction input adapt more quickly, a high value "
 "will make it smoother"
 msgstr ""
+"Nízka hodnota spôsobí rýchlejšiu adaptáciu na smer vstupu, vyššia hodnota ho "
+"vyhladzuje."
 
 #: ../brushsettings-gen.h:45
 msgid "Lock alpha"
@@ -620,13 +626,15 @@ msgstr ""
 
 #: ../brushsettings-gen.h:47
 msgid "Snap to pixel"
-msgstr ""
+msgstr "Prichytenie na pixel"
 
 #: ../brushsettings-gen.h:47
 msgid ""
 "Snap brush dab's center and its radius to pixels. Set this to 1.0 for a thin "
 "pixel brush."
 msgstr ""
+"Prichytí stred kvapky a jej polomer na pixel. Hodnotou 1,0 nastavíte tenký \""
+"pixelový\" štetec."
 
 #: ../brushsettings-gen.h:48
 msgid "Pressure gain"
@@ -698,6 +706,9 @@ msgid ""
 "be configured to jump back to zero periodically while you move. Look at the "
 "'stroke duration' and 'stroke hold time' settings."
 msgstr ""
+"Tento vstup pomaly vzrastá z 0,0 na 1,0 pri ťahu štetcom. Môže byť tiež "
+"nastavený tak, aby pravidelne preskakoval znova na 0,0 pri tom, ako ťaháte ("
+"pozrite nastavenia \"Dĺžka ťahu\" a \"Trvanie ťahu\"."
 
 #: ../brushsettings-gen.h:58
 msgid "Direction"

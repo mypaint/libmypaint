@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: libmypaint for mypaint 1.2.0-alpha\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-04 18:33+0100\n"
-"PO-Revision-Date: 2015-07-05 06:14+0200\n"
-"Last-Translator: Farzad Jenabi <farzadjen@yahoo.com>\n"
+"PO-Revision-Date: 2015-11-24 19:54+0000\n"
+"Last-Translator: hamed nasib <cghamed752@chmail.ir>\n"
 "Language-Team: Persian "
 "<https://hosted.weblate.org/projects/mypaint/libmypaint/fa/>\n"
 "Language: fa\n"
@@ -17,13 +17,13 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 2.4-dev\n"
+"X-Generator: Weblate 2.5-dev\n"
 "X-Language: fa\n"
 "X-Source-Language: C\n"
 
 #: ../brushsettings-gen.h:4
 msgid "Opacity"
-msgstr ""
+msgstr "شفافیت"
 
 #: ../brushsettings-gen.h:4
 msgid ""
@@ -359,7 +359,7 @@ msgstr ""
 
 #: ../brushsettings-gen.h:35
 msgid "Smudge radius"
-msgstr ""
+msgstr "شعاع سیاه شدن"
 
 #: ../brushsettings-gen.h:35
 msgid ""
@@ -510,7 +510,7 @@ msgstr ""
 
 #: ../brushsettings-gen.h:48
 msgid "Pressure gain"
-msgstr ""
+msgstr "افزایش فشار"
 
 #: ../brushsettings-gen.h:48
 msgid ""
@@ -531,7 +531,7 @@ msgstr ""
 
 #: ../brushsettings-gen.h:54
 msgid "Fine speed"
-msgstr ""
+msgstr "سرعت خوب"
 
 #: ../brushsettings-gen.h:54
 msgid ""
@@ -542,7 +542,7 @@ msgstr ""
 
 #: ../brushsettings-gen.h:55
 msgid "Gross speed"
-msgstr ""
+msgstr "سرعت ناخالص"
 
 #: ../brushsettings-gen.h:55
 msgid ""

@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: libmypaint for mypaint 1.2.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-11 21:24+0100\n"
-"PO-Revision-Date: 2015-12-01 17:20+0100\n"
+"PO-Revision-Date: 2015-12-01 17:39+0100\n"
 "Last-Translator: Dušan Kazik <prescott66@gmail.com>\n"
 "Language-Team: Slovak "
 "<https://hosted.weblate.org/projects/mypaint/mypaint/sk/>\n"
@@ -21,7 +21,6 @@ msgstr ""
 #: ../brushsettings-gen.h:4
 #: ../gui/brusheditor.py:300
 #: ../po/tmp/resources.xml.h:183
-#, fuzzy
 msgid "Opacity"
 msgstr "Krytie"
 
@@ -419,7 +418,6 @@ msgstr ""
 
 #: ../brushsettings-gen.h:33
 #: ../gui/brusheditor.py:323
-#, fuzzy
 msgid "Smudge"
 msgstr "Rozmazanie"
 
@@ -477,7 +475,6 @@ msgstr ""
 
 #: ../brushsettings-gen.h:36
 #: ../gui/device.py:50
-#, fuzzy
 msgid "Eraser"
 msgstr "Guma"
 
@@ -656,7 +653,6 @@ msgstr ""
 #. Tab label in preferences dialog
 #: ../brushsettings-gen.h:53
 #: ../po/tmp/preferenceswindow.glade.h:27
-#, fuzzy
 msgid "Pressure"
 msgstr "Tlak"
 
@@ -707,7 +703,6 @@ msgstr ""
 
 #: ../brushsettings-gen.h:57
 #: ../gui/brusheditor.py:359
-#, fuzzy
 msgid "Stroke"
 msgstr "Ťah"
 
@@ -761,7 +756,6 @@ msgstr ""
 
 #: ../brushsettings-gen.h:61
 #: ../gui/brusheditor.py:385
-#, fuzzy
 msgid "Custom"
 msgstr "Vlastné"
 

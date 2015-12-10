@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: MyPaint\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-04 18:33+0100\n"
-"PO-Revision-Date: 2015-12-10 23:33+0900\n"
+"PO-Revision-Date: 2015-12-10 23:57+0900\n"
 "Last-Translator: \n"
 "Language-Team: Japanese <kde-i18n-doc@kde.org>\n"
 "Language: ja\n"
@@ -27,6 +27,7 @@ msgstr ""
 #: ../brushsettings-gen.h:4
 #: ../gui/brusheditor.py:300
 #: ../po/tmp/resources.xml.h:183
+#, fuzzy
 msgid "Opacity"
 msgstr "不透明度"
 
@@ -424,6 +425,7 @@ msgstr ""
 
 #: ../brushsettings-gen.h:33
 #: ../gui/brusheditor.py:323
+#, fuzzy
 msgid "Smudge"
 msgstr "混色"
 
@@ -479,6 +481,7 @@ msgstr ""
 
 #: ../brushsettings-gen.h:36
 #: ../gui/device.py:50
+#, fuzzy
 msgid "Eraser"
 msgstr "消しゴム"
 
@@ -725,6 +728,7 @@ msgstr "高速なランダムノイズ、個々の算出で変化します。0�
 
 #: ../brushsettings-gen.h:57
 #: ../gui/brusheditor.py:359
+#, fuzzy
 msgid "Stroke"
 msgstr "ストローク"
 

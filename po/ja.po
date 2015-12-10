@@ -5,21 +5,21 @@
 # Olivier Gondouin <popolon@popolon.org> 2009-2010
 # updated 2011-11-10 Popolon <popolon@popolon.org>
 # updated 2011-12-02　a3novy <a3novy@gmail.com>
-#
+# , 2015.
 msgid ""
 msgstr ""
 "Project-Id-Version: MyPaint\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-04 18:33+0100\n"
-"PO-Revision-Date: 2015-11-08 23:54+0900\n"
-"Last-Translator: tou omiya <tokyogeometry@gmail.com>\n"
+"PO-Revision-Date: 2015-12-10 23:33+0900\n"
+"Last-Translator: \n"
 "Language-Team: Japanese <kde-i18n-doc@kde.org>\n"
 "Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 2.5-dev\n"
+"X-Generator: Lokalize 1.5\n"
 "X-Poedit-Language: Japanese\n"
 "X-Poedit-Country: JAPAN\n"
 "X-Poedit-SourceCharset: utf-8\n"
@@ -27,7 +27,6 @@ msgstr ""
 #: ../brushsettings-gen.h:4
 #: ../gui/brusheditor.py:300
 #: ../po/tmp/resources.xml.h:183
-#, fuzzy
 msgid "Opacity"
 msgstr "不透明度"
 
@@ -136,9 +135,7 @@ msgstr "基本ブラシ半径あたり描点数"
 msgid ""
 "How many dabs to draw while the pointer moves a distance of one brush radius "
 "(more precise: the base value of the radius)"
-msgstr ""
-" ポインタがブラシ半径（より正確には、基本ブラシ半径）の分だけ移動する間の描点"
-"数"
+msgstr " ポインタがブラシ半径（より正確には、基本ブラシ半径）の分だけ移動する間の描点数"
 
 #: ../brushsettings-gen.h:11
 msgid "Dabs per actual radius"
@@ -148,9 +145,7 @@ msgstr "実際のブラシ半径あたりの描点数"
 msgid ""
 "Same as above, but the radius actually drawn is used, which can change "
 "dynamically"
-msgstr ""
-"上記の項目と同様のパラメータですが、基本ブラシ半径ではなく、（動的に変化す"
-"る）実際のブラシ半径を使用して描点数を決定します。"
+msgstr "上記の項目と同様のパラメータですが、基本ブラシ半径ではなく、（動的に変化する）実際のブラシ半径を使用して描点数を決定します。"
 
 #: ../brushsettings-gen.h:12
 msgid "Dabs per second"
@@ -200,9 +195,7 @@ msgstr "「大まかな速度」フィルタ"
 
 #: ../brushsettings-gen.h:15
 msgid "Same as 'fine speed filter', but note that the range is different"
-msgstr ""
-"「詳細速度」フィルタと同様に、ブラシの「大まかな速度」パラメータの感度を指定"
-"します。"
+msgstr "「詳細速度」フィルタと同様に、ブラシの「大まかな速度」パラメータの感度を指定します。"
 
 #: ../brushsettings-gen.h:16
 msgid "Fine speed gamma"
@@ -231,8 +224,7 @@ msgstr "「大まかな速度」のガンマ値"
 
 #: ../brushsettings-gen.h:17
 msgid "Same as 'fine speed gamma' for gross speed"
-msgstr ""
-"「『詳細速度』のガンマ値」と同様に「大まかな速度」のガンマ値を指定します。"
+msgstr "「『詳細速度』のガンマ値」と同様に「大まかな速度」のガンマ値を指定します。"
 
 #: ../brushsettings-gen.h:18
 msgid "Jitter"
@@ -274,9 +266,7 @@ msgstr "「速度依存オフセット」フィルタ"
 
 #: ../brushsettings-gen.h:20
 msgid "How slow the offset goes back to zero when the cursor stops moving"
-msgstr ""
-"カーソルの動きが止まったときに、「速度依存オフセット」の値が0に戻るまでの速さ"
-"を指定します。"
+msgstr "カーソルの動きが止まったときに、「速度依存オフセット」の値が0に戻るまでの速さを指定します。"
 
 #: ../brushsettings-gen.h:21
 msgid "Slow position tracking"
@@ -287,9 +277,8 @@ msgid ""
 "Slowdown pointer tracking speed. 0 disables it, higher values remove more "
 "jitter in cursor movements. Useful for drawing smooth, comic-like outlines."
 msgstr ""
-"カーソルの動きに対して遅れて線が引かれるようになります。値を高くすると手ブレ"
-"によるカーソルの動きを滑らかにできます。漫画のような滑らかな線を引くのに適し"
-"ます。"
+"カーソルの動きに対して遅れて線が引かれるようになります。値を高くすると手ブレによるカーソルの動きを滑らかにできます。漫画のような滑らかな線を引くのに適しま"
+"す。"
 
 #: ../brushsettings-gen.h:22
 msgid "Slow tracking per dab"
@@ -313,9 +302,8 @@ msgid ""
 "Add randomness to the mouse pointer; this usually generates many small lines "
 "in random directions; maybe try this together with 'slow tracking'"
 msgstr ""
-"線を引くときにランダムに揺れを追加します。その結果、線がバラバラに別れていろ"
-"んな方向を向いた多数の細かい線を引くようになります。手ブレ補正と一緒に使って"
-"みては？"
+"線を引くときにランダムに揺れを追加します。その結果、線がバラバラに別れていろんな方向を向いた多数の細かい線を引くようになります。手ブレ補正と一緒に使ってみ"
+"ては？"
 
 #: ../brushsettings-gen.h:24
 msgid "Color hue"
@@ -357,31 +345,29 @@ msgid "Change color hue"
 msgstr "色相を変更"
 
 #: ../brushsettings-gen.h:28
-#, fuzzy
 msgid ""
 "Change color hue.\n"
 "-0.1 small clockwise color hue shift\n"
 " 0.0 disable\n"
 " 0.5 counterclockwise hue shift by 180 degrees"
 msgstr ""
-"色相を変更\n"
+"色相を変更します。\n"
 "-0.1 色相を時計回りに少しずらす\n"
 " 0.0 無効\n"
-" 0.5 色相を反時計回りに180度ずらす"
+" 0.5 色相を反時計回りに 180 度ずらす"
 
 #: ../brushsettings-gen.h:29
 msgid "Change color lightness (HSL)"
 msgstr "明るさを変更(HSL)"
 
 #: ../brushsettings-gen.h:29
-#, fuzzy
 msgid ""
 "Change the color lightness using the HSL color model.\n"
 "-1.0 blacker\n"
 " 0.0 disable\n"
 " 1.0 whiter"
 msgstr ""
-"HSLカラーモデルを使用して明るさ（輝度）を変更します。\n"
+"HSL カラーモデルを使用して色の明度を変更します。\n"
 "-1.0 より黒く\n"
 " 0.0 無効\n"
 " 1.0 より白く"
@@ -391,15 +377,14 @@ msgid "Change color satur. (HSL)"
 msgstr "彩度を変更(HSL)"
 
 #: ../brushsettings-gen.h:30
-#, fuzzy
 msgid ""
 "Change the color saturation using the HSL color model.\n"
 "-1.0 more grayish\n"
 " 0.0 disable\n"
 " 1.0 more saturated"
 msgstr ""
-"HSLカラーモデルを使用して彩度を変更します。\n"
-"-1.0 よりグレイに\n"
+"HSL カラーモデルを使用して色の彩度を変更します。\n"
+"-1.0 よりグレーに\n"
 " 0.0 無効\n"
 " 1.0 より鮮やかに"
 
@@ -408,7 +393,6 @@ msgid "Change color value (HSV)"
 msgstr "明度を変更(HSV)"
 
 #: ../brushsettings-gen.h:31
-#, fuzzy
 msgid ""
 "Change the color value (brightness, intensity) using the HSV color model. "
 "HSV changes are applied before HSL.\n"
@@ -416,8 +400,7 @@ msgid ""
 " 0.0 disable\n"
 " 1.0 brigher"
 msgstr ""
-"HSVカラーモデルを使用して色の値（明るさ、輝度）を変更します。 HSVの変更は HSL"
-"の前に適用されています。\n"
+"HSV カラーモデルを使用して色の明度 (輝度、純度) を変更します。HSV による変更は HSL による変更より優先されます。\n"
 "-1.0 より暗く\n"
 " 0.0 無効\n"
 " 1.0 より明るく"
@@ -427,7 +410,6 @@ msgid "Change color satur. (HSV)"
 msgstr "彩度を変更(HSV)"
 
 #: ../brushsettings-gen.h:32
-#, fuzzy
 msgid ""
 "Change the color saturation using the HSV color model. HSV changes are "
 "applied before HSL.\n"
@@ -435,20 +417,17 @@ msgid ""
 " 0.0 disable\n"
 " 1.0 more saturated"
 msgstr ""
-"HSVカラーモデルを使用して彩度を変更します。 HSVの変更は HSLの前に適用されてい"
-"ます。\n"
+"HSV カラーモデルを使用して彩度を変更します。HSV による変更は HSL による変更より優先されます。\n"
 "-1.0 よりグレイに\n"
 " 0.0 無効\n"
 " 1.0 より鮮やかに"
 
 #: ../brushsettings-gen.h:33
 #: ../gui/brusheditor.py:323
-#, fuzzy
 msgid "Smudge"
 msgstr "混色"
 
 #: ../brushsettings-gen.h:33
-#, fuzzy
 msgid ""
 "Paint with the smudge color instead of the brush color. The smudge color is "
 "slowly changed to the color you are painting on.\n"
@@ -456,18 +435,16 @@ msgid ""
 " 0.5 mix the smudge color with the brush color\n"
 " 1.0 use only the smudge color"
 msgstr ""
-"ブラシの色とキャンバス上の色を混色して色を塗ります。描画色はブラシの色から"
-"キャンバス上の色に次第に変わっていきます。\n"
-" 0.0: 混色なし\n"
-" 0.5: 混色した色とブラシの色を１：１で混合\n"
-" 1.0: 混色した色のみ(ブラシの色が補填されません)"
+"ブラシの色とキャンバス上の色を混色して色を塗ります。描画色はブラシの色からキャンバス上の色に次第に変わっていきます。\n"
+" 0.0 混色なし\n"
+" 0.5 混色した色とブラシの色を 1:1 で混合\n"
+" 1.0 混色した色のみ (ブラシの色を使用しません)"
 
 #: ../brushsettings-gen.h:34
 msgid "Smudge length"
 msgstr "混色する長さ"
 
 #: ../brushsettings-gen.h:34
-#, fuzzy
 msgid ""
 "This controls how fast the smudge color becomes the color you are painting "
 "on.\n"
@@ -477,16 +454,15 @@ msgid ""
 "1.0 never change the smudge color"
 msgstr ""
 "混色時にブラシの色がキャンバス上の色に変わっていく速さを指定します。\n"
-"0.0: ブラシの色がすぐにキャンバス上の色に変化(高負荷)\n"
-"0.5: ブラシの色が徐々にキャンバス上の色に変化\n"
-"1.0: ブラシの色の変化なし"
+"0.0 ブラシの色がすぐにキャンバス上の色に変化 (色を頻繁に更新するため、高負荷)\n"
+"0.5 ブラシの色が徐々にキャンバス上の色に変化\n"
+"1.0 ブラシの色の変化なし"
 
 #: ../brushsettings-gen.h:35
 msgid "Smudge radius"
 msgstr "混色の半径"
 
 #: ../brushsettings-gen.h:35
-#, fuzzy
 msgid ""
 "This modifies the radius of the circle where color is picked up for "
 "smudging.\n"
@@ -495,16 +471,14 @@ msgid ""
 "+0.7 twice the brush radius\n"
 "+1.6 five times the brush radius (slow performance)"
 msgstr ""
-"この設定は、キャンバス上の色を取得する際の範囲を指定します。指定した範囲内の"
-"色の平均値をキャンバスの色として利用します。\n"
+"この設定では、キャンバス上の色を取得する範囲を指定します。指定範囲内の色の平均値をキャンバスの色として利用します。\n"
 " 0.0: ブラシの半径と同じ範囲\n"
 "-0.7: ブラシの半径の半分の範囲 (速いが予想と異なる結果になる可能性あり)\n"
 "+0.7: ブラシの半径の2倍の範囲\n"
-"+1.6: ブラシの半径の5倍の範囲（パフォーマンスが低下）"
+"+1.6: ブラシの半径の5倍の範囲 (パフォーマンスが低下)"
 
 #: ../brushsettings-gen.h:36
 #: ../gui/device.py:50
-#, fuzzy
 msgid "Eraser"
 msgstr "消しゴム"
 
@@ -618,8 +592,7 @@ msgid ""
 "dab. TODO: linearize? start at 0.0 maybe, or log?"
 msgstr ""
 "描点の縦横比：1.0かそれ以上でなければなりません。\n"
-"1.0は真円の描点を意味します。(TODO: 0.0からはじまる線形値にするか対数値にする"
-"か？)"
+"1.0は真円の描点を意味します。(TODO: 0.0からはじまる線形値にするか対数値にするか？)"
 
 #: ../brushsettings-gen.h:43
 msgid "Elliptical dab: angle"
@@ -647,9 +620,8 @@ msgid ""
 "A low value will make the direction input adapt more quickly, a high value "
 "will make it smoother"
 msgstr ""
-"「方向」パラメータの変化の度合いを指定します。値が低い場合は「方向」パラメー"
-"タがポインタの動きに合わせて迅速に変化し、値が大きい場合はより滑らかに変化し"
-"ます。"
+"「方向」パラメータの変化の度合いを指定します。値が低い場合は「方向」パラメータがポインタの動きに合わせて迅速に変化し、値が大きい場合はより滑らかに変化しま"
+"す。"
 
 #: ../brushsettings-gen.h:45
 msgid "Lock alpha"
@@ -704,7 +676,6 @@ msgstr ""
 #. Tab label in preferences dialog
 #: ../brushsettings-gen.h:53
 #: ../po/tmp/preferenceswindow.glade.h:27
-#, fuzzy
 msgid "Pressure"
 msgstr "筆圧"
 
@@ -728,11 +699,9 @@ msgid ""
 "values' from the 'help' menu to get a feeling for the range; negative values "
 "are rare but possible for very low speed."
 msgstr ""
-"現在のポインターの移動がどのくらいの速さかを示します。このパラメータは(カーソ"
-"ルの速度に合わせて)即時に値が変わります。値の範囲の目安を得るためには「ヘル"
-"プ」から「ブラシの入力値をコンソールに表示」をご覧ください。この値がマイナス"
-"値になることは稀ですが、低速でカーソルを動かした場合にマイナス値になることが"
-"あります。"
+"現在のポインターの移動がどのくらいの速さかを示します。このパラメータは(カーソルの速度に合わせて)即時に値が変わります。値の範囲の目安を得るためには「ヘル"
+"プ」から「ブラシの入力値をコンソールに表示」をご覧ください。この値がマイナス値になることは稀ですが、低速でカーソルを動かした場合にマイナス値になることがあ"
+"ります。"
 
 #: ../brushsettings-gen.h:55
 msgid "Gross speed"
@@ -742,9 +711,7 @@ msgstr "大まかな速度"
 msgid ""
 "Same as fine speed, but changes slower. Also look at the 'gross speed "
 "filter' setting."
-msgstr ""
-"「詳細速度」と同様ですが、ゆっくりと変化します。また「『大まかな速度』フィル"
-"タ」の設定もご覧ください。"
+msgstr "「詳細速度」と同様ですが、ゆっくりと変化します。また「『大まかな速度』フィルタ」の設定もご覧ください。"
 
 #: ../brushsettings-gen.h:56
 msgid "Random"
@@ -754,12 +721,10 @@ msgstr "ランダム"
 msgid ""
 "Fast random noise, changing at each evaluation. Evenly distributed between 0 "
 "and 1."
-msgstr ""
-"高速なランダムノイズ、個々の算出で変化します。0と 1の間に均等に分布します。"
+msgstr "高速なランダムノイズ、個々の算出で変化します。0と 1の間に均等に分布します。"
 
 #: ../brushsettings-gen.h:57
 #: ../gui/brusheditor.py:359
-#, fuzzy
 msgid "Stroke"
 msgstr "ストローク"
 
@@ -769,9 +734,8 @@ msgid ""
 "be configured to jump back to zero periodically while you move. Look at the "
 "'stroke duration' and 'stroke hold time' settings."
 msgstr ""
-"ストロークを描画している間、この入力は徐々に 0から 1になります。また、移動し"
-"ている間、定期的にゼロに戻るように設定することもできます。「『ストローク』基"
-"準長」と「『ストローク』残留期間」の設定もご覧ください。"
+"ストロークを描画している間、この入力は徐々に 0から 1になります。また、移動している間、定期的にゼロに戻るように設定することもできます。「『ストローク』"
+"基準長」と「『ストローク』残留期間」の設定もご覧ください。"
 
 #: ../brushsettings-gen.h:58
 msgid "Direction"
@@ -781,9 +745,7 @@ msgstr "方向"
 msgid ""
 "The angle of the stroke, in degrees. The value will stay between 0.0 and "
 "180.0, effectively ignoring turns of 180 degrees."
-msgstr ""
-"ストロークの角度。値は、実質的には 180度のターンを無視して、0.0〜180.0の間の"
-"ままです。"
+msgstr "ストロークの角度。値は、実質的には 180度のターンを無視して、0.0〜180.0の間のままです。"
 
 #: ../brushsettings-gen.h:59
 msgid "Declination"
@@ -793,9 +755,7 @@ msgstr "ペンの傾斜角度"
 msgid ""
 "Declination of stylus tilt. 0 when stylus is parallel to tablet and 90.0 "
 "when it's perpendicular to tablet."
-msgstr ""
-"スタイラスペンの傾きの角度(赤緯)。ペンがタブレットに平行だと 0.0、タブレット"
-"に対して垂直だと 90.0です。"
+msgstr "スタイラスペンの傾きの角度(赤緯)。ペンがタブレットに平行だと 0.0、タブレットに対して垂直だと 90.0です。"
 
 #: ../brushsettings-gen.h:60
 msgid "Ascension"
@@ -807,8 +767,7 @@ msgid ""
 "when rotated 90 degrees clockwise, -90 when rotated 90 degrees "
 "counterclockwise."
 msgstr ""
-"スタイラスペンの傾きの方向(赤経)。 ペンの先端が自分を差す時は 0, 時計回りに90"
-"度回転させると +90、反時計回りに90度回転させると -90です。"
+"スタイラスペンの傾きの方向(赤経)。 ペンの先端が自分を差す時は 0, 時計回りに90度回転させると +90、反時計回りに90度回転させると -90です。"
 
 #: ../brushsettings-gen.h:61
 #: ../gui/brusheditor.py:385
@@ -819,8 +778,7 @@ msgstr "カスタム"
 #: ../brushsettings-gen.h:61
 msgid ""
 "This is a user defined input. Look at the 'custom input' setting for details."
-msgstr ""
-"これはユーザー定義の入力です。詳細は「カスタム入力」の設定をご覧ください。"
+msgstr "これはユーザー定義の入力です。詳細は「カスタム入力」の設定をご覧ください。"
 
 #~ msgid "Anti-aliasing"
 #~ msgstr "アンチエイリアス"

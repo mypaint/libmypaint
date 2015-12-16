@@ -8,27 +8,33 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-04 18:33+0100\n"
-"PO-Revision-Date: 2015-07-04 18:33+0100\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"PO-Revision-Date: 2015-12-16 23:34+0000\n"
+"Last-Translator: Limoni Art <spirit_of_sorrow@yahoo.com>\n"
+"Language-Team: Arabic "
+"<https://hosted.weblate.org/projects/mypaint/libmypaint/ar_AR/>\n"
 "Language: ar_AR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
+"&& n%100<=10 ? 3 : n%100>=11 ? 4 : 5;\n"
+"X-Generator: Weblate 2.5-dev\n"
 
 #: ../brushsettings-gen.h:4
 msgid "Opacity"
-msgstr ""
+msgstr "التعتيم"
 
 #: ../brushsettings-gen.h:4
 msgid ""
 "0 means brush is transparent, 1 fully visible\n"
 "(also known as alpha or opacity)"
 msgstr ""
+"0 تعني أن الفرشاة ذات شفافية, 1 ذات وضوح تام\n"
+"( المعروف أيضاً إسم ألفا أو التعتيم)"
 
 #: ../brushsettings-gen.h:5
 msgid "Opacity multiply"
-msgstr ""
+msgstr "تعتيم متضاعف"
 
 #: ../brushsettings-gen.h:5
 msgid ""
@@ -37,10 +43,14 @@ msgid ""
 "This setting is responsible to stop painting when there is zero pressure. "
 "This is just a convention, the behaviour is identical to 'opaque'."
 msgstr ""
+"هذه تتضاعف مع المبهمز يجب أن تغييرالضغط في هذه الإعدادات. إستخدم 'مبهم' لجعل "
+"التعتيم يعتمد على السرعة.\n"
+"هذا الإعداد مسؤول عن التوقف عن الرسم عندما لا يكون هناك أي ضغط. هذا مجرد "
+"اصطلاح، السلوك مطابق ل\"مبهمة\"."
 
 #: ../brushsettings-gen.h:6
 msgid "Opacity linearize"
-msgstr ""
+msgstr "التعتيم الخطي"
 
 #: ../brushsettings-gen.h:6
 msgid ""
@@ -53,10 +63,17 @@ msgid ""
 "1.0 the opaque value above is for the final brush stroke, assuming each "
 "pixel gets (dabs_per_radius*2) brushdabs on average during a stroke"
 msgstr ""
+"تصحيح الإستقامة المدخلة عن طريق مزج لمسات متعددة على رأس كل منهما الآخر. هذا "
+"التصحيح يعطيك إستجابة ضغط خطي (\"طبيعي\") عندما يتم تعيين الضغط إلى "
+"مبهم_متضاعف، كالعادة. 0.9 امر جيد للضربات العادية للفرشاة، إضبطها لمجموعة "
+"أصغر إذا كانت الفرشاة تنثر الكثير، أو أعلى إذا كنت تستخدم لمسة_كل_ثانية.\n"
+"0.0 قيمة مبهمة أعلاه هي لللمسات الفردية\n"
+"1.0 قيمة مبهمة أعلاه هي لللمسة النهائية للفرشاة، على افتراض أن كل بكسل يحصل "
+"على (لمسات_كل_نصف قطر*2) لمسة فرشاة في المتوسط خلال الضرب بالفرشاة"
 
 #: ../brushsettings-gen.h:7
 msgid "Radius"
-msgstr ""
+msgstr "نصف قطر"
 
 #: ../brushsettings-gen.h:7
 msgid ""
@@ -64,20 +81,25 @@ msgid ""
 " 0.7 means 2 pixels\n"
 " 3.0 means 20 pixels"
 msgstr ""
+"نصف قطر الفرشاة الأساسي (لوغاريذمي)\n"
+"  0.7 تعني 2 بكسل\n"
+"  3.0 تعني 20 بكسل"
 
 #: ../brushsettings-gen.h:8
 msgid "Hardness"
-msgstr ""
+msgstr "صلابة"
 
 #: ../brushsettings-gen.h:8
 msgid ""
 "Hard brush-circle borders (setting to zero will draw nothing). To reach the "
 "maximum hardness, you need to disable Pixel feather."
 msgstr ""
+"الحدود الدائرية-الفرشاة الصلبة (الإعداد 0 لن يرسم شيئاً). للحصول على أعلى "
+"مستوى صلابة للفرشاة, يجب تعطيل مفعول ريشة البكسل."
 
 #: ../brushsettings-gen.h:9
 msgid "Pixel feather"
-msgstr ""
+msgstr "ريشة البكسل"
 
 #: ../brushsettings-gen.h:9
 msgid ""
@@ -87,38 +109,47 @@ msgid ""
 " 1.0 blur one pixel (good value)\n"
 " 5.0 notable blur, thin strokes will disappear"
 msgstr ""
+"هذا الإعداد يقلص الصلابة للفرشاة عند الحاجة للحد من تأثير سلم البكسل "
+"(التعرجات)عن طريق جعل اللمسة أكثر غشاوة.\n"
+"0.0 تعطيل (للممحاة القوية و فرش البكسل)\n"
+"1.0 غشاوة لبكسل واحد (قيمة جيدة)\n"
+"5.0 غشاوة ملحوظة, الضربات الرفيعة للفرشاة ستختفي"
 
 #: ../brushsettings-gen.h:10
 msgid "Dabs per basic radius"
-msgstr ""
+msgstr "لمسات كل نصف قطر أساسي"
 
 #: ../brushsettings-gen.h:10
 msgid ""
 "How many dabs to draw while the pointer moves a distance of one brush radius "
 "(more precise: the base value of the radius)"
 msgstr ""
+"كمية اللمسات المرسومة بينما يتحرك المؤشر لمسافة نصف قطر فرشاة واحدة (تحديداً:"
+" القيمة الأساسية لنصف القطر)"
 
 #: ../brushsettings-gen.h:11
 msgid "Dabs per actual radius"
-msgstr ""
+msgstr "لمسات كل نصف قطر فعلي"
 
 #: ../brushsettings-gen.h:11
 msgid ""
 "Same as above, but the radius actually drawn is used, which can change "
 "dynamically"
 msgstr ""
+"مطابق لما أعلاه, لكن نصف القطر المرسوم فعلياً هو المستعمل, والذي يمكن أن "
+"يتغير ديناميكياً"
 
 #: ../brushsettings-gen.h:12
 msgid "Dabs per second"
-msgstr ""
+msgstr "لمسات كل ثانية"
 
 #: ../brushsettings-gen.h:12
 msgid "Dabs to draw each second, no matter how far the pointer moves"
-msgstr ""
+msgstr "لمسات ترسم كل ثانية, بغض النظر عن بعد حركة المؤشر"
 
 #: ../brushsettings-gen.h:13
 msgid "Radius by random"
-msgstr ""
+msgstr "نصف قطر عشوائي"
 
 #: ../brushsettings-gen.h:13
 msgid ""
@@ -128,28 +159,35 @@ msgid ""
 "transparent\n"
 "2) it will not change the actual radius seen by dabs_per_actual_radius"
 msgstr ""
+"تغيير نصف القطر عشوائياً في كل لمسة. يمكنك فعل هذا مع_أمر عشوائي في إعدادات "
+"نصف القطر. عند تطبيقها هنا, هنالك إختلافان:\n"
+"1) القيمة المبهمة ستصحح و بهذا ستكون لمسات نصف القطر الكبيرة ذات شفافية "
+"أكثر\n"
+"2) لن تغير نصف القطر الفعلي الملحوظ باللمسات_كل_نصف قطر_فعلي"
 
 #: ../brushsettings-gen.h:14
 msgid "Fine speed filter"
-msgstr ""
+msgstr "فلتر السرعة الدقيقة"
 
 #: ../brushsettings-gen.h:14
 msgid ""
 "How slow the input fine speed is following the real speed\n"
 "0.0 change immediately as your speed changes (not recommended, but try it)"
 msgstr ""
+"بطء مدخلات السرعة الدقيقة متابعةً السرعة الحقيقية\n"
+"0.0 تتغير فورتغير سرعتك (لا ينصح بها, لكن يمكنك أن تجرب)"
 
 #: ../brushsettings-gen.h:15
 msgid "Gross speed filter"
-msgstr ""
+msgstr "فلتر السرعة الإجمالية"
 
 #: ../brushsettings-gen.h:15
 msgid "Same as 'fine speed filter', but note that the range is different"
-msgstr ""
+msgstr "مماثل ل'فلتر السرعة الدقيقة', لكن يجب ملاحظة أن النطاق مختلف"
 
 #: ../brushsettings-gen.h:16
 msgid "Fine speed gamma"
-msgstr ""
+msgstr "جاما السرعة الدقيقة"
 
 #: ../brushsettings-gen.h:16
 msgid ""
@@ -160,18 +198,23 @@ msgid ""
 "+8.0 very fast speed increases 'fine speed' a lot\n"
 "For very slow speed the opposite happens."
 msgstr ""
+"هذه تغير رد فعل مدخلات 'السرعة الدقيقة' إلى السرعة الفيزيائية الشديدة. سترى "
+"الفرق أفضل إذا كانت 'السرعة الدقيقة' معينة لنصف القطر.\n"
+"-8.0 سرعة عالية جداً لا تزيد 'السرعة الدقيقة' أكثر\n"
+"+8.0 سرعة عالية جداً تزيد 'السرعة الدقيقة' أكثر\n"
+"يحصل العكس للسرعة البطيئة جداً."
 
 #: ../brushsettings-gen.h:17
 msgid "Gross speed gamma"
-msgstr ""
+msgstr "جاما السرعة الإجمالية"
 
 #: ../brushsettings-gen.h:17
 msgid "Same as 'fine speed gamma' for gross speed"
-msgstr ""
+msgstr "مماثل ل 'جاما السرعة الدقيقة' للسرعة الإجمالية"
 
 #: ../brushsettings-gen.h:18
 msgid "Jitter"
-msgstr ""
+msgstr "التوتر"
 
 #: ../brushsettings-gen.h:18
 msgid ""
@@ -180,10 +223,14 @@ msgid ""
 " 1.0 standard deviation is one basic radius away\n"
 "<0.0 negative values produce no jitter"
 msgstr ""
+"إضافة موازن عشوائي إلى المكان حيث كل لمسة مرسومة\n"
+"0.0 غير مفعل\n"
+"1.0 الإنحراف المعياري يوازي نصف القطر الأساسي بعداً\n"
+"<0.0 قيم سلبية لا تنتج أي توتر"
 
 #: ../brushsettings-gen.h:19
 msgid "Offset by speed"
-msgstr ""
+msgstr "الموازنة عن طريق السرعة"
 
 #: ../brushsettings-gen.h:19
 msgid ""
@@ -523,7 +570,7 @@ msgstr ""
 
 #: ../brushsettings-gen.h:54
 msgid "Fine speed"
-msgstr ""
+msgstr "سرعة دقيقة"
 
 #: ../brushsettings-gen.h:54
 msgid ""
@@ -531,6 +578,9 @@ msgid ""
 "values' from the 'help' menu to get a feeling for the range; negative values "
 "are rare but possible for very low speed."
 msgstr ""
+"سرعة حركتك الحالية. يمكن أن تتغير بسرعة كبيرة. جرب'طباعة قيم الإدخال' عن "
+"طريق قائمة 'المساعدة' للحصول على شعورالنطاق; القيم السلبية نادرة ولكنها "
+"ممكنة لسرعة منخفضة جداً."
 
 #: ../brushsettings-gen.h:55
 msgid "Gross speed"

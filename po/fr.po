@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: 0.7.1-git\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-04 18:33+0100\n"
-"PO-Revision-Date: 2015-12-17 23:11+0000\n"
-"Last-Translator: Frederic Mommeja <fmommeja@free.fr>\n"
+"PO-Revision-Date: 2015-12-17 23:54+0000\n"
+"Last-Translator: popolon <popolon@popolon.org>\n"
 "Language-Team: French "
 "<https://hosted.weblate.org/projects/mypaint/libmypaint/fr/>\n"
 "Language: fr\n"
@@ -46,9 +46,8 @@ msgstr ""
 "Ceci sera multiplié par l'opacité. Vous devriez seulement changer la "
 "pression entrée pour ce réglage. Utilisez plutôt 'opaque' pour rendre "
 "l'opacité dépendante de la vitesse.\n"
-"Ce réglage permet d'arrêter le processus de peinture lorsqu'il n'y a plus de "
-"pression. Il s'agit uniquement d'une convention, le comportement est "
-"identique à 'opaque'."
+"Ce réglage permet d'arrêter de peindre lorsque la pression est à zéro. Il "
+"s'agit uniquement d'une convention, le comportement est identique à 'opaque'."
 
 #: ../brushsettings-gen.h:6
 msgid "Opacity linearize"
@@ -83,15 +82,14 @@ msgid "Radius"
 msgstr "Rayon"
 
 #: ../brushsettings-gen.h:7
-#, fuzzy
 msgid ""
 "Basic brush radius (logarithmic)\n"
 " 0.7 means 2 pixels\n"
 " 3.0 means 20 pixels"
 msgstr ""
 "Rayon de base de la brosse (logarithmique)\n"
-" 0,7 signifie 2 pixels\n"
-" 3,0 signifie 20 pixels"
+" 0,7 correspond à 2 pixels\n"
+" 3,0 correspond à 20 pixels"
 
 #: ../brushsettings-gen.h:8
 msgid "Hardness"
@@ -103,7 +101,7 @@ msgid ""
 "Hard brush-circle borders (setting to zero will draw nothing). To reach the "
 "maximum hardness, you need to disable Pixel feather."
 msgstr ""
-"brosse dure-bords circulaires (régler à zéro ne tracera rien). Vous devez "
+"Brosse dure-bords circulaires (régler à zéro ne tracera rien). Vous devez "
 "désactiver l'anticrénelage pour atteindre la dureté maximum"
 
 #: ../brushsettings-gen.h:9
@@ -111,7 +109,6 @@ msgid "Pixel feather"
 msgstr ""
 
 #: ../brushsettings-gen.h:9
-#, fuzzy
 msgid ""
 "This setting decreases the hardness when necessary to prevent a pixel "
 "staircase effect (aliasing) by making the dab more blurred.\n"
@@ -120,9 +117,9 @@ msgid ""
 " 5.0 notable blur, thin strokes will disappear"
 msgstr ""
 "Ce réglage diminue la dureté lorsque nécessaire afin de prévenir un effet "
-"d'escalier sur les pixels.\n"
-"0.0 désactivé (pour les effaceurs très dures et les brosses de pixel)\n"
-" 1.0 floute un pixel (bonne valeur)\n"
+"d'escalier (crénelage) sur les pixels en rendant la touche plus floue.\n"
+" 0.0 désactivé (pour les effaceurs très durs et les brosses de pixel)\n"
+" 1.0 floute un pixel (valeur convenable)\n"
 " 5.0 flou notable, les traits les plus fins disparaissent"
 
 #: ../brushsettings-gen.h:10
@@ -164,7 +161,6 @@ msgid "Radius by random"
 msgstr "Rayon au hasard"
 
 #: ../brushsettings-gen.h:13
-#, fuzzy
 msgid ""
 "Alter the radius randomly each dab. You can also do this with the by_random "
 "input on the radius setting. If you do it here, there are two differences:\n"
@@ -172,26 +168,25 @@ msgid ""
 "transparent\n"
 "2) it will not change the actual radius seen by dabs_per_actual_radius"
 msgstr ""
-"Modifie le rayon de chaque touche au hasard. Vous pouvez également le faire "
-"en utilisant le réglage d'entrée au_hasard du rayon. Si vous le faites ici, "
-"il y a deux différences :\n"
+"Modifie le rayon au hasard à chaque touche. Vous pouvez également le faire "
+"en utilisant l'option au_hasard du réglage rayon. Si vous le faites ici, il "
+"y a deux différences :\n"
 "1) La valeur opaque sera corrigé de façon à ce que les touches de grand "
 "rayon soient plus transparentes\n"
-"2) Il ne changera pas le rayon actuel vu par touches_par_rayon_actuel"
+"2) Il ne changera pas le rayon réel vu par touches_par_rayon_actuel"
 
 #: ../brushsettings-gen.h:14
 msgid "Fine speed filter"
 msgstr "Filtre de vitesse fine"
 
 #: ../brushsettings-gen.h:14
-#, fuzzy
 msgid ""
 "How slow the input fine speed is following the real speed\n"
 "0.0 change immediately as your speed changes (not recommended, but try it)"
 msgstr ""
 "Définit la lenteur à laquelle l'entrée vitesse fine suit la vitesse réelle\n"
-"0,0 change immédiatement lorsque votre vitesse change (non recommandé mais à "
-"essayer)"
+"0,0 change immédiatement lorsque votre vitesse change (non recommandé, mais "
+"à essayer)"
 
 #: ../brushsettings-gen.h:15
 msgid "Gross speed filter"
@@ -208,7 +203,6 @@ msgid "Fine speed gamma"
 msgstr "Gamma de vitesse fine"
 
 #: ../brushsettings-gen.h:16
-#, fuzzy
 msgid ""
 "This changes the reaction of the 'fine speed' input to extreme physical "
 "speed. You will see the difference best if 'fine speed' is mapped to the "
@@ -218,11 +212,11 @@ msgid ""
 "For very slow speed the opposite happens."
 msgstr ""
 "Ceci change la réaction de l'entrée 'vitesse fine' par une vitesse physique "
-"extrême. Vous verrez mieux la différence si 'vitesse fine' est liée au "
+"extrême. Vous verrez d'avantage la différence si 'vitesse fine' est liée au "
 "rayon.\n"
-"-8,0 vitesse très rapide n'augmente pas d'avantage vitesse1\n"
-"+8,0 vitesse très rapide augmente beaucoup vitesse1\n"
-"Lorsque la vitesse est très lente, le contraire se produit."
+"-8,0 Une vitesse très rapide n'augmente pas d'avantage 'vitesse fine'\n"
+"+8,0 Une vitesse très rapide augmente beaucoup 'vitesse fine'\n"
+"Le contraire se produit lorsque la vitesse est très lente."
 
 #: ../brushsettings-gen.h:17
 msgid "Gross speed gamma"
@@ -292,13 +286,13 @@ msgid "Slow tracking per dab"
 msgstr "Pistage lent par touche"
 
 #: ../brushsettings-gen.h:22
-#, fuzzy
 msgid ""
 "Similar as above but at brushdab level (ignoring how much time has passed if "
 "brushdabs do not depend on time)"
 msgstr ""
-"Similaire au paramètre du dessus, mais au niveau des touches de brosse "
-"(ignore le temps passé, si les touches de brosse ne dépendent pas du temps)"
+"Similaire au paramètre ci-dessus, mais au niveau des touches de brosse ("
+"ignore le temps qui s'est écoulé, si les touches de brosse ne dépendent pas "
+"du temps)"
 
 #: ../brushsettings-gen.h:23
 msgid "Tracking noise"
@@ -663,50 +657,55 @@ msgstr ""
 "1.0 le canal alpha est complètement verrouillé"
 
 #: ../brushsettings-gen.h:46
-#, fuzzy
 msgid "Colorize"
-msgstr "Couleur"
+msgstr "Colorer"
 
 #: ../brushsettings-gen.h:46
 msgid ""
 "Colorize the target layer, setting its hue and saturation from the active "
 "brush color while retaining its value and alpha."
 msgstr ""
+"Colorer le calque cible, en réglant sa valeur et sa saturation en fonction "
+"de la couleur de la brosse active, tout en conservant sa valeur et son alpha."
 
 #: ../brushsettings-gen.h:47
 msgid "Snap to pixel"
-msgstr ""
+msgstr "Aligner au pixel"
 
 #: ../brushsettings-gen.h:47
 msgid ""
 "Snap brush dab's center and its radius to pixels. Set this to 1.0 for a thin "
 "pixel brush."
 msgstr ""
+"Aligne le centre de la touche de brosse, ainsi que son rayon, aux pixels. "
+"Réglez le à 1.0 pour une brosse large d'un pixel."
 
 #: ../brushsettings-gen.h:48
-#, fuzzy
 msgid "Pressure gain"
-msgstr "Pression"
+msgstr "Accroissement de la pression"
 
 #: ../brushsettings-gen.h:48
 msgid ""
 "This changes how hard you have to press. It multiplies tablet pressure by a "
 "constant factor."
 msgstr ""
+"Cela change la force avec laquelle il faut presser. Il multiplie la pression "
+"de la tablette par un facteur constant."
 
 #: ../brushsettings-gen.h:53
 msgid "Pressure"
 msgstr "Pression"
 
 #: ../brushsettings-gen.h:53
-#, fuzzy
 msgid ""
 "The pressure reported by the tablet. Usually between 0.0 and 1.0, but it may "
 "get larger when a pressure gain is used. If you use the mouse, it will be "
 "0.5 when a button is pressed and 0.0 otherwise."
 msgstr ""
-"Pression reportée par la tablette, entre 0,0 et 1,0. si vous utilisez la "
-"souris, elle sera de 0,5 lorsque un bouton est pressé, de 0,0 sinon."
+"La pression donnée par la tablette, Elle est habituellement entre 0,0 et "
+"1,0, mais elle peut être plus importante lorsque l'augmentation de pression "
+"est utilisée. Si vous utilisez la souris, elle sera de 0,5 lorsque un bouton "
+"est pressé, ou sinon de 0,0."
 
 #: ../brushsettings-gen.h:54
 msgid "Fine speed"

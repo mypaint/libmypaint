@@ -3,24 +3,26 @@
 # This file is distributed under the same license as the MyPaint package.
 # Dong-Jun Wu, 2010.
 # Cheng-Chia Tseng, 2011.
-#
 msgid ""
 msgstr ""
 "Project-Id-Version: mypaint\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-07-04 18:33+0100\n"
-"PO-Revision-Date: 2015-07-18 18:01+0200\n"
-"Last-Translator: hokkeiv <hokkeiv@live.com>\n"
+"POT-Creation-Date: 2015-07-11 21:24+0100\n"
+"PO-Revision-Date: 2015-12-18 13:24+0800\n"
+"Last-Translator: taijuin Lee <taijuin@gmail.com>\n"
 "Language-Team: Chinese (Taiwan) "
-"<https://hosted.weblate.org/projects/mypaint/libmypaint/zh_TW/>\n"
+"<https://hosted.weblate.org/projects/mypaint/mypaint/zh_TW/>\n"
 "Language: zh_TW\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 2.4-dev\n"
+"X-Generator: Poedit 1.8.4\n"
 
 #: ../brushsettings-gen.h:4
+#: ../gui/brusheditor.py:300
+#: ../po/tmp/resources.xml.h:183
+#, fuzzy
 msgid "Opacity"
 msgstr "不透明度"
 
@@ -383,6 +385,8 @@ msgstr ""
 "1.0 更飽和"
 
 #: ../brushsettings-gen.h:33
+#: ../gui/brusheditor.py:323
+#, fuzzy
 msgid "Smudge"
 msgstr "塗抹"
 
@@ -437,6 +441,8 @@ msgstr ""
 "+1.6 筆刷半徑的 5 倍 (表現緩慢)"
 
 #: ../brushsettings-gen.h:36
+#: ../gui/device.py:50
+#, fuzzy
 msgid "Eraser"
 msgstr "橡皮擦"
 
@@ -603,7 +609,10 @@ msgid ""
 "constant factor."
 msgstr "這會改變您所需要按壓的力度，將繪圖板的壓力乘以固定倍率。"
 
+#. Tab label in preferences dialog
 #: ../brushsettings-gen.h:53
+#: ../po/tmp/preferenceswindow.glade.h:27
+#, fuzzy
 msgid "Pressure"
 msgstr "壓力"
 
@@ -648,6 +657,8 @@ msgid ""
 msgstr "快速隨機噪點，於每次評估時改變。在 0 和 1 之間均勻分佈。"
 
 #: ../brushsettings-gen.h:57
+#: ../gui/brusheditor.py:359
+#, fuzzy
 msgid "Stroke"
 msgstr "筆劃"
 
@@ -690,6 +701,8 @@ msgid ""
 msgstr "筆尖傾斜的右增。0 當筆尖的工作端指向您；+90 當筆尖順時鐘旋轉 90 度；-90 當筆尖逆時鐘旋轉 90 度。"
 
 #: ../brushsettings-gen.h:61
+#: ../gui/brusheditor.py:385
+#, fuzzy
 msgid "Custom"
 msgstr "自訂"
 

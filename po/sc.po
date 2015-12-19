@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-04 18:33+0100\n"
-"PO-Revision-Date: 2015-10-25 21:55+0200\n"
+"PO-Revision-Date: 2015-12-19 03:55+0000\n"
 "Last-Translator: Ajeje Brazorf <lmelonimamo@yahoo.it>\n"
 "Language-Team: Sardinian "
 "<https://hosted.weblate.org/projects/mypaint/libmypaint/sc/>\n"
@@ -115,38 +115,50 @@ msgid ""
 " 1.0 blur one pixel (good value)\n"
 " 5.0 notable blur, thin strokes will disappear"
 msgstr ""
+"Custa impostatzione minimat sa tostesa cando serbit pro prevènnere s’efetu "
+"iscalitadura de sos pixels, isfumende sas pintzelladas.\n"
+" 0.0 istuda (pro gommas fortes meda e pintzellos de pixels)\n"
+" 1.0 isfumadura de unu pixel (valore bonu)\n"
+" 5.0 isfumadura notèvole, sas pintzelladas prus fines ant a iscumpàrrere"
 
 #: ../brushsettings-gen.h:10
 msgid "Dabs per basic radius"
-msgstr ""
+msgstr "Pintzelladas pro raju de base"
 
 #: ../brushsettings-gen.h:10
 msgid ""
 "How many dabs to draw while the pointer moves a distance of one brush radius "
 "(more precise: the base value of the radius)"
 msgstr ""
+"Nùmeru de pintzelladas de disinnare cando su puntadore si mòet de unu tantu "
+"uguale a sa mannària de su pintzellu (prus pretzisamente: su raju de base de "
+"su pintzellu)"
 
 #: ../brushsettings-gen.h:11
 msgid "Dabs per actual radius"
-msgstr ""
+msgstr "Pintzelladas pro raju reale"
 
 #: ../brushsettings-gen.h:11
 msgid ""
 "Same as above, but the radius actually drawn is used, which can change "
 "dynamically"
 msgstr ""
+"Comente in subra, ma benit impreadu su raju beru disinnadu, chi podet mudare "
+"dinamicamente"
 
 #: ../brushsettings-gen.h:12
 msgid "Dabs per second"
-msgstr ""
+msgstr "Pintzelladas pro segundu"
 
 #: ../brushsettings-gen.h:12
 msgid "Dabs to draw each second, no matter how far the pointer moves"
 msgstr ""
+"Pintzelladas de disinnare pro cada segundu, cun cale si siat nùmeru de "
+"movimentos de su puntadore"
 
 #: ../brushsettings-gen.h:13
 msgid "Radius by random"
-msgstr ""
+msgstr "Raju casuale"
 
 #: ../brushsettings-gen.h:13
 msgid ""
@@ -156,24 +168,35 @@ msgid ""
 "transparent\n"
 "2) it will not change the actual radius seen by dabs_per_actual_radius"
 msgstr ""
+"Muda su raju in manera casuale pro cada pintzellada. Lu podes fintzas "
+"fàghere cun sas impostatziones de \"intrada casuale\". Si lu faghes inoghe, "
+"b'ant a èssere duas diferèntzias:\n"
+"1) su valore de s’annapu at a èssere curretu pro tènnere sas pintzelladas de "
+"raju prus mannu prus trasparentes\n"
+"2) no at a mudare su raju reale chi si biet dae dabs_per_actual_radius"
 
 #: ../brushsettings-gen.h:14
 msgid "Fine speed filter"
-msgstr ""
+msgstr "Filtru lestresa fine"
 
 #: ../brushsettings-gen.h:14
 msgid ""
 "How slow the input fine speed is following the real speed\n"
 "0.0 change immediately as your speed changes (not recommended, but try it)"
 msgstr ""
+"Cantu lentamente sa \"lestresa fine\" sighit sa lestresa reale\n"
+"0.0 mudat in su matessi momentu de sa modìfica de lestresa tua (non ti lu "
+"cussigiamus, ma proa·lu)"
 
 #: ../brushsettings-gen.h:15
 msgid "Gross speed filter"
-msgstr ""
+msgstr "Filtru lestresa grussa"
 
 #: ../brushsettings-gen.h:15
 msgid "Same as 'fine speed filter', but note that the range is different"
 msgstr ""
+"Sa matessi cosa de su \"filtru lestresa fine\", ma abbàida chi su raju est "
+"diferente"
 
 #: ../brushsettings-gen.h:16
 msgid "Fine speed gamma"

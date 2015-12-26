@@ -8,24 +8,28 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-04 18:33+0100\n"
-"PO-Revision-Date: 2015-07-04 18:33+0100\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"PO-Revision-Date: 2015-12-26 11:50+0000\n"
+"Last-Translator: Alp <aslansi1906@gmail.com>\n"
+"Language-Team: Turkish "
+"<https://hosted.weblate.org/projects/mypaint/libmypaint/tr/>\n"
 "Language: tr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 2.5-dev\n"
 
 #: ../brushsettings-gen.h:4
 msgid "Opacity"
-msgstr ""
+msgstr "Opaklık"
 
 #: ../brushsettings-gen.h:4
 msgid ""
 "0 means brush is transparent, 1 fully visible\n"
 "(also known as alpha or opacity)"
 msgstr ""
+"0, saydam; 1, opak anlamına geliyor\n"
+"(alfa veya opaklık olarak da bilinir)"
 
 #: ../brushsettings-gen.h:5
 msgid "Opacity multiply"
@@ -172,7 +176,7 @@ msgstr ""
 
 #: ../brushsettings-gen.h:18
 msgid "Jitter"
-msgstr ""
+msgstr "Titreme"
 
 #: ../brushsettings-gen.h:18
 msgid ""
@@ -250,7 +254,7 @@ msgstr ""
 
 #: ../brushsettings-gen.h:27
 msgid "Save color"
-msgstr ""
+msgstr "Rengi kaydet"
 
 #: ../brushsettings-gen.h:27
 msgid ""
@@ -325,7 +329,7 @@ msgstr ""
 
 #: ../brushsettings-gen.h:33
 msgid "Smudge"
-msgstr ""
+msgstr "Lekeleme"
 
 #: ../brushsettings-gen.h:33
 msgid ""
@@ -338,7 +342,7 @@ msgstr ""
 
 #: ../brushsettings-gen.h:34
 msgid "Smudge length"
-msgstr ""
+msgstr "Lekeleme Uzunluğu"
 
 #: ../brushsettings-gen.h:34
 msgid ""
@@ -366,7 +370,7 @@ msgstr ""
 
 #: ../brushsettings-gen.h:36
 msgid "Eraser"
-msgstr ""
+msgstr "Silgi"
 
 #: ../brushsettings-gen.h:36
 msgid ""
@@ -513,7 +517,7 @@ msgstr ""
 
 #: ../brushsettings-gen.h:53
 msgid "Pressure"
-msgstr ""
+msgstr "Basınç"
 
 #: ../brushsettings-gen.h:53
 msgid ""
@@ -545,7 +549,7 @@ msgstr ""
 
 #: ../brushsettings-gen.h:56
 msgid "Random"
-msgstr ""
+msgstr "Rastgele"
 
 #: ../brushsettings-gen.h:56
 msgid ""
@@ -566,7 +570,7 @@ msgstr ""
 
 #: ../brushsettings-gen.h:58
 msgid "Direction"
-msgstr ""
+msgstr "Yön"
 
 #: ../brushsettings-gen.h:58
 msgid ""

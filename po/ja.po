@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: MyPaint\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-04 18:33+0100\n"
-"PO-Revision-Date: 2015-12-29 01:51+0900\n"
+"PO-Revision-Date: 2015-12-29 02:52+0900\n"
 "Last-Translator: \n"
 "Language-Team: Japanese <kde-i18n-doc@kde.org>\n"
 "Language: ja\n"
@@ -27,7 +27,6 @@ msgstr ""
 #: ../brushsettings-gen.h:4
 #: ../gui/brusheditor.py:300
 #: ../po/tmp/resources.xml.h:183
-#, fuzzy
 msgid "Opacity"
 msgstr "不透明度"
 
@@ -87,15 +86,14 @@ msgid "Radius"
 msgstr "半径"
 
 #: ../brushsettings-gen.h:7
-#, fuzzy
 msgid ""
 "Basic brush radius (logarithmic)\n"
 " 0.7 means 2 pixels\n"
 " 3.0 means 20 pixels"
 msgstr ""
-"基本ブラシ半径(対数的)\n"
-" 0.7 = 2ピクセル\n"
-" 3.0 = 20ピクセル"
+"基本ブラシ半径 (対数的)\n"
+" 0.7 = 2 ピクセル\n"
+" 3.0 = 20 ピクセル"
 
 #: ../brushsettings-gen.h:8
 msgid "Hardness"
@@ -136,7 +134,7 @@ msgstr "基本ブラシ半径あたり描点数"
 msgid ""
 "How many dabs to draw while the pointer moves a distance of one brush radius "
 "(more precise: the base value of the radius)"
-msgstr " ポインタがブラシ半径（より正確には、基本ブラシ半径）の分だけ移動する間の描点数"
+msgstr "ポインタがブラシ半径 (より正確には、ブラシ半径の基本値) の分だけ移動する間に描画される描点の数"
 
 #: ../brushsettings-gen.h:11
 msgid "Dabs per actual radius"
@@ -150,18 +148,17 @@ msgstr "上記の項目と同様のパラメータですが、基本ブラシ半
 
 #: ../brushsettings-gen.h:12
 msgid "Dabs per second"
-msgstr "１秒間辺りの描点数"
+msgstr "1 秒間辺りの描点数"
 
 #: ../brushsettings-gen.h:12
 msgid "Dabs to draw each second, no matter how far the pointer moves"
-msgstr "１秒間辺りの描点数(移動距離に非依存)"
+msgstr "1 秒間辺りの描点数 (移動距離に非依存)"
 
 #: ../brushsettings-gen.h:13
 msgid "Radius by random"
 msgstr "ランダムに変化する半径の大きさ"
 
 #: ../brushsettings-gen.h:13
-#, fuzzy
 msgid ""
 "Alter the radius randomly each dab. You can also do this with the by_random "
 "input on the radius setting. If you do it here, there are two differences:\n"
@@ -169,26 +166,22 @@ msgid ""
 "transparent\n"
 "2) it will not change the actual radius seen by dabs_per_actual_radius"
 msgstr ""
-"個々の描点の半径をランダムに変化させます。「半径」の詳細設定で「ランダム」パ"
-"ラメータをマッピングして設定しても同様の効果を得ますが、この項目で設定すると"
-"以下の２つの違いがあります。\n"
+"個々の描点の半径をランダムに変化させます。「半径」の詳細設定で「ランダム」パラメータを使用しても同様の効果を得られますが、この項目での設定は以下の 2 "
+"つの点で異なります。\n"
 "1) 不透明度の値は、半径が大きくなると透明度が高くなるように補正されます。\n"
-"2) 「実際のブラシ半径あたりの描点数」で参照される「実際のブラシ半径」の値には"
-"影響を与えません。"
+"2) 「実際のブラシ半径あたりの描点数」で参照される「実際のブラシ半径」の値には影響を与えません。"
 
 #: ../brushsettings-gen.h:14
 msgid "Fine speed filter"
 msgstr "「詳細速度」フィルタ"
 
 #: ../brushsettings-gen.h:14
-#, fuzzy
 msgid ""
 "How slow the input fine speed is following the real speed\n"
 "0.0 change immediately as your speed changes (not recommended, but try it)"
 msgstr ""
-"「詳細速度」パラメータが、実際の速さに対してどの程度敏感に変化するかを指定し"
-"ます\n"
-"0.0: 速度変化に応じ即座に変化します。 (非推奨、しかし試してみて下さい)"
+"「詳細速度」パラメータが、実際の速さに対してどの程度敏感に変化するかを指定します\n"
+"0.0: 速度変化に応じ即座に変化します。 (非推奨ですが、試してみてください)"
 
 #: ../brushsettings-gen.h:15
 msgid "Gross speed filter"
@@ -203,7 +196,6 @@ msgid "Fine speed gamma"
 msgstr "「詳細速度」のガンマ値"
 
 #: ../brushsettings-gen.h:16
-#, fuzzy
 msgid ""
 "This changes the reaction of the 'fine speed' input to extreme physical "
 "speed. You will see the difference best if 'fine speed' is mapped to the "
@@ -212,12 +204,11 @@ msgid ""
 "+8.0 very fast speed increases 'fine speed' a lot\n"
 "For very slow speed the opposite happens."
 msgstr ""
-"これは極端な物理的な速度の入力に対する、「詳細速度」パラメータの反応を変更し"
-"ます。「詳細速度」パラメータが「半径」に対してマッピングされていた場合に、最"
-"もよく違いが現れます。\n"
+"これは、極端な物理的速度の入力に対する、「詳細速度」パラメータの反応を変更します。「詳細速度」パラメータが「半径」に対してマッピングされていた場合に、最も"
+"よく違いが現れます。\n"
 "-8.0 非常に速い速度では、あまり「詳細速度」を増加しません。\n"
 "+8.0 非常に速い速度では、「詳細速度」を大幅に増加します。\n"
-"ポインタの動きがとても遅いの場合は、逆のことが起こります。"
+"ポインタの動きがとても遅い場合は、逆のことが起こります。"
 
 #: ../brushsettings-gen.h:17
 msgid "Gross speed gamma"
@@ -249,17 +240,16 @@ msgid "Offset by speed"
 msgstr "速度依存オフセット"
 
 #: ../brushsettings-gen.h:19
-#, fuzzy
 msgid ""
 "Change position depending on pointer speed\n"
 "= 0 disable\n"
 "> 0 draw where the pointer moves to\n"
 "< 0 draw where the pointer comes from"
 msgstr ""
-"ポインタの速さに応じてポインタの位置を変更します。\n"
-"=0 無効\n"
-"> 0 ポインタの移動先に描く\n"
-"<0 ポインタの移動元に描く"
+"ポインタの速さに応じて位置を変更します\n"
+"= 0 無効\n"
+"> 0 ポインタの移動先の位置に描画\n"
+"< 0 ポインタの移動元の位置に描画"
 
 #: ../brushsettings-gen.h:20
 msgid "Offset by speed filter"
@@ -425,7 +415,6 @@ msgstr ""
 
 #: ../brushsettings-gen.h:33
 #: ../gui/brusheditor.py:323
-#, fuzzy
 msgid "Smudge"
 msgstr "混色"
 
@@ -481,7 +470,6 @@ msgstr ""
 
 #: ../brushsettings-gen.h:36
 #: ../gui/device.py:50
-#, fuzzy
 msgid "Eraser"
 msgstr "消しゴム"
 
@@ -602,7 +590,6 @@ msgid "Elliptical dab: angle"
 msgstr "楕円形の描点：角度"
 
 #: ../brushsettings-gen.h:43
-#, fuzzy
 msgid ""
 "Angle by which elliptical dabs are tilted\n"
 " 0.0 horizontal dabs\n"
@@ -611,7 +598,7 @@ msgid ""
 msgstr ""
 "楕円形状の描点を傾斜させる角度\n"
 " 0.0 水平の描点\n"
-" 45.0 時計回りに45度傾斜\n"
+" 45.0 時計回りに 45 度傾斜\n"
 " 180.0 再び水平の描点に戻る"
 
 #: ../brushsettings-gen.h:44
@@ -679,7 +666,6 @@ msgstr ""
 #. Tab label in preferences dialog
 #: ../brushsettings-gen.h:53
 #: ../po/tmp/preferenceswindow.glade.h:27
-#, fuzzy
 msgid "Pressure"
 msgstr "筆圧"
 
@@ -729,7 +715,6 @@ msgstr "高速なランダムノイズ、個々の算出で変化します。0�
 
 #: ../brushsettings-gen.h:57
 #: ../gui/brusheditor.py:359
-#, fuzzy
 msgid "Stroke"
 msgstr "ストローク"
 
@@ -776,7 +761,6 @@ msgstr ""
 
 #: ../brushsettings-gen.h:61
 #: ../gui/brusheditor.py:385
-#, fuzzy
 msgid "Custom"
 msgstr "カスタム"
 

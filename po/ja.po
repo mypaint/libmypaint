@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: MyPaint\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-04 18:33+0100\n"
-"PO-Revision-Date: 2015-12-13 00:51+0900\n"
+"PO-Revision-Date: 2015-12-29 01:39+0900\n"
 "Last-Translator: \n"
 "Language-Team: Japanese <kde-i18n-doc@kde.org>\n"
 "Language: ja\n"
@@ -679,6 +679,7 @@ msgstr ""
 #. Tab label in preferences dialog
 #: ../brushsettings-gen.h:53
 #: ../po/tmp/preferenceswindow.glade.h:27
+#, fuzzy
 msgid "Pressure"
 msgstr "筆圧"
 

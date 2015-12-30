@@ -45,10 +45,8 @@ These two lines are equivalent too. To save time,
 Packagers often need the ability to build for a given prefix,
 but have to install somewhere else.
 We recommend using the sandboxing options built into SCons for this.
-An example, with some additional build variables for flavour:
 
-    $ scons enable_gegl=true use_sharedlib=yes prefix=/usr \
-        --install-sandbox=/tmp/sandbox1 /tmp/sandbox1
+    $ scons prefix=/usr --install-sandbox=/tmp/sandbox1 /tmp/sandbox1
 
 This builds libmypaint as if its eventual prefix will be `/usr`,
 but puts the files into `/tmp/sandbox1/usr`

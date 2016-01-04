@@ -1,3 +1,5 @@
+from __future__ import print_function
+
 Import('env', 'install_perms')
 
 import os, sys
@@ -80,9 +82,9 @@ env = env.Clone()
 
 if env['enable_introspection']:
     if not env['use_glib']:
-        print "Enabling glib because of enable_introspection=true"
+        print("Enabling glib because of enable_introspection=true")
     if not env['use_sharedlib']:
-        print "Building a shared lib instead of a static lib because of enable_introspection=true"
+        print("Building a shared lib instead of a static lib because of enable_introspection=true")
     env['use_glib'] = True
     env['use_sharedlib'] = True
 
@@ -97,7 +99,7 @@ env.Append(CPPDEFINES='HAVE_JSON_C')
 json_pkgconfig = 'json-c'
 
 if subprocess.call(["pkg-config", json_pkgconfig]):
-    print "Could not find 'json-c' pkg-config, trying legacy 'json' instead"
+    print("Could not find 'json-c' pkg-config, trying legacy 'json' instead")
     json_pkgconfig = 'json'
 
 pkg_deps = [json_pkgconfig]

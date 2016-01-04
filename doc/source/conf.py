@@ -11,6 +11,8 @@
 # All configuration values have a default; values that are commented out
 # serve to show the default.
 
+from __future__ import print_function
+
 import os
 
 # If extensions (or modules to document with autodoc) are in another directory,
@@ -30,7 +32,7 @@ extensions = ['sphinx.ext.autodoc', 'sphinx.ext.doctest', 'sphinx.ext.intersphin
 # Breathe setup, for integrating doxygen content
 extensions.append('breathe')
 doxyxml_dir = os.path.join(os.path.abspath(os.path.dirname(__file__)), '../doxygen')
-print doxyxml_dir
+print(doxyxml_dir)
 breathe_projects = {"libmypaint": doxyxml_dir}
 breathe_default_project = "libmypaint"
 

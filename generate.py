@@ -49,7 +49,7 @@ def writefile(filename, s):
 def generate_enum(enum_name, enum_prefix, count_name, name_list, value_list):
     # Can only generate an enum which starts at 0, and where each value is 1 more than the former
     assert len(name_list) == len(value_list)
-    assert value_list == list(xrange(0, len(value_list)))
+    assert value_list == list(range(0, len(value_list)))
 
     indent = " " * 4
     begin = "typedef enum {\n"

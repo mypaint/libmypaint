@@ -35,6 +35,7 @@ opts.Add(BoolVariable('enable_openmp', 'enable OpenMP for multithreaded processi
 opts.Add(BoolVariable('use_sharedlib', 'build a shared library instead of a static library (forced on by introspection)', True))
 opts.Add(BoolVariable('use_glib', 'enable glib (forced on by introspection)', False))
 opts.Add('python_binary', 'python executable to build for', default_python_binary)
+opts.Add('sphinx_build_binary', 'sphinx-build binary used for building documentation', 'sphinx-build')
 
 tools = ['default', 'textfile']
 

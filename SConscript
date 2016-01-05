@@ -108,7 +108,7 @@ if env['enable_openmp']:
 
 if env['enable_i18n']:
     env.Append(CPPDEFINES='HAVE_GETTEXT')
-    if sys.platform == "darwin":
+    if not sys.platform.startswith("gnu") and not sys.platform.startswith("linux"):
         libs += ['intl']
 
 

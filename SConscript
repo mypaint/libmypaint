@@ -52,7 +52,7 @@ def create_pkgconfig_files(env, pkgconfig_name, version, description,
     }
     pc_file = env.Substfile('%s.pc' % pkgconfig_name,
                             "pkgconfig.pc.in", SUBST_DICT=pkg_info)
-    install_perms(env, '$prefix/lib/pkgconfig', pc_file)
+    install_perms(env, '$libdir/pkgconfig', pc_file)
 
     return pc_file
 
@@ -162,14 +162,14 @@ if env['enable_introspection']:
                               Glob("glib/mypaint-[!gegl]*.c") + Glob("glib/mypaint-[!gegl]*.h"),
                               ['./'], brushlib, ['glib-2.0'], [])
 
-    install_perms(env, '$prefix/share/gir-1.0', gir)
-    install_perms(env, '$prefix/lib/girepository-1.0', typelib)
+    install_perms(env, '$datadir/gir-1.0', gir)
+    install_perms(env, '$libdir/girepository-1.0', typelib)
 
-install_perms(env, '$prefix/lib/', brushlib)
-install_perms(env, '$prefix/include/libmypaint', Glob("./mypaint-*.h"))
-install_perms(env, '$prefix/include/libmypaint/glib', Glob("./glib/mypaint-*.h"))
-install_perms(env, "$prefix/share/libmypaint", Glob("./*.py"))
-install_perms(env, "$prefix/share/libmypaint", "./brushsettings.json")
+install_perms(env, '$libdir/', brushlib)
+install_perms(env, '$includedir/libmypaint', Glob("./mypaint-*.h"))
+install_perms(env, '$includedir/libmypaint/glib', Glob("./glib/mypaint-*.h"))
+install_perms(env, "$datadir/libmypaint", Glob("./*.py"))
+install_perms(env, "$datadir/libmypaint", "./brushsettings.json")
 
 if env['enable_i18n']:
     languages = SConscript('po/SConscript')
@@ -185,8 +185,8 @@ if env['enable_gegl']:
     lib_builder = gegl_env.SharedLibrary if env['use_sharedlib'] else gegl_env.StaticPicLibrary
     brushlib_gegl = lib_builder('./mypaint-gegl', Glob("./gegl/*.c"))
 
-    install_perms(env, '$prefix/lib/', brushlib_gegl)
-    install_perms(env, '$prefix/include/libmypaint-gegl', Glob("./gegl/mypaint-gegl-*.h"))
+    install_perms(env, '$libdir/', brushlib_gegl)
+    install_perms(env, '$includedir/libmypaint-gegl', Glob("./gegl/mypaint-gegl-*.h"))
 
     create_pkgconfig_files(env, 'libmypaint-gegl', brushlib_version, 'MyPaint brush engine library, with GEGL integration',
                            libname='mypaint-gegl', deps=deps + ['libmypaint'])
@@ -200,8 +200,8 @@ if env['enable_gegl']:
                                   ['glib-2.0', 'gegl-%s' % env['GEGL_VERSION']],
                                   ['Gegl-%s' % env['GEGL_VERSION'], 'MyPaint-%s' % brushlib_version])
 
-        install_perms(env, '$prefix/share/gir-1.0', gir)
-        install_perms(env, '$prefix/lib/girepository-1.0', typelib)
+        install_perms(env, '$datadir/gir-1.0', gir)
+        install_perms(env, '$libdir/girepository-1.0', typelib)
 
 Export('gegl_env', 'env', 'parse_pkg_config')
 tests = SConscript('tests/SConscript')

@@ -24,6 +24,9 @@ opts.Add(
     default=default_prefix,
     validator=isabs,
 )
+opts.Add('libdir', 'Directory into which libraries are installed', default='lib')
+opts.Add('includedir', 'Directory into which headers are installed', default='include')
+opts.Add('datadir', 'Directory into which shared data is installed', default='share')
 opts.Add(BoolVariable('debug', 'enable HEAVY_DEBUG and disable optimizations', False))
 opts.Add(BoolVariable('enable_profiling', 'enable debug symbols for profiling purposes', True))
 opts.Add(BoolVariable('enable_i18n', 'enable i18n support for brushlib (requires gettext)', True))
@@ -56,6 +59,12 @@ if os.environ.has_key('LDFLAGS'):
    env['LINKFLAGS'] += SCons.Util.CLVar(os.environ['LDFLAGS'])
 
 opts.Update(env)
+
+for d in ('lib', 'include', 'data'):
+    key = d + 'dir'
+    val = env[key]
+    if not val.startswith(os.sep):
+        env[key] = os.path.join(env['prefix'], val)
 
 env.Append(CXXFLAGS=' -Wall -Wno-sign-compare -Wno-write-strings')
 env.Append(CCFLAGS='-Wall -Wstrict-prototypes -Werror')
@@ -94,7 +103,8 @@ def install_perms(env, target, sources, perms=0644, dirperms=0755):
     postaction.
 
     """
-    assert target.startswith('$prefix')
+    assert any(target.startswith(x) for x in (
+        "$prefix", "$libdir", "$includedir", "$datadir"))
     install_targs = env.Install(target, sources)
 
     # Set file permissions, and defer directory permission setting

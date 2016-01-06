@@ -20,13 +20,13 @@
 #include "mypaint-gegl-surface.h"
 #include <gegl-utils.h>
 
-typedef struct _MyPaintGeglTiledSurface {
+struct _MyPaintGeglTiledSurface {
     MyPaintTiledSurface parent;
 
     GeglRectangle extent_rect; // TODO: remove, just use the extent of the buffer
     GeglBuffer *buffer;
     const Babl *format;
-} MyPaintGeglTiledSurface;
+};
 
 #include <glib/mypaint-gegl-glib.c>
 

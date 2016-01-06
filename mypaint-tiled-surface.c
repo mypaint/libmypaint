@@ -645,7 +645,9 @@ void get_color (MyPaintSurface *surface, float x, float y,
     int tx2 = floor(floor(x + r_fringe) / MYPAINT_TILE_SIZE);
     int ty1 = floor(floor(y - r_fringe) / MYPAINT_TILE_SIZE);
     int ty2 = floor(floor(y + r_fringe) / MYPAINT_TILE_SIZE);
+    #ifdef _OPENMP
     int tiles_n = (tx2 - tx1) * (ty2 - ty1);
+    #endif
 
     #pragma omp parallel for schedule(static) if(self->threadsafe_tile_requests && tiles_n > 3)
     for (int ty = ty1; ty <= ty2; ty++) {

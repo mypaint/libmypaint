@@ -24,9 +24,9 @@ opts.Add(
     default=default_prefix,
     validator=isabs,
 )
-opts.Add('libdir', 'Directory into which libraries are installed', default='lib')
-opts.Add('includedir', 'Directory into which headers are installed', default='include')
-opts.Add('datadir', 'Directory into which shared data is installed', default='share')
+opts.Add('libdir', 'Directory into which libraries are installed, absolute or relative to prefix', default='lib')
+opts.Add('includedir', 'Directory into which headers are installed, absolute or relative to prefix', default='include')
+opts.Add('datadir', 'Directory into which shared data is installed, absolute or relative to prefix', default='share')
 opts.Add(BoolVariable('debug', 'enable HEAVY_DEBUG and disable optimizations', False))
 opts.Add(BoolVariable('enable_profiling', 'enable debug symbols for profiling purposes', True))
 opts.Add(BoolVariable('enable_i18n', 'enable i18n support for brushlib (requires gettext)', True))

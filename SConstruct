@@ -63,7 +63,7 @@ opts.Update(env)
 for d in ('lib', 'include', 'data'):
     key = d + 'dir'
     val = env[key]
-    if not val.startswith(os.sep):
+    if not os.path.isabs(val):
         env[key] = os.path.join(env['prefix'], val)
 
 env.Append(CXXFLAGS=' -Wall -Wno-sign-compare -Wno-write-strings')

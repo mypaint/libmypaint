@@ -60,6 +60,7 @@ if os.environ.has_key('LDFLAGS'):
 
 opts.Update(env)
 
+# convert libdir, includedir, datadir to absolute paths if necessary
 for d in ('lib', 'include', 'data'):
     key = d + 'dir'
     val = env[key]

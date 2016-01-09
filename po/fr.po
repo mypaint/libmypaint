@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: 0.7.1-git\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-04 18:33+0100\n"
-"PO-Revision-Date: 2015-12-18 16:15+0000\n"
-"Last-Translator: Reine Kurth <reine.kurth@free.fr>\n"
+"PO-Revision-Date: 2016-01-09 18:34+0000\n"
+"Last-Translator: Adam Magnier <adam@magnier.io>\n"
 "Language-Team: French "
 "<https://hosted.weblate.org/projects/mypaint/libmypaint/fr/>\n"
 "Language: fr\n"
@@ -96,13 +96,12 @@ msgid "Hardness"
 msgstr "Dureté"
 
 #: ../brushsettings-gen.h:8
-#, fuzzy
 msgid ""
 "Hard brush-circle borders (setting to zero will draw nothing). To reach the "
 "maximum hardness, you need to disable Pixel feather."
 msgstr ""
-"Brosse dure-bords circulaires (régler à zéro ne tracera rien). Vous devez "
-"désactiver l'anticrénelage pour atteindre la dureté maximum"
+"Brosse à bords dures circulaires (régler à zéro ne tracera rien). Vous devez "
+"désactiver l’anticrènelage pour atteindre la dureté maximum."
 
 #: ../brushsettings-gen.h:9
 msgid "Pixel feather"
@@ -497,16 +496,15 @@ msgid "Eraser"
 msgstr "Effaceur"
 
 #: ../brushsettings-gen.h:36
-#, fuzzy
 msgid ""
 "how much this tool behaves like an eraser\n"
 " 0.0 normal painting\n"
 " 1.0 standard eraser\n"
 " 0.5 pixels go towards 50% transparency"
 msgstr ""
-"Valeur à laquelle cet outil se comporte comme un effaceur\n"
+"Valeur à laquelle cet outil se comporte comme une gomme\n"
 " 0,0 peindre normalement\n"
-" 1,0 effaceur standard\n"
+" 1,0 gomme standard\n"
 " 0,5 Les pixels tendent vers 50 % de transparence"
 
 #: ../brushsettings-gen.h:37

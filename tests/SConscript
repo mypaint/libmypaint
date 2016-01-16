@@ -19,7 +19,7 @@ if sys.platform == 'win32':
     testlib_env.Append(LIBS=['intl'])
 elif sys.platform == "msys" and os.environ.get("MSYSTEM") != "MSYS":
     testlib_env.Append(LIBS=['intl'])
-testlib_env.Append(CPPPATH=['../'], LIBPATH=['../'])
+testlib_env.Prepend(CPPPATH=['../'], LIBPATH=['../'])
 
 if testlib_env['enable_gperftools']:
     parse_pkg_config(testlib_env, "libprofiler")

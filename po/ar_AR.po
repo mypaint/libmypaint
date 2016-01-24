@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-04 18:33+0100\n"
-"PO-Revision-Date: 2015-12-16 23:34+0000\n"
-"Last-Translator: Limoni Art <spirit_of_sorrow@yahoo.com>\n"
+"PO-Revision-Date: 2016-01-24 05:18+0000\n"
+"Last-Translator: ano <ano0odah17@hotmail.com>\n"
 "Language-Team: Arabic "
 "<https://hosted.weblate.org/projects/mypaint/libmypaint/ar_AR/>\n"
 "Language: ar_AR\n"
@@ -233,6 +233,7 @@ msgid "Offset by speed"
 msgstr "الموازنة عن طريق السرعة"
 
 #: ../brushsettings-gen.h:19
+#, fuzzy
 msgid ""
 "Change position depending on pointer speed\n"
 "= 0 disable\n"
@@ -241,6 +242,7 @@ msgid ""
 msgstr ""
 
 #: ../brushsettings-gen.h:20
+#, fuzzy
 msgid "Offset by speed filter"
 msgstr ""
 
@@ -249,10 +251,12 @@ msgid "How slow the offset goes back to zero when the cursor stops moving"
 msgstr ""
 
 #: ../brushsettings-gen.h:21
+#, fuzzy
 msgid "Slow position tracking"
 msgstr ""
 
 #: ../brushsettings-gen.h:21
+#, fuzzy
 msgid ""
 "Slowdown pointer tracking speed. 0 disables it, higher values remove more "
 "jitter in cursor movements. Useful for drawing smooth, comic-like outlines."

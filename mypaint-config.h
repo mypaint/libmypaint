@@ -14,7 +14,7 @@
 #endif
 
 // Start generated config
-#define MYPAINT_CONFIG_USE_GLIB 1
+#define MYPAINT_CONFIG_USE_GLIB 0
 
 // End generated config
 

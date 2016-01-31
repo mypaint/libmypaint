@@ -25,12 +25,17 @@ if testlib_env['enable_gperftools']:
     parse_pkg_config(testlib_env, "libprofiler")
     testlib_env.Append(CPPDEFINES='HAVE_GPERFTOOLS')
 
-lib_builder = testlib_env.SharedLibrary if env['use_sharedlib'] else testlib_env.StaticPicLibrary
-lib_builder(target='../mypaint-tests', source=testlib_sources)
+# The testing lib is linked against by MyPaint's static build as well as
+# by the test programs below. There's no need to build a dynamic
+# library, since it won't be installed.
+
+lib_builder = testlib_env.StaticPicLibrary
+lib_builder(target='mypaint-tests', source=testlib_sources)
 
 tests_env = testlib_env.Clone()
 
 # Build individual tests
+tests_env.Append(LIBPATH=['.', '..'])
 tests_env['LIBS'].remove('mypaint') # Workaround: ordering wrong when using Prepend on some systems
 tests_env.Prepend(LIBS=['mypaint-tests', 'mypaint'])
 

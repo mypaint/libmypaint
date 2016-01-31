@@ -62,6 +62,15 @@ To list out libmypaint's build variables, with help texts, run
 
     $ scons --help
 
+### Testing
+
+Please run the test suite before sending any pull requests.
+You must build `libmypaint` staticly for the tests to run.
+We use `python-nose` as a test runner. Run the test suite like this:
+
+    $ scons use_sharedlib=false
+    $ nosetests
+
 ### Documentation
 
 Further documentation can be found in the MyPaint wiki:

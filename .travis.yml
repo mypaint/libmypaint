@@ -10,5 +10,6 @@ addons:
       - python-nose
 
 script:
-    - scons
+    - scons use_sharedlib=false
     - nosetests
+    - scons use_sharedlib=true

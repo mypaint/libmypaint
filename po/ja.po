@@ -413,7 +413,6 @@ msgstr ""
 
 #: ../brushsettings-gen.h:33
 #: ../gui/brusheditor.py:323
-#, fuzzy
 msgid "Smudge"
 msgstr "混色"
 
@@ -665,7 +664,6 @@ msgstr "これにより、描画に必要となる筆圧を変更できます。
 #. Tab label in preferences dialog
 #: ../brushsettings-gen.h:53
 #: ../po/tmp/preferenceswindow.glade.h:27
-#, fuzzy
 msgid "Pressure"
 msgstr "筆圧"
 

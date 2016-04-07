@@ -8,33 +8,34 @@ msgstr ""
 "Project-Id-Version: MyPaint GIT\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-04 18:33+0100\n"
-"PO-Revision-Date:\n"
-"Last-Translator: Lukasz Lubojanski <lukasz@lubojanski.info>\n"
-"Language-Team: Lukasz Lubojanski <lukasz@lugojanski.info>\n"
-"Language: \n"
+"PO-Revision-Date: 2016-04-07 14:26+0000\n"
+"Last-Translator: Mariusz Kryjak <cerb3ruspl@gmail.com>\n"
+"Language-Team: Polish "
+"<https://hosted.weblate.org/projects/mypaint/libmypaint/pl/>\n"
+"Language: pl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
+"|| n%100>=20) ? 1 : 2;\n"
+"X-Generator: Weblate 2.6-dev\n"
 "X-Poedit-Language: Polish\n"
 "X-Poedit-Country: Polski\n"
 "X-Poedit-SourceCharset: utf-8\n"
 
 #: ../brushsettings-gen.h:4
-#, fuzzy
 msgid "Opacity"
-msgstr "Krycie:"
+msgstr "Krycie"
 
 #: ../brushsettings-gen.h:4
-#, fuzzy
 msgid ""
 "0 means brush is transparent, 1 fully visible\n"
 "(also known as alpha or opacity)"
-msgstr "0 oznacza przeźroczysty pędzel, 1 oznacza w pełni widoczny."
+msgstr "0 oznacza przeźroczysty pędzel, 1 oznacza w pełni widoczny"
 
 #: ../brushsettings-gen.h:5
-#, fuzzy
 msgid "Opacity multiply"
-msgstr "mnożenie krycia"
+msgstr "Mnożenie krycia"
 
 #: ../brushsettings-gen.h:5
 msgid ""
@@ -43,14 +44,17 @@ msgid ""
 "This setting is responsible to stop painting when there is zero pressure. "
 "This is just a convention, the behaviour is identical to 'opaque'."
 msgstr ""
+"To zostaje zwielokrotnione z nieprzeźroczystością. Powinieneś jedynie "
+"zmienić wejściowy nacisk dla tego ustawienia. Zamiast tego użyj "
+"'nieprzeźroczystości' żeby krycie było zależne od szybkości.\n"
+"To ustawienie odpowiada za zatrzymanie malowania gdy zaniknie nacisk - "
+"zachowanie jest identyczne z \"nieprzezroczyste\"."
 
 #: ../brushsettings-gen.h:6
-#, fuzzy
 msgid "Opacity linearize"
-msgstr "liniowość krycia"
+msgstr "Liniowość krycia"
 
 #: ../brushsettings-gen.h:6
-#, fuzzy
 msgid ""
 "Correct the nonlinearity introduced by blending multiple dabs on top of each "
 "other. This correction should get you a linear (\"natural\") pressure "
@@ -61,49 +65,45 @@ msgid ""
 "1.0 the opaque value above is for the final brush stroke, assuming each "
 "pixel gets (dabs_per_radius*2) brushdabs on average during a stroke"
 msgstr ""
-"Poprawia nieliniowość poprzez łączenie wielu kropek-spojeń jedna z drugą. Ta "
+"Poprawia nieliniowość poprzez łączenie wielu kropek jedna z drugą. Ta "
 "operacja daje naturalny wygląd przejścia podczas zmiany nacisku i ustawionej "
 "opcji\"Mnożenia krycia\".\n"
 "0.9 jest dobrą wartością przy standardowych pociągnięciach pędzla. Jeśli "
 "ustawisz mniej pędzel będzie \"skakał\". Możesz ustawić więcej przy używaniu "
-"opcji \"ilość spojeń na sekundę\".\n"
-"0.0 używana jest przy rysowaniu pojedynczych kropek.\n"
-"1.0 używana jest do końcowych posunięć pędzla - każdy pixel otrzymuje "
-"(spojeń na promień * 2) średnio podczas posunięcia."
+"opcji \"ilość kropek na sekundę\".\n"
+"0.0 używana jest przy rysowaniu pojedynczych kropek\n"
+"1.0 używana jest do końcowych posunięć pędzla - każdy piksel otrzymuje ("
+"kropek na promień * 2) średnio podczas posunięcia"
 
 #: ../brushsettings-gen.h:7
-#, fuzzy
 msgid "Radius"
-msgstr "promień"
+msgstr "Średnica"
 
 #: ../brushsettings-gen.h:7
-#, fuzzy
 msgid ""
 "Basic brush radius (logarithmic)\n"
 " 0.7 means 2 pixels\n"
 " 3.0 means 20 pixels"
 msgstr ""
 "Podstawowa wielkość pędzla (logarytmiczna)\n"
-" 0.7 oznacza 2 pixele\n"
-" 3.0 oznacza 20 pixeli."
+" 0.7 oznacza 2 piksele\n"
+" 3.0 oznacza 20 pikseli"
 
 #: ../brushsettings-gen.h:8
-#, fuzzy
 msgid "Hardness"
-msgstr "twardość"
+msgstr "Twardość"
 
 #: ../brushsettings-gen.h:8
-#, fuzzy
 msgid ""
 "Hard brush-circle borders (setting to zero will draw nothing). To reach the "
 "maximum hardness, you need to disable Pixel feather."
 msgstr ""
 "Twardość brzegów okręgu pędzla (ustawienie 0 oznacza, że pędzel nie będzie "
-"malował)."
+"malował). By osiągnąć maksimum twardości wyłącz Cieniowanie pikseli."
 
 #: ../brushsettings-gen.h:9
 msgid "Pixel feather"
-msgstr ""
+msgstr "Cieniowanie pikseli"
 
 #: ../brushsettings-gen.h:9
 msgid ""
@@ -113,52 +113,49 @@ msgid ""
 " 1.0 blur one pixel (good value)\n"
 " 5.0 notable blur, thin strokes will disappear"
 msgstr ""
+"Te ustawienie zmniejsza twardość gdy potrzeba zapobiec efektom schodkowania "
+"pikseli (aliasing) bardziej rozmywając kropki.\n"
+"0.0 wyłącz (dla bardzo mocnych gumek i pędzli pikselowych)\n"
+"1.0 rozmyj jeden piksel (dobra wartość)\n"
+"5.0 widoczne rozmycie, a cienkie kreski zanikną"
 
 #: ../brushsettings-gen.h:10
-#, fuzzy
 msgid "Dabs per basic radius"
-msgstr "ilość kropek na podstawę promienia"
+msgstr "Ilość kropek na podstawowy promień"
 
 #: ../brushsettings-gen.h:10
-#, fuzzy
 msgid ""
 "How many dabs to draw while the pointer moves a distance of one brush radius "
 "(more precise: the base value of the radius)"
 msgstr ""
-"Ilość rysowanych kropek-spojeń podczas posunięcia pędzlem na odległość "
-"jednego promienia."
+"Ilość rysowanych kropek podczas posunięcia pędzlem na odległość jednego "
+"promienia (precyzyjniej: wartość bazowa promienia)"
 
 #: ../brushsettings-gen.h:11
-#, fuzzy
 msgid "Dabs per actual radius"
-msgstr "ilość kropek na właściwy promień"
+msgstr "Ilość kropek na właściwy promień"
 
 #: ../brushsettings-gen.h:11
-#, fuzzy
 msgid ""
 "Same as above, but the radius actually drawn is used, which can change "
 "dynamically"
 msgstr ""
-"Ilość rysowanych kropek-spojeń podczas posunięcia pędzlem na odległość "
-"rzeczywistego promienia, które może zmieniać się dynamicznie poprzez nacisk."
+"Ilość rysowanych kropek podczas posunięcia pędzlem na odległość "
+"rzeczywistego promienia, które może zmieniać się dynamicznie poprzez nacisk"
 
 #: ../brushsettings-gen.h:12
-#, fuzzy
 msgid "Dabs per second"
-msgstr "ilość kropek na sekundę"
+msgstr "Ilość kropek na sekundę"
 
 #: ../brushsettings-gen.h:12
-#, fuzzy
 msgid "Dabs to draw each second, no matter how far the pointer moves"
-msgstr "ilość kropek-spojeń na sekundę - niezależnie od ruchów kursora"
+msgstr "Ilość kropek na sekundę - niezależnie od ruchów kursora"
 
 #: ../brushsettings-gen.h:13
-#, fuzzy
 msgid "Radius by random"
-msgstr "losowy promień"
+msgstr "Losowa średnica"
 
 #: ../brushsettings-gen.h:13
-#, fuzzy
 msgid ""
 "Alter the radius randomly each dab. You can also do this with the by_random "
 "input on the radius setting. If you do it here, there are two differences:\n"
@@ -166,18 +163,16 @@ msgid ""
 "transparent\n"
 "2) it will not change the actual radius seen by dabs_per_actual_radius"
 msgstr ""
-"Zmienia losowo promień każdej kropki-spojenia. Podobny efekt uzyskuje opcja "
-"\"Wartość losowa\"  z tą różnicą, że losowy promień zmniejsza krycie przy "
-"większej kropce oraz nie jest zależny od parametru \"ilość spojeń na "
-"właściwy promień\"."
+"Zmienia losowo średnicę każdej kropki. Podobny efekt uzyskuje opcja \""
+"Wartość losowa\"  z tą różnicą, że losowy promień zmniejsza krycie przy "
+"większej kropce oraz nie jest zależny od parametru \"ilość kropek na "
+"właściwy promień\""
 
 #: ../brushsettings-gen.h:14
-#, fuzzy
 msgid "Fine speed filter"
-msgstr "filtr prędkości odpowiedniej"
+msgstr "Filtr prędkości odpowiedniej"
 
 #: ../brushsettings-gen.h:14
-#, fuzzy
 msgid ""
 "How slow the input fine speed is following the real speed\n"
 "0.0 change immediately as your speed changes (not recommended, but try it)"
@@ -185,25 +180,21 @@ msgstr ""
 "Wartość określa jak bardzo prawdziwa prędkość jest łagodzona przez wartość "
 "'prędkości odpowiedniej'.\n"
 "0.0 oznacza natychmiastową zmianę prędkości do rzeczywistej (nie zalecane "
-"ale można eksperymentować)."
+"ale można eksperymentować)"
 
 #: ../brushsettings-gen.h:15
-#, fuzzy
 msgid "Gross speed filter"
-msgstr "filtr prędkości całkowitej"
+msgstr "Filtr prędkości całkowitej"
 
 #: ../brushsettings-gen.h:15
-#, fuzzy
 msgid "Same as 'fine speed filter', but note that the range is different"
-msgstr "Podobnie jak 'filtr prędkości odpowiedniej' ale ma inny zasięg."
+msgstr "Podobnie jak 'filtr prędkości odpowiedniej' ale ma inny zasięg"
 
 #: ../brushsettings-gen.h:16
-#, fuzzy
 msgid "Fine speed gamma"
-msgstr "gamma prędkości odpowiedniej"
+msgstr "Gamma prędkości odpowiedniej"
 
 #: ../brushsettings-gen.h:16
-#, fuzzy
 msgid ""
 "This changes the reaction of the 'fine speed' input to extreme physical "
 "speed. You will see the difference best if 'fine speed' is mapped to the "
@@ -214,75 +205,66 @@ msgid ""
 msgstr ""
 "Ta wartość zmienia reakcję 'prędkości odpowiedniej' przy bardzo szybkim i "
 "bardzo wolnym poruszaniu kursorem. Najlepiej widoczne efekty są w przypadku "
-"ustawienia tej opcji na wartość promienia\n"
-"-8.0 bardzo szybkie ruchy nie zwiększają więcej 'prędkości odpowiedniej'\n"
-"+8.0 bardzo szybkie ruchy zwiększają bardzo wartość 'prędkości "
-"odpowiedniej'\n"
+"ustawienia tej opcji na wartość promienia.\n"
+"-8.0 'prędkość odpowiednia' nie zostaje zwiększana przez bardzo szybkie "
+"ruchy\n"
+"+8.0 'prędkość odpowiednia' zostaje znacznie zwiększona przez bardzo szybkie "
+"ruchy\n"
 "W przypadku bardzo wolnych ruchów reakcje są odwrotne."
 
 #: ../brushsettings-gen.h:17
-#, fuzzy
 msgid "Gross speed gamma"
-msgstr "gamma całkowitej prędkości"
+msgstr "Gamma całkowitej prędkości"
 
 #: ../brushsettings-gen.h:17
-#, fuzzy
 msgid "Same as 'fine speed gamma' for gross speed"
 msgstr ""
-"podobnie jak 'gamma prędkości odpowiedniej' ale dla 'prędkości całkowitej'."
+"Podobnie jak 'gamma prędkości odpowiedniej' ale dla 'prędkości całkowitej'"
 
 #: ../brushsettings-gen.h:18
-#, fuzzy
 msgid "Jitter"
-msgstr "drgania"
+msgstr "Drgania"
 
 #: ../brushsettings-gen.h:18
-#, fuzzy
 msgid ""
 "Add a random offset to the position where each dab is drawn\n"
 " 0.0 disabled\n"
 " 1.0 standard deviation is one basic radius away\n"
 "<0.0 negative values produce no jitter"
 msgstr ""
-"dodaje losowy odstęp pomiędzy linią pędzla miejscem gdzie zostanie "
-"narysowana kropka.\n"
+"Dodaje losowy odstęp pomiędzy linią pędzla miejscem gdzie zostanie "
+"narysowana kropka\n"
 "0.0 wyłączone\n"
 "1.0 maksymalny odstęp do wielkości podstawowego promienia\n"
-"<0.0 ujemne wartości wyłączają drgania."
+"<0.0 ujemne wartości wyłączają drgania"
 
 #: ../brushsettings-gen.h:19
-#, fuzzy
 msgid "Offset by speed"
-msgstr "odstęp zależny od prędkości"
+msgstr "Odstęp zależny od prędkości"
 
 #: ../brushsettings-gen.h:19
-#, fuzzy
 msgid ""
 "Change position depending on pointer speed\n"
 "= 0 disable\n"
 "> 0 draw where the pointer moves to\n"
 "< 0 draw where the pointer comes from"
 msgstr ""
-"W odległości od kursora pędzla zależnej od prędkości.\n"
-"0 wyłączone\n"
+"W odległości od kursora pędzla zależnej od prędkości\n"
+"= 0 wyłączone\n"
 "> 0 przed kursorem\n"
 "< 0 maluj za kursorem"
 
 #: ../brushsettings-gen.h:20
-#, fuzzy
 msgid "Offset by speed filter"
-msgstr "filtr odstępu zależnego od prędkości"
+msgstr "Filtr odstępu zależnego od prędkości"
 
 #: ../brushsettings-gen.h:20
-#, fuzzy
 msgid "How slow the offset goes back to zero when the cursor stops moving"
-msgstr ""
-"Wartość określa jak szybko odstęp wraca do zera gdy kursor się zatrzymie."
+msgstr "Wartość określa jak szybko odstęp wraca do zera gdy kursor się zatrzyma"
 
 #: ../brushsettings-gen.h:21
-#, fuzzy
 msgid "Slow position tracking"
-msgstr "powolne śledzenie pozycji"
+msgstr "Spowolnienie wygładzania pozycji"
 
 #: ../brushsettings-gen.h:21
 msgid ""
@@ -294,58 +276,49 @@ msgstr ""
 "opcje. Tym większa wartość tym większe wygładzenie."
 
 #: ../brushsettings-gen.h:22
-#, fuzzy
 msgid "Slow tracking per dab"
-msgstr "powolne śledzenie na kropkę"
+msgstr "Spowolnienie wygładzania na kropkę"
 
 #: ../brushsettings-gen.h:22
-#, fuzzy
 msgid ""
 "Similar as above but at brushdab level (ignoring how much time has passed if "
 "brushdabs do not depend on time)"
 msgstr ""
-"Podobnie jak 'powolne śledzenie pozycji', z tą różnicą, że nie jest zależne "
-"od czasu a tylko od ilości rysowanych kropek."
+"Podobnie jak 'spowolnienie wygładzania pozycji', z tą różnicą, że nie jest "
+"zależne od czasu, a tylko od ilości rysowanych kropek"
 
 #: ../brushsettings-gen.h:23
-#, fuzzy
 msgid "Tracking noise"
-msgstr "szum śledzenia kursora"
+msgstr "Szum wygładzania"
 
 #: ../brushsettings-gen.h:23
-#, fuzzy
 msgid ""
 "Add randomness to the mouse pointer; this usually generates many small lines "
 "in random directions; maybe try this together with 'slow tracking'"
 msgstr ""
 "Dodaje wartości losowe do pobranej pozycji kursora powodując rysowanie wielu "
-"małych linii w losowym kierunku. Można poeksperymentować mieszając tą opcję "
-"z 'powolnym śledzeniem'."
+"małych linii w losowym kierunku. Można poeksperymentować mieszając tę opcję "
+"z 'spowalnianiem wygładzania'"
 
 #: ../brushsettings-gen.h:24
-#, fuzzy
 msgid "Color hue"
-msgstr "odcień"
+msgstr "Barwa koloru"
 
 #: ../brushsettings-gen.h:25
-#, fuzzy
 msgid "Color saturation"
-msgstr "nasycenie"
+msgstr "Nasycenie koloru"
 
 #: ../brushsettings-gen.h:26
-#, fuzzy
 msgid "Color value"
-msgstr "jasność"
+msgstr "Jasność koloru"
 
 #: ../brushsettings-gen.h:26
-#, fuzzy
 msgid "Color value (brightness, intensity)"
-msgstr "wartość koloru (jasność, indensywność)"
+msgstr "Wartość koloru (jasność, intensywność)"
 
 #: ../brushsettings-gen.h:27
-#, fuzzy
 msgid "Save color"
-msgstr "zmień odcień koloru"
+msgstr "Zapisz kolor"
 
 #: ../brushsettings-gen.h:27
 msgid ""
@@ -355,68 +328,65 @@ msgid ""
 " 0.5 change active color towards brush color\n"
 " 1.0 set the active color to the brush color when selected"
 msgstr ""
+"Gdy wybierasz pędzle kolor może być przywrócony do koloru zapisanego z "
+"pędzlem.\n"
+"0.0 nie modyfikuj aktywnego koloru podczas wybierania pędzla\n"
+"0.5 zmień aktywny kolor do koloru pędzla\n"
+"1.0 ustaw aktywny kolor do koloru pędzla gdy zostanie wybrany"
 
 #: ../brushsettings-gen.h:28
-#, fuzzy
 msgid "Change color hue"
-msgstr "zmień odcień koloru"
+msgstr "Zmień odcień koloru"
 
 #: ../brushsettings-gen.h:28
-#, fuzzy
 msgid ""
 "Change color hue.\n"
 "-0.1 small clockwise color hue shift\n"
 " 0.0 disable\n"
 " 0.5 counterclockwise hue shift by 180 degrees"
 msgstr ""
-"Zmiania odcień koloru.\n"
+"Zmiana odcienia koloru.\n"
 "-0.1 mała zmiana odcienia (zgodnie ze wskazówkami zegara)\n"
 " 0.0 wyłączone\n"
-" 0.5 zmienia odcień w przewnym kierunku do wskazówek zegara o 180 stopni."
+" 0.5 zmienia odcień w przeciwnym kierunku do wskazówek zegara o 180 stopni"
 
 #: ../brushsettings-gen.h:29
-#, fuzzy
 msgid "Change color lightness (HSL)"
-msgstr "zmień jasność koloru (HSL)"
+msgstr "Zmień jasność koloru (HSL)"
 
 #: ../brushsettings-gen.h:29
-#, fuzzy
 msgid ""
 "Change the color lightness using the HSL color model.\n"
 "-1.0 blacker\n"
 " 0.0 disable\n"
 " 1.0 whiter"
 msgstr ""
-"Zmiana jasności koloru (luminacji) poprzez użycie trybu kolorów HSL\n"
+"Zmiana jasności koloru (luminacji) poprzez użycie modelu kolorów HSL.\n"
 "-1.0 mniej światła\n"
 " 0.0 wyłączone\n"
 " 1.0 więcej światła"
 
 #: ../brushsettings-gen.h:30
-#, fuzzy
 msgid "Change color satur. (HSL)"
-msgstr "zmień nasycenie koloru (HSL)"
+msgstr "Zmień nasycenie koloru (HSL)"
 
 #: ../brushsettings-gen.h:30
-#, fuzzy
 msgid ""
 "Change the color saturation using the HSL color model.\n"
 "-1.0 more grayish\n"
 " 0.0 disable\n"
 " 1.0 more saturated"
 msgstr ""
-"Zmień nasycenie koloru poprzez użycie trybu kolorów HSL\n"
+"Zmień nasycenie koloru poprzez użycie modelu kolorów HSL\n"
 "-1.0 bardziej szare\n"
 " 0.0 wyłączone\n"
 " 1.0 więcej koloru"
 
 #: ../brushsettings-gen.h:31
-#, fuzzy
 msgid "Change color value (HSV)"
-msgstr "zmień wartość koloru (HSV)"
+msgstr "Zmień wartość koloru (HSV)"
 
 #: ../brushsettings-gen.h:31
-#, fuzzy
 msgid ""
 "Change the color value (brightness, intensity) using the HSV color model. "
 "HSV changes are applied before HSL.\n"
@@ -425,18 +395,16 @@ msgid ""
 " 1.0 brigher"
 msgstr ""
 "Zmień wartość koloru (jasność i intensywność) poprzez użycie modelu kolorów "
-"HSV.\n"
+"HSV. Nastawy HSV są zastosowane przed HSL.\n"
 " -1.0 ciemniej\n"
 " 0.0 wyłączone\n"
 " 1.0 jaśniej"
 
 #: ../brushsettings-gen.h:32
-#, fuzzy
 msgid "Change color satur. (HSV)"
-msgstr "zmień nasycenie (HSV)"
+msgstr "Zmień nasycenie koloru (HSV)"
 
 #: ../brushsettings-gen.h:32
-#, fuzzy
 msgid ""
 "Change the color saturation using the HSV color model. HSV changes are "
 "applied before HSL.\n"
@@ -444,18 +412,17 @@ msgid ""
 " 0.0 disable\n"
 " 1.0 more saturated"
 msgstr ""
-"Zmień nasycenie koloru poprzez użycie modelu kolorów HSV.\n"
+"Zmień nasycenie koloru poprzez użycie modelu kolorów HSV. Nastawy HSV są "
+"zastosowane przed HSL.\n"
 "-1.0 bardziej szare\n"
 " 0.0 wyłączone\n"
 " 1.0 więcej koloru"
 
 #: ../brushsettings-gen.h:33
-#, fuzzy
 msgid "Smudge"
-msgstr "rozmazanie"
+msgstr "Rozmazanie"
 
 #: ../brushsettings-gen.h:33
-#, fuzzy
 msgid ""
 "Paint with the smudge color instead of the brush color. The smudge color is "
 "slowly changed to the color you are painting on.\n"
@@ -465,17 +432,15 @@ msgid ""
 msgstr ""
 "Maluje rozmazanym kolorem aktualnego rysunku powoli przechodząc do koloru "
 "pędzla.\n"
-"0.0 nie używaj koloru rozmazanie\n"
+"0.0 nie używaj koloru rozmazania\n"
 "0.5 mieszaj kolor rozmazania z kolorem pędzla\n"
-"1.0 używaj tylko kolor rozmazania"
+"1.0 używaj tylko koloru rozmazania"
 
 #: ../brushsettings-gen.h:34
-#, fuzzy
 msgid "Smudge length"
-msgstr "długość rozmycia"
+msgstr "Długość rozmycia"
 
 #: ../brushsettings-gen.h:34
-#, fuzzy
 msgid ""
 "This controls how fast the smudge color becomes the color you are painting "
 "on.\n"
@@ -487,12 +452,12 @@ msgstr ""
 "Ten parametr kontroluje jak szybko kolor rozmazania przejdzie w faktyczny "
 "kolor pędzla.\n"
 "0.0 natychmiastowe przejście na kolor pędzla\n"
+"0.5 płynnie zmieniaj kolor rozmazania do koloru płótna\n"
 "1.0 zawsze używaj koloru rozmycia"
 
 #: ../brushsettings-gen.h:35
-#, fuzzy
 msgid "Smudge radius"
-msgstr "promień"
+msgstr "Promień rozmycia"
 
 #: ../brushsettings-gen.h:35
 msgid ""
@@ -503,14 +468,17 @@ msgid ""
 "+0.7 twice the brush radius\n"
 "+1.6 five times the brush radius (slow performance)"
 msgstr ""
+"Te ustawienie modyfikuje promień okręgu gdzie pobrano kolor dla rozmazania\n"
+"0.0 używaj promienia pędzla\n"
+"-0.7 połowa z promienia pędzla (szybkie, ale nie zawsze intuicyjne)\n"
+"+0.7 podwojony promień pędzla\n"
+"+1.6 pięciokrotny promień pędzla (wolne działanie)"
 
 #: ../brushsettings-gen.h:36
-#, fuzzy
 msgid "Eraser"
-msgstr "gumka"
+msgstr "Gumka"
 
 #: ../brushsettings-gen.h:36
-#, fuzzy
 msgid ""
 "how much this tool behaves like an eraser\n"
 " 0.0 normal painting\n"
@@ -520,43 +488,39 @@ msgstr ""
 "Jak bardzo pędzel ma zachowywać się jak gumka\n"
 " 0.0 zwykłe malowanie\n"
 " 1.0 pełna gumka\n"
-" 0.5 działa w 50% jako gumka a w 50% jako pędzel"
+" 0.5 działa w 50% jako gumka, a w 50% jako pędzel"
 
 #: ../brushsettings-gen.h:37
-#, fuzzy
 msgid "Stroke threshold"
-msgstr "margines pociągnięcia"
+msgstr "Margines pociągnięcia"
 
 #: ../brushsettings-gen.h:37
-#, fuzzy
 msgid ""
 "How much pressure is needed to start a stroke. This affects the stroke input "
 "only. MyPaint does not need a minimum pressure to start drawing."
 msgstr ""
 "Określa jaki jest wymagany nacisk by zacząć posunięcie pędzla. Wartość ta "
-"dotyczy tylko parametrów 'Pociągnięcia pędzla'."
+"dotyczy tylko parametrów 'Pociągnięcia pędzla'. MyPaint nie wymaga "
+"minimalnego nacisku by rozpocząć malowanie."
 
 #: ../brushsettings-gen.h:38
-#, fuzzy
 msgid "Stroke duration"
-msgstr "długość pociągnięcia"
+msgstr "Długość pociągnięcia"
 
 #: ../brushsettings-gen.h:38
-#, fuzzy
 msgid ""
 "How far you have to move until the stroke input reaches 1.0. This value is "
 "logarithmic (negative values will not invert the process)."
 msgstr ""
 "Określa wymaganą odległość pociągnięcia by wartość 'pociągnięcie pędzla' "
-"doszła do 1.0. Wartość jest wartością logarytmiczną."
+"doszła do 1.0. Wartość jest wartością logarytmiczną (ujemne wartości nie "
+"odwrócą procesu)."
 
 #: ../brushsettings-gen.h:39
-#, fuzzy
 msgid "Stroke hold time"
-msgstr "wstrzymanie pociągnięcia"
+msgstr "Wstrzymanie pociągnięcia"
 
 #: ../brushsettings-gen.h:39
-#, fuzzy
 msgid ""
 "This defines how long the stroke input stays at 1.0. After that it will "
 "reset to 0.0 and start growing again, even if the stroke is not yet "
@@ -564,18 +528,16 @@ msgid ""
 "2.0 means twice as long as it takes to go from 0.0 to 1.0\n"
 "9.9 or higher stands for infinite"
 msgstr ""
-"Określa jak długo wartość 'pociągniecie pędzla' będzie wynosiła 1.0.Po "
-"przekroczeniu 'wstrzymania' wartość wróci do 0 i będzie ponownie rosła.2.0 "
-"oznacza podwójną wartość 'długości pociągnięcia'\n"
-"9.9 i większe oznaczają nieskończoność."
+"Określa jak długo wartość 'pociągniecie pędzla' będzie wynosiła 1.0. Po "
+"przekroczeniu 'wstrzymania' wartość wróci do 0 i będzie ponownie rosła.\n"
+"2.0 oznacza podwójną wartość 'długości pociągnięcia'\n"
+"9.9 i większe oznaczają nieskończoność"
 
 #: ../brushsettings-gen.h:40
-#, fuzzy
 msgid "Custom input"
-msgstr "dowolna wartość"
+msgstr "Dowolna wartość"
 
 #: ../brushsettings-gen.h:40
-#, fuzzy
 msgid ""
 "Set the custom input to this value. If it is slowed down, move it towards "
 "this value (see below). The idea is that you make this input depend on a "
@@ -593,12 +555,10 @@ msgstr ""
 "powolny (gładki) losowy wynik."
 
 #: ../brushsettings-gen.h:41
-#, fuzzy
 msgid "Custom input filter"
-msgstr "filtr wartości dowolnej"
+msgstr "Filtr wartości dowolnej"
 
 #: ../brushsettings-gen.h:41
-#, fuzzy
 msgid ""
 "How slow the custom input actually follows the desired value (the one "
 "above). This happens at brushdab level (ignoring how much time has passed, "
@@ -608,29 +568,26 @@ msgstr ""
 "Wartość określa jak szybko 'wartość dowolna' dochodzi do wartości pożądanej. "
 "Opóźnienie te nie jest zależne od czasu ale tylko od ilości rysowanych "
 "kropek.\n"
-"0.0 brak opóźnienia (zmiany stosują się bezpośrednio)."
+"0.0 brak opóźnienia (zmiany stosują się bezpośrednio)"
 
 #: ../brushsettings-gen.h:42
-#, fuzzy
 msgid "Elliptical dab: ratio"
-msgstr "kropki elipsy"
+msgstr "Eliptyczna kropka: proporcja"
 
 #: ../brushsettings-gen.h:42
-#, fuzzy
 msgid ""
 "Aspect ratio of the dabs; must be >= 1.0, where 1.0 means a perfectly round "
 "dab. TODO: linearize? start at 0.0 maybe, or log?"
 msgstr ""
-"Określa kształt eliptyczny kropki.\n"
-"Wartość musi być >= 1.0 gdzie 1.0 określa idealne kolo."
+"Proporcja kropek; musi wynosić >=10 gdzie 1.0 oznacza idealnie okrągłą "
+"kropkę.\n"
+"TODO: Liniowość? Rozpocznij od 0.0 lub logarytmicznie?"
 
 #: ../brushsettings-gen.h:43
-#, fuzzy
 msgid "Elliptical dab: angle"
-msgstr "kąt kropki elipsy"
+msgstr "Eliptyczna kropka: kąt"
 
 #: ../brushsettings-gen.h:43
-#, fuzzy
 msgid ""
 "Angle by which elliptical dabs are tilted\n"
 " 0.0 horizontal dabs\n"
@@ -639,25 +596,23 @@ msgid ""
 msgstr ""
 "Ta wartość określa kąt w jakim będzie rysowana kropka\n"
 "0.0 i 180.0.rysuje horyzontalnie\n"
-"45.0 rysuje kropkę pod kątem 45 stopni (zgodnie ze wskazówkami zegara)."
+"45.0 rysuje kropkę pod kątem 45 stopni (zgodnie ze wskazówkami zegara)"
 
 #: ../brushsettings-gen.h:44
-#, fuzzy
 msgid "Direction filter"
-msgstr "filtr kierunkowy"
+msgstr "Filtr kierunkowy"
 
 #: ../brushsettings-gen.h:44
-#, fuzzy
 msgid ""
 "A low value will make the direction input adapt more quickly, a high value "
 "will make it smoother"
 msgstr ""
 "Przy małych wartościach zapewnia szybszą reakcję na zmianę kierunku kursora, "
-"większe wartości złagodzą reakcję na kierunek."
+"większe wartości złagodzą reakcję na kierunek"
 
 #: ../brushsettings-gen.h:45
 msgid "Lock alpha"
-msgstr ""
+msgstr "Zablokuj kanał alfa"
 
 #: ../brushsettings-gen.h:45
 msgid ""
@@ -667,52 +622,61 @@ msgid ""
 " 0.5 half of the paint gets applied normally\n"
 " 1.0 alpha channel fully locked"
 msgstr ""
+"Nie modyfikuje kanału alfa warstwy (maluj tylko tam gdzie już jest "
+"pomalowane)\n"
+"0.0 normalne malowanie\n"
+"0.5 zastosowana tylko połowa farby\n"
+"1.0 kanał alfa całkowicie zablokowany"
 
 #: ../brushsettings-gen.h:46
-#, fuzzy
 msgid "Colorize"
-msgstr "Kolor"
+msgstr "Koloryzacja"
 
 #: ../brushsettings-gen.h:46
 msgid ""
 "Colorize the target layer, setting its hue and saturation from the active "
 "brush color while retaining its value and alpha."
 msgstr ""
+"Koloryzuj docelową warstwę zmieniają jej barwę i nasycenie z aktywnego "
+"koloru pędzla zachowując przy tym wartość i kanał alfa."
 
 #: ../brushsettings-gen.h:47
 msgid "Snap to pixel"
-msgstr ""
+msgstr "Przyczep do piksela"
 
 #: ../brushsettings-gen.h:47
 msgid ""
 "Snap brush dab's center and its radius to pixels. Set this to 1.0 for a thin "
 "pixel brush."
 msgstr ""
+"Przyczep środek i promień kropki do pikseli. Ustaw 1.0 dla cienkiego pędzla "
+"pikselowego."
 
 #: ../brushsettings-gen.h:48
-#, fuzzy
 msgid "Pressure gain"
-msgstr "Nacisk"
+msgstr "Wzmocnienie nacisku"
 
 #: ../brushsettings-gen.h:48
 msgid ""
 "This changes how hard you have to press. It multiplies tablet pressure by a "
 "constant factor."
 msgstr ""
+"Ta wartość zmienia siłę wymaganą do nacisku. Nacisk tabletu zostaje "
+"zwielokrotniony przez stały współczynnik."
 
 #: ../brushsettings-gen.h:53
 msgid "Pressure"
 msgstr "Nacisk"
 
 #: ../brushsettings-gen.h:53
-#, fuzzy
 msgid ""
 "The pressure reported by the tablet. Usually between 0.0 and 1.0, but it may "
 "get larger when a pressure gain is used. If you use the mouse, it will be "
 "0.5 when a button is pressed and 0.0 otherwise."
 msgstr ""
-"Nacisk raportowany przez tablet - wartości od 0.0 do 1.0. Jeśli używasz "
-"zwykłej myszki wartość będzie wynosić 0.5."
+"Nacisk raportowany przez tablet. Przeważnie między 0.0 i 1.0 - ta wartość "
+"może wzrastać gdy 'wzmocnienia nacisku' jest używane. Jeśli używasz myszki "
+"wartość będzie wynosić 0.5 przy naciśniętym przycisku."
 
 #: ../brushsettings-gen.h:54
 msgid "Fine speed"
@@ -780,19 +744,20 @@ msgstr ""
 "stopni. Domyślną wartością jest 180."
 
 #: ../brushsettings-gen.h:59
-#, fuzzy
 msgid "Declination"
-msgstr "Nachylenie"
+msgstr "Odchylenie"
 
 #: ../brushsettings-gen.h:59
 msgid ""
 "Declination of stylus tilt. 0 when stylus is parallel to tablet and 90.0 "
 "when it's perpendicular to tablet."
 msgstr ""
+"Odchylenie nachylenia rysika. Wartość 0 gdy rysik jest ustawiony równolegle "
+"do tabletu, a gdy prostopadle, wartość wynosi 90.0."
 
 #: ../brushsettings-gen.h:60
 msgid "Ascension"
-msgstr ""
+msgstr "Obrót nachylenia rysika"
 
 #: ../brushsettings-gen.h:60
 msgid ""
@@ -800,6 +765,9 @@ msgid ""
 "when rotated 90 degrees clockwise, -90 when rotated 90 degrees "
 "counterclockwise."
 msgstr ""
+"Faktyczny obrót nachylenia rysika. Wartość wynosi 0 gdy końcówka rysika jest "
+"zwrócona do ciebie, +90 gdy jest obrócona w prawo o 90 stopni, a -90 gdy "
+"jest obrócona w lewo o 90 stopni."
 
 #: ../brushsettings-gen.h:61
 msgid "Custom"

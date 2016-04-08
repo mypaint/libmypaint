@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: MyPaint GIT\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-04 18:33+0100\n"
-"PO-Revision-Date: 2016-04-07 14:26+0000\n"
+"PO-Revision-Date: 2016-04-08 23:26+0000\n"
 "Last-Translator: Mariusz Kryjak <cerb3ruspl@gmail.com>\n"
 "Language-Team: Polish "
 "<https://hosted.weblate.org/projects/mypaint/libmypaint/pl/>\n"
@@ -99,11 +99,11 @@ msgid ""
 "maximum hardness, you need to disable Pixel feather."
 msgstr ""
 "Twardość brzegów okręgu pędzla (ustawienie 0 oznacza, że pędzel nie będzie "
-"malował). By osiągnąć maksimum twardości wyłącz Cieniowanie pikseli."
+"malował). By osiągnąć maksimum twardości wyłącz Wygładzanie pikseli."
 
 #: ../brushsettings-gen.h:9
 msgid "Pixel feather"
-msgstr "Cieniowanie pikseli"
+msgstr "Wygładzanie pikseli"
 
 #: ../brushsettings-gen.h:9
 msgid ""
@@ -264,7 +264,7 @@ msgstr "Wartość określa jak szybko odstęp wraca do zera gdy kursor się zatr
 
 #: ../brushsettings-gen.h:21
 msgid "Slow position tracking"
-msgstr "Spowolnienie wygładzania pozycji"
+msgstr "Powolnienie wygładzanie pozycji"
 
 #: ../brushsettings-gen.h:21
 msgid ""
@@ -272,19 +272,19 @@ msgid ""
 "jitter in cursor movements. Useful for drawing smooth, comic-like outlines."
 msgstr ""
 "Parametr spowalnia rysowanie posunięcia pędzla w celu jej wygładzenia. Opcja "
-"przydaje się w przypadku rysowania gładkich , komiksowych linii.0 wyłącza "
-"opcje. Tym większa wartość tym większe wygładzenie."
+"przydaje się w przypadku rysowania gładkich, komiksowych linii. 0 wyłącza "
+"opcje. Im większa wartość tym większe wygładzenie."
 
 #: ../brushsettings-gen.h:22
 msgid "Slow tracking per dab"
-msgstr "Spowolnienie wygładzania na kropkę"
+msgstr "Powolnie wygładzanie na kropkę"
 
 #: ../brushsettings-gen.h:22
 msgid ""
 "Similar as above but at brushdab level (ignoring how much time has passed if "
 "brushdabs do not depend on time)"
 msgstr ""
-"Podobnie jak 'spowolnienie wygładzania pozycji', z tą różnicą, że nie jest "
+"Podobnie jak 'Powolne wygładzanie pozycji', z tą różnicą, że nie jest "
 "zależne od czasu, a tylko od ilości rysowanych kropek"
 
 #: ../brushsettings-gen.h:23
@@ -298,7 +298,7 @@ msgid ""
 msgstr ""
 "Dodaje wartości losowe do pobranej pozycji kursora powodując rysowanie wielu "
 "małych linii w losowym kierunku. Można poeksperymentować mieszając tę opcję "
-"z 'spowalnianiem wygładzania'"
+"z 'Powolnym wygładzaniem'"
 
 #: ../brushsettings-gen.h:24
 msgid "Color hue"
@@ -336,7 +336,7 @@ msgstr ""
 
 #: ../brushsettings-gen.h:28
 msgid "Change color hue"
-msgstr "Zmień odcień koloru"
+msgstr "Zmień barwę koloru"
 
 #: ../brushsettings-gen.h:28
 msgid ""
@@ -637,7 +637,7 @@ msgid ""
 "Colorize the target layer, setting its hue and saturation from the active "
 "brush color while retaining its value and alpha."
 msgstr ""
-"Koloryzuj docelową warstwę zmieniają jej barwę i nasycenie z aktywnego "
+"Koloryzuj docelową warstwę zmieniając jej barwę i nasycenie z aktywnego "
 "koloru pędzla zachowując przy tym wartość i kanał alfa."
 
 #: ../brushsettings-gen.h:47
@@ -661,8 +661,8 @@ msgid ""
 "This changes how hard you have to press. It multiplies tablet pressure by a "
 "constant factor."
 msgstr ""
-"Ta wartość zmienia siłę wymaganą do nacisku. Nacisk tabletu zostaje "
-"zwielokrotniony przez stały współczynnik."
+"Ta wartość zmienia siłę której musisz użyć do nacisku - zwielokrotnia nacisk "
+"tabletu przez stały współczynnik."
 
 #: ../brushsettings-gen.h:53
 msgid "Pressure"
@@ -675,7 +675,7 @@ msgid ""
 "0.5 when a button is pressed and 0.0 otherwise."
 msgstr ""
 "Nacisk raportowany przez tablet. Przeważnie między 0.0 i 1.0 - ta wartość "
-"może wzrastać gdy 'wzmocnienia nacisku' jest używane. Jeśli używasz myszki "
+"może wzrastać gdy 'wzmocnienie nacisku' jest używane. Jeśli używasz myszki "
 "wartość będzie wynosić 0.5 przy naciśniętym przycisku."
 
 #: ../brushsettings-gen.h:54
@@ -701,7 +701,7 @@ msgid ""
 "Same as fine speed, but changes slower. Also look at the 'gross speed "
 "filter' setting."
 msgstr ""
-"Podobnie jak 'Prędkość odpowiednia' lesz wolniej zmienia swoje wartości.\n"
+"Podobnie jak 'Prędkość odpowiednia' lecz wolniej zmienia swoje wartości.\n"
 "Sprawdź również 'Filtr prędkości całkowitej'."
 
 #: ../brushsettings-gen.h:56
@@ -777,5 +777,5 @@ msgstr "Parametry dowolne"
 msgid ""
 "This is a user defined input. Look at the 'custom input' setting for details."
 msgstr ""
-"Te wartości są definiowana przez użytkownika. Więcej szczegółów znajdziesz "
-"pod opcją 'dowolna wartość'."
+"Te wartości są definiowane przez użytkownika. Więcej szczegółów znajdziesz "
+"pod opcją 'Dowolna wartość'."

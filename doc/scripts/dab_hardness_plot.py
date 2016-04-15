@@ -1,9 +1,11 @@
+from __future__ import print_function
+
 import numpy as np
 import matplotlib.pyplot as plt
 
 dab = plt.imread('parametric_dab.png')
 
-print dab.shape
+print(dab.shape)
 
 l = dab[500, :, 3]
 #plt.plot(l, label="opacity")

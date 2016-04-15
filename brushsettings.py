@@ -20,7 +20,11 @@ It is also imported at runtime.
 """
 
 import os
+import os.path
 import gettext
+import logging
+
+logger = logging.getLogger(__file__)
 
 
 settings_hidden = 'color_h color_s color_v'.split()
@@ -67,6 +71,7 @@ settings_list, inputs_list, states_list = load_brush_definitions_from_json(open(
 
 class BrushInput:
     pass
+
 
 inputs = []
 inputs_dict = {}

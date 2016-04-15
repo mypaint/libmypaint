@@ -63,10 +63,43 @@ def load_brush_definitions_from_json(json_string):
 
     return (settings, inputs, states)
 
-dir_of_this_file = os.path.abspath(os.path.dirname(__file__))
-definition_path = os.path.join(dir_of_this_file, "brushsettings.json")
 
-settings_list, inputs_list, states_list = load_brush_definitions_from_json(open(definition_path, "r").read())
+_SETTINGS_FILE = "brushsettings.json"
+
+
+def _get_data_file():
+    start_dir = os.path.abspath(os.path.dirname(__file__))
+    data_dir = start_dir
+    # With cx_Freeze, __file__ can refer to a "subpath" of library.zip.
+    if not os.path.isdir(data_dir):
+        while not os.path.isdir(data_dir):
+            d = os.path.dirname(data_dir)
+            if d == data_dir:  # root dir
+                raise RuntimeError(
+                    "Cannot find any viable data dir (starting at {}). "
+                    "Please check that your installation is correct."
+                    .format(start_dir)
+                )
+            data_dir = d
+    logger.debug("Data dir path: %r", data_dir)
+    json_path = os.path.join(data_dir, _SETTINGS_FILE)
+    if not os.path.isfile(json_path):
+        raise RuntimeError(
+            "Cannot find the brush settings definitions. "
+            "No {} in any folder above {}. "
+            "Please check that your installation is correct."
+            .format(_SETTINGS_FILE, start_dir)
+        )
+    return json_path
+
+
+def _load_brush_settings():
+    data_file = _get_data_file()
+    logger.debug("Data file path: %r", data_file)
+    return load_brush_definitions_from_json(open(data_file, "r").read())
+
+
+settings_list, inputs_list, states_list = _load_brush_settings()
 
 
 class BrushInput:

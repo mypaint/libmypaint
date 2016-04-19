@@ -54,6 +54,8 @@ if os.environ.has_key('CPPFLAGS'):
 if os.environ.has_key('LDFLAGS'):
     # LDFLAGS is omitted in SHLINKFLAGS, which is derived from LINKFLAGS
    env['LINKFLAGS'] += SCons.Util.CLVar(os.environ['LDFLAGS'])
+if os.environ.has_key('AR'):
+   env['AR'] = os.environ['AR']
 
 opts.Update(env)
 

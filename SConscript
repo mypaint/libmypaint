@@ -5,6 +5,10 @@ import subprocess
 
 brushlib_version = '1.1'
 
+pkg_config = 'pkg-config'
+if os.environ.has_key('PKG_CONFIG'):
+    pkg_config = os.environ['PKG_CONFIG']
+
 def add_gobject_introspection(env, gi_name, version,
                               func_prefix, type_prefix,
                               sources, includepaths, library,
@@ -66,7 +70,8 @@ def parse_pkg_config(env, libname):
         # Paths will have drive letters & mess up scons's os.path.join()s
         # unless we do this:
         extras += " --dont-define-prefix"
-    cmd = "pkg-config --cflags --libs {libname} {extras}".format(
+    cmd = "{pkg_config} --cflags --libs {libname} {extras}".format(
+        pkg_config = pkg_config,
         libname = libname,
         extras = extras,
     )
@@ -96,7 +101,7 @@ env.Append(CPPPATH='./')
 env.Append(CPPDEFINES='HAVE_JSON_C')
 json_pkgconfig = 'json-c'
 
-if subprocess.call(["pkg-config", json_pkgconfig]):
+if subprocess.call([pkg_config, json_pkgconfig]):
     print "Could not find 'json-c' pkg-config, trying legacy 'json' instead"
     json_pkgconfig = 'json'
 

@@ -869,9 +869,9 @@ smallest_angular_difference(float a, float b)
 
   /** 
    * mypaint_brush_stroke_to:
-   * Should be called once for each motion event.
-   *
    * @dtime: Time since last motion event, in seconds.
+   *
+   * Should be called once for each motion event.
    *
    * Returns: non-0 if the stroke is finished or empty, else 0.
    */

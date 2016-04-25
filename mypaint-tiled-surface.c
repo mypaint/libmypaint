@@ -122,7 +122,6 @@ void mypaint_tiled_surface_tile_request_end(MyPaintTiledSurface *self, MyPaintTi
 /* FIXME: either expose this through MyPaintSurface, or move it into the brush engine */
 /**
  * mypaint_tiled_surface_set_symmetry_state:
- *
  * @active: TRUE to enable, FALSE to disable.
  * @center_x: X axis to mirror events across.
  *

@@ -112,7 +112,7 @@ mypaint_surface_begin_atomic(MyPaintSurface *self)
 
 /**
  * mypaint_surface_end_atomic:
- * @roi: (out) (allow-none) (transfer none) Place to put invalidated rectangle
+ * @roi: (out) (allow-none) (transfer none): Place to put invalidated rectangle
  *
  * Returns: s
  */

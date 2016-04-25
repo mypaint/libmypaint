@@ -28,8 +28,6 @@ struct _MyPaintGeglTiledSurface {
     const Babl *format;
 };
 
-#include <glib/mypaint-gegl-glib.c>
-
 void free_gegl_tiledsurf(MyPaintSurface *surface);
 
 static gboolean

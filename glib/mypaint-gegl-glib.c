@@ -5,6 +5,8 @@
 #include <glib-object.h>
 #include <stdio.h>
 
+#include "mypaint-surface.h"
+
 GType
 mypaint_gegl_tiled_surface_get_type (void)
 {

@@ -1,0 +1,34 @@
+# List created with:
+# $ ls po/*.po -ltr |sed 's$^.*po/\([^.]*\).po$\1$' |sort >po/LINGUAS
+
+ar_AR
+ca
+cs
+da
+de
+en_CA
+en_GB
+es
+fa
+fi
+fr
+he
+hu
+id
+it
+ja
+ko
+nb
+nn_NO
+pl
+pt_BR
+ro
+ru
+sc
+sk
+sl
+sv
+tr
+uk
+zh_CN
+zh_TW

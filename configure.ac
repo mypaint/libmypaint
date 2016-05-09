@@ -177,7 +177,7 @@ PKG_CONFIG_REQUIRES=""
 ## OpenMP ##
 AC_ARG_ENABLE(openmp,
               [  --enable-openmp         compile with OpenMP (default=no)],
-              [AX_OPENMP([CFLAGS="$CFLAGS $OPENMP_CFLAGS"])])
+              [AC_OPENMP([CFLAGS="$CFLAGS $OPENMP_CFLAGS"])])
 
 AC_SUBST(OPENMP_CFLAGS)
 

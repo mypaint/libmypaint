@@ -271,5 +271,5 @@ if test -z "$NOCONFIGURE"; then
     fi
 
     echo
-    echo "Now type 'make' to compile the $PROJECT."
+    echo "Now type 'make' to compile $PROJECT."
 fi

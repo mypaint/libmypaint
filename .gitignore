@@ -12,7 +12,6 @@
 mypaint-config.h
 options.cache
 *.mo
-POTFILES.in
 .#*
 *.pstats
 *.pc

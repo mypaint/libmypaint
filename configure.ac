@@ -1,9 +1,10 @@
 AC_PREREQ(2.54)
 
 m4_define([libmypaint_major_version], [1])
-m4_define([libmypaint_minor_version], [1])
+m4_define([libmypaint_minor_version], [3])
+m4_define([libmypaint_micro_version], [0])
 m4_define([libmypaint_version],
-          [libmypaint_major_version.libmypaint_minor_version])
+          [libmypaint_major_version.libmypaint_minor_version.libmypaint_micro_version])
 
 # Dependencies.
 m4_define([gegl_required_version], [0.3])

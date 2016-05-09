@@ -111,6 +111,11 @@ LIBMYPAINT_SOURCES = \
 
 libmypaint_la_SOURCES = $(libmypaint_public_HEADERS) $(LIBMYPAINT_SOURCES)
 
+# Force generated source files to be built first.
+# Automatic dependency tracking does not always work as expected. See:
+# https://www.gnu.org/software/automake/manual/html_node/Built-Sources-Example.html
+BUILT_SOURCES = brushsettings-gen.h mypaint-brush-settings-gen.h mypaint-config.h
+
 brushsettings-gen.h mypaint-brush-settings-gen.h:
 	$(PYTHON) generate.py mypaint-brush-settings-gen.h brushsettings-gen.h
 

@@ -1,4 +1,5 @@
-AC_PREREQ(2.54)
+# AC_OPENMP requires autoconf >= 2.62.
+AC_PREREQ(2.62)
 
 m4_define([libmypaint_major_version], [1])
 m4_define([libmypaint_minor_version], [3])

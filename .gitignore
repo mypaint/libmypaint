@@ -19,6 +19,7 @@ options.cache
 *.gir
 *.typelib
 *.dirstamp
+po/POTFILES
 
 test-driver
 tests/test-details

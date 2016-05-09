@@ -13,7 +13,7 @@ typedef struct {
 int
 test_brush_load_base_values(void *user_data)
 {
-    char *input_json = read_file("brushes/impressionism.myb");
+    char *input_json = read_file(LIBMYPAINT_TESTING_ABS_TOP_SRCDIR "/tests/brushes/impressionism.myb");
 
     BaseValue expected_base_values[] = {
         {"anti_aliasing", 0.66},
@@ -107,7 +107,7 @@ typedef struct {
 int
 test_brush_load_inputs(void *user_data)
 {
-    char *input_json = read_file("brushes/modelling.myb");
+    char *input_json = read_file(LIBMYPAINT_TESTING_ABS_TOP_SRCDIR "/tests/brushes/modelling.myb");
 
 
     float opaque_speed2[] = {0.0, 0.28, 0.518519, 0.032083, 1.888889, -0.16625, 4.0, -0.28};

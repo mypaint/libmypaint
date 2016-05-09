@@ -11,7 +11,7 @@ INTROSPECTION_SCANNER_ARGS = --warn-all --pkg="glib-2.0" \
 							 --add-include-path="`$(PKG_CONFIG) --define-variable=datadir="$(datadir)" --variable=girdir gobject-introspection-1.0`"
 INTROSPECTION_COMPILER_ARGS = --includedir="$(srcdir)" \
 							  --includedir="`$(PKG_CONFIG) --define-variable=datadir="$(datadir)" --variable=girdir gobject-introspection-1.0`"
-INTROSPECTION_SCANNER_ENV = CFLAGS="$(CFLAGS)" LDFLAGS="$(LDFLAGS) -lm" CPPFLAGS="$(CPPFLAGS)" CXXFLAGS="$(CXXFLAGS)"
+INTROSPECTION_SCANNER_ENV = CFLAGS="$(CFLAGS)" LDFLAGS="$(LDFLAGS) -lm" CPPFLAGS="$(CPPFLAGS) -I$(srcdir)" CXXFLAGS="$(CXXFLAGS)"
 
 MyPaint_introspectable_headers = \
 	mypaint-brush.h					\
@@ -123,6 +123,7 @@ mypaint-config.h: mypaint-config.h.top config.h mypaint-config.h.bottom
 	cat $^ >$@
 
 EXTRA_DIST = \
+	__init__.py						\
 	brushsettings.json				\
 	brushsettings.py				\
 	COPYING							\

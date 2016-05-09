@@ -1,5 +1,6 @@
 AM_CFLAGS = -DLIBMYPAINT_TESTING_ABS_TOP_SRCDIR='"@abs_top_srcdir@"'	\
-			$(GLIB_CFLAGS)
+			$(GLIB_CFLAGS)	\
+			-I$(srcdir)/..
 
 TESTS = \
 	test-brush-persistence		\
@@ -40,5 +41,13 @@ LDADD = \
 	$(DEPS)							\
 	libmypaint-tests.a				\
 	$(top_builddir)/libmypaint.la
+
+EXTRA_DIST = \
+	brushes/bulk.myb			\
+	brushes/charcoal.myb		\
+	brushes/coarse_bulk_2.myb	\
+	brushes/impressionism.myb	\
+	brushes/modelling.myb		\
+	events/painting30sec.dat
 
 SUBDIRS = . gegl

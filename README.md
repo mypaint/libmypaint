@@ -24,45 +24,62 @@ Optional dependencies:
 
 ### Building
 
-To build for a given prefix, but not install any files yet:
+#### Maintainer mode / from git
 
-    $ scons prefix=/tmp/testprefix1
-    $ scons prefix=/tmp/testprefix1 .
+Now libmypaint uses autotools conventions,
+so you have to kickstart the build environment with:
 
-These two lines are equivalent.
-SCons's default target location is `.` (the current working directory).
+    $ ./autogen.sh
 
-To build and install libmypaint somewhere else,
-you will need to supply a different target location.
-For the simplest case, the target is the same as the prefix.
+Note that it also runs the first configure.
+If you don't want this to happen,
+set the $NOCONFIGURE environment variable.
 
-    $ scons prefix=/tmp/testprefix1 install
-    $ scons prefix=/tmp/testprefix1 /tmp/testprefix1
+This script is for the hackers who want to generate the configure script
+the first time from `configure.ac`.
+Users won't have to deal with it
+and will have the configure generated from the start.
 
-These two lines are equivalent too. To save time,
-`install` is an alias for the current value of the `prefix` build variable.
+#### Everyone else
 
-Packagers often need the ability to build for a given prefix,
-but have to install somewhere else.
-We recommend using the sandboxing options built into SCons for this.
+Now run:
 
-    $ scons prefix=/usr --install-sandbox=/tmp/sandbox1 /tmp/sandbox1
+    $ ./configure
 
-This builds libmypaint as if its eventual prefix will be `/usr`,
-but puts the files into `/tmp/sandbox1/usr`
-as if the sandbox was the root of the filesystem.
-Note that you have to repeat the sandbox location in this case.
+As usual, add any of the common GNU options, like --prefix, --host (for
+cross-compilation), --enable-shared/static to build whatever you want,
+--bindir/libdir/includedir/whateverdir for any hardcore user who like to
+play with one's environment and so on.
 
-You can also build a minimal version of libmypaint
-directly into your application by including "libmypaint.c".
+Then the libmypaint specific options:
+--enable-docs/debug/profiling/openmp/gperftools/i18n/introspection/gegl
+and --with-glib.
 
-### Build options
+You can get the full list with `./configure -h`.
 
-To list out libmypaint's build variables, with help texts, run
+Then run
 
-    $ scons --help
+    `make`
 
-### Testing
+and
+
+    `make install`
+
+Afterwards, you can run all the unit tests with make check (works now with
+both shared and static libs), update the po files from the source code
+with cd po && make update-po. Common/practical GNU stuff. :-)
+
+### Localization
+
+List of language is maintained in po/LINGUAS (currently it has all the
+lang, I left a comment on the top of the files with a command line to
+get the full list of languages. But you can also disable languages by
+removing them from the list if needed).
+
+A list of files where localizable strings can be found is maintained
+in po/POTFILES.
+
+### Testing (defunct)
 
 Please run the test suite before sending any pull requests.
 You must build `libmypaint` staticly for the tests to run.

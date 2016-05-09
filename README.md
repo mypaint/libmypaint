@@ -77,7 +77,7 @@ get the full list of languages. But you can also disable languages by
 removing them from the list if needed).
 
 A list of files where localizable strings can be found is maintained
-in po/POTFILES.
+in `po/POTFILES.in`.
 
 ### Testing (defunct)
 

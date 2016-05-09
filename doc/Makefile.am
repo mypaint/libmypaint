@@ -9,4 +9,8 @@ build/index.html: doxygen/index.xml
 
 all: build/index.html
 
+clean-local:
+	-rm -fr doxygen;
+	-rm -fr build;
+
 endif

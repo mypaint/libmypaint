@@ -1,7 +1,7 @@
 if ENABLE_DOCS
 
 doxygen/index.xml: Doxyfile
-	cd doxygen && \
+	mkdir -p doxygen && cd doxygen && \
 	$(DOXYGEN) ../Doxyfile
 
 build/index.html: doxygen/index.xml

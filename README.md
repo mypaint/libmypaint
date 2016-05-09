@@ -40,6 +40,14 @@ the first time from `configure.ac`.
 Users won't have to deal with it
 and will have the configure generated from the start.
 
+The distribution release can be generated with:
+
+    $ make dist
+
+And it should be checked before public release with:
+
+    $ make distcheck
+
 #### Everyone else
 
 Now run:

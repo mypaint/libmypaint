@@ -117,19 +117,24 @@ libmypaint_la_SOURCES = $(libmypaint_public_HEADERS) $(LIBMYPAINT_SOURCES)
 BUILT_SOURCES = brushsettings-gen.h mypaint-brush-settings-gen.h mypaint-config.h
 
 brushsettings-gen.h mypaint-brush-settings-gen.h:
-	$(PYTHON) generate.py mypaint-brush-settings-gen.h brushsettings-gen.h
+	$(PYTHON) $(top_srcdir)/generate.py mypaint-brush-settings-gen.h brushsettings-gen.h
 
 mypaint-config.h: mypaint-config.h.top config.h mypaint-config.h.bottom
 	cat $^ >$@
 
 EXTRA_DIST = \
+	brushsettings.json				\
+	brushsettings.py				\
 	COPYING							\
 	README.md						\
 	brushmodes.h					\
 	fifo.h							\
+	generate.py						\
 	helpers.h						\
 	libmypaint.c					\
 	mapping.h						\
+	mypaint-config.h.bottom			\
+	mypaint-config.h.top			\
 	operationqueue.h				\
 	rng-double.h					\
 	tiled-surface-private.h			\
@@ -142,8 +147,9 @@ PODIRS = po
 endif
 
 SUBDIRS = \
-	.		\
-	doc		\
-	gegl	\
-	tests	\
+	.			\
+	m4macros	\
+	doc			\
+	gegl		\
+	tests		\
 	$(PODIRS)

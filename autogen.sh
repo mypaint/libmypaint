@@ -218,20 +218,25 @@ fi
 
 
 if test -z "$ACLOCAL_FLAGS"; then
-
-    acdir=`$ACLOCAL --print-ac-dir`
     m4list="glib-2.0.m4 glib-gettext.m4 intltool.m4 pkg.m4"
-
-    for file in $m4list
-    do
-	if [ ! -f "$acdir/$file" ]; then
-	    echo
-	    echo "WARNING: aclocal's directory is $acdir, but..."
-            echo "         no file $acdir/$file"
+    acdir0=`$ACLOCAL --print-ac-dir`
+    acpaths=`echo "${ACLOCAL_PATH}:${acdir0}" | sed 's/:/ /g'`
+    for file in $m4list; do
+        file_path=""
+        for acdir in $acpaths; do
+            if test -f "${acdir}/${file}"; then
+                file_path="$acdir/$file"
+                break
+            fi
+        done
+        if test "x$file_path" = "x"; then
+            echo "WARNING: cannot find $file in aclocal's search path."
             echo "         You may see fatal macro warnings below."
+            echo "         I looked in: $acpaths"
             echo "         If these files are installed in /some/dir, set the "
-            echo "         ACLOCAL_FLAGS environment variable to \"-I /some/dir\""
-            echo "         or install $acdir/$file."
+            echo "         ACLOCAL_FLAGS environment variable to \"-I /some/dir\","
+            echo "         or append \":/some/dir\" to ACLOCAL_PATH,"
+            echo "         or install $acdir0/$file."
             echo
         fi
     done

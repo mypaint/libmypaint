@@ -256,6 +256,13 @@ $LIBTOOLIZE --force || exit $?
 # optionally feature autoheader
 ($AUTOHEADER --version)  < /dev/null > /dev/null 2>&1 && $AUTOHEADER || exit 1
 
+
+# Generate settings headers from the relatively stable .json file that
+# Python code will also use.
+
+python generate.py mypaint-brush-settings-gen.h brushsettings-gen.h
+
+
 # Mandatory files for automake.
 touch NEWS README AUTHORS ChangeLog
 $AUTOMAKE --add-missing || exit $?

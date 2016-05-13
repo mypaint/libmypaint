@@ -309,3 +309,8 @@ AC_CONFIG_FILES([
 ])
 
 AC_OUTPUT
+
+echo ""
+echo "  Configured libmypaint $LIBMYPAINT_VERSION"
+echo ""
+

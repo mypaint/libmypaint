@@ -148,7 +148,9 @@ CFLAGS="-D_POSIX_C_SOURCE=200809L $CFLAGS"
 ## Debug ##
 AC_MSG_CHECKING([whether to turn on debugging])
 AC_ARG_ENABLE(debug,
-              [  --enable-debug          turn on debugging (default=no)])
+              AS_HELP_STRING([--enable-debug],
+                             [turn on debugging (default=no)])
+)
 
 if eval "test x$enable_debug = xyes"; then
   AC_MSG_RESULT([yes])
@@ -164,7 +166,9 @@ fi
 ## Profiling ##
 AC_MSG_CHECKING([whether to turn on profiling])
 AC_ARG_ENABLE(profiling,
-              [  --enable-profiling      turn on profiling (default=no)])
+  AS_HELP_STRING([--enable-profiling],
+    [turn on profiling (default=no)])
+)
 
 if eval "test x$enable_profiling = xyes"; then
   AC_MSG_RESULT([yes])
@@ -179,14 +183,18 @@ PKG_CONFIG_REQUIRES=""
 
 ## OpenMP ##
 AC_ARG_ENABLE(openmp,
-              [  --enable-openmp         compile with OpenMP (default=no)],
-              [AC_OPENMP([CFLAGS="$CFLAGS $OPENMP_CFLAGS"])])
+  AS_HELP_STRING([--enable-openmp],
+    [compile with OpenMP (default=no)]),
+  [AC_OPENMP([CFLAGS="$CFLAGS $OPENMP_CFLAGS"])]
+)
 
 AC_SUBST(OPENMP_CFLAGS)
 
 ## gperftools ##
 AC_ARG_ENABLE(gperftools,
-              [  --enable-gperftools     enable gperftools in build, for profiling (default=no)])
+  AS_HELP_STRING([--enable-gperftools],
+    [enable gperftools in build, for profiling (default=no)])
+)
 
 have_libprofiler="no"
 if test "x$enable_gperftools" = xyes; then
@@ -197,7 +205,9 @@ AM_CONDITIONAL(HAVE_GPERFTOOLS, test "x$have_libprofiler" = "xyes")
 
 ## Docs ##
 AC_ARG_ENABLE(docs,
-              [  --enable-docs           enable documentation build (default=no)])
+  AS_HELP_STRING([--enable-docs],
+    [enable documentation build (default=no)])
+)
 
 if test "x$enable_docs" = xyes; then
   AC_CHECK_PROGS(DOXYGEN, doxygen)
@@ -226,7 +236,9 @@ AC_SUBST(JSON_CFLAGS)
 
 ## Internationalization ##
 AC_ARG_ENABLE(i18n,
-              [  --disable-i18n          disable internationalization (default=no)])
+  AS_HELP_STRING([--disable-i18n],
+    [disable internationalization (default=no)])
+)
 
 if test "x$enable_i18n" != "xno"; then
   enable_i18n="yes"
@@ -254,7 +266,10 @@ AC_SUBST(PYTHON)
 GOBJECT_INTROSPECTION_CHECK(introspection_required_version)
 
 ## glib ##
-AC_ARG_WITH(glib, [  --with-glib             use glib (forced on by introspection)])
+AC_ARG_WITH(glib,
+  AS_HELP_STRING([--with-glib],
+    [use glib (forced on by introspection)])
+)
 
 if test "x$with_glib" = xyes ||
    test "x$found_introspection" = xyes; then
@@ -268,7 +283,9 @@ AM_CONDITIONAL(WITH_GLIB, test "x$with_glib" = "xyes")
 
 ## GEGL ##
 AC_ARG_ENABLE(gegl,
-              [  --enable-gegl           enable GEGL based code in build (yes|no, default=no)])
+  AS_HELP_STRING([--enable-gegl],
+    [enable GEGL based code in build (yes|no, default=no)])
+)
 
 if eval "test x$enable_gegl = xyes"; then
   PKG_CHECK_MODULES(GEGL, gegl-0.3 >= gegl_required_version)

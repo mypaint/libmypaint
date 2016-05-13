@@ -85,6 +85,7 @@ LIBS = $(JSON_LIBS) $(GLIB_LIBS)
 lib_LTLIBRARIES = libmypaint.la
 
 libmypaint_la_LIBADD = -lm
+libmypaint_la_LDFLAGS = -no-undefined
 
 libmypaint_publicdir = $(includedir)/libmypaint
 

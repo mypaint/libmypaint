@@ -271,7 +271,7 @@ AC_ARG_ENABLE(gegl,
               [  --enable-gegl           enable GEGL based code in build (yes|no, default=no)])
 
 if eval "test x$enable_gegl = xyes"; then
-  PKG_CHECK_MODULES(GEGL, gegl-0.3 > gegl_required_version)
+  PKG_CHECK_MODULES(GEGL, gegl-0.3 >= gegl_required_version)
 fi
 AM_CONDITIONAL(ENABLE_GEGL, test "x$enable_gegl" = "xyes")
 

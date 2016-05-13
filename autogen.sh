@@ -260,7 +260,7 @@ $LIBTOOLIZE --force || exit $?
 # Generate settings headers from the relatively stable .json file that
 # Python code will also use.
 
-python generate.py mypaint-brush-settings-gen.h brushsettings-gen.h
+python2 generate.py mypaint-brush-settings-gen.h brushsettings-gen.h
 
 
 # Mandatory files for automake.

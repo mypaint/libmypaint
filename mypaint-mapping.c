@@ -20,7 +20,7 @@
 #include <stdlib.h>
 #include <assert.h>
 
-#include "mapping.h"
+#include "mypaint-mapping.h"
 
 #include "helpers.h"
 
@@ -34,7 +34,7 @@ typedef struct {
   int n;
 } ControlPoints;
 
-struct _Mapping {
+struct _MyPaintMapping {
     float base_value; // FIXME: accessed directly from mypaint-brush.c
 
     int inputs;
@@ -44,10 +44,10 @@ struct _Mapping {
 };
 
 
-Mapping *
-mapping_new(int inputs_)
+MyPaintMapping *
+mypaint_mapping_new(int inputs_)
 {
-    Mapping *self = (Mapping *)malloc(sizeof(Mapping));
+    MyPaintMapping *self = (MyPaintMapping *)malloc(sizeof(MyPaintMapping));
 
     self->inputs = inputs_;
     self->pointsList = (ControlPoints *)malloc(sizeof(ControlPoints)*self->inputs);
@@ -61,23 +61,23 @@ mapping_new(int inputs_)
 }
 
 void
-mapping_free(Mapping *self)
+mypaint_mapping_free(MyPaintMapping *self)
 {
     free(self->pointsList);
     free(self);
 }
 
-float mapping_get_base_value(Mapping *self)
+float mypaint_mapping_get_base_value(MyPaintMapping *self)
 {
     return self->base_value;
 }
 
-void mapping_set_base_value(Mapping *self, float value)
+void mypaint_mapping_set_base_value(MyPaintMapping *self, float value)
 {
     self->base_value = value;
 }
 
-void mapping_set_n (Mapping * self, int input, int n)
+void mypaint_mapping_set_n (MyPaintMapping * self, int input, int n)
 {
     assert (input >= 0 && input < self->inputs);
     assert (n >= 0 && n <= 8);
@@ -93,14 +93,14 @@ void mapping_set_n (Mapping * self, int input, int n)
 }
 
 
-int mapping_get_n (Mapping * self, int input)
+int mypaint_mapping_get_n (MyPaintMapping * self, int input)
 {
     assert (input >= 0 && input < self->inputs);
     ControlPoints * p = self->pointsList + input;
     return p->n;
 }
 
-void mapping_set_point (Mapping * self, int input, int index, float x, float y)
+void mypaint_mapping_set_point (MyPaintMapping * self, int input, int index, float x, float y)
 {
     assert (input >= 0 && input < self->inputs);
     assert (index >= 0 && index < 8);
@@ -115,7 +115,7 @@ void mapping_set_point (Mapping * self, int input, int index, float x, float y)
     p->yvalues[index] = y;
 }
 
-void mapping_get_point (Mapping * self, int input, int index, float *x, float *y)
+void mypaint_mapping_get_point (MyPaintMapping * self, int input, int index, float *x, float *y)
 {
     assert (input >= 0 && input < self->inputs);
     assert (index >= 0 && index < 8);
@@ -126,18 +126,18 @@ void mapping_get_point (Mapping * self, int input, int index, float *x, float *y
     *y = p->yvalues[index];
 }
 
-gboolean mapping_is_constant(Mapping * self)
+gboolean mypaint_mapping_is_constant(MyPaintMapping * self)
 {
     return self->inputs_used == 0;
 }
 
 int
-mapping_get_inputs_used_n(Mapping *self)
+mypaint_mapping_get_inputs_used_n(MyPaintMapping *self)
 {
     return self->inputs_used;
 }
 
-float mapping_calculate (Mapping * self, float * data)
+float mypaint_mapping_calculate (MyPaintMapping * self, float * data)
 {
     int j;
     float result;
@@ -181,10 +181,10 @@ float mapping_calculate (Mapping * self, float * data)
     return result;
 }
 
-// used in python for the global pressure mapping
-float mapping_calculate_single_input (Mapping * self, float input)
+// used in mypaint itself for the global pressure mapping
+float mypaint_mapping_calculate_single_input (MyPaintMapping * self, float input)
 {
     assert(self->inputs == 1);
-    return mapping_calculate(self, &input);
+    return mypaint_mapping_calculate(self, &input);
 }
 #endif //MAPPING_C

@@ -34,7 +34,7 @@ introspection_sources = \
 	operationqueue.c				\
 	utils.c							\
 	fifo.c							\
-	mapping.c						\
+	mypaint-mapping.c				\
 	mypaint.c						\
 	mypaint-surface.c				\
 	rng-double.c					\
@@ -92,13 +92,14 @@ libmypaint_publicdir = $(includedir)/libmypaint
 nobase_libmypaint_public_HEADERS = \
 	mypaint-config.h				\
 	mypaint-glib-compat.h			\
+	mypaint-mapping.h				\
 	$(MyPaint_introspectable_headers)
 
 LIBMYPAINT_SOURCES = \
 	brushmodes.c					\
 	fifo.c							\
 	helpers.c						\
-	mapping.c						\
+	mypaint-mapping.c				\
 	mypaint.c						\
 	mypaint.h						\
 	mypaint-brush.c					\
@@ -136,7 +137,6 @@ EXTRA_DIST = \
 	generate.py						\
 	helpers.h						\
 	libmypaint.c					\
-	mapping.h						\
 	mypaint-config.h.bottom			\
 	mypaint-config.h.top			\
 	operationqueue.h				\

@@ -31,10 +31,6 @@ so you have to kickstart the build environment with:
 
     $ ./autogen.sh
 
-Note that it also runs the first configure.
-If you don't want this to happen,
-set the $NOCONFIGURE environment variable.
-
 This script is for the hackers who want to generate the configure script
 the first time from `configure.ac`.
 Users won't have to deal with it

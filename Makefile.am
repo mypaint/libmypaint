@@ -125,9 +125,9 @@ mypaint-config.h: mypaint-config.h.top config.h mypaint-config.h.bottom
 EXTRA_DIST = \
 	__init__.py						\
 	brushsettings.json				\
+	brushsettings-gen.h				\
 	brushsettings.py				\
 	mypaint-brush-settings-gen.h	\
-	brush-settings-gen.h			\
 	COPYING							\
 	README.md						\
 	brushmodes.h					\

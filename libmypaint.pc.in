@@ -3,8 +3,8 @@ exec_prefix=@exec_prefix@
 libdir=@libdir@
 includedir=@includedir@
 
-Name: libmypaint
-Description: library for brushstrokes used by MyPaint and other projects.
+Name: @PACKAGE_NAME@
+Description: MyPaint's brushstroke rendering library@LIBMYPAINT_PRERELEASE_HINT@
 Version: @LIBMYPAINT_VERSION@
 Requires: @PKG_CONFIG_REQUIRES@
 Cflags: -I${includedir}/libmypaint

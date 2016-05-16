@@ -1,17 +1,21 @@
 # AC_OPENMP requires autoconf >= 2.62.
 AC_PREREQ(2.62)
 
+# Versioning: see https://github.com/mypaint/libmypaint/wiki/Versioning
 m4_define([libmypaint_major_version], [1])
 m4_define([libmypaint_minor_version], [3])
 m4_define([libmypaint_micro_version], [0])
+m4_define([libmypaint_prerelease_version], [alpha.0])
 m4_define([libmypaint_version],
           [libmypaint_major_version.libmypaint_minor_version.libmypaint_micro_version])
+m4_define([libmypaint_version_full],
+          [libmypaint_major_version().libmypaint_minor_version().libmypaint_micro_version()m4_bpatsubst(libmypaint_prerelease_version(), [^], [-])])
 
 # Dependencies.
 m4_define([gegl_required_version], [0.3])
 m4_define([introspection_required_version], [1.32.0])
 
-AC_INIT([libmypaint], [libmypaint_version],
+AC_INIT([libMyPaint], [libmypaint_version_full],
         [https://github.com/mypaint/libmypaint/issues],
         [libmypaint])
 
@@ -26,10 +30,15 @@ LIBMYPAINT_MAJOR_VERSION=libmypaint_major_version
 LIBMYPAINT_MINOR_VERSION=libmypaint_minor_version
 LIBMYPAINT_MICRO_VERSION=libmypaint_micro_version
 LIBMYPAINT_VERSION=libmypaint_version
+LIBMYPAINT_VERSION_FULL=libmypaint_version_full
+LIBMYPAINT_PRERELEASE_HINT="m4_ifnblank(libmypaint_prerelease_version(), [ (PRERELEASE)], [])"
 AC_SUBST(LIBMYPAINT_MAJOR_VERSION)
 AC_SUBST(LIBMYPAINT_MINOR_VERSION)
 AC_SUBST(LIBMYPAINT_MICRO_VERSION)
+AC_SUBST(LIBMYPAINT_PRERELEASE_VERSION)
 AC_SUBST(LIBMYPAINT_VERSION)
+AC_SUBST(LIBMYPAINT_VERSION_FULL)
+AC_SUBST(LIBMYPAINT_PRERELEASE_HINT)
 
 AC_PROG_CC
 AC_PROG_CC_C99

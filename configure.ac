@@ -17,7 +17,8 @@ m4_define([introspection_required_version], [1.32.0])
 
 AC_INIT([libMyPaint], [libmypaint_version_full],
         [https://github.com/mypaint/libmypaint/issues],
-        [libmypaint])
+        [libmypaint],
+        [https://github.com/mypaint/libmypaint])
 
 AC_CONFIG_HEADERS([config.h])
 AC_CONFIG_MACRO_DIR([m4macros])

@@ -118,6 +118,7 @@ libmypaint_la_SOURCES = $(libmypaint_public_HEADERS) $(LIBMYPAINT_SOURCES)
 # Automatic dependency tracking does not always work as expected. See:
 # https://www.gnu.org/software/automake/manual/html_node/Built-Sources-Example.html
 BUILT_SOURCES = mypaint-config.h
+DISTCLEANFILES = mypaint-config.h
 
 mypaint-config.h: mypaint-config.h.top config.h mypaint-config.h.bottom
 	cat $^ >$@

@@ -50,11 +50,32 @@ _STATES = []   # brushsettings.states
 
 
 class _BrushSetting (namedtuple("_BrushSetting", _SETTING_ORDER)):
-    pass
+
+    def validate(self):
+        msg = "Failed to validate %s: %r" % (self.internal_name, self)
+        if self.minimum and self.maximum:
+            assert (self.minimum <= self.default), msg
+            assert (self.maximum >= self.default), msg
+            assert (self.minimum < self.maximum), msg
+        assert self.default is not None
 
 
 class _BrushInput (namedtuple("_BrushInput", _INPUT_ORDER)):
-    pass
+
+    def validate(self):
+        msg = "Failed to validate %s: %r" % (self.id, self)
+        if self.hard_maximum is not None:
+            assert (self.hard_maximum >= self.soft_maximum), msg
+            assert (self.hard_maximum >= self.normal), msg
+        if self.hard_minimum is not None:
+            assert (self.hard_minimum <= self.soft_minimum), msg
+            assert (self.hard_minimum <= self.normal), msg
+        if None not in (self.hard_maximum, self.hard_minimum):
+            assert (self.hard_minimum < self.hard_maximum), msg
+        assert self.normal is not None
+        assert (self.soft_minimum < self.soft_maximum), msg
+        assert (self.soft_minimum <= self.normal), msg
+        assert (self.soft_maximum >= self.normal), msg
 
 
 def _init_globals_from_json(filename):
@@ -62,9 +83,13 @@ def _init_globals_from_json(filename):
     with open(filename, "rb") as fp:
         defs = json.load(fp)
     for input_def in defs["inputs"]:
-        _INPUTS.append(_BrushInput(**input_def))
+        input = _BrushInput(**input_def)
+        input.validate()
+        _INPUTS.append(input)
     for setting_def in defs["settings"]:
-        _SETTINGS.append(_BrushSetting(**setting_def))
+        setting = _BrushSetting(**setting_def)
+        setting.validate()
+        _SETTINGS.append(setting)
     for state_name in defs["states"]:
         _STATES.append(state_name)
 

@@ -67,15 +67,6 @@ pkgconfigdir = $(libdir)/pkgconfig
 
 pkgconfig_DATA = libmypaint.pc
 
-## Python files ##
-
-pydir = $(datadir)/libmypaint
-
-py_DATA = \
-	__init__.py			\
-	brushsettings.json	\
-	brushsettings.py
-
 ## libmypaint ##
 
 AM_CFLAGS = $(JSON_CFLAGS) $(GLIB_CFLAGS)
@@ -125,10 +116,8 @@ mypaint-config.h: mypaint-config.h.top config.h mypaint-config.h.bottom
 	cat $^ >$@
 
 EXTRA_DIST = \
-	__init__.py						\
 	brushsettings.json				\
 	brushsettings-gen.h				\
-	brushsettings.py				\
 	mypaint-brush-settings-gen.h	\
 	COPYING							\
 	README.md						\

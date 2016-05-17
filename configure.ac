@@ -267,12 +267,6 @@ if test "x$enable_i18n" != "xno"; then
 fi
 AM_CONDITIONAL(HAVE_I18N, test "x$enable_i18n" = "xyes")
 
-## Python ##
-AM_PATH_PYTHON2
-
-PYTHON="$PYTHON"
-AC_SUBST(PYTHON)
-
 GOBJECT_INTROSPECTION_CHECK(introspection_required_version)
 
 ## glib ##

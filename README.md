@@ -14,13 +14,14 @@ License: ISC, see [COPYING](./COPYING) for details
 Build dependencies:
 
 * [json-c](https://github.com/json-c/json-c/wiki) (>= 0.11)
-* [SCons](http://scons.org/)
-* [Python](http://python.org/)
+* [GObjectIntrospection](https://live.gnome.org/GObjectIntrospection)
 
 Optional dependencies:
 
-* [GEGL + BABL](http://gegl.org/) (for enable_gegl=true)
-* [GObjectIntrospection](https://live.gnome.org/GObjectIntrospection) (for enable_introspection=true)
+* [Python](http://python.org/) (for builds from git)
+* `autotools` and `intltool` (for builds from git)
+* [GEGL + BABL](http://gegl.org/) (for --enable-gegl,
+  note that GIMP does *not* require this option.)
 
 ### Building
 

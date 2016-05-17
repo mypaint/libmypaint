@@ -7,9 +7,8 @@ addons:
     packages:
       - libjson0-dev
       - scons
-      - python-nose
 
 script:
-    - scons use_sharedlib=false
-    - nosetests
-    - scons use_sharedlib=true
+    - ./autogen.sh
+    - ./configure
+    - make distcheck

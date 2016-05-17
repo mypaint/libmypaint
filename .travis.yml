@@ -7,8 +7,9 @@ addons:
     packages:
       - libjson0-dev
       - intltool
+      - gobject-introspection
 
 script:
     - ./autogen.sh
     - ./configure
-    - make distcheck
+    - make

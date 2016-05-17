@@ -6,7 +6,7 @@ addons:
   apt:
     packages:
       - libjson0-dev
-      - scons
+      - intltool
 
 script:
     - ./autogen.sh

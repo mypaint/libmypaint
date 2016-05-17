@@ -156,8 +156,8 @@ def boolify(value):
 def input_info_struct(i):
     return (
         stringify(i.id),
-        floatify(i.hard_minimum),
-        floatify(i.soft_minimum),
+        floatify(i.hard_minimum, positive_inf=False),
+        floatify(i.soft_minimum, positive_inf=False),
         floatify(i.normal),
         floatify(i.soft_maximum),
         floatify(i.hard_maximum),
@@ -171,7 +171,7 @@ def settings_info_struct(s):
         stringify(s.internal_name),
         gettextify(s.displayed_name),
         boolify(s.constant),
-        floatify(s.minimum),
+        floatify(s.minimum, positive_inf=False),
         floatify(s.default),
         floatify(s.maximum),
         gettextify(s.tooltip),

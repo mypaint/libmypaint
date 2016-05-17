@@ -51,13 +51,13 @@ static MyPaintBrushSettingInfo settings_info_array[] = {
 
 static MyPaintBrushInputInfo inputs_info_array[] = {
     {"pressure", 0.0, 0.0, 0.4, 1.0, FLT_MAX, N_("Pressure"), N_("The pressure reported by the tablet. Usually between 0.0 and 1.0, but it may get larger when a pressure gain is used. If you use the mouse, it will be 0.5 when a button is pressed and 0.0 otherwise.")}, 
-    {"speed1", FLT_MAX, 0.0, 0.5, 4.0, FLT_MAX, N_("Fine speed"), N_("How fast you currently move. This can change very quickly. Try 'print input values' from the 'help' menu to get a feeling for the range; negative values are rare but possible for very low speed.")}, 
-    {"speed2", FLT_MAX, 0.0, 0.5, 4.0, FLT_MAX, N_("Gross speed"), N_("Same as fine speed, but changes slower. Also look at the 'gross speed filter' setting.")}, 
+    {"speed1", -FLT_MAX, 0.0, 0.5, 4.0, FLT_MAX, N_("Fine speed"), N_("How fast you currently move. This can change very quickly. Try 'print input values' from the 'help' menu to get a feeling for the range; negative values are rare but possible for very low speed.")}, 
+    {"speed2", -FLT_MAX, 0.0, 0.5, 4.0, FLT_MAX, N_("Gross speed"), N_("Same as fine speed, but changes slower. Also look at the 'gross speed filter' setting.")}, 
     {"random", 0.0, 0.0, 0.5, 1.0, 1.0, N_("Random"), N_("Fast random noise, changing at each evaluation. Evenly distributed between 0 and 1.")}, 
     {"stroke", 0.0, 0.0, 0.5, 1.0, 1.0, N_("Stroke"), N_("This input slowly goes from zero to one while you draw a stroke. It can also be configured to jump back to zero periodically while you move. Look at the 'stroke duration' and 'stroke hold time' settings.")}, 
     {"direction", 0.0, 0.0, 0.0, 180.0, 180.0, N_("Direction"), N_("The angle of the stroke, in degrees. The value will stay between 0.0 and 180.0, effectively ignoring turns of 180 degrees.")}, 
     {"tilt_declination", 0.0, 0.0, 0.0, 90.0, 90.0, N_("Declination"), N_("Declination of stylus tilt. 0 when stylus is parallel to tablet and 90.0 when it's perpendicular to tablet.")}, 
     {"tilt_ascension", -180.0, -180.0, 0.0, 180.0, 180.0, N_("Ascension"), N_("Right ascension of stylus tilt. 0 when stylus working end points to you, +90 when rotated 90 degrees clockwise, -90 when rotated 90 degrees counterclockwise.")}, 
-    {"custom", FLT_MAX, -2.0, 0.0, 2.0, FLT_MAX, N_("Custom"), N_("This is a user defined input. Look at the 'custom input' setting for details.")}, 
+    {"custom", -FLT_MAX, -2.0, 0.0, 2.0, FLT_MAX, N_("Custom"), N_("This is a user defined input. Look at the 'custom input' setting for details.")}, 
 
 };

@@ -13,3 +13,4 @@ script:
     - ./autogen.sh
     - ./configure
     - make
+    - make distcheck

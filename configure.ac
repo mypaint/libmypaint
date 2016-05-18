@@ -23,7 +23,7 @@ AC_INIT([libMyPaint], [libmypaint_version_full],
 AC_CONFIG_HEADERS([config.h])
 AC_CONFIG_MACRO_DIR([m4macros])
 
-AM_INIT_AUTOMAKE([no-define dist-bzip2 dist-xz no-dist-gzip -Wno-portability
+AM_INIT_AUTOMAKE([no-define dist-xz no-dist-gzip -Wno-portability
                   -Wall -Werror
                   subdir-objects])
 

@@ -188,7 +188,6 @@ else
 fi
 
 ## Variables for pkg-config file ##
-PKG_CONFIG_LINKFLAGS="-lm"
 PKG_CONFIG_REQUIRES=""
 
 ## OpenMP ##
@@ -244,6 +243,11 @@ AC_DEFINE(HAVE_JSON_C, 1, [Define to 1 if json is available])
 AC_SUBST(JSON_LIBS)
 AC_SUBST(JSON_CFLAGS)
 
+## Standard maths functions ##
+AC_SEARCH_LIBS([floorf], [m], [], AC_MSG_ERROR([no floorf]))
+AC_SEARCH_LIBS([powf], [m], [], AC_MSG_ERROR([no powf]))
+AC_SEARCH_LIBS([expf], [m], [], AC_MSG_ERROR([no expf]))
+
 ## Internationalization ##
 AC_ARG_ENABLE(i18n,
   AS_HELP_STRING([--disable-i18n],
@@ -260,10 +264,9 @@ if test "x$enable_i18n" != "xno"; then
   IT_PROG_INTLTOOL
   AM_GLIB_GNU_GETTEXT
 
-  if test "x$platform_osx" = xyes ||
-     test "x$platform_win32" = xyes; then
-    PKG_CONFIG_LINKFLAGS="$PKG_CONFIG_LINKFLAGS -lintl"
-  fi
+  dnl Debian: stdlib
+  dnl Windows, and OSX: -lintl
+  AC_SEARCH_LIBS([dgettext], [intl], [], AC_MSG_ERROR([no dgettext]))
 fi
 AM_CONDITIONAL(HAVE_I18N, test "x$enable_i18n" = "xyes")
 
@@ -297,7 +300,6 @@ fi
 AM_CONDITIONAL(ENABLE_GEGL, test "x$enable_gegl" = "xyes")
 
 # Set pkg-config variables before generation.
-AC_SUBST(PKG_CONFIG_LINKFLAGS)
 AC_SUBST(PKG_CONFIG_REQUIRES)
 
 AC_CONFIG_FILES([

@@ -9,4 +9,4 @@ URL: @PACKAGE_URL@
 Version: @LIBMYPAINT_VERSION@
 Requires: @PKG_CONFIG_REQUIRES@
 Cflags: -I${includedir}/libmypaint
-Libs: -L${libdir} -lmypaint @PKG_CONFIG_LINKFLAGS@ @OPENMP_CFLAGS@
+Libs: -L${libdir} -lmypaint @OPENMP_CFLAGS@

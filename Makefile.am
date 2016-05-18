@@ -11,7 +11,7 @@ INTROSPECTION_SCANNER_ARGS = --warn-all --pkg="glib-2.0" \
 							 --add-include-path="`$(PKG_CONFIG) --define-variable=datadir="$(datadir)" --variable=girdir gobject-introspection-1.0`"
 INTROSPECTION_COMPILER_ARGS = --includedir="$(srcdir)" \
 							  --includedir="`$(PKG_CONFIG) --define-variable=datadir="$(datadir)" --variable=girdir gobject-introspection-1.0`"
-INTROSPECTION_SCANNER_ENV = CFLAGS="$(CFLAGS)" LDFLAGS="$(LDFLAGS) -lm" CPPFLAGS="$(CPPFLAGS) -I$(srcdir)" CXXFLAGS="$(CXXFLAGS)"
+INTROSPECTION_SCANNER_ENV = CFLAGS="$(CFLAGS)" LDFLAGS="$(LDFLAGS) @LIBS@" CPPFLAGS="$(CPPFLAGS) -I$(srcdir)" CXXFLAGS="$(CXXFLAGS)"
 
 MyPaint_introspectable_headers = \
 	mypaint-brush.h					\
@@ -71,11 +71,10 @@ pkgconfig_DATA = libmypaint.pc
 
 AM_CFLAGS = $(JSON_CFLAGS) $(GLIB_CFLAGS)
 
-LIBS = $(JSON_LIBS) $(GLIB_LIBS)
+LIBS = $(JSON_LIBS) $(GLIB_LIBS) @LIBS@
 
 lib_LTLIBRARIES = libmypaint.la
 
-libmypaint_la_LIBADD = -lm
 libmypaint_la_LDFLAGS = -no-undefined
 
 libmypaint_publicdir = $(includedir)/libmypaint

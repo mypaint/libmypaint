@@ -14,14 +14,21 @@ License: ISC, see [COPYING](./COPYING) for details
 Build dependencies:
 
 * [json-c](https://github.com/json-c/json-c/wiki) (>= 0.11)
-* [GObjectIntrospection](https://live.gnome.org/GObjectIntrospection)
+  - Debian: `libjson-c-dev`, or `libjson0-dev` (older)
 
 Optional dependencies:
 
-* [Python](http://python.org/) (for builds from git)
-* `autotools` and `intltool` (for builds from git)
-* [GEGL + BABL](http://gegl.org/) (for --enable-gegl,
-  note that GIMP does *not* require this option.)
+* Requirements when building from `git`:
+  - [Python](http://python.org/)
+  - [autotools](https://en.wikipedia.org/wiki/GNU_Build_System)
+  - [intltool](https://freedesktop.org/wiki/Software/intltool/)
+* For `--enable-introspection`:
+  - [GObject-Introspection](https://live.gnome.org/GObjectIntrospection)
+  - Debian: `libgirepository1.0-dev`
+* For `--enable-gegl`:
+  - [GEGL + BABL](http://gegl.org/)
+  - Note that GIMP does *not* require this option.
+  - Debian: `libgegl-dev`
 
 ### Building
 

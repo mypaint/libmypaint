@@ -1,48 +1,96 @@
-## libmypaint - MyPaint brush engine library
+# libmypaint - MyPaint brush engine library
 
 [![Translation Status](https://hosted.weblate.org/widgets/mypaint/libmypaint/svg-badge.svg)](https://hosted.weblate.org/engage/mypaint/?utm_source=widget)
 [![Travis Build Status](https://travis-ci.org/mypaint/libmypaint.svg?branch=master)](https://travis-ci.org/mypaint/libmypaint)
 [![Appveyor Build Status](https://ci.appveyor.com/api/projects/status/github/mypaint/libmypaint?branch=master&svg=true)](https://ci.appveyor.com/project/jonnor/libmypaint)
 
-This is a self-contained C library that is isolated from MyPaint.
-It allows other applications to make use of the MyPaint brush engine.
+This is the brush library used by MyPaint. A number of other painting
+programs use it too.
 
-License: ISC, see [COPYING](./COPYING) for details
+License: ISC, see [COPYING](./COPYING) for details.
 
-### Prerequisites
+## Dependencies
 
-Build dependencies:
-
-* [json-c](https://github.com/json-c/json-c/wiki) (>= 0.11)
-  - Debian: `libjson-c-dev`, or `libjson0-dev` (older)
-
-Optional dependencies:
-
-* Requirements when building from `git`:
+* All configurations and builds:
+  - [json-c](https://github.com/json-c/json-c/wiki) (>= 0.11)
+    - Debian: `libjson-c-dev`, or `libjson0-dev` (older)
+* When building from `git`:
   - [Python](http://python.org/)
   - [autotools](https://en.wikipedia.org/wiki/GNU_Build_System)
   - [intltool](https://freedesktop.org/wiki/Software/intltool/)
 * For `--enable-introspection`:
   - [GObject-Introspection](https://live.gnome.org/GObjectIntrospection)
-  - Debian: `libgirepository1.0-dev`
+    - Debian: `libgirepository1.0-dev`
 * For `--enable-gegl`:
   - [GEGL + BABL](http://gegl.org/)
-  - Note that GIMP does *not* require this option.
-  - Debian: `libgegl-dev`
+    - Debian: `libgegl-dev`
+    - Note that GIMP does not require libmypaint to be built with this option.
 
-### Building
+## Build and install
 
-#### Maintainer mode / from git
+The traditional setup works just fine.
 
-Now libmypaint uses autotools conventions,
-so you have to kickstart the build environment with:
+    $ ./autogen.sh    # Only needed when building from git.
+    $ ./configure
+    $ make install
+
+### Maintainer mode
+
+We don't ship a `configure` script in our git repository. If you're
+building from git, you have to kickstart the build environment with:
 
     $ ./autogen.sh
 
-This script is for the hackers who want to generate the configure script
-the first time from `configure.ac`.
-Users won't have to deal with it
-and will have the configure generated from the start.
+This script generates `configure` from `configure.ac`, after running a
+few checks to make sure your build environment is broadly OK. It also
+regenerates certain important generated headers if they need it.
+
+Folks building from a release tarball don't need to do this: they will
+have a `configure` script from the start.
+
+### Configure
+
+    $ ./configure
+    $ ./configure --prefix=/tmp/junk/example
+
+There are several MyPaint-specific options.
+These can be shown by running
+
+    $ ./configure --help
+
+### Build
+
+    $ make
+
+Once MyPaint is built, you can run the test suite and/or install it.
+
+### Test
+
+    $ make check
+
+This runs all the unit tests.
+
+### Install
+
+    $ make install
+
+Uninstall libmypaint with `make uninstall`.
+
+## Contributing
+
+The MyPaint project welcomes and encourages participation by everyone.
+We want our community to be skilled and diverse,
+and we want it to be a community that anybody can feel good about joining.
+No matter who you are or what your background is, we welcome you.
+
+Please note that MyPaint is released with a
+[Contributor Code of Conduct](CODE_OF_CONDUCT.md).
+By participating in this project you agree to abide by its terms.
+
+Please see the file [CONTRIBUTING.md](CONTRIBUTING.md)
+for details of how you can begin contributing.
+
+## Making releases
 
 The distribution release can be generated with:
 
@@ -52,46 +100,32 @@ And it should be checked before public release with:
 
     $ make distcheck
 
-#### Everyone else
+## Localization
 
-Now run:
+Contribute translations here: <https://hosted.weblate.org/engage/mypaint/>.
 
-    $ ./configure
+The list of languages is maintained in [po/LINGUAS](po/LINGUAS).
+Currently this file lists all the languages we have translations for.
+It can be regenerated with:
 
-As usual, add any of the common GNU options, like --prefix, --host (for
-cross-compilation), --enable-shared/static to build whatever you want,
---bindir/libdir/includedir/whateverdir for any hardcore user who like to
-play with one's environment and so on.
+    $ ls po/*.po | sed 's$^.*po/\([^.]*\).po$\1$' | sort > po/LINGUAS
 
-Then the libmypaint specific options:
---enable-docs/debug/profiling/openmp/gperftools/i18n/introspection/gegl
-and --with-glib.
-
-You can get the full list with `./configure -h`.
-
-Then run
-
-    `make`
-
-and
-
-    `make install`
-
-Afterwards, you can run all the unit tests with make check (works now with
-both shared and static libs), update the po files from the source code
-with cd po && make update-po. Common/practical GNU stuff. :-)
-
-### Localization
-
-List of language is maintained in po/LINGUAS (currently it has all the
-lang, I left a comment on the top of the files with a command line to
-get the full list of languages. But you can also disable languages by
-removing them from the list if needed).
+You can also disable languages by removing them from the list if needed.
 
 A list of files where localizable strings can be found is maintained
 in `po/POTFILES.in`.
 
-### Documentation
+### Strings update
+
+You can update the .po files when translated strings in the code change
+using:
+
+    $ cd po && make update-po
+
+When the results of this are pushed, Weblate translators will see the
+new strings immediately.
+
+## Documentation
 
 Further documentation can be found in the libmypaint wiki:
 <https://github.com/mypaint/libmypaint/wiki>.

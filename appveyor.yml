@@ -1,6 +1,11 @@
+environment:
+  matrix:
+    - MSYS2_ARCH: x86_64
+      MSYSTEM: MINGW64
+    - MSYS2_ARCH: i686
+      MSYSTEM: MINGW32
+
 build_script:
-    - SET PATH=%PATH%;c:\MinGW\bin
-    - gcc -o minimal examples/minimal.c -std=c99 -lm -I.
-test_script:
-    - minimal
+  - '%APPVEYOR_BUILD_FOLDER%\appveyor.bat'
+
 deploy: off

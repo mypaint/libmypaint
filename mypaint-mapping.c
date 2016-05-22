@@ -17,8 +17,14 @@
 #ifndef MAPPING_C
 #define MAPPING_C
 
+#include <config.h>
+
 #include <stdlib.h>
 #include <assert.h>
+
+#if MYPAINT_CONFIG_USE_GLIB
+#include <glib.h>
+#endif
 
 #include "mypaint-mapping.h"
 

@@ -15,7 +15,12 @@
  */
 
 #include "mypaint-benchmark.h"
+
+#if MYPAINT_CONFIG_USE_GLIB
+#include <glib.h>
+#else // not MYPAINT_CONFIG_USE_GLIB
 #include <mypaint-glib-compat.h>
+#endif
 
 #include <stdio.h>
 #include <string.h>

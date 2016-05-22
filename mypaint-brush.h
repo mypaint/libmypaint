@@ -18,15 +18,13 @@
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
-#include <mypaint-glib-compat.h>
+#include <mypaint-config.h>
 #include <mypaint-surface.h>
 #include <mypaint-brush-settings.h>
 
 G_BEGIN_DECLS
 
 typedef struct MyPaintBrush MyPaintBrush;
-
-#include <glib/mypaint-brush.h>
 
 MyPaintBrush *
 mypaint_brush_new(void);

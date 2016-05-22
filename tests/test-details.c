@@ -1,3 +1,4 @@
+#include "mypaint-config.h"
 
 #include <stdlib.h>
 #include <stdio.h>

@@ -1,4 +1,5 @@
 
+#include <config.h>
 #include <mypaint-config.h>
 
 #ifdef _OPENMP

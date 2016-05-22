@@ -14,11 +14,17 @@
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
+#include <config.h>
 
 #include <stdlib.h>
 #include <assert.h>
 
+#if MYPAINT_CONFIG_USE_GLIB
+#include <glib.h>
+#else // not MYPAINT_CONFIG_USE_GLIB
 #include <mypaint-glib-compat.h>
+#endif
+
 #include "operationqueue.h"
 #include "fifo.h"
 

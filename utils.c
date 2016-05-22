@@ -1,5 +1,8 @@
 /* Utilities which might become part of public API in the future  */
 
+#include <config.h>
+
+#include "mypaint-config.h"
 #include "mypaint-tiled-surface.h"
 #include "mypaint-fixed-tiled-surface.h"
 

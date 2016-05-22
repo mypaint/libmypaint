@@ -21,6 +21,7 @@
 
 G_BEGIN_DECLS
 
+#include <mypaint-config.h>
 #include <glib/mypaint-gegl-glib.h>
 #include <mypaint-tiled-surface.h>
 

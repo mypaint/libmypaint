@@ -1,6 +1,8 @@
 ACLOCAL_AMFLAGS = -I m4macros
 
+if WITH_GLIB
 libmypaint_glib = glib/mypaint-brush.h
+endif
 
 ## GObject introspection ##
 
@@ -98,6 +100,7 @@ nobase_libmypaint_public_HEADERS = \
 
 LIBMYPAINT_SOURCES = \
 	brushmodes.c					\
+	config.h						\
 	fifo.c							\
 	helpers.c						\
 	mypaint-mapping.c				\
@@ -116,14 +119,7 @@ LIBMYPAINT_SOURCES = \
 
 libmypaint_la_SOURCES = $(libmypaint_public_HEADERS) $(LIBMYPAINT_SOURCES)
 
-# Force generated source files to be built first.
-# Automatic dependency tracking does not always work as expected. See:
-# https://www.gnu.org/software/automake/manual/html_node/Built-Sources-Example.html
-BUILT_SOURCES = mypaint-config.h
-DISTCLEANFILES = mypaint-config.h MyPaint-@LIBMYPAINT_MAJOR_VERSION@.@LIBMYPAINT_MINOR_VERSION@.gir.files
-
-mypaint-config.h: mypaint-config.h.top config.h mypaint-config.h.bottom
-	cat $^ >$@
+DISTCLEANFILES = MyPaint-@LIBMYPAINT_MAJOR_VERSION@.@LIBMYPAINT_MINOR_VERSION@.gir.files
 
 EXTRA_DIST = \
 	brushsettings.json				\
@@ -138,8 +134,6 @@ EXTRA_DIST = \
 	generate.py						\
 	helpers.h						\
 	libmypaint.c					\
-	mypaint-config.h.bottom			\
-	mypaint-config.h.top			\
 	operationqueue.h				\
 	rng-double.h					\
 	tiled-surface-private.h			\

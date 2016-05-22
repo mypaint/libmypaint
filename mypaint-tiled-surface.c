@@ -14,6 +14,8 @@
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
+#include <config.h>
+
 #include <math.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -23,6 +25,7 @@
 #include <omp.h>
 #endif
 
+#include "mypaint-config.h"
 #include "mypaint-tiled-surface.h"
 #include "tiled-surface-private.h"
 #include "helpers.h"

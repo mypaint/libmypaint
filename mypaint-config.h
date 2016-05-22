@@ -13,4 +13,4 @@
 #define MYPAINT_MAX_MIPMAP_LEVEL 4
 #endif
 
-/* Start generated config */
+#endif /* MYPAINTCONFIG_H */

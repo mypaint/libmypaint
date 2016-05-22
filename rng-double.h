@@ -1,7 +1,14 @@
 #ifndef RNGDOUBLE_H
 #define RNGDOUBLE_H
 
+#include "mypaint-config.h"
+
+#if MYPAINT_CONFIG_USE_GLIB
+#include <glib.h>
+#else // not MYPAINT_CONFIG_USE_GLIB
 #include <mypaint-glib-compat.h>
+#endif
+
 
 G_BEGIN_DECLS
 

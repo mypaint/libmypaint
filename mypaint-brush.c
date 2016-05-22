@@ -14,11 +14,18 @@
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
+#include <config.h>
+
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
 #include <math.h>
 #include <assert.h>
+
+#if MYPAINT_CONFIG_USE_GLIB
+#include <glib.h>
+#include <glib/mypaint-brush.h>
+#endif
 
 #include "mypaint-brush.h"
 

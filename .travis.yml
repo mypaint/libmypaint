@@ -1,6 +1,11 @@
 language: c
 
-sudo: false
+compiler:
+  - gcc
+
+sudo: required
+
+dist: trusty
 
 addons:
   apt:

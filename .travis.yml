@@ -13,6 +13,7 @@ addons:
       - libjson0-dev
       - intltool
       - libgirepository1.0-dev
+      - libgegl-dev
 
 script:
     - ./autogen.sh
@@ -23,5 +24,9 @@ script:
     - make maintainer-clean
     - ./autogen.sh
     - ./configure --with-introspection
+    - make
+    - make maintainer-clean
+    - ./autogen.sh
+    - ./configure --with-gegl
     - make
     - make maintainer-clean

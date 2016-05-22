@@ -1,4 +1,4 @@
-/* brushlib - The MyPaint Brush Library
+/* libmypaint - The MyPaint Brush Library
  * Copyright (C) 2007-2011 Martin Renold <martinxyz@gmx.ch>
  *
  * Permission to use, copy, modify, and/or distribute this software for any

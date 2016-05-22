@@ -93,5 +93,5 @@ in `po/POTFILES.in`.
 
 ### Documentation
 
-Further documentation can be found in the MyPaint wiki:
-<https://github.com/mypaint/mypaint/wiki/Brushlib>.
+Further documentation can be found in the libmypaint wiki:
+<https://github.com/mypaint/libmypaint/wiki>.

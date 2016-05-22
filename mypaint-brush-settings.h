@@ -1,7 +1,7 @@
 #ifndef MYPAINTBRUSHSETTINGS_H
 #define MYPAINTBRUSHSETTINGS_H
 
-/* brushlib - The MyPaint Brush Library
+/* libmypaint - The MyPaint Brush Library
  * Copyright (C) 2012 Jon Nordby <jononor@gmail.com>
  *
  * Permission to use, copy, modify, and/or distribute this software for any

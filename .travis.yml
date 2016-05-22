@@ -12,7 +12,7 @@ addons:
     packages:
       - libjson0-dev
       - intltool
-      - gobject-introspection
+      - libgirepository1.0-dev
 
 script:
     - ./autogen.sh
@@ -20,4 +20,8 @@ script:
     - make
     - make clean
     - make distcheck
+    - make maintainer-clean
+    - ./autogen.sh
+    - ./configure --with-introspection
+    - make
     - make maintainer-clean

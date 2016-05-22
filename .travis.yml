@@ -18,4 +18,6 @@ script:
     - ./autogen.sh
     - ./configure
     - make
+    - make clean
     - make distcheck
+    - make maintainer-clean

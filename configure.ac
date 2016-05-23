@@ -15,7 +15,8 @@ m4_define([libmypaint_version_full],
 m4_define([gegl_required_version], [0.3])
 m4_define([introspection_required_version], [1.32.0])
 
-AC_INIT([libMyPaint], [libmypaint_version_full],
+AC_INIT([libmypaint],
+        [libmypaint_version_full],
         [https://github.com/mypaint/libmypaint/issues],
         [libmypaint],
         [https://github.com/mypaint/libmypaint])

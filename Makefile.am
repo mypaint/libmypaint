@@ -3,14 +3,20 @@ libmypaint_glib = glib/mypaint-brush.h
 ## GObject introspection ##
 
 -include $(INTROSPECTION_MAKEFILE)
+
 INTROSPECTION_GIRS =
-INTROSPECTION_SCANNER_ARGS = --warn-all --pkg="glib-2.0" \
-							 --namespace="MyPaint" --nsversion="$(LIBMYPAINT_VERSION)" \
-							 --identifier-prefix="MyPaint" --symbol-prefix="mypaint_" \
-							 --add-include-path="$(srcdir)" \
-							 --add-include-path="`$(PKG_CONFIG) --define-variable=datadir="$(datadir)" --variable=girdir gobject-introspection-1.0`"
-INTROSPECTION_COMPILER_ARGS = --includedir="$(srcdir)" \
-							  --includedir="`$(PKG_CONFIG) --define-variable=datadir="$(datadir)" --variable=girdir gobject-introspection-1.0`"
+INTROSPECTION_SCANNER_ARGS = \
+    --warn-all \
+    --pkg="glib-2.0" \
+    --namespace="MyPaint" \
+    --nsversion="$(LIBMYPAINT_VERSION)" \
+    --identifier-prefix="MyPaint" \
+    --symbol-prefix="mypaint_" \
+    --add-include-path="$(srcdir)" \
+    --add-include-path="`$(PKG_CONFIG) --define-variable=datadir="$(datadir)" --variable=girdir gobject-introspection-1.0`"
+INTROSPECTION_COMPILER_ARGS = \
+    --includedir="$(srcdir)" \
+    --includedir="`$(PKG_CONFIG) --define-variable=datadir="$(datadir)" --variable=girdir gobject-introspection-1.0`"
 INTROSPECTION_SCANNER_ENV = CFLAGS="$(CFLAGS)" LDFLAGS="$(LDFLAGS) @LIBS@" CPPFLAGS="$(CPPFLAGS) -I$(srcdir)" CXXFLAGS="$(CXXFLAGS)"
 
 MyPaint_introspectable_headers = \

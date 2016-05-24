@@ -9,7 +9,7 @@ INTROSPECTION_SCANNER_ARGS = \
     --warn-all \
     --pkg="glib-2.0" \
     --namespace="MyPaint" \
-    --nsversion="$(LIBMYPAINT_VERSION)" \
+    --nsversion="$(LIBMYPAINT_MAJOR_VERSION).$(LIBMYPAINT_MINOR_VERSION)" \
     --identifier-prefix="MyPaint" \
     --symbol-prefix="mypaint_" \
     --add-include-path="$(srcdir)" \
@@ -50,12 +50,12 @@ introspection_sources = \
 	mypaint-tiled-surface.c			\
 	tilemap.c
 
-MyPaint-@LIBMYPAINT_VERSION@.gir: libmypaint.la Makefile
-MyPaint_@LIBMYPAINT_MAJOR_VERSION@_@LIBMYPAINT_MINOR_VERSION@_@LIBMYPAINT_MICRO_VERSION@_gir_INCLUDES = GObject-2.0 GLib-2.0
-MyPaint_@LIBMYPAINT_MAJOR_VERSION@_@LIBMYPAINT_MINOR_VERSION@_@LIBMYPAINT_MICRO_VERSION@_gir_CFLAGS = $(AM_CFLAGS) $(AM_CPPFLAGS)
-MyPaint_@LIBMYPAINT_MAJOR_VERSION@_@LIBMYPAINT_MINOR_VERSION@_@LIBMYPAINT_MICRO_VERSION@_gir_LIBS = libmypaint.la
-MyPaint_@LIBMYPAINT_MAJOR_VERSION@_@LIBMYPAINT_MINOR_VERSION@_@LIBMYPAINT_MICRO_VERSION@_gir_FILES = $(introspection_sources)
-INTROSPECTION_GIRS += MyPaint-@LIBMYPAINT_VERSION@.gir
+MyPaint-@LIBMYPAINT_MAJOR_VERSION@.@LIBMYPAINT_MINOR_VERSION@.gir: libmypaint.la Makefile
+MyPaint_@LIBMYPAINT_MAJOR_VERSION@_@LIBMYPAINT_MINOR_VERSION@_gir_INCLUDES = GObject-2.0 GLib-2.0
+MyPaint_@LIBMYPAINT_MAJOR_VERSION@_@LIBMYPAINT_MINOR_VERSION@_gir_CFLAGS = $(AM_CFLAGS) $(AM_CPPFLAGS)
+MyPaint_@LIBMYPAINT_MAJOR_VERSION@_@LIBMYPAINT_MINOR_VERSION@_gir_LIBS = libmypaint.la
+MyPaint_@LIBMYPAINT_MAJOR_VERSION@_@LIBMYPAINT_MINOR_VERSION@_gir_FILES = $(introspection_sources)
+INTROSPECTION_GIRS += MyPaint-@LIBMYPAINT_MAJOR_VERSION@.@LIBMYPAINT_MINOR_VERSION@.gir
 
 girdir = $(datadir)/gir-1.0
 gir_DATA = $(INTROSPECTION_GIRS)
@@ -115,7 +115,7 @@ libmypaint_la_SOURCES = $(libmypaint_public_HEADERS) $(LIBMYPAINT_SOURCES)
 # Automatic dependency tracking does not always work as expected. See:
 # https://www.gnu.org/software/automake/manual/html_node/Built-Sources-Example.html
 BUILT_SOURCES = mypaint-config.h
-DISTCLEANFILES = mypaint-config.h MyPaint-1.3.0.gir.files
+DISTCLEANFILES = mypaint-config.h MyPaint-@LIBMYPAINT_MAJOR_VERSION@.@LIBMYPAINT_MINOR_VERSION@.gir.files
 
 mypaint-config.h: mypaint-config.h.top config.h mypaint-config.h.bottom
 	cat $^ >$@

@@ -1,15 +1,25 @@
 # AC_OPENMP requires autoconf >= 2.62.
 AC_PREREQ(2.62)
 
-# Versioning: see https://github.com/mypaint/libmypaint/wiki/Versioning
-m4_define([libmypaint_major_version], [1])
-m4_define([libmypaint_minor_version], [3])
-m4_define([libmypaint_micro_version], [0])
-m4_define([libmypaint_prerelease_version], [alpha.0])
+# API version: see https://github.com/mypaint/libmypaint/wiki/Versioning
+m4_define([libmypaint_api_major], [1])
+m4_define([libmypaint_api_minor], [3])
+m4_define([libmypaint_api_micro], [0])
+m4_define([libmypaint_api_prerelease], [alpha.0])  # may be blank
+# The platform version is "major.minor" only.
+# The full version is "major.minor.micro[-prerelease]".
+
+# ABI version see: https://autotools.io/libtool/version.html
+# https://www.gnu.org/software/libtool/manual/html_node/Updating-version-info.html
+m4_define([libmypaint_abi_revision], [0])  # increment on every release
+m4_define([libmypaint_abi_current], [0])  # inc when add/remove/change interfaces
+m4_define([libmypaint_abi_age], [0])  # inc only if changes backward compat
+
+# Derivative version macros
 m4_define([libmypaint_version],
-          [libmypaint_major_version.libmypaint_minor_version.libmypaint_micro_version])
+          [libmypaint_api_major.libmypaint_api_minor.libmypaint_api_micro])
 m4_define([libmypaint_version_full],
-          [libmypaint_major_version().libmypaint_minor_version().libmypaint_micro_version()m4_bpatsubst(libmypaint_prerelease_version(), [^], [-])])
+          [libmypaint_api_major().libmypaint_api_minor().libmypaint_api_micro()m4_bpatsubst(libmypaint_api_prerelease(), [^], [-])])
 
 # Dependencies.
 m4_define([gegl_required_version], [0.3])
@@ -28,17 +38,22 @@ AM_INIT_AUTOMAKE([no-define dist-xz no-dist-gzip -Wno-portability
                   -Wall -Werror
                   subdir-objects])
 
-LIBMYPAINT_MAJOR_VERSION=libmypaint_major_version
-LIBMYPAINT_MINOR_VERSION=libmypaint_minor_version
-LIBMYPAINT_MICRO_VERSION=libmypaint_micro_version
+LIBMYPAINT_MAJOR_VERSION=libmypaint_api_major
+LIBMYPAINT_MINOR_VERSION=libmypaint_api_minor
+LIBMYPAINT_MICRO_VERSION=libmypaint_api_micro
 LIBMYPAINT_VERSION=libmypaint_version
 LIBMYPAINT_VERSION_FULL=libmypaint_version_full
+LIBMYPAINT_API_PLATFORM_VERSION=libmypaint_api_major.libmypaint_api_minor
+LIBMYPAINT_ABI_VERSION_INFO=libmypaint_abi_current:libmypaint_abi_revision:libmypaint_abi_age
+
 AC_SUBST(LIBMYPAINT_MAJOR_VERSION)
 AC_SUBST(LIBMYPAINT_MINOR_VERSION)
 AC_SUBST(LIBMYPAINT_MICRO_VERSION)
 AC_SUBST(LIBMYPAINT_PRERELEASE_VERSION)
 AC_SUBST(LIBMYPAINT_VERSION)
 AC_SUBST(LIBMYPAINT_VERSION_FULL)
+AC_SUBST(LIBMYPAINT_API_PLATFORM_VERSION)
+AC_SUBST(LIBMYPAINT_ABI_VERSION_INFO)
 
 AC_PROG_CC
 AC_PROG_CC_C99

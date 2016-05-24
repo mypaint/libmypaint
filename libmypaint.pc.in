@@ -4,7 +4,7 @@ libdir=@libdir@
 includedir=@includedir@
 
 Name: @PACKAGE_NAME@
-Description: MyPaint's brushstroke rendering library@LIBMYPAINT_PRERELEASE_HINT@
+Description: MyPaint's brushstroke rendering library (@LIBMYPAINT_VERSION_FULL@)
 URL: @PACKAGE_URL@
 Version: @LIBMYPAINT_VERSION@
 Requires: @PKG_CONFIG_REQUIRES@

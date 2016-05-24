@@ -13,18 +13,23 @@ License: ISC, see [COPYING](./COPYING) for details.
 
 * All configurations and builds:
   - [json-c](https://github.com/json-c/json-c/wiki) (>= 0.11)
-    - Debian: `libjson-c-dev`, or `libjson0-dev` (older)
+  - C compiler, `make` etc.
+* Most configurations (all except `--disable-introspection --without-glib`):
+  - [GObject-Introspection](https://live.gnome.org/GObjectIntrospection)
+  - [GLib](https://wiki.gnome.org/Projects/GLib)
 * When building from `git`:
   - [Python](http://python.org/)
   - [autotools](https://en.wikipedia.org/wiki/GNU_Build_System)
   - [intltool](https://freedesktop.org/wiki/Software/intltool/)
-* For `--enable-introspection`:
-  - [GObject-Introspection](https://live.gnome.org/GObjectIntrospection)
-    - Debian: `libgirepository1.0-dev`
-* For `--enable-gegl`:
+* For `--enable-gegl` (GIMP *does not* require this):
   - [GEGL + BABL](http://gegl.org/)
-    - Debian: `libgegl-dev`
-    - Note that GIMP does not require libmypaint to be built with this option.
+
+On recent Debian-like systems, you can type the following
+to get started with a standard configuration:
+
+    $ sudo apt install build-essential
+    $ sudo apt install libjson-c-dev libjson-c-dev libglib2.0-dev
+    $ sudo apt install python2 autotools intltool    # Building from git
 
 ## Build and install
 

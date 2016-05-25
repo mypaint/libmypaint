@@ -236,9 +236,6 @@ $LIBTOOLIZE --force || exit $?
 
 python2 generate.py mypaint-brush-settings-gen.h brushsettings-gen.h
 
-
-# Mandatory files for automake.
-touch NEWS README AUTHORS ChangeLog
 $AUTOMAKE --add-missing || exit $?
 $AUTOCONF || exit $?
 

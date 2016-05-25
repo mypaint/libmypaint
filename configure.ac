@@ -36,7 +36,8 @@ AC_CONFIG_MACRO_DIR([m4macros])
 
 AM_INIT_AUTOMAKE([no-define dist-xz no-dist-gzip -Wno-portability
                   -Wall -Werror
-                  subdir-objects])
+                  subdir-objects
+                  foreign])
 
 LIBMYPAINT_MAJOR_VERSION=libmypaint_api_major
 LIBMYPAINT_MINOR_VERSION=libmypaint_api_minor

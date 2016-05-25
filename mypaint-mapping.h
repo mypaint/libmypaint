@@ -1,11 +1,11 @@
 #ifndef MAPPING_H
 #define MAPPING_H
 
-typedef struct _MyPaintMapping MyPaintMapping;
-
 #include <mypaint-glib-compat.h>
 
 G_BEGIN_DECLS
+
+typedef struct _MyPaintMapping MyPaintMapping;
 
 MyPaintMapping * mypaint_mapping_new(int inputs_);
 void mypaint_mapping_free(MyPaintMapping *self);

@@ -20,6 +20,8 @@
 #include <mypaint-glib-compat.h>
 #include <mypaint-brush-settings-gen.h>
 
+G_BEGIN_DECLS
+
 typedef struct {
     const gchar *cname;
     const gchar *name; // FIXME: needs to be accessed through gettext
@@ -62,5 +64,7 @@ mypaint_brush_input_info_get_tooltip(const MyPaintBrushInputInfo *self);
 
 MyPaintBrushInput
 mypaint_brush_input_from_cname(const char *cname);
+
+G_END_DECLS
 
 #endif // MYPAINTBRUSHSETTINGS_H

@@ -263,6 +263,23 @@ AC_SEARCH_LIBS([floorf], [m], [], AC_MSG_ERROR([no floorf]))
 AC_SEARCH_LIBS([powf], [m], [], AC_MSG_ERROR([no powf]))
 AC_SEARCH_LIBS([expf], [m], [], AC_MSG_ERROR([no expf]))
 
+## Additional compile flags ##
+
+AX_CHECK_COMPILE_FLAG(
+    [-fsanitize=undefined],
+    [test x$enable_debug = xyes && CFLAGS="-fsanitize=undefined $CFLAGS"],
+    [],
+    [-Werror],
+    [],
+)
+AX_CHECK_LINK_FLAG(
+    [-fsanitize=undefined],
+    [test x$enable_debug = xyes && LDFLAGS="-fsanitize=undefined $LDFLAGS"],
+    [],
+    [-Werror],
+    [],
+)
+
 ## Internationalization ##
 AC_ARG_ENABLE(i18n,
   AS_HELP_STRING([--disable-i18n],

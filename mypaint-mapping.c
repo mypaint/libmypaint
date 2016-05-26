@@ -34,7 +34,7 @@ typedef struct {
   int n;
 } ControlPoints;
 
-struct _MyPaintMapping {
+struct MyPaintMapping {
     float base_value; // FIXME: accessed directly from mypaint-brush.c
 
     int inputs;

@@ -69,7 +69,7 @@
   *
   * The MyPaint brush engine class.
   */
-struct _MyPaintBrush {
+struct MyPaintBrush {
 
     gboolean print_inputs; // debug menu
     // for stroke splitting (undo/redo)

@@ -20,7 +20,7 @@
 #include "mypaint-gegl-surface.h"
 #include <gegl-utils.h>
 
-struct _MyPaintGeglTiledSurface {
+struct MyPaintGeglTiledSurface {
     MyPaintTiledSurface parent;
 
     GeglRectangle extent_rect; // TODO: remove, just use the extent of the buffer

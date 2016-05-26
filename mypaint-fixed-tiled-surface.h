@@ -13,7 +13,7 @@ G_BEGIN_DECLS
  * Only intended for testing and trivial use-cases, and to serve as an example of
  * how to implement a tiled surface subclass.
  */
-typedef struct _MyPaintFixedTiledSurface MyPaintFixedTiledSurface;
+typedef struct MyPaintFixedTiledSurface MyPaintFixedTiledSurface;
 
 MyPaintFixedTiledSurface *
 mypaint_fixed_tiled_surface_new(int width, int height);

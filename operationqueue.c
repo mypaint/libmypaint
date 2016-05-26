@@ -22,7 +22,7 @@
 #include "operationqueue.h"
 #include "fifo.h"
 
-struct _OperationQueue {
+struct OperationQueue {
     TileMap *tile_map;
 
     TileIndex *dirty_tiles;

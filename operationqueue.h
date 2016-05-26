@@ -21,7 +21,7 @@ typedef struct {
     float colorize;
 } OperationDataDrawDab;
 
-typedef struct _OperationQueue OperationQueue;
+typedef struct OperationQueue OperationQueue;
 
 OperationQueue *operation_queue_new(void);
 void operation_queue_free(OperationQueue *self);

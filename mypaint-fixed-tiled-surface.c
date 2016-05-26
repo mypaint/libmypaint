@@ -7,7 +7,7 @@
 #include <mypaint-fixed-tiled-surface.h>
 
 
-struct _MyPaintFixedTiledSurface {
+struct MyPaintFixedTiledSurface {
     MyPaintTiledSurface parent;
 
     size_t tile_size; // Size (in bytes) of single tile

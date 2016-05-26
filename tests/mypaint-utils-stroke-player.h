@@ -20,7 +20,7 @@
 #include <mypaint-brush.h>
 #include <mypaint-surface.h>
 
-typedef struct _MyPaintUtilsStrokePlayer MyPaintUtilsStrokePlayer;
+typedef struct MyPaintUtilsStrokePlayer MyPaintUtilsStrokePlayer;
 
 MyPaintUtilsStrokePlayer *
 mypaint_utils_stroke_player_new(void);

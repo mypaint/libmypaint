@@ -43,7 +43,7 @@ typedef struct {
     float ytilt;
 } MotionEvent;
 
-struct _MyPaintUtilsStrokePlayer {
+struct MyPaintUtilsStrokePlayer {
     MyPaintSurface *surface;
     MyPaintBrush *brush;
     MotionEvent *events;

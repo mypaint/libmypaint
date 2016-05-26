@@ -7,8 +7,7 @@
 
 G_BEGIN_DECLS
 
-struct _MyPaintTiledSurface;
-typedef struct _MyPaintTiledSurface MyPaintTiledSurface;
+typedef struct MyPaintTiledSurface MyPaintTiledSurface;
 
 typedef struct {
     int tx;
@@ -24,9 +23,9 @@ void
 mypaint_tile_request_init(MyPaintTileRequest *data, int level,
                           int tx, int ty, gboolean readonly);
 
-typedef void (*MyPaintTileRequestStartFunction) (struct _MyPaintTiledSurface *self, MyPaintTileRequest *request);
-typedef void (*MyPaintTileRequestEndFunction) (struct _MyPaintTiledSurface *self, MyPaintTileRequest *request);
-typedef void (*MyPaintTiledSurfaceAreaChanged) (struct _MyPaintTiledSurface *self, int bb_x, int bb_y, int bb_w, int bb_h);
+typedef void (*MyPaintTileRequestStartFunction) (MyPaintTiledSurface *self, MyPaintTileRequest *request);
+typedef void (*MyPaintTileRequestEndFunction) (MyPaintTiledSurface *self, MyPaintTileRequest *request);
+typedef void (*MyPaintTiledSurfaceAreaChanged) (MyPaintTiledSurface *self, int bb_x, int bb_y, int bb_w, int bb_h);
 
 /**
   * MyPaintTiledSurface:
@@ -35,14 +34,14 @@ typedef void (*MyPaintTiledSurfaceAreaChanged) (struct _MyPaintTiledSurface *sel
   *
   * The size of the surface is infinite, and consumers need just implement two vfuncs.
   */
-struct _MyPaintTiledSurface {
+struct MyPaintTiledSurface {
     MyPaintSurface parent;
     /* private: */
     MyPaintTileRequestStartFunction tile_request_start;
     MyPaintTileRequestEndFunction tile_request_end;
     gboolean surface_do_symmetry;
     float surface_center_x;
-    struct _OperationQueue *operation_queue;
+    struct OperationQueue *operation_queue;
     MyPaintRectangle dirty_bbox;
     gboolean threadsafe_tile_requests;
     int tile_size;

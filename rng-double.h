@@ -5,7 +5,7 @@
 
 G_BEGIN_DECLS
 
-typedef struct _RngDouble RngDouble;
+typedef struct RngDouble RngDouble;
 
 RngDouble* rng_double_new(long seed);
 void rng_double_free(RngDouble *self);

@@ -24,7 +24,7 @@
 
 G_BEGIN_DECLS
 
-typedef struct _MyPaintBrush MyPaintBrush;
+typedef struct MyPaintBrush MyPaintBrush;
 
 #include <glib/mypaint-brush.h>
 

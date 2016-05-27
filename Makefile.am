@@ -1,3 +1,5 @@
+ACLOCAL_AMFLAGS = -I m4macros
+
 libmypaint_glib = glib/mypaint-brush.h
 
 ## GObject introspection ##

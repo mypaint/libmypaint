@@ -1,6 +1,10 @@
 # Optional
 if ENABLE_GEGL
 
+AM_CPPFLAGS = \
+	-I$(top_builddir) \
+	-I$(top_srcdir)
+
 ## GObject introspection ##
 
 -include $(INTROSPECTION_MAKEFILE)

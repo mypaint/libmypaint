@@ -18,9 +18,11 @@ INTROSPECTION_SCANNER_ARGS = \
     --identifier-prefix="MyPaintGegl" --symbol-prefix="mypaint_gegl" \
     --add-include-path="$(srcdir)/.." \
     --add-include-path="$(srcdir)" \
+    --add-include-path="$(builddir)/.." \
     --add-include-path="`$(PKG_CONFIG) --define-variable=datadir="$(datadir)" --variable=girdir gobject-introspection-1.0`"
 INTROSPECTION_COMPILER_ARGS = --includedir="$(srcdir)" \
      --includedir="$(srcdir)/.." \
+     --includedir="$(builddir)/.." \
      --includedir="`$(PKG_CONFIG) --define-variable=datadir="$(datadir)" --variable=girdir gobject-introspection-1.0`"
 INTROSPECTION_SCANNER_ENV = CFLAGS="$(CFLAGS)" LDFLAGS="$(LDFLAGS) -lm" CPPFLAGS="$(CPPFLAGS)" CXXFLAGS="$(CXXFLAGS)"
 

@@ -130,7 +130,9 @@ EXTRA_DIST = \
 	brushsettings-gen.h				\
 	mypaint-brush-settings-gen.h	\
 	COPYING							\
-	README.md						\
+	README.md					\
+	CONTRIBUTING.md \
+	CODE_OF_CONDUCT.md \
 	brushmodes.h					\
 	fifo.h							\
 	generate.py						\

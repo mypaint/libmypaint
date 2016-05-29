@@ -1,5 +1,11 @@
 if ENABLE_GEGL
 
+AM_CPPFLAGS = \
+	-I$(top_builddir)		\
+	-I$(top_srcdir)			\
+	-I$(top_srcdir)/gegl	\
+	-I$(top_srcdir)/tests
+
 AM_CFLAGS = -DLIBMYPAINT_TESTING_ABS_TOP_SRCDIR='"@abs_top_srcdir@"'	\
 			$(GEGL_CFLAGS) -I$(top_builddir)/gegl/ -I..
 

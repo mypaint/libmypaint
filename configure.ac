@@ -5,7 +5,7 @@ AC_PREREQ(2.62)
 m4_define([libmypaint_api_major], [1])
 m4_define([libmypaint_api_minor], [3])
 m4_define([libmypaint_api_micro], [0])
-m4_define([libmypaint_api_prerelease], [beta.0])  # may be blank
+m4_define([libmypaint_api_prerelease], [beta.1])  # may be blank
 # The platform version is "major.minor" only.
 # The full version is "major.minor.micro[-prerelease]".
 

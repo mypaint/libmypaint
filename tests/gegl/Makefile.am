@@ -28,9 +28,9 @@ endif
 
 LDADD = \
 	$(DEPS)								\
-	$(GEGL_LIBS)						\
 	$(top_builddir)/tests/libmypaint-tests.a \
 	$(top_builddir)/libmypaint.la		\
-	$(top_builddir)/gegl/libmypaint-gegl.la
+	$(top_builddir)/gegl/libmypaint-gegl.la	\
+	$(GEGL_LIBS)
 
 endif

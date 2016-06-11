@@ -35,6 +35,21 @@ float rand_gauss (RngDouble * rng)
   return sum * 1.73205080757 - 3.46410161514;
 }
 
+float
+circular_wrap(float num, float max) {
+	
+	if (num >= max){
+		num = fmod(num, max);
+	} else if (num < 0.0) {
+		num = max - fabs(fmod(num,max));
+	}
+	if (num == max) {
+		num = 0.0;
+	}
+	
+	return num;
+}
+
 // stolen from GIMP (gimpcolorspace.c)
 // (from gimp_rgb_to_hsv)
 void

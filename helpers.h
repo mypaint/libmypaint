@@ -25,4 +25,7 @@ rgb_to_hsv_float (float *r_ /*h*/, float *g_ /*s*/, float *b_ /*v*/);
 
 float rand_gauss (RngDouble * rng);
 
+float
+circular_wrap(float num, float max);
+
 #endif // HELPERS_H

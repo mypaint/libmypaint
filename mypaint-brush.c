@@ -729,6 +729,7 @@ smallest_angular_difference(float a, float b)
     float color_s = mypaint_mapping_get_base_value(self->settings[MYPAINT_BRUSH_SETTING_COLOR_S]);
     float color_v = mypaint_mapping_get_base_value(self->settings[MYPAINT_BRUSH_SETTING_COLOR_V]);
     float eraser_target_alpha = 1.0;
+    /*
     if (self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE] > 0.0) {
       // mix (in RGB) the smudge color with the brush color
       hsv_to_rgb_float (&color_h, &color_s, &color_v);
@@ -752,6 +753,94 @@ smallest_angular_difference(float a, float b)
       }
       rgb_to_hsv_float (&color_h, &color_s, &color_v);
     }
+    */
+    
+    if (self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE] > 0.0) {
+		
+		float a_Src = self->states[MYPAINT_BRUSH_STATE_SMUDGE_A ]; // alpha of canvas
+		
+		// mix (in HCY) the smudge color with the brush color
+		float fac = self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE];
+		if (fac > 1.0) fac = 1.0;
+		// If the smudge color somewhat transparent, then the resulting
+		// dab will do erasing towards that transparency level.
+		// see also ../doc/smudge_math.png
+		eraser_target_alpha = (1-fac)*1.0 + fac*a_Src;
+		// fix rounding errors (they really seem to happen in the previous line)
+		eraser_target_alpha = CLAMP(eraser_target_alpha, 0.0, 1.0);
+		
+		if (eraser_target_alpha > 0.0 && a_Src > 0.0) {
+        	 
+        	// get and convert canvas color
+        	float r_Src = self->states[MYPAINT_BRUSH_STATE_SMUDGE_RA] / a_Src;
+			float g_Src = self->states[MYPAINT_BRUSH_STATE_SMUDGE_GA] / a_Src;
+			float b_Src = self->states[MYPAINT_BRUSH_STATE_SMUDGE_BA] / a_Src;
+			rgb_to_hcy_float (&r_Src, &g_Src, &b_Src);
+        	 
+        	// convert brush color
+			hsv_to_rgb_float (&color_h, &color_s, &color_v);
+			rgb_to_hcy_float (&color_h, &color_s, &color_v);
+			
+			float h_Brush = color_h;  // brush
+			float h_Src = r_Src; //canvas
+        	float dist; // distance between hues
+			float h_Tmp;
+			
+			// both hues are greyscale (C == 0)
+			if (g_Src <= 0.0 && color_s <= 0.0) {		
+						
+				color_v = (fac*b_Src + (1.0-fac)*color_v); // luminance only		
+						
+			} else { // one or none of the hues are greyscale
+								
+				// one hue is grey, replace default 0.0 red hue
+				if (g_Src <= 0.0) {
+					h_Src = h_Brush;
+				} else if (color_s <= 0.0) {
+					h_Brush = h_Src;
+				}
+				
+				const float degree30 = 30.0/360.0; // into 0.0-1.0-range
+				const float degree120 = 1.0/3.0;
+				const float degree240 = 2.0/3.0;
+				h_Src -= degree30; // orange-to-origin offset
+				h_Brush -= degree30;
+				h_Src = circular_wrap(h_Src, 1.0);
+				h_Brush = circular_wrap(h_Brush, 1.0);
+				
+				dist = h_Src - h_Brush;
+				
+				// See if both hues are in one sector, else...
+				if (!(h_Brush <= degree240 && h_Src <= degree240) 
+				&& !(h_Brush >= degree120 && h_Src >= degree120)) {
+					// CW/CCW turn at over 210deg
+					if (fabs(dist) > (0.5-degree30)) {
+						if (h_Brush < h_Src) {
+							h_Brush += 1.0;
+						} else {
+							h_Src += 1.0;
+						}
+						dist = h_Src - h_Brush;
+					}
+				}
+
+				// interpolate hue
+				h_Tmp = h_Brush + (fac * dist); 
+				h_Tmp += degree30; //remove orange origin offset
+				
+				// Wrap around 360deg
+				h_Tmp = circular_wrap(h_Tmp, 1.0);	
+				
+				color_h = h_Tmp; // Hue		
+				color_s = (fac*g_Src + (1.0-fac)*color_s); // Chroma;
+				color_v = (fac*b_Src + (1.0-fac)*color_v); // Luminance;			
+			}
+
+			hcy_to_rgb_float (&color_h, &color_s, &color_v);
+			rgb_to_hsv_float (&color_h, &color_s, &color_v);
+        
+		} // else: We erase with the original hsv brush colors and don't set it to H-0.0-red
+	}
 
     // eraser
     if (self->settings_value[MYPAINT_BRUSH_SETTING_ERASER]) {

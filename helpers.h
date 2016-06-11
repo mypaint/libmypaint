@@ -23,6 +23,12 @@ hsv_to_rgb_float (float *h_, float *s_, float *v_);
 void
 rgb_to_hsv_float (float *r_ /*h*/, float *g_ /*s*/, float *b_ /*v*/);
 
+void
+hcy_to_rgb_float (float *h_, float *c_, float *y_);
+
+void
+rgb_to_hcy_float (float *r_, float *g_, float *b_);
+
 float rand_gauss (RngDouble * rng);
 
 float

@@ -230,6 +230,42 @@
         {
             "constant": false, 
             "default": 0.0, 
+            "displayed_name": "Offset Y", 
+            "internal_name": "offset_y", 
+            "maximum": 10.0, 
+            "minimum": -10.0, 
+            "tooltip": "Moves the dabs up or down."
+        },
+        {
+            "constant": false, 
+            "default": 0.0, 
+            "displayed_name": "Offset X", 
+            "internal_name": "offset_x", 
+            "maximum": 10.0, 
+            "minimum": -10.0, 
+            "tooltip": "Moves the dabs left or right."
+        },
+        {
+            "constant": false, 
+            "default": 0.0, 
+            "displayed_name": "Angular Offset Side", 
+            "internal_name": "offset_angle", 
+            "maximum": 20.0, 
+            "minimum": -20.0, 
+            "tooltip": "Follows the stoke direction to offset the dabs to one side."
+        },
+        {
+            "constant": false, 
+            "default": 0.0, 
+            "displayed_name": "Angular Offset Mirrored", 
+            "internal_name": "offset_angle_2", 
+            "maximum": 40.0, 
+            "minimum": 0.0, 
+            "tooltip": "Follows the stoke direction to offset the dabs, but to both sides of the stroke."
+        },
+        {
+            "constant": false, 
+            "default": 0.0, 
             "displayed_name": "Offset by speed", 
             "internal_name": "offset_by_speed", 
             "maximum": 3.0, 

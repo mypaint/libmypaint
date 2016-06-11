@@ -646,6 +646,29 @@ smallest_angular_difference(float a, float b)
 
     float base_radius = expf(mypaint_mapping_get_base_value(self->settings[MYPAINT_BRUSH_SETTING_RADIUS_LOGARITHMIC]));
 
+	if (self->settings_value[MYPAINT_BRUSH_SETTING_OFFSET_X]) {
+		x += self->settings_value[MYPAINT_BRUSH_SETTING_OFFSET_X] * base_radius;	
+	}
+	
+	if (self->settings_value[MYPAINT_BRUSH_SETTING_OFFSET_Y]) {
+		y += self->settings_value[MYPAINT_BRUSH_SETTING_OFFSET_Y] * base_radius;	
+	}
+	
+	if (self->settings_value[MYPAINT_BRUSH_SETTING_OFFSET_ANGLE]) {
+		x += base_radius * self->settings_value[MYPAINT_BRUSH_SETTING_OFFSET_ANGLE] * self->states[MYPAINT_BRUSH_STATE_DIRECTION_DY];
+		y += base_radius * self->settings_value[MYPAINT_BRUSH_SETTING_OFFSET_ANGLE] * -self->states[MYPAINT_BRUSH_STATE_DIRECTION_DX];	
+	}
+	
+	if (self->settings_value[MYPAINT_BRUSH_SETTING_OFFSET_ANGLE_2]) {
+		if (self->settings_value[MYPAINT_BRUSH_SETTING_OFFSET_ANGLE_2] < 0) {
+			self->settings_value[MYPAINT_BRUSH_SETTING_OFFSET_ANGLE_2] = 0;	
+		}
+		static int sign = +1;
+		x += base_radius * self->settings_value[MYPAINT_BRUSH_SETTING_OFFSET_ANGLE_2] * sign * self->states[MYPAINT_BRUSH_STATE_DIRECTION_DY];
+		y += base_radius * self->settings_value[MYPAINT_BRUSH_SETTING_OFFSET_ANGLE_2] * sign * -self->states[MYPAINT_BRUSH_STATE_DIRECTION_DX];
+		sign *= -1;	
+	}
+
     if (self->settings_value[MYPAINT_BRUSH_SETTING_OFFSET_BY_SPEED]) {
       x += self->states[MYPAINT_BRUSH_STATE_NORM_DX_SLOW] * self->settings_value[MYPAINT_BRUSH_SETTING_OFFSET_BY_SPEED] * 0.1 * base_radius;
       y += self->states[MYPAINT_BRUSH_STATE_NORM_DY_SLOW] * self->settings_value[MYPAINT_BRUSH_SETTING_OFFSET_BY_SPEED] * 0.1 * base_radius;

@@ -499,6 +499,7 @@ smallest_angular_difference(float a, float b)
     inputs[MYPAINT_BRUSH_INPUT_RANDOM] = rng_double_next(self->rng);
     inputs[MYPAINT_BRUSH_INPUT_STROKE] = MIN(self->states[MYPAINT_BRUSH_STATE_STROKE], 1.0);
     inputs[MYPAINT_BRUSH_INPUT_DIRECTION] = fmodf (atan2f (self->states[MYPAINT_BRUSH_STATE_DIRECTION_DY], self->states[MYPAINT_BRUSH_STATE_DIRECTION_DX])/(2*M_PI)*360 + 180.0, 180.0);
+    inputs[MYPAINT_BRUSH_INPUT_DIRECTION_ANGLE] = atan2f(self->states[MYPAINT_BRUSH_STATE_DIRECTION_ANGLE_DY], self->states[MYPAINT_BRUSH_STATE_DIRECTION_ANGLE_DX]) / (2 * M_PI) * 360 + 180;
     inputs[MYPAINT_BRUSH_INPUT_TILT_DECLINATION] = self->states[MYPAINT_BRUSH_STATE_DECLINATION];
     inputs[MYPAINT_BRUSH_INPUT_TILT_ASCENSION] = fmodf(self->states[MYPAINT_BRUSH_STATE_ASCENSION] + 180.0, 360.0) - 180.0;
 
@@ -552,6 +553,11 @@ smallest_angular_difference(float a, float b)
 
       float dx_old = self->states[MYPAINT_BRUSH_STATE_DIRECTION_DX];
       float dy_old = self->states[MYPAINT_BRUSH_STATE_DIRECTION_DY];
+      
+      // 360 Direction
+	  self->states[MYPAINT_BRUSH_STATE_DIRECTION_ANGLE_DX] += (dx - self->states[MYPAINT_BRUSH_STATE_DIRECTION_ANGLE_DX]) * fac;
+	  self->states[MYPAINT_BRUSH_STATE_DIRECTION_ANGLE_DY] += (dy - self->states[MYPAINT_BRUSH_STATE_DIRECTION_ANGLE_DY]) * fac;
+      
       // use the opposite speed vector if it is closer (we don't care about 180 degree turns)
       if (SQR(dx_old-dx) + SQR(dy_old-dy) > SQR(dx_old-(-dx)) + SQR(dy_old-(-dy))) {
         dx = -dx;

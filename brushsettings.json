@@ -252,7 +252,7 @@
             "internal_name": "offset_angle", 
             "maximum": 20.0, 
             "minimum": -20.0, 
-            "tooltip": "Follows the stoke direction to offset the dabs to one side."
+            "tooltip": "Follows the stroke direction to offset the dabs to one side."
         },
         {
             "constant": false, 
@@ -261,7 +261,7 @@
             "internal_name": "offset_angle_2", 
             "maximum": 40.0, 
             "minimum": 0.0, 
-            "tooltip": "Follows the stoke direction to offset the dabs, but to both sides of the stroke."
+            "tooltip": "Follows the stroke direction to offset the dabs, but to both sides of the stroke."
         },
         {
             "constant": false, 

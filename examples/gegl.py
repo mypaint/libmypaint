@@ -1,5 +1,5 @@
 
-from __future__ import absolute_import, print_function
+from __future__ import absolute_import, division, print_function
 
 from gi.repository import GeglGtk3 as GeglGtk
 from gi.repository import Gegl, Gtk

@@ -228,7 +228,7 @@ AC_ARG_ENABLE(docs,
 
 if test "x$enable_docs" = xyes; then
   AC_CHECK_PROGS(DOXYGEN, doxygen)
-  AC_CHECK_PROGS(SPHINX_BUILD, sphinx-build2 sphinx-build)
+  AC_CHECK_PROGS(SPHINX_BUILD, sphinx-build2 sphinx-build-2 sphinx-build3 sphinx-build-3 sphinx-build)
   # TODO: the python "breathe" extension is also a dependency to doc building.
   # The configure script should check for its existence.
 fi

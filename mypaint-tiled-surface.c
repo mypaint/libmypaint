@@ -620,8 +620,11 @@ int draw_dab (MyPaintSurface *surface, float x, float y,
     const float symm_y = self->surface_center_y + dist_y;
 
     const float dab_dist = sqrt(dist_x * dist_x + dist_y * dist_y);
+    const float rot_width = 360.0 / ((float) self->rot_symmetry_lines);
+    const float dab_angle_offset = atan2(-dist_y, -dist_x) / (2 * M_PI) * 360.0;
 
     int dab_count = 1;
+    int sub_dab_count = 0;
 
       switch(self->symmetry_type) {
           case MYPAINT_SYMMETRY_TYPE_VERTICAL:
@@ -660,11 +663,28 @@ int draw_dab (MyPaintSurface *surface, float x, float y,
                 surface_modified = TRUE;
             }
             break;
+          case MYPAINT_SYMMETRY_TYPE_SNOWFLAKE: {
+                gboolean failed_subdabs = FALSE;
+                for (sub_dab_count = 0; sub_dab_count < self->rot_symmetry_lines; sub_dab_count++) {
+                    const float symmetry_angle_offset = ((float)sub_dab_count) * rot_width;
+                    const float cur_angle = symmetry_angle_offset - dab_angle_offset;
+                    const float rot_x = self->surface_center_x - dab_dist*cos(cur_angle / 180.0 * M_PI);
+                    const float rot_y = self->surface_center_y - dab_dist*sin(cur_angle / 180.0 * M_PI);
+
+                    if (!draw_dab_internal(self, rot_x, rot_y, radius, color_r, color_g, color_b,
+                                           opaque, hardness, color_a,
+                                           aspect_ratio, -angle + symmetry_angle_offset,
+                                           lock_alpha, colorize)) {
+                        failed_subdabs = TRUE;
+                        break;
+                    }
+                }
+                if (failed_subdabs) {
+                    break;
+                }
+            }
 
           case MYPAINT_SYMMETRY_TYPE_ROTATIONAL: {
-                const float rot_width = 360.0 / ((float) self->rot_symmetry_lines);
-                const float dab_angle_offset = atan2(-dist_y, -dist_x) / (2 * M_PI) * 360.0;
-
                 for (dab_count = 1; dab_count < self->rot_symmetry_lines; dab_count++)
                 {
                     const float symmetry_angle_offset = ((float)dab_count) * rot_width;
@@ -673,7 +693,8 @@ int draw_dab (MyPaintSurface *surface, float x, float y,
                     const float rot_y = self->surface_center_y + dab_dist*sin(cur_angle / 180.0 * M_PI);
 
                     if (!draw_dab_internal(self, rot_x, rot_y, radius, color_r, color_g, color_b,
-                                           opaque, hardness, color_a, aspect_ratio, angle + symmetry_angle_offset,
+                                           opaque, hardness, color_a, aspect_ratio,
+                                           angle + symmetry_angle_offset,
                                            lock_alpha, colorize)) {
                         break;
                     }

@@ -143,7 +143,7 @@ mypaint_tiled_surface_set_symmetry_state(MyPaintTiledSurface *self, gboolean act
     self->surface_center_x = center_x;
     self->surface_center_y = center_y;
     self->symmetry_type = symmetry_type;
-    self->rot_symmetry_lines = rot_symmetry_lines;
+    self->rot_symmetry_lines = MAX(2, rot_symmetry_lines);
 }
 
 /**
@@ -842,7 +842,7 @@ mypaint_tiled_surface_init(MyPaintTiledSurface *self,
     self->symmetry_type = MYPAINT_SYMMETRY_TYPE_VERTICAL;
     self->surface_center_x = 0.0f;
     self->surface_center_y = 0.0f;
-    self->rot_symmetry_lines = 1;
+    self->rot_symmetry_lines = 2;
     self->operation_queue = operation_queue_new();
 }
 

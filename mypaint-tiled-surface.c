@@ -644,16 +644,19 @@ int draw_dab (MyPaintSurface *surface, float x, float y,
             break;
 
           case MYPAINT_SYMMETRY_TYPE_VERTHORZ:
+            // reflect vertically
             if (draw_dab_internal(self, symm_x, y, radius, color_r, color_g, color_b,
                                    opaque, hardness, color_a, aspect_ratio, -angle,
                                    lock_alpha, colorize)) {
                 dab_count++;
             }
+            // reflect horizontally
             if (draw_dab_internal(self, x, symm_y, radius, color_r, color_g, color_b,
                                    opaque, hardness, color_a, aspect_ratio, angle + 180.0,
                                    lock_alpha, colorize)) {
                 dab_count++;
             }
+            // reflect horizontally and vertically
             if (draw_dab_internal(self, symm_x, symm_y, radius, color_r, color_g, color_b,
                                    opaque, hardness, color_a, aspect_ratio, -angle - 180.0,
                                    lock_alpha, colorize)) {
@@ -665,9 +668,19 @@ int draw_dab (MyPaintSurface *surface, float x, float y,
             break;
           case MYPAINT_SYMMETRY_TYPE_SNOWFLAKE: {
                 gboolean failed_subdabs = FALSE;
+
+                // draw self->rot_symmetry_lines snowflake dabs
+                // because the snowflaked version of the initial dab
+                // was not done through carrying out the initial pass
                 for (sub_dab_count = 0; sub_dab_count < self->rot_symmetry_lines; sub_dab_count++) {
+                    // calculate the offset from rotational symmetry
                     const float symmetry_angle_offset = ((float)sub_dab_count) * rot_width;
+
+                    // subtract the angle offset since we're progressing clockwise
                     const float cur_angle = symmetry_angle_offset - dab_angle_offset;
+
+                    // progress through the rotation angle offsets clockwise
+                    // to reflect the dab relative to itself
                     const float rot_x = self->surface_center_x - dab_dist*cos(cur_angle / 180.0 * M_PI);
                     const float rot_y = self->surface_center_y - dab_dist*sin(cur_angle / 180.0 * M_PI);
 
@@ -679,16 +692,26 @@ int draw_dab (MyPaintSurface *surface, float x, float y,
                         break;
                     }
                 }
+
+                // do not bother falling to rotational if the snowflaked dabs failed
                 if (failed_subdabs) {
                     break;
                 }
+                // if it succeeded, fallthrough to rotational to finish the process
             }
 
           case MYPAINT_SYMMETRY_TYPE_ROTATIONAL: {
+                // draw self-rot_symmetry_lines rotational dabs
+                // since initial pass handles the first dab
                 for (dab_count = 1; dab_count < self->rot_symmetry_lines; dab_count++)
                 {
+                    // calculate the offset from rotational symmetry
                     const float symmetry_angle_offset = ((float)dab_count) * rot_width;
+
+                    // add the angle initial dab is from center point
                     const float cur_angle = symmetry_angle_offset + dab_angle_offset;
+
+                    // progress through the rotation cangle offsets counterclockwise
                     const float rot_x = self->surface_center_x + dab_dist*cos(cur_angle / 180.0 * M_PI);
                     const float rot_y = self->surface_center_y + dab_dist*sin(cur_angle / 180.0 * M_PI);
 

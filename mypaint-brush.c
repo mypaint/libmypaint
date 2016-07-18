@@ -729,7 +729,8 @@ smallest_angular_difference(float a, float b)
     float color_s = mypaint_mapping_get_base_value(self->settings[MYPAINT_BRUSH_SETTING_COLOR_S]);
     float color_v = mypaint_mapping_get_base_value(self->settings[MYPAINT_BRUSH_SETTING_COLOR_V]);
     float eraser_target_alpha = 1.0;
-    /*
+    
+    // RGB smudge. To disable comment from here...
     if (self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE] > 0.0) {
       // mix (in RGB) the smudge color with the brush color
       hsv_to_rgb_float (&color_h, &color_s, &color_v);
@@ -753,8 +754,10 @@ smallest_angular_difference(float a, float b)
       }
       rgb_to_hsv_float (&color_h, &color_s, &color_v);
     }
-    */
+    // ...to here.
     
+    // HCY Smudge. To enable uncomment from here...
+    /*
     if (self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE] > 0.0) {
 		
 		float a_Src = self->states[MYPAINT_BRUSH_STATE_SMUDGE_A ]; // alpha of canvas
@@ -841,6 +844,7 @@ smallest_angular_difference(float a, float b)
         
 		} // else: We erase with the original hsv brush colors and don't set it to H-0.0-red
 	}
+	*/ // ... to here
 
     // eraser
     if (self->settings_value[MYPAINT_BRUSH_SETTING_ERASER]) {

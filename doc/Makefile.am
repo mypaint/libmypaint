@@ -1,3 +1,8 @@
+EXTRA_DIST =		\
+	Doxyfile		\
+	source/conf.py	\
+	source/index.rst
+
 if ENABLE_DOCS
 
 doxygen/index.xml: Doxyfile

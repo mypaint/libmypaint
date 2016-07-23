@@ -28,7 +28,7 @@ On recent Debian-like systems, you can type the following
 to get started with a standard configuration:
 
     $ sudo apt install build-essential
-    $ sudo apt install libjson-c-dev libjson-c-dev libglib2.0-dev
+    $ sudo apt install libjson-c-dev libgirepository1.0-dev libglib2.0-dev
     $ sudo apt install python2 autotools intltool    # Building from git
 
 ## Build and install

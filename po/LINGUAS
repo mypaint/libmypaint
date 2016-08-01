@@ -1,7 +1,7 @@
 # List created with:
 # $ ls po/*.po -ltr |sed 's$^.*po/\([^.]*\).po$\1$' |sort >po/LINGUAS
 
-ar_AR
+ar
 ca
 cs
 da

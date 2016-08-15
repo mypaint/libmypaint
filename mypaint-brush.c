@@ -363,24 +363,24 @@ mypaint_brush_set_state(MyPaintBrush *self, MyPaintBrushState i, float value)
     self->states[i] = value;
 }
 
-
-// Returns the smallest angular difference (counterclockwise or clockwise) a to b, in degrees.
-// Clockwise is positive.
-static inline float
-smallest_angular_difference(float a, float b)
+// C fmodf function is not "arithmetic modulo"; it doesn't handle negative dividends as you might expect
+// if you expect 0 or a positive number when dealing with negatives, use
+// this function instead.
+static inline float mod(float a, float N)
 {
-    float d_cw, d_ccw;
-    a = fmodf(a, 360.0);
-    b = fmodf(b, 360.0);
-    if (a > b) {
-        d_cw = a - b;
-        d_ccw = b + 360.0 - a;
-    }
-    else {
-        d_cw = a + 360.0 - b;
-        d_ccw = b - a;
-    }
-    return (d_cw < d_ccw) ? -d_cw : d_ccw;
+    float ret = a - N * floor (a / N);
+    return ret;
+}
+
+// Returns the smallest angular difference
+static inline float
+smallest_angular_difference(float angleA, float angleB)
+{
+    float a;
+    a = angleB - angleA;
+    a = mod((a + 180), 360) - 180;
+    a += (a>180) ? -360 : (a<-180) ? 360 : 0;
+    return a;
 }
 
 
@@ -502,11 +502,12 @@ smallest_angular_difference(float a, float b)
     inputs[MYPAINT_BRUSH_INPUT_STROKE] = MIN(self->states[MYPAINT_BRUSH_STATE_STROKE], 1.0);
     inputs[MYPAINT_BRUSH_INPUT_DIRECTION] = fmodf (atan2f (self->states[MYPAINT_BRUSH_STATE_DIRECTION_DY], self->states[MYPAINT_BRUSH_STATE_DIRECTION_DX])/(2*M_PI)*360 + 180.0, 180.0);
     inputs[MYPAINT_BRUSH_INPUT_TILT_DECLINATION] = self->states[MYPAINT_BRUSH_STATE_DECLINATION];
-    inputs[MYPAINT_BRUSH_INPUT_TILT_ASCENSION] = fmodf(self->states[MYPAINT_BRUSH_STATE_ASCENSION] + 180.0, 360.0) - 180.0;
+    //use custom mod function-- fmodf can't handle negatives
+    inputs[MYPAINT_BRUSH_INPUT_TILT_ASCENSION] = mod(self->states[MYPAINT_BRUSH_STATE_ASCENSION] + 180.0, 360.0) - 180.0;
 
     inputs[MYPAINT_BRUSH_INPUT_CUSTOM] = self->states[MYPAINT_BRUSH_STATE_CUSTOM_INPUT];
     if (self->print_inputs) {
-      printf("press=% 4.3f, speed1=% 4.4f\tspeed2=% 4.4f\tstroke=% 4.3f\tcustom=% 4.3f\n", (double)inputs[MYPAINT_BRUSH_INPUT_PRESSURE], (double)inputs[MYPAINT_BRUSH_INPUT_SPEED1], (double)inputs[MYPAINT_BRUSH_INPUT_SPEED2], (double)inputs[MYPAINT_BRUSH_INPUT_STROKE], (double)inputs[MYPAINT_BRUSH_INPUT_CUSTOM]);
+      printf("press=% 4.3f, speed1=% 4.4f\tspeed2=% 4.4f\tstroke=% 4.3f\tcustom=% 4.3f\tasc=% 4.3f\n", (double)inputs[MYPAINT_BRUSH_INPUT_PRESSURE], (double)inputs[MYPAINT_BRUSH_INPUT_SPEED1], (double)inputs[MYPAINT_BRUSH_INPUT_SPEED2], (double)inputs[MYPAINT_BRUSH_INPUT_STROKE], (double)inputs[MYPAINT_BRUSH_INPUT_CUSTOM], (double)inputs[MYPAINT_BRUSH_INPUT_TILT_ASCENSION]);
     }
     // FIXME: this one fails!!!
     //assert(inputs[MYPAINT_BRUSH_INPUT_SPEED1] >= 0.0 && inputs[MYPAINT_BRUSH_INPUT_SPEED1] < 1e8); // checking for inf

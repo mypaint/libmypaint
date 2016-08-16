@@ -41,6 +41,8 @@ typedef struct {
     float pressure;
     float xtilt;
     float ytilt;
+    float viewzoom;
+    float viewrotation;
 } MotionEvent;
 
 struct MyPaintUtilsStrokePlayer {
@@ -113,6 +115,8 @@ mypaint_utils_stroke_player_set_source_data(MyPaintUtilsStrokePlayer *self, cons
         }
         event->xtilt = 0.0;
         event->ytilt = 0.0;
+        event->viewzoom = 1.0;
+        event->viewrotation = 0.0;
 
         line = strtok(NULL, "\n");
     }
@@ -142,7 +146,7 @@ mypaint_utils_stroke_player_iterate(MyPaintUtilsStrokePlayer *self)
         mypaint_brush_stroke_to(self->brush, self->surface,
                                 event->x*self->scale, event->y*self->scale,
                                 event->pressure,
-                                event->xtilt, event->ytilt, dtime);
+                                event->xtilt, event->ytilt, dtime, event->viewzoom, event->viewrotation);
 
         if (self->transaction_on_stroke) {
             mypaint_surface_end_atomic(self->surface, NULL);

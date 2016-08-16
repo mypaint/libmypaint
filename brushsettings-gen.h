@@ -58,6 +58,7 @@ static MyPaintBrushInputInfo inputs_info_array[] = {
     {"direction", 0.0, 0.0, 0.0, 180.0, 180.0, N_("Direction"), N_("The angle of the stroke, in degrees. The value will stay between 0.0 and 180.0, effectively ignoring turns of 180 degrees.")}, 
     {"tilt_declination", 0.0, 0.0, 0.0, 90.0, 90.0, N_("Declination"), N_("Declination of stylus tilt. 0 when stylus is parallel to tablet and 90.0 when it's perpendicular to tablet.")}, 
     {"tilt_ascension", -180.0, -180.0, 0.0, 180.0, 180.0, N_("Ascension"), N_("Right ascension of stylus tilt. 0 when stylus working end points to you, +90 when rotated 90 degrees clockwise, -90 when rotated 90 degrees counterclockwise.")}, 
+    {"viewzoom", -2.77, -2.77, 0.0, 4.15, 4.15, N_("Zoom Level"), N_("The current zoom level of the canvas view.  Logarithmic: 100% is 0.  200% is .69, 25% is -1.38")}, 
     {"custom", -FLT_MAX, -2.0, 0.0, 2.0, FLT_MAX, N_("Custom"), N_("This is a user defined input. Look at the 'custom input' setting for details.")}, 
 
 };

@@ -79,7 +79,17 @@
             "soft_maximum": 180.0, 
             "soft_minimum": -180.0, 
             "tooltip": "Right ascension of stylus tilt. 0 when stylus working end points to you, +90 when rotated 90 degrees clockwise, -90 when rotated 90 degrees counterclockwise."
-        }, 
+        },
+        {
+            "displayed_name": "Zoom Level", 
+            "hard_maximum": 4.15, 
+            "hard_minimum": -2.77, 
+            "id": "viewzoom", 
+            "normal": 0.0, 
+            "soft_maximum": 4.15, 
+            "soft_minimum": -2.77, 
+            "tooltip": "The current zoom level of the canvas view.  Logarithmic: 100% is 0.  200% is .69, 25% is -1.38"
+        },  
         {
             "displayed_name": "Custom", 
             "hard_maximum": null, 
@@ -529,6 +539,8 @@
         "direction_dx",
         "direction_dy",
         "declination",
-        "ascension"
+        "ascension",
+        "viewzoom",
+        "viewrotation"
     ]
 }

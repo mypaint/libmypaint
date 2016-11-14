@@ -1,29 +1,30 @@
 # Copyright (C) 2011 João S. O. Bueno
 # This file is distributed under the same license as the MyPaint package.
-#
 # FIRST AUTHOR João S. O. Bueno, 2011.
 # João S. O. Bueno <jsbueno@python.org.br>, 2011, 2012.
-# Joao S. O. Bueno, 2011.
+# Joao S. O. Bueno, 2011, 2012.
 msgid ""
 msgstr ""
 "Project-Id-Version: 0.9.0-git\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-07-04 18:33+0100\n"
-"PO-Revision-Date: 2015-07-29 19:22+0200\n"
-"Last-Translator: Leonardo Azenha <azenha.leonardo@gmail.com>\n"
+"POT-Creation-Date: 2015-07-11 21:24+0100\n"
+"PO-Revision-Date: 2016-11-14 09:23+0000\n"
+"Last-Translator: Luiza Portinho <luizanunesportinho@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) "
-"<https://hosted.weblate.org/projects/mypaint/libmypaint/pt_BR/>\n"
+"<https://hosted.weblate.org/projects/mypaint/mypaint/pt_BR/>\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 2.4-dev\n"
+"X-Generator: Weblate 2.9\n"
 "X-Poedit-Language: Brazilian Portuguese\n"
 "X-Poedit-Country: BRAZIL\n"
 "X-Poedit-SourceCharset: utf-8\n"
 
 #: ../brushsettings-gen.h:4
+#: ../gui/brusheditor.py:300
+#, fuzzy
 msgid "Opacity"
 msgstr "Opacidade"
 
@@ -426,6 +427,8 @@ msgstr ""
 "1.0 mais saturado"
 
 #: ../brushsettings-gen.h:33
+#: ../gui/brusheditor.py:323
+#, fuzzy
 msgid "Smudge"
 msgstr "Borrar"
 
@@ -483,6 +486,8 @@ msgstr ""
 "+1.6 cinco vezes o raio do pincel (fica lento)"
 
 #: ../brushsettings-gen.h:36
+#: ../gui/device.py:50
+#, fuzzy
 msgid "Eraser"
 msgstr "Borracha"
 
@@ -673,7 +678,10 @@ msgstr ""
 "Isto altera o quanto você tem que pressionar. Multiplica a pressão da mesa "
 "de captura por um fator constante."
 
+#. Tab label in preferences dialog
 #: ../brushsettings-gen.h:53
+#: ../po/tmp/preferenceswindow.glade.h:27
+#, fuzzy
 msgid "Pressure"
 msgstr "Pressão"
 
@@ -727,6 +735,8 @@ msgstr ""
 "0 e 1."
 
 #: ../brushsettings-gen.h:57
+#: ../gui/brusheditor.py:359
+#, fuzzy
 msgid "Stroke"
 msgstr "Traço"
 
@@ -780,6 +790,8 @@ msgstr ""
 "anti-horário."
 
 #: ../brushsettings-gen.h:61
+#: ../gui/brusheditor.py:385
+#, fuzzy
 msgid "Custom"
 msgstr "Personalizado"
 

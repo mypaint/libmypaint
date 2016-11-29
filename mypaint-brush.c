@@ -1105,7 +1105,67 @@ obj_get(json_object *self, const gchar *key, json_object **obj_out) {
 }
 
 static gboolean
-update_settings_from_json_object(MyPaintBrush *self)
+update_brush_setting_from_json_object(MyPaintBrush *self,
+                                      char *setting_name,
+                                      json_object *setting_obj)
+{
+    MyPaintBrushSetting setting_id = mypaint_brush_setting_from_cname(setting_name);
+
+    if (!(setting_id >= 0 && setting_id < MYPAINT_BRUSH_SETTINGS_COUNT)) {
+        fprintf(stderr, "Warning: Unknown setting_id: %d for setting: %s\n",
+                setting_id, setting_name);
+        return FALSE;
+    }
+
+    if (!json_object_is_type(setting_obj, json_type_object)) {
+        fprintf(stderr, "Warning: Wrong type for setting: %s\n", setting_name);
+        return FALSE;
+    }
+
+    // Base value
+    json_object *base_value_obj = NULL;
+    if (! obj_get(setting_obj, "base_value", &base_value_obj)) {
+        fprintf(stderr, "Warning: No 'base_value' field for setting: %s\n", setting_name);
+        return FALSE;
+    }
+    const double base_value = json_object_get_double(base_value_obj);
+    mypaint_brush_set_base_value(self, setting_id, base_value);
+
+    // Inputs
+    json_object *inputs = NULL;
+    if (! obj_get(setting_obj, "inputs", &inputs)) {
+        fprintf(stderr, "Warning: No 'inputs' field for setting: %s\n", setting_name);
+        return FALSE;
+    }
+    json_object_object_foreach(inputs, input_name, input_obj) {
+        MyPaintBrushInput input_id = mypaint_brush_input_from_cname(input_name);
+
+        if (!json_object_is_type(input_obj, json_type_array)) {
+            fprintf(stderr, "Warning: Wrong inputs type for setting: %s\n", setting_name);
+            return FALSE;
+        }
+
+        const int number_of_mapping_points = json_object_array_length(input_obj);
+
+        mypaint_brush_set_mapping_n(self, setting_id, input_id, number_of_mapping_points);
+
+        for (int i=0; i<number_of_mapping_points; i++) {
+            json_object *mapping_point = json_object_array_get_idx(input_obj, i);
+
+            json_object *x_obj = json_object_array_get_idx(mapping_point, 0);
+            const float x = json_object_get_double(x_obj);
+            json_object *y_obj = json_object_array_get_idx(mapping_point, 1);
+            const float y = json_object_get_double(y_obj);
+
+            mypaint_brush_set_mapping_point(self, setting_id, input_id, i, x, y);
+        }
+    }
+
+    return TRUE;
+}
+
+static gboolean
+update_brush_from_json_object(MyPaintBrush *self)
 {
     // Check version
     json_object *version_object = NULL;
@@ -1126,56 +1186,17 @@ update_settings_from_json_object(MyPaintBrush *self)
         return FALSE;
     }
 
+    gboolean updated_any = FALSE;
+    gboolean updated_all = TRUE;
     json_object_object_foreach(settings, setting_name, setting_obj) {
-
-        MyPaintBrushSetting setting_id = mypaint_brush_setting_from_cname(setting_name);
-
-        if (!json_object_is_type(setting_obj, json_type_object)) {
-            fprintf(stderr, "Error: Wrong type for setting: %s\n", setting_name);
-            return FALSE;
+        if (update_brush_setting_from_json_object(self, setting_name, setting_obj)) {
+            updated_any = TRUE;
         }
-
-        // Base value
-        json_object *base_value_obj = NULL;
-        if (! obj_get(setting_obj, "base_value", &base_value_obj)) {
-            fprintf(stderr, "Error: No 'base_value' field for setting: %s\n", setting_name);
-            return FALSE;
+        else {
+            updated_all = FALSE;
         }
-        const double base_value = json_object_get_double(base_value_obj);
-        mypaint_brush_set_base_value(self, setting_id, base_value);
-
-        // Inputs
-        json_object *inputs = NULL;
-        if (! obj_get(setting_obj, "inputs", &inputs)) {
-            fprintf(stderr, "Error: No 'inputs' field for setting: %s\n", setting_name);
-            return FALSE;
-        }
-        json_object_object_foreach(inputs, input_name, input_obj) {
-            MyPaintBrushInput input_id = mypaint_brush_input_from_cname(input_name);
-
-            if (!json_object_is_type(input_obj, json_type_array)) {
-                fprintf(stderr, "Error: Wrong inputs type for setting: %s\n", setting_name);
-                return FALSE;
-            }
-
-            const int number_of_mapping_points = json_object_array_length(input_obj);
-
-            mypaint_brush_set_mapping_n(self, setting_id, input_id, number_of_mapping_points);
-
-            for (int i=0; i<number_of_mapping_points; i++) {
-                json_object *mapping_point = json_object_array_get_idx(input_obj, i);
-
-                json_object *x_obj = json_object_array_get_idx(mapping_point, 0);
-                const float x = json_object_get_double(x_obj);
-                json_object *y_obj = json_object_array_get_idx(mapping_point, 1);
-                const float y = json_object_get_double(y_obj);
-
-                mypaint_brush_set_mapping_point(self, setting_id, input_id, i, x, y);
-            }
-        }
-
     }
-    return TRUE;
+    return updated_any;
 }
 #endif // HAVE_JSON_C
 
@@ -1188,7 +1209,7 @@ mypaint_brush_from_string(MyPaintBrush *self, const char *string)
         json_object_put(self->brush_json);
     }
     self->brush_json = json_tokener_parse(string);
-    return update_settings_from_json_object(self);
+    return update_brush_from_json_object(self);
 #else
     return FALSE;
 #endif

@@ -19,7 +19,7 @@ m4_define([libmypaint_abi_age], [0])  # inc only if changes backward compat
 m4_define([libmypaint_version],
           [libmypaint_api_major.libmypaint_api_minor.libmypaint_api_micro])
 m4_define([libmypaint_version_full],
-          [libmypaint_api_major().libmypaint_api_minor().libmypaint_api_micro()m4_bpatsubst(libmypaint_api_prerelease(), [^], [-])])
+          [libmypaint_api_major().libmypaint_api_minor().libmypaint_api_micro()m4_bpatsubst(libmypaint_api_prerelease(), [^\(.\)], [-\1])])
 
 # Dependencies.
 m4_define([gegl_required_version], [0.3])

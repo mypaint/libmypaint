@@ -73,6 +73,6 @@ LIBMYPAINT_GEGL_SOURCES = \
 libmypaint_gegl_la_SOURCES = $(libmypaint_gegl_public_HEADERS) $(LIBMYPAINT_GEGL_SOURCES)
 
 libmypaint_gegl_la_CFLAGS = $(JSON_CFLAGS) $(GLIB_CFLAGS) $(GEGL_CFLAGS)
-libmypaint_gegl_la_LIBS = $(GEGL_LIBS)
+libmypaint_gegl_la_LIBADD = $(top_builddir)/libmypaint.la $(GEGL_LIBS)
 
 endif # enable_gegl

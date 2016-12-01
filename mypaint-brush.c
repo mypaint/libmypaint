@@ -158,7 +158,9 @@ brush_free(MyPaintBrush *self)
     self->rng = NULL;
 
 #ifdef HAVE_JSON_C
-    json_object_put(self->brush_json);
+    if (self->brush_json) {
+        json_object_put(self->brush_json);
+    }
 #endif
 
     free(self);

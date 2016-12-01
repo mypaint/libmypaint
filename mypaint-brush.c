@@ -1206,12 +1206,25 @@ gboolean
 mypaint_brush_from_string(MyPaintBrush *self, const char *string)
 {
 #ifdef HAVE_JSON_C
+    json_object *brush_json = NULL;
+
     if (self->brush_json) {
         // Free
         json_object_put(self->brush_json);
+        self->brush_json = NULL;
     }
-    self->brush_json = json_tokener_parse(string);
-    return update_brush_from_json_object(self);
+    if (string) {
+        brush_json = json_tokener_parse(string);
+    }
+
+    if (brush_json) {
+        self->brush_json = brush_json;
+        return update_brush_from_json_object(self);
+    }
+    else {
+        self->brush_json = json_object_new_object();
+        return FALSE;
+    }
 #else
     return FALSE;
 #endif

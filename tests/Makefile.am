@@ -3,6 +3,7 @@ AM_CFLAGS = -DLIBMYPAINT_TESTING_ABS_TOP_SRCDIR='"@abs_top_srcdir@"'	\
 			-I$(srcdir)/..
 
 TESTS = \
+	test-brush-load				\
 	test-brush-persistence		\
 	test-details				\
 	test-fixed-tiled-surface	\
@@ -48,6 +49,16 @@ EXTRA_DIST = \
 	brushes/coarse_bulk_2.myb	\
 	brushes/impressionism.myb	\
 	brushes/modelling.myb		\
+	brushes/bad/bad_setting_types_1.myb \
+	brushes/bad/bad_setting_types_2.myb \
+	brushes/bad/bad_setting_types_3.myb \
+	brushes/bad/bad_setting_types_4.myb \
+	brushes/bad/empty.bad-myb \
+	brushes/bad/entirely_unknown_settings.bad-myb \
+	brushes/bad/missing_settings.bad-myb \
+	brushes/bad/missing_version.bad-myb \
+	brushes/bad/some_unknown_settings.myb \
+	brushes/bad/truncated.bad-myb \
 	events/painting30sec.dat
 
 SUBDIRS = . gegl

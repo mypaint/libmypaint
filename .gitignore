@@ -23,6 +23,7 @@ po/POTFILES
 
 test-driver
 tests/test-details
+tests/test-brush-load
 tests/*.exe
 tests/*.log
 tests/*.trs

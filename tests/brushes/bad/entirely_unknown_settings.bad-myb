@@ -1,0 +1,16 @@
+{
+    "comment": "MyPaint brush file", 
+    "group": "bad", 
+    "parent_brush_name": "classic/impressionism", 
+    "settings": {
+        "unknown_setting_1": {
+            "base_value": 1.0,
+            "inputs": {}
+        },
+        "unknown_setting_1": {
+            "base_value": 1.0,
+            "inputs": {}
+        },
+    }, 
+    "version": 3
+}

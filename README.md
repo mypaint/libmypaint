@@ -17,10 +17,11 @@ License: ISC, see [COPYING](./COPYING) for details.
 * Most configurations (all except `--disable-introspection --without-glib`):
   - [GObject-Introspection](https://live.gnome.org/GObjectIntrospection)
   - [GLib](https://wiki.gnome.org/Projects/GLib)
-* When building from `git`:
+* When building from `git` (developer package names vary by distribution):
   - [Python](http://python.org/)
   - [autotools](https://en.wikipedia.org/wiki/GNU_Build_System)
   - [intltool](https://freedesktop.org/wiki/Software/intltool/)
+  - [gettext](https://www.gnu.org/software/gettext/gettext.html)
 * For `--enable-gegl` (GIMP *does not* require this):
   - [GEGL + BABL](http://gegl.org/)
 
@@ -29,7 +30,7 @@ to get started with a standard configuration:
 
     $ sudo apt install build-essential
     $ sudo apt install libjson-c-dev libgirepository1.0-dev libglib2.0-dev
-    $ sudo apt install python2 autotools intltool    # Building from git
+    $ sudo apt install python2 autotools intltool gettext   # Building from git
 
 ## Build and install
 

@@ -1096,7 +1096,8 @@ smallest_angular_difference(float a, float b)
 static gboolean
 obj_get(json_object *self, const gchar *key, json_object **obj_out) {
 #if JSON_C_MINOR_VERSION >= 10
-    return json_object_object_get_ex(self, key, obj_out);
+    return json_object_object_get_ex(self, key, obj_out)
+        && (obj_out ? (*obj_out != NULL) : TRUE);
 #else
     json_object *o = json_object_object_get(self, key);
     if (obj_out) {

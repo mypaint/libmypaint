@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.7.1-git\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-07-11 21:24+0100\n"
+"POT-Creation-Date: 2016-12-02 03:23+0100\n"
 "PO-Revision-Date: 2016-01-17 13:12+0100\n"
 "Last-Translator: Pavel Fric <pavelfric@seznam.cz>\n"
 "Language-Team: Czech <kde-i18n-doc@kde.org>\n"
@@ -21,8 +21,6 @@ msgstr ""
 "X-Poedit-Country: CZECH REPUBLIC\n"
 
 #: ../brushsettings-gen.h:4
-#: ../gui/brusheditor.py:300
-#: ../po/tmp/resources.xml.h:183
 #, fuzzy
 msgid "Opacity"
 msgstr "Neprůhlednost"
@@ -426,7 +424,6 @@ msgstr ""
 " 1.0 sytější"
 
 #: ../brushsettings-gen.h:33
-#: ../gui/brusheditor.py:323
 #, fuzzy
 msgid "Smudge"
 msgstr "Šmouha"
@@ -481,7 +478,6 @@ msgid ""
 msgstr ""
 
 #: ../brushsettings-gen.h:36
-#: ../gui/device.py:50
 #, fuzzy
 msgid "Eraser"
 msgstr "Guma"
@@ -653,9 +649,7 @@ msgid ""
 "constant factor."
 msgstr ""
 
-#. Tab label in preferences dialog
 #: ../brushsettings-gen.h:53
-#: ../po/tmp/preferenceswindow.glade.h:27
 #, fuzzy
 msgid "Pressure"
 msgstr "Tlak:"
@@ -710,7 +704,6 @@ msgstr ""
 "a 1."
 
 #: ../brushsettings-gen.h:57
-#: ../gui/brusheditor.py:359
 #, fuzzy
 msgid "Stroke"
 msgstr "Tah"
@@ -760,7 +753,6 @@ msgid ""
 msgstr ""
 
 #: ../brushsettings-gen.h:61
-#: ../gui/brusheditor.py:385
 #, fuzzy
 msgid "Custom"
 msgstr "Vlastní"

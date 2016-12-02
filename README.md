@@ -30,11 +30,7 @@ to get started with a standard configuration:
 
     $ sudo apt install -y build-essential
     $ sudo apt install -y libjson-c-dev libgirepository1.0-dev libglib2.0-dev
-    $ sudo apt install -y python2.7 autotools intltool gettext   # Building from git
-
-The last line for Ubuntu systems should be:
-
-    $ sudo apt install -y python2.7 autotools-dev intltool gettext
+    $ sudo apt install -y python2.7 autotools-dev intltool gettext   # Building from git
 
 ## Build and install
 

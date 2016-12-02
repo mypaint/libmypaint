@@ -5,3 +5,4 @@
 
 brushsettings-gen.h
 mypaint-brush-settings.c
+mypaint-brush.c

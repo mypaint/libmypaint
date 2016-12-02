@@ -22,6 +22,18 @@
 #include <math.h>
 #include <assert.h>
 
+#define GETTEXT_PACKAGE "libmypaint"
+
+#ifdef HAVE_GETTEXT
+  #include <libintl.h>
+  #define N_(String) (String)
+  #define  _(String) gettext (String)
+#else
+  #define dgettext(Domain,String) (String)
+  #define N_(String) (String)
+  #define  _(String) (String)
+#endif // HAVE_GETTEXT
+
 #if MYPAINT_CONFIG_USE_GLIB
 #include <glib.h>
 #include <glib/mypaint-brush.h>

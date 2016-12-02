@@ -450,7 +450,7 @@ smallest_angular_difference(float a, float b)
     float inputs[MYPAINT_BRUSH_INPUTS_COUNT];
 
     if (step_dtime < 0.0) {
-      printf("Time is running backwards!\n");
+      printf(N_("Time is running backwards!\n"));
       step_dtime = 0.001;
     } else if (step_dtime == 0.0) {
       // FIXME: happens about every 10th start, workaround (against division by zero)
@@ -506,7 +506,7 @@ smallest_angular_difference(float a, float b)
 
     inputs[MYPAINT_BRUSH_INPUT_CUSTOM] = self->states[MYPAINT_BRUSH_STATE_CUSTOM_INPUT];
     if (self->print_inputs) {
-      printf("press=% 4.3f, speed1=% 4.4f\tspeed2=% 4.4f\tstroke=% 4.3f\tcustom=% 4.3f\n", (double)inputs[MYPAINT_BRUSH_INPUT_PRESSURE], (double)inputs[MYPAINT_BRUSH_INPUT_SPEED1], (double)inputs[MYPAINT_BRUSH_INPUT_SPEED2], (double)inputs[MYPAINT_BRUSH_INPUT_STROKE], (double)inputs[MYPAINT_BRUSH_INPUT_CUSTOM]);
+      printf(N_("press=% 4.3f, speed1=% 4.4f\tspeed2=% 4.4f\tstroke=% 4.3f\tcustom=% 4.3f\n"), (double)inputs[MYPAINT_BRUSH_INPUT_PRESSURE], (double)inputs[MYPAINT_BRUSH_INPUT_SPEED1], (double)inputs[MYPAINT_BRUSH_INPUT_SPEED2], (double)inputs[MYPAINT_BRUSH_INPUT_STROKE], (double)inputs[MYPAINT_BRUSH_INPUT_CUSTOM]);
     }
     // FIXME: this one fails!!!
     //assert(inputs[MYPAINT_BRUSH_INPUT_SPEED1] >= 0.0 && inputs[MYPAINT_BRUSH_INPUT_SPEED1] < 1e8); // checking for inf
@@ -913,7 +913,7 @@ smallest_angular_difference(float a, float b)
     if (!isfinite(x) || !isfinite(y) ||
         (x > 1e10 || y > 1e10 || x < -1e10 || y < -1e10)) {
       // workaround attempt for https://gna.org/bugs/?14372
-      printf("Warning: ignoring brush::stroke_to with insane inputs (x = %f, y = %f)\n", (double)x, (double)y);
+      printf(N_("Warning: ignoring brush::stroke_to with insane inputs (x = %f, y = %f)\n"), (double)x, (double)y);
       x = 0.0;
       y = 0.0;
       pressure = 0.0;
@@ -921,7 +921,7 @@ smallest_angular_difference(float a, float b)
     // the assertion below is better than out-of-memory later at save time
     assert(x < 1e8 && y < 1e8 && x > -1e8 && y > -1e8);
 
-    if (dtime < 0) printf("Time jumped backwards by dtime=%f seconds!\n", dtime);
+    if (dtime < 0) printf(N_("Time jumped backwards by dtime=%f seconds!\n"), dtime);
     if (dtime <= 0) dtime = 0.0001; // protect against possible division by zero bugs
 
     /* way too slow with the new rng, and not working any more anyway...
@@ -1115,20 +1115,20 @@ update_brush_setting_from_json_object(MyPaintBrush *self,
     MyPaintBrushSetting setting_id = mypaint_brush_setting_from_cname(setting_name);
 
     if (!(setting_id >= 0 && setting_id < MYPAINT_BRUSH_SETTINGS_COUNT)) {
-        fprintf(stderr, "Warning: Unknown setting_id: %d for setting: %s\n",
+        fprintf(stderr, N_("Warning: Unknown setting_id: %d for setting: %s\n"),
                 setting_id, setting_name);
         return FALSE;
     }
 
     if (!json_object_is_type(setting_obj, json_type_object)) {
-        fprintf(stderr, "Warning: Wrong type for setting: %s\n", setting_name);
+        fprintf(stderr, N_("Warning: Wrong type for setting: %s\n"), setting_name);
         return FALSE;
     }
 
     // Base value
     json_object *base_value_obj = NULL;
     if (! obj_get(setting_obj, "base_value", &base_value_obj)) {
-        fprintf(stderr, "Warning: No 'base_value' field for setting: %s\n", setting_name);
+        fprintf(stderr, N_("Warning: No 'base_value' field for setting: %s\n"), setting_name);
         return FALSE;
     }
     const double base_value = json_object_get_double(base_value_obj);
@@ -1137,14 +1137,14 @@ update_brush_setting_from_json_object(MyPaintBrush *self,
     // Inputs
     json_object *inputs = NULL;
     if (! obj_get(setting_obj, "inputs", &inputs)) {
-        fprintf(stderr, "Warning: No 'inputs' field for setting: %s\n", setting_name);
+        fprintf(stderr, N_("Warning: No 'inputs' field for setting: %s\n"), setting_name);
         return FALSE;
     }
     json_object_object_foreach(inputs, input_name, input_obj) {
         MyPaintBrushInput input_id = mypaint_brush_input_from_cname(input_name);
 
         if (!json_object_is_type(input_obj, json_type_array)) {
-            fprintf(stderr, "Warning: Wrong inputs type for setting: %s\n", setting_name);
+            fprintf(stderr, N_("Warning: Wrong inputs type for setting: %s\n"), setting_name);
             return FALSE;
         }
 
@@ -1173,19 +1173,19 @@ update_brush_from_json_object(MyPaintBrush *self)
     // Check version
     json_object *version_object = NULL;
     if (! obj_get(self->brush_json, "version", &version_object)) {
-        fprintf(stderr, "Error: No 'version' field for brush\n");
+        fprintf(stderr, N_("Error: No 'version' field for brush\n"));
         return FALSE;
     }
     const int version = json_object_get_int(version_object);
     if (version != 3) {
-        fprintf(stderr, "Error: Unsupported brush setting version: %d\n", version);
+        fprintf(stderr, N_("Error: Unsupported brush setting version: %d\n"), version);
         return FALSE;
     }
 
     // Set settings
     json_object *settings = NULL;
     if (! obj_get(self->brush_json, "settings", &settings)) {
-        fprintf(stderr, "Error: No 'settings' field for brush\n");
+        fprintf(stderr, N_("Error: No 'settings' field for brush\n"));
         return FALSE;
     }
 

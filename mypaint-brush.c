@@ -692,8 +692,19 @@ smallest_angular_difference(float angleA, float angleB)
 		y += self->settings_value[MYPAINT_BRUSH_SETTING_OFFSET_Y] * base_radius;
 	}
 
+
+        float norm_d = 1.0;
+
+        if (self->settings_value[MYPAINT_BRUSH_SETTING_OFFSET_ANGLE] ||
+            self->settings_value[MYPAINT_BRUSH_SETTING_OFFSET_ANGLE_2]) {
+          norm_d = hypotf(self->states[MYPAINT_BRUSH_STATE_DIRECTION_DX],
+                          self->states[MYPAINT_BRUSH_STATE_DIRECTION_DY]);
+          norm_d = fmaxf(norm_d,0.0001);
+          //printf("norm: %f\n", norm_d);
+        }
+
+
 	if (self->settings_value[MYPAINT_BRUSH_SETTING_OFFSET_ANGLE]) {
-          float norm_d = hypotf(self->states[MYPAINT_BRUSH_STATE_DIRECTION_DX], self->states[MYPAINT_BRUSH_STATE_DIRECTION_DY]);
           x += base_radius * self->settings_value[MYPAINT_BRUSH_SETTING_OFFSET_ANGLE] * self->states[MYPAINT_BRUSH_STATE_DIRECTION_DY] / norm_d;
           y += base_radius * self->settings_value[MYPAINT_BRUSH_SETTING_OFFSET_ANGLE] * -self->states[MYPAINT_BRUSH_STATE_DIRECTION_DX] / norm_d;
 	}
@@ -703,7 +714,6 @@ smallest_angular_difference(float angleA, float angleB)
             self->settings_value[MYPAINT_BRUSH_SETTING_OFFSET_ANGLE_2] = 0;
           }
           static int sign = +1;
-          float norm_d = hypotf(self->states[MYPAINT_BRUSH_STATE_DIRECTION_DX], self->states[MYPAINT_BRUSH_STATE_DIRECTION_DY]);
 
           x += base_radius * self->settings_value[MYPAINT_BRUSH_SETTING_OFFSET_ANGLE_2] * sign * self->states[MYPAINT_BRUSH_STATE_DIRECTION_DY] / norm_d;
           y += base_radius * self->settings_value[MYPAINT_BRUSH_SETTING_OFFSET_ANGLE_2] * sign * -self->states[MYPAINT_BRUSH_STATE_DIRECTION_DX] / norm_d;

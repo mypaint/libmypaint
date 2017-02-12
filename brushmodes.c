@@ -112,8 +112,8 @@ set_rgb16_lum_from_rgb16(const uint16_t topr,
     // Spec: SetLum()
     // Colours potentially can go out of band to both sides, hence the
     // temporary representation inflation.
-    const uint16_t botlum = LUMA(*botr, *botg, *botb) >> (float) 15;
-    const uint16_t toplum = LUMA(topr, topg, topb) >> (float) 15;
+    const uint16_t botlum = LUMA(*botr, *botg, *botb) / (1<<15);
+    const uint16_t toplum = LUMA(topr, topg, topb) / (1<<15);
     const int16_t diff = botlum - toplum;
     int32_t r = topr + diff;
     int32_t g = topg + diff;
@@ -121,7 +121,7 @@ set_rgb16_lum_from_rgb16(const uint16_t topr,
 
     // Spec: ClipColor()
     // Clip out of band values
-    int32_t lum = LUMA(r, g, b) >> (float) 15;
+    int32_t lum = LUMA(r, g, b) / (1<<15);
     int32_t cmin = MIN3(r, g, b);
     int32_t cmax = MAX3(r, g, b);
     if (cmin < 0) {

@@ -35,8 +35,8 @@
 
 typedef struct {
   // a set of control points (stepwise linear)
-  float xvalues[8];
-  float yvalues[8];
+  float xvalues[64];
+  float yvalues[64];
   int n;
 } ControlPoints;
 
@@ -86,7 +86,7 @@ void mypaint_mapping_set_base_value(MyPaintMapping *self, float value)
 void mypaint_mapping_set_n (MyPaintMapping * self, int input, int n)
 {
     assert (input >= 0 && input < self->inputs);
-    assert (n >= 0 && n <= 8);
+    assert (n >= 0 && n <= 64);
     assert (n != 1); // cannot build a linear mapping with only one point
     ControlPoints * p = self->pointsList + input;
 
@@ -109,7 +109,7 @@ int mypaint_mapping_get_n (MyPaintMapping * self, int input)
 void mypaint_mapping_set_point (MyPaintMapping * self, int input, int index, float x, float y)
 {
     assert (input >= 0 && input < self->inputs);
-    assert (index >= 0 && index < 8);
+    assert (index >= 0 && index < 64);
     ControlPoints * p = self->pointsList + input;
     assert (index < p->n);
 
@@ -124,7 +124,7 @@ void mypaint_mapping_set_point (MyPaintMapping * self, int input, int index, flo
 void mypaint_mapping_get_point (MyPaintMapping * self, int input, int index, float *x, float *y)
 {
     assert (input >= 0 && input < self->inputs);
-    assert (index >= 0 && index < 8);
+    assert (index >= 0 && index < 64);
     ControlPoints * p = self->pointsList + input;
     assert (index < p->n);
 

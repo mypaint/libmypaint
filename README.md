@@ -28,9 +28,9 @@ License: ISC, see [COPYING](./COPYING) for details.
 On recent Debian-like systems, you can type the following
 to get started with a standard configuration:
 
-    $ sudo apt install build-essential
-    $ sudo apt install libjson-c-dev libgirepository1.0-dev libglib2.0-dev
-    $ sudo apt install python2 autotools intltool gettext   # Building from git
+    $ sudo apt install -y build-essential
+    $ sudo apt install -y libjson-c-dev libgirepository1.0-dev libglib2.0-dev
+    $ sudo apt install -y python2.7 autotools-dev intltool gettext   # Building from git
 
 ## Build and install
 

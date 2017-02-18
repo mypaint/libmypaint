@@ -227,7 +227,7 @@
             "tooltip": "This setting decreases the hardness when necessary to prevent a pixel staircase effect (aliasing) by making the dab more blurred.\n 0.0 disable (for very strong erasers and pixel brushes)\n 1.0 blur one pixel (good value)\n 5.0 notable blur, thin strokes will disappear"
         },
         {
-            "constant": true,
+            "constant": false,
             "default": 0.0,
             "displayed_name": "Dabs per basic radius",
             "internal_name": "dabs_per_basic_radius",
@@ -236,7 +236,7 @@
             "tooltip": "How many dabs to draw while the pointer moves a distance of one brush radius (more precise: the base value of the radius)"
         },
         {
-            "constant": true,
+            "constant": false,
             "default": 2.0,
             "displayed_name": "Dabs per actual radius",
             "internal_name": "dabs_per_actual_radius",
@@ -245,7 +245,7 @@
             "tooltip": "Same as above, but the radius actually drawn is used, which can change dynamically"
         },
         {
-            "constant": true,
+            "constant": false,
             "default": 0.0,
             "displayed_name": "Dabs per second",
             "internal_name": "dabs_per_second",
@@ -559,14 +559,51 @@
             "minimum": 0.0,
             "tooltip": "Paint with the smudge color instead of the brush color. The smudge color is slowly changed to the color you are painting on.\n 0.0 do not use the smudge color\n 0.5 mix the smudge color with the brush color\n 1.0 use only the smudge color"
         },
+
         {
-            "constant": false,
-            "default": 0.5,
-            "displayed_name": "Smudge length",
-            "internal_name": "smudge_length",
-            "maximum": 1.0,
+            "constant": false, 
+            "default": 1.0, 
+            "displayed_name": "Pigment", 
+            "internal_name": "paint_mode", 
+            "maximum": 1.0, 
+            "minimum": 0.0, 
+            "tooltip": "Spectral pigment Mixing mode.  0 is normal RGB, 1 is 10 channel spectral pigment mode"
+        },
+        {
+            "constant": false, 
+            "default": 0.0, 
+            "displayed_name": "Smudge Transparency", 
+            "internal_name": "smudge_transparency", 
+            "maximum": 1.0, 
+            "minimum": -1.0, 
+            "tooltip": "Control how much transparency is picked up and smudged, similar to lock alpha.  1.0 will not move any transparency.\n0.5 will move only 50% transparency and above. 0.0 will have no effect.  Negative values do the reverse"
+        },
+        {
+            "constant": false, 
+            "default": 0.5, 
+            "displayed_name": "Smudge length", 
+            "internal_name": "smudge_length", 
+            "maximum": 1.0, 
             "minimum": 0.0,
             "tooltip": "This controls how fast the smudge color becomes the color you are painting on.\n0.0 immediately update the smudge color (requires more CPU cycles because of the frequent color checks)\n0.5 change the smudge color steadily towards the canvas color\n1.0 never change the smudge color"
+        },
+        {
+            "constant": false,
+            "default": 0.0,
+            "displayed_name": "Smudge Length Multiplier",
+            "internal_name": "smudge_length_log",
+            "maximum": 20.0,
+            "minimum": 0.0,
+            "tooltip": "Lengthens the smudge_length, logarithmic.\nUseful to correct for high-definition/large brushes with lots of dabs.\nThe longer the smudge length the more a paint will spread and will also boost performance dramatically, as the canvas is sampled less often"
+        },
+        {
+            "constant": false, 
+            "default": 0.0, 
+            "displayed_name": "Smudge Bucket", 
+            "internal_name": "smudge_bucket", 
+            "maximum": 255.0, 
+            "minimum": 0.0, 
+            "tooltip": "There are 256 buckets that hold a bit of color picked up from the canvas.\nYou can control which bucket to use to improve variability and realism of the brush.\nEspecially useful with Custom Input to correlate buckets with other settings such as offset"
         },
         {
             "constant": false,
@@ -600,7 +637,7 @@
             "default": 4.0,
             "displayed_name": "Stroke duration",
             "internal_name": "stroke_duration_logarithmic",
-            "maximum": 7.0,
+            "maximum": 14.0,
             "minimum": -1.0,
             "tooltip": "How far you have to move until the stroke input reaches 1.0. This value is logarithmic (negative values will not invert the process)."
         },
@@ -679,6 +716,24 @@
         {
             "constant": false,
             "default": 0.0,
+            "displayed_name": "Posterize",
+            "internal_name": "posterize",
+            "maximum": 1.0,
+            "minimum": 0.0,
+            "tooltip": "Strength of posteriztion, reducing its colors via the Posterize Levels setting, while retaining alpha."
+        },
+        {
+            "constant": false,
+            "default": 0.05,
+            "displayed_name": "Posterize Levels",
+            "internal_name": "posterize_num",
+            "maximum": 1.28,
+            "minimum": 0.01,
+            "tooltip": "Level of posterization (x100).  Values above 0.5 may not be noticable."
+        },
+        {
+            "constant": false,
+            "default": 0.0,
             "displayed_name": "Snap to pixel",
             "internal_name": "snap_to_pixel",
             "maximum": 1.0,
@@ -736,6 +791,9 @@
         "gridmap_x",
         "gridmap_y",
         "declinationx",
-        "declinationy"
+        "declinationy",
+        "dabs_per_basic_radius",
+        "dabs_per_actual_radius",
+        "dabs_per_second"
     ]
 }

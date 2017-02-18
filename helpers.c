@@ -313,4 +313,166 @@ hsl_to_rgb_float (float *h_, float *s_, float *l_)
   *l_ = b;
 }
 
+// RGB to RYB
+// adapted from http://www.deathbysoftware.com/colors/index.html
+	/**********************************************************************************************
+	 * Given a RYB color, calculate the RGB color.  This code was taken from:
+	 * 
+	 * @param iRed     The current red value.
+	 * @param iYellow  The current yellow value.
+	 * @param iBlue    The current blue value.
+	 * 
+	 * http://www.insanit.net/tag/rgb-to-ryb/
+	 * 
+	 * Author: Arah J. Leonard
+	 * Copyright 01AUG09
+	 * Distributed under the LGPL - http://www.gnu.org/copyleft/lesser.html
+	 * ALSO distributed under the The MIT License from the Open Source Initiative (OSI) - 
+	 * http://www.opensource.org/licenses/mit-license.php
+	 * You may use EITHER of these licenses to work with / distribute this source code.
+	 * Enjoy!
+	 */
+void
+rgb_to_ryb_float (float *r_ /*rryb*/, float *g_ /*yryb*/, float *b_ /*bryb*/)
+{
+  float iWhite, iRed, iYellow, iBlue, iGreen, iMaxYellow, iMaxGreen, iN;
+
+  iRed = *r_;
+  iGreen = *g_;
+  iBlue = *b_;
+
+  // Remove the white from the color
+  iWhite = MIN3(iRed, iGreen, iBlue);
+
+  iRed   -= iWhite;
+  iGreen -= iWhite;
+  iBlue  -= iWhite;
+
+  iMaxGreen = MAX3(iRed, iGreen, iBlue);
+
+  // Get the yellow out of the red+green
+
+  iYellow = fminf(iRed, iGreen);
+  iRed   -= iYellow;
+  iGreen -= iYellow;
+
+  // If this unfortunate conversion combines blue and green, then cut each in half to
+  // preserve the value's maximum range.
+  if (iBlue > 0 && iGreen > 0)
+  {
+    iBlue  /= 2;
+    iGreen /= 2;
+  }
+  
+  // Redistribute the remaining green.
+  iYellow += iGreen;
+  iBlue   += iGreen;
+
+  // Normalize to values.
+  iMaxYellow = MAX3(iRed, iYellow, iBlue);
+
+  if (iMaxYellow > 0)
+  {
+    iN = iMaxGreen / iMaxYellow;
+
+    iRed    *= iN;
+    iYellow *= iN;
+    iBlue   *= iN;
+  }
+
+  // Add the white back in.
+  iRed    += iWhite;
+  iYellow += iWhite;
+  iBlue   += iWhite;
+
+  iRed = CLAMP(iRed, 0.0, 1.0);
+  iYellow = CLAMP(iYellow, 0.0, 1.0);
+  iBlue = CLAMP(iBlue, 0.0, 1.0);
+
+  *r_ = iRed;
+  *g_ = iYellow;
+  *b_ = iBlue;
+}
+
+
+// RYB to RGB
+// adapted from http://www.deathbysoftware.com/colors/index.html
+	/**********************************************************************************************
+	 * Given a RYB color, calculate the RGB color.  This code was taken from:
+	 * 
+	 * @param iRed     The current red value.
+	 * @param iYellow  The current yellow value.
+	 * @param iBlue    The current blue value.
+	 * 
+	 * http://www.insanit.net/tag/rgb-to-ryb/
+	 * 
+	 * Author: Arah J. Leonard
+	 * Copyright 01AUG09
+	 * Distributed under the LGPL - http://www.gnu.org/copyleft/lesser.html
+	 * ALSO distributed under the The MIT License from the Open Source Initiative (OSI) - 
+	 * http://www.opensource.org/licenses/mit-license.php
+	 * You may use EITHER of these licenses to work with / distribute this source code.
+	 * Enjoy!
+	 */
+void
+ryb_to_rgb_float (float *r_ /*rryb*/, float *g_ /*yryb*/, float *b_ /*bryb*/)
+{
+  float iWhite, iRed, iYellow, iBlue, iGreen, iMaxYellow, iMaxGreen, iN;
+  
+  iRed = *r_;
+  iYellow = *g_;
+  iBlue = *b_;
+  
+  // Remove the whiteness from the color.
+  iWhite = MIN3(iRed, iYellow, iBlue);
+  
+  iRed    -= iWhite;
+  iYellow -= iWhite;
+  iBlue   -= iWhite;
+
+  iMaxYellow = MAX3(iRed, iYellow, iBlue);
+
+  // Get the green out of the yellow and blue
+  iGreen = fminf(iYellow, iBlue);
+  
+  iYellow -= iGreen;
+  iBlue   -= iGreen;
+
+  if (iBlue > 0 && iGreen > 0)
+  {
+    iBlue  *= 2.0;
+    iGreen *= 2.0;
+  }
+
+  // Redistribute the remaining yellow.
+  iRed   += iYellow;
+  iGreen += iYellow;
+
+  // Normalize to values.
+  iMaxGreen = MAX3(iRed, iGreen, iBlue);
+
+  if (iMaxGreen > 0)
+  {
+    iN = iMaxYellow / iMaxGreen;
+
+    iRed   *= iN;
+    iGreen *= iN;
+    iBlue  *= iN;
+  }
+
+  // Add the white back in.
+  iRed   += iWhite;
+  iGreen += iWhite;
+  iBlue  += iWhite;
+
+  iRed = CLAMP(iRed, 0.0, 1.0);
+  iGreen = CLAMP(iGreen, 0.0, 1.0);
+  iBlue = CLAMP(iBlue, 0.0, 1.0);
+
+  *r_ = iRed;
+  *g_ = iGreen;
+  *b_ = iBlue;
+
+}
+
 #endif //HELPERS_C

@@ -802,6 +802,8 @@ smallest_angular_difference(float angleA, float angleB)
         b = self->states[MYPAINT_BRUSH_STATE_LAST_GETCOLOR_B];
         a = self->states[MYPAINT_BRUSH_STATE_LAST_GETCOLOR_A];
       }
+      //convert to RYB-- we want to mix the smudge with the new getcolor in RYB space
+      rgb_to_ryb_float (&r, &g, &b);
 
       // updated the smudge color (stored with premultiplied alpha)
       self->states[MYPAINT_BRUSH_STATE_SMUDGE_A ] = fac*self->states[MYPAINT_BRUSH_STATE_SMUDGE_A ] + (1-fac)*a;
@@ -820,9 +822,25 @@ smallest_angular_difference(float angleA, float angleB)
     float color_v = mypaint_mapping_get_base_value(self->settings[MYPAINT_BRUSH_SETTING_COLOR_V]);
     float eraser_target_alpha = 1.0;
     if (self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE] > 0.0) {
-      // mix (in RGB) the smudge color with the brush color
-      hsv_to_rgb_float (&color_h, &color_s, &color_v);
+      // mix (in RYB) the smudge color with the brush color
+      
       float fac = self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE];
+      hsv_to_rgb_float (&color_h, &color_s, &color_v);
+      
+      //store HSL values for brush and smudge for later adjustments
+      float brush_h, brush_s, brush_l, smudge_h, smudge_s, smudge_l;
+      brush_h = color_h;
+      brush_s = color_s;
+      brush_l = color_v;
+      smudge_h = self->states[MYPAINT_BRUSH_STATE_LAST_GETCOLOR_R];
+      smudge_s = self->states[MYPAINT_BRUSH_STATE_LAST_GETCOLOR_G];
+      smudge_l = self->states[MYPAINT_BRUSH_STATE_LAST_GETCOLOR_B];
+      rgb_to_hsl_float (&brush_h, &brush_s, &brush_l);
+      rgb_to_hsl_float (&smudge_h, &smudge_s, &smudge_l);
+      
+      //convert to RYB for mixing
+      rgb_to_ryb_float (&color_h, &color_s, &color_v);
+      
       if (fac > 1.0) fac = 1.0;
       // If the smudge color somewhat transparent, then the resulting
       // dab will do erasing towards that transparency level.
@@ -831,15 +849,41 @@ smallest_angular_difference(float angleA, float angleB)
       // fix rounding errors (they really seem to happen in the previous line)
       eraser_target_alpha = CLAMP(eraser_target_alpha, 0.0, 1.0);
       if (eraser_target_alpha > 0) {
-        color_h = (fac*self->states[MYPAINT_BRUSH_STATE_SMUDGE_RA] + (1-fac)*color_h) / eraser_target_alpha;
-        color_s = (fac*self->states[MYPAINT_BRUSH_STATE_SMUDGE_GA] + (1-fac)*color_s) / eraser_target_alpha;
-        color_v = (fac*self->states[MYPAINT_BRUSH_STATE_SMUDGE_BA] + (1-fac)*color_v) / eraser_target_alpha;
+
+        color_h = (fac*self->states[MYPAINT_BRUSH_STATE_SMUDGE_RA] + (1-fac)*color_h);
+        color_s = (fac*self->states[MYPAINT_BRUSH_STATE_SMUDGE_GA] + (1-fac)*color_s);
+        color_v = (fac*self->states[MYPAINT_BRUSH_STATE_SMUDGE_BA] + (1-fac)*color_v);
+        ryb_to_rgb_float (&color_h, &color_s, &color_v);
+        //do the alpha in RGB
+        color_h /= eraser_target_alpha;
+        color_s /= eraser_target_alpha; 
+        color_v /= eraser_target_alpha;
       } else {
         // we are only erasing; the color does not matter
         color_h = 1.0;
         color_s = 0.0;
         color_v = 0.0;
       }
+
+      //convert to HSL for saturation adjustment
+      rgb_to_hsl_float (&color_h, &color_s, &color_v);
+      
+      //set our luma to luma of the mix ignoring the RYB result which is too light, I think.      
+      color_v = (fac*smudge_l + ((1-fac) * brush_l));
+
+      //desaturate if paints are different.  This should be on the RYB wheel not RGB, but it is close enough.
+      //mixing two different paints will always decrease saturation but without the below adjustment 
+      //100% Y and 100% B creates 100% Green, which is not right
+      if (color_s > 0.1) {
+      float huediff;
+      huediff = smallest_angular_difference(brush_h*360, smudge_h*360)/720;
+        if (huediff > .1) {
+        color_s = (fac*smudge_s + (1-fac) * brush_s) * (1-huediff);
+        }     
+      }
+
+      //convert back to rgb, then hsv
+      hsl_to_rgb_float (&color_h, &color_s, &color_v);
       rgb_to_hsv_float (&color_h, &color_s, &color_v);
     }
 

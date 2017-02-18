@@ -21,6 +21,7 @@
 #include <string.h>
 #include <math.h>
 #include <assert.h>
+#include <unistd.h>
 
 #if MYPAINT_CONFIG_USE_GLIB
 #include <glib.h>
@@ -55,6 +56,19 @@
 
 #define ACTUAL_RADIUS_MIN 0.2
 #define ACTUAL_RADIUS_MAX 1000 // safety guard against radius like 1e20 and against rendering overload with unexpected brush dynamics
+#define SPD 16777216
+#define WIDTH 36
+
+float *RGBSPD[SPD];
+float smudge_buckets[256][9];
+
+
+float T_MATRIX[3][36] = {{5.47813E-05, 0.000184722, 0.000935514, 0.003096265, 0.009507714, 0.017351596, 0.022073595, 0.016353161, 0.002002407, -0.016177731, -0.033929391, -0.046158952, -0.06381706, -0.083911194, -0.091832385, -0.08258148, -0.052950086, -0.012727224, 0.037413037, 0.091701812, 0.147964686, 0.181542886, 0.210684154, 0.210058081, 0.181312094, 0.132064724, 0.093723787, 0.057159281, 0.033469657, 0.018235464, 0.009298756, 0.004023687, 0.002068643, 0.00109484, 0.000454231, 0.000255925},
+{-4.65552E-05, -0.000157894, -0.000806935, -0.002707449, -0.008477628, -0.016058258, -0.02200529, -0.020027434, -0.011137726, 0.003784809, 0.022138944, 0.038965605, 0.063361718, 0.095981626, 0.126280277, 0.148575844, 0.149044804, 0.14239936, 0.122084916, 0.09544734, 0.067421931, 0.035691251, 0.01313278, -0.002384996, -0.009409573, -0.009888983, -0.008379513, -0.005606153, -0.003444663, -0.001921041, -0.000995333, -0.000435322, -0.000224537, -0.000118838, -4.93038E-05, -2.77789E-05},
+{0.00032594, 0.001107914, 0.005677477, 0.01918448, 0.060978641, 0.121348231, 0.184875618, 0.208804428, 0.197318551, 0.147233899, 0.091819086, 0.046485543, 0.022982618, 0.00665036, -0.005816014, -0.012450334, -0.015524259, -0.016712927, -0.01570093, -0.013647887, -0.011317812, -0.008077223, -0.005863171, -0.003943485, -0.002490472, -0.001440876, -0.000852895, -0.000458929, -0.000248389, -0.000129773, -6.41985E-05, -2.71982E-05, -1.38913E-05, -7.35203E-06, -3.05024E-06, -1.71858E-06}};
+
+
+
 
 /* The Brush class stores two things:
    b) settings: constant during a stroke (eg. size, spacing, dynamics, color selected by the user)
@@ -392,8 +406,404 @@ smallest_angular_difference(float angleA, float angleB)
     a = angleB - angleA;
     a = mod((a + 180), 360) - 180;
     a += (a>180) ? -360 : (a<-180) ? 360 : 0;
-    //printf("%f.1 to %f.1 = %f.1 \n", angleB, angleA, a);
     return a;
+}
+
+//state for loading rgb.txt
+int rgb_loaded = 0;
+
+//function to make it easy to blend normal and subtractive color blending modes in linear and non-linear modes
+//a is the current smudge state, b is the get_color (get=1) or the brush color (get=0)
+//mixing smudge_state+get_color is slightly different than mixing brush_color with smudge_color
+//so I've used the bool'get' parameter to differentiate them.
+static inline float * mix_colors(MyPaintBrush *self, float *a, float *b, float fac, float gamma, float normsub, float spectral, float get)
+{
+  float rgbmixnorm[4] = {0};
+  float rgbmixsub[4] = {0};
+  float rgbmix[4] = {0};
+  float spectralmix[4] = {0};
+  float spectralmixnorm[4] = {0};
+  float spectralmixsub[4] = {0};
+  static float result[4] = {0};
+  //normsub is the ratio of normal to subtractive
+  normsub = CLAMP(normsub, 0.0f, 1.0f);
+  //ratio of spectral to RGB
+  spectral = CLAMP(spectral, 0.0f, 1.0f);
+
+  if (gamma < 1.0) {
+    gamma = 1.0;
+  }
+  float ar=a[0];
+  float ag=a[1];
+  float ab=a[2];
+  float aa=a[3];
+  float br=b[0];
+  float bg=b[1];
+  float bb=b[2];
+  float ba=b[3];
+
+  
+  //weird if 100% alpha the get_color is 0,1,0 (bug?)
+  //I have seen "green" paint get in the mix
+  //This may be unnecessary now that I'm using alpha in the subtactive mode
+  //set get_color to the brush color as a compromise
+  if (b[3] == 0.0 && get == 1) {
+
+    float h = mypaint_mapping_get_base_value(self->settings[MYPAINT_BRUSH_SETTING_COLOR_H]);
+    float s = mypaint_mapping_get_base_value(self->settings[MYPAINT_BRUSH_SETTING_COLOR_S]);
+    float v = mypaint_mapping_get_base_value(self->settings[MYPAINT_BRUSH_SETTING_COLOR_V]);  
+    hsv_to_rgb_float (&h, &s, &v);
+
+    b[0] = h;
+    b[1] = s;
+    b[2] = v;
+  }
+
+  //do RGB mode (3 lights)
+  if (spectral < 1.0) {
+
+
+    //convert to linear rgb only if gamma is not 1.0 to avoid redundancy and rounding errors
+    if (gamma != 1.0) {
+      srgb_to_rgb_float(&ar, &ag, &ab, gamma);
+      srgb_to_rgb_float(&br, &bg, &bb, gamma);
+    }
+
+
+    //do the mix
+    //normal
+    if (normsub < 1.0) {
+      //premultiply alpha when getting color from canvas
+      //the color in the smudge_state (a) is already premultiplied
+      float bra =br;
+      float bga =bg;
+      float bba =bb;
+      if (get == 1) {
+        bra *=ba;
+        bga *=ba;
+        bba *=ba;
+      }
+
+      rgbmixnorm[0] = fac * ar + (1-fac) * bra;
+      rgbmixnorm[1] = fac * ag + (1-fac) * bga;
+      rgbmixnorm[2] = fac * ab + (1-fac) * bba;
+    }
+    //subtractive
+    
+    
+    
+    float alpha_b;  //either brush_a or get_color_a
+    if (get == 0) {
+      alpha_b = 1;
+    } else {
+      alpha_b = ba;
+    }
+    
+    //calculate a different smudge ratio for subtractive modes
+    //may not be coherent but it looks good
+    float paint_a_ratio, paint_b_ratio;
+    float subfac = fac;
+    float alpha_sum = aa + alpha_b;
+    if (alpha_sum >0.0) {
+      paint_a_ratio = (aa/alpha_sum)*fac;
+      paint_b_ratio = (ba/alpha_sum)*(1-fac);
+      paint_a_ratio /=(paint_a_ratio+paint_b_ratio);
+      paint_b_ratio /=(paint_a_ratio+paint_b_ratio);
+    }
+    
+    float paint_ratio_sum = paint_a_ratio + paint_b_ratio;
+    if (paint_ratio_sum > 0.0) {
+      subfac = paint_a_ratio/(paint_ratio_sum);
+    }
+    
+    if (normsub > 0.0) {
+    
+      rgbmixsub[0] = powf(MAX(ar, 0.0001), subfac) * powf(MAX(br, 0.0001),(1-subfac));
+      rgbmixsub[1] = powf(MAX(ag, 0.0001), subfac) * powf(MAX(bg, 0.0001),(1-subfac));
+      rgbmixsub[2] = powf(MAX(ab, 0.0001), subfac) * powf(MAX(bb, 0.0001),(1-subfac));
+    }
+
+    //do eraser_target alpha for smudge+brush color
+    if (get == 0) {
+      rgbmixnorm[0] /=ba;
+      rgbmixnorm[1] /=ba;
+      rgbmixnorm[2] /=ba;
+    }    
+ 
+    ar = rgbmixnorm[0];
+    ag = rgbmixnorm[1];
+    ab = rgbmixnorm[2];
+
+    //convert back to sRGB
+    if (gamma != 1.0) {
+      rgb_to_srgb_float(&ar, &ag, &ab, gamma);
+    }
+    
+    rgbmixnorm[0] = ar;
+    rgbmixnorm[1] = ag;
+    rgbmixnorm[2] = ab;        
+
+    ar = rgbmixsub[0];
+    ag = rgbmixsub[1];
+    ab = rgbmixsub[2];
+
+
+    //convert back to sRGB
+    if (gamma != 1.0) {
+      rgb_to_srgb_float(&ar, &ag, &ab, gamma);
+    }
+    
+    rgbmixsub[0] = ar;
+    rgbmixsub[1] = ag;
+    rgbmixsub[2] = ab;
+
+    //combine normal and subtractive RGB modes
+    int i = 0;
+    for (i=0; i < 4; i++) {  
+      rgbmix[i] = CLAMP((((1-normsub)*rgbmixnorm[i]) + (normsub*rgbmixsub[i])), 0.0f, 1.0f);
+    }
+    rgbmix[3] = CLAMP(fac * aa + (1-fac) * ba, 0.0, 1.0); 
+  }
+  
+
+  //Spectral Method devised by Scott Burns (36 lights)
+  //for smudge_status + get_color, set get parameter to 1
+  //clamp to ensure SPD lookup is not out of array bounds
+  //rgb_loaded=2 means rgb.txt is missing
+  if (spectral > 0.0 && rgb_loaded == 2) {
+    //rgb.txt is missing, just do RGB mixing instead
+    float *result;
+    result = mix_colors(self, a, b, fac, gamma, normsub, 0, get);
+    return result;
+  }
+  if (spectral > 0.0 && rgb_loaded != 2) {
+    ar=CLAMP(a[0], 0.0f, 1.0f);
+    ag=CLAMP(a[1], 0.0f, 1.0f);
+    ab=CLAMP(a[2], 0.0f, 1.0f);
+    aa=CLAMP(a[3], 0.0f, 1.0f);
+    
+    br=CLAMP(b[0], 0.0f, 1.0f);
+    bg=CLAMP(b[1], 0.0f, 1.0f);
+    bb=CLAMP(b[2], 0.0f, 1.0f);
+    ba=CLAMP(b[3], 0.0f, 1.0f);
+
+    
+    
+    //gamma can't be less than 2.4 since that is what the SPD table was calculated for
+    //gamma above 2.4 is obviously "wrong" for that table, but shouldn't segfault
+    //in fact gamma like 2.41, 2.42 can have a pleasing lightening effect
+    if (gamma < 2.4) {
+      gamma = 2.4;
+    }
+    //if rgb.txt is missing don't try this function again
+    if( access( "rgb.txt", R_OK ) == -1 ) {
+      rgb_loaded = 2;
+      printf("\n rgb.txt is missing. Cannot use Subtractive smudge mode\n ");
+      float *result;
+      result = mix_colors(self, a, b, fac, gamma, normsub, 0, get);
+      return result;
+    } 
+
+    //load rgb data the first time this subtractive mode is invoked.
+    if (rgb_loaded != 1 && rgb_loaded != 2) {
+      
+      int p=0;
+      for (p=0; p < SPD; p++) {
+        RGBSPD[p] = (float *)malloc(WIDTH * sizeof(float));
+      }
+            
+      char buffer[1024] ;
+      char *record,*line;
+      int i=0,j=0;
+
+      FILE *fstream = fopen("rgb.txt","r");
+      if(fstream == NULL)
+      {
+        printf("\n file opening failed ");
+
+      }
+      while((line=fgets(buffer,sizeof(buffer),fstream))!=NULL)
+      {
+        record = strtok(line,",");
+        while(record != NULL)
+      {
+        RGBSPD[i][j++] = atof(record) ;
+        record = strtok(NULL,",");
+      }
+      ++i;
+      j=0;
+      }
+      fclose (fstream);
+      rgb_loaded=1;
+    }
+    
+    //convert RGB to nearest integer index in huge SPD array by convert rgb base 256 to base 10
+    //This should get the closest 
+    int rgb_index_a = ((roundf(ar *255) * 256 * 256) + (roundf(ag *255)) * 256) + roundf(ab *255);
+    int rgb_index_b = ((roundf(br *255) * 256 * 256) + (roundf(bg *255)) * 256) + roundf(bb *255);
+
+    double new_spd_norm[36] = {0};
+    double new_spd_sub[36] = {0};
+
+    //adjust the mix ratio (fac) according to the alpha levels.  More transparent=weaker paint
+    
+    //When mixing brush color with smudge, use 100% opacity for brush
+    //This is consistent with the normal mixing method MyPaint already uses
+    //and without this you might not ever reach brush color. 
+    
+    float alpha_b;  //either brush_a or get_color_a
+    if (get == 0) {
+      alpha_b = 1;
+    } else {
+      alpha_b = ba;
+    }
+    
+    //calculate a different smudge ratio for subtractive modes
+    //may not be coherent but it looks good
+    float paint_a_ratio, paint_b_ratio;
+    float subfac = fac;
+    float alpha_sum = aa + alpha_b;
+    if (alpha_sum >0.0) {
+      paint_a_ratio = (aa/alpha_sum)*fac;
+      paint_b_ratio = (ba/alpha_sum)*(1-fac);
+      paint_a_ratio /=(paint_a_ratio+paint_b_ratio);
+      paint_b_ratio /=(paint_a_ratio+paint_b_ratio);
+    }
+    
+    float paint_ratio_sum = paint_a_ratio + paint_b_ratio;
+    if (paint_ratio_sum > 0.0) {
+      subfac = paint_a_ratio/(paint_ratio_sum);
+    }
+    //mixing part
+    int j=0;
+    for (j=0; j < 36; j++) {
+      //mix the two SPDs to get new color SPD- added and weighted geometric mean for subtractive
+      if (normsub < 1.0) {
+        new_spd_norm[j] = RGBSPD[rgb_index_a][j] * fac + RGBSPD[rgb_index_b][j] * (1-fac);
+      }
+      if (normsub > 0.0) {
+        new_spd_sub[j] = powf(RGBSPD[rgb_index_a][j], (subfac)) * powf(RGBSPD[rgb_index_b][j], (1-subfac));
+      }
+    }
+    //convert new_spd to rgb
+    //multiply T_MATRIX by new_spd to get spectralmix as new rgb values
+    //T_MATRIX  and RGBSPD is precalculated for D65 light source
+    //Other light sources would need entirely new tables created
+    
+    if (normsub < 1.0) {
+      //normal
+      int k=0;
+      for (k=0; k < 3; k++) {
+        int l=0;
+        for (l=0; l < 36; l++) {
+          spectralmixnorm[k] +=  (T_MATRIX[k][l] * new_spd_norm[l]);
+        }
+        spectralmixnorm[k] = CLAMP(spectralmixnorm[k], 0.0f, 1.0f);
+      }
+      //convert back to sRGB
+      
+      ar = spectralmixnorm[0];
+      ag = spectralmixnorm[1];
+      ab = spectralmixnorm[2];
+
+      rgb_to_srgb_float(&ar, &ag, &ab, gamma);
+    
+  
+      spectralmixnorm[0] = ar;
+      spectralmixnorm[1] = ag;
+      spectralmixnorm[2] = ab;
+    }
+    
+    if (normsub > 0.0) {
+      //do subtractive
+      int k=0;
+      for (k=0; k < 3; k++) {
+        int l=0;
+        for (l=0; l < 36; l++) {
+          spectralmixsub[k] +=  (T_MATRIX[k][l] * new_spd_sub[l]);
+        }
+        spectralmixsub[k] = CLAMP(spectralmixsub[k], 0.0f, 1.0f);
+      }
+      //convert back to sRGB
+      
+      ar = spectralmixsub[0];
+      ag = spectralmixsub[1];
+      ab = spectralmixsub[2];
+
+      rgb_to_srgb_float(&ar, &ag, &ab, gamma);
+    
+  
+      spectralmixsub[0] = ar;
+      spectralmixsub[1] = ag;
+      spectralmixsub[2] = ab;
+    
+    }
+    
+    //mix spectral normal and subtractive results
+    int i = 0;
+    for (i=0; i < 4; i++) {  
+      spectralmix[i] = (((1-normsub)*spectralmixnorm[i]) + (normsub*spectralmixsub[i]));
+    }
+    
+    spectralmix[3] = CLAMP(fac * aa + (1-fac) * ba, 0.0, 1.0);
+    
+  }
+  //mix rgbmix and spectralmix-
+  int i = 0;
+  for (i=0; i < 4; i++) {  
+    result[i] = CLAMP((((1-spectral)*rgbmix[i]) + (spectral*spectralmix[i])), 0.0f, 1.0f);
+  }
+  
+  //compare result to the smudge_state (a) and tweak the chroma and luma
+  //based on hue angle difference
+  if (self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE_DESATURATION] != 0 || self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE_DARKEN] != 0) {
+    float smudge_h = a[0];
+    float smudge_c = a[1];
+    float smudge_y = a[2];
+    
+    float result_h = result[0];
+    float result_c = result[1];
+    float result_y = result[2];
+    
+    rgb_to_hcy_float (&smudge_h, &smudge_c, &smudge_y);
+    rgb_to_hcy_float (&result_h, &result_c, &result_y);
+    
+    //set our Brightness of the mix according to mode result. and also process saturation
+    //Don't process achromatic colors (HCY has 3 achromatic states C=0 or Y=1 or Y=0)
+    if (result_c != 0 && smudge_c != 0 && result_y != 0 && smudge_y != 0 && result_y != 1 && smudge_y != 1) {  
+
+      //determine hue diff, proportional to smudge ratio
+      //if fac is .5 the hueratio should be 1. When fac closer to 0 and closer to 1 should decrease towards zero
+      //why- because if smudge is 0 or 1, only 100% of one of the brush or smudge color will be used so there is no comparison to make.
+      //when fac is 0.5 the smudge and brush are mixed 50/50, so the huedifference should be respected 100%
+      float huediff_sat;
+      float huediff_bright;
+      float hueratio = (0.5 - fabs(0.5 - fac)) / 0.5;
+      float anglediff = fabs(smallest_angular_difference(result_h*360, smudge_h*360)/360);
+      
+          
+      //calculate the adjusted hue difference and apply that to the saturation level and/or brightness
+      //if smudge_desaturation setting is zero, the huediff will be zero.  Likewise when smudge (fac) is 0 or 1, the huediff will be zero.
+      huediff_sat =  anglediff * self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE_DESATURATION] * hueratio;
+      //do the same for brightness
+      huediff_bright = anglediff * self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE_DARKEN] * hueratio;
+      
+      //do the desaturation.  More strongly saturated colors will reduce S more than less saturated colors
+      result_c = result_c*(1-huediff_sat);
+      
+      //attempt to simulate subtractive mode by darkening colors if they are different hues
+      result_y = result_y*(1-huediff_bright);
+      
+      //convert back to RGB
+      hcy_to_rgb_float (&result_h, &result_c, &result_y);
+      
+      result[0] = result_h;
+      result[1] = result_c;
+      result[2] = result_y;
+    }
+  }
+
+  return result; 
 }
 
   // returns the fraction still left after t seconds
@@ -785,8 +1195,10 @@ smallest_angular_difference(float angleA, float angleB)
 
     // update smudge color
     if (self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE_LENGTH] < 1.0 &&
-        // optimization, since normal brushes have smudge_length == 0.5 without actually smudging
-        (self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE] != 0.0 || !mypaint_mapping_is_constant(self->settings[MYPAINT_BRUSH_SETTING_SMUDGE]))) {
+    // optimization, since normal brushes have smudge_length == 0.5 without actually smudging
+    (self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE] != 0.0 || !mypaint_mapping_is_constant(self->settings[MYPAINT_BRUSH_SETTING_SMUDGE])) &&
+    //smudge_lock setting to stop updating at start of stroke 
+    !(self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE_LOCK] > 0.0 && self->states[MYPAINT_BRUSH_STATE_STROKE_STARTED])) {
 
       float fac = self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE_LENGTH];
       if (fac < 0.01) fac = 0.01;
@@ -794,71 +1206,105 @@ smallest_angular_difference(float angleA, float angleB)
       px = ROUND(x);
       py = ROUND(y);
 
+
+      //determine which smudge bucket to use and update
+      int bucket = CLAMP(roundf(self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE_BUCKET]), 0, 255);
+
       // Calling get_color() is almost as expensive as rendering a
       // dab. Because of this we use the previous value if it is not
       // expected to hurt quality too much. We call it at most every
       // second dab.
       float r, g, b, a;
-      self->states[MYPAINT_BRUSH_STATE_LAST_GETCOLOR_RECENTNESS] *= fac;
-      if (self->states[MYPAINT_BRUSH_STATE_LAST_GETCOLOR_RECENTNESS] < 0.5*fac) {
-        if (self->states[MYPAINT_BRUSH_STATE_LAST_GETCOLOR_RECENTNESS] == 0.0) {
+      smudge_buckets[bucket][8] *= fac;
+      if (smudge_buckets[bucket][8] < (0.5*fac*powf(1000.0, -self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE_LENGTH_LOG])) + 0.0000000000000001) {
+        if (smudge_buckets[bucket][8] == 0.0) {
           // first initialization of smudge color
           fac = 0.0;
         }
-        self->states[MYPAINT_BRUSH_STATE_LAST_GETCOLOR_RECENTNESS] = 1.0;
+        smudge_buckets[bucket][8] = 1.0;
 
         float smudge_radius = radius * expf(self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE_RADIUS_LOG]);
         smudge_radius = CLAMP(smudge_radius, ACTUAL_RADIUS_MIN, ACTUAL_RADIUS_MAX);
         mypaint_surface_get_color(surface, px, py, smudge_radius, &r, &g, &b, &a);
-
-        self->states[MYPAINT_BRUSH_STATE_LAST_GETCOLOR_R] = r;
-        self->states[MYPAINT_BRUSH_STATE_LAST_GETCOLOR_G] = g;
-        self->states[MYPAINT_BRUSH_STATE_LAST_GETCOLOR_B] = b;
-        self->states[MYPAINT_BRUSH_STATE_LAST_GETCOLOR_A] = a;
+        
+        
+        smudge_buckets[bucket][4] = r;
+        smudge_buckets[bucket][5] = g;
+        smudge_buckets[bucket][6] = b;
+        smudge_buckets[bucket][7] = a;
+        
       } else {
-        r = self->states[MYPAINT_BRUSH_STATE_LAST_GETCOLOR_R];
-        g = self->states[MYPAINT_BRUSH_STATE_LAST_GETCOLOR_G];
-        b = self->states[MYPAINT_BRUSH_STATE_LAST_GETCOLOR_B];
-        a = self->states[MYPAINT_BRUSH_STATE_LAST_GETCOLOR_A];
+        r = smudge_buckets[bucket][4];
+        g = smudge_buckets[bucket][5];
+        b = smudge_buckets[bucket][6];
+        a = smudge_buckets[bucket][7];
       }
-
       // updated the smudge color (stored with premultiplied alpha)
-      self->states[MYPAINT_BRUSH_STATE_SMUDGE_A ] = fac*self->states[MYPAINT_BRUSH_STATE_SMUDGE_A ] + (1-fac)*a;
-      // fix rounding errors
-      self->states[MYPAINT_BRUSH_STATE_SMUDGE_A ] = CLAMP(self->states[MYPAINT_BRUSH_STATE_SMUDGE_A], 0.0, 1.0);
+      float smudge_state[4] = {smudge_buckets[bucket][0], smudge_buckets[bucket][1], smudge_buckets[bucket][2], smudge_buckets[bucket][3]};
+      float smudge_get[4] = {r, g, b, a};
 
-      self->states[MYPAINT_BRUSH_STATE_SMUDGE_RA] = fac*self->states[MYPAINT_BRUSH_STATE_SMUDGE_RA] + (1-fac)*r*a;
-      self->states[MYPAINT_BRUSH_STATE_SMUDGE_GA] = fac*self->states[MYPAINT_BRUSH_STATE_SMUDGE_GA] + (1-fac)*g*a;
-      self->states[MYPAINT_BRUSH_STATE_SMUDGE_BA] = fac*self->states[MYPAINT_BRUSH_STATE_SMUDGE_BA] + (1-fac)*b*a;
+      float *smudge_new;
+      smudge_new = mix_colors(self, smudge_state, smudge_get, fac, self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE_GAMMA], self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE_NORMAL_SUB], self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE_SPECTRAL], 1);
+      
+      smudge_buckets[bucket][0] = smudge_new[0];
+      smudge_buckets[bucket][1] = smudge_new[1];
+      smudge_buckets[bucket][2] = smudge_new[2];
+      smudge_buckets[bucket][3] = smudge_new[3];
+      
+      //update all the states
+      self->states[MYPAINT_BRUSH_STATE_SMUDGE_RA] = smudge_buckets[bucket][0];
+      self->states[MYPAINT_BRUSH_STATE_SMUDGE_GA] = smudge_buckets[bucket][1];
+      self->states[MYPAINT_BRUSH_STATE_SMUDGE_BA] = smudge_buckets[bucket][2];
+      self->states[MYPAINT_BRUSH_STATE_SMUDGE_A] = smudge_buckets[bucket][3];
+      self->states[MYPAINT_BRUSH_STATE_LAST_GETCOLOR_R] = smudge_buckets[bucket][4];
+      self->states[MYPAINT_BRUSH_STATE_LAST_GETCOLOR_G] = smudge_buckets[bucket][5];
+      self->states[MYPAINT_BRUSH_STATE_LAST_GETCOLOR_B] = smudge_buckets[bucket][6];
+      self->states[MYPAINT_BRUSH_STATE_LAST_GETCOLOR_A] = smudge_buckets[bucket][7];
+      self->states[MYPAINT_BRUSH_STATE_LAST_GETCOLOR_RECENTNESS] = smudge_buckets[bucket][8];
+
+      
     }
 
     // color part
-
     float color_h = mypaint_mapping_get_base_value(self->settings[MYPAINT_BRUSH_SETTING_COLOR_H]);
     float color_s = mypaint_mapping_get_base_value(self->settings[MYPAINT_BRUSH_SETTING_COLOR_S]);
     float color_v = mypaint_mapping_get_base_value(self->settings[MYPAINT_BRUSH_SETTING_COLOR_V]);
     float eraser_target_alpha = 1.0;
+    float brush_h, brush_c, brush_y, smudge_h, smudge_c, smudge_y;
+
     if (self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE] > 0.0) {
-      // mix (in RGB) the smudge color with the brush color
-      hsv_to_rgb_float (&color_h, &color_s, &color_v);
       float fac = self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE];
+      hsv_to_rgb_float (&color_h, &color_s, &color_v);
+
+      //determine which smudge bucket to use when mixing with brush color
+      int bucket = CLAMP(roundf(self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE_BUCKET]), 0, 255);
+            
       if (fac > 1.0) fac = 1.0;
-      // If the smudge color somewhat transparent, then the resulting
-      // dab will do erasing towards that transparency level.
-      // see also ../doc/smudge_math.png
-      eraser_target_alpha = (1-fac)*1.0 + fac*self->states[MYPAINT_BRUSH_STATE_SMUDGE_A];
-      // fix rounding errors (they really seem to happen in the previous line)
-      eraser_target_alpha = CLAMP(eraser_target_alpha, 0.0, 1.0);
-      if (eraser_target_alpha > 0) {
-        color_h = (fac*self->states[MYPAINT_BRUSH_STATE_SMUDGE_RA] + (1-fac)*color_h) / eraser_target_alpha;
-        color_s = (fac*self->states[MYPAINT_BRUSH_STATE_SMUDGE_GA] + (1-fac)*color_s) / eraser_target_alpha;
-        color_v = (fac*self->states[MYPAINT_BRUSH_STATE_SMUDGE_BA] + (1-fac)*color_v) / eraser_target_alpha;
-      } else {
-        // we are only erasing; the color does not matter
-        color_h = 1.0;
-        color_s = 0.0;
-        color_v = 0.0;
-      }
+        // If the smudge color somewhat transparent, then the resulting
+        // dab will do erasing towards that transparency level.
+        // see also ../doc/smudge_math.png
+        eraser_target_alpha = (1-fac)*1.0 + fac*smudge_buckets[bucket][3];
+        // fix rounding errors (they really seem to happen in the previous line)
+        eraser_target_alpha = CLAMP(eraser_target_alpha, 0.0, 1.0);
+        if (eraser_target_alpha > 0) {
+          
+          float smudge_state[4] = {smudge_buckets[bucket][0], smudge_buckets[bucket][1], smudge_buckets[bucket][2], smudge_buckets[bucket][3]};
+          float brush_color[4] = {color_h, color_s, color_v, eraser_target_alpha};
+          float *color_new;
+          
+          color_new = mix_colors(self, smudge_state, brush_color, fac, self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE_GAMMA], self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE_NORMAL_SUB], self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE_SPECTRAL], 0);  
+          
+          color_h = color_new[0];
+          color_s = color_new[1];
+          color_v = color_new[2];
+       
+        } else {
+          // we are only erasing; the color does not matter
+          color_h = 1.0;
+          color_s = 0.0;
+          color_v = 0.0;
+        }
+        
       rgb_to_hsv_float (&color_h, &color_s, &color_v);
     }
 

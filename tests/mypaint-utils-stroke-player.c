@@ -43,6 +43,7 @@ typedef struct {
     float ytilt;
     float viewzoom;
     float viewrotation;
+    float barrel_rotation;
 } MotionEvent;
 
 struct MyPaintUtilsStrokePlayer {
@@ -105,8 +106,8 @@ mypaint_utils_stroke_player_set_source_data(MyPaintUtilsStrokePlayer *self, cons
     for (int i=0; i<self->number_of_events; i++) {
         MotionEvent *event = &self->events[i];
 
-        int matches = sscanf(line, "%f %f %f %f",
-                             &event->time, &event->x, &event->y, &event->pressure);
+        int matches = sscanf(line, "%f %f %f %f %f",
+                             &event->time, &event->x, &event->y, &event->pressure, &event->barrel_rotation);
         if (matches != 4) {
             event->valid = FALSE;
             fprintf(stderr, "Error: Unable to parse line '%s'\n", line);
@@ -117,6 +118,7 @@ mypaint_utils_stroke_player_set_source_data(MyPaintUtilsStrokePlayer *self, cons
         event->ytilt = 0.0;
         event->viewzoom = 1.0;
         event->viewrotation = 0.0;
+        event->barrel_rotation = 0.0;
 
         line = strtok(NULL, "\n");
     }
@@ -146,7 +148,7 @@ mypaint_utils_stroke_player_iterate(MyPaintUtilsStrokePlayer *self)
         mypaint_brush_stroke_to(self->brush, self->surface,
                                 event->x*self->scale, event->y*self->scale,
                                 event->pressure,
-                                event->xtilt, event->ytilt, dtime, event->viewzoom, event->viewrotation);
+                                event->xtilt, event->ytilt, dtime, event->viewzoom, event->viewrotation, event->barrel_rotation);
 
         if (self->transaction_on_stroke) {
             mypaint_surface_end_atomic(self->surface, NULL);

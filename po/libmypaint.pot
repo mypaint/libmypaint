@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-02-25 17:11+0000\n"
+"POT-Creation-Date: 2018-09-28 10:49-0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -575,31 +575,54 @@ msgid ""
 msgstr ""
 
 #: ../brushsettings-gen.h:59
-msgid "Declination"
+msgid "Direction 360"
 msgstr ""
 
 #: ../brushsettings-gen.h:59
+msgid "The angle of the stroke, from 0 to 360 degrees."
+msgstr ""
+
+#: ../brushsettings-gen.h:60
+msgid "Attack Angle"
+msgstr ""
+
+#: ../brushsettings-gen.h:60
+msgid ""
+"The difference between the angle the stylus is pointing and the angle of its "
+"stroke movement on the canvas (degrees). The value will stay between 0.0 and "
+"180.0.  An attack angle of 0.0 would indicate the stylus is moving in the "
+"same direction that the stylus tip is pointing.  An Attack Angle of 90 would "
+"mean the direction is perpendicular to the stylus tip, and 180 would mean "
+"the pen is being dragged in the opposite direction that the stylus tip is "
+"pointing."
+msgstr ""
+
+#: ../brushsettings-gen.h:61
+msgid "Declination"
+msgstr ""
+
+#: ../brushsettings-gen.h:61
 msgid ""
 "Declination of stylus tilt. 0 when stylus is parallel to tablet and 90.0 "
 "when it's perpendicular to tablet."
 msgstr ""
 
-#: ../brushsettings-gen.h:60
+#: ../brushsettings-gen.h:62
 msgid "Ascension"
 msgstr ""
 
-#: ../brushsettings-gen.h:60
+#: ../brushsettings-gen.h:62
 msgid ""
 "Right ascension of stylus tilt. 0 when stylus working end points to you, +90 "
 "when rotated 90 degrees clockwise, -90 when rotated 90 degrees "
 "counterclockwise."
 msgstr ""
 
-#: ../brushsettings-gen.h:61
+#: ../brushsettings-gen.h:63
 msgid "Custom"
 msgstr ""
 
-#: ../brushsettings-gen.h:61
+#: ../brushsettings-gen.h:63
 msgid ""
 "This is a user defined input. Look at the 'custom input' setting for details."
 msgstr ""

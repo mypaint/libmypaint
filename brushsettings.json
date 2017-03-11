@@ -71,6 +71,16 @@
             "tooltip": "The angle of the stroke, from 0 to 360 degrees."
         },
         {
+            "displayed_name": "Attack Angle", 
+            "hard_maximum": 180.0, 
+            "hard_minimum": -180.0, 
+            "id": "attack_angle", 
+            "normal": 0.0, 
+            "soft_maximum": 180.0, 
+            "soft_minimum": -180.0, 
+            "tooltip": "The difference between the angle the stylus is pointing and the angle of its stroke movement on the canvas (degrees). The value will stay between 0.0 and 180.0.  An attack angle of 0.0 would indicate the stylus is moving in the same direction that the stylus tip is pointing.  An Attack Angle of 90 would mean the direction is perpendicular to the stylus tip, and 180 would mean the pen is being dragged in the opposite direction that the stylus tip is pointing."
+        },
+        {
             "displayed_name": "Declination", 
             "hard_maximum": 90.0, 
             "hard_minimum": 0.0, 
@@ -541,6 +551,7 @@
         "declination",
         "ascension",
         "direction_angle_dx",
-        "direction_angle_dy"
+        "direction_angle_dy",
+        "attack_angle"
     ]
 }

@@ -373,26 +373,26 @@ mypaint_brush_set_state(MyPaintBrush *self, MyPaintBrushState i, float value)
     self->states[i] = value;
 }
 
-
-// Returns the smallest angular difference (counterclockwise or clockwise) a to b, in degrees.
-// Clockwise is positive.
-static inline float
-smallest_angular_difference(float a, float b)
+// C fmodf function is not "arithmetic modulo"; it doesn't handle negative dividends as you might expect
+// if you expect 0 or a positive number when dealing with negatives, use
+// this function instead.
+static inline float mod(float a, float N)
 {
-    float d_cw, d_ccw;
-    a = fmodf(a, 360.0);
-    b = fmodf(b, 360.0);
-    if (a > b) {
-        d_cw = a - b;
-        d_ccw = b + 360.0 - a;
-    }
-    else {
-        d_cw = a + 360.0 - b;
-        d_ccw = b - a;
-    }
-    return (d_cw < d_ccw) ? -d_cw : d_ccw;
+    float ret = a - N * floor (a / N);
+    return ret;
 }
 
+// Returns the smallest angular difference
+static inline float
+smallest_angular_difference(float angleA, float angleB)
+{
+    float a;
+    a = angleB - angleA;
+    a = mod((a + 180), 360) - 180;
+    a += (a>180) ? -360 : (a<-180) ? 360 : 0;
+    //printf("%f.1 to %f.1 = %f.1 \n", angleB, angleA, a);
+    return a;
+}
 
   // returns the fraction still left after t seconds
   float exp_decay (float T_const, float t)
@@ -516,6 +516,7 @@ smallest_angular_difference(float a, float b)
     inputs[MYPAINT_BRUSH_INPUT_DIRECTION_ANGLE] = atan2f(self->states[MYPAINT_BRUSH_STATE_DIRECTION_ANGLE_DY], self->states[MYPAINT_BRUSH_STATE_DIRECTION_ANGLE_DX]) / (2 * M_PI) * 360 + 180;
     inputs[MYPAINT_BRUSH_INPUT_TILT_DECLINATION] = self->states[MYPAINT_BRUSH_STATE_DECLINATION];
     inputs[MYPAINT_BRUSH_INPUT_TILT_ASCENSION] = fmodf(self->states[MYPAINT_BRUSH_STATE_ASCENSION] + 180.0, 360.0) - 180.0;
+    inputs[MYPAINT_BRUSH_INPUT_ATTACK_ANGLE] = smallest_angular_difference(self->states[MYPAINT_BRUSH_STATE_ASCENSION], mod(atan2f(self->states[MYPAINT_BRUSH_STATE_DIRECTION_ANGLE_DY], self->states[MYPAINT_BRUSH_STATE_DIRECTION_ANGLE_DX]) / (2 * M_PI) * 360 + 90, 360));
 
     inputs[MYPAINT_BRUSH_INPUT_CUSTOM] = self->states[MYPAINT_BRUSH_STATE_CUSTOM_INPUT];
     if (self->print_inputs) {

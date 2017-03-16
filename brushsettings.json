@@ -465,12 +465,21 @@
             "tooltip": "Paint with the smudge color instead of the brush color. The smudge color is slowly changed to the color you are painting on.\n 0.0 do not use the smudge color\n 0.5 mix the smudge color with the brush color\n 1.0 use only the smudge color"
         },
         {
-            "constant": false,
-            "default": 0.5,
-            "displayed_name": "Smudge length",
-            "internal_name": "smudge_length",
-            "maximum": 1.0,
-            "minimum": 0.0,
+            "constant": false, 
+            "default": 0.0, 
+            "displayed_name": "Smudge RYB", 
+            "internal_name": "smudge_ryb", 
+            "maximum": 1.0, 
+            "minimum": 0.0, 
+            "tooltip": "Use RYB pigment blending to mimic real paints.  1=use RYB.  0=use RGB.  Anything in-between will mix the two modes"
+        }, 
+        {
+            "constant": false, 
+            "default": 0.5, 
+            "displayed_name": "Smudge length", 
+            "internal_name": "smudge_length", 
+            "maximum": 1.0, 
+            "minimum": 0.0, 
             "tooltip": "This controls how fast the smudge color becomes the color you are painting on.\n0.0 immediately update the smudge color (requires more CPU cycles because of the frequent color checks)\n0.5 change the smudge color steadily towards the canvas color\n1.0 never change the smudge color"
         },
         {
@@ -611,6 +620,9 @@
         "smudge_ga",
         "smudge_ba",
         "smudge_a",
+        "smudge_rryba",
+        "smudge_yryba",
+        "smudge_bryba",
         "last_getcolor_r",
         "last_getcolor_g",
         "last_getcolor_b",

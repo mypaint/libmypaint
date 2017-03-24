@@ -86,6 +86,10 @@ struct MyPaintBrush {
     // the states (get_state, set_state, reset) that change during a stroke
     float states[MYPAINT_BRUSH_STATES_COUNT];
     double random_input;
+    float skip;
+    float skip_last_x;
+    float skip_last_y;
+    float skipped_dtime;
     RngDouble * rng;
 
     // Those mappings describe how to calculate the current value for each setting.
@@ -132,6 +136,10 @@ mypaint_brush_new(void)
     }
     self->rng = rng_double_new(1000);
     self->random_input = 0;
+    self->skip = 0;
+    self->skip_last_x = 0;
+    self->skip_last_y = 0;
+    self->skipped_dtime = 0;
     self->print_inputs = FALSE;
 
     for (i=0; i<MYPAINT_BRUSH_STATES_COUNT; i++) {
@@ -893,6 +901,8 @@ smallest_angular_difference(float a, float b)
                                 float x, float y, float pressure,
                                 float xtilt, float ytilt, double dtime)
   {
+    const float max_dtime = 5;
+
     //printf("%f %f %f %f\n", (double)dtime, (double)x, (double)y, (double)pressure);
 
     float tilt_ascension = 0.0;
@@ -940,15 +950,45 @@ smallest_angular_difference(float a, float b)
       dtime = 0.0001;
     }
 
+    // skip some length of input if requested (for stable tracking noise)
+    if (self->skip > 0.001) {
+      float dist = hypotf(self->skip_last_x-x, self->skip_last_y-y);
+      self->skip_last_x = x;
+      self->skip_last_y = y;
+      self->skipped_dtime += dtime;
+      self->skip -= dist;
+      dtime = self->skipped_dtime;
+
+      if (self->skip > 0.001 && !(dtime > max_dtime || self->reset_requested))
+        return TRUE;
+
+      // skipped
+      self->skip = 0;
+      self->skip_last_x = 0;
+      self->skip_last_y = 0;
+      self->skipped_dtime = 0;
+    }
+
+
     { // calculate the actual "virtual" cursor position
 
       // noise first
       if (mypaint_mapping_get_base_value(self->settings[MYPAINT_BRUSH_SETTING_TRACKING_NOISE])) {
         // OPTIMIZE: expf() called too often
         const float base_radius = expf(mypaint_mapping_get_base_value(self->settings[MYPAINT_BRUSH_SETTING_RADIUS_LOGARITHMIC]));
+        const float noise = base_radius * mypaint_mapping_get_base_value(self->settings[MYPAINT_BRUSH_SETTING_TRACKING_NOISE]);
 
-        x += rand_gauss (self->rng) * mypaint_mapping_get_base_value(self->settings[MYPAINT_BRUSH_SETTING_TRACKING_NOISE]) * base_radius;
-        y += rand_gauss (self->rng) * mypaint_mapping_get_base_value(self->settings[MYPAINT_BRUSH_SETTING_TRACKING_NOISE]) * base_radius;
+        if (noise > 0.001) {
+          // we need to skip some length of input to make
+          // tracking noise independent from input frequency
+          self->skip = 0.5*noise;
+          self->skip_last_x = x;
+          self->skip_last_y = y;
+
+          // add noise
+          x += noise * rand_gauss(self->rng);
+          y += noise * rand_gauss(self->rng);
+        }
       }
 
       const float fac = 1.0 - exp_decay (mypaint_mapping_get_base_value(self->settings[MYPAINT_BRUSH_SETTING_SLOW_TRACKING]), 100.0*dtime);
@@ -962,8 +1002,14 @@ smallest_angular_difference(float a, float b)
     float dabs_moved = self->states[MYPAINT_BRUSH_STATE_PARTIAL_DABS];
     float dabs_todo = count_dabs_to (self, x, y, pressure, dtime);
 
-    if (dtime > 5 || self->reset_requested) {
+    if (dtime > max_dtime || self->reset_requested) {
       self->reset_requested = FALSE;
+
+      // reset skipping
+      self->skip = 0;
+      self->skip_last_x = 0;
+      self->skip_last_y = 0;
+      self->skipped_dtime = 0;
 
       // reset value of random input
       self->random_input = rng_double_next(self->rng);

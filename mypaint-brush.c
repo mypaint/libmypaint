@@ -85,6 +85,7 @@ struct MyPaintBrush {
 
     // the states (get_state, set_state, reset) that change during a stroke
     float states[MYPAINT_BRUSH_STATES_COUNT];
+    double random_input;
     RngDouble * rng;
 
     // Those mappings describe how to calculate the current value for each setting.
@@ -130,6 +131,7 @@ mypaint_brush_new(void)
       self->settings[i] = mypaint_mapping_new(MYPAINT_BRUSH_INPUTS_COUNT);
     }
     self->rng = rng_double_new(1000);
+    self->random_input = 0;
     self->print_inputs = FALSE;
 
     for (i=0; i<MYPAINT_BRUSH_STATES_COUNT; i++) {
@@ -499,7 +501,8 @@ smallest_angular_difference(float a, float b)
     inputs[MYPAINT_BRUSH_INPUT_PRESSURE] = pressure * expf(mypaint_mapping_get_base_value(self->settings[MYPAINT_BRUSH_SETTING_PRESSURE_GAIN_LOG]));
     inputs[MYPAINT_BRUSH_INPUT_SPEED1] = log(self->speed_mapping_gamma[0] + self->states[MYPAINT_BRUSH_STATE_NORM_SPEED1_SLOW])*self->speed_mapping_m[0] + self->speed_mapping_q[0];
     inputs[MYPAINT_BRUSH_INPUT_SPEED2] = log(self->speed_mapping_gamma[1] + self->states[MYPAINT_BRUSH_STATE_NORM_SPEED2_SLOW])*self->speed_mapping_m[1] + self->speed_mapping_q[1];
-    inputs[MYPAINT_BRUSH_INPUT_RANDOM] = rng_double_next(self->rng);
+
+    inputs[MYPAINT_BRUSH_INPUT_RANDOM] = self->random_input;
     inputs[MYPAINT_BRUSH_INPUT_STROKE] = MIN(self->states[MYPAINT_BRUSH_STATE_STROKE], 1.0);
     inputs[MYPAINT_BRUSH_INPUT_DIRECTION] = fmodf (atan2f (self->states[MYPAINT_BRUSH_STATE_DIRECTION_DY], self->states[MYPAINT_BRUSH_STATE_DIRECTION_DX])/(2*M_PI)*360 + 180.0, 180.0);
     inputs[MYPAINT_BRUSH_INPUT_TILT_DECLINATION] = self->states[MYPAINT_BRUSH_STATE_DECLINATION];
@@ -962,6 +965,9 @@ smallest_angular_difference(float a, float b)
     if (dtime > 5 || self->reset_requested) {
       self->reset_requested = FALSE;
 
+      // reset value of random input
+      self->random_input = rng_double_next(self->rng);
+
       //printf("Brush reset.\n");
       int i=0;
       for (i=0; i<MYPAINT_BRUSH_STATES_COUNT; i++) {
@@ -1014,6 +1020,9 @@ smallest_angular_difference(float a, float b)
       } else if (painted == UNKNOWN) {
         painted = NO;
       }
+
+      // update value of random input only when draw the dab
+      self->random_input = rng_double_next(self->rng);
 
       dtime_left   -= step_dtime;
       dabs_todo  = count_dabs_to (self, x, y, pressure, dtime_left);

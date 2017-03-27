@@ -25,12 +25,27 @@ License: ISC, see [COPYING](./COPYING) for details.
 * For `--enable-gegl` (GIMP *does not* require this):
   - [GEGL + BABL](http://gegl.org/)
 
+### Install dependencies (Debian and derivatives)
+
 On recent Debian-like systems, you can type the following
 to get started with a standard configuration:
 
     $ sudo apt install -y build-essential
     $ sudo apt install -y libjson-c-dev libgirepository1.0-dev libglib2.0-dev
-    $ sudo apt install -y python2.7 autotools-dev intltool gettext   # Building from git
+
+When building from git:
+
+    $ sudo apt install -y python2.7 autotools-dev intltool gettext libtool
+
+### Install dependencies (Red Hat and derivatives)
+
+The following works on a minimal CentOS 7 installation:
+
+    # yum install -y gcc gobject-introspection-devel json-c-devel glib2-devel
+
+When building from git, you'll want to add:
+
+    # yum install -y git python autoconf intltool gettext libtool
 
 ## Build and install
 
@@ -45,6 +60,8 @@ The traditional setup works just fine.
 We don't ship a `configure` script in our git repository. If you're
 building from git, you have to kickstart the build environment with:
 
+    $ git clone https://github.com/mypaint/libmypaint.git
+    $ cd libmypaint
     $ ./autogen.sh
 
 This script generates `configure` from `configure.ac`, after running a
@@ -81,6 +98,17 @@ This runs all the unit tests.
     $ make install
 
 Uninstall libmypaint with `make uninstall`.
+
+### Check availability
+
+Make sure that pkg-config can see libmypaint before trying to build with it.
+
+    $ pkg-config --list-all | grep -i mypaint
+
+If it's not found, you'll need to add the relevant pkgconfig directory to
+the `pkg-config` search path. For example, on CentOS, with a default install:
+
+    $ echo PKG_CONFIG_PATH=/usr/local/lib/pkgconfig >>/etc/environment
 
 ## Contributing
 

@@ -73,43 +73,27 @@ AM_MAINTAINER_MODE([enable])
 PKG_PROG_PKG_CONFIG(0.16)
 
 ###########################
-# Check host architecture
+# Check host and platform
 ###########################
 
 AC_CANONICAL_HOST
 
-#################
-# Check for Win32
-#################
-
-AC_MSG_CHECKING([for some Win32 platform])
+AC_MSG_CHECKING([for platform])
+platform_win32=no
+platform_osx=no
 case "$host_os" in
   mingw* | cygwin*)
-    platform_win32=yes
-    ;;
-  *)
-    platform_win32=no
-    ;;
-esac
-AC_MSG_RESULT([$platform_win32])
-AM_CONDITIONAL(PLATFORM_WIN32, test "$platform_win32" = "yes")
-
-####################
-# Check for Mac OS X
-####################
-
-platform_osx=no
-AC_MSG_CHECKING([if compiling for Mac OS X])
-case "$host_os" in
+     AC_MSG_RESULT([win32])
+     platform_win32=yes
+     ;;
   darwin*)
-     AC_MSG_RESULT(yes)
+     AC_MSG_RESULT([osx])
      platform_osx=yes
      ;;
   *)
-     AC_MSG_RESULT(no)
-     ;;
+     AC_MSG_RESULT([unix])
 esac
-
+AM_CONDITIONAL(PLATFORM_WIN32, test "$platform_win32" = "yes")
 AM_CONDITIONAL(PLATFORM_OSX, test "x$platform_osx" = xyes)
 
 # Define strdup() in string.h under glibc >= 2.10 (POSIX.1-2008)

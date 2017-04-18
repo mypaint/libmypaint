@@ -127,14 +127,23 @@ void mypaint_tiled_surface_tile_request_end(MyPaintTiledSurface *self, MyPaintTi
  * mypaint_tiled_surface_set_symmetry_state:
  * @active: TRUE to enable, FALSE to disable.
  * @center_x: X axis to mirror events across.
+ * @center_y: Y axis to mirror events across.
+ * @symmetry_type: Symmetry type to activate.
+ * @rot_symmetry_lines: Number of rotational symmetry lines.
  *
  * Enable/Disable symmetric brush painting across an X axis.
  */
 void
-mypaint_tiled_surface_set_symmetry_state(MyPaintTiledSurface *self, gboolean active, float center_x)
+mypaint_tiled_surface_set_symmetry_state(MyPaintTiledSurface *self, gboolean active,
+                                         float center_x, float center_y,
+                                         MyPaintSymmetryType symmetry_type,
+                                         int rot_symmetry_lines)
 {
     self->surface_do_symmetry = active;
     self->surface_center_x = center_x;
+    self->surface_center_y = center_y;
+    self->symmetry_type = symmetry_type;
+    self->rot_symmetry_lines = MAX(2, rot_symmetry_lines);
 }
 
 /**
@@ -605,13 +614,120 @@ int draw_dab (MyPaintSurface *surface, float x, float y,
 
   // Symmetry pass
   if(self->surface_do_symmetry) {
-    const float symm_x = self->surface_center_x + (self->surface_center_x - x);
+    const float dist_x = (self->surface_center_x - x);
+    const float dist_y = (self->surface_center_y - y);
+    const float symm_x = self->surface_center_x + dist_x;
+    const float symm_y = self->surface_center_y + dist_y;
 
-    if (draw_dab_internal(self, symm_x, y, radius, color_r, color_g, color_b,
-                           opaque, hardness, color_a, aspect_ratio, -angle,
-                           lock_alpha, colorize)) {
-        surface_modified = TRUE;
-    }
+    const float dab_dist = sqrt(dist_x * dist_x + dist_y * dist_y);
+    const float rot_width = 360.0 / ((float) self->rot_symmetry_lines);
+    const float dab_angle_offset = atan2(-dist_y, -dist_x) / (2 * M_PI) * 360.0;
+
+    int dab_count = 1;
+    int sub_dab_count = 0;
+
+      switch(self->symmetry_type) {
+          case MYPAINT_SYMMETRY_TYPE_VERTICAL:
+            if (draw_dab_internal(self, symm_x, y, radius, color_r, color_g, color_b,
+                                   opaque, hardness, color_a, aspect_ratio, -angle,
+                                   lock_alpha, colorize)) {
+                surface_modified = TRUE;
+            }
+            break;
+
+          case MYPAINT_SYMMETRY_TYPE_HORIZONTAL:
+            if (draw_dab_internal(self, x, symm_y, radius, color_r, color_g, color_b,
+                                   opaque, hardness, color_a, aspect_ratio, angle + 180.0,
+                                   lock_alpha, colorize)) {
+                surface_modified = TRUE;
+            }
+            break;
+
+          case MYPAINT_SYMMETRY_TYPE_VERTHORZ:
+            // reflect vertically
+            if (draw_dab_internal(self, symm_x, y, radius, color_r, color_g, color_b,
+                                   opaque, hardness, color_a, aspect_ratio, -angle,
+                                   lock_alpha, colorize)) {
+                dab_count++;
+            }
+            // reflect horizontally
+            if (draw_dab_internal(self, x, symm_y, radius, color_r, color_g, color_b,
+                                   opaque, hardness, color_a, aspect_ratio, angle + 180.0,
+                                   lock_alpha, colorize)) {
+                dab_count++;
+            }
+            // reflect horizontally and vertically
+            if (draw_dab_internal(self, symm_x, symm_y, radius, color_r, color_g, color_b,
+                                   opaque, hardness, color_a, aspect_ratio, -angle - 180.0,
+                                   lock_alpha, colorize)) {
+                dab_count++;
+            }
+            if (dab_count == 4) {
+                surface_modified = TRUE;
+            }
+            break;
+          case MYPAINT_SYMMETRY_TYPE_SNOWFLAKE: {
+                gboolean failed_subdabs = FALSE;
+
+                // draw self->rot_symmetry_lines snowflake dabs
+                // because the snowflaked version of the initial dab
+                // was not done through carrying out the initial pass
+                for (sub_dab_count = 0; sub_dab_count < self->rot_symmetry_lines; sub_dab_count++) {
+                    // calculate the offset from rotational symmetry
+                    const float symmetry_angle_offset = ((float)sub_dab_count) * rot_width;
+
+                    // subtract the angle offset since we're progressing clockwise
+                    const float cur_angle = symmetry_angle_offset - dab_angle_offset;
+
+                    // progress through the rotation angle offsets clockwise
+                    // to reflect the dab relative to itself
+                    const float rot_x = self->surface_center_x - dab_dist*cos(cur_angle / 180.0 * M_PI);
+                    const float rot_y = self->surface_center_y - dab_dist*sin(cur_angle / 180.0 * M_PI);
+
+                    if (!draw_dab_internal(self, rot_x, rot_y, radius, color_r, color_g, color_b,
+                                           opaque, hardness, color_a,
+                                           aspect_ratio, -angle + symmetry_angle_offset,
+                                           lock_alpha, colorize)) {
+                        failed_subdabs = TRUE;
+                        break;
+                    }
+                }
+
+                // do not bother falling to rotational if the snowflaked dabs failed
+                if (failed_subdabs) {
+                    break;
+                }
+                // if it succeeded, fallthrough to rotational to finish the process
+            }
+
+          case MYPAINT_SYMMETRY_TYPE_ROTATIONAL: {
+                // draw self-rot_symmetry_lines rotational dabs
+                // since initial pass handles the first dab
+                for (dab_count = 1; dab_count < self->rot_symmetry_lines; dab_count++)
+                {
+                    // calculate the offset from rotational symmetry
+                    const float symmetry_angle_offset = ((float)dab_count) * rot_width;
+
+                    // add the angle initial dab is from center point
+                    const float cur_angle = symmetry_angle_offset + dab_angle_offset;
+
+                    // progress through the rotation cangle offsets counterclockwise
+                    const float rot_x = self->surface_center_x + dab_dist*cos(cur_angle / 180.0 * M_PI);
+                    const float rot_y = self->surface_center_y + dab_dist*sin(cur_angle / 180.0 * M_PI);
+
+                    if (!draw_dab_internal(self, rot_x, rot_y, radius, color_r, color_g, color_b,
+                                           opaque, hardness, color_a, aspect_ratio,
+                                           angle + symmetry_angle_offset,
+                                           lock_alpha, colorize)) {
+                        break;
+                    }
+                }
+                if (dab_count == self->rot_symmetry_lines) {
+                    surface_modified = TRUE;
+                }
+                break;
+            }
+      }
 
   }
 
@@ -746,7 +862,10 @@ mypaint_tiled_surface_init(MyPaintTiledSurface *self,
     self->dirty_bbox.width = 0;
     self->dirty_bbox.height = 0;
     self->surface_do_symmetry = FALSE;
+    self->symmetry_type = MYPAINT_SYMMETRY_TYPE_VERTICAL;
     self->surface_center_x = 0.0f;
+    self->surface_center_y = 0.0f;
+    self->rot_symmetry_lines = 2;
     self->operation_queue = operation_queue_new();
 }
 

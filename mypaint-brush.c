@@ -899,12 +899,43 @@ smallest_angular_difference(float angleA, float angleB)
         //desaturate if paints are different.  This should be on the RYB wheel not RGB, but it is close enough.
         //mixing two different paints will always decrease saturation but without the below adjustment 
         //100% Y and 100% B creates 100% Green, which is not right
+        
+        //don't bother unless the color is somewhat saturated
         if (color_yryb > 0.1) {
+        
+        //distort RGB hue to RYB for hue comparison
+        //copied from adjbases.py in mypaint
+        float ryb[3][4] = {
+          {0.0, 1 / 6.0, 0.0, 1 / 3.0} ,
+          {1 / 6.0, 1 / 3.0, 1 / 3.0, 1 / 2.0} ,
+          {1 / 3.0, 2 / 3.0, 1 / 2.0, 2 / 3.0}
+        };
+        
+        
+        //for each color (brush_h and smudge_h)
+        float colors[2] = { brush_h, smudge_h};
+        int i;
+        for ( i = 0; i < 2; i++ ) {
+          
+          //convert to RYB angles
+          int j;
+          for ( j = 0; j < 3; j++) {
+          
+            if ( colors[i] > ryb[j][0] && colors[i] <= ryb[j][1]) {
+              colors[i] -= ryb[j][0];
+              colors[i] *= ( ryb[j][3] - ryb[j][2] ) / ( ryb[j][1] - ryb[j][0] );
+              colors[i] += ryb[j][2];
+            }
+          
+          }
+        
+        }
+        
         float huediff;
-        //
-        huediff = smallest_angular_difference(brush_h*360, smudge_h*360)/720;
+        huediff = smallest_angular_difference(colors[0]*360, colors[1]*360)/360;
+        printf("% 4.3f % 4.3f % 4.3f\n", colors[0], colors[1], huediff);
           if (huediff > .1) {
-          color_yryb = (fac*smudge_s + (1-fac) * brush_s) * (1-huediff);
+          //color_yryb = (fac*smudge_s + (1-fac) * brush_s) * (1-huediff);
           }     
         }
         //convert back to RGB

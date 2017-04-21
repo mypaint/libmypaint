@@ -383,6 +383,18 @@ static inline float mod(float a, float N)
     return ret;
 }
 
+// Returns the smallest angular difference
+static inline float
+smallest_angular_difference(float angleA, float angleB)
+{
+    float a;
+    a = angleB - angleA;
+    a = mod((a + 180), 360) - 180;
+    a += (a>180) ? -360 : (a<-180) ? 360 : 0;
+    return a;
+>>>>>>> added RYB setting for saturation and fixes
+}
+
 
 // Returns the smallest angular difference
 static inline float
@@ -896,12 +908,12 @@ smallest_angular_difference(float angleA, float angleB)
         //set our luma to luma of the mix ignoring the RYB result which is too light, I think.      
         color_bryb = (fac*smudge_l + ((1-fac) * brush_l));
 
-        //desaturate if paints are different.  This should be on the RYB wheel not RGB, but it is close enough.
-        //mixing two different paints will always decrease saturation but without the below adjustment 
+        //desaturate if paints are different.  RYB_SAT setting allows tweaking or even reversing of this.
+        //mixing two different paints should always decrease saturation but without the below adjustment 
         //100% Y and 100% B creates 100% Green, which is not right
         
-        //don't bother unless the color is somewhat saturated
-        if (color_yryb > 0.1) {
+        //don't bother unless the color is somewhat saturated to begin with, or we are increasing sat
+        if (color_yryb > 0.1 || self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE_RYB_SAT] < -0.1) {
         
         //distort RGB hue to RYB for hue comparison
         //copied from adjbases.py in mypaint
@@ -925,6 +937,7 @@ smallest_angular_difference(float angleA, float angleB)
               colors[i] -= ryb[j][0];
               colors[i] *= ( ryb[j][3] - ryb[j][2] ) / ( ryb[j][1] - ryb[j][0] );
               colors[i] += ryb[j][2];
+              break;
             }
           
           }
@@ -932,10 +945,10 @@ smallest_angular_difference(float angleA, float angleB)
         }
         
         float huediff;
-        huediff = smallest_angular_difference(colors[0]*360, colors[1]*360)/360;
-        printf("% 4.3f % 4.3f % 4.3f\n", colors[0], colors[1], huediff);
-          if (huediff > .1) {
-          //color_yryb = (fac*smudge_s + (1-fac) * brush_s) * (1-huediff);
+        huediff = fabs(smallest_angular_difference(colors[0]*360, colors[1]*360)/360) * self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE_RYB_SAT];
+          //only change sat if not ~0
+          if (huediff > 0.1 || huediff < -0.1) {
+          color_yryb = (fac*smudge_s + (1-fac) * brush_s) * (1-huediff);
           }     
         }
         //convert back to RGB
@@ -975,7 +988,7 @@ smallest_angular_difference(float angleA, float angleB)
         color_v = color_bryb;
       } else {
         float fac = self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE_RYB];
-        //if (fac > 1.0) fac = 1.0;
+        if (fac > 1.0) fac = 1.0;
         color_h = (fac*color_rryb + (1-fac)*color_h);
         color_s = (fac*color_yryb + (1-fac)*color_s);
         color_v = (fac*color_bryb + (1-fac)*color_v);

@@ -472,6 +472,15 @@
             "maximum": 1.0, 
             "minimum": 0.0, 
             "tooltip": "Use RYB pigment blending to mimic real paints.  1=use RYB.  0=use RGB.  Anything in-between will mix the two modes"
+        },
+                {
+            "constant": false, 
+            "default": 0.5, 
+            "displayed_name": "Smudge RYB sat", 
+            "internal_name": "smudge_ryb_sat", 
+            "maximum": 2.0, 
+            "minimum": -2.0, 
+            "tooltip": "Controls how much different hues desaturate the result. 1=full desaturating, 0=no desaturating, -1=increase sat (weird)"
         }, 
         {
             "constant": false, 

@@ -925,7 +925,7 @@ smallest_angular_difference(float angleA, float angleB)
         
         
         //for each color (brush_h and smudge_h)
-        float colors[2] = { brush_h, smudge_h};
+        float colors[2] = { smudge_h, brush_h};
         int i;
         for ( i = 0; i < 2; i++ ) {
           
@@ -944,8 +944,14 @@ smallest_angular_difference(float angleA, float angleB)
         
         }
         
+        //determine hue diff, proportional to smudge ratio
+        //if fac is .5 the ratio should be 1. closer to 0 and closer to 1 should decrease factor towards zero
         float huediff;
-        huediff = fabs(smallest_angular_difference(colors[0]*360, colors[1]*360)/360) * self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE_RYB_SAT];
+        float hueratio;
+        hueratio = (0.5 - fabs(0.5 - fac)) / 0.5;
+        
+        
+        huediff = fabs(smallest_angular_difference(colors[0]*360, colors[1]*360)/360) * self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE_RYB_SAT]*hueratio;
           //only change sat if not ~0
           if (huediff > 0.1 || huediff < -0.1) {
           color_yryb = (fac*smudge_s + (1-fac) * brush_s) * (1-huediff);

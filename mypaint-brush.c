@@ -954,7 +954,8 @@ smallest_angular_difference(float angleA, float angleB)
         huediff = fabs(smallest_angular_difference(colors[0]*360, colors[1]*360)/360) * self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE_RYB_SAT]*hueratio;
           //only change sat if not ~0
           if (huediff > 0.1 || huediff < -0.1) {
-          color_yryb = (fac*smudge_s + (1-fac) * brush_s) * (1-huediff);
+          color_yryb = CLAMP((fac*smudge_s + (1-fac) * brush_s) * (1-huediff), 0.0, 1.0);
+          
           }     
         }
         //convert back to RGB

@@ -772,7 +772,7 @@ smallest_angular_difference(float a, float b)
       hsv_to_rgb_float (&color_h, &color_s, &color_v);
       rgb_to_hsl_float (&color_h, &color_s, &color_v);
       color_v += self->settings_value[MYPAINT_BRUSH_SETTING_CHANGE_COLOR_L];
-      color_s += color_s * MIN(ABS(1.0 - color_v), ABS(color_v)) * 2.0
+      color_s += color_s * MIN(fabsf(1.0 - color_v), fabsf(color_v)) * 2.0
         * self->settings_value[MYPAINT_BRUSH_SETTING_CHANGE_COLOR_HSL_S];
       hsl_to_rgb_float (&color_h, &color_s, &color_v);
       rgb_to_hsv_float (&color_h, &color_s, &color_v);

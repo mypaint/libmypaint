@@ -255,6 +255,7 @@ AC_SUBST(JSON_CFLAGS)
 AC_SEARCH_LIBS([floorf], [m], [], AC_MSG_ERROR([no floorf]))
 AC_SEARCH_LIBS([powf], [m], [], AC_MSG_ERROR([no powf]))
 AC_SEARCH_LIBS([expf], [m], [], AC_MSG_ERROR([no expf]))
+AC_SEARCH_LIBS([fabsf], [m], [], AC_MSG_ERROR([no fabsf]))
 
 ## Additional compile flags ##
 

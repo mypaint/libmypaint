@@ -861,7 +861,7 @@ smallest_angular_difference(float angleA, float angleB)
       if (self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE_RYB] > 0.0) {
         // mix (in RYB) the smudge color with the brush color
               
-        //store HSL values for brush and smudge for later adjustments
+        //store values for brush and smudge for later adjustments
         float brush_h, brush_s, brush_l, smudge_h, smudge_s, smudge_l;
         brush_h = color_h;
         brush_s = color_s;
@@ -872,8 +872,21 @@ smallest_angular_difference(float angleA, float angleB)
         smudge_h = self->states[MYPAINT_BRUSH_STATE_LAST_GETCOLOR_R];
         smudge_s = self->states[MYPAINT_BRUSH_STATE_LAST_GETCOLOR_G];
         smudge_l = self->states[MYPAINT_BRUSH_STATE_LAST_GETCOLOR_B];
-        rgb_to_hsl_float (&brush_h, &brush_s, &brush_l);
-        rgb_to_hsl_float (&smudge_h, &smudge_s, &smudge_l);
+        //0-1 is native RYB mode for sat and luma. 1-2 is HCY. 2-3 is HSL, 3-4 is HSV
+        //no crossfade
+        if (self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE_RYB_MODE] >= 1.0 && self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE_RYB_MODE] < 2.0) {
+        rgb_to_hcy_float (&brush_h, &brush_s, &brush_l);
+        rgb_to_hcy_float (&smudge_h, &smudge_s, &smudge_l);
+        } else if (self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE_RYB_MODE] >= 2.0 && self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE_RYB_MODE] < 3.0 ) {
+          rgb_to_hsl_float (&brush_h, &brush_s, &brush_l);
+          rgb_to_hsl_float (&smudge_h, &smudge_s, &smudge_l);
+          } else if (self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE_RYB_MODE] >= 3.0 && self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE_RYB_MODE] <= 4.0 ) {
+            brush_h = mypaint_mapping_get_base_value(self->settings[MYPAINT_BRUSH_SETTING_COLOR_H]);
+            brush_s = mypaint_mapping_get_base_value(self->settings[MYPAINT_BRUSH_SETTING_COLOR_S]);
+            brush_l = mypaint_mapping_get_base_value(self->settings[MYPAINT_BRUSH_SETTING_COLOR_V]);
+            rgb_to_hsv_float (&smudge_h, &smudge_s, &smudge_l);
+            }
+          
         
         //convert to RYB for mixing
         rgb_to_ryb_float (&color_rryb, &color_yryb, &color_bryb);
@@ -902,18 +915,32 @@ smallest_angular_difference(float angleA, float angleB)
           color_bryb = 0.0;
         }
 
-        //convert to HSL for saturation adjustment
-        rgb_to_hsl_float (&color_rryb, &color_yryb, &color_bryb);
+        //convert to HCY/HSL/HSV for saturation adjustment
+        if (self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE_RYB_MODE] >= 1.0 && self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE_RYB_MODE] < 2.0) {
+        rgb_to_hcy_float (&color_rryb, &color_yryb, &color_bryb);
+        } else if (self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE_RYB_MODE] >= 2.0 && self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE_RYB_MODE] < 3.0 ) {
+          rgb_to_hsl_float (&color_rryb, &color_yryb, &color_bryb);
+          } else if (self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE_RYB_MODE] >= 3.0 && self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE_RYB_MODE] <= 4.0 ) {
+            rgb_to_hsv_float (&color_rryb, &color_yryb, &color_bryb);
+            }
         
-        //set our luma to luma of the mix ignoring the RYB result which is too light, I think.      
+        
+        
+        //rgb_to_hcy_float (&color_rryb, &color_yryb, &color_bryb);
+        
+        //set our luma to luma of the mix according to mode result which is too light, I think.
+        //0-1 is native RYB so skip
+        if (self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE_RYB_MODE] >= 1.0 ) {      
         color_bryb = (fac*smudge_l + ((1-fac) * brush_l));
+        }
 
         //desaturate if paints are different.  RYB_SAT setting allows tweaking or even reversing of this.
         //mixing two different paints should always decrease saturation but without the below adjustment 
         //100% Y and 100% B creates 100% Green, which is not right
         
-        //don't bother unless the color is somewhat saturated to begin with, or we are increasing sat
-        if (color_yryb > 0.1 || self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE_RYB_SAT] < -0.1) {
+        //don't bother unless the color is somewhat saturated to begin with, or we are increasing sat.  Skip
+        //if using native RYB mode
+        if ((color_yryb > 0.1 || self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE_RYB_SAT] < -0.1) && self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE_RYB_MODE] >= 1.0) {
         
         //distort RGB hue to RYB for hue comparison
         //copied from adjbases.py in mypaint
@@ -959,7 +986,17 @@ smallest_angular_difference(float angleA, float angleB)
           }     
         }
         //convert back to RGB
-        hsl_to_rgb_float (&color_rryb, &color_yryb, &color_bryb);
+        if (self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE_RYB_MODE] >= 1.0 && self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE_RYB_MODE] < 2.0) {
+        hcy_to_rgb_float (&color_rryb, &color_yryb, &color_bryb);
+        } else if (self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE_RYB_MODE] >= 2.0 && self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE_RYB_MODE] < 3.0 ) {
+          hsl_to_rgb_float (&color_rryb, &color_yryb, &color_bryb);
+          } else if (self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE_RYB_MODE] >= 3.0 && self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE_RYB_MODE] <= 4.0 ) {
+            hsv_to_rgb_float (&color_rryb, &color_yryb, &color_bryb);
+            }
+        
+        
+        
+        //hcy_to_rgb_float (&color_rryb, &color_yryb, &color_bryb);
       }
        
       //do RGB mixing if necessary

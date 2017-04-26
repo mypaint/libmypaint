@@ -475,4 +475,155 @@ ryb_to_rgb_float (float *r_ /*rryb*/, float *g_ /*yryb*/, float *b_ /*bryb*/)
 
 }
 
+void
+rgb_to_hcy_float (float *r_, float *g_, float *b_) {
+	
+	float _HCY_RED_LUMA = 0.3;
+	float _HCY_GREEN_LUMA = 0.59;
+	float _HCY_BLUE_LUMA = 0.11;
+	float h, c, y;
+	float r, g, b;
+	float p, n, d;
+
+	r = *r_;
+	g = *g_;
+	b = *b_;
+
+	// Luma is just a weighted sum of the three components.
+	y = _HCY_RED_LUMA*r + _HCY_GREEN_LUMA*g + _HCY_BLUE_LUMA*b;
+
+	// Hue. First pick a sector based on the greatest RGB component, then add
+	// the scaled difference of the other two RGB components.
+	p = MAX3(r, g, b);
+	n = MIN3(r, g, b);
+	d = p - n; // An absolute measure of chroma: only used for scaling
+
+	if (n == p){
+		h = 0.0;
+	} else if (p == r){
+		h = (g - b)/d;
+		if (h < 0){
+			h += 6.0;
+		}
+	} else if (p == g){
+		h = ((b - r)/d) + 2.0;
+	} else {  // p==b
+		h = ((r - g)/d) + 4.0;
+	}
+	h /= 6.0;
+	h = fmod(h,1.0);
+
+	// Chroma, relative to the RGB gamut envelope.
+	if ((r == g) && (g == b)){
+		// Avoid a division by zero for the achromatic case.
+		c = 0.0;
+	} else {
+		// For the derivation, see the GLHS paper.
+		c = MAX((y-n)/y, (p-y)/(1-y));
+	}
+
+	*r_ = h;
+	*g_ = c;
+	*b_ = y;
+}
+
+void
+hcy_to_rgb_float (float *h_, float *c_, float *y_) {
+	
+	float _HCY_RED_LUMA = 0.3;
+	float _HCY_GREEN_LUMA = 0.59;
+	float _HCY_BLUE_LUMA = 0.11;
+	float h, c, y;
+	float r, g, b;
+	float th, tm;
+
+	h = *h_;
+	c = *c_;
+	y = *y_;
+
+	h = h - floor(h);
+	c = CLAMP(c, 0.0, 1.0);
+	y = CLAMP(y, 0.0, 1.0);
+
+	if (c == 0)	{
+	  /*  achromatic case  */
+	  r = y;
+	  g = y;
+	  b = y;
+	}
+
+	h = fmod(h, 1.0);
+	h *= 6.0;
+
+	if (h < 1){
+		// implies (p==r and h==(g-b)/d and g>=b)
+		th = h;
+		tm = _HCY_RED_LUMA + _HCY_GREEN_LUMA * th;
+	} else if (h < 2) {
+		// implies (p==g and h==((b-r)/d)+2.0 and b<r)
+		th = 2.0 - h;
+		tm = _HCY_GREEN_LUMA + _HCY_RED_LUMA * th;
+	} else if (h < 3){
+		// implies (p==g and h==((b-r)/d)+2.0 and b>=g)
+		th = h - 2.0;
+		tm = _HCY_GREEN_LUMA + _HCY_BLUE_LUMA * th;
+	} else if (h < 4) {
+		// implies (p==b and h==((r-g)/d)+4.0 and r<g)
+		th = 4.0 - h;
+		tm = _HCY_BLUE_LUMA + _HCY_GREEN_LUMA * th;
+	} else if (h < 5){
+		// implies (p==b and h==((r-g)/d)+4.0 and r>=g)
+		th = h - 4.0;
+		tm = _HCY_BLUE_LUMA + _HCY_RED_LUMA * th;
+	} else {
+		// implies (p==r and h==(g-b)/d and g<b)
+		th = 6.0 - h;
+		tm = _HCY_RED_LUMA + _HCY_BLUE_LUMA * th;
+	}
+
+	float n,p,o;
+	// Calculate the RGB components in sorted order
+	if (tm >= y){
+		p = y + y*c*(1-tm)/tm;
+		o = y + y*c*(th-tm)/tm;
+		n = y - (y*c);
+	}else{
+		p = y + (1-y)*c;
+		o = y + (1-y)*c*(th-tm)/(1-tm);
+		n = y - (1-y)*c*tm/(1-tm);
+	}
+
+	// Back to RGB order
+	if (h < 1){
+		r = p;
+		g = o;
+		b = n;
+	} else if (h < 2){
+		r = o;
+		g = p;
+		b = n;
+	} else if (h < 3){
+		r = n;
+		g = p;
+		b = o;
+	} else if (h < 4){
+		r = n;
+		g = o;
+		b = p;
+	} else if (h < 5){
+		r = o;
+		g = n;
+		b = p;
+	}else{ 
+		r = p;
+		g = n;
+		b = o;
+	}
+
+	*h_ = r;
+	*c_ = g;
+	*y_ = b;
+}
+
+
 #endif //HELPERS_C

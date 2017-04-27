@@ -467,21 +467,30 @@
         {
             "constant": false, 
             "default": 0.0, 
-            "displayed_name": "Smudge RYB", 
-            "internal_name": "smudge_ryb", 
-            "maximum": 1.0, 
+            "displayed_name": "Smudge Model", 
+            "internal_name": "smudge_mix_model", 
+            "maximum": 4.0, 
             "minimum": 0.0, 
-            "tooltip": "Use RYB pigment blending to mimic real paints.  1=use RYB.  0=use RGB.  Anything in-between will mix the two modes"
+            "tooltip": "Switch the color model of smudge.  0-1=use RGB.  1-2=use RYB, 2-3=CMYK. 3-4=Spectral Method TBD"
         },
-                {
+        {
             "constant": false, 
             "default": 0.5, 
-            "displayed_name": "Smudge RYB sat", 
-            "internal_name": "smudge_ryb_sat", 
+            "displayed_name": "Smudge Desaturation", 
+            "internal_name": "smudge_desaturation", 
             "maximum": 10.0, 
             "minimum": -10.0, 
             "tooltip": "Controls how much different hues desaturate the result. 1=full desaturating, 0=no desaturating, -1=increase sat (weird)"
-        }, 
+        },
+        {
+            "constant": false, 
+            "default": 0.0, 
+            "displayed_name": "Smudge Adjustment", 
+            "internal_name": "smudge_adjustment_mode", 
+            "maximum": 4.0, 
+            "minimum": 0.0, 
+            "tooltip": "Controls which method the Luma and Saturation are derived from.  0-1=native mix model. 1-2=HCY. 2-3=HSL. 3-4=HSV"
+        },  
         {
             "constant": false, 
             "default": 0.5, 
@@ -629,9 +638,6 @@
         "smudge_ga",
         "smudge_ba",
         "smudge_a",
-        "smudge_rryba",
-        "smudge_yryba",
-        "smudge_bryba",
         "last_getcolor_r",
         "last_getcolor_g",
         "last_getcolor_b",

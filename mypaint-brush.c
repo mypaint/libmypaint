@@ -912,16 +912,14 @@ smallest_angular_difference(float angleA, float angleB)
           rgb_to_hsv_float (&color_h, &color_s, &color_v);
           }
 
-      //set our luma to luma of the mix according to mode result.
+      //set our Brightness of the mix according to mode result. and also process saturation
       //0-1 is native so skip
       if (self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE_ADJUSTMENT_MODE] >= 1.0 ) {      
         color_v = (fac*smudge_l + ((1-fac) * brush_l));
         
-
         //desaturate if paints are different.  SMUDGE_DESATURATION setting allows tweaking or even reversing of this.
-        //mixing two different paints should always decrease saturation but without the below adjustment 
+        //mixing two different paints should always decrease saturation/colorfulness but without the below adjustment 
         //100% Y and 100% B creates 100% Green, which is not right
-        
         //don't bother unless the color is somewhat saturated to begin with, or we are increasing sat.  Zero will disable this
 
         if ((color_s > 0.1 && self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE_DESATURATION] != 0) || self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE_DESATURATION] < -0.1) {
@@ -966,7 +964,9 @@ smallest_angular_difference(float angleA, float angleB)
           //calculate the adjusted hue difference and apply that to the saturation level in the selected adjustmode mode (HCY, HSL, etc)
           //if smudge_desaturation setting is zero, the huediff will be zero.  Likewise when smudge (fac) is 0 or 1, the huediff will be zero.
           huediff = fabs(smallest_angular_difference(colors[0]*360, colors[1]*360)/360) * self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE_DESATURATION]*hueratio;
-          color_s = CLAMP((fac*smudge_s + (1-fac) * brush_s) * (1-huediff), 0.0, 1.0);
+          //color_s = CLAMP((fac*smudge_s + (1-fac) * brush_s) * (1-huediff), 0.0, 1.0);
+          //commented out above as it doesn't make sense to mix the Colorfulness of the smudge and brush colors.
+          color_s = CLAMP(color_s*(1-huediff), 0.0, 1.0);
         }
       }
       //convert back to RGB if necessary (Adjustment mode not native)

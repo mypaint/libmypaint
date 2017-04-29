@@ -884,15 +884,12 @@ smallest_angular_difference(float angleA, float angleB)
             rgb_to_ryb_float (&smudge_rryb, &smudge_yryb, &smudge_bryb);
             rgb_to_ryb_float (&color_h, &color_s, &color_v);
             
-            color_h = (fac*smudge_rryb + (1-fac)*color_h);
-            color_s = (fac*smudge_yryb + (1-fac)*color_s);
-            color_v = (fac*smudge_bryb + (1-fac)*color_v);
+            color_h = (fac*smudge_rryb + (1-fac)*color_h)/ eraser_target_alpha;
+            color_s = (fac*smudge_yryb + (1-fac)*color_s)/ eraser_target_alpha;
+            color_v = (fac*smudge_bryb + (1-fac)*color_v)/ eraser_target_alpha;
           
             ryb_to_rgb_float (&color_h, &color_s, &color_v);
-            //do the alpha in RGB- not sure if this makes sense.
-            color_h /= eraser_target_alpha;
-            color_s /= eraser_target_alpha; 
-            color_v /= eraser_target_alpha;
+
           }
           //more mix modes here later
 

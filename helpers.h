@@ -35,6 +35,12 @@ hcy_to_rgb_float (float *h_, float *c_, float *y_);
 void
 rgb_to_hcy_float (float *r_, float *g_, float *b_);
 
+void
+cmy_to_rgb_float (float *c_, float *m_, float *y_);
+
+void
+rgb_to_cmy_float (float *r_, float *g_, float *b_);
+
 float rand_gauss (RngDouble * rng);
 
 #endif // HELPERS_H

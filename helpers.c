@@ -625,5 +625,44 @@ hcy_to_rgb_float (float *h_, float *c_, float *y_) {
 	*y_ = b;
 }
 
+void
+rgb_to_cmyk_float (float *r_, float *g_, float *b_, float *k_) {
+
+  float c, m, y, k, r, g, b;
+  
+  r = CLAMP(*r_,0.0, 1.0);
+  g = CLAMP(*g_,0.0, 1.0);
+  b = CLAMP(*b_,0.0, 1.0);
+  
+  k = 1 - MAX3(r, g, b);
+  c = (1 - r - k) / (1 - k);
+  m = (1 - g - k) / (1 - k);
+  y = (1 - b - k) / (1 - k);
+  
+  *k_ = CLAMP(k, 0.0, 1.0);
+  *r_ = CLAMP(c, 0.0, 1.0);
+  *g_ = CLAMP(m, 0.0, 1.0);
+  *b_ = CLAMP(y, 0.0, 1.0);
+}
+
+void
+cmyk_to_rgb_float (float *c_, float *m_, float *y_, float *k_) {
+
+  float r, g, b, c, m, y, k;
+  
+  c = CLAMP(*c_, 0.0, 1.0);
+  m = CLAMP(*m_, 0.0, 1.0);
+  y = CLAMP(*y_, 0.0, 1.0);
+  k = CLAMP(*k_, 0.0, 1.0);
+  
+  r = (1 - c) * (1 - k);
+  g = (1 - m) * (1 - k);
+  b = (1 - y) * (1 - k);
+  
+  *c_ = CLAMP(r, 0.0, 1.0);
+  *m_ = CLAMP(g, 0.0, 1.0);
+  *y_ = CLAMP(b, 0.0, 1.0);
+  *k_ = 0.0;
+}
 
 #endif //HELPERS_C

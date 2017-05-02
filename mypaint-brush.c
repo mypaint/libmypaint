@@ -375,17 +375,17 @@ mypaint_brush_set_state(MyPaintBrush *self, MyPaintBrushState i, float value)
 
 
 //function to make it easy to blend additive and subtractive color blending modes
-static inline float mix_colors(float a, float b, float mode)
+static inline float mix_colors(float a, float b, float fac, float mode)
 {
-  printf("a is % 4.3f, b is % 4.3f, mode is % 4.3f", a, b, mode);
+  
   float addm, subm, result;
   //addititive
   if (mode < 1.0) {
-    addm = a + b;
+    addm = fac*a + (1-fac)*b;
   }
   //subtractive is multiplied
   if (mode > 0.0) {
-    subm = sqrt(((a * a) + (b * b))/2);
+    subm = sqrt((((fac *a *a) + ((1-fac) * b * b))));
   }
   //mix both
   result = ((1-mode) * addm) + (mode*subm);
@@ -841,14 +841,14 @@ smallest_angular_difference(float angleA, float angleB)
         b = self->states[MYPAINT_BRUSH_STATE_LAST_GETCOLOR_B];
         a = self->states[MYPAINT_BRUSH_STATE_LAST_GETCOLOR_A];
       }
-      printf("A=% 4.3f, R=% 4.3f, G=% 4.3f, B=% 4.3f\n",a, r, g, b);
+
       // updated the smudge color (stored with premultiplied alpha)
       self->states[MYPAINT_BRUSH_STATE_SMUDGE_A ] = fac*self->states[MYPAINT_BRUSH_STATE_SMUDGE_A ] + (1-fac)*a;
       // fix rounding errors
       self->states[MYPAINT_BRUSH_STATE_SMUDGE_A ] = CLAMP(self->states[MYPAINT_BRUSH_STATE_SMUDGE_A], 0.0, 1.0);
-      self->states[MYPAINT_BRUSH_STATE_SMUDGE_RA] = mix_colors((fac*self->states[MYPAINT_BRUSH_STATE_SMUDGE_RA]), ((1-fac)*r*a), self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE_ADD_SUB]);
-      self->states[MYPAINT_BRUSH_STATE_SMUDGE_GA] = mix_colors((fac*self->states[MYPAINT_BRUSH_STATE_SMUDGE_GA]), ((1-fac)*g*a), self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE_ADD_SUB]);
-      self->states[MYPAINT_BRUSH_STATE_SMUDGE_BA] = mix_colors((fac*self->states[MYPAINT_BRUSH_STATE_SMUDGE_BA]), ((1-fac)*b*a), self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE_ADD_SUB]);
+      self->states[MYPAINT_BRUSH_STATE_SMUDGE_RA] = mix_colors((self->states[MYPAINT_BRUSH_STATE_SMUDGE_RA]), (r*a), fac, self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE_ADD_SUB]);
+      self->states[MYPAINT_BRUSH_STATE_SMUDGE_GA] = mix_colors((self->states[MYPAINT_BRUSH_STATE_SMUDGE_GA]), (g*a), fac, self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE_ADD_SUB]);
+      self->states[MYPAINT_BRUSH_STATE_SMUDGE_BA] = mix_colors((self->states[MYPAINT_BRUSH_STATE_SMUDGE_BA]), (b*a), fac, self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE_ADD_SUB]);
     }
 
     // color part
@@ -904,9 +904,9 @@ smallest_angular_difference(float angleA, float angleB)
             //RYB Mode
             rgb_to_ryb_float (&color_h, &color_s, &color_v);
           }       
-          color_h = (mix_colors((fac*self->states[MYPAINT_BRUSH_STATE_SMUDGE_RA]), ((1-fac)*color_h), self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE_ADD_SUB])) / eraser_target_alpha;
-          color_s = (mix_colors((fac*self->states[MYPAINT_BRUSH_STATE_SMUDGE_GA]), ((1-fac)*color_s), self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE_ADD_SUB])) / eraser_target_alpha;
-          color_v = (mix_colors((fac*self->states[MYPAINT_BRUSH_STATE_SMUDGE_BA]), ((1-fac)*color_v), self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE_ADD_SUB])) / eraser_target_alpha;
+          color_h = (mix_colors((self->states[MYPAINT_BRUSH_STATE_SMUDGE_RA]), (color_h), fac, self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE_ADD_SUB])) / eraser_target_alpha;
+          color_s = (mix_colors((self->states[MYPAINT_BRUSH_STATE_SMUDGE_GA]), (color_s), fac, self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE_ADD_SUB])) / eraser_target_alpha;
+          color_v = (mix_colors((self->states[MYPAINT_BRUSH_STATE_SMUDGE_BA]), (color_v), fac, self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE_ADD_SUB])) / eraser_target_alpha;
           
           if (self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE_MIX_MODEL] >= 1.0 && self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE_MIX_MODEL] < 2.0) {
             //RYB Mode 

@@ -480,7 +480,7 @@
             "internal_name": "smudge_mix_model", 
             "maximum": 3.0, 
             "minimum": 0.0, 
-            "tooltip": "Switch the color model of smudge.  0-1=use RGB.  1-2=use RYB, 2-3=Spectral Method TBD"
+            "tooltip": "Switch the color model of smudge.  0-1=use RGB.  1-2=use RYB, 2-3=Spectral Method (not implemented)"
         },
         {
             "constant": false, 
@@ -489,7 +489,7 @@
             "internal_name": "smudge_desaturation", 
             "maximum": 10.0, 
             "minimum": -10.0, 
-            "tooltip": "Controls how much different hues desaturate the result. 1=full desaturating, 0=no desaturating, -1=increase sat (weird)"
+            "tooltip": "Controls how much different hues desaturate the result. 1=full desaturating, 0=no desaturating, -1=increase sat (weird)\nThis only has an effect if you've chosen a smudge adjustment mode such as HCY"
         },
         {
             "constant": false, 

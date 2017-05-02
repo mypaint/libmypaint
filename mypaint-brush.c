@@ -846,9 +846,9 @@ smallest_angular_difference(float angleA, float angleB)
       self->states[MYPAINT_BRUSH_STATE_SMUDGE_A ] = fac*self->states[MYPAINT_BRUSH_STATE_SMUDGE_A ] + (1-fac)*a;
       // fix rounding errors
       self->states[MYPAINT_BRUSH_STATE_SMUDGE_A ] = CLAMP(self->states[MYPAINT_BRUSH_STATE_SMUDGE_A], 0.0, 1.0);
-      self->states[MYPAINT_BRUSH_STATE_SMUDGE_RA] = mix_colors((self->states[MYPAINT_BRUSH_STATE_SMUDGE_RA]), (r*a), fac, self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE_ADD_SUB]);
-      self->states[MYPAINT_BRUSH_STATE_SMUDGE_GA] = mix_colors((self->states[MYPAINT_BRUSH_STATE_SMUDGE_GA]), (g*a), fac, self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE_ADD_SUB]);
-      self->states[MYPAINT_BRUSH_STATE_SMUDGE_BA] = mix_colors((self->states[MYPAINT_BRUSH_STATE_SMUDGE_BA]), (b*a), fac, self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE_ADD_SUB]);
+      self->states[MYPAINT_BRUSH_STATE_SMUDGE_RA] = mix_colors((self->states[MYPAINT_BRUSH_STATE_SMUDGE_RA]), (r*a), fac, self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE_ADD_MODEL]);
+      self->states[MYPAINT_BRUSH_STATE_SMUDGE_GA] = mix_colors((self->states[MYPAINT_BRUSH_STATE_SMUDGE_GA]), (g*a), fac, self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE_ADD_MODEL]);
+      self->states[MYPAINT_BRUSH_STATE_SMUDGE_BA] = mix_colors((self->states[MYPAINT_BRUSH_STATE_SMUDGE_BA]), (b*a), fac, self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE_ADD_MODEL]);
     }
 
     // color part
@@ -904,9 +904,9 @@ smallest_angular_difference(float angleA, float angleB)
             //RYB Mode
             rgb_to_ryb_float (&color_h, &color_s, &color_v);
           }       
-          color_h = (mix_colors((self->states[MYPAINT_BRUSH_STATE_SMUDGE_RA]), (color_h), fac, self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE_ADD_SUB])) / eraser_target_alpha;
-          color_s = (mix_colors((self->states[MYPAINT_BRUSH_STATE_SMUDGE_GA]), (color_s), fac, self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE_ADD_SUB])) / eraser_target_alpha;
-          color_v = (mix_colors((self->states[MYPAINT_BRUSH_STATE_SMUDGE_BA]), (color_v), fac, self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE_ADD_SUB])) / eraser_target_alpha;
+          color_h = (mix_colors((self->states[MYPAINT_BRUSH_STATE_SMUDGE_RA]), (color_h), fac, self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE_ADD_MODEL])) / eraser_target_alpha;
+          color_s = (mix_colors((self->states[MYPAINT_BRUSH_STATE_SMUDGE_GA]), (color_s), fac, self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE_ADD_MODEL])) / eraser_target_alpha;
+          color_v = (mix_colors((self->states[MYPAINT_BRUSH_STATE_SMUDGE_BA]), (color_v), fac, self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE_ADD_MODEL])) / eraser_target_alpha;
           
           if (self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE_MIX_MODEL] >= 1.0 && self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE_MIX_MODEL] < 2.0) {
             //RYB Mode 

@@ -467,16 +467,25 @@
         {
             "constant": false, 
             "default": 0.0, 
-            "displayed_name": "Smudge Sub/Add", 
+            "displayed_name": "Smudge Add/Sub (not implemented)", 
             "internal_name": "smudge_add_sub", 
             "maximum": 1.0, 
             "minimum": 0.0, 
-            "tooltip": "Change the smudge model from Additive Mode- 0 to Subtractive mode- 1.0\n Values in-between will blend the modes"
+            "tooltip": "Change the mixing model from Additive to Subtrative.  0 is Additive and 1 is Subtrative.  In-between will cross-fade the results"
         }, 
         {
             "constant": false, 
             "default": 0.0, 
-            "displayed_name": "Smudge Model", 
+            "displayed_name": "Smudge Additive Model", 
+            "internal_name": "smudge_add_model", 
+            "maximum": 1.0, 
+            "minimum": 0.0, 
+            "tooltip": "Change the additive model from default (0) to a squared root method (1)\nNormally colors are mixed by adding them (x+y)/2 but x and y are already sqrt().  So you can also undo that first x^2+y^2 then sqrt() the result.\nSetting to 1 will allow red and green to blend to a brighter orange color in the RGB model"
+        }, 
+        {
+            "constant": false, 
+            "default": 0.0, 
+            "displayed_name": "Smudge Primaries", 
             "internal_name": "smudge_mix_model", 
             "maximum": 3.0, 
             "minimum": 0.0, 
@@ -494,7 +503,7 @@
         {
             "constant": false, 
             "default": 0.0, 
-            "displayed_name": "Smudge Adjustment", 
+            "displayed_name": "Smudge Adjustment Model", 
             "internal_name": "smudge_adjustment_mode", 
             "maximum": 4.0, 
             "minimum": 0.0, 

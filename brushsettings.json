@@ -467,11 +467,20 @@
         {
             "constant": false, 
             "default": 0.0, 
+            "displayed_name": "Smudge Sub/Add", 
+            "internal_name": "smudge_add_sub", 
+            "maximum": 1.0, 
+            "minimum": 0.0, 
+            "tooltip": "Change the smudge model from Additive Mode- 0 to Subtractive mode- 1.0\n Values in-between will blend the modes"
+        }, 
+        {
+            "constant": false, 
+            "default": 0.0, 
             "displayed_name": "Smudge Model", 
             "internal_name": "smudge_mix_model", 
-            "maximum": 4.0, 
+            "maximum": 3.0, 
             "minimum": 0.0, 
-            "tooltip": "Switch the color model of smudge.  0-1=use RGB.  1-2=use RYB, 2-3=CMYK. 3-4=Spectral Method TBD"
+            "tooltip": "Switch the color model of smudge.  0-1=use RGB.  1-2=use RYB, 2-3=Spectral Method TBD"
         },
         {
             "constant": false, 

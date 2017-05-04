@@ -377,19 +377,24 @@ mypaint_brush_set_state(MyPaintBrush *self, MyPaintBrushState i, float value)
 //function to make it easy to blend additive and subtractive color blending modes in linear and non-linear modes
 static inline float mix_colors(float a, float b, float fac, float linmode, float addsub)
 {
-  float nonlina, nonlins, nonlin_result, lina, lins, lin_result, result;
+  float nonlina = 0, nonlins = 0, nonlin_result = 0, lina = 0, lins = 0, lin_result = 0, result = 0;
+  //printf("fac= % 4.3f, a= % 4.3f, b= % 4.3f\n", fac, a, b);
+  
   //non-linear
   if (linmode < 1.0) {
     //additive
     if (addsub < 1.0) {
       nonlina = fac*a + (1-fac)*b;
+      //printf("nonlina= % 4.10f\n", nonlina);
     }
-    //subtractive
+    //subtractive.  This so does not work.
     if (addsub > 0.0) {
-      nonlins = fac*a * (1-fac)*b;
+      nonlins = a * b;
+      //printf("nonlins= % 4.10f\n", nonlins);
     }
-    //mix both
+    //mix add and sub
     nonlin_result = ((1-addsub)*nonlina) + (addsub*nonlins);
+    //printf("nonlin_result= % 4.10f\n", nonlin_result);
   }
   //linear
   if (linmode > 0.0) {
@@ -399,14 +404,14 @@ static inline float mix_colors(float a, float b, float fac, float linmode, float
     }
     //subtractive
     if (addsub > 0.0) {
-      lins = sqrt(((fac *a *a) * ((1-fac) * b * b)));
+      lins = sqrt(a * a * b * b);
     }
-    //mix both
+    //mix add and sub
     lin_result = ((1-addsub)*lina) + (addsub*lins);
   }
-  //mix both
+  //mix linear and non-linear
   result = ((1-linmode) * nonlin_result) + (linmode*lin_result);
-  
+  //printf("result= % 4.10f\n", result);
   return result;
 }
 
@@ -895,9 +900,15 @@ smallest_angular_difference(float angleA, float angleB)
           brush_l = color_v;
           
           //grab the RGB w/o alpha multiplied already- we're only using it for colorfulness and brightness later
-          smudge_h = self->states[MYPAINT_BRUSH_STATE_LAST_GETCOLOR_R];
-          smudge_s = self->states[MYPAINT_BRUSH_STATE_LAST_GETCOLOR_G];
-          smudge_l = self->states[MYPAINT_BRUSH_STATE_LAST_GETCOLOR_B];
+          smudge_h = self->states[MYPAINT_BRUSH_STATE_SMUDGE_RA] / self->states[MYPAINT_BRUSH_STATE_SMUDGE_A];
+          smudge_s = self->states[MYPAINT_BRUSH_STATE_SMUDGE_GA] / self->states[MYPAINT_BRUSH_STATE_SMUDGE_A];
+          smudge_l = self->states[MYPAINT_BRUSH_STATE_SMUDGE_BA] / self->states[MYPAINT_BRUSH_STATE_SMUDGE_A];
+          
+          //convert back to rgb if needed
+          if (self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE_MIX_MODEL] >= 1.0 && self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE_MIX_MODEL] < 2.0) {
+          //RYB
+          ryb_to_rgb_float (&smudge_h, &smudge_s, &smudge_l);
+          }
           
           //0-1 is native mode for sat and luma. 1-2 is HCY. 2-3 is HSL, 3-4 is HSV
           //no crossfade
@@ -921,9 +932,9 @@ smallest_angular_difference(float angleA, float angleB)
             //RYB Mode
             rgb_to_ryb_float (&color_h, &color_s, &color_v);
           }       
-          color_h = (mix_colors((self->states[MYPAINT_BRUSH_STATE_SMUDGE_RA]), (color_h), fac, self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE_LINEAR_MODEL], self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE_ADD_SUB])) / eraser_target_alpha;
-          color_s = (mix_colors((self->states[MYPAINT_BRUSH_STATE_SMUDGE_GA]), (color_s), fac, self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE_LINEAR_MODEL], self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE_ADD_SUB])) / eraser_target_alpha;
-          color_v = (mix_colors((self->states[MYPAINT_BRUSH_STATE_SMUDGE_BA]), (color_v), fac, self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE_LINEAR_MODEL], self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE_ADD_SUB])) / eraser_target_alpha;
+          color_h = CLAMP((mix_colors((self->states[MYPAINT_BRUSH_STATE_SMUDGE_RA]), (color_h), fac, self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE_LINEAR_MODEL], self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE_ADD_SUB])) / eraser_target_alpha, 0.0f, 1.0f);
+          color_s = CLAMP((mix_colors((self->states[MYPAINT_BRUSH_STATE_SMUDGE_GA]), (color_s), fac, self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE_LINEAR_MODEL], self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE_ADD_SUB])) / eraser_target_alpha, 0.0f, 1.0f);
+          color_v = CLAMP((mix_colors((self->states[MYPAINT_BRUSH_STATE_SMUDGE_BA]), (color_v), fac, self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE_LINEAR_MODEL], self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE_ADD_SUB])) / eraser_target_alpha, 0.0f, 1.0f);
           
           if (self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE_MIX_MODEL] >= 1.0 && self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE_MIX_MODEL] < 2.0) {
             //RYB Mode 
@@ -1001,7 +1012,7 @@ smallest_angular_difference(float angleA, float angleB)
             huediff = fabs(smallest_angular_difference(colors[0]*360, colors[1]*360)/360) * self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE_DESATURATION]*hueratio;
             //color_s = CLAMP((fac*smudge_s + (1-fac) * brush_s) * (1-huediff), 0.0, 1.0);
             //commented out above as it doesn't make sense to mix the Colorfulness of the smudge and brush colors.
-            color_s = CLAMP(color_s*(1-huediff), 0.0, 1.0);
+            color_s = color_s*(1-huediff), 0.0, 1.0;
           }
         }
         //convert back to RGB if necessary (Adjustment mode not native)

@@ -493,7 +493,7 @@
         },
         {
             "constant": false, 
-            "default": 0.5, 
+            "default": 0.0, 
             "displayed_name": "Smudge Desaturation", 
             "internal_name": "smudge_desaturation", 
             "maximum": 10.0, 

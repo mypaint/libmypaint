@@ -50,9 +50,9 @@ rgb_to_hsv_float (float *r_ /*h*/, float *g_ /*s*/, float *b_ /*v*/)
   g = *g_;
   b = *b_;
 
-  r = CLAMP(r, 0.0, 1.0);
-  g = CLAMP(g, 0.0, 1.0);
-  b = CLAMP(b, 0.0, 1.0);
+  r = CLAMP(r, 0.0f, 1.0f);
+  g = CLAMP(g, 0.0f, 1.0f);
+  b = CLAMP(b, 0.0f, 1.0f);
 
   max = MAX3(r, g, b);
   min = MIN3(r, g, b);
@@ -107,8 +107,8 @@ hsv_to_rgb_float (float *h_, float *s_, float *v_)
   v = *v_;
 
   h = h - floor(h);
-  s = CLAMP(s, 0.0, 1.0);
-  v = CLAMP(v, 0.0, 1.0);
+  s = CLAMP(s, 0.0f, 1.0f);
+  v = CLAMP(v, 0.0f, 1.0f);
 
   double hue;
 
@@ -189,9 +189,9 @@ rgb_to_hsl_float (float *r_, float *g_, float *b_)
   g = *g_;
   b = *b_;
 
-  r = CLAMP(r, 0.0, 1.0);
-  g = CLAMP(g, 0.0, 1.0);
-  b = CLAMP(b, 0.0, 1.0);
+  r = CLAMP(r, 0.0f, 1.0f);
+  g = CLAMP(g, 0.0f, 1.0f);
+  b = CLAMP(b, 0.0f, 1.0f);
 
   max = MAX3(r, g, b);
   min = MIN3(r, g, b);
@@ -282,8 +282,8 @@ hsl_to_rgb_float (float *h_, float *s_, float *l_)
   l = *l_;
 
   h = h - floor(h);
-  s = CLAMP(s, 0.0, 1.0);
-  l = CLAMP(l, 0.0, 1.0);
+  s = CLAMP(s, 0.0f, 1.0f);
+  l = CLAMP(l, 0.0f, 1.0f);
 
   if (s == 0)
     {
@@ -385,9 +385,9 @@ rgb_to_ryb_float (float *r_ /*rryb*/, float *g_ /*yryb*/, float *b_ /*bryb*/)
   iYellow += iWhite;
   iBlue   += iWhite;
 
-  iRed = CLAMP(iRed, 0.0, 1.0);
-  iYellow = CLAMP(iYellow, 0.0, 1.0);
-  iBlue = CLAMP(iBlue, 0.0, 1.0);
+  iRed = CLAMP(iRed, 0.0f, 1.0f);
+  iYellow = CLAMP(iYellow, 0.0f, 1.0f);
+  iBlue = CLAMP(iBlue, 0.0f, 1.0f);
 
   *r_ = iRed;
   *g_ = iYellow;
@@ -465,9 +465,9 @@ ryb_to_rgb_float (float *r_ /*rryb*/, float *g_ /*yryb*/, float *b_ /*bryb*/)
   iGreen += iWhite;
   iBlue  += iWhite;
 
-  iRed = CLAMP(iRed, 0.0, 1.0);
-  iGreen = CLAMP(iGreen, 0.0, 1.0);
-  iBlue = CLAMP(iBlue, 0.0, 1.0);
+  iRed = CLAMP(iRed, 0.0f, 1.0f);
+  iGreen = CLAMP(iGreen, 0.0f, 1.0f);
+  iBlue = CLAMP(iBlue, 0.0f, 1.0f);
 
   *r_ = iRed;
   *g_ = iGreen;
@@ -542,8 +542,8 @@ hcy_to_rgb_float (float *h_, float *c_, float *y_) {
 	y = *y_;
 
 	h = h - floor(h);
-	c = CLAMP(c, 0.0, 1.0);
-	y = CLAMP(y, 0.0, 1.0);
+	c = CLAMP(c, 0.0f, 1.0f);
+	y = CLAMP(y, 0.0f, 1.0f);
 
 	if (c == 0)	{
 	  /*  achromatic case  */

@@ -503,6 +503,15 @@
         {
             "constant": false, 
             "default": 0.0, 
+            "displayed_name": "Smudge Darken", 
+            "internal_name": "smudge_darken", 
+            "maximum": 10.0, 
+            "minimum": -10.0, 
+            "tooltip": "Controls how much different hues darken the result. 1=full darkening, 0=no darkening, -1=increase brightness (weird)\nThis only has an effect if you've chosen a smudge adjustment mode such as HCY"
+        },
+        {
+            "constant": false, 
+            "default": 0.0, 
             "displayed_name": "Smudge Adjustment Model", 
             "internal_name": "smudge_adjustment_mode", 
             "maximum": 4.0, 

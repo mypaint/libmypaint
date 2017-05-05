@@ -961,14 +961,14 @@ smallest_angular_difference(float angleA, float angleB)
         //set our Brightness of the mix according to mode result. and also process saturation
         //0-1 is native so skip
         if (self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE_ADJUSTMENT_MODE] >= 1.0 ) {      
-          color_v = (fac*smudge_l + ((1-fac) * brush_l));
+          //color_v = (fac*smudge_l + ((1-fac) * brush_l));
           
           //desaturate if paints are different.  SMUDGE_DESATURATION setting allows tweaking or even reversing of this.
           //mixing two different paints should always decrease saturation/colorfulness but without the below adjustment 
           //100% Y and 100% B creates 100% Green, which is not right
           //don't bother unless the color is somewhat saturated to begin with, or we are increasing sat.  Zero will disable this
 
-          if ((color_s > 0.1 && self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE_DESATURATION] != 0) || self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE_DESATURATION] < -0.1) {
+          if ((self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE_DESATURATION] != 0) || self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE_DARKEN] != 0) {
 
             //distort RGB hue to RYB for hue comparison
             //copied from adjbases.py in mypaint
@@ -1003,16 +1003,22 @@ smallest_angular_difference(float angleA, float angleB)
             //if fac is .5 the hueratio should be 1. When fac closer to 0 and closer to 1 should decrease towards zero
             //why- because if smudge is 0 or 1, only 100% of one of the brush or smudge color will be used so there is no comparison to make.
             //when fac is 0.5 the smudge and brush are mixed 50/50, so the huedifference should be respected 100%
-            float huediff;
+            float huediff_sat;
+            float huediff_bright;
             float hueratio;
             hueratio = (0.5 - fabs(0.5 - fac)) / 0.5;
                 
             //calculate the adjusted hue difference and apply that to the saturation level in the selected adjustmode mode (HCY, HSL, etc)
             //if smudge_desaturation setting is zero, the huediff will be zero.  Likewise when smudge (fac) is 0 or 1, the huediff will be zero.
-            huediff = fabs(smallest_angular_difference(colors[0]*360, colors[1]*360)/360) * self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE_DESATURATION]*hueratio;
+            huediff_sat = fabs(smallest_angular_difference(colors[0]*360, colors[1]*360)/360) * self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE_DESATURATION]*hueratio;
+            //do the same for brightness
+            huediff_bright = fabs(smallest_angular_difference(colors[0]*360, colors[1]*360)/360) * self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE_DARKEN]*hueratio;
             //color_s = CLAMP((fac*smudge_s + (1-fac) * brush_s) * (1-huediff), 0.0, 1.0);
             //commented out above as it doesn't make sense to mix the Colorfulness of the smudge and brush colors.
-            color_s = color_s*(1-huediff), 0.0, 1.0;
+            color_s = color_s*(1-huediff_sat);
+            
+            //attempt to simulate subtractive mode by darkening colors if they are different hues
+            color_v = color_v*(1-huediff_bright);
           }
         }
         //convert back to RGB if necessary (Adjustment mode not native)

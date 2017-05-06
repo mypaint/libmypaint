@@ -389,7 +389,7 @@ static inline float mix_colors(float a, float b, float fac, float linmode, float
     }
     //subtractive.  This so does not work.
     if (addsub > 0.0) {
-      nonlins = powf(a, fac) * powf(b, (1-fac));
+      nonlins = powf(a+1, fac) * powf(b+1, (1-fac)) -1;
       //printf("nonlins= % 4.10f\n", nonlins);
     }
     //mix add and sub
@@ -404,7 +404,7 @@ static inline float mix_colors(float a, float b, float fac, float linmode, float
     }
     //subtractive
     if (addsub > 0.0) {
-      lins = sqrt(powf(a * a, fac) * powf(b * b,(1-fac)));
+      lins = sqrt(powf((a+1) * (a+1), fac) * powf((b+1) * (b+1),(1-fac)))-1;
     }
     //mix add and sub
     lin_result = ((1-addsub)*lina) + (addsub*lins);

@@ -387,9 +387,9 @@ static inline float mix_colors(float a, float b, float fac, float linmode, float
       nonlina = fac*a + (1-fac)*b;
       //printf("nonlina= % 4.10f\n", nonlina);
     }
-    //subtractive.  This so does not work.
+    //subtractive.  This kinda seems to work now.  I am adding a tiny bit of light (.01) before mixing, and then removing it again
     if (addsub > 0.0) {
-      nonlins = powf(a+1, fac) * powf(b+1, (1-fac)) -1;
+      nonlins = powf(a+.00001, fac) * powf(b+.00001, (1-fac)) - (powf(.00001, fac) * powf(.00001, (1-fac)));
       //printf("nonlins= % 4.10f\n", nonlins);
     }
     //mix add and sub
@@ -404,7 +404,8 @@ static inline float mix_colors(float a, float b, float fac, float linmode, float
     }
     //subtractive
     if (addsub > 0.0) {
-      lins = sqrt(powf((a+1) * (a+1), fac) * powf((b+1) * (b+1),(1-fac)))-1;
+      //not sure why this seems to have the same effect as the non-linear mode
+      lins = sqrt(powf((a+.00001) * (a+.00001), fac) * powf((b+.00001) * (b+.00001),(1-fac))) - (powf(.00001, fac) * powf(.00001, (1-fac)));
     }
     //mix add and sub
     lin_result = ((1-addsub)*lina) + (addsub*lins);

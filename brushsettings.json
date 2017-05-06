@@ -469,7 +469,7 @@
             "default": 0.0, 
             "displayed_name": "Smudge Add/Sub", 
             "internal_name": "smudge_add_sub", 
-            "maximum": 0.99, 
+            "maximum": 1.0, 
             "minimum": 0.0, 
             "tooltip": "Change the mixing model from Additive to Subtrative.  0 is Additive and 1 is Subtractive(multiply mode).  In-between will cross-fade the results"
         }, 

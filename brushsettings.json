@@ -475,12 +475,12 @@
         }, 
         {
             "constant": false, 
-            "default": 0.0, 
-            "displayed_name": "Smudge Linear", 
-            "internal_name": "smudge_linear_model", 
-            "maximum": 1.0, 
-            "minimum": 0.0, 
-            "tooltip": "Change the  model from default non-linear(0) to a linear method (1)\nSetting to 1 will allow red and green to blend to a brighter orange color in the RGB model.  In-between values will blend the methods"
+            "default": 2.4, 
+            "displayed_name": "Smudge Gamma", 
+            "internal_name": "smudge_gamma", 
+            "maximum": 3.0, 
+            "minimum": 1.0, 
+            "tooltip": "Change the gamma of the smudge model\nSetting to 2.4 will allow red and green to blend to a brighter orange color in the RGB model."
         }, 
         {
             "constant": false, 

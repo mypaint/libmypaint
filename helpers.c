@@ -625,4 +625,42 @@ hcy_to_rgb_float (float *h_, float *c_, float *y_) {
 	*y_ = b;
 }
 
+
+void
+srgb_to_rgb_float (float *r_, float *g_, float *b_, float gamma) {
+  
+  float rgb[3] = {*r_, *g_, *b_};
+  int i=0;
+  for (i=0; i < 3; i++) { 
+    if (rgb[i] < 0.04045) {
+      rgb[i] /= 12.92;
+    } else {
+      rgb[i] = powf((rgb[i]+ 0.055)/1.055, gamma);
+    }
+  }
+  
+  *r_ = rgb[0];
+  *g_ = rgb[1];
+  *b_ = rgb[2];
+  
+}
+
+void
+rgb_to_srgb_float (float *r_, float *g_, float *b_, float gamma) {
+
+  float rgb[3] = {*r_, *g_, *b_};
+  int i=0;
+  for (i=0; i < 3; i++) {
+    if (rgb[i] <= 0.00313066844250063) {
+      rgb[i] *=12.92;
+    } else {
+      rgb[i] = (1.055*powf(rgb[i],1/gamma)) - 0.055;
+    }
+  }
+  *r_ = rgb[0];
+  *g_ = rgb[1];
+  *b_ = rgb[2];
+}
+
+
 #endif //HELPERS_C

@@ -55,6 +55,17 @@
 
 #define ACTUAL_RADIUS_MIN 0.2
 #define ACTUAL_RADIUS_MAX 1000 // safety guard against radius like 1e20 and against rendering overload with unexpected brush dynamics
+#define SPD 16777216
+#define WIDTH 36
+
+float RGBSPD[SPD][WIDTH];
+
+double T_MATRIX[3][36] = {{5.47813E-05, 0.000184722, 0.000935514, 0.003096265, 0.009507714, 0.017351596, 0.022073595, 0.016353161, 0.002002407, -0.016177731, -0.033929391, -0.046158952, -0.06381706, -0.083911194, -0.091832385, -0.08258148, -0.052950086, -0.012727224, 0.037413037, 0.091701812, 0.147964686, 0.181542886, 0.210684154, 0.210058081, 0.181312094, 0.132064724, 0.093723787, 0.057159281, 0.033469657, 0.018235464, 0.009298756, 0.004023687, 0.002068643, 0.00109484, 0.000454231, 0.000255925},
+{-4.65552E-05, -0.000157894, -0.000806935, -0.002707449, -0.008477628, -0.016058258, -0.02200529, -0.020027434, -0.011137726, 0.003784809, 0.022138944, 0.038965605, 0.063361718, 0.095981626, 0.126280277, 0.148575844, 0.149044804, 0.14239936, 0.122084916, 0.09544734, 0.067421931, 0.035691251, 0.01313278, -0.002384996, -0.009409573, -0.009888983, -0.008379513, -0.005606153, -0.003444663, -0.001921041, -0.000995333, -0.000435322, -0.000224537, -0.000118838, -4.93038E-05, -2.77789E-05},
+{0.00032594, 0.001107914, 0.005677477, 0.01918448, 0.060978641, 0.121348231, 0.184875618, 0.208804428, 0.197318551, 0.147233899, 0.091819086, 0.046485543, 0.022982618, 0.00665036, -0.005816014, -0.012450334, -0.015524259, -0.016712927, -0.01570093, -0.013647887, -0.011317812, -0.008077223, -0.005863171, -0.003943485, -0.002490472, -0.001440876, -0.000852895, -0.000458929, -0.000248389, -0.000129773, -6.41985E-05, -2.71982E-05, -1.38913E-05, -7.35203E-06, -3.05024E-06, -1.71858E-06}};
+
+
+
 
 /* The Brush class stores two things:
    b) settings: constant during a stroke (eg. size, spacing, dynamics, color selected by the user)
@@ -374,49 +385,6 @@ mypaint_brush_set_state(MyPaintBrush *self, MyPaintBrushState i, float value)
 }
 
 
-//function to make it easy to blend additive and subtractive color blending modes in linear and non-linear modes
-static inline float mix_colors(float a, float b, float fac, float linmode, float addsub)
-{
-  float nonlina = 0, nonlins = 0, nonlin_result = 0, lina = 0, lins = 0, lin_result = 0, result = 0;
-  //printf("fac= % 4.3f, a= % 4.3f, b= % 4.3f\n", fac, a, b);
-  
-  //non-linear
-  if (linmode < 1.0) {
-    //additive
-    if (addsub < 1.0) {
-      nonlina = fac*a + (1-fac)*b;
-      //printf("nonlina= % 4.10f\n", nonlina);
-    }
-    //subtractive.  This kinda seems to work now.  I am adding a tiny bit of light (.01) before mixing, and then removing it again
-    if (addsub > 0.0) {
-      nonlins = powf(a+.00001, fac) * powf(b+.00001, (1-fac)) - (powf(.00001, fac) * powf(.00001, (1-fac)));
-      //printf("nonlins= % 4.10f\n", nonlins);
-    }
-    //mix add and sub
-    nonlin_result = ((1-addsub)*nonlina) + (addsub*nonlins);
-    //printf("nonlin_result= % 4.10f\n", nonlin_result);
-  }
-  //linear
-  if (linmode > 0.0) {
-    //additive
-    if (addsub < 1.0) {
-      lina = sqrt(((fac *a *a) + ((1-fac) * b * b)));
-    }
-    //subtractive
-    if (addsub > 0.0) {
-      //not sure why this seems to have the same effect as the non-linear mode
-      lins = sqrt(powf((a+.00001) * (a+.00001), fac) * powf((b+.00001) * (b+.00001),(1-fac))) - (powf(.00001, fac) * powf(.00001, (1-fac)));
-    }
-    //mix add and sub
-    lin_result = ((1-addsub)*lina) + (addsub*lins);
-  }
-  //mix linear and non-linear
-  result = ((1-linmode) * nonlin_result) + (linmode*lin_result);
-  //printf("result= % 4.10f\n", result);
-  return result;
-}
-
-
 // C fmodf function is not "arithmetic modulo"; it doesn't handle negative dividends as you might expect
 // if you expect 0 or a positive number when dealing with negatives, use
 // this function instead.
@@ -425,6 +393,7 @@ static inline float mod(float a, float N)
     float ret = a - N * floor (a / N);
     return ret;
 }
+
 
 // Returns the smallest angular difference
 static inline float
@@ -436,6 +405,155 @@ smallest_angular_difference(float angleA, float angleB)
     a += (a>180) ? -360 : (a<-180) ? 360 : 0;
     return a;
 >>>>>>> added RYB setting for saturation and fixes
+}
+
+int loaded = 0;
+
+//function to make it easy to blend additive and subtractive color blending modes in linear and non-linear modes
+//a is the current smudge state, b is the get_color to be mixed into smudge state
+static inline float * mix_colors(float *a, float *b, float fac, float gamma, float addsub, float alpha)
+{
+  float addmix[3] = {0};
+  float submix[3] = {0};
+  static float result[3] = {0};
+  
+  if (loaded != 1) {
+    //load rgb data the first time this function is invoked.  Huge gross hack.
+     char buffer[1024] ;
+     char *record,*line;
+     int i=0,j=0;
+     
+     FILE *fstream = fopen("rgb.txt","r");
+     if(fstream == NULL)
+     {
+        printf("\n file opening failed ");
+        //return -1 ;
+     }
+     while((line=fgets(buffer,sizeof(buffer),fstream))!=NULL)
+     {
+       record = strtok(line,",");
+       while(record != NULL)
+       {
+       RGBSPD[i][j++] = atof(record) ;
+       record = strtok(NULL,",");
+       }
+       ++i;
+       j=0;
+     }
+     fclose (fstream);
+     loaded=1;
+   }
+  
+  //do additive mode 
+  if (addsub < 1.0) {
+    float ar=a[0];
+    float ag=a[1];
+    float ab=a[2];
+    //add alpha to get_color
+    float br=b[0]*alpha;
+    float bg=b[1]*alpha;
+    float bb=b[2]*alpha;
+
+    //convert to linear rgb
+    srgb_to_rgb_float(&ar, &ag, &ab, gamma);
+    srgb_to_rgb_float(&br, &bg, &bb, gamma);
+
+    //do the mix
+    ar = fac * ar + (1-fac) * br;
+    ag = fac * ag + (1-fac) * bg;
+    ab = fac * ab + (1-fac) * bb;
+    
+    //convert back to sRGB non-linear
+    rgb_to_srgb_float(&ar, &ag, &ab, gamma);
+    
+    addmix[0] = ar;
+    addmix[1] = ag;
+    addmix[2] = ab;
+  
+  }
+
+  //subtractive.  Spectral Method devised by Scott Burns
+  if (addsub > 0.0) {
+    float ar = a[0];
+    float ag = a[1];
+    float ab = a[2];
+    float br = b[0];
+    float bg = b[1];
+    float bb = b[2];
+    
+    
+    
+    //some desperate attempts to avoid the color going to dark
+    //float colora_h = ar, colora_s = ag, colora_v = ab;
+    //float colorb_h = br, colorb_s = bg, colorb_v = bb;
+    
+    //rgb_to_hsv_float (&colora_h, &colora_s, &colora_v);
+    //rgb_to_hsv_float (&colorb_h, &colorb_s, &colorb_v);
+    //colorb_s = fac * colora_s + (1-fac)*colorb_s;
+    //colorb_v = fac * colora_v + (1-fac)*colorb_v;
+    //colorb_v = MAX(colora_v, colorb_v);
+    //hsv_to_rgb_float (&colorb_h, &colorb_s, &colorb_v);
+    
+    //br = colorb_h;
+    //bg = colorb_s;
+    //bb = colorb_v;    
+     
+    //convert srgb to linear RGB   
+    srgb_to_rgb_float(&ar, &ag, &ab, gamma);
+    srgb_to_rgb_float(&br, &bg, &bb, gamma);
+ 
+    //convert RGB to nearest integer index in huge array by convert rgb base 256 to base 10  
+    int rgb_index_a = roundf((roundf(ar *255) * 256 + roundf(ag *255)) * 256 + roundf(ab *255));
+    int rgb_index_b = roundf((roundf(br *255) * 256 + roundf(bg *255)) * 256 + roundf(bb *255));
+    
+    float new_spd[36] = {0};
+    
+    int j=0;
+    //printf("new_spd=");
+    for (j=0; j < 36; j++) {
+      //mix the two SPDs to get new color SPD- weighted geometric mean
+      new_spd[j] = powf(RGBSPD[rgb_index_a][j], fac) * powf(RGBSPD[rgb_index_b][j], (1 - fac));
+      //printf("%f,",new_spd[j]);
+    }
+    //printf("\n");
+    //convert new_spd to rgb
+    //multiply T_MATRIX by new_spd to get submix as new rgb values
+    
+    int k=0;
+    for (k=0; k < 3; k++) {
+      int l=0;
+      //printf("T=");
+      for (l=0; l < 36; l++) {
+        submix[k] += CLAMP(T_MATRIX[k][l] * new_spd[l],0.0f,1.0f);
+        //printf("%f,", T_MATRIX[k][l]);
+      }
+      //printf("\n");
+      submix[k] = CLAMP(submix[k], 0.0f, 1.0f);
+      if (isnan(submix[k])) {
+        submix[k] = 0.0;
+      }
+    }
+    
+    //convert back to sRGB
+    ar=submix[0];
+    ag=submix[1];
+    ab=submix[2];
+    
+    rgb_to_srgb_float(&ar, &ag, &ab, gamma);
+    
+    submix[0] = ar;
+    submix[1] = ag;
+    submix[2] = ab;
+    
+    //printf("new rgb is %f, %f, %f \n", submix[0], submix[1], submix[2]);
+  }
+
+  //mix addmix and submix-- additive and subtractive results
+  int i = 0;
+  for (i=0; i < 3; i++) {  
+    result[i] = ((1-addsub)*addmix[i]) + (addsub*submix[i]);
+  }
+  return result; 
 }
 
 
@@ -869,9 +987,15 @@ smallest_angular_difference(float angleA, float angleB)
       self->states[MYPAINT_BRUSH_STATE_SMUDGE_A ] = fac*self->states[MYPAINT_BRUSH_STATE_SMUDGE_A ] + (1-fac)*a;
       // fix rounding errors
       self->states[MYPAINT_BRUSH_STATE_SMUDGE_A ] = CLAMP(self->states[MYPAINT_BRUSH_STATE_SMUDGE_A], 0.0, 1.0);
-      self->states[MYPAINT_BRUSH_STATE_SMUDGE_RA] = mix_colors((self->states[MYPAINT_BRUSH_STATE_SMUDGE_RA]), (r*a), fac, self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE_LINEAR_MODEL], self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE_ADD_SUB]);
-      self->states[MYPAINT_BRUSH_STATE_SMUDGE_GA] = mix_colors((self->states[MYPAINT_BRUSH_STATE_SMUDGE_GA]), (g*a), fac, self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE_LINEAR_MODEL], self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE_ADD_SUB]);
-      self->states[MYPAINT_BRUSH_STATE_SMUDGE_BA] = mix_colors((self->states[MYPAINT_BRUSH_STATE_SMUDGE_BA]), (b*a), fac, self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE_LINEAR_MODEL], self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE_ADD_SUB]);
+      float smudge_state[3] = {self->states[MYPAINT_BRUSH_STATE_SMUDGE_RA], self->states[MYPAINT_BRUSH_STATE_SMUDGE_GA], self->states[MYPAINT_BRUSH_STATE_SMUDGE_BA]};
+      float smudge_get[3] = {r, g, b};
+
+      float *smudge_new;
+      smudge_new = mix_colors(smudge_state, smudge_get, fac, self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE_GAMMA], self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE_ADD_SUB], a);
+
+      self->states[MYPAINT_BRUSH_STATE_SMUDGE_RA] = smudge_new[0];
+      self->states[MYPAINT_BRUSH_STATE_SMUDGE_GA] = smudge_new[1];
+      self->states[MYPAINT_BRUSH_STATE_SMUDGE_BA] = smudge_new[2];
     }
 
     // color part
@@ -932,10 +1056,22 @@ smallest_angular_difference(float angleA, float angleB)
           if (self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE_MIX_MODEL] >= 1.0 && self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE_MIX_MODEL] < 2.0) {
             //RYB Mode
             rgb_to_ryb_float (&color_h, &color_s, &color_v);
-          }       
-          color_h = CLAMP((mix_colors((self->states[MYPAINT_BRUSH_STATE_SMUDGE_RA]), (color_h), fac, self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE_LINEAR_MODEL], self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE_ADD_SUB])) / eraser_target_alpha, 0.0f, 1.0f);
-          color_s = CLAMP((mix_colors((self->states[MYPAINT_BRUSH_STATE_SMUDGE_GA]), (color_s), fac, self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE_LINEAR_MODEL], self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE_ADD_SUB])) / eraser_target_alpha, 0.0f, 1.0f);
-          color_v = CLAMP((mix_colors((self->states[MYPAINT_BRUSH_STATE_SMUDGE_BA]), (color_v), fac, self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE_LINEAR_MODEL], self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE_ADD_SUB])) / eraser_target_alpha, 0.0f, 1.0f);
+          }
+          float smudge_state[3] = {self->states[MYPAINT_BRUSH_STATE_SMUDGE_RA], self->states[MYPAINT_BRUSH_STATE_SMUDGE_GA], self->states[MYPAINT_BRUSH_STATE_SMUDGE_BA]};
+          float brush_color[3] = {color_h, color_s, color_v};
+          float *color_new;
+          
+          color_new = mix_colors(smudge_state, brush_color, fac, self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE_GAMMA], self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE_ADD_SUB], 1.0);  
+          
+          //handle transparency
+          int i=0;
+          for (i=0; i < 3; i++) {  
+            color_new[i] /= eraser_target_alpha;
+          };
+          
+          color_h = color_new[0];
+          color_s = color_new[1];
+          color_v = color_new[2];
           
           if (self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE_MIX_MODEL] >= 1.0 && self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE_MIX_MODEL] < 2.0) {
             //RYB Mode 

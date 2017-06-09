@@ -588,6 +588,7 @@
         "ascension",
         "direction_angle_dx",
         "direction_angle_dy",
-        "attack_angle"
+        "attack_angle",
+        "flip"
     ]
 }

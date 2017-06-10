@@ -397,30 +397,90 @@ smallest_angular_difference(float angleA, float angleB)
 
 //function to make it easy to blend additive blending modes in linear and non-linear modes
 //a is the current smudge state, b is the get_color to be mixed into smudge state
-static inline float * mix_colors(float *a, float *b, float fac, float gamma, float alpha)
+static inline float * mix_colors(MyPaintBrush *self, float *a, float *b, float fac, float gamma, float alpha, float get)
 {
+  float addmix[3] = {0};
+  float submix[3] = {0};
   static float result[3] = {0};
   
-  //do additive mode 
+  //weird if 100% alpha the get_color is 0,1,0 (bug?)
+  //set get_color and smudge_state to the brush color
+  if (alpha == 0.0 && get == 1) {
+
+
+    float h = mypaint_mapping_get_base_value(self->settings[MYPAINT_BRUSH_SETTING_COLOR_H]);
+    float s = mypaint_mapping_get_base_value(self->settings[MYPAINT_BRUSH_SETTING_COLOR_S]);
+    float v = mypaint_mapping_get_base_value(self->settings[MYPAINT_BRUSH_SETTING_COLOR_V]);  
+
+
+    hsv_to_rgb_float (&h, &s, &v);
+
+    a[0] = h;
+    a[1] = s;
+    a[2] = v;
+    b[0] = h;
+    b[1] = s;
+    b[2] = v;
+  }
+
+  //if stroke hasn't started cache the get_color and smudge_color
+  //we don't want to update the smudge color once the stroke begins
+  if (!self->states[MYPAINT_BRUSH_STATE_STROKE_STARTED] && get == 1) {
+    self->states[MYPAINT_BRUSH_STATE_SMUDGE_R_OLD_SMUDGE] = a[0];
+    self->states[MYPAINT_BRUSH_STATE_SMUDGE_G_OLD_SMUDGE] = a[1];
+    self->states[MYPAINT_BRUSH_STATE_SMUDGE_B_OLD_SMUDGE] = a[2];
+    self->states[MYPAINT_BRUSH_STATE_SMUDGE_R_OLD_GET] = b[0];
+    self->states[MYPAINT_BRUSH_STATE_SMUDGE_G_OLD_GET] = b[1];
+    self->states[MYPAINT_BRUSH_STATE_SMUDGE_B_OLD_GET] = b[2];
+    //printf("captured smudge stroke not started smudge is %f, %f, %f get is %f, %f, %f\n",a[0], a[1], a[2], b[0], b[1], b[2]);
+  } 
+
+  //if smudge_lock and stroke started, use the cached smudge and get instead    
+  if (self->states[MYPAINT_BRUSH_STATE_STROKE_STARTED] && self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE_LOCK] > 0.0 && get == 1) {
+
+      
+    a[0] = self->states[MYPAINT_BRUSH_STATE_SMUDGE_R_OLD_SMUDGE];
+    a[1] = self->states[MYPAINT_BRUSH_STATE_SMUDGE_G_OLD_SMUDGE];
+    a[2] = self->states[MYPAINT_BRUSH_STATE_SMUDGE_B_OLD_SMUDGE];
+    b[0] = self->states[MYPAINT_BRUSH_STATE_SMUDGE_R_OLD_GET];
+    b[1] = self->states[MYPAINT_BRUSH_STATE_SMUDGE_G_OLD_GET];
+    b[2] = self->states[MYPAINT_BRUSH_STATE_SMUDGE_B_OLD_GET];
+  }
+
   float ar=a[0];
   float ag=a[1];
   float ab=a[2];
-  //add alpha to get_color
-  float br=b[0]*alpha;
-  float bg=b[1]*alpha;
-  float bb=b[2]*alpha;
-
-  //convert to linear rgb
-  srgb_to_rgb_float(&ar, &ag, &ab, gamma);
-  srgb_to_rgb_float(&br, &bg, &bb, gamma);
-
+  
+  float br=b[0];
+  float bg=b[1];
+  float bb=b[2];
+  
+  //add alpha to get_color.  Only do this for smudge+get_color- control with parameter
+  if (get == 1) {
+    br *=alpha;
+    bg *=alpha;
+    bb *=alpha;
+  }
+  //convert to linear rgb only if gamma is not 1.0 to avoid redundancy and rounding errors
+  if (gamma != 1.0) {
+    srgb_to_rgb_float(&ar, &ag, &ab, gamma);
+    srgb_to_rgb_float(&br, &bg, &bb, gamma);
+  }
   //do the mix
   ar = fac * ar + (1-fac) * br;
   ag = fac * ag + (1-fac) * bg;
   ab = fac * ab + (1-fac) * bb;
   
   //convert back to sRGB non-linear
-  rgb_to_srgb_float(&ar, &ag, &ab, gamma);
+  if (gamma != 1.0) {
+    rgb_to_srgb_float(&ar, &ag, &ab, gamma);
+  }
+  //do eraser_target alpha for smudge+brush color
+  if (get == 0) {
+    ar /=alpha;
+    ag /=alpha;
+    ab /=alpha;
+  }
   
   result[0] = ar;
   result[1] = ag;
@@ -851,7 +911,7 @@ static inline float * mix_colors(float *a, float *b, float fac, float gamma, flo
       float smudge_get[3] = {r, g, b};
 
       float *smudge_new;
-      smudge_new = mix_colors(smudge_state, smudge_get, fac, self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE_GAMMA], a);
+      smudge_new = mix_colors(self, smudge_state, smudge_get, fac, self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE_GAMMA], a, 1);
 
       self->states[MYPAINT_BRUSH_STATE_SMUDGE_RA] = smudge_new[0];
       self->states[MYPAINT_BRUSH_STATE_SMUDGE_GA] = smudge_new[1];
@@ -921,13 +981,8 @@ static inline float * mix_colors(float *a, float *b, float fac, float gamma, flo
           float brush_color[3] = {color_h, color_s, color_v};
           float *color_new;
           
-          color_new = mix_colors(smudge_state, brush_color, fac, self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE_GAMMA], 1.0);  
+          color_new = mix_colors(self, smudge_state, brush_color, fac, self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE_GAMMA], eraser_target_alpha, 0);  
           
-          //handle transparency
-          int i=0;
-          for (i=0; i < 3; i++) {  
-            color_new[i] /= eraser_target_alpha;
-          };
           
           color_h = color_new[0];
           color_s = color_new[1];

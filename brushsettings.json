@@ -59,7 +59,17 @@
             "soft_maximum": 180.0, 
             "soft_minimum": 0.0, 
             "tooltip": "The angle of the stroke, in degrees. The value will stay between 0.0 and 180.0, effectively ignoring turns of 180 degrees."
-        }, 
+        },
+        {
+            "displayed_name": "Direction 360",
+            "hard_maximum": 360.0,
+            "hard_minimum": 0.0,
+            "id": "direction_angle",
+            "normal": 0.0,
+            "soft_maximum": 360.0,
+            "soft_minimum": 0.0,
+            "tooltip": "The angle of the stroke, from 0 to 360 degrees."
+        },
         {
             "displayed_name": "Declination", 
             "hard_maximum": 90.0, 
@@ -529,6 +539,8 @@
         "direction_dx",
         "direction_dy",
         "declination",
-        "ascension"
+        "ascension",
+        "direction_angle_dx",
+        "direction_angle_dy"
     ]
 }

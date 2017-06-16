@@ -81,6 +81,17 @@
             "tooltip": "Right ascension of stylus tilt. 0 when stylus working end points to you, +90 when rotated 90 degrees clockwise, -90 when rotated 90 degrees counterclockwise."
         }, 
         {
+            "displayed_name": "Barrel Rotation", 
+            "hard_maximum": 180.0, 
+            "hard_minimum": -180.0, 
+            "id": "barrel_rotation", 
+            "normal": 0.0, 
+            "soft_maximum": 180.0, 
+            "soft_minimum": -180.0, 
+            "tooltip": "Barrel rotation of Stylus. 0 when not twisted +90 when twisted clockwise 90 degrees, -90 when twisted counterclockwise."
+        }, 
+
+        {
             "displayed_name": "Custom", 
             "hard_maximum": null, 
             "hard_minimum": null, 
@@ -529,6 +540,7 @@
         "direction_dx",
         "direction_dy",
         "declination",
-        "ascension"
+        "ascension",
+        "barrel_rotation"
     ]
 }

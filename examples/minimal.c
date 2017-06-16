@@ -5,10 +5,10 @@
 #include "utils.h" /* Not public API, just used for write_ppm to demonstrate */
 
 void
-stroke_to(MyPaintBrush *brush, MyPaintSurface *surf, float x, float y)
+stroke_to(MyPaintBrush *brush, MyPaintSurface *surf, float x, float y, float barrel_rotation)
 {
     float pressure = 1.0, ytilt = 0.0, xtilt = 0.0, dtime = 1.0/10;
-    mypaint_brush_stroke_to(brush, surf, x, y, pressure, xtilt, ytilt, dtime);
+    mypaint_brush_stroke_to(brush, surf, x, y, pressure, xtilt, ytilt, dtime, barrel_rotation);
 }
 
 int

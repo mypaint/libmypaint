@@ -364,24 +364,26 @@ mypaint_brush_set_state(MyPaintBrush *self, MyPaintBrushState i, float value)
 }
 
 
-// Returns the smallest angular difference (counterclockwise or clockwise) a to b, in degrees.
-// Clockwise is positive.
-static inline float
-smallest_angular_difference(float a, float b)
+// C fmodf function is not "arithmetic modulo"; it doesn't handle negative dividends as you might expect
+// if you expect 0 or a positive number when dealing with negatives, use
+// this function instead.
+static inline float mod(float a, float N)
 {
-    float d_cw, d_ccw;
-    a = fmodf(a, 360.0);
-    b = fmodf(b, 360.0);
-    if (a > b) {
-        d_cw = a - b;
-        d_ccw = b + 360.0 - a;
-    }
-    else {
-        d_cw = a + 360.0 - b;
-        d_ccw = b - a;
-    }
-    return (d_cw < d_ccw) ? -d_cw : d_ccw;
+    float ret = a - N * floor (a / N);
+    return ret;
 }
+
+// Returns the smallest angular difference
+static inline float
+smallest_angular_difference(float angleA, float angleB)
+{
+    float a;
+    a = angleB - angleA;
+    a = mod((a + 180), 360) - 180;
+    a += (a>180) ? -360 : (a<-180) ? 360 : 0;
+    return a;
+}
+
 
 
   // returns the fraction still left after t seconds
@@ -444,10 +446,11 @@ smallest_angular_difference(float a, float b)
   // mappings in critical places or extremely few events per second.
   //
   // note: parameters are is dx/ddab, ..., dtime/ddab (dab is the number, 5.0 = 5th dab)
-  void update_states_and_setting_values (MyPaintBrush *self, float step_ddab, float step_dx, float step_dy, float step_dpressure, float step_declination, float step_ascension, float step_dtime)
+  void update_states_and_setting_values (MyPaintBrush *self, float step_ddab, float step_dx, float step_dy, float step_dpressure, float step_declination, float step_ascension, float step_dtime, float step_barrel_rotation)
   {
     float pressure;
     float inputs[MYPAINT_BRUSH_INPUTS_COUNT];
+    float barrel_rotation;
 
     if (step_dtime < 0.0) {
       printf("Time is running backwards!\n");
@@ -463,6 +466,8 @@ smallest_angular_difference(float a, float b)
 
     self->states[MYPAINT_BRUSH_STATE_DECLINATION] += step_declination;
     self->states[MYPAINT_BRUSH_STATE_ASCENSION] += step_ascension;
+
+    self->states[MYPAINT_BRUSH_STATE_BARREL_ROTATION] += step_barrel_rotation;
 
     float base_radius = expf(mypaint_mapping_get_base_value(self->settings[MYPAINT_BRUSH_SETTING_RADIUS_LOGARITHMIC]));
 
@@ -503,10 +508,11 @@ smallest_angular_difference(float a, float b)
     inputs[MYPAINT_BRUSH_INPUT_DIRECTION] = fmodf (atan2f (self->states[MYPAINT_BRUSH_STATE_DIRECTION_DY], self->states[MYPAINT_BRUSH_STATE_DIRECTION_DX])/(2*M_PI)*360 + 180.0, 180.0);
     inputs[MYPAINT_BRUSH_INPUT_TILT_DECLINATION] = self->states[MYPAINT_BRUSH_STATE_DECLINATION];
     inputs[MYPAINT_BRUSH_INPUT_TILT_ASCENSION] = fmodf(self->states[MYPAINT_BRUSH_STATE_ASCENSION] + 180.0, 360.0) - 180.0;
-
     inputs[MYPAINT_BRUSH_INPUT_CUSTOM] = self->states[MYPAINT_BRUSH_STATE_CUSTOM_INPUT];
+    inputs[MYPAINT_BRUSH_INPUT_BARREL_ROTATION] = (mod(self->states[MYPAINT_BRUSH_STATE_BARREL_ROTATION], 360) - 180.0); 
+
     if (self->print_inputs) {
-      printf("press=% 4.3f, speed1=% 4.4f\tspeed2=% 4.4f\tstroke=% 4.3f\tcustom=% 4.3f\n", (double)inputs[MYPAINT_BRUSH_INPUT_PRESSURE], (double)inputs[MYPAINT_BRUSH_INPUT_SPEED1], (double)inputs[MYPAINT_BRUSH_INPUT_SPEED2], (double)inputs[MYPAINT_BRUSH_INPUT_STROKE], (double)inputs[MYPAINT_BRUSH_INPUT_CUSTOM]);
+      printf("press=% 4.3f, speed1=% 4.4f\tspeed2=% 4.4f\tstroke=% 4.3f\tcustom=% 4.3f\tdir=% 4.3f\tdec=% 4.3f\tasc=% 4.3f\trand=% 4.3f\trot=% 4.3f\n", (double)inputs[MYPAINT_BRUSH_INPUT_PRESSURE], (double)inputs[MYPAINT_BRUSH_INPUT_SPEED1], (double)inputs[MYPAINT_BRUSH_INPUT_SPEED2], (double)inputs[MYPAINT_BRUSH_INPUT_STROKE], (double)inputs[MYPAINT_BRUSH_INPUT_CUSTOM], (double)inputs[MYPAINT_BRUSH_INPUT_DIRECTION], (double)inputs[MYPAINT_BRUSH_INPUT_TILT_DECLINATION], (double)inputs[MYPAINT_BRUSH_INPUT_TILT_ASCENSION],(double)inputs[MYPAINT_BRUSH_INPUT_RANDOM],(double)inputs[MYPAINT_BRUSH_INPUT_BARREL_ROTATION]);
     }
     // FIXME: this one fails!!!
     //assert(inputs[MYPAINT_BRUSH_INPUT_SPEED1] >= 0.0 && inputs[MYPAINT_BRUSH_INPUT_SPEED1] < 1e8); // checking for inf
@@ -887,7 +893,7 @@ smallest_angular_difference(float a, float b)
    */
   int mypaint_brush_stroke_to (MyPaintBrush *self, MyPaintSurface *surface,
                                 float x, float y, float pressure,
-                                float xtilt, float ytilt, double dtime)
+                                float xtilt, float ytilt, double dtime, float barrel_rotation)
   {
     //printf("%f %f %f %f\n", (double)dtime, (double)x, (double)y, (double)pressure);
 
@@ -918,6 +924,7 @@ smallest_angular_difference(float a, float b)
       x = 0.0;
       y = 0.0;
       pressure = 0.0;
+      barrel_rotation = 0.0;
     }
     // the assertion below is better than out-of-memory later at save time
     assert(x < 1e8 && y < 1e8 && x > -1e8 && y > -1e8);
@@ -932,7 +939,7 @@ smallest_angular_difference(float a, float b)
     if (dtime > 0.100 && pressure && self->states[MYPAINT_BRUSH_STATE_PRESSURE] == 0) {
       // Workaround for tablets that don't report motion events without pressure.
       // This is to avoid linear interpolation of the pressure between two events.
-      mypaint_brush_stroke_to (self, surface, x, y, 0.0, 90.0, 0.0, dtime-0.0001);
+      mypaint_brush_stroke_to (self, surface, x, y, 0.0, 90.0, 0.0, dtime-0.0001, 0.0);
       dtime = 0.0001;
     }
 
@@ -985,7 +992,7 @@ smallest_angular_difference(float a, float b)
     double dtime_left = dtime;
 
     float step_ddab, step_dx, step_dy, step_dpressure, step_dtime;
-    float step_declination, step_ascension;
+    float step_declination, step_ascension, step_barrel_rotation;
     while (dabs_moved + dabs_todo >= 1.0) { // there are dabs pending
       { // linear interpolation (nonlinear variant was too slow, see SVN log)
         float frac; // fraction of the remaining distance to move
@@ -1004,9 +1011,19 @@ smallest_angular_difference(float a, float b)
         // Though it looks different, time is interpolated exactly like x/y/pressure.
         step_declination = frac * (tilt_declination - self->states[MYPAINT_BRUSH_STATE_DECLINATION]);
         step_ascension   = frac * smallest_angular_difference(self->states[MYPAINT_BRUSH_STATE_ASCENSION], tilt_ascension);
+        //FIXME -1 is reliable for sensing mouse or non-wheel enabled device, but my wacom stylus reports a valid barrel rotation of 0.0 (xinput -900).
+        //how can we tell the difference between a real barrel-rotation enabled stylus and one that is faking it?  Need manual setting in MyPaint do disable rotation?
+        if (barrel_rotation == -1.0) {
+        step_barrel_rotation = 0;
+        self->states[MYPAINT_BRUSH_STATE_BARREL_ROTATION] = 180;
+        }
+        else {
+        //converts barrel_ration to degrees, offsets it 90 degrees to make the button at the top be zero.  Subtract ascension because it directly affects the rotation values.
+	      step_barrel_rotation	 = frac * smallest_angular_difference(self->states[MYPAINT_BRUSH_STATE_BARREL_ROTATION],barrel_rotation * 360 + 90 - self->states[MYPAINT_BRUSH_STATE_ASCENSION] -180.0);
+	      }
       }
 
-      update_states_and_setting_values (self, step_ddab, step_dx, step_dy, step_dpressure, step_declination, step_ascension, step_dtime);
+      update_states_and_setting_values (self, step_ddab, step_dx, step_dy, step_dpressure, step_declination, step_ascension, step_dtime, step_barrel_rotation);
       gboolean painted_now = prepare_and_draw_dab (self, surface);
       if (painted_now) {
         painted = YES;
@@ -1024,7 +1041,6 @@ smallest_angular_difference(float a, float b)
       // brush_count_dabs_to depends on the radius and the radius can
       // depend on something that changes much faster than just every
       // dab.
-
       step_ddab = dabs_todo; // the step "moves" the brush by a fraction of one dab
       step_dx        = x - self->states[MYPAINT_BRUSH_STATE_X];
       step_dy        = y - self->states[MYPAINT_BRUSH_STATE_Y];
@@ -1032,10 +1048,17 @@ smallest_angular_difference(float a, float b)
       step_declination = tilt_declination - self->states[MYPAINT_BRUSH_STATE_DECLINATION];
       step_ascension = smallest_angular_difference(self->states[MYPAINT_BRUSH_STATE_ASCENSION], tilt_ascension);
       step_dtime     = dtime_left;
-
+      step_barrel_rotation  = smallest_angular_difference(self->states[MYPAINT_BRUSH_STATE_BARREL_ROTATION], barrel_rotation * 360 - self->states[MYPAINT_BRUSH_STATE_ASCENSION] -180.0);
+      if (barrel_rotation == -1.0) {
+        step_barrel_rotation = 0;
+        self->states[MYPAINT_BRUSH_STATE_BARREL_ROTATION] = 180;
+        }
+      else {
+	      step_barrel_rotation	 = smallest_angular_difference(self->states[MYPAINT_BRUSH_STATE_BARREL_ROTATION],barrel_rotation * 360 +90 - self->states[MYPAINT_BRUSH_STATE_ASCENSION] -180.0);
+	      }
       //dtime_left = 0; but that value is not used any more
 
-      update_states_and_setting_values (self, step_ddab, step_dx, step_dy, step_dpressure, step_declination, step_ascension, step_dtime);
+      update_states_and_setting_values (self, step_ddab, step_dx, step_dy, step_dpressure, step_declination, step_ascension, step_dtime, step_barrel_rotation);
     }
 
     // save the fraction of a dab that is already done now

@@ -88,7 +88,7 @@
             "normal": 0.0, 
             "soft_maximum": 4.15, 
             "soft_minimum": -2.77, 
-            "tooltip": "The current zoom level of the canvas view.  Logarithmic: 100% is 0.  200% is .69, 25% is -1.38"
+            "tooltip": "The current zoom level of the canvas view.  Logarithmic: 100% is 0.  200% is .69, 25% is -1.38\nFor Radius Setting, try dragging the slider to -4.15 to create a brush that stays the same size at (almost) every zoom level."
         },  
         {
             "displayed_name": "Custom", 

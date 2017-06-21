@@ -493,7 +493,8 @@ smallest_angular_difference(float a, float b)
     norm_dx = step_dx / step_dtime / base_radius;
     norm_dy = step_dy / step_dtime / base_radius;
     norm_speed = hypotf(norm_dx, norm_dy);
-    norm_dist = norm_speed * step_dtime;
+    //norm_dist should relate to brush size, whereas norm_speed should not
+    norm_dist = hypotf(step_dx / step_dtime / base_radius, step_dy / step_dtime / base_radius) * step_dtime;
 
     inputs[MYPAINT_BRUSH_INPUT_PRESSURE] = pressure * expf(mypaint_mapping_get_base_value(self->settings[MYPAINT_BRUSH_SETTING_PRESSURE_GAIN_LOG]));
     inputs[MYPAINT_BRUSH_INPUT_SPEED1] = log(self->speed_mapping_gamma[0] + self->states[MYPAINT_BRUSH_STATE_NORM_SPEED1_SLOW])*self->speed_mapping_m[0] + self->speed_mapping_q[0];

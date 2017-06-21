@@ -497,19 +497,16 @@ smallest_angular_difference(float angleA, float angleB)
     // now follows input handling
 
     float norm_dx, norm_dy, norm_dist, norm_speed;
-    //lets not change speed with base_radius-- speed should related to hand-movement IMO
-    //norm_dx = step_dx / step_dtime / base_radius;
-    //norm_dy = step_dy / step_dtime / base_radius;
-    norm_dx = step_dx / step_dtime;
-    norm_dy = step_dy / step_dtime;
+    //adjust speed with viewzoom
+    norm_dx = step_dx / step_dtime *self->states[MYPAINT_BRUSH_STATE_VIEWZOOM];
+    norm_dy = step_dy / step_dtime *self->states[MYPAINT_BRUSH_STATE_VIEWZOOM];
 
     norm_speed = hypotf(norm_dx, norm_dy);
     norm_dist = norm_speed * step_dtime;
 
     inputs[MYPAINT_BRUSH_INPUT_PRESSURE] = pressure * expf(mypaint_mapping_get_base_value(self->settings[MYPAINT_BRUSH_SETTING_PRESSURE_GAIN_LOG]));
-    //correct for zoom level. 
-    inputs[MYPAINT_BRUSH_INPUT_SPEED1] = log((self->speed_mapping_gamma[0] + self->states[MYPAINT_BRUSH_STATE_NORM_SPEED1_SLOW])*self->states[MYPAINT_BRUSH_STATE_VIEWZOOM])*self->speed_mapping_m[0] + self->speed_mapping_q[0], 0.0, 4.0;
-    inputs[MYPAINT_BRUSH_INPUT_SPEED2] = log((self->speed_mapping_gamma[1] + self->states[MYPAINT_BRUSH_STATE_NORM_SPEED2_SLOW])*self->states[MYPAINT_BRUSH_STATE_VIEWZOOM])*self->speed_mapping_m[1] + self->speed_mapping_q[1], 0.0, 4.0;
+    inputs[MYPAINT_BRUSH_INPUT_SPEED1] = log(self->speed_mapping_gamma[0] + self->states[MYPAINT_BRUSH_STATE_NORM_SPEED1_SLOW])*self->speed_mapping_m[0] + self->speed_mapping_q[0], 0.0, 4.0;
+    inputs[MYPAINT_BRUSH_INPUT_SPEED2] = log(self->speed_mapping_gamma[1] + self->states[MYPAINT_BRUSH_STATE_NORM_SPEED2_SLOW])*self->speed_mapping_m[1] + self->speed_mapping_q[1], 0.0, 4.0;
     
     inputs[MYPAINT_BRUSH_INPUT_RANDOM] = rng_double_next(self->rng);
     inputs[MYPAINT_BRUSH_INPUT_STROKE] = MIN(self->states[MYPAINT_BRUSH_STATE_STROKE], 1.0);
@@ -563,10 +560,12 @@ smallest_angular_difference(float angleA, float angleB)
     }
 
     { // orientation (similar lowpass filter as above, but use dabtime instead of wallclock time)
-      //float dx = step_dx / base_radius;
-      //float dy = step_dy / base_radius;
-      float dx = step_dx;
-      float dy = step_dy;
+      //adjust speed with viewzoom
+      float dx = step_dx *self->states[MYPAINT_BRUSH_STATE_VIEWZOOM];
+      float dy = step_dy *self->states[MYPAINT_BRUSH_STATE_VIEWZOOM];
+
+
+
       float step_in_dabtime = hypotf(dx, dy); // FIXME: are we recalculating something here that we already have?
       float fac = 1.0 - exp_decay (exp(self->settings_value[MYPAINT_BRUSH_SETTING_DIRECTION_FILTER]*0.5)-1.0, step_in_dabtime);
 
@@ -668,8 +667,8 @@ smallest_angular_difference(float angleA, float angleB)
     float base_radius = expf(mypaint_mapping_get_base_value(self->settings[MYPAINT_BRUSH_SETTING_RADIUS_LOGARITHMIC]));
 
     if (self->settings_value[MYPAINT_BRUSH_SETTING_OFFSET_BY_SPEED]) {
-      x += self->states[MYPAINT_BRUSH_STATE_NORM_DX_SLOW] * self->settings_value[MYPAINT_BRUSH_SETTING_OFFSET_BY_SPEED] * 0.1 * base_radius * self->states[MYPAINT_BRUSH_STATE_VIEWZOOM];
-      y += self->states[MYPAINT_BRUSH_STATE_NORM_DY_SLOW] * self->settings_value[MYPAINT_BRUSH_SETTING_OFFSET_BY_SPEED] * 0.1 * base_radius * self->states[MYPAINT_BRUSH_STATE_VIEWZOOM];
+      x += self->states[MYPAINT_BRUSH_STATE_NORM_DX_SLOW] * self->settings_value[MYPAINT_BRUSH_SETTING_OFFSET_BY_SPEED] * 0.1 / self->states[MYPAINT_BRUSH_STATE_VIEWZOOM];
+      y += self->states[MYPAINT_BRUSH_STATE_NORM_DY_SLOW] * self->settings_value[MYPAINT_BRUSH_SETTING_OFFSET_BY_SPEED] * 0.1 / self->states[MYPAINT_BRUSH_STATE_VIEWZOOM];
     }
 
     if (self->settings_value[MYPAINT_BRUSH_SETTING_OFFSET_BY_RANDOM]) {

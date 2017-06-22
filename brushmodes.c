@@ -54,7 +54,7 @@ void draw_dab_pixels_BlendMode_Normal (uint16_t * mask,
     for (; mask[0]; mask++, rgba+=4) {
       uint32_t opa_a = mask[0]*(uint32_t)opacity/(1<<15); // topAlpha
       uint32_t opa_b = (1<<15)-opa_a; // bottomAlpha
-      rgba[3] = (opa_a + opa_b * rgba[3]) >> 15;
+      rgba[3] = (opa_a + (opa_b * rgba[3])) / (1<<15);
       rgba[0] = (opa_a*color_r + opa_b*rgba[0])/(1<<15);
       rgba[1] = (opa_a*color_g + opa_b*rgba[1])/(1<<15);
       rgba[2] = (opa_a*color_b + opa_b*rgba[2])/(1<<15);
@@ -211,7 +211,7 @@ void draw_dab_pixels_BlendMode_Normal_and_Eraser (uint16_t * mask,
     for (; mask[0]; mask++, rgba+=4) {
       uint32_t opa_a = (mask[0]*(uint32_t)opacity) >> 15; // topAlpha
       uint32_t opa_b = (1<<15)-opa_a; // bottomAlpha
-      opa_a = (opa_a * color_a) >> 15;
+      opa_a = (opa_a * color_a) >> 15; 
       rgba[3] = (opa_a + opa_b * rgba[3]) >> 15;
       rgba[0] = (opa_a*color_r + opa_b*rgba[0])/(1<<15);
       rgba[1] = (opa_a*color_g + opa_b*rgba[1])/(1<<15);

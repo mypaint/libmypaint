@@ -54,7 +54,7 @@ void draw_dab_pixels_BlendMode_Normal (uint16_t * mask,
     for (; mask[0]; mask++, rgba+=4) {
       uint32_t opa_a = mask[0]*(uint32_t)opacity/(1<<15); // topAlpha
       uint32_t opa_b = (1<<15)-opa_a; // bottomAlpha
-      rgba[3] = opa_a + opa_b * rgba[3] / (1<<15);
+      rgba[3] = (opa_a + (opa_b * rgba[3])) / (1<<15);
       rgba[0] = (opa_a*color_r + opa_b*rgba[0])/(1<<15);
       rgba[1] = (opa_a*color_g + opa_b*rgba[1])/(1<<15);
       rgba[2] = (opa_a*color_b + opa_b*rgba[2])/(1<<15);
@@ -175,16 +175,16 @@ draw_dab_pixels_BlendMode_Color (uint16_t *mask,
       set_rgb16_lum_from_rgb16(color_r, color_g, color_b, &r, &g, &b);
 
       // Re-premult
-      r = ((uint32_t) r) * a / (1<<15);
-      g = ((uint32_t) g) * a / (1<<15);
-      b = ((uint32_t) b) * a / (1<<15);
+      r = (((uint32_t) r) * a) >> 15;
+      g = (((uint32_t) g) * a) >> 15;
+      b = (((uint32_t) b) * a) >> 15;
 
       // And combine as normal.
-      uint32_t opa_a = mask[0] * opacity / (1<<15); // topAlpha
+      uint32_t opa_a = (mask[0] * opacity) >> 15; // topAlpha
       uint32_t opa_b = (1<<15) - opa_a; // bottomAlpha
-      rgba[0] = (opa_a*r + opa_b*rgba[0])/(1<<15);
-      rgba[1] = (opa_a*g + opa_b*rgba[1])/(1<<15);
-      rgba[2] = (opa_a*b + opa_b*rgba[2])/(1<<15);
+      rgba[0] = (opa_a*r + opa_b*rgba[0]) >> 15;
+      rgba[1] = (opa_a*g + opa_b*rgba[1]) >> 15;
+      rgba[2] = (opa_a*b + opa_b*rgba[2]) >> 15;
     }
     if (!mask[1]) break;
     rgba += mask[1];
@@ -209,10 +209,10 @@ void draw_dab_pixels_BlendMode_Normal_and_Eraser (uint16_t * mask,
 
   while (1) {
     for (; mask[0]; mask++, rgba+=4) {
-      uint32_t opa_a = mask[0]*(uint32_t)opacity/(1<<15); // topAlpha
+      uint32_t opa_a = (mask[0]*(uint32_t)opacity) >> 15; // topAlpha
       uint32_t opa_b = (1<<15)-opa_a; // bottomAlpha
-      opa_a = opa_a * color_a / (1<<15);
-      rgba[3] = opa_a + opa_b * rgba[3] / (1<<15);
+      opa_a = (opa_a * color_a) >> 15; 
+      rgba[3] = (opa_a + opa_b * rgba[3]) >> 15;
       rgba[0] = (opa_a*color_r + opa_b*rgba[0])/(1<<15);
       rgba[1] = (opa_a*color_g + opa_b*rgba[1])/(1<<15);
       rgba[2] = (opa_a*color_b + opa_b*rgba[2])/(1<<15);

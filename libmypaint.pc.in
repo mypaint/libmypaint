@@ -8,5 +8,5 @@ Description: MyPaint's brushstroke rendering library (@LIBMYPAINT_VERSION_FULL@)
 URL: @PACKAGE_URL@
 Version: @LIBMYPAINT_VERSION@
 Requires: @PKG_CONFIG_REQUIRES@
-Cflags: -I${includedir}/libmypaint
-Libs: -L${libdir} -lmypaint @OPENMP_CFLAGS@
+Cflags: -I${includedir}/libmypaint-@LIBMYPAINT_API_PLATFORM_VERSION@
+Libs: -L${libdir} -lmypaint-@LIBMYPAINT_API_PLATFORM_VERSION@ @OPENMP_CFLAGS@

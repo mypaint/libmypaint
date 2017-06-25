@@ -1,27 +1,50 @@
 # AC_OPENMP requires autoconf >= 2.62.
 AC_PREREQ(2.62)
 
+
+## Canonical version number components ##
+
 # API version: see https://github.com/mypaint/libmypaint/wiki/Versioning
+# See http://semver.org/ for what this means.
+
 m4_define([libmypaint_api_major], [2])
 m4_define([libmypaint_api_minor], [0])
 m4_define([libmypaint_api_micro], [0])
 m4_define([libmypaint_api_prerelease], [alpha])  # may be blank
-# The platform version is "major.minor" only.
-# The full version is "major.minor.micro[-prerelease]".
 
-# ABI version see: https://autotools.io/libtool/version.html
+# ABI version. Changes independently of API version.
+# See: https://autotools.io/libtool/version.html
 # https://www.gnu.org/software/libtool/manual/html_node/Updating-version-info.html
+# The rules are fiddly, and are summarized here.
+
 m4_define([libmypaint_abi_revision], [0])  # increment on every release
 m4_define([libmypaint_abi_current], [0])  # inc when add/remove/change interfaces
 m4_define([libmypaint_abi_age], [0])  # inc only if changes backward compat
 
-# Derivative version macros
+
+## Derivative version macros ##
+
+# The full version is "major.minor.micro[-prerelease]".
+
 m4_define([libmypaint_version],
           [libmypaint_api_major.libmypaint_api_minor.libmypaint_api_micro])
 m4_define([libmypaint_version_full],
           [libmypaint_api_major().libmypaint_api_minor().libmypaint_api_micro()m4_bpatsubst(libmypaint_api_prerelease(), [^\(.\)], [-\1])])
 
-# Dependencies.
+# The API "platform" or "intercompatibility" version.
+#
+# This one is used for library name prefixes, for introspection
+# namespace versions, for gettext domains, and basically anything that
+# needs to change when backwards or forwards API compatibility changes.
+# Another way of thinking about it: it allows meaningful side by side
+# installations of libmypaint.
+
+m4_define([libmypaint_api_platform_version],
+          [libmypaint_api_major.libmypaint_api_minor])
+
+
+## Dependencies ##
+
 m4_define([gegl_required_version], [0.3])
 m4_define([introspection_required_version], [1.32.0])
 
@@ -44,7 +67,8 @@ LIBMYPAINT_MINOR_VERSION=libmypaint_api_minor
 LIBMYPAINT_MICRO_VERSION=libmypaint_api_micro
 LIBMYPAINT_VERSION=libmypaint_version
 LIBMYPAINT_VERSION_FULL=libmypaint_version_full
-LIBMYPAINT_API_PLATFORM_VERSION=libmypaint_api_major.libmypaint_api_minor
+LIBMYPAINT_API_PLATFORM_VERSION=libmypaint_api_platform_version
+LIBMYPAINT_API_PLATFORM_VERSION_UL=m4_bpatsubst(libmypaint_api_platform_version(), [[^A-Za-z0-9]], [_])
 LIBMYPAINT_ABI_VERSION_INFO=libmypaint_abi_current:libmypaint_abi_revision:libmypaint_abi_age
 
 AC_SUBST(LIBMYPAINT_MAJOR_VERSION)
@@ -54,6 +78,7 @@ AC_SUBST(LIBMYPAINT_PRERELEASE_VERSION)
 AC_SUBST(LIBMYPAINT_VERSION)
 AC_SUBST(LIBMYPAINT_VERSION_FULL)
 AC_SUBST(LIBMYPAINT_API_PLATFORM_VERSION)
+AC_SUBST(LIBMYPAINT_API_PLATFORM_VERSION_UL)
 AC_SUBST(LIBMYPAINT_ABI_VERSION_INFO)
 
 AC_PROG_CC
@@ -72,9 +97,8 @@ AM_MAINTAINER_MODE([enable])
 # Check for pkg-config
 PKG_PROG_PKG_CONFIG(0.16)
 
-###########################
-# Check host and platform
-###########################
+
+## Check host and platform ##
 
 AC_CANONICAL_HOST
 
@@ -210,7 +234,7 @@ AC_ARG_ENABLE(i18n,
 
 if test "x$enable_i18n" != "xno"; then
   enable_i18n="yes"
-  GETTEXT_PACKAGE=libmypaint
+  GETTEXT_PACKAGE=libmypaint-libmypaint_api_platform_version
   AC_SUBST(GETTEXT_PACKAGE)
   AC_DEFINE_UNQUOTED(GETTEXT_PACKAGE, "$GETTEXT_PACKAGE",
                      [The prefix for our gettext translation domains.])
@@ -258,9 +282,9 @@ AC_SUBST(PKG_CONFIG_REQUIRES)
 
 AC_CONFIG_FILES([
   doc/Makefile
-  gegl/libmypaint-gegl.pc:gegl/libmypaint-gegl.pc.in
+  gegl/libmypaint-gegl-]libmypaint_api_platform_version()[.pc:gegl/libmypaint-gegl.pc.in
   gegl/Makefile
-  libmypaint.pc:libmypaint.pc.in
+  libmypaint-]libmypaint_api_platform_version()[.pc:libmypaint.pc.in
   m4macros/Makefile
   Makefile
   po/Makefile.in

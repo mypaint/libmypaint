@@ -39,8 +39,8 @@ autom4te.cache/
 .libs/
 *.lo
 
-libmypaint.la
-gegl/libmypaint-gegl.la
+libmypaint-*.la
+gegl/libmypaint-gegl-*.la
 
 po/*.gmo
 po/Makefile*

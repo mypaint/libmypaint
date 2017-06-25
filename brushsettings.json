@@ -296,6 +296,15 @@
         {
             "constant": false,
             "default": 0.0,
+            "displayed_name": "Offset Multiplier",
+            "internal_name": "offset_multiplier",
+            "maximum": 3.0,
+            "minimum": -2.0,
+            "tooltip": "Logarithmic multiplier for X, Y, Side, and Mirrored Offset settings."
+        },
+        {
+            "constant": false,
+            "default": 0.0,
             "displayed_name": "Offset by speed",
             "internal_name": "offset_by_speed",
             "maximum": 3.0,

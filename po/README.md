@@ -47,7 +47,7 @@ copy the header from an existing `.po` file
 and modify it accordingly.
 
 You must also add an entry to the `po/LINGUAS` file for libmypaint
-so that message gatalogs will be built. This can be done with
+so that message catalogs will be built. This can be done with
 
     cd po/
     ls *.po | sed 's/.po//' | sort >LINGUAS
@@ -102,7 +102,7 @@ Before you send your changes, please make sure that
 your changes are based on the
 current development (git) version of libmypaint.
 
-Changes made in WebLate are asy for us to merge,
+Changes made in WebLate are easy for us to merge,
 but changes sent as [Github pull requests][PR] are fine too.
 If you do not know git just send
 either a unified diff or the updated .po file

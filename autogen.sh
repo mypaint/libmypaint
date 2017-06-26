@@ -222,10 +222,20 @@ $LIBTOOLIZE --force || exit $?
 ($AUTOHEADER --version)  < /dev/null > /dev/null 2>&1 && $AUTOHEADER || exit 1
 
 
-# Generate settings headers from the relatively stable .json file that
-# Python code will also use.
+# Generate headers from brushsettings.json which defines "Settings"
+# (mostly visually-meaningful outputs that cause the brush engine to
+# make blobs), "Inputs" (data from the client application like zoom,
+# pressure, position, or tilt), and "States" (internal state counters
+# updated and used by the brush engine over time).
+#
+# The generated files are included in "make dist" tarballs, like the
+# configure script. The internal-only brushsettings-gen.h is also used
+# as the source of strings for gettext.
 
 python2 generate.py mypaint-brush-settings-gen.h brushsettings-gen.h
+
+# The MyPaint code no longer needs the .json file at runtime, and it is
+# not installed as data.
 
 $AUTOMAKE --add-missing || exit $?
 $AUTOCONF || exit $?

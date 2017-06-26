@@ -287,11 +287,29 @@
         {
             "constant": false,
             "default": 0.0,
+            "displayed_name": "Angular Offset Side Asc",
+            "internal_name": "offset_angle_asc",
+            "maximum": 20.0,
+            "minimum": -20.0,
+            "tooltip": "Follows the ascension direction to offset the dabs to one side.  Requires Tilt."
+        },
+        {
+            "constant": false,
+            "default": 0.0,
             "displayed_name": "Angular Offset Mirrored",
             "internal_name": "offset_angle_2",
             "maximum": 40.0,
             "minimum": 0.0,
             "tooltip": "Follows the stroke direction to offset the dabs, but to both sides of the stroke."
+        },
+        {
+            "constant": false,
+            "default": 0.0,
+            "displayed_name": "Angular Offset Mirrored Asc",
+            "internal_name": "offset_angle_2_asc",
+            "maximum": 40.0,
+            "minimum": 0.0,
+            "tooltip": "Follows the ascension direction to offset the dabs, but to both sides of the stroke.  Requires Tilt."
         },
         {
             "constant": false,

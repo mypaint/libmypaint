@@ -709,8 +709,11 @@ smallest_angular_difference(float angleA, float angleB)
     
     //offset to one side
     if (self->settings_value[MYPAINT_BRUSH_SETTING_OFFSET_ANGLE]) {
-      x += base_radius * self->settings_value[MYPAINT_BRUSH_SETTING_OFFSET_ANGLE] * self->states[MYPAINT_BRUSH_STATE_DIRECTION_DY] / norm_d * expf(self->settings_value[MYPAINT_BRUSH_SETTING_OFFSET_MULTIPLIER]);
-      y += base_radius * self->settings_value[MYPAINT_BRUSH_SETTING_OFFSET_ANGLE] * -self->states[MYPAINT_BRUSH_STATE_DIRECTION_DX] / norm_d * expf(self->settings_value[MYPAINT_BRUSH_SETTING_OFFSET_MULTIPLIER]);
+//      x += base_radius * self->settings_value[MYPAINT_BRUSH_SETTING_OFFSET_ANGLE] * self->states[MYPAINT_BRUSH_STATE_DIRECTION_DY] / norm_d * expf(self->settings_value[MYPAINT_BRUSH_SETTING_OFFSET_MULTIPLIER]);
+//      y += base_radius * self->settings_value[MYPAINT_BRUSH_SETTING_OFFSET_ANGLE] * -self->states[MYPAINT_BRUSH_STATE_DIRECTION_DX] / norm_d * expf(self->settings_value[MYPAINT_BRUSH_SETTING_OFFSET_MULTIPLIER]);
+      x += base_radius * self->settings_value[MYPAINT_BRUSH_SETTING_OFFSET_ANGLE] * cos((atan2f(self->states[MYPAINT_BRUSH_STATE_DIRECTION_DY], self->states[MYPAINT_BRUSH_STATE_DIRECTION_DX])/(2*M_PI)*360 * M_PI / 180) + 90 + self->settings_value[MYPAINT_BRUSH_SETTING_OFFSET_ANGLE_ADJ] + self->states[MYPAINT_BRUSH_STATE_VIEWROTATION]) * expf(self->settings_value[MYPAINT_BRUSH_SETTING_OFFSET_MULTIPLIER]);
+      y += base_radius * self->settings_value[MYPAINT_BRUSH_SETTING_OFFSET_ANGLE] * sin((atan2f(self->states[MYPAINT_BRUSH_STATE_DIRECTION_DY], self->states[MYPAINT_BRUSH_STATE_DIRECTION_DX])/(2*M_PI)*360 * M_PI / 180) + 90 + self->settings_value[MYPAINT_BRUSH_SETTING_OFFSET_ANGLE_ADJ] + self->states[MYPAINT_BRUSH_STATE_VIEWROTATION]) * expf(self->settings_value[MYPAINT_BRUSH_SETTING_OFFSET_MULTIPLIER]);
+      
     }
     //offset to one side of ascension angle
     if (self->settings_value[MYPAINT_BRUSH_SETTING_OFFSET_ANGLE_ASC]) {

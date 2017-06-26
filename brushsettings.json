@@ -304,6 +304,15 @@
         {
             "constant": false,
             "default": 0.0,
+            "displayed_name": "Offset Angle",
+            "internal_name": "offset_angle_adj",
+            "maximum": 90.0,
+            "minimum": -90.0,
+            "tooltip": "Change the Offset Angle from the default, which is 90 degrees."
+        },
+        {
+            "constant": false,
+            "default": 0.0,
             "displayed_name": "Offset Multiplier",
             "internal_name": "offset_multiplier",
             "maximum": 3.0,

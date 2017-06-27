@@ -8,27 +8,31 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-02-25 17:11+0000\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"PO-Revision-Date: 2017-09-14 22:44+0000\n"
+"Last-Translator: Just Vecht <justvecht@ziggo.nl>\n"
+"Language-Team: Dutch "
+"<https://hosted.weblate.org/projects/mypaint/libmypaint/nl/>\n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 2.17-dev\n"
 
 #: ../brushsettings-gen.h:4
 msgid "Opacity"
-msgstr ""
+msgstr "Dekking"
 
 #: ../brushsettings-gen.h:4
 msgid ""
 "0 means brush is transparent, 1 fully visible\n"
 "(also known as alpha or opacity)"
 msgstr ""
+"0 betekent doorzichtig, 1 ondoorzichtig (ook bekend als alfa of opaciteit)"
 
 #: ../brushsettings-gen.h:5
 msgid "Opacity multiply"
-msgstr ""
+msgstr "Dekking vermenigvuldiging"
 
 #: ../brushsettings-gen.h:5
 msgid ""
@@ -37,10 +41,15 @@ msgid ""
 "This setting is responsible to stop painting when there is zero pressure. "
 "This is just a convention, the behaviour is identical to 'opaque'."
 msgstr ""
+"Dit wordt vermenigvuldigd met de dekking. Verander hier alleen de instelling "
+"voor de druk. Gebruik de instelling voor de dekking om de dekking "
+"afhankelijk te maken van de snelheid.\n"
+"Deze instelling zorgt ervoor dat er zonder druk niet getekend wordt. Dit is "
+"een principekwestie, het gedrag is gelijk aan die voor de dekking."
 
 #: ../brushsettings-gen.h:6
 msgid "Opacity linearize"
-msgstr ""
+msgstr "Lineaire dekking"
 
 #: ../brushsettings-gen.h:6
 msgid ""
@@ -53,10 +62,19 @@ msgid ""
 "1.0 the opaque value above is for the final brush stroke, assuming each "
 "pixel gets (dabs_per_radius*2) brushdabs on average during a stroke"
 msgstr ""
+"Corrigeert het stapeleffect door verschillende penseelstreken bovenop "
+"elkaar. Hierdoor krijgt men een meer normale drukafhankelijke werking "
+"wanneer de druk via dekking vermenigvuldiging werk, zoals dat gebruikelijk "
+"wordt gedaan. Een waarde van 0,9 is goed voor normale penseelstreken, lager "
+"als het penseel spettert of hoger als  streken per seconde wordt toegepast.\n"
+"0,0 de waarde van de dekking is voor afzonderlijke penseelstreken,\n"
+"1,0 de waarde van de dekking is voor de definitieve penseelstreek, "
+"aangenomen dat elke pixel (streken_per_radius*2) penseelstreken krijgt per "
+"totaalstreek"
 
 #: ../brushsettings-gen.h:7
 msgid "Radius"
-msgstr ""
+msgstr "Radius"
 
 #: ../brushsettings-gen.h:7
 msgid ""
@@ -64,20 +82,25 @@ msgid ""
 " 0.7 means 2 pixels\n"
 " 3.0 means 20 pixels"
 msgstr ""
+"Straal van het penseel (logaritmisch)\n"
+"0,7 komt overeen met 2 pixels\n"
+"3,0 komt overeen met 20 pixels"
 
 #: ../brushsettings-gen.h:8
 msgid "Hardness"
-msgstr ""
+msgstr "Hardheid"
 
 #: ../brushsettings-gen.h:8
 msgid ""
 "Hard brush-circle borders (setting to zero will draw nothing). To reach the "
 "maximum hardness, you need to disable Pixel feather."
 msgstr ""
+"Scherpe penseelcirkel-randen (de waarde op nul stellen tekent niets). Voor "
+"de maximum scherpte moet de pixel verzachting uitgezet worden."
 
 #: ../brushsettings-gen.h:9
 msgid "Pixel feather"
-msgstr ""
+msgstr "Pixel-verzachting"
 
 #: ../brushsettings-gen.h:9
 msgid ""
@@ -87,38 +110,49 @@ msgid ""
 " 1.0 blur one pixel (good value)\n"
 " 5.0 notable blur, thin strokes will disappear"
 msgstr ""
+"Deze instelling brengt de scherpte terug om een pixel stapeleffect (aliasing)"
+" te voorkomen door de penseelstreek meer te vervagen.\n"
+"0,0 uitgeschakeld (voor erg krachtige wissers en pixelpenselen)\n"
+"1,0 vervaging voor één pixel (aanbevolen waarde)\n"
+"5,0 stevige vervaging, dunne penseelstreken zullen verdwijnen"
 
 #: ../brushsettings-gen.h:10
 msgid "Dabs per basic radius"
-msgstr ""
+msgstr "Penseelstreken per cirkelbasis"
 
 #: ../brushsettings-gen.h:10
 msgid ""
 "How many dabs to draw while the pointer moves a distance of one brush radius "
 "(more precise: the base value of the radius)"
 msgstr ""
+"Hoeveel penseelstreken moeten worden gezet terwijl de cursor over de afstand "
+"van één penseelcirkel wordt bewogen (om precies te zijn: de grondcirkel)"
 
 #: ../brushsettings-gen.h:11
 msgid "Dabs per actual radius"
-msgstr ""
+msgstr "Penseelstreken per daadwerkelijke radius"
 
 #: ../brushsettings-gen.h:11
 msgid ""
 "Same as above, but the radius actually drawn is used, which can change "
 "dynamically"
 msgstr ""
+"Als boven, maar de daadwerkelijke radius wordt gebruikt en deze kan "
+"dynamisch anders worden"
 
 #: ../brushsettings-gen.h:12
 msgid "Dabs per second"
-msgstr ""
+msgstr "Penseelstreken per seconde"
 
 #: ../brushsettings-gen.h:12
 msgid "Dabs to draw each second, no matter how far the pointer moves"
 msgstr ""
+"Penseelstreken per seconde te zetten, ongeacht hoever de cursor zich "
+"verplaatst"
 
 #: ../brushsettings-gen.h:13
 msgid "Radius by random"
-msgstr ""
+msgstr "Toevallige radius"
 
 #: ../brushsettings-gen.h:13
 msgid ""
@@ -128,28 +162,39 @@ msgid ""
 "transparent\n"
 "2) it will not change the actual radius seen by dabs_per_actual_radius"
 msgstr ""
+"Wijzig de radius willekeurig bij elke streek. Dit kan ook uitgevoerd worden "
+"door de radius in te stellen op willekeurig. Als dat hier gedaan wordt zijn "
+"er twee verschillen:\n"
+"1) De mate van doorschijnendheid zal zo worden bijgewerkt dat een streek met "
+"een grote radius meer doorzichtig wordt\n"
+"2) de huidige straal wordt niet bijgewerkt  voor de streken per huidige "
+"radius"
 
 #: ../brushsettings-gen.h:14
 msgid "Fine speed filter"
-msgstr ""
+msgstr "Snelheidsfilter fijn"
 
 #: ../brushsettings-gen.h:14
 msgid ""
 "How slow the input fine speed is following the real speed\n"
 "0.0 change immediately as your speed changes (not recommended, but try it)"
 msgstr ""
+"Hoe snel de fijne snelheids instelling de werkelijke snelheid volgt\n"
+"0,0 verandert direct als de snelheid wijzigt (niet aanbevolen maar probeer "
+"het)"
 
 #: ../brushsettings-gen.h:15
 msgid "Gross speed filter"
-msgstr ""
+msgstr "Groffe snelheidsfilter"
 
 #: ../brushsettings-gen.h:15
 msgid "Same as 'fine speed filter', but note that the range is different"
 msgstr ""
+"Hetzelfde als het \"fijne speed filter\", merk op dat het bereik anders is"
 
 #: ../brushsettings-gen.h:16
 msgid "Fine speed gamma"
-msgstr ""
+msgstr "Fijne snelheid gamma"
 
 #: ../brushsettings-gen.h:16
 msgid ""
@@ -160,18 +205,24 @@ msgid ""
 "+8.0 very fast speed increases 'fine speed' a lot\n"
 "For very slow speed the opposite happens."
 msgstr ""
+"Dit verandert de reactie van de fijne snelheid naar extreme werkelijke "
+"snelheid. Het verschil is het best zichtbaar wanneer de fijne snelheid is "
+"verbonden.\n"
+"-8.0 erg hoge snelheid verhoogt de fijne snelheid niet veel meer\n"
+"+8.0 erg hoge snelheid verhoogt de fijne snelheid veel\n"
+"Voor erg lage snelheden gebeurt het omgekeerde."
 
 #: ../brushsettings-gen.h:17
 msgid "Gross speed gamma"
-msgstr ""
+msgstr "Grove snelheid gamma"
 
 #: ../brushsettings-gen.h:17
 msgid "Same as 'fine speed gamma' for gross speed"
-msgstr ""
+msgstr "Hetzelfde als het \"fijne snelheids gamma\" maar voor grote snelheid"
 
 #: ../brushsettings-gen.h:18
 msgid "Jitter"
-msgstr ""
+msgstr "Trillen"
 
 #: ../brushsettings-gen.h:18
 msgid ""
@@ -180,10 +231,14 @@ msgid ""
 " 1.0 standard deviation is one basic radius away\n"
 "<0.0 negative values produce no jitter"
 msgstr ""
+"Pas een willekeurig verzet toe op de positie van de streek\n"
+"0,0 uitgeschakeld\n"
+"1,0 standaard afwijking is een basis radius verderop\n"
+"< 0,0 negatieve waarden levert geen trillen op"
 
 #: ../brushsettings-gen.h:19
 msgid "Offset by speed"
-msgstr ""
+msgstr "Verzet afhankelijk van de snelheid"
 
 #: ../brushsettings-gen.h:19
 msgid ""
@@ -192,64 +247,78 @@ msgid ""
 "> 0 draw where the pointer moves to\n"
 "< 0 draw where the pointer comes from"
 msgstr ""
+"Verander de positie afhankelijk van de aanwijzer snelheid\n"
+"=0 uitgeschakeld\n"
+"> 0 teken waar de aanwijzer heen gaat\n"
+"< teken waar de aanwijzer vandaan komt"
 
 #: ../brushsettings-gen.h:20
 msgid "Offset by speed filter"
-msgstr ""
+msgstr "Verzet afhankelijk van het snelheidsfilter"
 
 #: ../brushsettings-gen.h:20
 msgid "How slow the offset goes back to zero when the cursor stops moving"
 msgstr ""
+"Hoe langzaam het verzet terug gaat naar nul wanneer de aanwijzer niet meer "
+"beweegt"
 
 #: ../brushsettings-gen.h:21
 msgid "Slow position tracking"
-msgstr ""
+msgstr "Langzame positie tracking"
 
 #: ../brushsettings-gen.h:21
 msgid ""
 "Slowdown pointer tracking speed. 0 disables it, higher values remove more "
 "jitter in cursor movements. Useful for drawing smooth, comic-like outlines."
 msgstr ""
+"Brengt de snelheid van de reactie op de aanwijzer terug. 0 stelt het buiten "
+"werking, hoge waarden verwijdert meer trilling in de aanwijzer bewegingen. "
+"Bruikbaar voor gladde penseelstreken als in striptekenen."
 
 #: ../brushsettings-gen.h:22
 msgid "Slow tracking per dab"
-msgstr ""
+msgstr "Langzame reactie per penseelstreek"
 
 #: ../brushsettings-gen.h:22
 msgid ""
 "Similar as above but at brushdab level (ignoring how much time has passed if "
 "brushdabs do not depend on time)"
 msgstr ""
+"Gelijk aan hierboven, maar op penseelstreek niveau (maakt niet uit hoeveel "
+"tijd er verlopen is als penseelstreken niet afhankelijk zijn van tijd)"
 
 #: ../brushsettings-gen.h:23
 msgid "Tracking noise"
-msgstr ""
+msgstr "Reactie \"ruis\""
 
 #: ../brushsettings-gen.h:23
 msgid ""
 "Add randomness to the mouse pointer; this usually generates many small lines "
 "in random directions; maybe try this together with 'slow tracking'"
 msgstr ""
+"Voegt willekeurigheid toe aan de aanwijzer; dit genereert vele kleine lijnen "
+"in willekeurige richtingen. Probeer dit eens in combinatie met \"langzame "
+"reactie\""
 
 #: ../brushsettings-gen.h:24
 msgid "Color hue"
-msgstr ""
+msgstr "Kleurtoon"
 
 #: ../brushsettings-gen.h:25
 msgid "Color saturation"
-msgstr ""
+msgstr "Kleurverzadiging"
 
 #: ../brushsettings-gen.h:26
 msgid "Color value"
-msgstr ""
+msgstr "Kleurwaarde"
 
 #: ../brushsettings-gen.h:26
 msgid "Color value (brightness, intensity)"
-msgstr ""
+msgstr "Kleurwaarde (Helderheid, intensiteit)"
 
 #: ../brushsettings-gen.h:27
 msgid "Save color"
-msgstr ""
+msgstr "Sla de kleur op"
 
 #: ../brushsettings-gen.h:27
 msgid ""
@@ -259,10 +328,15 @@ msgid ""
 " 0.5 change active color towards brush color\n"
 " 1.0 set the active color to the brush color when selected"
 msgstr ""
+"Wanneer een penseel gekozen wordt kan de kleur worden teruggezet naar de "
+"kleur waarmee het penseel werd opgeslagen,\n"
+"0,0 de huidige kleur niet aanpassen bij het kiezen\n"
+"0,5 verander de huidige kleur in de richting van die van het penseel\n"
+"1,0 stel de huidige kleur in van die van het penseel"
 
 #: ../brushsettings-gen.h:28
 msgid "Change color hue"
-msgstr ""
+msgstr "Verander de verfkleur"
 
 #: ../brushsettings-gen.h:28
 msgid ""
@@ -271,10 +345,14 @@ msgid ""
 " 0.0 disable\n"
 " 0.5 counterclockwise hue shift by 180 degrees"
 msgstr ""
+"Verander de kleurtoon\n"
+"-0,1 kleine kleurtoonverandering klokgewijs\n"
+"0,0 buitenwerking gesteld\n"
+"0,5 kleurtoonverandering 180 antiklokwijs"
 
 #: ../brushsettings-gen.h:29
 msgid "Change color lightness (HSL)"
-msgstr ""
+msgstr "Helderheid aanpassen (HSL)"
 
 #: ../brushsettings-gen.h:29
 msgid ""
@@ -283,10 +361,14 @@ msgid ""
 " 0.0 disable\n"
 " 1.0 whiter"
 msgstr ""
+"Past de kleurhelderheid (luminantie) aan op basis van het HSL kleurmodel.\n"
+"-1,0 donkerder\n"
+"0,0 buitenwerking stellen\n"
+"1,0 helderder"
 
 #: ../brushsettings-gen.h:30
 msgid "Change color satur. (HSL)"
-msgstr ""
+msgstr "Verzadiging aanpassen (HSL)"
 
 #: ../brushsettings-gen.h:30
 msgid ""
@@ -295,10 +377,14 @@ msgid ""
 " 0.0 disable\n"
 " 1.0 more saturated"
 msgstr ""
+"Past de kleurverzadiging aan op basis van het HSL kleurmodel\n"
+"-1,0 meer grijzig\n"
+"0,0 buitenwerking stellen\n"
+"1,0 meer verzadigen"
 
 #: ../brushsettings-gen.h:31
 msgid "Change color value (HSV)"
-msgstr ""
+msgstr "Kleurwaarde aanpassen (HSV)"
 
 #: ../brushsettings-gen.h:31
 msgid ""
@@ -308,10 +394,15 @@ msgid ""
 " 0.0 disable\n"
 " 1.0 brigher"
 msgstr ""
+"De kleurwaarde aanpassen (helderheid, intensiteit) volgens het HSV "
+"kleurmodel. HSV wijzigingen worden toegepast voor HSL.\n"
+"-1,0 donkerder\n"
+"0,0 buitenwerking stellen\n"
+"1,0 helderder"
 
 #: ../brushsettings-gen.h:32
 msgid "Change color satur. (HSV)"
-msgstr ""
+msgstr "Verzadiging aanpassen (HSV)"
 
 #: ../brushsettings-gen.h:32
 msgid ""
@@ -321,10 +412,15 @@ msgid ""
 " 0.0 disable\n"
 " 1.0 more saturated"
 msgstr ""
+"Aanpassen van de verzadiging op basis van het HSV kleurmodel. HSV "
+"wijzigingen worden toegepast voor die volgens HSL.\n"
+"-1,0 meer grijzig\n"
+"0,0 buiten werking stellen\n"
+"1,0 meer verzadigd"
 
 #: ../brushsettings-gen.h:33
 msgid "Smudge"
-msgstr ""
+msgstr "wrijven"
 
 #: ../brushsettings-gen.h:33
 msgid ""
@@ -334,10 +430,15 @@ msgid ""
 " 0.5 mix the smudge color with the brush color\n"
 " 1.0 use only the smudge color"
 msgstr ""
+"Schilder met de wrijfkleur inplaats van de penseelkleur. De wrijfkleur "
+"verandert langzaam in de kleur waar je op schildert,\n"
+"0,0 gebruik de wrijfkleur niet\n"
+"0,5 meng de wrijfkleur met de penseelkleur\n"
+"1,0 gebruik alleen de wrijfkleur"
 
 #: ../brushsettings-gen.h:34
 msgid "Smudge length"
-msgstr ""
+msgstr "Wrijflengte"
 
 #: ../brushsettings-gen.h:34
 msgid ""
@@ -348,10 +449,14 @@ msgid ""
 "0.5 change the smudge color steadily towards the canvas color\n"
 "1.0 never change the smudge color"
 msgstr ""
+"Controleert hoe snel de wrijfkleur in de onderliggende kleur opgaat.\n"
+"0,0 directe overgang in de wrijfkleur (kost meer van de CPU vanwege de "
+"frequente kleurchecks)\n"
+"0,5 verander de wrijfkleur geleidelijk in de richting van de canvaskleur"
 
 #: ../brushsettings-gen.h:35
 msgid "Smudge radius"
-msgstr ""
+msgstr "Wrijf radius"
 
 #: ../brushsettings-gen.h:35
 msgid ""
@@ -362,10 +467,16 @@ msgid ""
 "+0.7 twice the brush radius\n"
 "+1.6 five times the brush radius (slow performance)"
 msgstr ""
+"Past de radius van de cirkel aan waarbinnen de kleur wordt opgehaald voor "
+"het wrijven.\n"
+"0,0 gebruik de radius van het penseel\n"
+"-0,7 de halve penseel radius (snel, maar niet altijd intuïtief)\n"
+"+0,7 dubbele penseelradius\n"
+"+1,6 vijf keer de penseel radius (langzaam in gebruik)"
 
 #: ../brushsettings-gen.h:36
 msgid "Eraser"
-msgstr ""
+msgstr "Gum"
 
 #: ../brushsettings-gen.h:36
 msgid ""
@@ -374,30 +485,39 @@ msgid ""
 " 1.0 standard eraser\n"
 " 0.5 pixels go towards 50% transparency"
 msgstr ""
+"Hoeveel dit gereedschap zich gedraagt als een gum.\n"
+"0,0 normaal schilderen\n"
+"1,0 standaard gum\n"
+"0,5 pixels worden semi-transparant (50%)"
 
 #: ../brushsettings-gen.h:37
 msgid "Stroke threshold"
-msgstr ""
+msgstr "Streek drempelwaarde"
 
 #: ../brushsettings-gen.h:37
 msgid ""
 "How much pressure is needed to start a stroke. This affects the stroke input "
 "only. MyPaint does not need a minimum pressure to start drawing."
 msgstr ""
+"Hoeveel druk nodig is om een streek te beginnen. Dit beinvloedt alleen de "
+"ingave van de streek. MyPaint heeft geen minimum druk nodig om te beginnen "
+"met tekenen."
 
 #: ../brushsettings-gen.h:38
 msgid "Stroke duration"
-msgstr ""
+msgstr "Streek duur"
 
 #: ../brushsettings-gen.h:38
 msgid ""
 "How far you have to move until the stroke input reaches 1.0. This value is "
 "logarithmic (negative values will not invert the process)."
 msgstr ""
+"Hoeveer te bewegen voor de streekingave 1,0 bereikt. Deze waarde is "
+"logaritmisch (negatieve waarden keren het proces niet om)."
 
 #: ../brushsettings-gen.h:39
 msgid "Stroke hold time"
-msgstr ""
+msgstr "Streek pauze tijd"
 
 #: ../brushsettings-gen.h:39
 msgid ""
@@ -407,10 +527,15 @@ msgid ""
 "2.0 means twice as long as it takes to go from 0.0 to 1.0\n"
 "9.9 or higher stands for infinite"
 msgstr ""
+"Dit definieert hoe lang de ingave van de streek op 1.0 blijft staan. Daarna "
+"valt deze terug naar 0,0 en neemt dan weer toe, zelfs als de streek nog niet "
+"ten einde is.\n"
+"2,0 houdt in dat het tweemaal zo lang duurt als van 0,0 naar 1,0\n"
+"9.9 en hoger staat voor oneindig"
 
 #: ../brushsettings-gen.h:40
 msgid "Custom input"
-msgstr ""
+msgstr "Persoonlijke aanpassing"
 
 #: ../brushsettings-gen.h:40
 msgid ""
@@ -422,10 +547,16 @@ msgid ""
 "If you make it change 'by random' you can generate a slow (smooth) random "
 "input."
 msgstr ""
+"Stel de persoonlijke voorkeur hier in. Is dat langzamer, breng het dan naar "
+"deze waarde (zie onder). Het gaat er om dat hier instellingen als een mix "
+"van druk, snelheid, enzovoort worden gekozen waarbij de andere instellingen "
+"zich hieraan aanpassen zodat dat niet telkens hoeft te worden herhaald.\n"
+"Indien de waarde van \"willekeurig\" wordt aangepast is het mogelijk een "
+"langzame (geleidelijke)  willekeurige ingave te genereren."
 
 #: ../brushsettings-gen.h:41
 msgid "Custom input filter"
-msgstr ""
+msgstr "Persoonlijke ingave filter"
 
 #: ../brushsettings-gen.h:41
 msgid ""
@@ -434,20 +565,26 @@ msgid ""
 "if brushdabs do not depend on time).\n"
 "0.0 no slowdown (changes apply instantly)"
 msgstr ""
+"Hoe snel de persoonlijke ingave de gewenste waarde volgt (de waarde "
+"hierboven). Dit is op penseelstreek niveau (het maakt niet uit hoeveel tijd "
+"is verlopen als penseelstreken niet van tijd afhankelijk zijn).\n"
+"0,0 geen vertraging (veranderingen worden direct uitgevoerd)"
 
 #: ../brushsettings-gen.h:42
 msgid "Elliptical dab: ratio"
-msgstr ""
+msgstr "Elliptische penseelstreek: verhouding"
 
 #: ../brushsettings-gen.h:42
 msgid ""
 "Aspect ratio of the dabs; must be >= 1.0, where 1.0 means a perfectly round "
 "dab. TODO: linearize? start at 0.0 maybe, or log?"
 msgstr ""
+"Lengte/breedte verhouding van de penseelstreek; moet >= 1,0 zijn waarbij 1,0 "
+"een perfect ronde streek betekent. NOG DOEN: liniair? begint op 0,0 of log?"
 
 #: ../brushsettings-gen.h:43
 msgid "Elliptical dab: angle"
-msgstr ""
+msgstr "Elliptische penseelstreek: hoek"
 
 #: ../brushsettings-gen.h:43
 msgid ""
@@ -456,20 +593,26 @@ msgid ""
 " 45.0 45 degrees, turned clockwise\n"
 " 180.0 horizontal again"
 msgstr ""
+"Hoek waaronder elliptische streken zijn gekanteld\n"
+"0,0 horizontale streken\n"
+"45,0 45 graden, klokwijs\n"
+"180,0 wederom horizontaal"
 
 #: ../brushsettings-gen.h:44
 msgid "Direction filter"
-msgstr ""
+msgstr "Richtingsfilter"
 
 #: ../brushsettings-gen.h:44
 msgid ""
 "A low value will make the direction input adapt more quickly, a high value "
 "will make it smoother"
 msgstr ""
+"Een lage waarde maakt de richtingsingave sneller, een hoge waarde meer "
+"geleidelijk"
 
 #: ../brushsettings-gen.h:45
 msgid "Lock alpha"
-msgstr ""
+msgstr "Alfa kanaal blokkeren"
 
 #: ../brushsettings-gen.h:45
 msgid ""
@@ -479,40 +622,51 @@ msgid ""
 " 0.5 half of the paint gets applied normally\n"
 " 1.0 alpha channel fully locked"
 msgstr ""
+"Het alfa kanaal niet aanpassen(schilder alleen daar waar al verf aanwezig is)"
+"\n"
+"0,0 normaal schilderen\n"
+"0,5 de helft van de verf wordt normaal opgebracht\n"
+"1,0 alfa kanaal volledig geblokkeerd"
 
 #: ../brushsettings-gen.h:46
 msgid "Colorize"
-msgstr ""
+msgstr "Kleuren"
 
 #: ../brushsettings-gen.h:46
 msgid ""
 "Colorize the target layer, setting its hue and saturation from the active "
 "brush color while retaining its value and alpha."
 msgstr ""
+"Kleur de doel laag, stel de kleurtoon en verzadiging overeenkomstig de "
+"huidige penseelkleur maar behoud zijn waarde en alfa."
 
 #: ../brushsettings-gen.h:47
 msgid "Snap to pixel"
-msgstr ""
+msgstr "Op pixel uitlijnen"
 
 #: ../brushsettings-gen.h:47
 msgid ""
 "Snap brush dab's center and its radius to pixels. Set this to 1.0 for a thin "
 "pixel brush."
 msgstr ""
+"Lijn het penseel streek  midden en zijn radius uit op pixels. Stel dit in op "
+"1.0 voor een dun pixel penseel."
 
 #: ../brushsettings-gen.h:48
 msgid "Pressure gain"
-msgstr ""
+msgstr "Druk toename"
 
 #: ../brushsettings-gen.h:48
 msgid ""
 "This changes how hard you have to press. It multiplies tablet pressure by a "
 "constant factor."
 msgstr ""
+"Past aan hoeveel druk moet worden uitgeoefend. Vermenigvuldigt de tablet "
+"druk met een constante waarde."
 
 #: ../brushsettings-gen.h:53
 msgid "Pressure"
-msgstr ""
+msgstr "Druk"
 
 #: ../brushsettings-gen.h:53
 msgid ""
@@ -520,10 +674,13 @@ msgid ""
 "get larger when a pressure gain is used. If you use the mouse, it will be "
 "0.5 when a button is pressed and 0.0 otherwise."
 msgstr ""
+"De druk als gegeven door het tablet. Meestal tussen 0,0 en 1,0 maar het kan "
+"meer zijn wanneer er drukversterking wordt gebruikt. Wordt een muis gebruikt "
+"is de waarde 0,5 wanneer en een knop wordt ingedrukt en anders 0,0."
 
 #: ../brushsettings-gen.h:54
 msgid "Fine speed"
-msgstr ""
+msgstr "Fijne snelheid"
 
 #: ../brushsettings-gen.h:54
 msgid ""
@@ -531,30 +688,38 @@ msgid ""
 "values' from the 'help' menu to get a feeling for the range; negative values "
 "are rare but possible for very low speed."
 msgstr ""
+"Hoe snel de beweging is. Dit kan erg snel wijzigen. Probeer \"Geef ingave "
+"waarden\" van het menu (Help > Debug > ) om een idee te krijgen van het "
+"bereik; negatieve waarden zijn zeldzaam maar mogelijk voor erg lage "
+"snelheden."
 
 #: ../brushsettings-gen.h:55
 msgid "Gross speed"
-msgstr ""
+msgstr "Grove snelheid"
 
 #: ../brushsettings-gen.h:55
 msgid ""
 "Same as fine speed, but changes slower. Also look at the 'gross speed "
 "filter' setting."
 msgstr ""
+"Hetzelfde als fijne snelheid, maar wisselt minder snel. Kijk ook naar de "
+"instelling van het grove snelheidsfilter."
 
 #: ../brushsettings-gen.h:56
 msgid "Random"
-msgstr ""
+msgstr "Willekeurig"
 
 #: ../brushsettings-gen.h:56
 msgid ""
 "Fast random noise, changing at each evaluation. Evenly distributed between 0 "
 "and 1."
 msgstr ""
+"Snelle willekeurige ruis, veranderlijk bij elke evaluatie. Gelijkmatig "
+"verdeeld tussen 0 en 1."
 
 #: ../brushsettings-gen.h:57
 msgid "Stroke"
-msgstr ""
+msgstr "Streek"
 
 #: ../brushsettings-gen.h:57
 msgid ""
@@ -562,30 +727,38 @@ msgid ""
 "be configured to jump back to zero periodically while you move. Look at the "
 "'stroke duration' and 'stroke hold time' settings."
 msgstr ""
+"Deze ingavewaarde gaat langzaam van nul naar één onder het zetten van een "
+"streek. Het kan ook worden ingesteld om periodiek terug te springen naar nul "
+"tijdens de beweging. Kijk naar de instellingen voor \"streek duur\" en \""
+"streek pauze tijd\"."
 
 #: ../brushsettings-gen.h:58
 msgid "Direction"
-msgstr ""
+msgstr "Richting"
 
 #: ../brushsettings-gen.h:58
 msgid ""
 "The angle of the stroke, in degrees. The value will stay between 0.0 and "
 "180.0, effectively ignoring turns of 180 degrees."
 msgstr ""
+"De hoek van de streek, in graden. De waarde blijft tussen 0,0 en 180,0, "
+"waarbij effectief draaien van 180 graden worden overgeslagen."
 
 #: ../brushsettings-gen.h:59
 msgid "Declination"
-msgstr ""
+msgstr "Declinatie"
 
 #: ../brushsettings-gen.h:59
 msgid ""
 "Declination of stylus tilt. 0 when stylus is parallel to tablet and 90.0 "
 "when it's perpendicular to tablet."
 msgstr ""
+"Declinatie van de helling van de stylus. 0 wanneer de stylus evenwijdig aan "
+"het tablet ligt en 90,0 wanneer het haaks op het tablet staat."
 
 #: ../brushsettings-gen.h:60
 msgid "Ascension"
-msgstr ""
+msgstr "Inclinatie"
 
 #: ../brushsettings-gen.h:60
 msgid ""
@@ -593,12 +766,17 @@ msgid ""
 "when rotated 90 degrees clockwise, -90 when rotated 90 degrees "
 "counterclockwise."
 msgstr ""
+"Rechter inclinatie van de helling van de stylus. 0 wanneer de schrijfpunt "
+"van de stylus naar de gebruiker wijst, +90 wanneer 90 klokwijs geroteerd en -"
+"90 wanneer antiklokwijs geroteerd."
 
 #: ../brushsettings-gen.h:61
 msgid "Custom"
-msgstr ""
+msgstr "Persoonlijk"
 
 #: ../brushsettings-gen.h:61
 msgid ""
 "This is a user defined input. Look at the 'custom input' setting for details."
 msgstr ""
+"Dit is een persoonlijke instelling rubriek.  Kijk naar de \"persoonlijke "
+"instellingen\" waarden voor details."

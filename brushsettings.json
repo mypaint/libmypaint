@@ -71,6 +71,26 @@
             "tooltip": "The angle of the stroke, from 0 to 360 degrees."
         },
         {
+            "displayed_name": "Declination X", 
+            "hard_maximum": 90.0, 
+            "hard_minimum": -90.0, 
+            "id": "tilt_declinationx", 
+            "normal": 0.0, 
+            "soft_maximum": 90.0, 
+            "soft_minimum": -90.0, 
+            "tooltip": "Declination of stylus tilt on X-Axis. 90/-90 when stylus is parallel to tablet and 0 when it's perpendicular to tablet."
+        }, 
+        {
+            "displayed_name": "Declination Y", 
+            "hard_maximum": 90.0, 
+            "hard_minimum": -90.0, 
+            "id": "tilt_declinationy", 
+            "normal": 0.0, 
+            "soft_maximum": 90.0, 
+            "soft_minimum": -90.0, 
+            "tooltip": "Declination of stylus tilt on Y-Axis. 90/-90 when stylus is parallel to tablet and 0 when it's perpendicular to tablet."
+        }, 
+        {
             "displayed_name": "Attack Angle", 
             "hard_maximum": 180.0, 
             "hard_minimum": -180.0, 
@@ -714,6 +734,8 @@
         "attack_angle",
         "flip",
         "gridmap_x",
-        "gridmap_y"
+        "gridmap_y",
+        "declinationx",
+        "declinationy"
     ]
 }

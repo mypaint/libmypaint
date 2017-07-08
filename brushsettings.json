@@ -116,8 +116,8 @@
             "hard_minimum": null, 
             "id": "custom", 
             "normal": 0.0, 
-            "soft_maximum": 2.0, 
-            "soft_minimum": -2.0, 
+            "soft_maximum": 10.0, 
+            "soft_minimum": -10.0, 
             "tooltip": "This is a user defined input. Look at the 'custom input' setting for details."
         }
     ],

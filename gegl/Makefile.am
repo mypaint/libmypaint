@@ -37,10 +37,10 @@ introspection_sources = \
 	../glib/mypaint-gegl-glib.c	\
 	mypaint-gegl-surface.c
 
-MyPaintGegl-@LIBMYPAINT_MAJOR_VERSION@.@LIBMYPAINT_MINOR_VERSION@.gir: libmypaint-gegl.la Makefile
+MyPaintGegl-@LIBMYPAINT_MAJOR_VERSION@.@LIBMYPAINT_MINOR_VERSION@.gir: libmypaint-gegl-@LIBMYPAINT_API_PLATFORM_VERSION@.la Makefile
 MyPaintGegl_@LIBMYPAINT_MAJOR_VERSION@_@LIBMYPAINT_MINOR_VERSION@_gir_INCLUDES = GObject-2.0 MyPaint-$(LIBMYPAINT_MAJOR_VERSION).$(LIBMYPAINT_MINOR_VERSION) Gegl-0.3
 MyPaintGegl_@LIBMYPAINT_MAJOR_VERSION@_@LIBMYPAINT_MINOR_VERSION@_gir_CFLAGS = $(AM_CFLAGS) $(AM_CPPFLAGS) -I. -I..
-MyPaintGegl_@LIBMYPAINT_MAJOR_VERSION@_@LIBMYPAINT_MINOR_VERSION@_gir_LIBS = libmypaint-gegl.la ../libmypaint.la
+MyPaintGegl_@LIBMYPAINT_MAJOR_VERSION@_@LIBMYPAINT_MINOR_VERSION@_gir_LIBS = libmypaint-gegl-@LIBMYPAINT_API_PLATFORM_VERSION@.la ../libmypaint-@LIBMYPAINT_API_PLATFORM_VERSION@.la
 MyPaintGegl_@LIBMYPAINT_MAJOR_VERSION@_@LIBMYPAINT_MINOR_VERSION@_gir_FILES = $(introspection_sources)
 INTROSPECTION_GIRS += MyPaintGegl-@LIBMYPAINT_MAJOR_VERSION@.@LIBMYPAINT_MINOR_VERSION@.gir
 
@@ -56,10 +56,10 @@ endif # HAVE_INTROSPECTION
 
 ## pkg-config file ##
 pkgconfigdir = $(libdir)/pkgconfig
-pkgconfig_DATA = libmypaint-gegl.pc
+pkgconfig_DATA = libmypaint-gegl-@LIBMYPAINT_API_PLATFORM_VERSION@.pc
 
 ## libmypaint-gegl ##
-lib_LTLIBRARIES = libmypaint-gegl.la
+lib_LTLIBRARIES = libmypaint-gegl-@LIBMYPAINT_API_PLATFORM_VERSION@.la
 
 libmypaint_gegl_publicdir = $(includedir)/libmypaint-gegl
 
@@ -70,9 +70,9 @@ LIBMYPAINT_GEGL_SOURCES = \
 	../glib/mypaint-gegl-glib.c	\
 	mypaint-gegl-surface.c
 
-libmypaint_gegl_la_SOURCES = $(libmypaint_gegl_public_HEADERS) $(LIBMYPAINT_GEGL_SOURCES)
+libmypaint_gegl_@LIBMYPAINT_API_PLATFORM_VERSION@_la_SOURCES = $(libmypaint_gegl_public_HEADERS) $(LIBMYPAINT_GEGL_SOURCES)
 
-libmypaint_gegl_la_CFLAGS = $(JSON_CFLAGS) $(GLIB_CFLAGS) $(GEGL_CFLAGS)
-libmypaint_gegl_la_LIBADD = $(top_builddir)/libmypaint.la $(GEGL_LIBS)
+libmypaint_gegl_@LIBMYPAINT_API_PLATFORM_VERSION@_la_CFLAGS = $(JSON_CFLAGS) $(GLIB_CFLAGS) $(GEGL_CFLAGS)
+libmypaint_gegl_@LIBMYPAINT_API_PLATFORM_VERSION@_la_LIBADD = $(top_builddir)/libmypaint-@LIBMYPAINT_API_PLATFORM_VERSION@.la $(GEGL_LIBS)
 
 endif # enable_gegl

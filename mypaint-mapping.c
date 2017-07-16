@@ -174,7 +174,7 @@ float mypaint_mapping_calculate (MyPaintMapping * self, float * data)
           y1 = p->yvalues[i];
         }
 
-        if (x0 == x1) {
+        if (x0 == x1 || y0 == y1) {
           y = y0;
         } else {
           // linear interpolation

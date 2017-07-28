@@ -886,7 +886,7 @@ static inline float * mix_colors(MyPaintBrush *self, float *a, float *b, float f
         mypaint_surface_get_color(surface, px, py, smudge_radius, &r, &g, &b, &a);
         
         //convert to xxx we want to mix the smudge with the new getcolor in the chosen color model
-        if (self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE_MIX_MODEL] >= 1.0 && self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE_MIX_MODEL] < 2.0) {
+        if (self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE_PRIMARIES] >= 1.0 && self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE_PRIMARIES] < 2.0) {
         //RYB
         rgb_to_ryb_float (&r, &g, &b);
         }
@@ -950,7 +950,7 @@ static inline float * mix_colors(MyPaintBrush *self, float *a, float *b, float f
           smudge_l = self->states[MYPAINT_BRUSH_STATE_SMUDGE_BA] / self->states[MYPAINT_BRUSH_STATE_SMUDGE_A];
           
           //convert back to rgb if needed
-          if (self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE_MIX_MODEL] >= 1.0 && self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE_MIX_MODEL] < 2.0) {
+          if (self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE_PRIMARIES] >= 1.0 && self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE_PRIMARIES] < 2.0) {
           //RYB
           ryb_to_rgb_float (&smudge_h, &smudge_s, &smudge_l);
           }
@@ -973,7 +973,7 @@ static inline float * mix_colors(MyPaintBrush *self, float *a, float *b, float f
             rgb_to_hsv_float (&smudge_h, &smudge_s, &smudge_l);
           }
           
-          if (self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE_MIX_MODEL] >= 1.0 && self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE_MIX_MODEL] < 2.0) {
+          if (self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE_PRIMARIES] >= 1.0 && self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE_PRIMARIES] < 2.0) {
             //RYB Mode
             rgb_to_ryb_float (&color_h, &color_s, &color_v);
           }
@@ -988,7 +988,7 @@ static inline float * mix_colors(MyPaintBrush *self, float *a, float *b, float f
           color_s = color_new[1];
           color_v = color_new[2];
           
-          if (self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE_MIX_MODEL] >= 1.0 && self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE_MIX_MODEL] < 2.0) {
+          if (self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE_PRIMARIES] >= 1.0 && self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE_PRIMARIES] < 2.0) {
             //RYB Mode 
             ryb_to_rgb_float (&color_h, &color_s, &color_v);
           }
@@ -1012,8 +1012,8 @@ static inline float * mix_colors(MyPaintBrush *self, float *a, float *b, float f
 
         //set our Brightness of the mix according to mode result. and also process saturation
         //0-1 is native so skip
-        if (self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE_ADJUSTMENT_MODE] >= 1.0 ) {      
-          //color_v = (fac*smudge_l + ((1-fac) * brush_l));
+        if (brush_s != 0 && smudge_s != 0 && self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE_ADJUSTMENT_MODE] >= 1.0 ) {      
+          
           
           //desaturate if paints are different.  SMUDGE_DESATURATION setting allows tweaking or even reversing of this.
           //mixing two different paints should always decrease saturation/colorfulness but without the below adjustment 
@@ -1036,7 +1036,7 @@ static inline float * mix_colors(MyPaintBrush *self, float *a, float *b, float f
             int i;
             for ( i = 0; i < 2; i++ ) {
 
-              if (self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE_MIX_MODEL] >= 1.0 && self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE_MIX_MODEL] < 2.0) {  
+              if (self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE_PRIMARIES] >= 1.0 && self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE_PRIMARIES] < 2.0) {  
               //convert to RYB angles
               int j;
                 for ( j = 0; j < 3; j++) {

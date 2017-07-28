@@ -477,7 +477,7 @@
             "constant": false, 
             "default": 0.0, 
             "displayed_name": "Smudge Primaries", 
-            "internal_name": "smudge_mix_model", 
+            "internal_name": "smudge_primaries", 
             "maximum": 2.0, 
             "minimum": 0.0, 
             "tooltip": "Switch the color model of smudge.  0-1=use RGB.  1-2=use RYB"

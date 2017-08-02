@@ -392,8 +392,101 @@ smallest_angular_difference(float angleA, float angleB)
     a = angleB - angleA;
     a = mod((a + 180), 360) - 180;
     a += (a>180) ? -360 : (a<-180) ? 360 : 0;
-    //printf("%f.1 to %f.1 = %f.1 \n", angleB, angleA, a);
     return a;
+}
+
+//function to make it easy to blend additive blending modes in linear and non-linear modes
+//a is the current smudge state, b is the get_color to be mixed into smudge state
+static inline float * mix_colors(MyPaintBrush *self, float *a, float *b, float fac, float gamma, float alpha, float get)
+{
+  float addmix[3] = {0};
+  float submix[3] = {0};
+  static float result[3] = {0};
+  
+  //weird if 100% alpha the get_color is 0,1,0 (bug?)
+  //set get_color and smudge_state to the brush color
+  if (alpha == 0.0 && get == 1) {
+
+
+    float h = mypaint_mapping_get_base_value(self->settings[MYPAINT_BRUSH_SETTING_COLOR_H]);
+    float s = mypaint_mapping_get_base_value(self->settings[MYPAINT_BRUSH_SETTING_COLOR_S]);
+    float v = mypaint_mapping_get_base_value(self->settings[MYPAINT_BRUSH_SETTING_COLOR_V]);  
+
+
+    hsv_to_rgb_float (&h, &s, &v);
+
+    a[0] = h;
+    a[1] = s;
+    a[2] = v;
+    b[0] = h;
+    b[1] = s;
+    b[2] = v;
+  }
+
+  //if stroke hasn't started cache the get_color and smudge_color
+  //we don't want to update the smudge color once the stroke begins
+  if (!self->states[MYPAINT_BRUSH_STATE_STROKE_STARTED] && get == 1) {
+    self->states[MYPAINT_BRUSH_STATE_SMUDGE_R_OLD_SMUDGE] = a[0];
+    self->states[MYPAINT_BRUSH_STATE_SMUDGE_G_OLD_SMUDGE] = a[1];
+    self->states[MYPAINT_BRUSH_STATE_SMUDGE_B_OLD_SMUDGE] = a[2];
+    self->states[MYPAINT_BRUSH_STATE_SMUDGE_R_OLD_GET] = b[0];
+    self->states[MYPAINT_BRUSH_STATE_SMUDGE_G_OLD_GET] = b[1];
+    self->states[MYPAINT_BRUSH_STATE_SMUDGE_B_OLD_GET] = b[2];
+    //printf("captured smudge stroke not started smudge is %f, %f, %f get is %f, %f, %f\n",a[0], a[1], a[2], b[0], b[1], b[2]);
+  } 
+
+  //if smudge_lock and stroke started, use the cached smudge and get instead    
+  if (self->states[MYPAINT_BRUSH_STATE_STROKE_STARTED] && self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE_LOCK] > 0.0 && get == 1) {
+
+      
+    a[0] = self->states[MYPAINT_BRUSH_STATE_SMUDGE_R_OLD_SMUDGE];
+    a[1] = self->states[MYPAINT_BRUSH_STATE_SMUDGE_G_OLD_SMUDGE];
+    a[2] = self->states[MYPAINT_BRUSH_STATE_SMUDGE_B_OLD_SMUDGE];
+    b[0] = self->states[MYPAINT_BRUSH_STATE_SMUDGE_R_OLD_GET];
+    b[1] = self->states[MYPAINT_BRUSH_STATE_SMUDGE_G_OLD_GET];
+    b[2] = self->states[MYPAINT_BRUSH_STATE_SMUDGE_B_OLD_GET];
+  }
+
+  float ar=a[0];
+  float ag=a[1];
+  float ab=a[2];
+  
+  float br=b[0];
+  float bg=b[1];
+  float bb=b[2];
+  
+  //add alpha to get_color.  Only do this for smudge+get_color- control with parameter
+  if (get == 1) {
+    br *=alpha;
+    bg *=alpha;
+    bb *=alpha;
+  }
+  //convert to linear rgb only if gamma is not 1.0 to avoid redundancy and rounding errors
+  if (gamma != 1.0) {
+    srgb_to_rgb_float(&ar, &ag, &ab, gamma);
+    srgb_to_rgb_float(&br, &bg, &bb, gamma);
+  }
+  //do the mix
+  ar = fac * ar + (1-fac) * br;
+  ag = fac * ag + (1-fac) * bg;
+  ab = fac * ab + (1-fac) * bb;
+  
+  //convert back to sRGB non-linear
+  if (gamma != 1.0) {
+    rgb_to_srgb_float(&ar, &ag, &ab, gamma);
+  }
+  //do eraser_target alpha for smudge+brush color
+  if (get == 0) {
+    ar /=alpha;
+    ag /=alpha;
+    ab /=alpha;
+  }
+  
+  result[0] = ar;
+  result[1] = ag;
+  result[2] = ab;
+    
+  return result; 
 }
 
   // returns the fraction still left after t seconds
@@ -766,8 +859,8 @@ smallest_angular_difference(float angleA, float angleB)
 
     // update smudge color
     if (self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE_LENGTH] < 1.0 &&
-        // optimization, since normal brushes have smudge_length == 0.5 without actually smudging
-        (self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE] != 0.0 || !mypaint_mapping_is_constant(self->settings[MYPAINT_BRUSH_SETTING_SMUDGE]))) {
+    // optimization, since normal brushes have smudge_length == 0.5 without actually smudging
+    (self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE] != 0.0 || !mypaint_mapping_is_constant(self->settings[MYPAINT_BRUSH_SETTING_SMUDGE]))) {
 
       float fac = self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE_LENGTH];
       if (fac < 0.01) fac = 0.01;
@@ -791,11 +884,18 @@ smallest_angular_difference(float angleA, float angleB)
         float smudge_radius = radius * expf(self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE_RADIUS_LOG]);
         smudge_radius = CLAMP(smudge_radius, ACTUAL_RADIUS_MIN, ACTUAL_RADIUS_MAX);
         mypaint_surface_get_color(surface, px, py, smudge_radius, &r, &g, &b, &a);
-
+        
+        //convert to xxx we want to mix the smudge with the new getcolor in the chosen color model
+        if (self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE_PRIMARIES] >= 1.0 && self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE_PRIMARIES] < 2.0) {
+        //RYB
+        rgb_to_ryb_float (&r, &g, &b);
+        }
+        
         self->states[MYPAINT_BRUSH_STATE_LAST_GETCOLOR_R] = r;
         self->states[MYPAINT_BRUSH_STATE_LAST_GETCOLOR_G] = g;
         self->states[MYPAINT_BRUSH_STATE_LAST_GETCOLOR_B] = b;
         self->states[MYPAINT_BRUSH_STATE_LAST_GETCOLOR_A] = a;
+        
       } else {
         r = self->states[MYPAINT_BRUSH_STATE_LAST_GETCOLOR_R];
         g = self->states[MYPAINT_BRUSH_STATE_LAST_GETCOLOR_G];
@@ -807,39 +907,182 @@ smallest_angular_difference(float angleA, float angleB)
       self->states[MYPAINT_BRUSH_STATE_SMUDGE_A ] = fac*self->states[MYPAINT_BRUSH_STATE_SMUDGE_A ] + (1-fac)*a;
       // fix rounding errors
       self->states[MYPAINT_BRUSH_STATE_SMUDGE_A ] = CLAMP(self->states[MYPAINT_BRUSH_STATE_SMUDGE_A], 0.0, 1.0);
+      float smudge_state[3] = {self->states[MYPAINT_BRUSH_STATE_SMUDGE_RA], self->states[MYPAINT_BRUSH_STATE_SMUDGE_GA], self->states[MYPAINT_BRUSH_STATE_SMUDGE_BA]};
+      float smudge_get[3] = {r, g, b};
 
-      self->states[MYPAINT_BRUSH_STATE_SMUDGE_RA] = fac*self->states[MYPAINT_BRUSH_STATE_SMUDGE_RA] + (1-fac)*r*a;
-      self->states[MYPAINT_BRUSH_STATE_SMUDGE_GA] = fac*self->states[MYPAINT_BRUSH_STATE_SMUDGE_GA] + (1-fac)*g*a;
-      self->states[MYPAINT_BRUSH_STATE_SMUDGE_BA] = fac*self->states[MYPAINT_BRUSH_STATE_SMUDGE_BA] + (1-fac)*b*a;
+      float *smudge_new;
+      smudge_new = mix_colors(self, smudge_state, smudge_get, fac, self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE_GAMMA], a, 1);
+
+      self->states[MYPAINT_BRUSH_STATE_SMUDGE_RA] = smudge_new[0];
+      self->states[MYPAINT_BRUSH_STATE_SMUDGE_GA] = smudge_new[1];
+      self->states[MYPAINT_BRUSH_STATE_SMUDGE_BA] = smudge_new[2];
     }
 
     // color part
-
     float color_h = mypaint_mapping_get_base_value(self->settings[MYPAINT_BRUSH_SETTING_COLOR_H]);
     float color_s = mypaint_mapping_get_base_value(self->settings[MYPAINT_BRUSH_SETTING_COLOR_S]);
     float color_v = mypaint_mapping_get_base_value(self->settings[MYPAINT_BRUSH_SETTING_COLOR_V]);
     float eraser_target_alpha = 1.0;
+    float brush_h, brush_s, brush_l, smudge_h, smudge_s, smudge_l;
+
     if (self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE] > 0.0) {
-      // mix (in RGB) the smudge color with the brush color
-      hsv_to_rgb_float (&color_h, &color_s, &color_v);
       float fac = self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE];
+      hsv_to_rgb_float (&color_h, &color_s, &color_v);
+      
       if (fac > 1.0) fac = 1.0;
-      // If the smudge color somewhat transparent, then the resulting
-      // dab will do erasing towards that transparency level.
-      // see also ../doc/smudge_math.png
-      eraser_target_alpha = (1-fac)*1.0 + fac*self->states[MYPAINT_BRUSH_STATE_SMUDGE_A];
-      // fix rounding errors (they really seem to happen in the previous line)
-      eraser_target_alpha = CLAMP(eraser_target_alpha, 0.0, 1.0);
+        // If the smudge color somewhat transparent, then the resulting
+        // dab will do erasing towards that transparency level.
+        // see also ../doc/smudge_math.png
+        eraser_target_alpha = (1-fac)*1.0 + fac*self->states[MYPAINT_BRUSH_STATE_SMUDGE_A];
+        // fix rounding errors (they really seem to happen in the previous line)
+        eraser_target_alpha = CLAMP(eraser_target_alpha, 0.0, 1.0);
+        if (eraser_target_alpha > 0) {
+          //store values for brush and smudge for later adjustments via the smudge adjustment mode setting
+          //using HSL naming but it will depend on the mode selected
+          
+          brush_h = color_h;
+          brush_s = color_s;
+          brush_l = color_v;
+          
+          //grab the RGB w/o alpha multiplied already- we're only using it for colorfulness and brightness later
+          smudge_h = self->states[MYPAINT_BRUSH_STATE_SMUDGE_RA] / self->states[MYPAINT_BRUSH_STATE_SMUDGE_A];
+          smudge_s = self->states[MYPAINT_BRUSH_STATE_SMUDGE_GA] / self->states[MYPAINT_BRUSH_STATE_SMUDGE_A];
+          smudge_l = self->states[MYPAINT_BRUSH_STATE_SMUDGE_BA] / self->states[MYPAINT_BRUSH_STATE_SMUDGE_A];
+          
+          //convert back to rgb if needed
+          if (self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE_PRIMARIES] >= 1.0 && self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE_PRIMARIES] < 2.0) {
+          //RYB
+          ryb_to_rgb_float (&smudge_h, &smudge_s, &smudge_l);
+          }
+          
+          //0-1 is native mode for sat and luma. 1-2 is HCY. 2-3 is HSL, 3-4 is HSV
+          //no crossfade
+          if (self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE_ADJUSTMENT_MODE] >= 1.0 && self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE_ADJUSTMENT_MODE] < 2.0) {
+            //HCY
+            rgb_to_hcy_float (&brush_h, &brush_s, &brush_l);
+            rgb_to_hcy_float (&smudge_h, &smudge_s, &smudge_l);
+          } else if (self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE_ADJUSTMENT_MODE] >= 2.0 && self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE_ADJUSTMENT_MODE] < 3.0 ) {
+            //HSL
+            rgb_to_hsl_float (&brush_h, &brush_s, &brush_l);
+            rgb_to_hsl_float (&smudge_h, &smudge_s, &smudge_l);
+          } else if (self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE_ADJUSTMENT_MODE] >= 3.0 && self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE_ADJUSTMENT_MODE] <= 4.0 ) {
+            //HSV
+            brush_h = mypaint_mapping_get_base_value(self->settings[MYPAINT_BRUSH_SETTING_COLOR_H]);
+            brush_s = mypaint_mapping_get_base_value(self->settings[MYPAINT_BRUSH_SETTING_COLOR_S]);
+            brush_l = mypaint_mapping_get_base_value(self->settings[MYPAINT_BRUSH_SETTING_COLOR_V]);
+            rgb_to_hsv_float (&smudge_h, &smudge_s, &smudge_l);
+          }
+          
+          if (self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE_PRIMARIES] >= 1.0 && self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE_PRIMARIES] < 2.0) {
+            //RYB Mode
+            rgb_to_ryb_float (&color_h, &color_s, &color_v);
+          }
+          float smudge_state[3] = {self->states[MYPAINT_BRUSH_STATE_SMUDGE_RA], self->states[MYPAINT_BRUSH_STATE_SMUDGE_GA], self->states[MYPAINT_BRUSH_STATE_SMUDGE_BA]};
+          float brush_color[3] = {color_h, color_s, color_v};
+          float *color_new;
+          
+          color_new = mix_colors(self, smudge_state, brush_color, fac, self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE_GAMMA], eraser_target_alpha, 0);  
+          
+          
+          color_h = color_new[0];
+          color_s = color_new[1];
+          color_v = color_new[2];
+          
+          if (self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE_PRIMARIES] >= 1.0 && self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE_PRIMARIES] < 2.0) {
+            //RYB Mode 
+            ryb_to_rgb_float (&color_h, &color_s, &color_v);
+          }
+          //more mix modes here later
+       
+        } else {
+          // we are only erasing; the color does not matter
+          color_h = 1.0;
+          color_s = 0.0;
+          color_v = 0.0;
+        }
       if (eraser_target_alpha > 0) {
-        color_h = (fac*self->states[MYPAINT_BRUSH_STATE_SMUDGE_RA] + (1-fac)*color_h) / eraser_target_alpha;
-        color_s = (fac*self->states[MYPAINT_BRUSH_STATE_SMUDGE_GA] + (1-fac)*color_s) / eraser_target_alpha;
-        color_v = (fac*self->states[MYPAINT_BRUSH_STATE_SMUDGE_BA] + (1-fac)*color_v) / eraser_target_alpha;
-      } else {
-        // we are only erasing; the color does not matter
-        color_h = 1.0;
-        color_s = 0.0;
-        color_v = 0.0;
+        //convert to HCY/HSL/HSV for saturation and/or luma adjustment
+        if (self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE_ADJUSTMENT_MODE] >= 1.0 && self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE_ADJUSTMENT_MODE] < 2.0) {
+        rgb_to_hcy_float (&color_h, &color_s, &color_v);
+        } else if (self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE_ADJUSTMENT_MODE] >= 2.0 && self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE_ADJUSTMENT_MODE] < 3.0 ) {
+          rgb_to_hsl_float (&color_h, &color_s, &color_v);
+          } else if (self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE_ADJUSTMENT_MODE] >= 3.0 && self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE_ADJUSTMENT_MODE] <= 4.0 ) {
+            rgb_to_hsv_float (&color_h, &color_s, &color_v);
+            }
+
+        //set our Brightness of the mix according to mode result. and also process saturation
+        //0-1 is native so skip
+        if (brush_s != 0 && smudge_s != 0 && self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE_ADJUSTMENT_MODE] >= 1.0 ) {      
+          
+          
+          //desaturate if paints are different.  SMUDGE_DESATURATION setting allows tweaking or even reversing of this.
+          //mixing two different paints should always decrease saturation/colorfulness but without the below adjustment 
+          //100% Y and 100% B creates 100% Green, which is not right
+          //don't bother unless the color is somewhat saturated to begin with, or we are increasing sat.  Zero will disable this
+
+          if ((self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE_DESATURATION] != 0) || self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE_DARKEN] != 0) {
+
+            //distort RGB hue to RYB for hue comparison
+            //copied from adjbases.py in mypaint
+            float ryb[3][4] = {
+              {0.0, 1 / 6.0, 0.0, 1 / 3.0} ,
+              {1 / 6.0, 1 / 3.0, 1 / 3.0, 1 / 2.0} ,
+              {1 / 3.0, 2 / 3.0, 1 / 2.0, 2 / 3.0}
+            };
+            //more distortion tables to go here, later
+
+            //for each color (brush_h and smudge_h) distort the hue to make comparison possible in the selected color model
+            float colors[2] = { smudge_h, brush_h};
+            int i;
+            for ( i = 0; i < 2; i++ ) {
+
+              if (self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE_PRIMARIES] >= 1.0 && self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE_PRIMARIES] < 2.0) {  
+              //convert to RYB angles
+              int j;
+                for ( j = 0; j < 3; j++) {
+                
+                  if ( colors[i] > ryb[j][0] && colors[i] <= ryb[j][1]) {
+                  colors[i] -= ryb[j][0];
+                  colors[i] *= ( ryb[j][3] - ryb[j][2] ) / ( ryb[j][1] - ryb[j][0] );
+                  colors[i] += ryb[j][2];
+                  break;
+                  }
+                }
+              }
+              //more distortion modes here, later
+            }
+            //determine hue diff, proportional to smudge ratio
+            //if fac is .5 the hueratio should be 1. When fac closer to 0 and closer to 1 should decrease towards zero
+            //why- because if smudge is 0 or 1, only 100% of one of the brush or smudge color will be used so there is no comparison to make.
+            //when fac is 0.5 the smudge and brush are mixed 50/50, so the huedifference should be respected 100%
+            float huediff_sat;
+            float huediff_bright;
+            float hueratio;
+            hueratio = (0.5 - fabs(0.5 - fac)) / 0.5;
+                
+            //calculate the adjusted hue difference and apply that to the saturation level in the selected adjustmode mode (HCY, HSL, etc)
+            //if smudge_desaturation setting is zero, the huediff will be zero.  Likewise when smudge (fac) is 0 or 1, the huediff will be zero.
+            huediff_sat = fabs(smallest_angular_difference(colors[0]*360, colors[1]*360)/360) * self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE_DESATURATION]*hueratio;
+            //do the same for brightness
+            huediff_bright = fabs(smallest_angular_difference(colors[0]*360, colors[1]*360)/360) * self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE_DARKEN]*hueratio;
+            //color_s = CLAMP((fac*smudge_s + (1-fac) * brush_s) * (1-huediff), 0.0, 1.0);
+            //commented out above as it doesn't make sense to mix the Colorfulness of the smudge and brush colors.
+            color_s = color_s*(1-huediff_sat);
+            
+            //attempt to simulate subtractive mode by darkening colors if they are different hues
+            color_v = color_v*(1-huediff_bright);
+          }
+        }
+        //convert back to RGB if necessary (Adjustment mode not native)
+        if (self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE_ADJUSTMENT_MODE] >= 1.0 && self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE_ADJUSTMENT_MODE] < 2.0) {
+        hcy_to_rgb_float (&color_h, &color_s, &color_v);
+        } else if (self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE_ADJUSTMENT_MODE] >= 2.0 && self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE_ADJUSTMENT_MODE] < 3.0 ) {
+          hsl_to_rgb_float (&color_h, &color_s, &color_v);
+          } else if (self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE_ADJUSTMENT_MODE] >= 3.0 && self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE_ADJUSTMENT_MODE] <= 4.0 ) {
+            hsv_to_rgb_float (&color_h, &color_s, &color_v);
+            }
       }
+      //finally convert back to HSV
       rgb_to_hsv_float (&color_h, &color_s, &color_v);
     }
 

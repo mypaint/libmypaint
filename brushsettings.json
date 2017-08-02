@@ -101,6 +101,16 @@
             "tooltip": "Right ascension of stylus tilt. 0 when stylus working end points to you, +90 when rotated 90 degrees clockwise, -90 when rotated 90 degrees counterclockwise."
         }, 
         {
+            "displayed_name": "Base Brush Radius", 
+            "hard_maximum": 6.0, 
+            "hard_minimum": -2.0, 
+            "id": "brush_radius", 
+            "normal": 0.0, 
+            "soft_maximum": 6.0, 
+            "soft_minimum": -2.0, 
+            "tooltip": "The base brush radius of the current brush.  This allows you to change the behavior of a brush as you make it bigger or smaller.\nYou can even cancel-out dab size increase and adjust something else to make a brush bigger.\nTake note of dabs-per-basic radius and dabs-per-actual radius, which behave much differently."
+        }, 
+        {
             "displayed_name": "Custom", 
             "hard_maximum": null, 
             "hard_minimum": null, 

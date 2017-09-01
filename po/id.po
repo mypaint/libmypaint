@@ -5,8 +5,8 @@ msgstr ""
 "Project-Id-Version: 0.8\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-04 18:33+0100\n"
-"PO-Revision-Date: 2015-07-29 20:51+0200\n"
-"Last-Translator: Irvan Satria <irvsat@yahoo.com>\n"
+"PO-Revision-Date: 2017-09-02 16:46+0000\n"
+"Last-Translator: fidella <fidellawi@gmail.com>\n"
 "Language-Team: Indonesian "
 "<https://hosted.weblate.org/projects/mypaint/libmypaint/id/>\n"
 "Language: id\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 2.4-dev\n"
+"X-Generator: Weblate 2.17-dev\n"
 
 #: ../brushsettings-gen.h:4
 #, fuzzy
@@ -75,7 +75,7 @@ msgstr ""
 
 #: ../brushsettings-gen.h:7
 msgid "Radius"
-msgstr "Jari2"
+msgstr "Jari-jari"
 
 #: ../brushsettings-gen.h:7
 #, fuzzy
@@ -114,7 +114,7 @@ msgstr ""
 
 #: ../brushsettings-gen.h:10
 msgid "Dabs per basic radius"
-msgstr "Olesan per jari2"
+msgstr "Olesan per jari-jari"
 
 #: ../brushsettings-gen.h:10
 msgid ""
@@ -122,19 +122,19 @@ msgid ""
 "(more precise: the base value of the radius)"
 msgstr ""
 "Banyaknya olesan untuk menggambar ketika pointer bergerak pada jarak satu "
-"jari2 kuas (atau lebih jelasnya: nilai dasar untuk jari2)"
+"jari-jari kuas (atau lebih jelasnya: nilai dasar untuk jari-jari)"
 
 #: ../brushsettings-gen.h:11
 msgid "Dabs per actual radius"
-msgstr "Olesan per jari2 sebenarnya"
+msgstr "Olesan per jari-jari sebenarnya"
 
 #: ../brushsettings-gen.h:11
 msgid ""
 "Same as above, but the radius actually drawn is used, which can change "
 "dynamically"
 msgstr ""
-"Sama seperti diatas, tapi jari-jari sebenarnya yg dipakai, yg mana dapat "
-"berubah secara dinamis"
+"Sama seperti di atas, tapi jari-jari sebenarnya yang dipakai, yang mana "
+"dapat berubah secara dinamis"
 
 #: ../brushsettings-gen.h:12
 msgid "Dabs per second"
@@ -142,11 +142,11 @@ msgstr "Olesan per detik"
 
 #: ../brushsettings-gen.h:12
 msgid "Dabs to draw each second, no matter how far the pointer moves"
-msgstr "Olesan yg digambar tiap detik, tak peduli sejauh apa pointer bergerak"
+msgstr "Olesan yang digambar tiap detik, tak peduli sejauh apa pointer bergerak"
 
 #: ../brushsettings-gen.h:13
 msgid "Radius by random"
-msgstr "Keacakan jari2"
+msgstr "Keacakan jari-jari"
 
 #: ../brushsettings-gen.h:13
 #, fuzzy
@@ -185,7 +185,7 @@ msgstr "Filter kecepatan kasar"
 #: ../brushsettings-gen.h:15
 msgid "Same as 'fine speed filter', but note that the range is different"
 msgstr ""
-"Sama seperti 'pembatas.kecepatan.halus', tapi dengan jangkauan yg berbeda"
+"Sama seperti 'pembatas kecepatan halus', tapi dengan jangkauan yang berbeda"
 
 #: ../brushsettings-gen.h:16
 msgid "Fine speed gamma"
@@ -266,8 +266,8 @@ msgid ""
 "Slowdown pointer tracking speed. 0 disables it, higher values remove more "
 "jitter in cursor movements. Useful for drawing smooth, comic-like outlines."
 msgstr ""
-"Pelankan kecepatan pelacakan pointer. 0 untuk mematikan, nilai yg lebih "
-"tinggi menghapus banyak kerlipan pada pergerakkan cursor. Berguna utuk "
+"Pelankan kecepatan pelacakan pointer. 0 untuk mematikan, nilai yang lebih "
+"tinggi menghapus banyak kerlipan pada pergerakan cursor. Berguna untuk "
 "menggambar halus, outline seperti komik."
 
 #: ../brushsettings-gen.h:22
@@ -365,7 +365,7 @@ msgstr ""
 
 #: ../brushsettings-gen.h:30
 msgid "Change color satur. (HSL)"
-msgstr "Ganti saturasi warna (HSL)"
+msgstr "Ganti saturasi warna. (HSL)"
 
 #: ../brushsettings-gen.h:30
 #, fuzzy
@@ -402,7 +402,7 @@ msgstr ""
 
 #: ../brushsettings-gen.h:32
 msgid "Change color satur. (HSV)"
-msgstr "Ganti saturasi warna (HSV)"
+msgstr "Ganti saturasi warna. (HSV)"
 
 #: ../brushsettings-gen.h:32
 #, fuzzy
@@ -460,7 +460,7 @@ msgstr ""
 
 #: ../brushsettings-gen.h:35
 msgid "Smudge radius"
-msgstr "Jari2 smudge"
+msgstr "Jari-jari smudge"
 
 #: ../brushsettings-gen.h:35
 #, fuzzy
@@ -620,7 +620,7 @@ msgid ""
 "A low value will make the direction input adapt more quickly, a high value "
 "will make it smoother"
 msgstr ""
-"Nilai rendah membuat arah input menyesuaikan lebih cepat, nilai yg tinggi "
+"Nilai rendah membuat arah input menyesuaikan lebih cepat, nilai yang tinggi "
 "membuat lebih halus"
 
 #: ../brushsettings-gen.h:45
@@ -693,8 +693,8 @@ msgid ""
 "are rare but possible for very low speed."
 msgstr ""
 "Seberapa cepat kamu menggerakkan kuas. Ini dapat berubah sangat cepat. Coba "
-"'cetak nilai iput' pada menu 'bantuan' untuk merasakan jangkauannya; nilai "
-"minus jarang tapi memungkinkan pada kecepatan sngat rendah."
+"'cetak nilai input' pada menu 'bantuan' untuk merasakan jangkauannya; nilai "
+"minus jarang tapi mungkin pada kecepatan sangat rendah."
 
 #: ../brushsettings-gen.h:55
 msgid "Gross speed"
@@ -717,8 +717,8 @@ msgid ""
 "Fast random noise, changing at each evaluation. Evenly distributed between 0 "
 "and 1."
 msgstr ""
-"Noise acak yg cepat, berubah pada setiap evalusi. Diedarkan merata antara 0 "
-"hingga 1."
+"Noise acak yang cepat, berubah pada setiap evalusi. Diedarkan merata antara "
+"0 hingga 1."
 
 #: ../brushsettings-gen.h:57
 msgid "Stroke"
@@ -730,10 +730,10 @@ msgid ""
 "be configured to jump back to zero periodically while you move. Look at the "
 "'stroke duration' and 'stroke hold time' settings."
 msgstr ""
-"Input ini berubah dgn pelan dari nol ke satu ketika kamu menggambar stroke. "
-"Dapat juga diatur untuk melompat kembali ke nol secara periodik ketika kamu "
-"bergerak. Lihat pada pengaturan 'lama stroke' dan 'waktu untuk menahan "
-"stroke'."
+"Input ini berubah dengan pelan dari nol ke satu ketika kamu menggambar "
+"stroke. Dapat juga diatur untuk melompat kembali ke nol secara periodik "
+"ketika kamu bergerak. Lihat pada pengaturan 'lama stroke' dan 'waktu untuk "
+"menahan stroke'."
 
 #: ../brushsettings-gen.h:58
 msgid "Direction"
@@ -745,7 +745,7 @@ msgid ""
 "180.0, effectively ignoring turns of 180 degrees."
 msgstr ""
 "Kemiringan stroke, dalam derajat. Nilainya akan tetap berada antara 0.0 "
-"hingga 180.0, mengabaikan 180 degrees selanjutnya."
+"hingga 180.0, mengabaikan putaran 180 derajat."
 
 #: ../brushsettings-gen.h:59
 msgid "Declination"
@@ -769,9 +769,9 @@ msgid ""
 "when rotated 90 degrees clockwise, -90 when rotated 90 degrees "
 "counterclockwise."
 msgstr ""
-"Kenaikan dari kemiringan stylus.. 0 ketika ujung stylus mengarah kepadamu, "
-"+90 ketika diputar 90 derajat searah jarum jam, -90 ketika diputar 90 "
-"derajat melawan jarum jam."
+"Kenaikan dari kemiringan stylus. 0 ketika ujung stylus mengarah kepadamu, +"
+"90 ketika diputar 90 derajat searah jarum jam, -90 ketika diputar 90 derajat "
+"melawan jarum jam."
 
 #: ../brushsettings-gen.h:61
 #, fuzzy

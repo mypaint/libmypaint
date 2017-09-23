@@ -16,7 +16,7 @@ def is_ctest(fn):
 def test_libmypaint():
     c_tests = [
         os.path.abspath(os.path.join(tests_dir, fn))
-        for fn in os.listdir(tests_dir)
+        for fn in sorted(os.listdir(tests_dir))
         if is_ctest(fn)
     ]
 

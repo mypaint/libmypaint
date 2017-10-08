@@ -54,6 +54,7 @@ The traditional setup works just fine.
     $ ./autogen.sh    # Only needed when building from git.
     $ ./configure
     $ make install
+    $ sudo ldconfig
 
 ### Maintainer mode
 

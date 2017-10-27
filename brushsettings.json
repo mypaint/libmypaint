@@ -484,6 +484,15 @@
             "tooltip": "This controls how fast the smudge color becomes the color you are painting on.\n0.0 immediately update the smudge color (requires more CPU cycles because of the frequent color checks)\n0.5 change the smudge color steadily towards the canvas color\n1.0 never change the smudge color"
         },
         {
+            "constant": true,
+            "default": 0.0,
+            "displayed_name": "Smudge length multiplier",
+            "internal_name": "smudge_length_log",
+            "maximum": 10.0,
+            "minimum": 0.0,
+            "tooltip": "Lengthens the smudge_length, logarithmic\nUseful to correct for high-definition/large brushes with lots of dabs"
+        },
+        {
             "constant": false,
             "default": 0.0,
             "displayed_name": "Smudge radius",
@@ -515,7 +524,7 @@
             "default": 4.0,
             "displayed_name": "Stroke duration",
             "internal_name": "stroke_duration_logarithmic",
-            "maximum": 7.0,
+            "maximum": 14.0,
             "minimum": -1.0,
             "tooltip": "How far you have to move until the stroke input reaches 1.0. This value is logarithmic (negative values will not invert the process)."
         },

@@ -484,11 +484,11 @@
             "tooltip": "This controls how fast the smudge color becomes the color you are painting on.\n0.0 immediately update the smudge color (requires more CPU cycles because of the frequent color checks)\n0.5 change the smudge color steadily towards the canvas color\n1.0 never change the smudge color"
         },
         {
-            "constant": true,
+            "constant": false,
             "default": 0.0,
             "displayed_name": "Smudge length multiplier",
             "internal_name": "smudge_length_log",
-            "maximum": 10.0,
+            "maximum": 20.0,
             "minimum": 0.0,
             "tooltip": "Lengthens the smudge_length, logarithmic\nUseful to correct for high-definition/large brushes with lots of dabs"
         },

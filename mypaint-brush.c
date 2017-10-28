@@ -782,7 +782,7 @@ smallest_angular_difference(float angleA, float angleB)
       // second dab.
       float r, g, b, a;
       self->states[MYPAINT_BRUSH_STATE_LAST_GETCOLOR_RECENTNESS] *= fac;
-      if (self->states[MYPAINT_BRUSH_STATE_LAST_GETCOLOR_RECENTNESS] < 0.5*fac*powf(1000, -self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE_LENGTH_LOG])) {
+      if (self->states[MYPAINT_BRUSH_STATE_LAST_GETCOLOR_RECENTNESS] < (0.5*fac*powf(1000.0, -self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE_LENGTH_LOG])) + 0.0000000000000001) {
         if (self->states[MYPAINT_BRUSH_STATE_LAST_GETCOLOR_RECENTNESS] == 0.0) {
           // first initialization of smudge color
           fac = 0.0;

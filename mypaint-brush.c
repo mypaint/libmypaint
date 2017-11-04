@@ -462,6 +462,9 @@ smallest_angular_difference(float angleA, float angleB)
     float inputs[MYPAINT_BRUSH_INPUTS_COUNT];
     float viewzoom;
     float viewrotation;
+    float gridmap_scale;
+    float gridmap_scale_x;
+    float gridmap_scale_y;
 
     if (step_dtime < 0.0) {
       printf("Time is running backwards!\n");
@@ -480,6 +483,19 @@ smallest_angular_difference(float angleA, float angleB)
     
     self->states[MYPAINT_BRUSH_STATE_VIEWZOOM] = step_viewzoom;
     self->states[MYPAINT_BRUSH_STATE_VIEWROTATION] = mod((step_viewrotation * 180.0 / M_PI) + 180.0, 360.0) -180.0;
+    gridmap_scale = expf(self->settings_value[MYPAINT_BRUSH_SETTING_GRIDMAP_SCALE]);
+    gridmap_scale_x = self->settings_value[MYPAINT_BRUSH_SETTING_GRIDMAP_SCALE_X];
+    gridmap_scale_y = self->settings_value[MYPAINT_BRUSH_SETTING_GRIDMAP_SCALE_Y];
+    self->states[MYPAINT_BRUSH_STATE_GRIDMAP_X] = mod(fabsf(self->states[MYPAINT_BRUSH_STATE_ACTUAL_X] * gridmap_scale_x), (gridmap_scale * 256.0)) / (gridmap_scale * 256.0) * 256.0;
+    self->states[MYPAINT_BRUSH_STATE_GRIDMAP_Y] = mod(fabsf(self->states[MYPAINT_BRUSH_STATE_ACTUAL_Y] * gridmap_scale_y), (gridmap_scale * 256.0)) / (gridmap_scale * 256.0) * 256.0;
+    
+    if (self->states[MYPAINT_BRUSH_STATE_ACTUAL_X] < 0.0) {
+      self->states[MYPAINT_BRUSH_STATE_GRIDMAP_X] = 256.0 - self->states[MYPAINT_BRUSH_STATE_GRIDMAP_X];
+    }
+
+    if (self->states[MYPAINT_BRUSH_STATE_ACTUAL_Y] < 0.0) {
+      self->states[MYPAINT_BRUSH_STATE_GRIDMAP_Y] = 256.0 - self->states[MYPAINT_BRUSH_STATE_GRIDMAP_Y];
+    }
 
     float base_radius = expf(mypaint_mapping_get_base_value(self->settings[MYPAINT_BRUSH_SETTING_RADIUS_LOGARITHMIC]));
     
@@ -538,10 +554,12 @@ smallest_angular_difference(float angleA, float angleB)
     inputs[MYPAINT_BRUSH_INPUT_VIEWZOOM] = (mypaint_mapping_get_base_value(self->settings[MYPAINT_BRUSH_SETTING_RADIUS_LOGARITHMIC])) - logf(base_radius * 1 / self->states[MYPAINT_BRUSH_STATE_VIEWZOOM]);
     inputs[MYPAINT_BRUSH_INPUT_ATTACK_ANGLE] = smallest_angular_difference(self->states[MYPAINT_BRUSH_STATE_ASCENSION], mod(atan2f(self->states[MYPAINT_BRUSH_STATE_DIRECTION_ANGLE_DY], self->states[MYPAINT_BRUSH_STATE_DIRECTION_ANGLE_DX]) / (2 * M_PI) * 360 + 90, 360));
     inputs[MYPAINT_BRUSH_INPUT_BRUSH_RADIUS] = mypaint_mapping_get_base_value(self->settings[MYPAINT_BRUSH_SETTING_RADIUS_LOGARITHMIC]);
+    inputs[MYPAINT_BRUSH_INPUT_GRIDMAP_X] = CLAMP(self->states[MYPAINT_BRUSH_STATE_GRIDMAP_X], 0.0, 256.0);
+    inputs[MYPAINT_BRUSH_INPUT_GRIDMAP_Y] = CLAMP(self->states[MYPAINT_BRUSH_STATE_GRIDMAP_Y], 0.0, 256.0);
 
     inputs[MYPAINT_BRUSH_INPUT_CUSTOM] = self->states[MYPAINT_BRUSH_STATE_CUSTOM_INPUT];
     if (self->print_inputs) {
-      printf("press=% 4.3f, speed1=% 4.4f\tspeed2=% 4.4f\tstroke=% 4.3f\tcustom=% 4.3f\tviewzoom=% 4.3f\tviewrotation=% 4.3f\tasc=% 4.3f\tdir=% 4.3f\tdec=% 4.3f\tdabang=% 4.3f\n", (double)inputs[MYPAINT_BRUSH_INPUT_PRESSURE], (double)inputs[MYPAINT_BRUSH_INPUT_SPEED1], (double)inputs[MYPAINT_BRUSH_INPUT_SPEED2], (double)inputs[MYPAINT_BRUSH_INPUT_STROKE], (double)inputs[MYPAINT_BRUSH_INPUT_CUSTOM], (double)inputs[MYPAINT_BRUSH_INPUT_VIEWZOOM], (double)self->states[MYPAINT_BRUSH_STATE_VIEWROTATION], (double)inputs[MYPAINT_BRUSH_INPUT_TILT_ASCENSION], (double)inputs[MYPAINT_BRUSH_INPUT_DIRECTION], (double)inputs[MYPAINT_BRUSH_INPUT_TILT_DECLINATION], (double)self->states[MYPAINT_BRUSH_STATE_ACTUAL_ELLIPTICAL_DAB_ANGLE]);
+      printf("press=% 4.3f, speed1=% 4.4f\tspeed2=% 4.4f\tstroke=% 4.3f\tcustom=% 4.3f\tviewzoom=% 4.3f\tviewrotation=% 4.3f\tasc=% 4.3f\tdir=% 4.3f\tdec=% 4.3f\tdabang=% 4.3f\tgridmapx=% 4.3f\tgridmapy=% 4.3fX=% 4.3f\tY=% 4.3f\n", (double)inputs[MYPAINT_BRUSH_INPUT_PRESSURE], (double)inputs[MYPAINT_BRUSH_INPUT_SPEED1], (double)inputs[MYPAINT_BRUSH_INPUT_SPEED2], (double)inputs[MYPAINT_BRUSH_INPUT_STROKE], (double)inputs[MYPAINT_BRUSH_INPUT_CUSTOM], (double)inputs[MYPAINT_BRUSH_INPUT_VIEWZOOM], (double)self->states[MYPAINT_BRUSH_STATE_VIEWROTATION], (double)inputs[MYPAINT_BRUSH_INPUT_TILT_ASCENSION], (double)inputs[MYPAINT_BRUSH_INPUT_DIRECTION], (double)inputs[MYPAINT_BRUSH_INPUT_TILT_DECLINATION], (double)self->states[MYPAINT_BRUSH_STATE_ACTUAL_ELLIPTICAL_DAB_ANGLE], (double)inputs[MYPAINT_BRUSH_INPUT_GRIDMAP_X], (double)inputs[MYPAINT_BRUSH_INPUT_GRIDMAP_Y], (double)self->states[MYPAINT_BRUSH_STATE_ACTUAL_X], (double)self->states[MYPAINT_BRUSH_STATE_ACTUAL_Y]);
     }
     // FIXME: this one fails!!!
     //assert(inputs[MYPAINT_BRUSH_INPUT_SPEED1] >= 0.0 && inputs[MYPAINT_BRUSH_INPUT_SPEED1] < 1e8); // checking for inf

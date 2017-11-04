@@ -109,7 +109,27 @@
             "soft_maximum": 4.15, 
             "soft_minimum": -2.77, 
             "tooltip": "The current zoom level of the canvas view.  Logarithmic: 100% is 0.  200% is .69, 25% is -1.38\nFor Radius Setting, try dragging the slider to -4.15 to create a brush that stays the same size at (almost) every zoom level."
-        },  
+        },
+        { 
+            "displayed_name": "GridMap X",
+            "hard_maximum": 256.0, 
+            "hard_minimum": 0, 
+            "id": "gridmap_x",
+            "normal": 0.0, 
+            "soft_maximum": 256.0, 
+            "soft_minimum": 0.0, 
+            "tooltip": "The X coordinate on a 256 pixel grid.  This will wrap around 0-256 as the cursor is moved on the X axis.  Similar to stroke.  Can be used to add paper texture by modifying opacity, etc.\nNote the brush size should be considerably smaller than the grid scale for best results."
+        },
+        {
+            "displayed_name": "GridMap Y",
+            "hard_maximum": 256.0, 
+            "hard_minimum": 0, 
+            "id": "gridmap_y",
+            "normal": 0.0, 
+            "soft_maximum": 256.0, 
+            "soft_minimum": 0.0, 
+            "tooltip": "The Y coordinate on a 256 pixel grid.  This will wrap around 0-256 as the cursor is moved on the Y axis.  Similar to stroke.  Can be used to add paper texture by modifying opacity, etc.\nNote the brush size should be considerably smaller than the grid scale for best results."
+        }, 
         {
             "displayed_name": "Base Brush Radius", 
             "hard_maximum": 6.0, 
@@ -214,12 +234,39 @@
             "tooltip": "Dabs to draw each second, no matter how far the pointer moves"
         },
         {
-            "constant": false,
+            "constant": false, 
             "default": 0.0,
-            "displayed_name": "Radius by random",
-            "internal_name": "radius_by_random",
-            "maximum": 1.5,
-            "minimum": 0.0,
+            "displayed_name": "GridMap Scale",
+            "internal_name": "gridmap_scale",
+            "maximum": 10.0, 
+            "minimum": -10.0, 
+            "tooltip": "Changes the overall scale that the GridMap brush input operates on.  Logarithmic (same scale as brush radius).  A scale of 0 will make the grid 256x256 pixels."
+        },
+                {
+            "constant": false, 
+            "default": 1.0, 
+            "displayed_name": "GridMap Scale X",
+            "internal_name": "gridmap_scale_x",
+            "maximum": 10.0, 
+            "minimum": 0.0, 
+            "tooltip": "Changes the scale that the GridMap brush input operates on- affects X axis only.  Scale 0X-5X.  This allows you to stretch or compress the GridMap pattern."
+        },  
+                {
+            "constant": false, 
+            "default": 1.0, 
+            "displayed_name": "GridMap Scale Y",
+            "internal_name": "gridmap_scale_y",
+            "maximum": 10.0, 
+            "minimum": 0.0, 
+            "tooltip": "Changes the scale that the GridMap brush input operates on- affects Y axis only.  Scale 0X-5X.  This allows you to stretch or compress the GridMap pattern."
+        },  
+        {
+            "constant": false, 
+            "default": 0.0, 
+            "displayed_name": "Radius by random", 
+            "internal_name": "radius_by_random", 
+            "maximum": 1.5, 
+            "minimum": 0.0, 
             "tooltip": "Alter the radius randomly each dab. You can also do this with the by_random input on the radius setting. If you do it here, there are two differences:\n1) the opaque value will be corrected such that a big-radius dabs is more transparent\n2) it will not change the actual radius seen by dabs_per_actual_radius"
         },
         {
@@ -647,6 +694,8 @@
         "direction_angle_dx",
         "direction_angle_dy",
         "attack_angle",
-        "flip"
+        "flip",
+        "gridmap_x",
+        "gridmap_y"
     ]
 }

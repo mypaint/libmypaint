@@ -24,11 +24,11 @@ main(int argc, char argv[]) {
 
     /* Draw a rectangle on surface with brush */
     mypaint_surface_begin_atomic((MyPaintSurface *)surface);
-    stroke_to(brush, (MyPaintSurface *)surface, 0.0, 0.0);
-    stroke_to(brush, (MyPaintSurface *)surface, 200.0, 0.0);
-    stroke_to(brush, (MyPaintSurface *)surface, 200.0, 200.0);
-    stroke_to(brush, (MyPaintSurface *)surface, 0.0, 200.0);
-    stroke_to(brush, (MyPaintSurface *)surface, 0.0, 0.0);
+    stroke_to(brush, (MyPaintSurface *)surface, 0.0, 0.0, 1.0, 0.0);
+    stroke_to(brush, (MyPaintSurface *)surface, 200.0, 0.0, 1.0, 0.0);
+    stroke_to(brush, (MyPaintSurface *)surface, 200.0, 200.0, 1.0, 0.0);
+    stroke_to(brush, (MyPaintSurface *)surface, 0.0, 200.0, 1.0, 0.0);
+    stroke_to(brush, (MyPaintSurface *)surface, 0.0, 0.0, 1.0, 0.0);
     MyPaintRectangle roi;
     mypaint_surface_end_atomic((MyPaintSurface *)surface, &roi);
 

@@ -5,8 +5,8 @@ msgstr ""
 "Project-Id-Version: 0.8\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-04 18:33+0100\n"
-"PO-Revision-Date: 2017-10-21 09:46+0000\n"
-"Last-Translator: eisenhaus335 <greenzone332@outlook.com>\n"
+"PO-Revision-Date: 2018-03-02 07:37+0000\n"
+"Last-Translator: frottle <work.mcland@gmail.com>\n"
 "Language-Team: Indonesian "
 "<https://hosted.weblate.org/projects/mypaint/libmypaint/id/>\n"
 "Language: id\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 2.17\n"
+"X-Generator: Weblate 2.20-dev\n"
 
 #: ../brushsettings-gen.h:4
 msgid "Opacity"
@@ -75,15 +75,14 @@ msgid "Radius"
 msgstr "Jari-jari"
 
 #: ../brushsettings-gen.h:7
-#, fuzzy
 msgid ""
 "Basic brush radius (logarithmic)\n"
 " 0.7 means 2 pixels\n"
 " 3.0 means 20 pixels"
 msgstr ""
-"Dasar jari2 Kuas (logaritma)\n"
-" 0.7 berarti 2 pixels\n"
-" 3.0 berarti 20 pixels"
+"Jari-jari dasar kuas (logaritmik)\n"
+" 0.7 berarti 2 pixel\n"
+" 3.0 berarti 20 pixel"
 
 #: ../brushsettings-gen.h:8
 msgid "Hardness"
@@ -172,13 +171,13 @@ msgid "Fine speed filter"
 msgstr "Filter kecepatan halus"
 
 #: ../brushsettings-gen.h:14
-#, fuzzy
 msgid ""
 "How slow the input fine speed is following the real speed\n"
 "0.0 change immediately as your speed changes (not recommended, but try it)"
 msgstr ""
-"Seberapa lambat input kecepatan halus mengikuti kecepatan yg sebenarnya\n"
-"0.0 langsung mengikuti kecepatan sebenarnya (tidak dianjurkan,tapi cobalah)"
+"Seberapa lambat input laju olahan mengikuti laju yang sebenarnya\n"
+"0.0 langsung mengikuti laju sebenarnya (tidak dianjurkan, tapi harap "
+"mencobanya)"
 
 #: ../brushsettings-gen.h:15
 msgid "Gross speed filter"
@@ -194,7 +193,6 @@ msgid "Fine speed gamma"
 msgstr "Gamma kecepatan halus"
 
 #: ../brushsettings-gen.h:16
-#, fuzzy
 msgid ""
 "This changes the reaction of the 'fine speed' input to extreme physical "
 "speed. You will see the difference best if 'fine speed' is mapped to the "
@@ -203,11 +201,14 @@ msgid ""
 "+8.0 very fast speed increases 'fine speed' a lot\n"
 "For very slow speed the opposite happens."
 msgstr ""
-"Ini mengganti reaksi dari input kecepatan1 ke kecepatan ekstrem. Kamu akan "
-"lihat perbedaan lebih jelas jika kecepatan1 dipetakan pada jari-jari.\n"
-"-8.0 sangat cepat dan kecepatan1 tidak akan bertambah lagi\n"
-"+8.0 sangat cepat dan menambah kecepatan1 lebih banyak\n"
-"Untuk kecepatan sangat rendah, hal sebaliknya yg terjadi."
+"Ini mengubah reaksi dari input 'laju olahan' menjadi laju fisik yang "
+"ekstrim. Anda dapat melihat perbedaannya dengan lebih jelas apabila 'laju "
+"olahan' dipetakan pada jari-jari.\n"
+"-8.0 laju yang sangat cepat tidak membuat kecepatan 'laju olahan' menjadi "
+"lebih cepat \n"
+"+8.0 laju yang sangat cepat membuat kecepatan 'laju olahan' menjadi jauh "
+"lebih cepat\n"
+"Untuk laju yang sangat lambat, terjadi hal sebaliknya."
 
 #: ../brushsettings-gen.h:17
 msgid "Gross speed gamma"
@@ -222,34 +223,32 @@ msgid "Jitter"
 msgstr "Kerlipan"
 
 #: ../brushsettings-gen.h:18
-#, fuzzy
 msgid ""
 "Add a random offset to the position where each dab is drawn\n"
 " 0.0 disabled\n"
 " 1.0 standard deviation is one basic radius away\n"
 "<0.0 negative values produce no jitter"
 msgstr ""
-"Tambah keacakan offset pada posisi dimana tiap dab tergambar\n"
-" 0.0 matikan\n"
-" 1.0 deviasi standard yakni satu satuan jari-jari dasar\n"
-"<0.0 nilai negatif menjadikan lebih bersih"
+"Menambahkan penyimpangan acak pada posisi di mana tiap goresan tergambar\n"
+" 0.0 non-aktif\n"
+" 1.0 standar penyimpangan adalah satu satuan jari-jari dasar\n"
+"<0.0 nilai negatif meniadakan keacakan gerak"
 
 #: ../brushsettings-gen.h:19
 msgid "Offset by speed"
 msgstr "Offset oleh kecepatan"
 
 #: ../brushsettings-gen.h:19
-#, fuzzy
 msgid ""
 "Change position depending on pointer speed\n"
 "= 0 disable\n"
 "> 0 draw where the pointer moves to\n"
 "< 0 draw where the pointer comes from"
 msgstr ""
-"Ganti posisi berdasarkan kecepatan pointer\n"
-"= 0 matikan\n"
-"> 0 gambar sampai pointer bergerak\n"
-"< 0 gambar sampai pointer berasal"
+"Mengubah posisi berdasarkan kecepatan kursor\n"
+"= 0 non-aktif\n"
+"> 0 gambar sesuai arah yang dituju kursor\n"
+"< 0 gambar sesuai arah datangnya kursor"
 
 #: ../brushsettings-gen.h:20
 msgid "Offset by speed filter"
@@ -277,13 +276,13 @@ msgid "Slow tracking per dab"
 msgstr "Pelacakan lambat per olesan"
 
 #: ../brushsettings-gen.h:22
-#, fuzzy
 msgid ""
 "Similar as above but at brushdab level (ignoring how much time has passed if "
 "brushdabs do not depend on time)"
 msgstr ""
-"Mirip dengan di atas tapi pada level kuas (mengabaikan berapa lama waktu "
-"berlalu, jika dabs tidak bergantung pada waktu)"
+"Mirip dengan di atas tetapi terjadi pada level goresan kuas (mengabaikan "
+"berapa lama waktu yang berlalu apabila goresan kuas tidak bergantung pada "
+"waktu)"
 
 #: ../brushsettings-gen.h:23
 #, fuzzy
@@ -317,9 +316,8 @@ msgid "Color value (brightness, intensity)"
 msgstr "Nilai warna (kecerahan, intensitas)"
 
 #: ../brushsettings-gen.h:27
-#, fuzzy
 msgid "Save color"
-msgstr "Simpan 1"
+msgstr "Simpan warna"
 
 #: ../brushsettings-gen.h:27
 msgid ""
@@ -329,66 +327,65 @@ msgid ""
 " 0.5 change active color towards brush color\n"
 " 1.0 set the active color to the brush color when selected"
 msgstr ""
+"Ketika memilih kuas, warna kuas dapat dikembalikan menjadi warna yang "
+"diterapkan pada kuas ketika menyimpan setelan kuas.\n"
+"0.0 tidak mengubah wana yang sedang aktif ketika memilih kuas ini\n"
+"0.5 mengubah warna yang sedang aktif menjadi warna kuas\n"
+"1.0 menerapkan warna yang sedang aktif pada warna kuas ketika kuas dipilih"
 
 #: ../brushsettings-gen.h:28
 msgid "Change color hue"
 msgstr "Ganti hue warna"
 
 #: ../brushsettings-gen.h:28
-#, fuzzy
 msgid ""
 "Change color hue.\n"
 "-0.1 small clockwise color hue shift\n"
 " 0.0 disable\n"
 " 0.5 counterclockwise hue shift by 180 degrees"
 msgstr ""
-"Ganti roda gelombang warna.\n"
-"-0.1 sedikit pergeseran roda warna serarah jam\n"
-" 0.0 matikan\n"
-" 0.5 pergeseran 180 derajat berlawanan jarum jam"
+"Ubah corak warna.\n"
+"-0.1 sedikit pergeseran corak warna searah jarum jam\n"
+" 0.0 non-aktif\n"
+" 0.5 pergeseran corak warna 180 derajat berlawanan arah jarum jam"
 
 #: ../brushsettings-gen.h:29
-#, fuzzy
 msgid "Change color lightness (HSL)"
-msgstr "Ganti pencahayaan warna (HSL)"
+msgstr "Ubah kecerahan warna (HSL)"
 
 #: ../brushsettings-gen.h:29
-#, fuzzy
 msgid ""
 "Change the color lightness using the HSL color model.\n"
 "-1.0 blacker\n"
 " 0.0 disable\n"
 " 1.0 whiter"
 msgstr ""
-"Ganti pencahayaan warna (luminance) pakai model warna HSL.\n"
-"-1.0 hitamkan\n"
-" 0.0 matikan\n"
-" 1.0 putihkan"
+"Ubah kecerahan warna (luminance) menggunakan model warna HSL.\n"
+"-1.0 lebih hitam\n"
+" 0.0 non-aktif\n"
+" 1.0 lebih putih"
 
 #: ../brushsettings-gen.h:30
 msgid "Change color satur. (HSL)"
 msgstr "Ganti saturasi warna. (HSL)"
 
 #: ../brushsettings-gen.h:30
-#, fuzzy
 msgid ""
 "Change the color saturation using the HSL color model.\n"
 "-1.0 more grayish\n"
 " 0.0 disable\n"
 " 1.0 more saturated"
 msgstr ""
-"Ganti saturasi warna pakai model warna HSL.\n"
+"Ubah saturasi warna menggunakan model warna HSL.\n"
 "-1.0 lebih keabuan\n"
-" 0.0 matikan\n"
-" 1.0 lebih jenuh"
+" 0.0 non-aktif\n"
+" 1.0 lebih pekat"
 
 #: ../brushsettings-gen.h:31
-#, fuzzy
 msgid "Change color value (HSV)"
-msgstr "Ganti nilai warna (HSV)"
+msgstr "Ubah nilai warna (HSV)"
 
 #: ../brushsettings-gen.h:31
-#, fuzzy
 msgid ""
 "Change the color value (brightness, intensity) using the HSV color model. "
 "HSV changes are applied before HSL.\n"
@@ -396,10 +393,10 @@ msgid ""
 " 0.0 disable\n"
 " 1.0 brigher"
 msgstr ""
-"Ganti saturasi warna pakai model warna HSV. Perubahan pada HSVdiaplikasikan "
-"sebelum HSL.\n"
+"Ubah nilai warna (kecerahan, intensitas) menggunakan model warna HSV. "
+"Perubahan pada HSV diaplikasikan sebelum HSL.\n"
 "-1.0 lebih gelap\n"
-" 0.0 matikan\n"
+" 0.0 non-aktif\n"
 " 1.0 lebih terang"
 
 #: ../brushsettings-gen.h:32
@@ -407,7 +404,6 @@ msgid "Change color satur. (HSV)"
 msgstr "Ganti saturasi warna. (HSV)"
 
 #: ../brushsettings-gen.h:32
-#, fuzzy
 msgid ""
 "Change the color saturation using the HSV color model. HSV changes are "
 "applied before HSL.\n"
@@ -415,11 +411,11 @@ msgid ""
 " 0.0 disable\n"
 " 1.0 more saturated"
 msgstr ""
-"Ganti saturasi warna pakai model warna HSV. Perubahan pada HSVdiaplikasikan "
-"sebelum HSL.\n"
+"Ubah saturasi warna mengguanakan model warna HSV. Perubahan pada HSV "
+"diaplikasikan sebelum HSL.\n"
 "-1.0 lebih keabuan\n"
-" 0.0 matikan\n"
-" 1.0 lebih jenuh"
+" 0.0 non-aktif\n"
+" 1.0 lebih pekat"
 
 #: ../brushsettings-gen.h:33
 #, fuzzy
@@ -465,7 +461,6 @@ msgid "Smudge radius"
 msgstr "Jari-jari smudge"
 
 #: ../brushsettings-gen.h:35
-#, fuzzy
 msgid ""
 "This modifies the radius of the circle where color is picked up for "
 "smudging.\n"
@@ -474,62 +469,60 @@ msgid ""
 "+0.7 twice the brush radius\n"
 "+1.6 five times the brush radius (slow performance)"
 msgstr ""
-"Ini merubah jari2 lingkaran pada warna yang diambil untuk smudging.\n"
-" 0.0 jari2 kuas penuh \n"
-"-0.7 setengah jari2 kuas\n"
-"+0.7 dua kali jari2 kuas\n"
-"+1.6 lima kali jari2 kuas (lambat)"
+"Setelan ini mengubah jari-jari lingkaran pada warna yang diambil untuk "
+"proses smudging.\n"
+" 0.0 sesuai dengan jari-jari kuas \n"
+"-0.7 setengah jari-jari kuas\n"
+"+0.7 dua kali jari-jari kuas\n"
+"+1.6 lima kali jari-jari kuas (memperlambat kinerja kuas)"
 
 #: ../brushsettings-gen.h:36
 msgid "Eraser"
 msgstr "Penghapus"
 
 #: ../brushsettings-gen.h:36
-#, fuzzy
 msgid ""
 "how much this tool behaves like an eraser\n"
 " 0.0 normal painting\n"
 " 1.0 standard eraser\n"
 " 0.5 pixels go towards 50% transparency"
 msgstr ""
-"Bagaimana kuas ini berfunsi sbg penghapus\n"
-" 0.0 normal kuas\n"
-" 1.0 standard penghapus\n"
-" 0.5 hasilnya separo transparan"
+"Bagaimana kuas ini berfungsi layaknya penghapus\n"
+" 0.0 kuas lukis normal\n"
+" 1.0 penghapus standar\n"
+" 0.5 tingkat transparansi pixel 50%"
 
 #: ../brushsettings-gen.h:37
 msgid "Stroke threshold"
 msgstr "Ambang batas coretan"
 
 #: ../brushsettings-gen.h:37
-#, fuzzy
 msgid ""
 "How much pressure is needed to start a stroke. This affects the stroke input "
 "only. MyPaint does not need a minimum pressure to start drawing."
 msgstr ""
-"Berapa tekan yg diperlukan untuk memulai coretan. Ini hanya mempengaruhi "
-"coretan masukan.Mypaint tidak perlu batasan minimal tekanan untuk memulai "
-"menggambar."
+"Seberapa banyak tekanan yang diperlukan untuk memulai coretan. Ini hanya "
+"mempengaruhi input coretan. MyPaint tidak memerlukan batas tekanan minimal "
+"untuk mulai menggambar."
 
 #: ../brushsettings-gen.h:38
 msgid "Stroke duration"
 msgstr "Lama coretan"
 
 #: ../brushsettings-gen.h:38
-#, fuzzy
 msgid ""
 "How far you have to move until the stroke input reaches 1.0. This value is "
 "logarithmic (negative values will not invert the process)."
 msgstr ""
-"Seberapa jauh kamu harus menggerakan pen sampai masukan mencapai 1.0. "
-"Nilainya logarithmik (nilai minus tidak akan membalikkan proses)."
+"Seberapa jauh anda harus menggerakkan pen sampai input coretan mencapai 1.0. "
+"Nilai ini bersifat logaritmik (nilai negatif tidak akan menghasilkan proses "
+"sebaliknya)."
 
 #: ../brushsettings-gen.h:39
 msgid "Stroke hold time"
 msgstr "Waktu menahan coretan"
 
 #: ../brushsettings-gen.h:39
-#, fuzzy
 msgid ""
 "This defines how long the stroke input stays at 1.0. After that it will "
 "reset to 0.0 and start growing again, even if the stroke is not yet "
@@ -537,11 +530,12 @@ msgid ""
 "2.0 means twice as long as it takes to go from 0.0 to 1.0\n"
 "9.9 or higher stands for infinite"
 msgstr ""
-"Ini menunjukkan berapa lama input stroke tetap pada 1.0. Kemudian nilai akan "
-"kembali ke 0.0 dan mulai naik lagi, bahkan jika stroke belum "
-"sepenuhnyaselesai.\n"
-"2.0 berarti dua kali lebih lama dari 0.0 menuju 1.0\n"
-"9.9 dan nilai yg lebih besar berarti tak terhingga"
+"Setelan ini menentukan berapa lama input coretan tetap berada pada nilai "
+"1.0. Sebelum kemudian kembali pada nilai 0.0 dan mulai naik lagi walaupun "
+"coretan belum selesai sepenuhnya.\n"
+"2.0 berarti waktu yang dibutuhkan dua kali lebih lama untuk naik dari nilai "
+"0.0 menuju nilai 1.0\n"
+"9.9 dan nilai yg lebih tinggi berarti tak terhingga"
 
 #: ../brushsettings-gen.h:40
 #, fuzzy
@@ -549,7 +543,6 @@ msgid "Custom input"
 msgstr "Custom input"
 
 #: ../brushsettings-gen.h:40
-#, fuzzy
 msgid ""
 "Set the custom input to this value. If it is slowed down, move it towards "
 "this value (see below). The idea is that you make this input depend on a "
@@ -559,13 +552,13 @@ msgid ""
 "If you make it change 'by random' you can generate a slow (smooth) random "
 "input."
 msgstr ""
-"Beri sendiri nilai pada input ini. Jika menjadi lamban, perbanyaklah nilai "
-"ini (lihat di bawah). Intinya yaitu membuat nilai input bergantung pada "
-"perpaduan dari tekanan/kecepatan/apapun, dan membuat setting lain bergantung "
-"pada'inputmu' itu daripada mengulang kombinasi dimanapun saat kamu "
-"membutuhkannya.\n"
-"Jika kamu buatnya berubah 'secara acak' kamu bisa membuat input yg lambat "
-"(halus) tapiacak."
+"Menetapkan input kustom pada nilai ini. Apabila menjadi lamban, perbanyaklah "
+"nilai ini (lihat di bawah). Konsepnya adalah anda membuat input ini berdasar "
+"pada perpaduan antara tekanan/kecepatan/apapun, dan membuat setelan lain "
+"berdasar pada 'input kustom' ini daripada mengulangi kombinasi ini di mana "
+"pun anda membutuhkannya.\n"
+"Apabila anda membuatnya berubah 'berdasarkan keacakan' anda dapat "
+"menghasilkan input yang lambat (halus) dan acak."
 
 #: ../brushsettings-gen.h:41
 msgid "Custom input filter"
@@ -669,20 +662,24 @@ msgid ""
 "This changes how hard you have to press. It multiplies tablet pressure by a "
 "constant factor."
 msgstr ""
+"Setelan ini mengubah seberapa keras anda harus menekan tablet grafis. "
+"Setelan ini menggandakan tekanan pada tablet grafis menggunakan faktor "
+"konstan."
 
 #: ../brushsettings-gen.h:53
 msgid "Pressure"
 msgstr "Tekanan"
 
 #: ../brushsettings-gen.h:53
-#, fuzzy
 msgid ""
 "The pressure reported by the tablet. Usually between 0.0 and 1.0, but it may "
 "get larger when a pressure gain is used. If you use the mouse, it will be "
 "0.5 when a button is pressed and 0.0 otherwise."
 msgstr ""
-"Tekanan yg dilaporkan tablet, antara 0.0 and 1.0. Jika kamu pakai mouse, "
-"akan jadi 0.5 ketika tombol ditekan dan 0.0 jika sebaliknya."
+"Besar tekanan yang dilaporkan oleh tablet grafis. Biasanya antara 0.0 dan "
+"1.0, tetapi akan menjadi lebih besar ketika menggunakan penambahan tekanan. "
+"Jika anda menggunakan tetikus, besar tekanan adalah 0.5 ketika tombol "
+"ditekan dan 0.0 apabila tombol dilepas."
 
 #: ../brushsettings-gen.h:54
 msgid "Fine speed"

@@ -149,7 +149,6 @@ endif
 
 SUBDIRS = \
 	.			\
-	m4macros	\
 	doc			\
 	gegl		\
 	tests		\

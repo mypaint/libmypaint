@@ -285,7 +285,6 @@ AC_CONFIG_FILES([
   gegl/libmypaint-gegl-]libmypaint_api_platform_version()[.pc:gegl/libmypaint-gegl.pc.in
   gegl/Makefile
   libmypaint-]libmypaint_api_platform_version()[.pc:libmypaint.pc.in
-  m4macros/Makefile
   Makefile
   po/Makefile.in
   tests/Makefile

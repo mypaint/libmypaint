@@ -261,7 +261,6 @@ AC_CONFIG_FILES([
   gegl/libmypaint-gegl.pc:gegl/libmypaint-gegl.pc.in
   gegl/Makefile
   libmypaint.pc:libmypaint.pc.in
-  m4macros/Makefile
   Makefile
   po/Makefile.in
   tests/Makefile

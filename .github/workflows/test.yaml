@@ -5,8 +5,8 @@ on:
     - pull_request
 
 jobs:
-    linux:
-        name: Linux
+    linux-autotools:
+        name: Linux Autotools
         runs-on: ubuntu-22.04
         strategy:
             matrix:
@@ -35,3 +35,35 @@ jobs:
                 make
             - name: "Run tests"
               run: make distcheck
+
+    linux-meson:
+        name: Linux Meson
+        runs-on: ubuntu-22.04
+        strategy:
+            matrix:
+                configureFlags:
+                    - ""
+                    - "-Dglib=enabled -Dintrospection=enabled"
+                    - "-Dgegl=enabled"
+                include:
+                    - configureFlags: "-Dglib=enabled -Dintrospection=enabled"
+                      extraDeps: "libgirepository1.0-dev"
+                    - configureFlags: "-Dgegl=enabled"
+                      extraDeps: "libgegl-dev"
+        steps:
+            - uses: actions/checkout@v4
+            - name: "Install dependencies"
+              run: |
+                sudo apt-get update
+                sudo apt-get install -y \
+                    libjson-c-dev \
+                    meson \
+                    ninja-build \
+                    gettext \
+                    ${{ matrix.extraDeps }}
+            - name: "Build"
+              run: |
+                meson setup _build --buildtype=release -Dauto_features=disabled
+                meson compile -C _build
+            - name: "Run tests"
+              run: meson dist -C _build

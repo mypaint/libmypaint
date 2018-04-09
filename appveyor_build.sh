@@ -11,7 +11,9 @@ pacman --noconfirm -S --needed \
        base-devel \
        ${PKG_PREFIX}-json-c \
        ${PKG_PREFIX}-glib2 \
-       ${PKG_PREFIX}-gobject-introspection
+       ${PKG_PREFIX}-gobject-introspection \
+       ${PKG_PREFIX}-meson \
+       git
 
 
 # Add m4 directories to the ACLOCAL_PATH
@@ -29,6 +31,11 @@ done
 
 export ACLOCAL_PATH
 export PWD="$APPVEYOR_BULD_FOLDER"
+
+# Check that Meson build works.
+meson setup _build --buildtype=release -Dgegl=false -Ddocs=false
+meson dist -C _build
+rm -rf _build
 
 ./autogen.sh
 ./configure

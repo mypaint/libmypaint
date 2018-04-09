@@ -1,0 +1,7 @@
+# Files from libmypaint source which would have been marked for runtime
+# translation of messages.
+
+# Dummy file to use instead of POTFILES.in since that one is not compatible
+# with xgettext. It is empty since the files we care about are generated
+# by the build system so we have to pass the paths explicitly when doing
+# out-of-tree builds.

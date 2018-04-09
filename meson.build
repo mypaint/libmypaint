@@ -83,7 +83,7 @@ endif
 ENABLE_DOCS = false
 if get_option('docs')
   DOXYGEN = find_program('doxygen')
-  SPHINX_BUILD = find_program('sphinx-build2', 'sphinx-build-2', 'sphinx-build3', 'sphinx-build-3', 'sphinx-build')
+  SPHINX_BUILD = find_program('sphinx-build3', 'sphinx-build-3', 'sphinx-build2', 'sphinx-build-2', 'sphinx-build')
   # TODO: the python 'breathe' extension is also a dependency to doc building.
   # The configure script should check for its existence.
   ENABLE_DOCS = DOXYGEN.found() and SPHINX_BUILD.found()
@@ -246,7 +246,7 @@ if get_option('introspection')
     install : true)
 endif
 
-#subdir('doc')
+subdir('doc')
 subdir('gegl')
 subdir('po')
 subdir('tests')

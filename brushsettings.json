@@ -522,13 +522,85 @@
             "tooltip": "Paint with the smudge color instead of the brush color. The smudge color is slowly changed to the color you are painting on.\n 0.0 do not use the smudge color\n 0.5 mix the smudge color with the brush color\n 1.0 use only the smudge color"
         },
         {
-            "constant": false,
-            "default": 0.5,
-            "displayed_name": "Smudge length",
-            "internal_name": "smudge_length",
-            "maximum": 1.0,
-            "minimum": 0.0,
+            "constant": false, 
+            "default": 0.0, 
+            "displayed_name": "Smudge Subtractive", 
+            "internal_name": "smudge_normal_sub", 
+            "maximum": 1.0, 
+            "minimum": 0.0, 
+            "tooltip": "Change the smudge mixing model from Normal mode to Subtractive.  0 is Normal and 1 is Subtractive(multiply mode).  In-between will cross-fade the results"
+        },
+        {
+            "constant": false, 
+            "default": 0.0, 
+            "displayed_name": "Smudge Spectral", 
+            "internal_name": "smudge_spectral", 
+            "maximum": 1.0, 
+            "minimum": 0.0, 
+            "tooltip": "Spectral Mixing mode.  0 is normal RGB, 1 is 36 segment spectral mode (Scott Burns)"
+        },  
+        {
+            "constant": false, 
+            "default": 1.0, 
+            "displayed_name": "Smudge Gamma", 
+            "internal_name": "smudge_gamma", 
+            "maximum": 10.0, 
+            "minimum": 1.0, 
+            "tooltip": "Change the gamma of the smudge model\nSetting to 2.4 will allow red and green to blend to a brighter orange color in the RGB model.\nSpectral mode is always at least gamma 2.4\nNote this uses the standard sRGB Rec709 transfer functions with just the gamma factor adjustable"
+        }, 
+        {
+            "constant": false, 
+            "default": 0.0, 
+            "displayed_name": "Smudge Chroma", 
+            "internal_name": "smudge_desaturation", 
+            "maximum": 10.0, 
+            "minimum": -10.0, 
+            "tooltip": "Controls how mixing different hues (brush vs canvas) affect the resulting Chroma. >0 reduce chroma, <0 increase chroma. (HCY)"
+        },
+        {
+            "constant": false, 
+            "default": 0.0, 
+            "displayed_name": "Smudge Luma", 
+            "internal_name": "smudge_darken", 
+            "maximum": 10.0, 
+            "minimum": -10.0, 
+            "tooltip": "Controls how mixing different hues (brush vs canvas) affect Luma. >0 decrease luma, <0 increase luma. (HCY)"
+        },
+        {
+            "constant": false, 
+            "default": 0.0, 
+            "displayed_name": "Smudge Lock", 
+            "internal_name": "smudge_lock", 
+            "maximum": 1.0, 
+            "minimum": 0.0, 
+            "tooltip": "Locks the smudge color immediately when stroke is started.  >0.0 will keep the color the same allowing you to keep a smudge color as long as you'd like"
+        },
+        {
+            "constant": false, 
+            "default": 0.5, 
+            "displayed_name": "Smudge length", 
+            "internal_name": "smudge_length", 
+            "maximum": 1.0, 
+            "minimum": 0.0, 
             "tooltip": "This controls how fast the smudge color becomes the color you are painting on.\n0.0 immediately update the smudge color (requires more CPU cycles because of the frequent color checks)\n0.5 change the smudge color steadily towards the canvas color\n1.0 never change the smudge color"
+        },
+        {
+            "constant": false,
+            "default": 0.0,
+            "displayed_name": "Smudge Length Multiplier",
+            "internal_name": "smudge_length_log",
+            "maximum": 20.0,
+            "minimum": 0.0,
+            "tooltip": "Lengthens the smudge_length, logarithmic\nUseful to correct for high-definition/large brushes with lots of dabs"
+        },
+        {
+            "constant": false, 
+            "default": 0.0, 
+            "displayed_name": "Smudge Bucket", 
+            "internal_name": "smudge_bucket", 
+            "maximum": 255.0, 
+            "minimum": 0.0, 
+            "tooltip": "This controls which bucket the canvas color is mixed in to create a smudge color\n0.0 is bucket 1, 10.0 is bucket 11, etc.  Input is rounded to nearest bucket integer"
         },
         {
             "constant": false,
@@ -562,7 +634,7 @@
             "default": 4.0,
             "displayed_name": "Stroke duration",
             "internal_name": "stroke_duration_logarithmic",
-            "maximum": 7.0,
+            "maximum": 14.0,
             "minimum": -1.0,
             "tooltip": "How far you have to move until the stroke input reaches 1.0. This value is logarithmic (negative values will not invert the process)."
         },
@@ -696,6 +768,7 @@
         "attack_angle",
         "flip",
         "gridmap_x",
-        "gridmap_y"
-    ]
+        "gridmap_y",
+        "smudge_lock"
+        ]
 }

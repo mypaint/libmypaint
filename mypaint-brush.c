@@ -800,7 +800,7 @@ smallest_angular_difference(float angleA, float angleB)
       // second dab.
       float r, g, b, a;
       self->states[MYPAINT_BRUSH_STATE_LAST_GETCOLOR_RECENTNESS] *= fac;
-      if (self->states[MYPAINT_BRUSH_STATE_LAST_GETCOLOR_RECENTNESS] < 0.5*fac) {
+      if (self->states[MYPAINT_BRUSH_STATE_LAST_GETCOLOR_RECENTNESS] < (0.5*fac*powf(1000.0, -self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE_LENGTH_LOG])) + 0.0000000000000001) {
         if (self->states[MYPAINT_BRUSH_STATE_LAST_GETCOLOR_RECENTNESS] == 0.0) {
           // first initialization of smudge color
           fac = 0.0;
@@ -821,7 +821,6 @@ smallest_angular_difference(float angleA, float angleB)
         b = self->states[MYPAINT_BRUSH_STATE_LAST_GETCOLOR_B];
         a = self->states[MYPAINT_BRUSH_STATE_LAST_GETCOLOR_A];
       }
-
       // updated the smudge color (stored with premultiplied alpha)
       self->states[MYPAINT_BRUSH_STATE_SMUDGE_A ] = fac*self->states[MYPAINT_BRUSH_STATE_SMUDGE_A ] + (1-fac)*a;
       // fix rounding errors
@@ -830,6 +829,7 @@ smallest_angular_difference(float angleA, float angleB)
       self->states[MYPAINT_BRUSH_STATE_SMUDGE_RA] = fac*self->states[MYPAINT_BRUSH_STATE_SMUDGE_RA] + (1-fac)*r*a;
       self->states[MYPAINT_BRUSH_STATE_SMUDGE_GA] = fac*self->states[MYPAINT_BRUSH_STATE_SMUDGE_GA] + (1-fac)*g*a;
       self->states[MYPAINT_BRUSH_STATE_SMUDGE_BA] = fac*self->states[MYPAINT_BRUSH_STATE_SMUDGE_BA] + (1-fac)*b*a;
+      
     }
 
     // color part

@@ -533,6 +533,15 @@
         {
             "constant": false,
             "default": 0.0,
+            "displayed_name": "Smudge length multiplier",
+            "internal_name": "smudge_length_log",
+            "maximum": 20.0,
+            "minimum": 0.0,
+            "tooltip": "Lengthens the smudge_length, logarithmic\nUseful to correct for high-definition/large brushes with lots of dabs"
+        },
+        {
+            "constant": false,
+            "default": 0.0,
             "displayed_name": "Smudge radius",
             "internal_name": "smudge_radius_log",
             "maximum": 1.6,
@@ -562,7 +571,7 @@
             "default": 4.0,
             "displayed_name": "Stroke duration",
             "internal_name": "stroke_duration_logarithmic",
-            "maximum": 7.0,
+            "maximum": 14.0,
             "minimum": -1.0,
             "tooltip": "How far you have to move until the stroke input reaches 1.0. This value is logarithmic (negative values will not invert the process)."
         },

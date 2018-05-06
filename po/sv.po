@@ -5,16 +5,16 @@ msgstr ""
 "Project-Id-Version: 0.7.1-git\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-04 18:33+0100\n"
-"PO-Revision-Date: 2018-01-04 20:29+0000\n"
-"Last-Translator: Martin Trokenheim <martin.trokenheim@aol.se>\n"
-"Language-Team: Swedish "
-"<https://hosted.weblate.org/projects/mypaint/libmypaint/sv/>\n"
+"PO-Revision-Date: 2018-05-07 19:03+0000\n"
+"Last-Translator: Anders Jonsson <anders.jonsson@norsjovallen.se>\n"
+"Language-Team: Swedish <https://hosted.weblate.org/projects/mypaint/"
+"libmypaint/sv/>\n"
 "Language: sv\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 2.19-dev\n"
+"X-Generator: Weblate 3.0-dev\n"
 
 #: ../brushsettings-gen.h:4
 msgid "Opacity"
@@ -68,7 +68,7 @@ msgstr ""
 "'dabs_per_second'\n"
 "0.0 - opacitetsvärdet gäller för de individuella delarna av penselnedslagen\n"
 "1.0 - opacitetsvärdet gäller för det slutgiltiga penseldraget, förmodat att "
-"varje pixel får (dabs_per_radius*2) penseldetslag i medeltal under ett "
+"varje pixel får (dabs_per_radius*2) penselnedslag i medeltal under ett "
 "penseldrag"
 
 #: ../brushsettings-gen.h:7
@@ -151,7 +151,7 @@ msgstr ""
 
 #: ../brushsettings-gen.h:13
 msgid "Radius by random"
-msgstr "Slumpmässig radien"
+msgstr "Slumpmässig radie"
 
 #: ../brushsettings-gen.h:13
 msgid ""
@@ -571,7 +571,7 @@ msgstr ""
 
 #: ../brushsettings-gen.h:42
 msgid "Elliptical dab: ratio"
-msgstr "Elliptiska penselnedslag: propotion"
+msgstr "Elliptiska penselnedslag: proportion"
 
 #: ../brushsettings-gen.h:42
 msgid ""
@@ -606,8 +606,8 @@ msgid ""
 "A low value will make the direction input adapt more quickly, a high value "
 "will make it smoother"
 msgstr ""
-"Ett lågt värde gör att riktningen justeras snabbare, ett högt värde gör att "
-"det jämnare"
+"Ett lågt värde gör att riktningen justeras snabbare, ett högt värde gör det "
+"jämnare"
 
 #: ../brushsettings-gen.h:45
 msgid "Lock alpha"
@@ -673,7 +673,7 @@ msgid ""
 "get larger when a pressure gain is used. If you use the mouse, it will be "
 "0.5 when a button is pressed and 0.0 otherwise."
 msgstr ""
-"Trycket som anges av ritplattan, vanligtivis mellan 0.0 och 1.0. Om du "
+"Trycket som anges av ritplattan, vanligtvis mellan 0.0 och 1.0. Om du "
 "använder musen blir det 0.5 när en knapp trycks ner, annars 0.0."
 
 #: ../brushsettings-gen.h:54

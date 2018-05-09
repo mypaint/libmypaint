@@ -8,16 +8,16 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-04 18:33+0100\n"
-"PO-Revision-Date: 2015-12-19 03:55+0000\n"
+"PO-Revision-Date: 2018-05-10 11:41+0000\n"
 "Last-Translator: Ajeje Brazorf <lmelonimamo@yahoo.it>\n"
-"Language-Team: Sardinian "
-"<https://hosted.weblate.org/projects/mypaint/libmypaint/sc/>\n"
+"Language-Team: Sardinian <https://hosted.weblate.org/projects/mypaint/"
+"libmypaint/sc/>\n"
 "Language: sc\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 2.5-dev\n"
+"X-Generator: Weblate 3.0-dev\n"
 
 #: ../brushsettings-gen.h:4
 msgid "Opacity"
@@ -200,7 +200,7 @@ msgstr ""
 
 #: ../brushsettings-gen.h:16
 msgid "Fine speed gamma"
-msgstr ""
+msgstr "Gamma lestresa fine"
 
 #: ../brushsettings-gen.h:16
 msgid ""
@@ -211,14 +211,20 @@ msgid ""
 "+8.0 very fast speed increases 'fine speed' a lot\n"
 "For very slow speed the opposite happens."
 msgstr ""
+"Custu cambiat sa reatzione de s'intrada 'lestresa fine'' a una lestresa "
+"fìsica estrema. As a bìdere mègius sa diferèntzia si sa 'lestresa fine' est "
+"mapada a su raju.\n"
+"-8.0 sas lestresas medas artas non aumentant de meda sa 'lestresa fine'\n"
+"+8.0  sas lestresas medas artas aumentant sa 'lestresa fine' de meda\n"
+"Pro lestresas meda bassas sutzedet s'opostu."
 
 #: ../brushsettings-gen.h:17
 msgid "Gross speed gamma"
-msgstr ""
+msgstr "Gamma lestresa grussa"
 
 #: ../brushsettings-gen.h:17
 msgid "Same as 'fine speed gamma' for gross speed"
-msgstr ""
+msgstr "Sa matessi cosa de 'gamma lestresa fine' pro sa lestresa grussa"
 
 #: ../brushsettings-gen.h:18
 msgid "Jitter"

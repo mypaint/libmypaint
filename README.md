@@ -110,6 +110,10 @@ If it's not found, you'll need to add the relevant pkgconfig directory to
 the `pkg-config` search path. For example, on CentOS, with a default install:
 
     $ echo PKG_CONFIG_PATH=/usr/local/lib/pkgconfig >>/etc/environment
+    
+For Arch and derivatives you may have to enable /usr/local for libraries:
+
+    $ echo '/usr/local/lib' > /etc/ld.so.conf.d/usrlocal.conf
 
 ## Contributing
 

@@ -31,7 +31,7 @@
 //       time. The mask is LRE encoded to jump quickly over regions
 //       that are not affected by the dab.
 //
-// opacity: overall strenght of the blending mode. Has the same
+// opacity: overall strength of the blending mode. Has the same
 //          influence on the dab as the values inside the mask.
 
 

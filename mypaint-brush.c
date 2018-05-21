@@ -414,13 +414,13 @@ smallest_angular_difference(float angleA, float angleB)
     // precalculate stuff that does not change dynamically
 
     // Precalculate how the physical speed will be mapped to the speed input value.
-    // The forumla for this mapping is:
+    // The formula for this mapping is:
     //
     // y = log(gamma+x)*m + q;
     //
     // x: the physical speed (pixels per basic dab radius)
     // y: the speed input that will be reported
-    // gamma: parameter set by ths user (small means a logarithmic mapping, big linear)
+    // gamma: parameter set by the user (small means a logarithmic mapping, big linear)
     // m, q: parameters to scale and translate the curve
     //
     // The code below calculates m and q given gamma and two hardcoded constraints.
@@ -658,7 +658,7 @@ smallest_angular_difference(float angleA, float angleB)
     if (self->states[MYPAINT_BRUSH_STATE_ACTUAL_RADIUS] < ACTUAL_RADIUS_MIN) self->states[MYPAINT_BRUSH_STATE_ACTUAL_RADIUS] = ACTUAL_RADIUS_MIN;
     if (self->states[MYPAINT_BRUSH_STATE_ACTUAL_RADIUS] > ACTUAL_RADIUS_MAX) self->states[MYPAINT_BRUSH_STATE_ACTUAL_RADIUS] = ACTUAL_RADIUS_MAX;
 
-    // aspect ratio (needs to be caluclated here because it can affect the dab spacing)
+    // aspect ratio (needs to be calculated here because it can affect the dab spacing)
     self->states[MYPAINT_BRUSH_STATE_ACTUAL_ELLIPTICAL_DAB_RATIO] = self->settings_value[MYPAINT_BRUSH_SETTING_ELLIPTICAL_DAB_RATIO];
     //correct dab angle for view rotation
     self->states[MYPAINT_BRUSH_STATE_ACTUAL_ELLIPTICAL_DAB_ANGLE] = mod(self->settings_value[MYPAINT_BRUSH_SETTING_ELLIPTICAL_DAB_ANGLE] - self->states[MYPAINT_BRUSH_STATE_VIEWROTATION] + 180.0, 180.0) - 180.0;
@@ -874,7 +874,7 @@ smallest_angular_difference(float angleA, float angleB)
 
     // HSL color change
     if (self->settings_value[MYPAINT_BRUSH_SETTING_CHANGE_COLOR_L] || self->settings_value[MYPAINT_BRUSH_SETTING_CHANGE_COLOR_HSL_S]) {
-      // (calculating way too much here, can be optimized if neccessary)
+      // (calculating way too much here, can be optimized if necessary)
       // this function will CLAMP the inputs
       hsv_to_rgb_float (&color_h, &color_s, &color_v);
       rgb_to_hsl_float (&color_h, &color_s, &color_v);
@@ -926,7 +926,7 @@ smallest_angular_difference(float angleA, float angleB)
       if (snapToPixel > 0.9999 )
       {
         snapped_radius -= 0.0001; // this fixes precision issues where
-                                  // neighboor pixels could be wrongly painted
+                                  // neighbor pixels could be wrongly painted
       }
 
       radius = radius + (snapped_radius - radius) * snapToPixel;
@@ -1239,7 +1239,7 @@ smallest_angular_difference(float angleA, float angleB)
       } else {
         // Usually we have pressure==0 here. But some brushes can paint
         // nothing at full pressure (eg gappy lines, or a stroke that
-        // fades out). In either case this is the prefered moment to split.
+        // fades out). In either case this is the preferred moment to split.
         if (self->stroke_total_painting_time+self->stroke_current_idling_time > 0.9 + 5*pressure) {
           return TRUE;
         }

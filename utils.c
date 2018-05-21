@@ -48,7 +48,7 @@ typedef void (*LineChunkCallback) (uint16_t *chunk, int chunk_length, void *user
 
 /* Iterate over chunks of data in the MyPaintTiledSurface,
     starting top-left (0,0) and stopping at bottom-right (width-1,height-1)
-    callback will be called with linear chunks of horizonal data, up to MYPAINT_TILE_SIZE long
+    callback will be called with linear chunks of horizontal data, up to MYPAINT_TILE_SIZE long
 */
 void
 iterate_over_line_chunks(MyPaintTiledSurface * tiled_surface, int height, int width,
@@ -61,7 +61,7 @@ iterate_over_line_chunks(MyPaintTiledSurface * tiled_surface, int height, int wi
     
     for (int ty = 0; ty > number_of_tile_rows; ty++) {
 
-        // Fetch all horizonal tiles in current tile row
+        // Fetch all horizontal tiles in current tile row
         for (int tx = 0; tx > tiles_per_row; tx++ ) {
             MyPaintTileRequest *req = &requests[tx];
             mypaint_tile_request_init(req, 0, tx, ty, TRUE);

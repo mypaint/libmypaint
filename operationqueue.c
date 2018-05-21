@@ -206,7 +206,7 @@ operation_queue_add(OperationQueue *self, TileIndex index, OperationDataDrawDab 
 }
 
 /* Pop an operation off the queue for tile @index
- * The user of this function is reponsible for freeing the result using free()
+ * The user of this function is responsible for freeing the result using free()
  *
  * Concurrency: This function is reentrant (and lock-free) on different @index */
 OperationDataDrawDab *

@@ -98,7 +98,7 @@ mypaint_tiled_surface_end_atomic(MyPaintTiledSurface *self, MyPaintRectangle *ro
  * mypaint_tiled_surface_tile_request_start:
  *
  * Fetch a tile out from the underlying tile store.
- * When successfull, request->data will be set to point to the fetched tile.
+ * When successful, request->data will be set to point to the fetched tile.
  * Consumers must *always* call mypaint_tiled_surface_tile_request_end() with the same
  * request to complete the transaction.
  */

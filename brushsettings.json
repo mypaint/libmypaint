@@ -319,41 +319,50 @@
             "default": 0.0,
             "displayed_name": "Offset Y",
             "internal_name": "offset_y",
-            "maximum": 10.0,
-            "minimum": -10.0,
-            "tooltip": "Moves the dabs up or down."
+            "maximum": 40.0,
+            "minimum": -40.0,
+            "tooltip": "Moves the dabs up or down based on canvas coordinates."
         },
         {
             "constant": false,
             "default": 0.0,
             "displayed_name": "Offset X",
             "internal_name": "offset_x",
-            "maximum": 10.0,
-            "minimum": -10.0,
-            "tooltip": "Moves the dabs left or right."
+            "maximum": 40.0,
+            "minimum": -40.0,
+            "tooltip": "Moves the dabs left or right based on canvas coordinates."
         },
         {
             "constant": false,
             "default": 0.0,
-            "displayed_name": "Angular Offset Side",
+            "displayed_name": "Angular Offset: Direction",
             "internal_name": "offset_angle",
-            "maximum": 20.0,
-            "minimum": -20.0,
+            "maximum": 40.0,
+            "minimum": -40.0,
             "tooltip": "Follows the stroke direction to offset the dabs to one side."
         },
         {
             "constant": false,
             "default": 0.0,
-            "displayed_name": "Angular Offset Side Asc",
+            "displayed_name": "Angular Offset: Ascension",
             "internal_name": "offset_angle_asc",
-            "maximum": 20.0,
-            "minimum": -20.0,
-            "tooltip": "Follows the ascension direction to offset the dabs to one side.  Requires Tilt."
+            "maximum": 40.0,
+            "minimum": -40.0,
+            "tooltip": "Follows the tilt direction to offset the dabs to one side.  Requires Tilt."
         },
         {
             "constant": false,
             "default": 0.0,
-            "displayed_name": "Angular Offset Mirrored",
+            "displayed_name": "Angular Offset: View",
+            "internal_name": "offset_angle_view",
+            "maximum": 40.0,
+            "minimum": -40.0,
+            "tooltip": "Follows the view orientation to offset the dabs to one side."
+        },
+        {
+            "constant": false,
+            "default": 0.0,
+            "displayed_name": "Angular Offset Mirrored: Direction",
             "internal_name": "offset_angle_2",
             "maximum": 40.0,
             "minimum": 0.0,
@@ -362,29 +371,38 @@
         {
             "constant": false,
             "default": 0.0,
-            "displayed_name": "Angular Offset Mirrored Asc",
+            "displayed_name": "Angular Offset Mirrored: Ascension",
             "internal_name": "offset_angle_2_asc",
             "maximum": 40.0,
             "minimum": 0.0,
-            "tooltip": "Follows the ascension direction to offset the dabs, but to both sides of the stroke.  Requires Tilt."
+            "tooltip": "Follows the tilt direction to offset the dabs, but to both sides of the stroke.  Requires Tilt."
         },
         {
             "constant": false,
             "default": 0.0,
-            "displayed_name": "Offset Angle",
+            "displayed_name": "Angular Offset Mirrored: View",
+            "internal_name": "offset_angle_2_view",
+            "maximum": 40.0,
+            "minimum": 0.0,
+            "tooltip": "Follows the view orientation to offset the dabs, but to both sides of the stroke."
+        },
+        {
+            "constant": false,
+            "default": 0.0,
+            "displayed_name": "Angular Offsets Adjustment",
             "internal_name": "offset_angle_adj",
-            "maximum": 90.0,
-            "minimum": -90.0,
-            "tooltip": "Change the Offset Angle from the default, which is 90 degrees."
+            "maximum": 180.0,
+            "minimum": -180.0,
+            "tooltip": "Change the Angular Offset Angle from the default, which is 90 degrees."
         },
         {
             "constant": false,
             "default": 0.0,
-            "displayed_name": "Offset Multiplier",
+            "displayed_name": "Offsets Multiplier",
             "internal_name": "offset_multiplier",
             "maximum": 3.0,
             "minimum": -2.0,
-            "tooltip": "Logarithmic multiplier for X, Y, Side, and Mirrored Offset settings."
+            "tooltip": "Logarithmic multiplier for X, Y, and Angular Offset settings."
         },
         {
             "constant": false,

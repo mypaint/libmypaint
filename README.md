@@ -36,16 +36,25 @@ to get started with a standard configuration:
 When building from git:
 
     $ sudo apt install -y python2.7 autotools-dev intltool gettext libtool
+    
+You might also try using your package manager:
+
+    $ sudo apt build-dep mypaint # will get additional deps for MyPaint (GUI)
+    $ sudo apt build-dep libmypaint  # may not exist; included in mypaint
 
 ### Install dependencies (Red Hat and derivatives)
 
 The following works on a minimal CentOS 7 installation:
 
-    # yum install -y gcc gobject-introspection-devel json-c-devel glib2-devel
+    $ sudo yum install -y gcc gobject-introspection-devel json-c-devel glib2-devel
 
 When building from git, you'll want to add:
 
-    # yum install -y git python autoconf intltool gettext libtool
+    $ sudo yum install -y git python autoconf intltool gettext libtool
+    
+You might also try your package manager:
+    
+    $ sudo yum builddep libmypaint
 
 ## Build and install
 
@@ -53,7 +62,7 @@ The traditional setup works just fine.
 
     $ ./autogen.sh    # Only needed when building from git.
     $ ./configure
-    $ make install
+    $ sudo make install
     $ sudo ldconfig
 
 ### Maintainer mode
@@ -96,7 +105,7 @@ This runs all the unit tests.
 
 ### Install
 
-    $ make install
+    $ sudo make install
 
 Uninstall libmypaint with `make uninstall`.
 
@@ -109,11 +118,22 @@ Make sure that pkg-config can see libmypaint before trying to build with it.
 If it's not found, you'll need to add the relevant pkgconfig directory to
 the `pkg-config` search path. For example, on CentOS, with a default install:
 
-    $ echo PKG_CONFIG_PATH=/usr/local/lib/pkgconfig >>/etc/environment
-    
-For Arch and derivatives you may have to enable /usr/local for libraries:
+    $ sudo sh -c "echo 'PKG_CONFIG_PATH=/usr/local/lib/pkgconfig' >>/etc/environment"
 
-    $ echo '/usr/local/lib' > /etc/ld.so.conf.d/usrlocal.conf
+Make sure ldconfig can see libmypaint as well
+
+    $ sudo ldconfig -p |grep -i libmypaint
+
+If it's not found, you'll need to add the relevant lib directory to
+the LD_LIBRARY_PATH:
+    
+    $ export LD_LIBRARY_PATH=/usr/local/lib
+    $ sudo sh -c "echo 'LD_LIBRARY_PATH=/usr/local/lib' >>/etc/environment
+
+Alternatively, you may want to enable /usr/local for libraries.  Arch and Redhat derivatives:
+
+    $ sudo sh -c "echo '/usr/local/lib' > /etc/ld.so.conf.d/usrlocal.conf"
+    $ sudo ldconfig
 
 ## Contributing
 

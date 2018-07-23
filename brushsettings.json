@@ -11,26 +11,6 @@
             "tooltip": "The pressure reported by the tablet. Usually between 0.0 and 1.0, but it may get larger when a pressure gain is used. If you use the mouse, it will be 0.5 when a button is pressed and 0.0 otherwise."
         },
         {
-            "displayed_name": "Fine speed",
-            "hard_maximum": null,
-            "hard_minimum": null,
-            "id": "speed1",
-            "normal": 0.5,
-            "soft_maximum": 4.0,
-            "soft_minimum": 0.0,
-            "tooltip": "How fast you currently move. This can change very quickly. Try 'print input values' from the 'help' menu to get a feeling for the range; negative values are rare but possible for very low speed."
-        },
-        {
-            "displayed_name": "Gross speed",
-            "hard_maximum": null,
-            "hard_minimum": null,
-            "id": "speed2",
-            "normal": 0.5,
-            "soft_maximum": 4.0,
-            "soft_minimum": 0.0,
-            "tooltip": "Same as fine speed, but changes slower. Also look at the 'gross speed filter' setting."
-        },
-        {
             "displayed_name": "Random",
             "hard_maximum": 1.0,
             "hard_minimum": 0.0,
@@ -61,6 +41,56 @@
             "tooltip": "The angle of the stroke, in degrees. The value will stay between 0.0 and 180.0, effectively ignoring turns of 180 degrees."
         },
         {
+            "displayed_name": "Declination/Tilt",
+            "hard_maximum": 90.0,
+            "hard_minimum": 0.0,
+            "id": "tilt_declination",
+            "normal": 0.0,
+            "soft_maximum": 90.0,
+            "soft_minimum": 0.0,
+            "tooltip": "Declination of stylus tilt. 0 when stylus is parallel to tablet and 90.0 when it's perpendicular to tablet."
+        },
+        {
+            "displayed_name": "Ascension",
+            "hard_maximum": 180.0,
+            "hard_minimum": -180.0,
+            "id": "tilt_ascension",
+            "normal": 0.0,
+            "soft_maximum": 180.0,
+            "soft_minimum": -180.0,
+            "tooltip": "Right ascension of stylus tilt. 0 when stylus working end points to you, +90 when rotated 90 degrees clockwise, -90 when rotated 90 degrees counterclockwise."
+        },
+        {
+            "displayed_name": "Fine speed",
+            "hard_maximum": null,
+            "hard_minimum": null,
+            "id": "speed1",
+            "normal": 0.5,
+            "soft_maximum": 4.0,
+            "soft_minimum": 0.0,
+            "tooltip": "How fast you currently move. This can change very quickly. Try 'print input values' from the 'help' menu to get a feeling for the range; negative values are rare but possible for very low speed."
+        },
+        {
+            "displayed_name": "Gross speed",
+            "hard_maximum": null,
+            "hard_minimum": null,
+            "id": "speed2",
+            "normal": 0.5,
+            "soft_maximum": 4.0,
+            "soft_minimum": 0.0,
+            "tooltip": "Same as fine speed, but changes slower. Also look at the 'gross speed filter' setting."
+        },
+        {
+            "displayed_name": "Custom", 
+            "hard_maximum": null, 
+            "hard_minimum": null, 
+            "id": "custom", 
+            "normal": 0.0, 
+            "soft_maximum": 10.0, 
+            "soft_minimum": -10.0, 
+            "tooltip": "This is a user defined input. Look at the 'custom input' setting for details."
+        },
+        {
             "displayed_name": "Direction 360",
             "hard_maximum": 360.0,
             "hard_minimum": 0.0,
@@ -81,34 +111,24 @@
             "tooltip": "The difference between the angle the stylus is pointing and the angle of its stroke movement on the canvas (degrees). The value will stay between 0.0 and +/-180.0.  An attack angle of 0.0 would indicate the stylus is moving in the same direction that the stylus tip is pointing.  An Attack Angle of 90 would mean the direction is perpendicular to the stylus tip, and 180 would mean the pen is being dragged in the opposite direction that the stylus tip is pointing."
         },
         {
-            "displayed_name": "Declination",
-            "hard_maximum": 90.0,
-            "hard_minimum": 0.0,
-            "id": "tilt_declination",
-            "normal": 0.0,
-            "soft_maximum": 90.0,
-            "soft_minimum": 0.0,
-            "tooltip": "Declination of stylus tilt. 0 when stylus is parallel to tablet and 90.0 when it's perpendicular to tablet."
-        },
-        {
-            "displayed_name": "Ascension",
-            "hard_maximum": 180.0,
-            "hard_minimum": -180.0,
-            "id": "tilt_ascension",
-            "normal": 0.0,
-            "soft_maximum": 180.0,
-            "soft_minimum": -180.0,
-            "tooltip": "Right ascension of stylus tilt. 0 when stylus working end points to you, +90 when rotated 90 degrees clockwise, -90 when rotated 90 degrees counterclockwise."
-        },
-        {
-            "displayed_name": "Zoom Level", 
-            "hard_maximum": 4.15, 
-            "hard_minimum": -2.77, 
-            "id": "viewzoom", 
+            "displayed_name": "Declination/Tilt X", 
+            "hard_maximum": 90.0, 
+            "hard_minimum": -90.0, 
+            "id": "tilt_declinationx", 
             "normal": 0.0, 
-            "soft_maximum": 4.15, 
-            "soft_minimum": -2.77, 
-            "tooltip": "The current zoom level of the canvas view.  Logarithmic: 100% is 0.  200% is .69, 25% is -1.38\nFor Radius Setting, try dragging the slider to -4.15 to create a brush that stays the same size at (almost) every zoom level."
+            "soft_maximum": 90.0, 
+            "soft_minimum": -90.0, 
+            "tooltip": "Declination of stylus tilt on X-Axis. 90/-90 when stylus is parallel to tablet and 0 when it's perpendicular to tablet."
+        },
+        {
+            "displayed_name": "Declination/Tilt Y", 
+            "hard_maximum": 90.0, 
+            "hard_minimum": -90.0, 
+            "id": "tilt_declinationy", 
+            "normal": 0.0, 
+            "soft_maximum": 90.0, 
+            "soft_minimum": -90.0, 
+            "tooltip": "Declination of stylus tilt on Y-Axis. 90/-90 when stylus is parallel to tablet and 0 when it's perpendicular to tablet."
         },
         { 
             "displayed_name": "GridMap X",
@@ -129,7 +149,17 @@
             "soft_maximum": 256.0, 
             "soft_minimum": 0.0, 
             "tooltip": "The Y coordinate on a 256 pixel grid.  This will wrap around 0-256 as the cursor is moved on the Y axis.  Similar to stroke.  Can be used to add paper texture by modifying opacity, etc.\nNote the brush size should be considerably smaller than the grid scale for best results."
-        }, 
+        },
+        {
+            "displayed_name": "Zoom Level", 
+            "hard_maximum": 4.15, 
+            "hard_minimum": -2.77, 
+            "id": "viewzoom", 
+            "normal": 0.0, 
+            "soft_maximum": 4.15, 
+            "soft_minimum": -2.77, 
+            "tooltip": "The current zoom level of the canvas view.  Logarithmic: 100% is 0.  200% is .69, 25% is -1.38\nFor Radius Setting, try dragging the slider to -4.15 to create a brush that stays the same size at (almost) every zoom level."
+        },
         {
             "displayed_name": "Base Brush Radius", 
             "hard_maximum": 6.0, 
@@ -139,16 +169,6 @@
             "soft_maximum": 6.0, 
             "soft_minimum": -2.0, 
             "tooltip": "The base brush radius of the current brush.  This allows you to change the behavior of a brush as you make it bigger or smaller.\nYou can even cancel-out dab size increase and adjust something else to make a brush bigger.\nTake note of dabs-per-basic radius and dabs-per-actual radius, which behave much differently."
-        }, 
-        {
-            "displayed_name": "Custom", 
-            "hard_maximum": null, 
-            "hard_minimum": null, 
-            "id": "custom", 
-            "normal": 0.0, 
-            "soft_maximum": 10.0, 
-            "soft_minimum": -10.0, 
-            "tooltip": "This is a user defined input. Look at the 'custom input' setting for details."
         }
     ],
     "settings": [
@@ -714,6 +734,8 @@
         "attack_angle",
         "flip",
         "gridmap_x",
-        "gridmap_y"
+        "gridmap_y",
+        "declinationx",
+        "declinationy"
     ]
 }

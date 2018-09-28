@@ -343,15 +343,6 @@
         {
             "constant": false,
             "default": 0.0,
-            "displayed_name": "Angular Offset: View",
-            "internal_name": "offset_angle_view",
-            "maximum": 40.0,
-            "minimum": -40.0,
-            "tooltip": "Follows the view orientation to offset the dabs to one side."
-        },
-        {
-            "constant": false,
-            "default": 0.0,
             "displayed_name": "Angular Offset Mirrored: Direction",
             "internal_name": "offset_angle_2",
             "maximum": 40.0,
@@ -366,15 +357,6 @@
             "maximum": 40.0,
             "minimum": 0.0,
             "tooltip": "Follows the tilt direction to offset the dabs, but to both sides of the stroke.  Requires Tilt."
-        },
-        {
-            "constant": false,
-            "default": 0.0,
-            "displayed_name": "Angular Offset Mirrored: View",
-            "internal_name": "offset_angle_2_view",
-            "maximum": 40.0,
-            "minimum": 0.0,
-            "tooltip": "Follows the view orientation to offset the dabs, but to both sides of the stroke."
         },
         {
             "constant": false,

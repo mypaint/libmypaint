@@ -717,12 +717,6 @@ smallest_angular_difference(float angleA, float angleB)
       y += sin((self->states[MYPAINT_BRUSH_STATE_ASCENSION] + self->settings_value[MYPAINT_BRUSH_SETTING_OFFSET_ANGLE_ADJ]) * M_PI / 180) * base_radius * self->settings_value[MYPAINT_BRUSH_SETTING_OFFSET_ANGLE_ASC] * offset_mult;
     }
 
-    //offset to one side of view orientation
-    if (self->settings_value[MYPAINT_BRUSH_SETTING_OFFSET_ANGLE_VIEW]) {
-      x += sin((self->states[MYPAINT_BRUSH_STATE_VIEWROTATION] + 90 + self->settings_value[MYPAINT_BRUSH_SETTING_OFFSET_ANGLE_ADJ]) * M_PI / 180) * base_radius * self->settings_value[MYPAINT_BRUSH_SETTING_OFFSET_ANGLE_VIEW] * offset_mult;
-      y += cos((self->states[MYPAINT_BRUSH_STATE_VIEWROTATION] + 90 + self->settings_value[MYPAINT_BRUSH_SETTING_OFFSET_ANGLE_ADJ]) * M_PI / 180) * base_radius * self->settings_value[MYPAINT_BRUSH_SETTING_OFFSET_ANGLE_VIEW] * offset_mult;
-    }
-
     //offset mirrored to sides of direction
     if (self->settings_value[MYPAINT_BRUSH_SETTING_OFFSET_ANGLE_2]) {
       
@@ -741,15 +735,6 @@ smallest_angular_difference(float angleA, float angleB)
       }
       x += cos((self->states[MYPAINT_BRUSH_STATE_ASCENSION] + self->settings_value[MYPAINT_BRUSH_SETTING_OFFSET_ANGLE_ADJ] * self->states[MYPAINT_BRUSH_STATE_FLIP]) * M_PI / 180) * base_radius * self->states[MYPAINT_BRUSH_STATE_FLIP] * self->settings_value[MYPAINT_BRUSH_SETTING_OFFSET_ANGLE_2_ASC] * offset_mult;
       y += sin((self->states[MYPAINT_BRUSH_STATE_ASCENSION] + self->settings_value[MYPAINT_BRUSH_SETTING_OFFSET_ANGLE_ADJ] * self->states[MYPAINT_BRUSH_STATE_FLIP]) * M_PI / 180) * base_radius * self->states[MYPAINT_BRUSH_STATE_FLIP] * self->settings_value[MYPAINT_BRUSH_SETTING_OFFSET_ANGLE_2_ASC] * offset_mult;
-    }
-
-    //offset mirrored to sides of view orientation
-    if (self->settings_value[MYPAINT_BRUSH_SETTING_OFFSET_ANGLE_2_VIEW]) {
-      if (self->settings_value[MYPAINT_BRUSH_SETTING_OFFSET_ANGLE_2_VIEW] < 0) {
-        self->settings_value[MYPAINT_BRUSH_SETTING_OFFSET_ANGLE_2_VIEW] = 0;
-      }
-      x += sin((self->states[MYPAINT_BRUSH_STATE_VIEWROTATION] + 90 + self->settings_value[MYPAINT_BRUSH_SETTING_OFFSET_ANGLE_ADJ] * self->states[MYPAINT_BRUSH_STATE_FLIP]) * M_PI / 180) * base_radius * self->states[MYPAINT_BRUSH_STATE_FLIP] * self->settings_value[MYPAINT_BRUSH_SETTING_OFFSET_ANGLE_2_VIEW] * offset_mult;
-      y += cos((self->states[MYPAINT_BRUSH_STATE_VIEWROTATION] + 90 + self->settings_value[MYPAINT_BRUSH_SETTING_OFFSET_ANGLE_ADJ] * self->states[MYPAINT_BRUSH_STATE_FLIP]) * M_PI / 180) * base_radius * self->states[MYPAINT_BRUSH_STATE_FLIP] * self->settings_value[MYPAINT_BRUSH_SETTING_OFFSET_ANGLE_2_VIEW] * offset_mult;
     }
 
     if (self->settings_value[MYPAINT_BRUSH_SETTING_OFFSET_BY_SPEED]) {

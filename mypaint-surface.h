@@ -30,6 +30,7 @@ typedef void (*MyPaintSurfaceGetColorFunction) (MyPaintSurface *self,
                                                 float radius,
                                                 float * color_r, float * color_g, float * color_b, float * color_a
                                                 );
+
 typedef int (*MyPaintSurfaceDrawDabFunction) (MyPaintSurface *self,
                        float x, float y,
                        float radius,
@@ -38,7 +39,10 @@ typedef int (*MyPaintSurfaceDrawDabFunction) (MyPaintSurface *self,
                        float alpha_eraser,
                        float aspect_ratio, float angle,
                        float lock_alpha,
-                       float colorize);
+                       float colorize,
+                       float posterize,
+                       float posterize_num,
+                       float paint);
 
 typedef void (*MyPaintSurfaceDestroyFunction) (MyPaintSurface *self);
 
@@ -78,7 +82,10 @@ mypaint_surface_draw_dab(MyPaintSurface *self,
                        float alpha_eraser,
                        float aspect_ratio, float angle,
                        float lock_alpha,
-                       float colorize
+                       float colorize,
+                       float posterize,
+                       float posterize_num,
+                       float paint
                        );
 
 
@@ -88,6 +95,7 @@ mypaint_surface_get_color(MyPaintSurface *self,
                         float radius,
                         float * color_r, float * color_g, float * color_b, float * color_a
                         );
+                        
 
 float
 mypaint_surface_get_alpha (MyPaintSurface *self, float x, float y, float radius);

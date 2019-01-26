@@ -31,6 +31,11 @@ MyPaint_introspectable_headers = \
 	mypaint-rectangle.h				\
 	mypaint-surface.h				\
 	mypaint-tiled-surface.h			\
+	fastapprox/fastpow.h 		\
+	fastapprox/sse.h 		\
+	fastapprox/fastexp.h 		\
+	fastapprox/cast.h 		\
+	fastapprox/fastlog.h 		\
 	$(libmypaint_glib)
 
 if HAVE_INTROSPECTION

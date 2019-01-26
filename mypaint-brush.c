@@ -35,9 +35,6 @@
 #include "rng-double.h"
 
 #ifdef HAVE_JSON_C
-// Allow the C99 define from json.h
-#undef TRUE
-#undef FALSE
 #include <json.h>
 #endif // HAVE_JSON_C
 

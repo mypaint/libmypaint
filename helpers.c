@@ -566,6 +566,8 @@ float * mix_colors(float *a, float *b, float fac, float paint_mode)
   float opa_a = fac;
   float opa_b = 1.0-opa_a;
   result[3] = CLAMP(opa_a * a[3] + opa_b * b[3], 0.0f, 1.0f);
+  float sfac_a = opa_a * a[3] / (a[3] + b[3] * opa_b);
+  float sfac_b = 1 - sfac_a;
 
   if (paint_mode > 0.0) { 
     float spec_a[10] = {0};
@@ -577,7 +579,7 @@ float * mix_colors(float *a, float *b, float fac, float paint_mode)
     //blend spectral primaries subtractive WGM
     float spectralmix[10] = {0};
     for (int i=0; i < 10; i++) {
-      spectralmix[i] = fastpow(spec_a[i], opa_a) * fastpow(spec_b[i], opa_b);
+      spectralmix[i] = fastpow(spec_a[i], sfac_a) * fastpow(spec_b[i], sfac_b);
     }
     
     //convert to RGB

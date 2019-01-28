@@ -811,21 +811,12 @@ mypaint_brush_set_state(MyPaintBrush *self, MyPaintBrushState i, float value)
       // expected to hurt quality too much. We call it at most every
       // second dab.
       float r, g, b, a;
-      r = color_h;
-      g = color_s;
-      b = color_v;
-      a = 1.0;
 
       smudge_buckets[bucket][8] *= fac;
       if (smudge_buckets[bucket][8] < (fastpow(0.5*fac, self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE_LENGTH_LOG])) + 0.0000000000000001) {
         if (smudge_buckets[bucket][8] == 0.0) {
           // first initialization of smudge color
           fac = 0.0;
-          //init with brush color instead of black
-          smudge_buckets[bucket][4] = color_h;
-          smudge_buckets[bucket][5] = color_s;
-          smudge_buckets[bucket][6] = color_v;
-          smudge_buckets[bucket][7] = opaque;
         }
         smudge_buckets[bucket][8] = 1.0;
 
@@ -844,21 +835,15 @@ mypaint_brush_set_state(MyPaintBrush *self, MyPaintBrushState i, float value)
              a > self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE_TRANSPARENCY] * -1)) {
           return FALSE;
         }
-        
-        // avoid false colors from extremely small alpha (noise)
-        if (a < WGM_EPSILON) {
-          r = color_h;
-          g = color_s;
-          b = color_v;
-          a = smudge_buckets[bucket][7];
-          fac = 0.0;
-        }
-
-        smudge_buckets[bucket][4] = r;
-        smudge_buckets[bucket][5] = g;
-        smudge_buckets[bucket][6] = b;
-        smudge_buckets[bucket][7] = a;
-        
+        //avoid color noise from low alpha
+       	if (a > WGM_EPSILON * 10) { 
+          smudge_buckets[bucket][4] = r;
+          smudge_buckets[bucket][5] = g;
+          smudge_buckets[bucket][6] = b;
+          smudge_buckets[bucket][7] = a;
+	} else {
+	  fac = 1.0;
+	}
       } else {
         r = smudge_buckets[bucket][4];
         g = smudge_buckets[bucket][5];

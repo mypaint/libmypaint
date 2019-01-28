@@ -8,16 +8,16 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-04 18:33+0100\n"
-"PO-Revision-Date: 2015-12-26 11:50+0000\n"
-"Last-Translator: Alp <aslansi1906@gmail.com>\n"
-"Language-Team: Turkish "
-"<https://hosted.weblate.org/projects/mypaint/libmypaint/tr/>\n"
+"PO-Revision-Date: 2019-01-29 00:45+0000\n"
+"Last-Translator: Muha Aliss <muhaaliss@pm.me>\n"
+"Language-Team: Turkish <https://hosted.weblate.org/projects/mypaint/"
+"libmypaint/tr/>\n"
 "Language: tr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 2.5-dev\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.5-dev\n"
 
 #: ../brushsettings-gen.h:4
 msgid "Opacity"
@@ -61,7 +61,7 @@ msgstr ""
 
 #: ../brushsettings-gen.h:7
 msgid "Radius"
-msgstr ""
+msgstr "Yarıçap"
 
 #: ../brushsettings-gen.h:7
 msgid ""
@@ -69,10 +69,13 @@ msgid ""
 " 0.7 means 2 pixels\n"
 " 3.0 means 20 pixels"
 msgstr ""
+"Temel fırça yarıçapı (logaritmik)\n"
+"0.7, 2 piksel demektir\n"
+"3.0, 20 piksel demektir"
 
 #: ../brushsettings-gen.h:8
 msgid "Hardness"
-msgstr ""
+msgstr "Sertlik"
 
 #: ../brushsettings-gen.h:8
 msgid ""
@@ -123,7 +126,7 @@ msgstr ""
 
 #: ../brushsettings-gen.h:13
 msgid "Radius by random"
-msgstr ""
+msgstr "Rastgele yarıçap"
 
 #: ../brushsettings-gen.h:13
 msgid ""

@@ -45,7 +45,7 @@ m4_define([libmypaint_api_platform_version],
 
 ## Dependencies ##
 
-m4_define([gegl_required_version], [0.3])
+m4_define([gegl_required_version], [0.4])
 m4_define([introspection_required_version], [1.32.0])
 
 AC_INIT([libmypaint],
@@ -273,7 +273,7 @@ AC_ARG_ENABLE(gegl,
 )
 
 if eval "test x$enable_gegl = xyes"; then
-  PKG_CHECK_MODULES(GEGL, gegl-0.3 >= gegl_required_version)
+  PKG_CHECK_MODULES(GEGL, gegl-0.4 >= gegl_required_version)
 fi
 AM_CONDITIONAL(ENABLE_GEGL, test "x$enable_gegl" = "xyes")
 

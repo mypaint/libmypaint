@@ -58,6 +58,11 @@ You might also try your package manager:
 
 ## Build and install
 
+MyPaint and libmypaint benefit dramatically from autovectorization and other compiler optimizations.
+You may want to set your CFLAGS before compiling (for gcc):
+
+    $ export CFLAGS='-Ofast -ftree-vectorize -fopt-info-vec-optimized -march=native -mtune=native -funsafe-math-optimizations -funsafe-loop-optimizations'
+
 The traditional setup works just fine.
 
     $ ./autogen.sh    # Only needed when building from git.

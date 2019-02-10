@@ -460,7 +460,7 @@ mypaint_brush_set_state(MyPaintBrush *self, MyPaintBrushState i, float value)
     
     self->states[MYPAINT_BRUSH_STATE_DABS_PER_BASIC_RADIUS] = self->settings_value[MYPAINT_BRUSH_SETTING_DABS_PER_BASIC_RADIUS];
     self->states[MYPAINT_BRUSH_STATE_DABS_PER_ACTUAL_RADIUS] = self->settings_value[MYPAINT_BRUSH_SETTING_DABS_PER_ACTUAL_RADIUS];
-    self->states[MYPAINT_BRUSH_STATE_DABS_PER_SECOND] = self->settings_value[MYPAINT_BRUSH_SETTING_DABS_PER_ACTUAL_RADIUS];
+    self->states[MYPAINT_BRUSH_STATE_DABS_PER_SECOND] = self->settings_value[MYPAINT_BRUSH_SETTING_DABS_PER_SECOND];
     
 
     self->states[MYPAINT_BRUSH_STATE_DECLINATION] += step_declination;

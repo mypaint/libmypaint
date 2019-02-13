@@ -550,7 +550,7 @@ mypaint_brush_set_state(MyPaintBrush *self, MyPaintBrushState i, float value)
     inputs[MYPAINT_BRUSH_INPUT_ATTACK_ANGLE] = smallest_angular_difference(self->states[MYPAINT_BRUSH_STATE_ASCENSION], mod_arith(atan2f(self->states[MYPAINT_BRUSH_STATE_DIRECTION_ANGLE_DY], self->states[MYPAINT_BRUSH_STATE_DIRECTION_ANGLE_DX]) / (2 * M_PI) * 360 + 90 + self->states[MYPAINT_BRUSH_STATE_VIEWROTATION], 360));
 
     inputs[MYPAINT_BRUSH_INPUT_CUSTOM] = self->states[MYPAINT_BRUSH_STATE_CUSTOM_INPUT];
-    inputs[MYPAINT_BRUSH_INPUT_BARREL_ROTATION] = (mod_arith(self->states[MYPAINT_BRUSH_STATE_BARREL_ROTATION], 360) - 180.0);
+    inputs[MYPAINT_BRUSH_INPUT_BARREL_ROTATION] = mod_arith(self->states[MYPAINT_BRUSH_STATE_BARREL_ROTATION], 360);
 
     if (self->print_inputs) {
       printf("press=% 4.3f, speed1=% 4.4f\tspeed2=% 4.4f\tstroke=% 4.3f\tcustom=% 4.3f\tviewzoom=% 4.3f\tviewrotation=% 4.3f\tasc=% 4.3f\tdir=% 4.3f\tdec=% 4.3f\tdabang=% 4.3f\txtilt=% 4.3f\tytilt=% 4.3fattack=% 4.3f\n", (double)inputs[MYPAINT_BRUSH_INPUT_PRESSURE], (double)inputs[MYPAINT_BRUSH_INPUT_SPEED1], (double)inputs[MYPAINT_BRUSH_INPUT_SPEED2], (double)inputs[MYPAINT_BRUSH_INPUT_STROKE], (double)inputs[MYPAINT_BRUSH_INPUT_CUSTOM], (double)inputs[MYPAINT_BRUSH_INPUT_VIEWZOOM], (double)self->states[MYPAINT_BRUSH_STATE_VIEWROTATION], (double)inputs[MYPAINT_BRUSH_INPUT_TILT_ASCENSION], (double)inputs[MYPAINT_BRUSH_INPUT_DIRECTION], (double)inputs[MYPAINT_BRUSH_INPUT_TILT_DECLINATION], (double)self->states[MYPAINT_BRUSH_STATE_ACTUAL_ELLIPTICAL_DAB_ANGLE], (double)inputs[MYPAINT_BRUSH_INPUT_TILT_DECLINATIONX], (double)inputs[MYPAINT_BRUSH_INPUT_TILT_DECLINATIONY], (double)inputs[MYPAINT_BRUSH_INPUT_ATTACK_ANGLE]);
@@ -607,8 +607,8 @@ mypaint_brush_set_state(MyPaintBrush *self, MyPaintBrushState i, float value)
       float dy_old = self->states[MYPAINT_BRUSH_STATE_DIRECTION_DY];
       
       // 360 Direction
-	  self->states[MYPAINT_BRUSH_STATE_DIRECTION_ANGLE_DX] += (dx - self->states[MYPAINT_BRUSH_STATE_DIRECTION_ANGLE_DX]) * fac;
-	  self->states[MYPAINT_BRUSH_STATE_DIRECTION_ANGLE_DY] += (dy - self->states[MYPAINT_BRUSH_STATE_DIRECTION_ANGLE_DY]) * fac;
+      self->states[MYPAINT_BRUSH_STATE_DIRECTION_ANGLE_DX] += (dx - self->states[MYPAINT_BRUSH_STATE_DIRECTION_ANGLE_DX]) * fac;
+      self->states[MYPAINT_BRUSH_STATE_DIRECTION_ANGLE_DY] += (dy - self->states[MYPAINT_BRUSH_STATE_DIRECTION_ANGLE_DY]) * fac;
       
       // use the opposite speed vector if it is closer (we don't care about 180 degree turns)
       if (SQR(dx_old-dx) + SQR(dy_old-dy) > SQR(dx_old-(-dx)) + SQR(dy_old-(-dy))) {
@@ -841,14 +841,14 @@ mypaint_brush_set_state(MyPaintBrush *self, MyPaintBrushState i, float value)
           return FALSE;
         }
         //avoid color noise from low alpha
-       	if (a > WGM_EPSILON * 10) { 
+        if (a > WGM_EPSILON * 10) { 
           smudge_buckets[bucket][4] = r;
           smudge_buckets[bucket][5] = g;
           smudge_buckets[bucket][6] = b;
           smudge_buckets[bucket][7] = a;
-	} else {
-	  fac = 1.0;
-	}
+        } else {
+          fac = 1.0;
+        }
       } else {
         r = smudge_buckets[bucket][4];
         g = smudge_buckets[bucket][5];
@@ -1247,15 +1247,14 @@ mypaint_brush_set_state(MyPaintBrush *self, MyPaintBrushState i, float value)
         step_ascension   = frac * smallest_angular_difference(self->states[MYPAINT_BRUSH_STATE_ASCENSION], tilt_ascension);
         step_viewzoom = viewzoom;
         step_viewrotation = viewrotation;
-        // ignore input w/ -1.0
-        if (barrel_rotation == -1.0) {
-          step_barrel_rotation = 0;
-          self->states[MYPAINT_BRUSH_STATE_BARREL_ROTATION] = 180;
-        } else {
-          //converts barrel_ration to degrees, offsets it 90 degrees to make the button at the top be zero.  Subtract ascension because it directly affects the rotation values.
-	        step_barrel_rotation	 = frac * smallest_angular_difference(self->states[MYPAINT_BRUSH_STATE_BARREL_ROTATION],barrel_rotation * 360 - self->states[MYPAINT_BRUSH_STATE_ASCENSION]);
-	      }
-      update_states_and_setting_values (self, step_ddab, step_dx, step_dy, step_dpressure, step_declination, step_ascension, step_dtime, step_viewzoom, step_viewrotation, step_declinationx, step_declinationy, step_barrel_rotation);
+        //converts barrel_ration to degrees,
+        step_barrel_rotation = frac * smallest_angular_difference(self->states[MYPAINT_BRUSH_STATE_BARREL_ROTATION],barrel_rotation * 360);
+
+        update_states_and_setting_values (self, step_ddab, step_dx, step_dy,
+                                          step_dpressure, step_declination,
+                                          step_ascension, step_dtime, step_viewzoom,
+                                          step_viewrotation, step_declinationx,
+                                          step_declinationy, step_barrel_rotation);
       }
 
       gboolean painted_now = prepare_and_draw_dab (self, surface);
@@ -1289,14 +1288,8 @@ mypaint_brush_set_state(MyPaintBrush *self, MyPaintBrushState i, float value)
       step_dtime     = dtime_left;
       step_viewzoom  = viewzoom;
       step_viewrotation = viewrotation;
-      step_barrel_rotation  = smallest_angular_difference(self->states[MYPAINT_BRUSH_STATE_BARREL_ROTATION], barrel_rotation * 360 - self->states[MYPAINT_BRUSH_STATE_ASCENSION]);
-      if (barrel_rotation == -1.0) {
-        step_barrel_rotation = 0;
-        self->states[MYPAINT_BRUSH_STATE_BARREL_ROTATION] = 180;
-        }
-      else {
-	      step_barrel_rotation	 = smallest_angular_difference(self->states[MYPAINT_BRUSH_STATE_BARREL_ROTATION],barrel_rotation * 360 - self->states[MYPAINT_BRUSH_STATE_ASCENSION]);
-	      }
+      step_barrel_rotation = smallest_angular_difference(self->states[MYPAINT_BRUSH_STATE_BARREL_ROTATION], barrel_rotation * 360);
+      step_barrel_rotation = smallest_angular_difference(self->states[MYPAINT_BRUSH_STATE_BARREL_ROTATION],barrel_rotation * 360);
 
       //dtime_left = 0; but that value is not used any more
 

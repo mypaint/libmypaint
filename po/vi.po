@@ -8,13 +8,16 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-02-25 17:11+0000\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"PO-Revision-Date: 2019-02-27 00:18+0000\n"
+"Last-Translator: glixx <roman_romul@mail.ru>\n"
+"Language-Team: Vietnamese <https://hosted.weblate.org/projects/mypaint/"
+"libmypaint/vi/>\n"
 "Language: vi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 3.5-dev\n"
 
 #: ../brushsettings-gen.h:4
 msgid "Opacity"
@@ -53,10 +56,17 @@ msgid ""
 "1.0 the opaque value above is for the final brush stroke, assuming each "
 "pixel gets (dabs_per_radius*2) brushdabs on average during a stroke"
 msgstr ""
+"Chỉnh sửa các đoạn không thẳng bằng cách hòa lẫn nhiều chấm nhỏ lên nhau. "
+"Chỉnh sửa bằng cách này sẽ cho ra một đường thẳng (tự nhiên). Với nét chuẩn "
+"thì 0.9 là tốt, nên đặt số nhỏ hơn nếu chổi của bạn rải màu nhiều hoặc số "
+"lớn hơn nếu bạn dùng đơn vị là số chấm trên giây.\n"
+"0.0 giá trị mờ đục bên trên là cho từng chấm\n"
+"1.0 giá trị mờ đục bên trên là cho nét chổi cuối cùng, giả sử trung bình mỗi "
+"pixel nhận (số chấm trên bán kính * 2) điểm chổi vẽ trong một nét"
 
 #: ../brushsettings-gen.h:7
 msgid "Radius"
-msgstr ""
+msgstr "bán kính"
 
 #: ../brushsettings-gen.h:7
 msgid ""
@@ -64,10 +74,13 @@ msgid ""
 " 0.7 means 2 pixels\n"
 " 3.0 means 20 pixels"
 msgstr ""
+"bán kính chổi cơ bản (logarit)\n"
+"0.7 tương đương 2 pixel\n"
+"3.0 tương đương 20 pixel"
 
 #: ../brushsettings-gen.h:8
 msgid "Hardness"
-msgstr ""
+msgstr "độ cứng"
 
 #: ../brushsettings-gen.h:8
 msgid ""
@@ -90,35 +103,39 @@ msgstr ""
 
 #: ../brushsettings-gen.h:10
 msgid "Dabs per basic radius"
-msgstr ""
+msgstr "chấm trên mỗi bán kính cơ bản"
 
 #: ../brushsettings-gen.h:10
 msgid ""
 "How many dabs to draw while the pointer moves a distance of one brush radius "
 "(more precise: the base value of the radius)"
 msgstr ""
+"số chấm được vẽ khi con trỏ di chuyển một khoảng cách bằng một bán kính chổi "
+"(nói ngắn gọn, là giá trị cơ bản của bán kính)"
 
 #: ../brushsettings-gen.h:11
 msgid "Dabs per actual radius"
-msgstr ""
+msgstr "số chấm trên mỗi bán kính thực tế"
 
 #: ../brushsettings-gen.h:11
 msgid ""
 "Same as above, but the radius actually drawn is used, which can change "
 "dynamically"
 msgstr ""
+"tương tự như trên, nhưng là bán kính vẽ thực tế được dùng, có thể thay đổi "
+"liên tục"
 
 #: ../brushsettings-gen.h:12
 msgid "Dabs per second"
-msgstr ""
+msgstr "số chấm trên mỗi giây"
 
 #: ../brushsettings-gen.h:12
 msgid "Dabs to draw each second, no matter how far the pointer moves"
-msgstr ""
+msgstr "số chấm được vẽ mỗi giây, con trỏ di chuyển bao xa không quan trọng"
 
 #: ../brushsettings-gen.h:13
 msgid "Radius by random"
-msgstr ""
+msgstr "bán kính ngẫu nhiên"
 
 #: ../brushsettings-gen.h:13
 msgid ""
@@ -128,28 +145,37 @@ msgid ""
 "transparent\n"
 "2) it will not change the actual radius seen by dabs_per_actual_radius"
 msgstr ""
+"Thay đổi bán kính ngẫu nhiên trên mỗi chấm. Cũng có thể tùy chỉnh đầu vào "
+"ngẫu nhiên trong cài đặt bán kính để thực hiện việc này. Nếu bạn chỉnh ở "
+"đây, sẽ có 2 điểm khác biệt:\n"
+"1) giá trị mờ đục sẽ được sửa lại để chấm có bán kính lớn sẽ trong suốt hơn\n"
+"2) bán kính thực tế xem trong \"số chấm trên bán kính thực tế\" sẽ không "
+"thay đổi"
 
 #: ../brushsettings-gen.h:14
 msgid "Fine speed filter"
-msgstr ""
+msgstr "bộ lọc tốc độ vừa"
 
 #: ../brushsettings-gen.h:14
 msgid ""
 "How slow the input fine speed is following the real speed\n"
 "0.0 change immediately as your speed changes (not recommended, but try it)"
 msgstr ""
+"độ chậm \"tốc độ vừa đầu vào\" so với tốc độ thật\n"
+"0.0 thay đổi ngay khi tốc độ của bạn thay đổi (không khuyến cáo, nhưng hãy "
+"thử xem sao)"
 
 #: ../brushsettings-gen.h:15
 msgid "Gross speed filter"
-msgstr ""
+msgstr "bộ lọc tốc độ lớn"
 
 #: ../brushsettings-gen.h:15
 msgid "Same as 'fine speed filter', but note that the range is different"
-msgstr ""
+msgstr "tương tự \"bộ lọc tốc độ vừa\", nhưng giới hạn thì khác"
 
 #: ../brushsettings-gen.h:16
 msgid "Fine speed gamma"
-msgstr ""
+msgstr "gamma tốc độ vừa"
 
 #: ../brushsettings-gen.h:16
 msgid ""
@@ -160,18 +186,24 @@ msgid ""
 "+8.0 very fast speed increases 'fine speed' a lot\n"
 "For very slow speed the opposite happens."
 msgstr ""
+"Giá trị này thay đổi phản ứng của đầu vào \"tốc độ vừa\" thành tốc độ vật lý "
+"cực độ. Có thể dễ thấy sự khác biệt nhất khi \"tốc độ vừa\" được gắn với bán "
+"kính.\n"
+"-8.0 tốc độ rất nhanh không tăng \"tốc độ vừa\" thêm nữa\n"
+"+8.0 tốc độ rất nhanh tăng \"tốc độ vừa\" lên rất nhiều\n"
+"Đối với tốc độ rất chậm thì ngược lại."
 
 #: ../brushsettings-gen.h:17
 msgid "Gross speed gamma"
-msgstr ""
+msgstr "gamma tốc độ lớn"
 
 #: ../brushsettings-gen.h:17
 msgid "Same as 'fine speed gamma' for gross speed"
-msgstr ""
+msgstr "tương tự \"gamma tốc độ vừa\""
 
 #: ../brushsettings-gen.h:18
 msgid "Jitter"
-msgstr ""
+msgstr "rung ảnh"
 
 #: ../brushsettings-gen.h:18
 msgid ""
@@ -180,10 +212,14 @@ msgid ""
 " 1.0 standard deviation is one basic radius away\n"
 "<0.0 negative values produce no jitter"
 msgstr ""
+"thêm một đoạn lệch ngẫu nhiên vào vị trí nơi mỗi chấm được vẽ\n"
+"0.0 tắt\n"
+"1.0 độ lệch chuẩn là cách một bán kính cơ bản\n"
+"<0.0 giá trị âm sẽ không làm thay đổi nét"
 
 #: ../brushsettings-gen.h:19
 msgid "Offset by speed"
-msgstr ""
+msgstr "đoạn lệch theo tốc độ"
 
 #: ../brushsettings-gen.h:19
 msgid ""
@@ -192,28 +228,35 @@ msgid ""
 "> 0 draw where the pointer moves to\n"
 "< 0 draw where the pointer comes from"
 msgstr ""
+"thay đổi vị trí tùy theo tốc độ con trỏ\n"
+"= 0 tắt\n"
+"> 0 vẽ ở nơi con trỏ di chuyển đến\n"
+"< 0 vẽ ở nơi con trỏ bắt đầu"
 
 #: ../brushsettings-gen.h:20
 msgid "Offset by speed filter"
-msgstr ""
+msgstr "đoạn lệch theo bộ lọc tốc độ"
 
 #: ../brushsettings-gen.h:20
 msgid "How slow the offset goes back to zero when the cursor stops moving"
-msgstr ""
+msgstr "độ chậm của đoạn lệch đi về 0 khi con trỏ chuột ngừng di chuyển"
 
 #: ../brushsettings-gen.h:21
 msgid "Slow position tracking"
-msgstr ""
+msgstr "kéo vị trí chậm"
 
 #: ../brushsettings-gen.h:21
 msgid ""
 "Slowdown pointer tracking speed. 0 disables it, higher values remove more "
 "jitter in cursor movements. Useful for drawing smooth, comic-like outlines."
 msgstr ""
+"Làm chậm tốc độ kéo trỏ chuột. Giá trị 0 là tắt, các giá trị cao hơn sẽ xóa "
+"nhiều phần rung trong di chuyển của con trỏ hơn. Giúp vẽ các đường viền "
+"mượt, giống như truyện tranh."
 
 #: ../brushsettings-gen.h:22
 msgid "Slow tracking per dab"
-msgstr ""
+msgstr "kéo chậm trên mỗi chấm"
 
 #: ../brushsettings-gen.h:22
 msgid ""
@@ -223,29 +266,31 @@ msgstr ""
 
 #: ../brushsettings-gen.h:23
 msgid "Tracking noise"
-msgstr ""
+msgstr "bụi kéo"
 
 #: ../brushsettings-gen.h:23
 msgid ""
 "Add randomness to the mouse pointer; this usually generates many small lines "
 "in random directions; maybe try this together with 'slow tracking'"
 msgstr ""
+"thêm tính ngẫu nhiên cho con trỏ chuột; thường vẽ nhiều nét mảnh theo hướng "
+"ngẫu nhiên; hãy thử cùng với \"kéo chậm\" xem sao"
 
 #: ../brushsettings-gen.h:24
 msgid "Color hue"
-msgstr ""
+msgstr "color hue"
 
 #: ../brushsettings-gen.h:25
 msgid "Color saturation"
-msgstr ""
+msgstr "color saturation"
 
 #: ../brushsettings-gen.h:26
 msgid "Color value"
-msgstr ""
+msgstr "giá trị màu"
 
 #: ../brushsettings-gen.h:26
 msgid "Color value (brightness, intensity)"
-msgstr ""
+msgstr "giá trị màu (độ sáng, cường độ)"
 
 #: ../brushsettings-gen.h:27
 msgid "Save color"
@@ -262,7 +307,7 @@ msgstr ""
 
 #: ../brushsettings-gen.h:28
 msgid "Change color hue"
-msgstr ""
+msgstr "thay đổi color hue"
 
 #: ../brushsettings-gen.h:28
 msgid ""
@@ -271,10 +316,14 @@ msgid ""
 " 0.0 disable\n"
 " 0.5 counterclockwise hue shift by 180 degrees"
 msgstr ""
+"Thay đổi color hue.\n"
+"-0.1 dời chỉ số hue theo chiều kim đồng hồ\n"
+"0.0 tắt\n"
+"0.5 dời chỉ số hue ngược chiều 180 độ"
 
 #: ../brushsettings-gen.h:29
 msgid "Change color lightness (HSL)"
-msgstr ""
+msgstr "thay đổi độ chói màu (HSL)"
 
 #: ../brushsettings-gen.h:29
 msgid ""
@@ -286,7 +335,7 @@ msgstr ""
 
 #: ../brushsettings-gen.h:30
 msgid "Change color satur. (HSL)"
-msgstr ""
+msgstr "thay đổi color sat (HSL)"
 
 #: ../brushsettings-gen.h:30
 msgid ""
@@ -295,10 +344,14 @@ msgid ""
 " 0.0 disable\n"
 " 1.0 more saturated"
 msgstr ""
+"Thay đổi giá trị sat, sử dùng mẫu màu HSL.\n"
+"-1.0 xám hơn\n"
+"0.0 tắt\n"
+"1.0 đậm hơn"
 
 #: ../brushsettings-gen.h:31
 msgid "Change color value (HSV)"
-msgstr ""
+msgstr "thay đổi giá trị màu (HSV)"
 
 #: ../brushsettings-gen.h:31
 msgid ""
@@ -308,10 +361,15 @@ msgid ""
 " 0.0 disable\n"
 " 1.0 brigher"
 msgstr ""
+"Thay đổi giá trị màu (độ sáng, cường độ) sử dụng mẫu màu HSV. Thay đổi HSV "
+"được áp dụng trước HSL.\n"
+"-1.0 tối hơn\n"
+"0.0 tắt\n"
+"1.0 sáng hơn"
 
 #: ../brushsettings-gen.h:32
 msgid "Change color satur. (HSV)"
-msgstr ""
+msgstr "Thay đổi color sat. (HSV)"
 
 #: ../brushsettings-gen.h:32
 msgid ""
@@ -321,10 +379,15 @@ msgid ""
 " 0.0 disable\n"
 " 1.0 more saturated"
 msgstr ""
+"Thay đổi giá trị sat, sử dụng mẫu màu HSV. Thay đổi HSV được áp dụng trước "
+"HSL.\n"
+"-1.0 xám hơn\n"
+"0.0 tắt\n"
+"1.0 đậm hơn"
 
 #: ../brushsettings-gen.h:33
 msgid "Smudge"
-msgstr ""
+msgstr "loang"
 
 #: ../brushsettings-gen.h:33
 msgid ""
@@ -334,10 +397,15 @@ msgid ""
 " 0.5 mix the smudge color with the brush color\n"
 " 1.0 use only the smudge color"
 msgstr ""
+"Vẽ bằng màu loang thay cho màu chổi. Màu loang sẽ dần thay đổi thành màu "
+"đang vẽ.\n"
+"0.0 không dùng màu loang\n"
+"0.5 pha màu loang với màu chổi\n"
+"1.0 chỉ dùng màu loang"
 
 #: ../brushsettings-gen.h:34
 msgid "Smudge length"
-msgstr ""
+msgstr "độ dài loang màu"
 
 #: ../brushsettings-gen.h:34
 msgid ""
@@ -365,7 +433,7 @@ msgstr ""
 
 #: ../brushsettings-gen.h:36
 msgid "Eraser"
-msgstr ""
+msgstr "tẩy"
 
 #: ../brushsettings-gen.h:36
 msgid ""
@@ -374,10 +442,14 @@ msgid ""
 " 1.0 standard eraser\n"
 " 0.5 pixels go towards 50% transparency"
 msgstr ""
+"độ mạnh nhẹ của công cụ đóng vai trò như cục tẩy\n"
+"0.0 vẽ thông thường\n"
+"1.0 tẩy tiêu chuẩn\n"
+"0.5 các pixel trở nên trong suốt 50%"
 
 #: ../brushsettings-gen.h:37
 msgid "Stroke threshold"
-msgstr ""
+msgstr "ngưỡng nét"
 
 #: ../brushsettings-gen.h:37
 msgid ""
@@ -387,7 +459,7 @@ msgstr ""
 
 #: ../brushsettings-gen.h:38
 msgid "Stroke duration"
-msgstr ""
+msgstr "thời gian kéo dài nét"
 
 #: ../brushsettings-gen.h:38
 msgid ""
@@ -397,7 +469,7 @@ msgstr ""
 
 #: ../brushsettings-gen.h:39
 msgid "Stroke hold time"
-msgstr ""
+msgstr "thời gian giữ nét"
 
 #: ../brushsettings-gen.h:39
 msgid ""
@@ -410,7 +482,7 @@ msgstr ""
 
 #: ../brushsettings-gen.h:40
 msgid "Custom input"
-msgstr ""
+msgstr "đầu vào tùy chọn"
 
 #: ../brushsettings-gen.h:40
 msgid ""
@@ -422,10 +494,17 @@ msgid ""
 "If you make it change 'by random' you can generate a slow (smooth) random "
 "input."
 msgstr ""
+"Đặt đầu vào tùy chọn thành giá trị này. Nếu nó chậm lại, hãy di chuyển nó về "
+"phía giá trị này (xem bên dưới). Mục đích ở đây là làm cho đầu vào này phụ "
+"thuộc vào tổng hợp các yếu tố áp lực/tốc độ/vv..., sau đó chỉnh cho các cài "
+"đặt khác phụ thuộc vào đầu vào tùy chọn này thay vì lặp lại các thao tác ở "
+"mọi nơi cần chỉnh.\n"
+"Nếu bạn thay đổi thành \"theo ngẫu nhiên\" thì có thể tạo ra một đầu vào "
+"ngẫu nhiên chậm (mượt)."
 
 #: ../brushsettings-gen.h:41
 msgid "Custom input filter"
-msgstr ""
+msgstr "bộ lọc đầu vào tùy chọn"
 
 #: ../brushsettings-gen.h:41
 msgid ""
@@ -437,17 +516,19 @@ msgstr ""
 
 #: ../brushsettings-gen.h:42
 msgid "Elliptical dab: ratio"
-msgstr ""
+msgstr "chấm tròn: tỉ lệ"
 
 #: ../brushsettings-gen.h:42
 msgid ""
 "Aspect ratio of the dabs; must be >= 1.0, where 1.0 means a perfectly round "
 "dab. TODO: linearize? start at 0.0 maybe, or log?"
 msgstr ""
+"Tỉ lệ khung của chấm; phải >=1.0, nếu = 1.0 tức là chấm tròn đều. Khi cần "
+"tạo đường thẳng, có thể bắt đầu bằng 0.0, hoặc log."
 
 #: ../brushsettings-gen.h:43
 msgid "Elliptical dab: angle"
-msgstr ""
+msgstr "chấm tròn: góc"
 
 #: ../brushsettings-gen.h:43
 msgid ""
@@ -459,13 +540,15 @@ msgstr ""
 
 #: ../brushsettings-gen.h:44
 msgid "Direction filter"
-msgstr ""
+msgstr "bộ lọc hướng"
 
 #: ../brushsettings-gen.h:44
 msgid ""
 "A low value will make the direction input adapt more quickly, a high value "
 "will make it smoother"
 msgstr ""
+"một giá trị thấp sẽ làm cho đầu vào điều hướng tương thích nhanh hơn, một "
+"giá trị cao sẽ làm nó mượt hơn"
 
 #: ../brushsettings-gen.h:45
 msgid "Lock alpha"
@@ -512,7 +595,7 @@ msgstr ""
 
 #: ../brushsettings-gen.h:53
 msgid "Pressure"
-msgstr ""
+msgstr "Áp lực"
 
 #: ../brushsettings-gen.h:53
 msgid ""
@@ -523,7 +606,7 @@ msgstr ""
 
 #: ../brushsettings-gen.h:54
 msgid "Fine speed"
-msgstr ""
+msgstr "Tốc độ vừa"
 
 #: ../brushsettings-gen.h:54
 msgid ""
@@ -531,30 +614,37 @@ msgid ""
 "values' from the 'help' menu to get a feeling for the range; negative values "
 "are rare but possible for very low speed."
 msgstr ""
+"Độ nhanh chậm mà bạn đang di chuyển. Giá trị này có thể thay đổi rất nhanh. "
+"Xem \"giá trị in đầu vào\" trong trình đơn \"trợ giúp\" để biết thêm về giới "
+"hạn tốc độ; giá trị âm tuy hiếm nhưng vẫn có, và mang tốc độ rất chậm."
 
 #: ../brushsettings-gen.h:55
 msgid "Gross speed"
-msgstr ""
+msgstr "Tốc độ cao"
 
 #: ../brushsettings-gen.h:55
 msgid ""
 "Same as fine speed, but changes slower. Also look at the 'gross speed "
 "filter' setting."
 msgstr ""
+"Tương tự tốc độ vừa, nhưng thay đổi chậm hơn. Xem thêm cài đặt \"bộ lọc tốc "
+"độ cao\"."
 
 #: ../brushsettings-gen.h:56
 msgid "Random"
-msgstr ""
+msgstr "Ngẫu nhiên"
 
 #: ../brushsettings-gen.h:56
 msgid ""
 "Fast random noise, changing at each evaluation. Evenly distributed between 0 "
 "and 1."
 msgstr ""
+"Làm bụi nhanh ngẫu nhiên, thay đổi sau mỗi khoảng ước lượng nhất định. Được "
+"phân bố đều giữa 0 và 1."
 
 #: ../brushsettings-gen.h:57
 msgid "Stroke"
-msgstr ""
+msgstr "Nét"
 
 #: ../brushsettings-gen.h:57
 msgid ""
@@ -562,16 +652,21 @@ msgid ""
 "be configured to jump back to zero periodically while you move. Look at the "
 "'stroke duration' and 'stroke hold time' settings."
 msgstr ""
+"Số liệu đầu vào này đi dần từ 0 đến 1 khi bạn vẽ một nét. Bạn cũng có thể "
+"cấu hình cho định kỳ nhảy về 0 khi bạn di chuyển. Xem tại thiết lập 'thời "
+"gian kéo dài nét' và 'thời gian giữ nét'."
 
 #: ../brushsettings-gen.h:58
 msgid "Direction"
-msgstr ""
+msgstr "Điều hướng"
 
 #: ../brushsettings-gen.h:58
 msgid ""
 "The angle of the stroke, in degrees. The value will stay between 0.0 and "
 "180.0, effectively ignoring turns of 180 degrees."
 msgstr ""
+"Góc kéo nét, theo độ. Giá trị này nằm giữa 0.0 và 180.0, thực tế là bỏ qua "
+"góc quay 180 độ."
 
 #: ../brushsettings-gen.h:59
 msgid "Declination"
@@ -596,9 +691,11 @@ msgstr ""
 
 #: ../brushsettings-gen.h:61
 msgid "Custom"
-msgstr ""
+msgstr "Tùy chọn"
 
 #: ../brushsettings-gen.h:61
 msgid ""
 "This is a user defined input. Look at the 'custom input' setting for details."
 msgstr ""
+"Đây là đầu vào do người dùng chỉ định. Xem thiết lập 'đầu vào tùy chọn' để "
+"biết thêm chi tiết."

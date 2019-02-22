@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: MyPaint git\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-04 18:33+0100\n"
-"PO-Revision-Date: 2018-12-09 01:08+0000\n"
-"Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
+"PO-Revision-Date: 2019-02-25 09:25+0000\n"
+"Last-Translator: glixx <roman_romul@mail.ru>\n"
 "Language-Team: Hungarian <https://hosted.weblate.org/projects/mypaint/"
 "libmypaint/hu/>\n"
 "Language: hu\n"
@@ -16,11 +16,11 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.4-dev\n"
+"X-Generator: Weblate 3.5-dev\n"
 
 #: ../brushsettings-gen.h:4
 msgid "Opacity"
-msgstr "Átlátszatlanság:"
+msgstr "Átlátszatlanság"
 
 #: ../brushsettings-gen.h:4
 msgid ""
@@ -143,7 +143,7 @@ msgid ""
 "dynamically"
 msgstr ""
 "Ugyanaz, mint a fölötte lévő, de a valós, rajzolt sugarat veszi alapul, ami "
-"dinamikusan változhat."
+"dinamikusan változhat"
 
 #: ../brushsettings-gen.h:12
 msgid "Dabs per second"
@@ -183,7 +183,7 @@ msgid ""
 msgstr ""
 "Milyen lassan követi a finom sebesség bemenet a valós sebességet\n"
 "A 0.0 érték azonnali változást eredményez, ahogy a sebességed változik (nem "
-"ajánlott, de próbáld csak ki)."
+"ajánlott, de próbáld csak ki)"
 
 #: ../brushsettings-gen.h:15
 msgid "Gross speed filter"
@@ -191,7 +191,7 @@ msgstr "Durva sebesség szűrő"
 
 #: ../brushsettings-gen.h:15
 msgid "Same as 'fine speed filter', but note that the range is different"
-msgstr "Ugyanaz, mint a „finom sebesség szűrő” , de más a tartomány."
+msgstr "Ugyanaz, mint a „finom sebesség szűrő” , de más a tartomány"
 
 #: ../brushsettings-gen.h:16
 msgid "Fine speed gamma"
@@ -259,7 +259,7 @@ msgstr "Eltolás a sebesség szűrő szerint"
 
 #: ../brushsettings-gen.h:20
 msgid "How slow the offset goes back to zero when the cursor stops moving"
-msgstr "Milyen lassan tér vissza az eltolás 0-ra, miután a kurzor megállt."
+msgstr "Milyen lassan tér vissza az eltolás 0-ra, miután a kurzor megállt"
 
 #: ../brushsettings-gen.h:21
 msgid "Slow position tracking"
@@ -298,7 +298,7 @@ msgid ""
 msgstr ""
 "Véletlenszerűséget ad a kurzor mozgásához: ez általában kis, véletlenszerű "
 "irányokba induló vonalakat eredményez. Érdemes lehet kipróbálni a „Lassú "
-"követéssel” együtt."
+"követéssel” együtt"
 
 #: ../brushsettings-gen.h:24
 msgid "Color hue"
@@ -348,7 +348,7 @@ msgstr ""
 "A szín árnyalatát változtatja.\n"
 "-0.1 kis mértékű, óramutató járásával megegyező irányú árnyalat-eltolás\n"
 " 0.0 nincsen eltolás\n"
-" 0.5 óramutató járásával ellentétes irányú, 180 fokos eltolás."
+" 0.5 óramutató járásával ellentétes irányú, 180 fokos eltolás"
 
 #: ../brushsettings-gen.h:29
 msgid "Change color lightness (HSL)"
@@ -613,7 +613,7 @@ msgid ""
 "will make it smoother"
 msgstr ""
 "Alacsony értékeknél az irány bemenet sokkal gyorsabban alkalmazkodik, magas "
-"értékeknél viszont finomabb lesz a vonal."
+"értékeknél viszont finomabb lesz a vonal"
 
 #: ../brushsettings-gen.h:45
 msgid "Lock alpha"

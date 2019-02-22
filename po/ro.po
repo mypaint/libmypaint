@@ -8,13 +8,17 @@ msgstr ""
 "Project-Id-Version: 0.7.1-git\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-04 18:33+0100\n"
-"PO-Revision-Date: 2012-02-24 23:44+0100\n"
-"Last-Translator: Andrei Brănescu <andreibranescu@gmail.com>\n"
-"Language: Romanian\n"
+"PO-Revision-Date: 2019-02-27 00:18+0000\n"
+"Last-Translator: glixx <roman_romul@mail.ru>\n"
+"Language-Team: Romanian <https://hosted.weblate.org/projects/mypaint/"
+"libmypaint/ro/>\n"
+"Language: ro\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=3; plural=n==1 ? 0 : (n==0 || (n%100 > 0 && n%100 < "
+"20)) ? 1 : 2;\n"
+"X-Generator: Weblate 3.5-dev\n"
 "X-Language: ro\n"
 "X-Source-Language: C\n"
 
@@ -23,7 +27,6 @@ msgid "Opacity"
 msgstr "Opacitate"
 
 #: ../brushsettings-gen.h:4
-#, fuzzy
 msgid ""
 "0 means brush is transparent, 1 fully visible\n"
 "(also known as alpha or opacity)"
@@ -36,7 +39,6 @@ msgid "Opacity multiply"
 msgstr "Multiplicare opacitate"
 
 #: ../brushsettings-gen.h:5
-#, fuzzy
 msgid ""
 "This gets multiplied with opaque. You should only change the pressure input "
 "of this setting. Use 'opaque' instead to make opacity depend on speed.\n"
@@ -54,7 +56,6 @@ msgid "Opacity linearize"
 msgstr "Liniarizare opacitate"
 
 #: ../brushsettings-gen.h:6
-#, fuzzy
 msgid ""
 "Correct the nonlinearity introduced by blending multiple dabs on top of each "
 "other. This correction should get you a linear (\"natural\") pressure "
@@ -81,7 +82,6 @@ msgid "Radius"
 msgstr "Rază"
 
 #: ../brushsettings-gen.h:7
-#, fuzzy
 msgid ""
 "Basic brush radius (logarithmic)\n"
 " 0.7 means 2 pixels\n"
@@ -96,7 +96,6 @@ msgid "Hardness"
 msgstr "Duritate"
 
 #: ../brushsettings-gen.h:8
-#, fuzzy
 msgid ""
 "Hard brush-circle borders (setting to zero will draw nothing). To reach the "
 "maximum hardness, you need to disable Pixel feather."
@@ -109,7 +108,6 @@ msgid "Pixel feather"
 msgstr ""
 
 #: ../brushsettings-gen.h:9
-#, fuzzy
 msgid ""
 "This setting decreases the hardness when necessary to prevent a pixel "
 "staircase effect (aliasing) by making the dab more blurred.\n"
@@ -162,7 +160,6 @@ msgid "Radius by random"
 msgstr "Rază aleatoare"
 
 #: ../brushsettings-gen.h:13
-#, fuzzy
 msgid ""
 "Alter the radius randomly each dab. You can also do this with the by_random "
 "input on the radius setting. If you do it here, there are two differences:\n"
@@ -182,7 +179,6 @@ msgid "Fine speed filter"
 msgstr "Filtru viteză fină"
 
 #: ../brushsettings-gen.h:14
-#, fuzzy
 msgid ""
 "How slow the input fine speed is following the real speed\n"
 "0.0 change immediately as your speed changes (not recommended, but try it)"
@@ -204,7 +200,6 @@ msgid "Fine speed gamma"
 msgstr "Gama viteză fină"
 
 #: ../brushsettings-gen.h:16
-#, fuzzy
 msgid ""
 "This changes the reaction of the 'fine speed' input to extreme physical "
 "speed. You will see the difference best if 'fine speed' is mapped to the "
@@ -233,7 +228,6 @@ msgid "Jitter"
 msgstr ""
 
 #: ../brushsettings-gen.h:18
-#, fuzzy
 msgid ""
 "Add a random offset to the position where each dab is drawn\n"
 " 0.0 disabled\n"
@@ -250,7 +244,6 @@ msgid "Offset by speed"
 msgstr "Decalaj după viteză"
 
 #: ../brushsettings-gen.h:19
-#, fuzzy
 msgid ""
 "Change position depending on pointer speed\n"
 "= 0 disable\n"
@@ -286,15 +279,10 @@ msgid "Slow tracking per dab"
 msgstr ""
 
 #: ../brushsettings-gen.h:22
-#, fuzzy
 msgid ""
 "Similar as above but at brushdab level (ignoring how much time has passed if "
 "brushdabs do not depend on time)"
 msgstr ""
-"Cât de încet intrarea preferențială urmărește valoarea dorită(cea de "
-"deasupra). Aceasta se întamplă la nivelul de pată pensulă (ignorand cât timp "
-"a trecut, daca petele pensulă nu depind de timp).\n"
-" 0.0 fără încetinire (schimbările apar instantaneu)"
 
 #: ../brushsettings-gen.h:23
 msgid "Tracking noise"
@@ -327,7 +315,6 @@ msgid "Save color"
 msgstr "Salvează culoare"
 
 #: ../brushsettings-gen.h:27
-#, fuzzy
 msgid ""
 "When selecting a brush, the color can be restored to the color that the "
 "brush was saved with.\n"
@@ -338,15 +325,14 @@ msgstr ""
 "La selecția unei pensule, culoarea poate fi restaurată la valoarea cu care "
 "pensula a fost salvată.\n"
 " 0.0 nu modifică culoarea activă la selectarea acestei pensule\n"
-" 0.5 schimbă culoarea activă spre culoarea pensulei 1.0 setează culoarea "
-"activă ca și culoarea pensulei la selecție"
+" 0.5 schimbă culoarea activă spre culoarea pensulei\n"
+" 1.0 setează culoarea activă ca și culoarea pensulei la selecție"
 
 #: ../brushsettings-gen.h:28
 msgid "Change color hue"
 msgstr "Schimbă nuanța culorii"
 
 #: ../brushsettings-gen.h:28
-#, fuzzy
 msgid ""
 "Change color hue.\n"
 "-0.1 small clockwise color hue shift\n"
@@ -363,7 +349,6 @@ msgid "Change color lightness (HSL)"
 msgstr "Schimbă luminozitatea culorii (HSL)"
 
 #: ../brushsettings-gen.h:29
-#, fuzzy
 msgid ""
 "Change the color lightness using the HSL color model.\n"
 "-1.0 blacker\n"
@@ -380,7 +365,6 @@ msgid "Change color satur. (HSL)"
 msgstr "Schimbă saturația culorii (HSL)"
 
 #: ../brushsettings-gen.h:30
-#, fuzzy
 msgid ""
 "Change the color saturation using the HSL color model.\n"
 "-1.0 more grayish\n"
@@ -397,7 +381,6 @@ msgid "Change color value (HSV)"
 msgstr "Schimbă valoarea culorii (HSV)"
 
 #: ../brushsettings-gen.h:31
-#, fuzzy
 msgid ""
 "Change the color value (brightness, intensity) using the HSV color model. "
 "HSV changes are applied before HSL.\n"
@@ -416,7 +399,6 @@ msgid "Change color satur. (HSV)"
 msgstr "Shimbă saturația culorii (HSV)"
 
 #: ../brushsettings-gen.h:32
-#, fuzzy
 msgid ""
 "Change the color saturation using the HSV color model. HSV changes are "
 "applied before HSL.\n"
@@ -431,12 +413,10 @@ msgstr ""
 " 1.0 more saturated"
 
 #: ../brushsettings-gen.h:33
-#, fuzzy
 msgid "Smudge"
 msgstr "Pată"
 
 #: ../brushsettings-gen.h:33
-#, fuzzy
 msgid ""
 "Paint with the smudge color instead of the brush color. The smudge color is "
 "slowly changed to the color you are painting on.\n"
@@ -455,7 +435,6 @@ msgid "Smudge length"
 msgstr ""
 
 #: ../brushsettings-gen.h:34
-#, fuzzy
 msgid ""
 "This controls how fast the smudge color becomes the color you are painting "
 "on.\n"
@@ -470,12 +449,10 @@ msgstr ""
 "1.0 never change the smudge colour"
 
 #: ../brushsettings-gen.h:35
-#, fuzzy
 msgid "Smudge radius"
 msgstr "Raza urma murdarire"
 
 #: ../brushsettings-gen.h:35
-#, fuzzy
 msgid ""
 "This modifies the radius of the circle where color is picked up for "
 "smudging.\n"
@@ -496,7 +473,6 @@ msgid "Eraser"
 msgstr "Radieră"
 
 #: ../brushsettings-gen.h:36
-#, fuzzy
 msgid ""
 "how much this tool behaves like an eraser\n"
 " 0.0 normal painting\n"
@@ -504,7 +480,7 @@ msgid ""
 " 0.5 pixels go towards 50% transparency"
 msgstr ""
 "Cât de mult se comportă această unealtă ca o radiera\n"
-"  0.0 desenat normal\n"
+" 0.0 desenat normal\n"
 " 1.0 radieră standard\n"
 " 0.5 pixelii tind cătr 50% transparență"
 
@@ -513,7 +489,6 @@ msgid "Stroke threshold"
 msgstr "Prag tușă"
 
 #: ../brushsettings-gen.h:37
-#, fuzzy
 msgid ""
 "How much pressure is needed to start a stroke. This affects the stroke input "
 "only. MyPaint does not need a minimum pressure to start drawing."
@@ -527,20 +502,18 @@ msgid "Stroke duration"
 msgstr "Durată tușă"
 
 #: ../brushsettings-gen.h:38
-#, fuzzy
 msgid ""
 "How far you have to move until the stroke input reaches 1.0. This value is "
 "logarithmic (negative values will not invert the process)."
 msgstr ""
 "Cât de departe trebuie să mișcați până când intrarea tușei atinge 1.0. "
-"Această valoare este logaritmică (valorile negative nu vor inversa procesul)"
+"Această valoare este logaritmică (valorile negative nu vor inversa procesul)."
 
 #: ../brushsettings-gen.h:39
 msgid "Stroke hold time"
 msgstr "Timp suspensie tușă"
 
 #: ../brushsettings-gen.h:39
-#, fuzzy
 msgid ""
 "This defines how long the stroke input stays at 1.0. After that it will "
 "reset to 0.0 and start growing again, even if the stroke is not yet "
@@ -559,7 +532,6 @@ msgid "Custom input"
 msgstr "Intrare personalizată"
 
 #: ../brushsettings-gen.h:40
-#, fuzzy
 msgid ""
 "Set the custom input to this value. If it is slowed down, move it towards "
 "this value (see below). The idea is that you make this input depend on a "
@@ -581,7 +553,6 @@ msgid "Custom input filter"
 msgstr "Filtru intrare personalizat"
 
 #: ../brushsettings-gen.h:41
-#, fuzzy
 msgid ""
 "How slow the custom input actually follows the desired value (the one "
 "above). This happens at brushdab level (ignoring how much time has passed, "
@@ -598,7 +569,6 @@ msgid "Elliptical dab: ratio"
 msgstr "Pată eliptică: raport"
 
 #: ../brushsettings-gen.h:42
-#, fuzzy
 msgid ""
 "Aspect ratio of the dabs; must be >= 1.0, where 1.0 means a perfectly round "
 "dab. TODO: linearize? start at 0.0 maybe, or log?"
@@ -611,7 +581,6 @@ msgid "Elliptical dab: angle"
 msgstr "Pată eliptică: unghi"
 
 #: ../brushsettings-gen.h:43
-#, fuzzy
 msgid ""
 "Angle by which elliptical dabs are tilted\n"
 " 0.0 horizontal dabs\n"
@@ -639,7 +608,6 @@ msgid "Lock alpha"
 msgstr "Blocare alfa"
 
 #: ../brushsettings-gen.h:45
-#, fuzzy
 msgid ""
 "Do not modify the alpha channel of the layer (paint only where there is "
 "paint already)\n"
@@ -647,14 +615,13 @@ msgid ""
 " 0.5 half of the paint gets applied normally\n"
 " 1.0 alpha channel fully locked"
 msgstr ""
-"Nu modifica canalul alfa al stratului (pictează numai unde este deja "
-"pictat)\n"
+"Nu modifica canalul alfa al stratului (pictează numai unde este deja pictat)"
+"\n"
 " 0.0 desenat normal\n"
 " 0.5 jumatate din vopsea este aplicată normal\n"
 " 1.0 canalul alpha blocat complet"
 
 #: ../brushsettings-gen.h:46
-#, fuzzy
 msgid "Colorize"
 msgstr "Culoare"
 
@@ -675,7 +642,6 @@ msgid ""
 msgstr ""
 
 #: ../brushsettings-gen.h:48
-#, fuzzy
 msgid "Pressure gain"
 msgstr "Presiune"
 
@@ -690,7 +656,6 @@ msgid "Pressure"
 msgstr "Presiune"
 
 #: ../brushsettings-gen.h:53
-#, fuzzy
 msgid ""
 "The pressure reported by the tablet. Usually between 0.0 and 1.0, but it may "
 "get larger when a pressure gain is used. If you use the mouse, it will be "
@@ -724,7 +689,7 @@ msgid ""
 "filter' setting."
 msgstr ""
 "La fel ca viteza fină, dar se modifică mai lent. Consultați, de asemenea, "
-"setările 'gross speed filter'"
+"setările 'gross speed filter'."
 
 #: ../brushsettings-gen.h:56
 msgid "Random"

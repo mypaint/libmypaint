@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: 0.9.0-git\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-04 18:33+0100\n"
-"PO-Revision-Date: 2018-12-09 01:08+0000\n"
-"Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
+"PO-Revision-Date: 2019-02-27 00:18+0000\n"
+"Last-Translator: glixx <roman_romul@mail.ru>\n"
 "Language-Team: Slovenian <https://hosted.weblate.org/projects/mypaint/"
 "libmypaint/sl/>\n"
 "Language: sl\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=4; plural=n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
 "n%100==4 ? 2 : 3;\n"
-"X-Generator: Weblate 3.4-dev\n"
+"X-Generator: Weblate 3.5-dev\n"
 "X-Poedit-Language: Slovenian\n"
 "X-Poedit-Country: SLOVENIA\n"
 
@@ -31,7 +31,9 @@ msgstr "Prosojnost"
 msgid ""
 "0 means brush is transparent, 1 fully visible\n"
 "(also known as alpha or opacity)"
-msgstr "0 pomeni, da je čopič neviden, 1 pa, da je neprosojen"
+msgstr ""
+"0 pomeni, da je čopič neviden, 1 pa, da je neprosojen\n"
+"(also known as alpha or opacity)"
 
 #: ../brushsettings-gen.h:5
 msgid "Opacity multiply"
@@ -120,7 +122,6 @@ msgid "Dabs per second"
 msgstr "Pritiskov na sekundo"
 
 #: ../brushsettings-gen.h:12
-#, fuzzy
 msgid "Dabs to draw each second, no matter how far the pointer moves"
 msgstr ""
 "število točk, izrisanih v sekundi, ne glede na to, kako daleč se premakne "
@@ -154,7 +155,6 @@ msgid "Gross speed filter"
 msgstr "Filter grobe hitrosti"
 
 #: ../brushsettings-gen.h:15
-#, fuzzy
 msgid "Same as 'fine speed filter', but note that the range is different"
 msgstr "Enako kot filter pri fini hitrosti, vendar z drugačnim razponom"
 
@@ -177,7 +177,6 @@ msgid "Gross speed gamma"
 msgstr "Gama grobe hitrosti"
 
 #: ../brushsettings-gen.h:17
-#, fuzzy
 msgid "Same as 'fine speed gamma' for gross speed"
 msgstr "Enako kot gama pri fini hitrosti"
 
@@ -256,12 +255,10 @@ msgid "Color value"
 msgstr "Svetlost barve"
 
 #: ../brushsettings-gen.h:26
-#, fuzzy
 msgid "Color value (brightness, intensity)"
 msgstr "svetlost barve (intenziteta)"
 
 #: ../brushsettings-gen.h:27
-#, fuzzy
 msgid "Save color"
 msgstr "Zamenjaj barvo"
 
@@ -382,7 +379,6 @@ msgid "Eraser"
 msgstr "Radirka"
 
 #: ../brushsettings-gen.h:36
-#, fuzzy
 msgid ""
 "how much this tool behaves like an eraser\n"
 " 0.0 normal painting\n"
@@ -469,7 +465,6 @@ msgid "Elliptical dab: angle"
 msgstr "Eliptičnost čopiča: kot"
 
 #: ../brushsettings-gen.h:43
-#, fuzzy
 msgid ""
 "Angle by which elliptical dabs are tilted\n"
 " 0.0 horizontal dabs\n"
@@ -486,7 +481,6 @@ msgid "Direction filter"
 msgstr "Smerni filter"
 
 #: ../brushsettings-gen.h:44
-#, fuzzy
 msgid ""
 "A low value will make the direction input adapt more quickly, a high value "
 "will make it smoother"
@@ -508,7 +502,6 @@ msgid ""
 msgstr ""
 
 #: ../brushsettings-gen.h:46
-#, fuzzy
 msgid "Colorize"
 msgstr "Barva"
 
@@ -529,7 +522,6 @@ msgid ""
 msgstr ""
 
 #: ../brushsettings-gen.h:48
-#, fuzzy
 msgid "Pressure gain"
 msgstr "Pritisk"
 
@@ -544,7 +536,6 @@ msgid "Pressure"
 msgstr "Pritisk"
 
 #: ../brushsettings-gen.h:53
-#, fuzzy
 msgid ""
 "The pressure reported by the tablet. Usually between 0.0 and 1.0, but it may "
 "get larger when a pressure gain is used. If you use the mouse, it will be "

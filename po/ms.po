@@ -8,13 +8,16 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-02-25 17:11+0000\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"PO-Revision-Date: 2019-02-23 08:18+0000\n"
+"Last-Translator: glixx <roman_romul@mail.ru>\n"
+"Language-Team: Malay <https://hosted.weblate.org/projects/mypaint/libmypaint/"
+"ms/>\n"
 "Language: ms\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 3.5-dev\n"
 
 #: ../brushsettings-gen.h:4
 msgid "Opacity"
@@ -53,10 +56,20 @@ msgid ""
 "1.0 the opaque value above is for the final brush stroke, assuming each "
 "pixel gets (dabs_per_radius*2) brushdabs on average during a stroke"
 msgstr ""
+"Betulkan tak-linear yang diperkenal oleh pengadunan palit berbilang diatas "
+"antara satu sama lain. Pembetulan ini seharusnya memberikan anda respon "
+"tekanan linear (\"natural\") bila tekanan dipetakan ke legap_berbilang, bila "
+"ia selesai. 0.9 adalah lejang piawai yang baik, tetapkannya lebih kecil jika "
+"serakan berus anda adalah banyak, atau lebih tinggi jika anda guna "
+"palit_per_saat.\n"
+"0.0 nilai legap diatas adalah untuk palit individu\n"
+"1.0 nilai legap diatas adalah untuk lejang berus akhir, mengganggap setiap "
+"piksel mendapat palit berus (palit_per_jejari*2) secara purata semasa "
+"melukis lejang"
 
 #: ../brushsettings-gen.h:7
 msgid "Radius"
-msgstr ""
+msgstr "jejari"
 
 #: ../brushsettings-gen.h:7
 msgid ""
@@ -64,10 +77,13 @@ msgid ""
 " 0.7 means 2 pixels\n"
 " 3.0 means 20 pixels"
 msgstr ""
+"jejari berus asas (logaritmik)\n"
+"0.7 bermaksud 2 piksel\n"
+"3.0 bermaksud 20 piksel"
 
 #: ../brushsettings-gen.h:8
 msgid "Hardness"
-msgstr ""
+msgstr "kekerasan"
 
 #: ../brushsettings-gen.h:8
 msgid ""
@@ -90,35 +106,40 @@ msgstr ""
 
 #: ../brushsettings-gen.h:10
 msgid "Dabs per basic radius"
-msgstr ""
+msgstr "palit per jejari asas"
 
 #: ../brushsettings-gen.h:10
 msgid ""
 "How many dabs to draw while the pointer moves a distance of one brush radius "
 "(more precise: the base value of the radius)"
 msgstr ""
+"berapa banyak palit untuk dilukis semasa penuding gerak satu jarak dari "
+"sejejari berus (lebih tepat: nilai dasar jejari)"
 
 #: ../brushsettings-gen.h:11
 msgid "Dabs per actual radius"
-msgstr ""
+msgstr "palit per jejari sebenar"
 
 #: ../brushsettings-gen.h:11
 msgid ""
 "Same as above, but the radius actually drawn is used, which can change "
 "dynamically"
 msgstr ""
+"sama seperti diatas, tetapi jejari biasanya yang dilukis digunakan, yang "
+"dapat diubah secara dinamik"
 
 #: ../brushsettings-gen.h:12
 msgid "Dabs per second"
-msgstr ""
+msgstr "palit sesaat"
 
 #: ../brushsettings-gen.h:12
 msgid "Dabs to draw each second, no matter how far the pointer moves"
 msgstr ""
+"palit untuk dilukis setiap saat, tidak kira berapa jauh penuding bergerak"
 
 #: ../brushsettings-gen.h:13
 msgid "Radius by random"
-msgstr ""
+msgstr "jejari secara rawak"
 
 #: ../brushsettings-gen.h:13
 msgid ""
@@ -128,28 +149,39 @@ msgid ""
 "transparent\n"
 "2) it will not change the actual radius seen by dabs_per_actual_radius"
 msgstr ""
+"Ubah jejari secara rawak pada setiap palit. Anda juga boleh lakukannya "
+"dengan_input rawak pada tetapan jejari. Jika anda tidak membuatnya disini, "
+"terdapat dua perbezaan:\n"
+"1) nilai legap akan dibetulkan supaya palit jejari-besar lebih lutsinar\n"
+"2) ia tidak akan mengubah jejari sebenar yang dilihat oleh "
+"jejari_sebenar_per_palit"
 
 #: ../brushsettings-gen.h:14
 msgid "Fine speed filter"
-msgstr ""
+msgstr "penapis kelajuan halus"
 
 #: ../brushsettings-gen.h:14
 msgid ""
 "How slow the input fine speed is following the real speed\n"
 "0.0 change immediately as your speed changes (not recommended, but try it)"
 msgstr ""
+"berapa perlahankah kelajuan halus input mengikuti kelajuan sebenar\n"
+"0.0 ubah serta-merta bilamana kelajuan anda berubah (tidak disarankan, "
+"tetapi boleh cuba ia)"
 
 #: ../brushsettings-gen.h:15
 msgid "Gross speed filter"
-msgstr ""
+msgstr "penapis kelajuan kasar"
 
 #: ../brushsettings-gen.h:15
 msgid "Same as 'fine speed filter', but note that the range is different"
 msgstr ""
+"sama seperti 'penapis kelajuan halus', tetapi ambil perhatian julatnya "
+"berbeza"
 
 #: ../brushsettings-gen.h:16
 msgid "Fine speed gamma"
-msgstr ""
+msgstr "gamma kelajuan halus"
 
 #: ../brushsettings-gen.h:16
 msgid ""
@@ -160,18 +192,24 @@ msgid ""
 "+8.0 very fast speed increases 'fine speed' a lot\n"
 "For very slow speed the opposite happens."
 msgstr ""
+"Ia mengubah rekasi input 'kelajuan halus' menjadi kelajuan fizikal yang "
+"ekstrem. Anda akan lihat perbezaan yang terbaik jika 'kelajuan halus' "
+"dipetakan ke jejari.\n"
+"-8.0 kelajuan sangat pantas tidak tingkatkan sangat 'kelajuan halus'\n"
+"+8.0 kelajuan sangat pantaas tingkatkan 'kelajuan halus' dengan ketara\n"
+"Untuk kelajuan sangat perlahan yang berlawanan akan berlaku."
 
 #: ../brushsettings-gen.h:17
 msgid "Gross speed gamma"
-msgstr ""
+msgstr "Gamma kelajuan kasar"
 
 #: ../brushsettings-gen.h:17
 msgid "Same as 'fine speed gamma' for gross speed"
-msgstr ""
+msgstr "sama seperti 'gamma kelajuan halus' untuk kelajuan kasar"
 
 #: ../brushsettings-gen.h:18
 msgid "Jitter"
-msgstr ""
+msgstr "ketaran"
 
 #: ../brushsettings-gen.h:18
 msgid ""
@@ -180,10 +218,14 @@ msgid ""
 " 1.0 standard deviation is one basic radius away\n"
 "<0.0 negative values produce no jitter"
 msgstr ""
+"tambah ofset rawak ke keduudkan yang man setiap palit dilukis\n"
+"0.0 dilumpuhkan\n"
+"1.0 sisihan piawai ialah satu jajari asas jauhnya\n"
+"<0.0 nilai negatif tidak hasilkan ketaran"
 
 #: ../brushsettings-gen.h:19
 msgid "Offset by speed"
-msgstr ""
+msgstr "ofset mengikut kelajuan"
 
 #: ../brushsettings-gen.h:19
 msgid ""
@@ -192,28 +234,35 @@ msgid ""
 "> 0 draw where the pointer moves to\n"
 "< 0 draw where the pointer comes from"
 msgstr ""
+"ubah kedudukan bergantung pada kelajuan penuding\n"
+"= 0 dilumpuhkan\n"
+"> 0 lukis dimana penuding bergerak\n"
+"< 0 lukis dimana penuding datang"
 
 #: ../brushsettings-gen.h:20
 msgid "Offset by speed filter"
-msgstr ""
+msgstr "ofset mengikut penapis kelajuan"
 
 #: ../brushsettings-gen.h:20
 msgid "How slow the offset goes back to zero when the cursor stops moving"
-msgstr ""
+msgstr "berapa lambatkan ofset kembali menjadi sifar bila kursor tidak bergerak"
 
 #: ../brushsettings-gen.h:21
 msgid "Slow position tracking"
-msgstr ""
+msgstr "penjejakan kedudukan lambat"
 
 #: ../brushsettings-gen.h:21
 msgid ""
 "Slowdown pointer tracking speed. 0 disables it, higher values remove more "
 "jitter in cursor movements. Useful for drawing smooth, comic-like outlines."
 msgstr ""
+"Perlahankan kelajuan penjejakan penuding. 0 lumpuhkannya, nilai lebih tinggi "
+"buang lebih ketaran dalam pergerakan kursor. Berguna untuk melukis garis "
+"luar seakan komik yang licin."
 
 #: ../brushsettings-gen.h:22
 msgid "Slow tracking per dab"
-msgstr ""
+msgstr "lambatkan penjejakan per palit"
 
 #: ../brushsettings-gen.h:22
 msgid ""
@@ -223,29 +272,32 @@ msgstr ""
 
 #: ../brushsettings-gen.h:23
 msgid "Tracking noise"
-msgstr ""
+msgstr "penjejakan hingar"
 
 #: ../brushsettings-gen.h:23
 msgid ""
 "Add randomness to the mouse pointer; this usually generates many small lines "
 "in random directions; maybe try this together with 'slow tracking'"
 msgstr ""
+"tambah kerawakan ke penuding tetikus; ia biasanya menjana banyak garis kecil "
+"dalam arah rawak; mungkin boleh cuba bersama-sama dengan 'penjejakan "
+"perlahan'"
 
 #: ../brushsettings-gen.h:24
 msgid "Color hue"
-msgstr ""
+msgstr "rona warna"
 
 #: ../brushsettings-gen.h:25
 msgid "Color saturation"
-msgstr ""
+msgstr "ketepuan warna"
 
 #: ../brushsettings-gen.h:26
 msgid "Color value"
-msgstr ""
+msgstr "nilai warna"
 
 #: ../brushsettings-gen.h:26
 msgid "Color value (brightness, intensity)"
-msgstr ""
+msgstr "nilai warna (kecerahan, keamatan)"
 
 #: ../brushsettings-gen.h:27
 msgid "Save color"
@@ -262,7 +314,7 @@ msgstr ""
 
 #: ../brushsettings-gen.h:28
 msgid "Change color hue"
-msgstr ""
+msgstr "ubah rona warna"
 
 #: ../brushsettings-gen.h:28
 msgid ""
@@ -271,10 +323,14 @@ msgid ""
 " 0.0 disable\n"
 " 0.5 counterclockwise hue shift by 180 degrees"
 msgstr ""
+"Ubah rona warna.\n"
+"-0.1 anjak rona warna arah jam kecil\n"
+"0.0 dilumpuhkan\n"
+"0.5 anjak rona lawan jam sebanyak 180 darjah"
 
 #: ../brushsettings-gen.h:29
 msgid "Change color lightness (HSL)"
-msgstr ""
+msgstr "ubah kecerahan warna (HSL)"
 
 #: ../brushsettings-gen.h:29
 msgid ""
@@ -286,7 +342,7 @@ msgstr ""
 
 #: ../brushsettings-gen.h:30
 msgid "Change color satur. (HSL)"
-msgstr ""
+msgstr "ubah ketepuan warna (HSL)"
 
 #: ../brushsettings-gen.h:30
 msgid ""
@@ -295,10 +351,14 @@ msgid ""
 " 0.0 disable\n"
 " 1.0 more saturated"
 msgstr ""
+"Ubah ketepuan warna menggunakan model warna HSL.\n"
+"-1.0 lebih kelabu\n"
+"0.0 dilumpuhkan\n"
+"1.0 lebih tepu"
 
 #: ../brushsettings-gen.h:31
 msgid "Change color value (HSV)"
-msgstr ""
+msgstr "ubah nilai warna (HSV)"
 
 #: ../brushsettings-gen.h:31
 msgid ""
@@ -308,10 +368,15 @@ msgid ""
 " 0.0 disable\n"
 " 1.0 brigher"
 msgstr ""
+"Ubah nilai warna (kecerahan, keamatan) menggunakan model warna HSV. "
+"Perubahan HSV dilaksanakan sebelum HSL.\n"
+"-1.0 lebih gelap\n"
+"0.0 dilumpuhkan\n"
+"1.0 lebih cerah"
 
 #: ../brushsettings-gen.h:32
 msgid "Change color satur. (HSV)"
-msgstr ""
+msgstr "ubah ketepuan warna (HSV)"
 
 #: ../brushsettings-gen.h:32
 msgid ""
@@ -321,10 +386,15 @@ msgid ""
 " 0.0 disable\n"
 " 1.0 more saturated"
 msgstr ""
+"Ubah ketepuan warna menggunakan model warna HSV. Perubahan HSV dilaksana "
+"sebelum HSL.\n"
+"-1.0 lebih kelabu\n"
+"0.0 dilumpuhkan\n"
+"1.0 lebih tepu"
 
 #: ../brushsettings-gen.h:33
 msgid "Smudge"
-msgstr ""
+msgstr "comotan"
 
 #: ../brushsettings-gen.h:33
 msgid ""
@@ -334,10 +404,15 @@ msgid ""
 " 0.5 mix the smudge color with the brush color\n"
 " 1.0 use only the smudge color"
 msgstr ""
+"Lukis dengan warna comotan selain dari warna berus. Warna comotan berubah "
+"perlahan-lahan ke warna yang anda kehendaki.\n"
+"0.0 tidak guna warna comotan\n"
+"0.5 campur warna comotan dengan warna berus\n"
+"1.0 hanya guna warna comotan"
 
 #: ../brushsettings-gen.h:34
 msgid "Smudge length"
-msgstr ""
+msgstr "panjang comotan"
 
 #: ../brushsettings-gen.h:34
 msgid ""
@@ -365,7 +440,7 @@ msgstr ""
 
 #: ../brushsettings-gen.h:36
 msgid "Eraser"
-msgstr ""
+msgstr "pemadam"
 
 #: ../brushsettings-gen.h:36
 msgid ""
@@ -374,10 +449,14 @@ msgid ""
 " 1.0 standard eraser\n"
 " 0.5 pixels go towards 50% transparency"
 msgstr ""
+"bagaimana alat ini berkelakuan seperti pemadam\n"
+"0.0 lukisan biasa\n"
+"1.0 pemadam piawai\n"
+"0.5 piksel menjadi 50% lutsinar"
 
 #: ../brushsettings-gen.h:37
 msgid "Stroke threshold"
-msgstr ""
+msgstr "ambang lejang"
 
 #: ../brushsettings-gen.h:37
 msgid ""
@@ -387,7 +466,7 @@ msgstr ""
 
 #: ../brushsettings-gen.h:38
 msgid "Stroke duration"
-msgstr ""
+msgstr "tempoh lejang"
 
 #: ../brushsettings-gen.h:38
 msgid ""
@@ -397,7 +476,7 @@ msgstr ""
 
 #: ../brushsettings-gen.h:39
 msgid "Stroke hold time"
-msgstr ""
+msgstr "masa tahan lejang"
 
 #: ../brushsettings-gen.h:39
 msgid ""
@@ -410,7 +489,7 @@ msgstr ""
 
 #: ../brushsettings-gen.h:40
 msgid "Custom input"
-msgstr ""
+msgstr "input suai"
 
 #: ../brushsettings-gen.h:40
 msgid ""
@@ -422,10 +501,17 @@ msgid ""
 "If you make it change 'by random' you can generate a slow (smooth) random "
 "input."
 msgstr ""
+"Tetapkan input suai untuk nilai ini. Jika ia diperlahankan, gerak ia kearah "
+"nilai ini (lihat dibawah). Ideanya adalah anda buat input ini bergantung "
+"pada campuran tekanan/kelajuan/apa-sahaja, dan menjadikan tetapan lain "
+"bergantung pada 'input suai' ini selain dari mengulang gabungan ini dimana "
+"sahaja anda perlukannya.\n"
+"Jika anda jadikan perubahan 'secara rawak' anda boleh jana input rawak "
+"(lancar) perlahan."
 
 #: ../brushsettings-gen.h:41
 msgid "Custom input filter"
-msgstr ""
+msgstr "penapis input suai"
 
 #: ../brushsettings-gen.h:41
 msgid ""
@@ -437,17 +523,19 @@ msgstr ""
 
 #: ../brushsettings-gen.h:42
 msgid "Elliptical dab: ratio"
-msgstr ""
+msgstr "palit elips: nisbah"
 
 #: ../brushsettings-gen.h:42
 msgid ""
 "Aspect ratio of the dabs; must be >= 1.0, where 1.0 means a perfectly round "
 "dab. TODO: linearize? start at 0.0 maybe, or log?"
 msgstr ""
+"nisbah bidang palit; mestilah >= 1.0, yang mana 1.0 bermaksud palit bundar "
+"sempurna. TODO: linearkan? mungkin mula pada 0.0, atau log?"
 
 #: ../brushsettings-gen.h:43
 msgid "Elliptical dab: angle"
-msgstr ""
+msgstr "palit elips: sudut"
 
 #: ../brushsettings-gen.h:43
 msgid ""
@@ -459,13 +547,15 @@ msgstr ""
 
 #: ../brushsettings-gen.h:44
 msgid "Direction filter"
-msgstr ""
+msgstr "penapis arah"
 
 #: ../brushsettings-gen.h:44
 msgid ""
 "A low value will make the direction input adapt more quickly, a high value "
 "will make it smoother"
 msgstr ""
+"Nilai rendah akan menjadikan input arah disesuaikan dengan lebih pantas, "
+"nilai tinggi menjadikannya lebih licin"
 
 #: ../brushsettings-gen.h:45
 msgid "Lock alpha"
@@ -512,7 +602,7 @@ msgstr ""
 
 #: ../brushsettings-gen.h:53
 msgid "Pressure"
-msgstr ""
+msgstr "Tekanan"
 
 #: ../brushsettings-gen.h:53
 msgid ""
@@ -523,7 +613,7 @@ msgstr ""
 
 #: ../brushsettings-gen.h:54
 msgid "Fine speed"
-msgstr ""
+msgstr "Kelajuan halus"
 
 #: ../brushsettings-gen.h:54
 msgid ""
@@ -531,30 +621,37 @@ msgid ""
 "values' from the 'help' menu to get a feeling for the range; negative values "
 "are rare but possible for very low speed."
 msgstr ""
+"Berapa pantas anda bergerak. Ia boleh diubah dengan sangat cepat. Cuba "
+"'cetak nilai input' dari menu 'bantuan' untuk dapatkan julat: nilai negatif "
+"adalah jarang tetapi boleh untuk kelajuan sangat rendah."
 
 #: ../brushsettings-gen.h:55
 msgid "Gross speed"
-msgstr ""
+msgstr "Kelajuan kasar"
 
 #: ../brushsettings-gen.h:55
 msgid ""
 "Same as fine speed, but changes slower. Also look at the 'gross speed "
 "filter' setting."
 msgstr ""
+"Sama seperti kelajuan halus, tetapi perubahan lebih lambat. Lihat juga "
+"tetapan 'penapis kelajuan kasar'."
 
 #: ../brushsettings-gen.h:56
 msgid "Random"
-msgstr ""
+msgstr "Rawak"
 
 #: ../brushsettings-gen.h:56
 msgid ""
 "Fast random noise, changing at each evaluation. Evenly distributed between 0 "
 "and 1."
 msgstr ""
+"Hingar rawak pantas, menukar pada setiap penilaian. Diedar secara sekata "
+"diantar 0 hingga 1."
 
 #: ../brushsettings-gen.h:57
 msgid "Stroke"
-msgstr ""
+msgstr "Lejang"
 
 #: ../brushsettings-gen.h:57
 msgid ""
@@ -562,16 +659,21 @@ msgid ""
 "be configured to jump back to zero periodically while you move. Look at the "
 "'stroke duration' and 'stroke hold time' settings."
 msgstr ""
+"Input ini perlahan-lahan dari sifar menjadi satu bila anda melukis lejang. "
+"Ia juga boleh dikonfigur untuk lompat kembali ke sifat secara berkala semasa "
+"anda bergerak. Lihat tetapan 'jangkamasa lejang' dan 'masa tahan lejang'."
 
 #: ../brushsettings-gen.h:58
 msgid "Direction"
-msgstr ""
+msgstr "Arah"
 
 #: ../brushsettings-gen.h:58
 msgid ""
 "The angle of the stroke, in degrees. The value will stay between 0.0 and "
 "180.0, effectively ignoring turns of 180 degrees."
 msgstr ""
+"Sudut lejang, dalam darjah. Nilai akan kekal diantara 0.0 hingga 180.0, "
+"secara efektif mengabaikan pusingan 180 darjah."
 
 #: ../brushsettings-gen.h:59
 msgid "Declination"
@@ -596,9 +698,11 @@ msgstr ""
 
 #: ../brushsettings-gen.h:61
 msgid "Custom"
-msgstr ""
+msgstr "Suai"
 
 #: ../brushsettings-gen.h:61
 msgid ""
 "This is a user defined input. Look at the 'custom input' setting for details."
 msgstr ""
+"Ini merupakan input ditakrif pengguna. Lihat pada tetapan 'input suai' dalam "
+"perincian."

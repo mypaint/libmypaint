@@ -8,17 +8,17 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-04 18:33+0100\n"
-"PO-Revision-Date: 2015-06-30 15:31+0200\n"
-"Last-Translator: Danylo Korostil <ted.korostiled@gmail.com>\n"
+"PO-Revision-Date: 2019-02-27 00:18+0000\n"
+"Last-Translator: glixx <roman_romul@mail.ru>\n"
 "Language-Team: Ukrainian <https://hosted.weblate.org/projects/mypaint/"
 "libmypaint/uk/>\n"
 "Language: uk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
-"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 2.4-dev\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<="
+"4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"X-Generator: Weblate 3.5-dev\n"
 
 #: ../brushsettings-gen.h:4
 msgid "Opacity"
@@ -53,7 +53,6 @@ msgid "Opacity linearize"
 msgstr "Лінеаризація непрозорості"
 
 #: ../brushsettings-gen.h:6
-#, fuzzy
 msgid ""
 "Correct the nonlinearity introduced by blending multiple dabs on top of each "
 "other. This correction should get you a linear (\"natural\") pressure "
@@ -74,7 +73,7 @@ msgstr ""
 "окремих мазків\n"
 "Значення непрозорості 1,0 дасть вам спільний штрих пензлем, програма "
 "припускатиме, що кожен піксель відповідає (мазків на радіус*2) мазкам пензля "
-"у середньому під час виконання штриха."
+"у середньому під час виконання штриха"
 
 #: ../brushsettings-gen.h:7
 msgid "Radius"
@@ -338,7 +337,7 @@ msgstr ""
 "збережений\n"
 "0.0 не змінювати колір при виборі пензлика\n"
 "0.5 змінити активний колір в сторону до кольору пензлика\n"
-"1.0 змінити колір на збережений."
+"1.0 змінити колір на збережений"
 
 #: ../brushsettings-gen.h:28
 msgid "Change color hue"
@@ -361,7 +360,6 @@ msgid "Change color lightness (HSL)"
 msgstr "Зміна світлоти кольору (ВНР)"
 
 #: ../brushsettings-gen.h:29
-#, fuzzy
 msgid ""
 "Change the color lightness using the HSL color model.\n"
 "-1.0 blacker\n"
@@ -504,7 +502,6 @@ msgid "Stroke threshold"
 msgstr "Поріг штриха"
 
 #: ../brushsettings-gen.h:37
-#, fuzzy
 msgid ""
 "How much pressure is needed to start a stroke. This affects the stroke input "
 "only. MyPaint does not need a minimum pressure to start drawing."
@@ -518,7 +515,6 @@ msgid "Stroke duration"
 msgstr "Тривалість штриха"
 
 #: ../brushsettings-gen.h:38
-#, fuzzy
 msgid ""
 "How far you have to move until the stroke input reaches 1.0. This value is "
 "logarithmic (negative values will not invert the process)."
@@ -532,7 +528,6 @@ msgid "Stroke hold time"
 msgstr "Час утримування штриха"
 
 #: ../brushsettings-gen.h:39
-#, fuzzy
 msgid ""
 "This defines how long the stroke input stays at 1.0. After that it will "
 "reset to 0.0 and start growing again, even if the stroke is not yet "
@@ -650,7 +645,6 @@ msgid "Colorize"
 msgstr "Розфарбувати"
 
 #: ../brushsettings-gen.h:46
-#, fuzzy
 msgid ""
 "Colorize the target layer, setting its hue and saturation from the active "
 "brush color while retaining its value and alpha."
@@ -663,7 +657,6 @@ msgid "Snap to pixel"
 msgstr "Прив'язати до пікселя"
 
 #: ../brushsettings-gen.h:47
-#, fuzzy
 msgid ""
 "Snap brush dab's center and its radius to pixels. Set this to 1.0 for a thin "
 "pixel brush."

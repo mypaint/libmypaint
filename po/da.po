@@ -8,16 +8,16 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-04 18:33+0100\n"
-"PO-Revision-Date: 2015-11-12 23:00+0000\n"
-"Last-Translator: Karsten Reitan Sørensen <karsten.reitan@gmail.com>\n"
-"Language-Team: Danish "
-"<https://hosted.weblate.org/projects/mypaint/libmypaint/da/>\n"
+"PO-Revision-Date: 2019-02-27 00:18+0000\n"
+"Last-Translator: glixx <roman_romul@mail.ru>\n"
+"Language-Team: Danish <https://hosted.weblate.org/projects/mypaint/"
+"libmypaint/da/>\n"
 "Language: da\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 2.5-dev\n"
+"X-Generator: Weblate 3.5-dev\n"
 
 #: ../brushsettings-gen.h:4
 msgid "Opacity"
@@ -63,6 +63,15 @@ msgid ""
 "1.0 the opaque value above is for the final brush stroke, assuming each "
 "pixel gets (dabs_per_radius*2) brushdabs on average during a stroke"
 msgstr ""
+"Ret den manglende lineærhed introduceret ved at blande flere dab'er oven på "
+"hinanden. Denne korrektion bør give dig et lineært (»naturlig«) tryksvar når "
+"trykket oversættes til opaque_multiply, som det normalt gøres. 0,9 er godt "
+"for standardstrøg, sæt den til mindre hvis din pensel pletter en masse, "
+"eller højere hvis du bruger dabs_per_second.\n"
+"0,0 uigennemsigtigheden i ovenstående er for individuelle dab'er\n"
+"1,0 uigennemsigtigheden i ovenstående er det endelige penselstrøg, der "
+"antager at hvert billedpunkt får (dabs_per_radius*2) penseldab'er i "
+"gennemsnit under et strøg"
 
 #: ../brushsettings-gen.h:7
 msgid "Radius"
@@ -83,7 +92,6 @@ msgid "Hardness"
 msgstr "Hårdhed"
 
 #: ../brushsettings-gen.h:8
-#, fuzzy
 msgid ""
 "Hard brush-circle borders (setting to zero will draw nothing). To reach the "
 "maximum hardness, you need to disable Pixel feather."
@@ -130,15 +138,16 @@ msgstr ""
 
 #: ../brushsettings-gen.h:12
 msgid "Dabs per second"
-msgstr ""
+msgstr "dab per sekund"
 
 #: ../brushsettings-gen.h:12
 msgid "Dabs to draw each second, no matter how far the pointer moves"
 msgstr ""
+"dab'er der skal tegnes hvert sekund, uanset hvor langt markøren flytter sig"
 
 #: ../brushsettings-gen.h:13
 msgid "Radius by random"
-msgstr ""
+msgstr "vilkårlig radius"
 
 #: ../brushsettings-gen.h:13
 msgid ""
@@ -148,28 +157,37 @@ msgid ""
 "transparent\n"
 "2) it will not change the actual radius seen by dabs_per_actual_radius"
 msgstr ""
+"Ændr radiussen vilkårligt for hver dab. Du kan også gøre dette med by_random "
+"input på radiusindstillingen. Hvis du gør det her, er der to forskelle:\n"
+"1) uigennemsigtigheden vil blive rettet så at en big-radius dab er mere "
+"gennemsigtig\n"
+"2) vil ikke ændre den faktiske radius set af dabs_per_actual_radius"
 
 #: ../brushsettings-gen.h:14
 msgid "Fine speed filter"
-msgstr ""
+msgstr "Filter for præcis hastighed"
 
 #: ../brushsettings-gen.h:14
 msgid ""
 "How slow the input fine speed is following the real speed\n"
 "0.0 change immediately as your speed changes (not recommended, but try it)"
 msgstr ""
+"hvor langsomt den indtastede præcise hastighed følger den reelle hastighed\n"
+"0,0 ændr øjeblikkelig når din hastighed ændres (ikke anbefalet, men prøv det)"
 
 #: ../brushsettings-gen.h:15
 msgid "Gross speed filter"
-msgstr ""
+msgstr "filter for omtrentlig hastighed"
 
 #: ../brushsettings-gen.h:15
 msgid "Same as 'fine speed filter', but note that the range is different"
 msgstr ""
+"samme som »filter for præcis hastighed«, men bemærk at intervallet er "
+"forskelligt"
 
 #: ../brushsettings-gen.h:16
 msgid "Fine speed gamma"
-msgstr ""
+msgstr "Gamma for præcis hastighed"
 
 #: ../brushsettings-gen.h:16
 msgid ""
@@ -180,18 +198,24 @@ msgid ""
 "+8.0 very fast speed increases 'fine speed' a lot\n"
 "For very slow speed the opposite happens."
 msgstr ""
+"Dette ændrer reaktionen for indtastning via »præcis hastighed« til ekstrem "
+"fysisk hastighed. Du vil se forskellen bedst hvis »præcis hastighed« "
+"oversættes til radiussen.\n"
+"-8,0 meget hurtig hastighed øger ikke »præcis hastighed« særlig meget mere\n"
+"+8,0 meget hurtig hastighed øger »præcis hastighed« en masse\n"
+"For meget langsomme hastigheder sker det modsatte."
 
 #: ../brushsettings-gen.h:17
 msgid "Gross speed gamma"
-msgstr ""
+msgstr "Gamma for omtrentlig hastighed"
 
 #: ../brushsettings-gen.h:17
 msgid "Same as 'fine speed gamma' for gross speed"
-msgstr ""
+msgstr "svarer til »gamma for præcis hastighed« for omtrentlig hastighed"
 
 #: ../brushsettings-gen.h:18
 msgid "Jitter"
-msgstr ""
+msgstr "rysten"
 
 #: ../brushsettings-gen.h:18
 msgid ""
@@ -200,10 +224,14 @@ msgid ""
 " 1.0 standard deviation is one basic radius away\n"
 "<0.0 negative values produce no jitter"
 msgstr ""
+"tilføj en vilkårlig forskydning til placeringen hvor hver dup tegnes\n"
+"0,0 deaktiveret\n"
+"1,0 standardafvigelse er en basisradius væk\n"
+">0,0 negative værdier laver ingen rysten"
 
 #: ../brushsettings-gen.h:19
 msgid "Offset by speed"
-msgstr ""
+msgstr "forskyd med hastighed"
 
 #: ../brushsettings-gen.h:19
 msgid ""
@@ -212,28 +240,37 @@ msgid ""
 "> 0 draw where the pointer moves to\n"
 "< 0 draw where the pointer comes from"
 msgstr ""
+"ændr placering afhængig af markørhastighed\n"
+"= 0 deaktiver\n"
+"> 0 tegn hvor markøren flyttes til\n"
+"< 0 tegn hvor markøren kommer fra"
 
 #: ../brushsettings-gen.h:20
 msgid "Offset by speed filter"
-msgstr ""
+msgstr "forskyd med hastighedsfilter"
 
 #: ../brushsettings-gen.h:20
 msgid "How slow the offset goes back to zero when the cursor stops moving"
 msgstr ""
+"hvor langsomt forskydningen går tilbage til nul når markøren stopper med at "
+"bevæge sig"
 
 #: ../brushsettings-gen.h:21
 msgid "Slow position tracking"
-msgstr ""
+msgstr "langsom positionssporing"
 
 #: ../brushsettings-gen.h:21
 msgid ""
 "Slowdown pointer tracking speed. 0 disables it, higher values remove more "
 "jitter in cursor movements. Useful for drawing smooth, comic-like outlines."
 msgstr ""
+"Sæt hastigheden på overvågningen af markøren ned. 0 deaktiverer den, højere "
+"værdier fjerner mere rysten i markørbevægelserne. Nyttigt til at tegne "
+"glatte, tegneserieagtige omrids."
 
 #: ../brushsettings-gen.h:22
 msgid "Slow tracking per dab"
-msgstr ""
+msgstr "langsom overvågning pr. dup"
 
 #: ../brushsettings-gen.h:22
 msgid ""
@@ -243,29 +280,32 @@ msgstr ""
 
 #: ../brushsettings-gen.h:23
 msgid "Tracking noise"
-msgstr ""
+msgstr "overvågningsstøj"
 
 #: ../brushsettings-gen.h:23
 msgid ""
 "Add randomness to the mouse pointer; this usually generates many small lines "
 "in random directions; maybe try this together with 'slow tracking'"
 msgstr ""
+"tilføj vilkårlighed til musemarkøren. Dette genererer normalt mange små "
+"linjer i vilkårlige retninger. Prøv eventuelt dette sammen med »langsom "
+"overvågning«"
 
 #: ../brushsettings-gen.h:24
 msgid "Color hue"
-msgstr ""
+msgstr "farvenuance"
 
 #: ../brushsettings-gen.h:25
 msgid "Color saturation"
-msgstr ""
+msgstr "farvemætning"
 
 #: ../brushsettings-gen.h:26
 msgid "Color value"
-msgstr ""
+msgstr "farveværdi"
 
 #: ../brushsettings-gen.h:26
 msgid "Color value (brightness, intensity)"
-msgstr ""
+msgstr "farveværdi (lysstyrke, intensitet)"
 
 #: ../brushsettings-gen.h:27
 msgid "Save color"
@@ -282,7 +322,7 @@ msgstr ""
 
 #: ../brushsettings-gen.h:28
 msgid "Change color hue"
-msgstr ""
+msgstr "ændr farvenuance"
 
 #: ../brushsettings-gen.h:28
 msgid ""
@@ -291,10 +331,14 @@ msgid ""
 " 0.0 disable\n"
 " 0.5 counterclockwise hue shift by 180 degrees"
 msgstr ""
+"Ændr farvenuance.\n"
+"-0.1, små skift i farvenuance med uret\n"
+"0.0, deaktiver\n"
+"0.5 skift i farvenuance med 180 grader mod uret"
 
 #: ../brushsettings-gen.h:29
 msgid "Change color lightness (HSL)"
-msgstr ""
+msgstr "Ændr farvelysstyrke (HSL)"
 
 #: ../brushsettings-gen.h:29
 msgid ""
@@ -306,7 +350,7 @@ msgstr ""
 
 #: ../brushsettings-gen.h:30
 msgid "Change color satur. (HSL)"
-msgstr ""
+msgstr "ændr farvemætning. (HSL)"
 
 #: ../brushsettings-gen.h:30
 msgid ""
@@ -315,10 +359,14 @@ msgid ""
 " 0.0 disable\n"
 " 1.0 more saturated"
 msgstr ""
+"Ændr farvemætning ved brug af HSL-farvemodellen.\n"
+"-1.0, mere grålig\n"
+"0.0, deaktiver\n"
+"1.0, mere mættet"
 
 #: ../brushsettings-gen.h:31
 msgid "Change color value (HSV)"
-msgstr ""
+msgstr "ændr farveværdi (HSV)"
 
 #: ../brushsettings-gen.h:31
 msgid ""
@@ -328,10 +376,16 @@ msgid ""
 " 0.0 disable\n"
 " 1.0 brigher"
 msgstr ""
+"Ændr farveværdien (lysstyrke, intensitet) ved brug af HSV-farvemodellen. HSV-"
+"\n"
+"ændringer anvendes før HSL.\n"
+"-1.0, mørkere\n"
+"0.0, deaktiver\n"
+"1.0, lysere"
 
 #: ../brushsettings-gen.h:32
 msgid "Change color satur. (HSV)"
-msgstr ""
+msgstr "ændr farvemætning. (HSV)"
 
 #: ../brushsettings-gen.h:32
 msgid ""
@@ -341,10 +395,15 @@ msgid ""
 " 0.0 disable\n"
 " 1.0 more saturated"
 msgstr ""
+"Ændr farvemætning ved brug af HSV-farvemodellen. HSV-ændringer anvendes\n"
+"før HSL.\n"
+"-1.0, mere grålig\n"
+"0.0, deaktiver\n"
+"1.0, mere mættet"
 
 #: ../brushsettings-gen.h:33
 msgid "Smudge"
-msgstr ""
+msgstr "udtvær"
 
 #: ../brushsettings-gen.h:33
 msgid ""
@@ -354,10 +413,15 @@ msgid ""
 " 0.5 mix the smudge color with the brush color\n"
 " 1.0 use only the smudge color"
 msgstr ""
+"Mal med udtværingsfarven i stedet for penselfarven. Udtværingsfarven ændres\n"
+"langsomt til den farve du maler på.\n"
+"0.0, brug ikke udtværingsfarven\n"
+"0.5, bland udtværingsfarven med penselfarven\n"
+"1.0, brug kun udtværingsfarven"
 
 #: ../brushsettings-gen.h:34
 msgid "Smudge length"
-msgstr ""
+msgstr "udtværingslængde"
 
 #: ../brushsettings-gen.h:34
 msgid ""
@@ -385,7 +449,7 @@ msgstr ""
 
 #: ../brushsettings-gen.h:36
 msgid "Eraser"
-msgstr ""
+msgstr "viskelæder"
 
 #: ../brushsettings-gen.h:36
 msgid ""
@@ -394,10 +458,14 @@ msgid ""
 " 1.0 standard eraser\n"
 " 0.5 pixels go towards 50% transparency"
 msgstr ""
+"hvor meget dette værktøj opfører sig som et viskelæder\n"
+" 0.0 male normalt\n"
+" 1.0 standardviskelæder\n"
+" 0.5 billedpunkt svarer ca til 50 % gennemsigtighed"
 
 #: ../brushsettings-gen.h:37
 msgid "Stroke threshold"
-msgstr ""
+msgstr "strøgtærskel"
 
 #: ../brushsettings-gen.h:37
 msgid ""
@@ -407,7 +475,7 @@ msgstr ""
 
 #: ../brushsettings-gen.h:38
 msgid "Stroke duration"
-msgstr ""
+msgstr "strøgvarighed"
 
 #: ../brushsettings-gen.h:38
 msgid ""
@@ -417,7 +485,7 @@ msgstr ""
 
 #: ../brushsettings-gen.h:39
 msgid "Stroke hold time"
-msgstr ""
+msgstr "holdetid for strøg"
 
 #: ../brushsettings-gen.h:39
 msgid ""
@@ -430,7 +498,7 @@ msgstr ""
 
 #: ../brushsettings-gen.h:40
 msgid "Custom input"
-msgstr ""
+msgstr "brugertilpasset input"
 
 #: ../brushsettings-gen.h:40
 msgid ""
@@ -442,10 +510,17 @@ msgid ""
 "If you make it change 'by random' you can generate a slow (smooth) random "
 "input."
 msgstr ""
+"Sæt brugervalgt input til denne værdi. Hvis det gøres langsomt, så bevæg det "
+"imod denne værdi (se nedenfor). Tanken er at du får inputtet til at afhænge "
+"af en blanding af tryk/hastighed/andet og så får andre ting til at afhænge "
+"på dette »brugervalgte input« i stedet for at gentage denne kombination alle "
+"steder hvor du skal bruge det.\n"
+"Hvis du får det til at ændres »via vilkårlig«, kan du generere et langsomt "
+"(glat) vilkårligt input."
 
 #: ../brushsettings-gen.h:41
 msgid "Custom input filter"
-msgstr ""
+msgstr "brugervalgt input-filter"
 
 #: ../brushsettings-gen.h:41
 msgid ""
@@ -457,17 +532,19 @@ msgstr ""
 
 #: ../brushsettings-gen.h:42
 msgid "Elliptical dab: ratio"
-msgstr ""
+msgstr "elliptisk dup: Forhold"
 
 #: ../brushsettings-gen.h:42
 msgid ""
 "Aspect ratio of the dabs; must be >= 1.0, where 1.0 means a perfectly round "
 "dab. TODO: linearize? start at 0.0 maybe, or log?"
 msgstr ""
+"aspektforhold for dup. Skal være >= 1.0, hvor 1.0 betyder et helt rundt dup. "
+"GØREMÅL: Lineæritet? start ved 0.0 måske, eller log?"
 
 #: ../brushsettings-gen.h:43
 msgid "Elliptical dab: angle"
-msgstr ""
+msgstr "elliptisk dup: Vinkel"
 
 #: ../brushsettings-gen.h:43
 msgid ""
@@ -479,13 +556,15 @@ msgstr ""
 
 #: ../brushsettings-gen.h:44
 msgid "Direction filter"
-msgstr ""
+msgstr "retningsfilter"
 
 #: ../brushsettings-gen.h:44
 msgid ""
 "A low value will make the direction input adapt more quickly, a high value "
 "will make it smoother"
 msgstr ""
+"en lav værdi vil få retningsinputtet til at justeres hurtigere, i høj værdi "
+"vil gøre det mere glat"
 
 #: ../brushsettings-gen.h:45
 msgid "Lock alpha"
@@ -532,7 +611,7 @@ msgstr ""
 
 #: ../brushsettings-gen.h:53
 msgid "Pressure"
-msgstr ""
+msgstr "Tryk"
 
 #: ../brushsettings-gen.h:53
 msgid ""
@@ -543,7 +622,7 @@ msgstr ""
 
 #: ../brushsettings-gen.h:54
 msgid "Fine speed"
-msgstr ""
+msgstr "Præcis hastighed"
 
 #: ../brushsettings-gen.h:54
 msgid ""
@@ -551,30 +630,37 @@ msgid ""
 "values' from the 'help' menu to get a feeling for the range; negative values "
 "are rare but possible for very low speed."
 msgstr ""
+"Hvor hurtigt du bevæger dig i øjeblikket. Dette kan ændre sig meget hurtigt. "
+"Prøv »vis inddataværdier« fra menupunktet »hjælp« for at få en følelse af "
+"intervallet; negative værdier er sjældne men mulige for meget lav hastighed."
 
 #: ../brushsettings-gen.h:55
 msgid "Gross speed"
-msgstr ""
+msgstr "Omtrentlig hastighed"
 
 #: ../brushsettings-gen.h:55
 msgid ""
 "Same as fine speed, but changes slower. Also look at the 'gross speed "
 "filter' setting."
 msgstr ""
+"Svarer til præcis hastighed, men ændrer sig langsommere. Se også "
+"indstillingen »omtrentligt hastighedsfilter«."
 
 #: ../brushsettings-gen.h:56
 msgid "Random"
-msgstr ""
+msgstr "Tilfældig"
 
 #: ../brushsettings-gen.h:56
 msgid ""
 "Fast random noise, changing at each evaluation. Evenly distributed between 0 "
 "and 1."
 msgstr ""
+"Hurtig vilkårlig støj, ændrer sig ved hver evaluering. Ligeligt distribueret "
+"mellem 0 og 1."
 
 #: ../brushsettings-gen.h:57
 msgid "Stroke"
-msgstr ""
+msgstr "Strøg"
 
 #: ../brushsettings-gen.h:57
 msgid ""
@@ -582,16 +668,21 @@ msgid ""
 "be configured to jump back to zero periodically while you move. Look at the "
 "'stroke duration' and 'stroke hold time' settings."
 msgstr ""
+"Dette input går langsomt fra nul til en mens du foretager et strøg. Det kan "
+"også konfigureres til at hoppe tilbage til nul periodisk mens du bevæger. "
+"Kig på indstillingerne for »strøgvarighed« og »strøg-holdtidspunkt«."
 
 #: ../brushsettings-gen.h:58
 msgid "Direction"
-msgstr ""
+msgstr "Retning"
 
 #: ../brushsettings-gen.h:58
 msgid ""
 "The angle of the stroke, in degrees. The value will stay between 0.0 and "
 "180.0, effectively ignoring turns of 180 degrees."
 msgstr ""
+"Vinklen for strøget, i grader. Værdien vil være mellem 0,0 og 180,0, "
+"effektivt ignorerende drejninger med 180 grader."
 
 #: ../brushsettings-gen.h:59
 msgid "Declination"
@@ -616,9 +707,11 @@ msgstr ""
 
 #: ../brushsettings-gen.h:61
 msgid "Custom"
-msgstr ""
+msgstr "Brugertilpasset"
 
 #: ../brushsettings-gen.h:61
 msgid ""
 "This is a user defined input. Look at the 'custom input' setting for details."
 msgstr ""
+"Dette er brugerdefinerede inddata. Kig i indstillingen »tilpassede inddata« "
+"for detaljer."

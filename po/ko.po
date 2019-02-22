@@ -8,20 +8,19 @@ msgstr ""
 "Project-Id-Version: Mypaint Korean\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-04 18:33+0100\n"
-"PO-Revision-Date: 2015-08-02 14:04+0200\n"
-"Last-Translator: Sahamie <ginny0611@naver.com>\n"
-"Language-Team: Korean "
-"<https://hosted.weblate.org/projects/mypaint/libmypaint/ko/>\n"
+"PO-Revision-Date: 2019-02-27 00:18+0000\n"
+"Last-Translator: glixx <roman_romul@mail.ru>\n"
+"Language-Team: Korean <https://hosted.weblate.org/projects/mypaint/"
+"libmypaint/ko/>\n"
 "Language: ko\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 2.4-dev\n"
+"X-Generator: Weblate 3.5-dev\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
 #: ../brushsettings-gen.h:4
-#, fuzzy
 msgid "Opacity"
 msgstr "불투명도"
 
@@ -111,7 +110,7 @@ msgstr "칠/기본 반경"
 msgid ""
 "How many dabs to draw while the pointer moves a distance of one brush radius "
 "(more precise: the base value of the radius)"
-msgstr ""
+msgstr "포인터가 하나의 브러쉬 반경을 이동시 분사되는 량량이다"
 
 #: ../brushsettings-gen.h:11
 msgid "Dabs per actual radius"
@@ -145,6 +144,9 @@ msgid ""
 "transparent\n"
 "2) it will not change the actual radius seen by dabs_per_actual_radius"
 msgstr ""
+"무작위로 각 분사입자 반경이 변한다. 반경 설정에따라 이설정 값도 영향을 받는다.\n"
+" 1) 반경이 크거나 불투명도가 클 경우 입자는 투명해진다.\n"
+" 2) 실제 반경은 변하지 않는다"
 
 #: ../brushsettings-gen.h:14
 msgid "Fine speed filter"
@@ -179,7 +181,7 @@ msgid ""
 "-8.0 very fast speed does not increase 'fine speed' much more\n"
 "+8.0 very fast speed increases 'fine speed' a lot\n"
 "For very slow speed the opposite happens."
-msgstr ""
+msgstr "이러한 변경 사항을 '정밀한 속도'의 극단적인 물리적 반응 속도로 입력. '정밀한 속도'반경에 매핑되어 최고의 차이가 나타난다."
 
 #: ../brushsettings-gen.h:17
 msgid "Gross speed gamma"
@@ -194,12 +196,17 @@ msgid "Jitter"
 msgstr "지터"
 
 #: ../brushsettings-gen.h:18
+#, fuzzy
 msgid ""
 "Add a random offset to the position where each dab is drawn\n"
 " 0.0 disabled\n"
 " 1.0 standard deviation is one basic radius away\n"
 "<0.0 negative values produce no jitter"
 msgstr ""
+"무작위로 포인터 주위에 입자를 생성한다.\n"
+" 0.0 없음\n"
+" 1.0 하나의 기본 반경내에 표준 편차를 뿌린다\n"
+"<0.0 negative values produce no jitter"
 
 #: ../brushsettings-gen.h:19
 msgid "Offset by speed"
@@ -212,6 +219,10 @@ msgid ""
 "> 0 draw where the pointer moves to\n"
 "< 0 draw where the pointer comes from"
 msgstr ""
+"포인터 속도에 따라 뿌려지는 입자의 위치를 변경한다.\n"
+" = 0 해제\n"
+" > 0 포인터가 지나가는 곳 \n"
+" < 0 포인터가 지나가는 앞방향"
 
 #: ../brushsettings-gen.h:20
 msgid "Offset by speed filter"
@@ -375,9 +386,8 @@ msgstr ""
 "1.0 채도를 높이기"
 
 #: ../brushsettings-gen.h:33
-#, fuzzy
 msgid "Smudge"
-msgstr "자국"
+msgstr "얼룩"
 
 #: ../brushsettings-gen.h:33
 msgid ""
@@ -387,6 +397,10 @@ msgid ""
 " 0.5 mix the smudge color with the brush color\n"
 " 1.0 use only the smudge color"
 msgstr ""
+"색대신 얼룩으로 그려보아라. 얼룩은 이미 칠해진 색을 브러싱 방향으로 번지게하는 효과이다.\n"
+" 0.0 비활성화\n"
+" 0.5 색과 얼룩을 함깨 사용\n"
+" 1.0 알파체널 얼룩만 사용"
 
 #: ../brushsettings-gen.h:34
 msgid "Smudge length"
@@ -421,7 +435,6 @@ msgid ""
 msgstr ""
 
 #: ../brushsettings-gen.h:36
-#, fuzzy
 msgid "Eraser"
 msgstr "지우개"
 
@@ -486,7 +499,7 @@ msgid ""
 "need it.\n"
 "If you make it change 'by random' you can generate a slow (smooth) random "
 "input."
-msgstr ""
+msgstr "이 값을 사용자 임력하는 설정이다. 값에 따라 입력이 느려지는 겨우도 있다."
 
 #: ../brushsettings-gen.h:41
 msgid "Custom input filter"
@@ -532,7 +545,7 @@ msgstr "방향 필터"
 msgid ""
 "A low value will make the direction input adapt more quickly, a high value "
 "will make it smoother"
-msgstr ""
+msgstr "폰인터 이동에 따라 블러시에 저항이 걸린다. 값이 낮을 경우 블러시에 걸리는 저항도 작다"
 
 #: ../brushsettings-gen.h:45
 msgid "Lock alpha"
@@ -582,7 +595,6 @@ msgid ""
 msgstr ""
 
 #: ../brushsettings-gen.h:53
-#, fuzzy
 msgid "Pressure"
 msgstr "압력"
 
@@ -603,6 +615,8 @@ msgid ""
 "values' from the 'help' menu to get a feeling for the range; negative values "
 "are rare but possible for very low speed."
 msgstr ""
+"커서의 움직임에 따른 속도가 자동으로 반영된다. '도움말'의 '입력 값을 인쇄'를 통하여 값을 확인 할 수 있다. 일반적으로 - 값일 "
+"쓰는 일은 없다. 그러나 아주 느린속도를 위해 쓸 수 있다."
 
 #: ../brushsettings-gen.h:55
 msgid "Gross speed"
@@ -627,9 +641,8 @@ msgid ""
 msgstr "빠른 무작위 노이즈, 각 평가에서 변화. 균등하게 0과 1 사이에 분포."
 
 #: ../brushsettings-gen.h:57
-#, fuzzy
 msgid "Stroke"
-msgstr "선획"
+msgstr "자획"
 
 #: ../brushsettings-gen.h:57
 msgid ""
@@ -637,6 +650,8 @@ msgid ""
 "be configured to jump back to zero periodically while you move. Look at the "
 "'stroke duration' and 'stroke hold time' settings."
 msgstr ""
+"이값은 블러시 값이 줄어드는 정도을 정한다.(붓의 잉크가 줄어드는 것을 상상해보아라.) 또 다시 이동하는 동안 주기적으로 값이 0변하도록 "
+"구성할 수있다. '자획 적용 시간'과 '자획 유지 시간'에서 설정해보아라."
 
 #: ../brushsettings-gen.h:58
 msgid "Direction"
@@ -646,7 +661,7 @@ msgstr "방향"
 msgid ""
 "The angle of the stroke, in degrees. The value will stay between 0.0 and "
 "180.0, effectively ignoring turns of 180 degrees."
-msgstr ""
+msgstr "자획의 각도. 값은 0.0과 180.0 사이 값이 가장 유효한 값이다. 180의 값은 0.0과 시각적으로 같다."
 
 #: ../brushsettings-gen.h:59
 msgid "Declination"
@@ -670,9 +685,8 @@ msgid ""
 msgstr ""
 
 #: ../brushsettings-gen.h:61
-#, fuzzy
 msgid "Custom"
-msgstr "사용자 정의"
+msgstr "사용자 지정"
 
 #: ../brushsettings-gen.h:61
 msgid ""

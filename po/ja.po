@@ -11,16 +11,16 @@ msgstr ""
 "Project-Id-Version: MyPaint\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-04 18:33+0100\n"
-"PO-Revision-Date: 2016-02-09 15:04+0000\n"
-"Last-Translator: dothiko <dothiko@gmail.com>\n"
-"Language-Team: Japanese "
-"<https://hosted.weblate.org/projects/mypaint/libmypaint/ja/>\n"
+"PO-Revision-Date: 2019-02-27 00:18+0000\n"
+"Last-Translator: glixx <roman_romul@mail.ru>\n"
+"Language-Team: Japanese <https://hosted.weblate.org/projects/mypaint/"
+"libmypaint/ja/>\n"
 "Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 2.5-dev\n"
+"X-Generator: Weblate 3.5-dev\n"
 "X-Poedit-Language: Japanese\n"
 "X-Poedit-Country: JAPAN\n"
 "X-Poedit-SourceCharset: utf-8\n"
@@ -59,7 +59,6 @@ msgid "Opacity linearize"
 msgstr "不透明度を線形化"
 
 #: ../brushsettings-gen.h:6
-#, fuzzy
 msgid ""
 "Correct the nonlinearity introduced by blending multiple dabs on top of each "
 "other. This correction should get you a linear (\"natural\") pressure "
@@ -70,14 +69,11 @@ msgid ""
 "1.0 the opaque value above is for the final brush stroke, assuming each "
 "pixel gets (dabs_per_radius*2) brushdabs on average during a stroke"
 msgstr ""
-"複数のダブが重なり合い混合することによって引き起こされた非線形を補正します。"
-"通常行われているような、筆圧が「不透明度を乗算」に対応付けられている場合、こ"
-"の補正は線形の(自然な)筆圧の応答を取得する必要があります。\n"
-"0.9 は標準的なストロークに適しています。ブラシが沢山散乱する場合は、より小さ"
-"く、また「ダブ 毎秒」を使用する場合は、もっと高くします。\n"
+"複数のダブが重なり合い混合することによって引き起こされた非線形を補正します。通常行われているような、筆圧が「不透明度を乗算」に対応付けられている場合、この"
+"補正は線形の(自然な)筆圧の応答を取得する必要があります。\n"
+"0.9 は標準的なストロークに適しています。ブラシが沢山散乱する場合は、より小さく、また「ダブ 毎秒」を使用する場合は、もっと高くします。\n"
 "0.0 以上の不透明な値は、個々のダブに向いています。\n"
-"1.0 以上の不透明な値は、ブラシストロークの最後に向いています。各ピクセルをス"
-"トローク間の平均で(ダブ / 半径 *2)ブラシダブと仮定します。"
+"1.0 以上の不透明な値は、ブラシストロークの最後に向いています。各ピクセルをストローク間の平均で(ダブ / 半径 *2)ブラシダブと仮定します"
 
 #: ../brushsettings-gen.h:7
 msgid "Radius"
@@ -98,20 +94,16 @@ msgid "Hardness"
 msgstr "硬さ"
 
 #: ../brushsettings-gen.h:8
-#, fuzzy
 msgid ""
 "Hard brush-circle borders (setting to zero will draw nothing). To reach the "
 "maximum hardness, you need to disable Pixel feather."
-msgstr ""
-"円形の縁の硬いブラシ (0に設定すると何も描けません). 最大の硬さにするには、ア"
-"ンチエイリアシングを無効にする必要があります。"
+msgstr "円形の縁の硬いブラシ (0に設定すると何も描けません). 最大の硬さにするには、アンチエイリアシングを無効にする必要があります。"
 
 #: ../brushsettings-gen.h:9
 msgid "Pixel feather"
 msgstr ""
 
 #: ../brushsettings-gen.h:9
-#, fuzzy
 msgid ""
 "This setting decreases the hardness when necessary to prevent a pixel "
 "staircase effect (aliasing) by making the dab more blurred.\n"
@@ -122,7 +114,7 @@ msgstr ""
 "この設定は、ピクセルのギザギザの状態を防ぐために、縁の硬さを減少させます。\n"
 " 0.0 無効 (非常に強力な消しゴムとピクセルブラシ向け)\n"
 " 1.0 ピクセルを１つぼかす（良質な値)\n"
-" 5.0 著しいぼかし、細い線は消えます。"
+" 5.0 著しいぼかし、細い線は消えます"
 
 #: ../brushsettings-gen.h:10
 msgid "Dabs per basic radius"
@@ -142,7 +134,7 @@ msgstr "実際のブラシ半径あたりの描点数"
 msgid ""
 "Same as above, but the radius actually drawn is used, which can change "
 "dynamically"
-msgstr "上記の項目と同様のパラメータですが、基本ブラシ半径ではなく、（動的に変化する）実際のブラシ半径を使用して描点数を決定します。"
+msgstr "上記の項目と同様のパラメータですが、基本ブラシ半径ではなく、（動的に変化する）実際のブラシ半径を使用して描点数を決定します"
 
 #: ../brushsettings-gen.h:12
 msgid "Dabs per second"
@@ -167,7 +159,7 @@ msgstr ""
 "個々の描点の半径をランダムに変化させます。「半径」の詳細設定で「ランダム」パラメータを使用しても同様の効果を得られますが、この項目での設定は以下の 2 "
 "つの点で異なります。\n"
 "1) 不透明度の値は、半径が大きくなると透明度が高くなるように補正されます。\n"
-"2) 「実際のブラシ半径あたりの描点数」で参照される「実際のブラシ半径」の値には影響を与えません。"
+"2) 「実際のブラシ半径あたりの描点数」で参照される「実際のブラシ半径」の値には影響を与えません"
 
 #: ../brushsettings-gen.h:14
 msgid "Fine speed filter"
@@ -187,7 +179,7 @@ msgstr "「大まかな速度」フィルタ"
 
 #: ../brushsettings-gen.h:15
 msgid "Same as 'fine speed filter', but note that the range is different"
-msgstr "「詳細速度」フィルタと同様に、ブラシの「大まかな速度」パラメータの感度を指定します。"
+msgstr "「詳細速度」フィルタと同様に、ブラシの「大まかな速度」パラメータの感度を指定します"
 
 #: ../brushsettings-gen.h:16
 msgid "Fine speed gamma"
@@ -214,14 +206,13 @@ msgstr "「大まかな速度」のガンマ値"
 
 #: ../brushsettings-gen.h:17
 msgid "Same as 'fine speed gamma' for gross speed"
-msgstr "「『詳細速度』のガンマ値」と同様に「大まかな速度」のガンマ値を指定します。"
+msgstr "「『詳細速度』のガンマ値」と同様に「大まかな速度」のガンマ値を指定します"
 
 #: ../brushsettings-gen.h:18
 msgid "Jitter"
 msgstr "揺らぎ"
 
 #: ../brushsettings-gen.h:18
-#, fuzzy
 msgid ""
 "Add a random offset to the position where each dab is drawn\n"
 " 0.0 disabled\n"
@@ -231,7 +222,7 @@ msgstr ""
 "個々の描点の位置をランダムにずらします。\n"
 " 0.0 無効\n"
 " 1.0 標準偏差は1つの基本となる半径範囲の距離です。\n"
-"<0.0 負の値は揺らぎを生成しません。"
+"<0.0 負の値は揺らぎを生成しません"
 
 #: ../brushsettings-gen.h:19
 msgid "Offset by speed"
@@ -255,7 +246,7 @@ msgstr "「速度依存オフセット」フィルタ"
 
 #: ../brushsettings-gen.h:20
 msgid "How slow the offset goes back to zero when the cursor stops moving"
-msgstr "カーソルの動きが止まったときに、「速度依存オフセット」の値が0に戻るまでの速さを指定します。"
+msgstr "カーソルの動きが止まったときに、「速度依存オフセット」の値が0に戻るまでの速さを指定します"
 
 #: ../brushsettings-gen.h:21
 msgid "Slow position tracking"
@@ -274,13 +265,10 @@ msgid "Slow tracking per dab"
 msgstr "描点ごとに手ブレ補正(遅延追加)"
 
 #: ../brushsettings-gen.h:22
-#, fuzzy
 msgid ""
 "Similar as above but at brushdab level (ignoring how much time has passed if "
 "brushdabs do not depend on time)"
-msgstr ""
-"手ブレ補正と同様ですが、ブラシの描点ごとに補正します。(時間に依存するブラシを"
-"使っていた場合でも、線を引くためにかかった時間は無視されます)"
+msgstr "手ブレ補正と同様ですが、ブラシの描点ごとに補正します。(時間に依存するブラシを使っていた場合でも、線を引くためにかかった時間は無視されます)"
 
 #: ../brushsettings-gen.h:23
 msgid "Tracking noise"
@@ -315,7 +303,6 @@ msgid "Save color"
 msgstr "色を保存"
 
 #: ../brushsettings-gen.h:27
-#, fuzzy
 msgid ""
 "When selecting a brush, the color can be restored to the color that the "
 "brush was saved with.\n"
@@ -323,11 +310,10 @@ msgid ""
 " 0.5 change active color towards brush color\n"
 " 1.0 set the active color to the brush color when selected"
 msgstr ""
-"ブラシを選択する際、ブラシと一緒に保存されている選択色を復元することができま"
-"す。\n"
+"ブラシを選択する際、ブラシと一緒に保存されている選択色を復元することができます。\n"
 " 0.0 ブラシを選択する際、選択色を変更することはありません。\n"
 " 0.5 ブラシの色に向けて選択色を変化させます。\n"
-" 1.0 ブラシの色は選択色に設定されます。"
+" 1.0 ブラシの色は選択色に設定されます"
 
 #: ../brushsettings-gen.h:28
 msgid "Change color hue"
@@ -472,7 +458,6 @@ msgid "Eraser"
 msgstr "消しゴム"
 
 #: ../brushsettings-gen.h:36
-#, fuzzy
 msgid ""
 "how much this tool behaves like an eraser\n"
 " 0.0 normal painting\n"
@@ -482,41 +467,36 @@ msgstr ""
 "どの程度の消しゴムにするか\n"
 " 0.0 標準の描画\n"
 " 1.0 標準的な消しゴム\n"
-" 0.5 ピクセルを 50% 透明にします。"
+" 0.5 ピクセルを 50% 透明にします"
 
 #: ../brushsettings-gen.h:37
 msgid "Stroke threshold"
 msgstr "開始しきい値"
 
 #: ../brushsettings-gen.h:37
-#, fuzzy
 msgid ""
 "How much pressure is needed to start a stroke. This affects the stroke input "
 "only. MyPaint does not need a minimum pressure to start drawing."
 msgstr ""
-"筆圧が指定した値を超えた場合に、「ストローク」パラメータが増加を開始します。"
-"この項目は「ストローク」のパラメータのみに作用します。Mypaintでは筆圧がない場"
-"合でも（ポインタの動きだけで）描画を行うことができます。"
+"筆圧が指定した値を超えた場合に、「ストローク」パラメータが増加を開始します。この項目は「ストローク」のパラメータのみに作用します。Mypaintでは筆圧が"
+"ない場合でも（ポインタの動きだけで）描画を行うことができます。"
 
 #: ../brushsettings-gen.h:38
 msgid "Stroke duration"
 msgstr "基準長"
 
 #: ../brushsettings-gen.h:38
-#, fuzzy
 msgid ""
 "How far you have to move until the stroke input reaches 1.0. This value is "
 "logarithmic (negative values will not invert the process)."
 msgstr ""
-"「ストローク」パラメータが1.0になるまでに必要なポインタの移動距離を指定しま"
-"す。この値は対数値で指定します。（マイナスの値は逆のプロセスをしません）"
+"「ストローク」パラメータが1.0になるまでに必要なポインタの移動距離を指定します。この値は対数値で指定します。（マイナスの値は逆のプロセスをしません。"
 
 #: ../brushsettings-gen.h:39
 msgid "Stroke hold time"
 msgstr "残留期間"
 
 #: ../brushsettings-gen.h:39
-#, fuzzy
 msgid ""
 "This defines how long the stroke input stays at 1.0. After that it will "
 "reset to 0.0 and start growing again, even if the stroke is not yet "
@@ -524,9 +504,8 @@ msgid ""
 "2.0 means twice as long as it takes to go from 0.0 to 1.0\n"
 "9.9 or higher stands for infinite"
 msgstr ""
-"これは「ストローク」パラメータが1.0の値に留まる時間を定義します。この値で指定"
-"した時間が経過すると、(ストロークが終了していなくても)「ストローク」パラメー"
-"タは0.0にリセットされ、再び増加し始めます。\n"
+"これは「ストローク」パラメータが1.0の値に留まる時間を定義します。この値で指定した時間が経過すると、(ストロークが終了していなくても)「ストローク」パラ"
+"メータは0.0にリセットされ、再び増加し始めます。\n"
 "2.0 は、0.0から1.0に行くのに 2倍の時間が掛かる事を意味します。\n"
 "9.9 以上の場合、「ストローク」パラメータは一度1.0になると永久に固定されます"
 
@@ -535,7 +514,6 @@ msgid "Custom input"
 msgstr "カスタム入力"
 
 #: ../brushsettings-gen.h:40
-#, fuzzy
 msgid ""
 "Set the custom input to this value. If it is slowed down, move it towards "
 "this value (see below). The idea is that you make this input depend on a "
@@ -545,30 +523,24 @@ msgid ""
 "If you make it change 'by random' you can generate a slow (smooth) random "
 "input."
 msgstr ""
-"カスタム入力値を設定します。速度低下した場合、この値で移動します。(下記参"
-"照)\n"
-"考え方としては、この入力を筆圧、速度、その他何でも混合し依存させることです。"
-"他の設定は、必要とするあらゆる所の組み合わせを繰り返しているよりは、この「カ"
-"スタム入力」に依存させることです。\n"
-"「ランダム」で変更できるようであれば、ゆっくりな（滑らかな）ランダム入力を生"
-"成することができます。"
+"カスタム入力値を設定します。速度低下した場合、この値で移動します。(下記参照)\n"
+"考え方としては、この入力を筆圧、速度、その他何でも混合し依存させることです。他の設定は、必要とするあらゆる所の組み合わせを繰り返しているよりは、この「カス"
+"タム入力」に依存させることです。\n"
+"「ランダム」で変更できるようであれば、ゆっくりな（滑らかな）ランダム入力を生成することができます。"
 
 #: ../brushsettings-gen.h:41
 msgid "Custom input filter"
 msgstr "「カスタム入力」フィルタ"
 
 #: ../brushsettings-gen.h:41
-#, fuzzy
 msgid ""
 "How slow the custom input actually follows the desired value (the one "
 "above). This happens at brushdab level (ignoring how much time has passed, "
 "if brushdabs do not depend on time).\n"
 "0.0 no slowdown (changes apply instantly)"
 msgstr ""
-"「カスタム入力」パラメータ上記で指定された値に達するまでにどの程度遅延するか"
-"を指定します。この遅延は描点を描く度に計算されます。(描点の描画が時間に依存し"
-"ない設定の場合、移動の度に遅延が計算されますが、ストローク開始からの経過時間"
-"は考慮されません)\n"
+"「カスタム入力」パラメータ上記で指定された値に達するまでにどの程度遅延するかを指定します。この遅延は描点を描く度に計算されます。(描点の描画が時間に依存し"
+"ない設定の場合、移動の度に遅延が計算されますが、ストローク開始からの経過時間は考慮されません)\n"
 "0.0 減速なし(変更が即座に適用されます)"
 
 #: ../brushsettings-gen.h:42
@@ -609,14 +581,13 @@ msgid ""
 "will make it smoother"
 msgstr ""
 "「方向」パラメータの変化の度合いを指定します。値が低い場合は「方向」パラメータがポインタの動きに合わせて迅速に変化し、値が大きい場合はより滑らかに変化しま"
-"す。"
+"す"
 
 #: ../brushsettings-gen.h:45
 msgid "Lock alpha"
 msgstr "アルファ値を保護"
 
 #: ../brushsettings-gen.h:45
-#, fuzzy
 msgid ""
 "Do not modify the alpha channel of the layer (paint only where there is "
 "paint already)\n"
@@ -630,7 +601,6 @@ msgstr ""
 " 1.0 アルファチャンネルを完全にロック"
 
 #: ../brushsettings-gen.h:46
-#, fuzzy
 msgid "Colorize"
 msgstr "色"
 
@@ -651,7 +621,6 @@ msgid ""
 msgstr "ブラシ描点の中心と半径をピクセル単位にスナップします。細いピクセルのブラシを作るには、これを1.0に設定します。"
 
 #: ../brushsettings-gen.h:48
-#, fuzzy
 msgid "Pressure gain"
 msgstr "筆圧"
 
@@ -668,14 +637,11 @@ msgid "Pressure"
 msgstr "筆圧"
 
 #: ../brushsettings-gen.h:53
-#, fuzzy
 msgid ""
 "The pressure reported by the tablet. Usually between 0.0 and 1.0, but it may "
 "get larger when a pressure gain is used. If you use the mouse, it will be "
 "0.5 when a button is pressed and 0.0 otherwise."
-msgstr ""
-"タブレット利用時：デバイスが示す筆圧(0.0〜1.0)マウス利用時：マウスボタンを押"
-"している間＝0.5、その他＝0.0"
+msgstr "タブレット利用時：デバイスが示す筆圧(0.0〜1.0)マウス利用時：マウスボタンを押している間＝0.5、その他＝0.0。"
 
 #: ../brushsettings-gen.h:54
 msgid "Fine speed"

@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-04 18:33+0100\n"
-"PO-Revision-Date: 2019-02-13 16:10+0000\n"
-"Last-Translator: Hatem Ghouthi <hatemghouthi@yahoo.com>\n"
+"PO-Revision-Date: 2019-02-23 08:18+0000\n"
+"Last-Translator: glixx <roman_romul@mail.ru>\n"
 "Language-Team: Arabic <https://hosted.weblate.org/projects/mypaint/"
 "libmypaint/ar/>\n"
 "Language: ar\n"
@@ -629,7 +629,7 @@ msgstr ""
 
 #: ../brushsettings-gen.h:56
 msgid "Random"
-msgstr ""
+msgstr "عشوائي"
 
 #: ../brushsettings-gen.h:56
 msgid ""
@@ -650,7 +650,7 @@ msgstr ""
 
 #: ../brushsettings-gen.h:58
 msgid "Direction"
-msgstr ""
+msgstr "الاتجاه"
 
 #: ../brushsettings-gen.h:58
 msgid ""
@@ -681,7 +681,7 @@ msgstr ""
 
 #: ../brushsettings-gen.h:61
 msgid "Custom"
-msgstr ""
+msgstr "مخصص"
 
 #: ../brushsettings-gen.h:61
 msgid ""

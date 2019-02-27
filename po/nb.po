@@ -5,8 +5,8 @@ msgstr ""
 "Project-Id-Version: 0.7.1-git\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-04 18:33+0100\n"
-"PO-Revision-Date: 2019-02-27 00:18+0000\n"
-"Last-Translator: glixx <roman_romul@mail.ru>\n"
+"PO-Revision-Date: 2019-02-28 10:18+0000\n"
+"Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
 "Language-Team: Norwegian Bokmål <https://hosted.weblate.org/projects/mypaint/"
 "libmypaint/nb_NO/>\n"
 "Language: nb\n"
@@ -484,7 +484,7 @@ msgstr ""
 
 #: ../brushsettings-gen.h:46
 msgid "Colorize"
-msgstr "Farge"
+msgstr "Fargelegg"
 
 #: ../brushsettings-gen.h:46
 msgid ""

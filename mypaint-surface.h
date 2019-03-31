@@ -28,7 +28,8 @@ typedef struct MyPaintSurface MyPaintSurface;
 typedef void (*MyPaintSurfaceGetColorFunction) (MyPaintSurface *self,
                                                 float x, float y,
                                                 float radius,
-                                                float * color_r, float * color_g, float * color_b, float * color_a
+                                                float * color_r, float * color_g, float * color_b, float * color_a,
+                                                float paint
                                                 );
 
 typedef int (*MyPaintSurfaceDrawDabFunction) (MyPaintSurface *self,
@@ -93,7 +94,8 @@ void
 mypaint_surface_get_color(MyPaintSurface *self,
                         float x, float y,
                         float radius,
-                        float * color_r, float * color_g, float * color_b, float * color_a
+                        float * color_r, float * color_g, float * color_b, float * color_a,
+                        float paint
                         );
                         
 

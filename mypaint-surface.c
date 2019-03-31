@@ -49,11 +49,12 @@ void
 mypaint_surface_get_color(MyPaintSurface *self,
                         float x, float y,
                         float radius,
-                        float * color_r, float * color_g, float * color_b, float * color_a
+                        float * color_r, float * color_g, float * color_b, float * color_a,
+                        float paint
                         )
 {
     assert(self->get_color);
-    self->get_color(self, x, y, radius, color_r, color_g, color_b, color_a);
+    self->get_color(self, x, y, radius, color_r, color_g, color_b, color_a, paint);
 }
 
 
@@ -98,7 +99,7 @@ mypaint_surface_unref(MyPaintSurface *self)
 float mypaint_surface_get_alpha (MyPaintSurface *self, float x, float y, float radius)
 {
     float color_r, color_g, color_b, color_a;
-    mypaint_surface_get_color (self, x, y, radius, &color_r, &color_g, &color_b, &color_a);
+    mypaint_surface_get_color (self, x, y, radius, &color_r, &color_g, &color_b, &color_a, 1.0);
     return color_a;
 }
 

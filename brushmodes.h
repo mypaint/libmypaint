@@ -63,7 +63,8 @@ void get_color_pixels_accumulate (uint16_t * mask,
                                   float * sum_r,
                                   float * sum_g,
                                   float * sum_b,
-                                  float * sum_a
+                                  float * sum_a,
+                                  float paint
                                   );
 
 

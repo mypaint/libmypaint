@@ -446,42 +446,66 @@ void get_color_pixels_accumulate (uint16_t * mask,
                                   float * sum_r,
                                   float * sum_g,
                                   float * sum_b,
-                                  float * sum_a
+                                  float * sum_a,
+                                  float paint
                                   ) {
 
 
-  // The sum of a 64x64 tile fits into a 32 bit integer, but the sum
-  // of an arbitrary number of tiles may not fit. We assume that we
-  // are processing a single tile at a time, so we can use integers.
-  // But for the result we need floats.
+  // Sample the canvas as additive and subtractive
+  // According to paint parameter
+  // Average the results normally
+  // Only sample a random selection of pixels
 
-  uint32_t weight = 0;
-  uint32_t r = 0;
-  uint32_t g = 0;
-  uint32_t b = 0;
-  uint32_t a = 0;
+  float avg_spectral[10] = {0};
+  float avg_rgb[3] = {*sum_r, *sum_g, *sum_b};
+  if (paint > 0.0f) {
+    rgb_to_spectral(*sum_r, *sum_g, *sum_b, avg_spectral);
+  }
 
   while (1) {
     for (; mask[0]; mask++, rgba+=4) {
-      uint32_t opa = mask[0];
-      weight += opa;
-      r      += opa*rgba[0]/(1<<15);
-      g      += opa*rgba[1]/(1<<15);
-      b      += opa*rgba[2]/(1<<15);
-      a      += opa*rgba[3]/(1<<15);
-
+      // sample at least one pixel but then only 1%
+      if (rand() % 100 != 0 && *sum_a > 0.0) {
+        continue;
+      }
+      float a = (float)mask[0] * rgba[3] / (1<<30);
+      float alpha_sums = a + *sum_a;
+      *sum_weight += (float)mask[0] / (1<<15);
+      float fac_a, fac_b;
+      fac_a = fac_b = 1.0f;
+      if (alpha_sums > 0.0f) {
+        fac_a = a / alpha_sums;
+        fac_b = 1.0 - fac_a;
+      }
+      if (paint > 0.0f) {
+        float spectral[10] = {0};
+        if (rgba[3] > 0) {
+          rgb_to_spectral((float)rgba[0] / rgba[3], (float)rgba[1] / rgba[3], (float)rgba[2] / rgba[3], spectral);
+          for (int i=0; i<10; i++) {
+            avg_spectral[i] = fastpow(spectral[i], fac_a) * fastpow(avg_spectral[i], fac_b);
+          }
+        }
+      }
+      if (paint < 1.0f) {
+        if (rgba[3] > 0) {
+          for (int i=0; i<3; i++) {
+            avg_rgb[i] = (float)rgba[i] * fac_a / rgba[3] + (float)avg_rgb[i] * fac_b;
+          }
+        }
+      }
+      *sum_a += a;
     }
+    float spec_rgb[3] = {0};
+    spectral_to_rgb(avg_spectral, spec_rgb);
+
+    *sum_r = spec_rgb[0] * paint + (1.0 - paint) * avg_rgb[0];
+    *sum_g = spec_rgb[1] * paint + (1.0 - paint) * avg_rgb[1];
+    *sum_b = spec_rgb[2] * paint + (1.0 - paint) * avg_rgb[2];
+
     if (!mask[1]) break;
     rgba += mask[1];
     mask += 2;
   }
-
-  // convert integer to float outside the performance critical loop
-  *sum_weight += weight;
-  *sum_r += r;
-  *sum_g += g;
-  *sum_b += b;
-  *sum_a += a;
 };
 
 

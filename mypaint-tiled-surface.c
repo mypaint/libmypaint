@@ -776,7 +776,8 @@ int draw_dab (MyPaintSurface *surface, float x, float y,
 
 void get_color (MyPaintSurface *surface, float x, float y,
                   float radius,
-                  float * color_r, float * color_g, float * color_b, float * color_a
+                  float * color_r, float * color_g, float * color_b, float * color_a,
+                  float paint
                   )
 {
     MyPaintTiledSurface *self = (MyPaintTiledSurface *)surface;
@@ -839,7 +840,7 @@ void get_color (MyPaintSurface *surface, float x, float y,
         #pragma omp critical
         {
         get_color_pixels_accumulate (mask, rgba_p,
-                                     &sum_weight, &sum_r, &sum_g, &sum_b, &sum_a);
+                                     &sum_weight, &sum_r, &sum_g, &sum_b, &sum_a, paint);
         }
 
         mypaint_tiled_surface_tile_request_end(self, &request_data);
@@ -848,16 +849,12 @@ void get_color (MyPaintSurface *surface, float x, float y,
 
     assert(sum_weight > 0.0f);
     sum_a /= sum_weight;
-    sum_r /= sum_weight;
-    sum_g /= sum_weight;
-    sum_b /= sum_weight;
-
     *color_a = sum_a;
     // now un-premultiply the alpha
     if (sum_a > 0.0f) {
-      *color_r = sum_r / sum_a;
-      *color_g = sum_g / sum_a;
-      *color_b = sum_b / sum_a;
+      *color_r = sum_r;
+      *color_g = sum_g;
+      *color_b = sum_b;
     } else {
       // it is all transparent, so don't care about the colors
       // (let's make them ugly so bugs will be visible)

@@ -828,7 +828,7 @@ mypaint_brush_set_state(MyPaintBrush *self, MyPaintBrushState i, float value)
         float smudge_radius = radius * fasterexp(self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE_RADIUS_LOG]);
         smudge_radius = CLAMP(smudge_radius, ACTUAL_RADIUS_MIN, ACTUAL_RADIUS_MAX);
 
-        mypaint_surface_get_color(surface, px, py, smudge_radius, &r, &g, &b, &a);
+        mypaint_surface_get_color(surface, px, py, smudge_radius, &r, &g, &b, &a, self->settings_value[MYPAINT_BRUSH_SETTING_PAINT_MODE]);
 
 
         //don't draw unless the picked-up alpha is above a certain level

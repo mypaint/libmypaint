@@ -78,22 +78,31 @@ void draw_dab_pixels_BlendMode_Normal_Paint (uint16_t * mask,
 
   while (1) {
     for (; mask[0]; mask++, rgba+=4) {
+      // pigment-mode does not like very low opacity, probably due to rounding
+      // errors with int->float->int round-trip.  Once we convert to pure
+      // float engine this might be fixed.  For now enforce a minimum opacity:
+      opacity = MAX(opacity, 150);
       uint32_t opa_a = mask[0]*(uint32_t)opacity/(1<<15); // topAlpha
       uint32_t opa_b = (1<<15)-opa_a; // bottomAlpha
-      
+      // optimization- if background has 0 alpha we can just do normal additive
+      // blending since there is nothing to mix with.
+      if (rgba[3] <= 0) {
+        rgba[3] = opa_a + opa_b * rgba[3] / (1<<15);
+        rgba[0] = (opa_a*color_r + opa_b*rgba[0])/(1<<15);
+        rgba[1] = (opa_a*color_g + opa_b*rgba[1])/(1<<15);
+        rgba[2] = (opa_a*color_b + opa_b*rgba[2])/(1<<15);
+        continue;
+      }
       //alpha-weighted ratio for WGM (sums to 1.0)
       float fac_a = (float)opa_a / (opa_a + opa_b * rgba[3] / (1<<15));
-      //fac_a *= fac_a;
       float fac_b = 1.0 - fac_a;
 
       //convert bottom to spectral.  Un-premult alpha to obtain reflectance
       //color noise is not a problem since low alpha also implies low weight
       float spectral_b[10] = {0};
-      if (rgba[3] > 0) {
-        rgb_to_spectral((float)rgba[0] / rgba[3], (float)rgba[1] / rgba[3], (float)rgba[2] / rgba[3], spectral_b);
-      } else {
-        rgb_to_spectral((float)rgba[0]/ (1<<15), (float)rgba[1]/ (1<<15), (float)rgba[2]/ (1<<15), spectral_b);
-      }
+
+      rgb_to_spectral((float)rgba[0] / rgba[3], (float)rgba[1] / rgba[3], (float)rgba[2] / rgba[3], spectral_b);
+
       // convert top to spectral.  Already straight color
       float spectral_a[10] = {0};
       rgb_to_spectral((float)color_r / (1<<15), (float)color_g / (1<<15), (float)color_b / (1<<15), spectral_a);
@@ -110,7 +119,7 @@ void draw_dab_pixels_BlendMode_Normal_Paint (uint16_t * mask,
       rgba[3] = opa_a + opa_b * rgba[3] / (1<<15);
 
       for (int i=0; i<3; i++) {
-        rgba[i] =(rgb_result[i] * rgba[3]);
+        rgba[i] =(rgb_result[i] * rgba[3]) + 0.5;
       }
     }
     if (!mask[1]) break;
@@ -319,19 +328,22 @@ void draw_dab_pixels_BlendMode_Normal_and_Eraser_Paint (uint16_t * mask,
 
   while (1) {
     for (; mask[0]; mask++, rgba+=4) {
-        uint32_t opa_a = mask[0]*(uint32_t)opacity/(1<<15); // topAlpha
-        uint32_t opa_b = (1<<15)-opa_a; // bottomAlpha
-
-      float fac_a = (float)opa_a / (opa_a + opa_b * rgba[3] / (1<<15));
-      //fac_a *= fac_a;
-      float fac_b = 1.0 - fac_a;
-      //fac_a *= (float)color_a / (1<<15);
-      float spectral_b[10] = {0};
-      if (rgba[3] > 0) {
-        rgb_to_spectral((float)rgba[0] / rgba[3], (float)rgba[1] / rgba[3], (float)rgba[2] / rgba[3], spectral_b);
-      } else {
-        rgb_to_spectral((float)rgba[0]/ (1<<15), (float)rgba[1]/ (1<<15), (float)rgba[2]/ (1<<15), spectral_b);
+      opacity = MAX(opacity, 150);
+      uint32_t opa_a = mask[0]*(uint32_t)opacity/(1<<15); // topAlpha
+      uint32_t opa_b = (1<<15)-opa_a; // bottomAlpha
+      if (rgba[3] <= 0) {
+        opa_a = opa_a * color_a / (1<<15);
+        rgba[3] = opa_a + opa_b * rgba[3] / (1<<15);
+        rgba[0] = (opa_a*color_r + opa_b*rgba[0])/(1<<15);
+        rgba[1] = (opa_a*color_g + opa_b*rgba[1])/(1<<15);
+        rgba[2] = (opa_a*color_b + opa_b*rgba[2])/(1<<15);
+        continue;
       }
+      float fac_a = (float)opa_a / (opa_a + opa_b * rgba[3] / (1<<15));
+      float fac_b = 1.0 - fac_a;
+      float spectral_b[10] = {0};
+      rgb_to_spectral((float)rgba[0] / rgba[3], (float)rgba[1] / rgba[3], (float)rgba[2] / rgba[3], spectral_b);
+
       // convert top to spectral.  Already straight color
       float spectral_a[10] = {0};
       rgb_to_spectral((float)color_r / (1<<15), (float)color_g / (1<<15), (float)color_b / (1<<15), spectral_a);
@@ -352,7 +364,7 @@ void draw_dab_pixels_BlendMode_Normal_and_Eraser_Paint (uint16_t * mask,
       rgba[3] = opa_a + opa_b * rgba[3] / (1<<15);
 
       for (int i=0; i<3; i++) {
-        rgba[i] =(rgb_result[i] * rgba[3]);
+        rgba[i] =(rgb_result[i] * rgba[3]) + 0.5;
       }
 
     }
@@ -398,20 +410,22 @@ void draw_dab_pixels_BlendMode_LockAlpha_Paint (uint16_t * mask,
 
   while (1) {
     for (; mask[0]; mask++, rgba+=4) {
-
+      opacity = MAX(opacity, 150);
       uint32_t opa_a = mask[0]*(uint32_t)opacity/(1<<15); // topAlpha
       uint32_t opa_b = (1<<15)-opa_a; // bottomAlpha
       opa_a *= rgba[3];
       opa_a /= (1<<15);
+      if (rgba[3] <= 0) {
+        rgba[0] = (opa_a*color_r + opa_b*rgba[0])/(1<<15);
+        rgba[1] = (opa_a*color_g + opa_b*rgba[1])/(1<<15);
+        rgba[2] = (opa_a*color_b + opa_b*rgba[2])/(1<<15);
+        continue;
+      }
       float fac_a = (float)opa_a / (opa_a + opa_b * rgba[3] / (1<<15));
-      //fac_a *= fac_a;
       float fac_b = 1.0 - fac_a;
       float spectral_b[10] = {0};
-      if (rgba[3] > 0) {
-        rgb_to_spectral((float)rgba[0] / rgba[3], (float)rgba[1] / rgba[3], (float)rgba[2] / rgba[3], spectral_b);
-      } else {
-        rgb_to_spectral((float)rgba[0]/ (1<<15), (float)rgba[1]/ (1<<15), (float)rgba[2]/ (1<<15), spectral_b);
-      }
+      rgb_to_spectral((float)rgba[0] / rgba[3], (float)rgba[1] / rgba[3], (float)rgba[2] / rgba[3], spectral_b);
+
       // convert top to spectral.  Already straight color
       float spectral_a[10] = {0};
       rgb_to_spectral((float)color_r / (1<<15), (float)color_g / (1<<15), (float)color_b / (1<<15), spectral_a);
@@ -427,7 +441,7 @@ void draw_dab_pixels_BlendMode_LockAlpha_Paint (uint16_t * mask,
       rgba[3] = opa_a + opa_b * rgba[3] / (1<<15);
 
       for (int i=0; i<3; i++) {
-        rgba[i] =(rgb_result[i] * rgba[3]);
+        rgba[i] =(rgb_result[i] * rgba[3]) + 0.5;
       }
     }
     if (!mask[1]) break;

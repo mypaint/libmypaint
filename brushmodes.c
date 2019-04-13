@@ -340,6 +340,7 @@ void draw_dab_pixels_BlendMode_Normal_and_Eraser_Paint (uint16_t * mask,
         continue;
       }
       float fac_a = (float)opa_a / (opa_a + opa_b * rgba[3] / (1<<15));
+      fac_a *= (float)color_a / (1<<15);
       float fac_b = 1.0 - fac_a;
       float spectral_b[10] = {0};
       rgb_to_spectral((float)rgba[0] / rgba[3], (float)rgba[1] / rgba[3], (float)rgba[2] / rgba[3], spectral_b);

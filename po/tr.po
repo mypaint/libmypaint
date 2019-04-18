@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-04 18:33+0100\n"
-"PO-Revision-Date: 2019-04-18 15:08+0000\n"
-"Last-Translator: Muha Aliss <muhaaliss@pm.me>\n"
+"PO-Revision-Date: 2019-04-18 15:09+0000\n"
+"Last-Translator: Sabri Ünal <yakushabb@gmail.com>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/mypaint/"
 "libmypaint/tr/>\n"
 "Language: tr\n"
@@ -89,7 +89,7 @@ msgstr ""
 
 #: ../brushsettings-gen.h:9
 msgid "Pixel feather"
-msgstr ""
+msgstr "Piksel geçiş yumuşatması"
 
 #: ../brushsettings-gen.h:9
 msgid ""

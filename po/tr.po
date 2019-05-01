@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-04 18:33+0100\n"
-"PO-Revision-Date: 2019-04-19 15:36+0000\n"
+"PO-Revision-Date: 2019-05-02 03:48+0000\n"
 "Last-Translator: Sabri Ünal <yakushabb@gmail.com>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/mypaint/"
 "libmypaint/tr/>\n"
@@ -17,24 +17,23 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.6-dev\n"
+"X-Generator: Weblate 3.6.1\n"
 
 #: ../brushsettings-gen.h:4
 msgid "Opacity"
-msgstr "Opaklık"
+msgstr "Matlık"
 
 #: ../brushsettings-gen.h:4
 msgid ""
 "0 means brush is transparent, 1 fully visible\n"
 "(also known as alpha or opacity)"
 msgstr ""
-"0, saydam; 1, opak anlamına geliyor\n"
-"(alfa veya opaklık olarak da bilinir)"
+"0, fırça saydam, 1 tamamen görünür anlamındadır\n"
+"(ayrıca alfa veya matlık olarak da bilinir)"
 
 #: ../brushsettings-gen.h:5
-#, fuzzy
 msgid "Opacity multiply"
-msgstr "Çoklu opaklık"
+msgstr "Matlık çarpımı"
 
 #: ../brushsettings-gen.h:5
 msgid ""
@@ -43,10 +42,14 @@ msgid ""
 "This setting is responsible to stop painting when there is zero pressure. "
 "This is just a convention, the behaviour is identical to 'opaque'."
 msgstr ""
+"Bu matlık ile çarpılır. Sadece bu ayarın basınç girişini değiştirmelisiniz. "
+"Matlığın hıza bağlı olmasını sağlamak için 'matlık'ı kullanın.\n"
+"Bu ayar, sıfır basınç olduğunda boyamayı durdurmaktan sorumludur. Bu sadece "
+"bir üsuldür, davranış 'matlık' ile aynıdır."
 
 #: ../brushsettings-gen.h:6
 msgid "Opacity linearize"
-msgstr ""
+msgstr "Matlık doğrusallaştır"
 
 #: ../brushsettings-gen.h:6
 msgid ""
@@ -83,7 +86,7 @@ msgid ""
 "Hard brush-circle borders (setting to zero will draw nothing). To reach the "
 "maximum hardness, you need to disable Pixel feather."
 msgstr ""
-"Sert fırça daire sınırları (sıfıra ayarlamak hiçbir şey çizmez). Maksimum "
+"Sert fırça daire sınırları (sıfıra ayarlamak hiçbir şey çizmez). En yüksek "
 "sertliğe ulaşmak için Piksel geçiş yumuşatmasını devre dışı bırakmanız "
 "gerekir."
 
@@ -119,8 +122,8 @@ msgid ""
 "Same as above, but the radius actually drawn is used, which can change "
 "dynamically"
 msgstr ""
-"Yukarıdakiyle aynı, ancak gerçekte çizilen yarıçap, dinamik olarak "
-"değiştirilebilir"
+"Yukarıdakiyle aynı, ancak gerçekte çizilen yarıçap kullanılır, dinamik "
+"olarak değiştirilebilir"
 
 #: ../brushsettings-gen.h:12
 msgid "Dabs per second"
@@ -185,7 +188,7 @@ msgstr ""
 
 #: ../brushsettings-gen.h:18
 msgid "Jitter"
-msgstr "Titreme"
+msgstr "Kararsızlık"
 
 #: ../brushsettings-gen.h:18
 msgid ""
@@ -255,7 +258,7 @@ msgstr "Renk doygunluğu"
 
 #: ../brushsettings-gen.h:26
 msgid "Color value"
-msgstr "renk değeri"
+msgstr "Renk değeri"
 
 #: ../brushsettings-gen.h:26
 msgid "Color value (brightness, intensity)"
@@ -312,7 +315,7 @@ msgstr ""
 
 #: ../brushsettings-gen.h:31
 msgid "Change color value (HSV)"
-msgstr "renk değerini değiştir (HSV)"
+msgstr "Renk değerini değiştir (HSV)"
 
 #: ../brushsettings-gen.h:31
 msgid ""
@@ -338,7 +341,7 @@ msgstr ""
 
 #: ../brushsettings-gen.h:33
 msgid "Smudge"
-msgstr "Lekeleme"
+msgstr "Lekele"
 
 #: ../brushsettings-gen.h:33
 msgid ""
@@ -351,7 +354,7 @@ msgstr ""
 
 #: ../brushsettings-gen.h:34
 msgid "Smudge length"
-msgstr "Lekeleme Uzunluğu"
+msgstr "Lekeleme uzunluğu"
 
 #: ../brushsettings-gen.h:34
 msgid ""
@@ -424,7 +427,7 @@ msgstr ""
 
 #: ../brushsettings-gen.h:40
 msgid "Custom input"
-msgstr "özel giriş"
+msgstr "Özel giriş"
 
 #: ../brushsettings-gen.h:40
 msgid ""
@@ -439,7 +442,7 @@ msgstr ""
 
 #: ../brushsettings-gen.h:41
 msgid "Custom input filter"
-msgstr "özel giriş süzgeci"
+msgstr "Özel giriş filtresi"
 
 #: ../brushsettings-gen.h:41
 msgid ""

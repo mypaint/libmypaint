@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-04 18:33+0100\n"
-"PO-Revision-Date: 2019-05-02 03:48+0000\n"
+"PO-Revision-Date: 2019-05-06 19:48+0000\n"
 "Last-Translator: Sabri Ünal <yakushabb@gmail.com>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/mypaint/"
 "libmypaint/tr/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.6.1\n"
+"X-Generator: Weblate 3.7-dev\n"
 
 #: ../brushsettings-gen.h:4
 msgid "Opacity"
@@ -33,7 +33,7 @@ msgstr ""
 
 #: ../brushsettings-gen.h:5
 msgid "Opacity multiply"
-msgstr "Matlık çarpımı"
+msgstr "Matlık Çarpımı"
 
 #: ../brushsettings-gen.h:5
 msgid ""
@@ -42,14 +42,14 @@ msgid ""
 "This setting is responsible to stop painting when there is zero pressure. "
 "This is just a convention, the behaviour is identical to 'opaque'."
 msgstr ""
-"Bu matlık ile çarpılır. Sadece bu ayarın basınç girişini değiştirmelisiniz. "
+"Bu matlık ile çarpılır. Sadece bu ayarın basınç girdisini değiştirmelisiniz. "
 "Matlığın hıza bağlı olmasını sağlamak için 'matlık'ı kullanın.\n"
 "Bu ayar, sıfır basınç olduğunda boyamayı durdurmaktan sorumludur. Bu sadece "
 "bir üsuldür, davranış 'matlık' ile aynıdır."
 
 #: ../brushsettings-gen.h:6
 msgid "Opacity linearize"
-msgstr "Matlık doğrusallaştır"
+msgstr "Matlık Doğrusallaştır"
 
 #: ../brushsettings-gen.h:6
 msgid ""
@@ -92,7 +92,7 @@ msgstr ""
 
 #: ../brushsettings-gen.h:9
 msgid "Pixel feather"
-msgstr "Piksel geçiş yumuşatması"
+msgstr "Piksel Geçiş Yumuşatması"
 
 #: ../brushsettings-gen.h:9
 msgid ""
@@ -105,7 +105,7 @@ msgstr ""
 
 #: ../brushsettings-gen.h:10
 msgid "Dabs per basic radius"
-msgstr ""
+msgstr "Temel Yarıçap Başına Damla"
 
 #: ../brushsettings-gen.h:10
 msgid ""
@@ -115,7 +115,7 @@ msgstr ""
 
 #: ../brushsettings-gen.h:11
 msgid "Dabs per actual radius"
-msgstr ""
+msgstr "Gerçek Yarıçap Başına Damla"
 
 #: ../brushsettings-gen.h:11
 msgid ""
@@ -127,7 +127,7 @@ msgstr ""
 
 #: ../brushsettings-gen.h:12
 msgid "Dabs per second"
-msgstr ""
+msgstr "Saniye Başına Damla"
 
 #: ../brushsettings-gen.h:12
 msgid "Dabs to draw each second, no matter how far the pointer moves"
@@ -135,7 +135,7 @@ msgstr ""
 
 #: ../brushsettings-gen.h:13
 msgid "Radius by random"
-msgstr "Rastgele yarıçap"
+msgstr "Rastgele Yarıçap"
 
 #: ../brushsettings-gen.h:13
 msgid ""
@@ -148,7 +148,7 @@ msgstr ""
 
 #: ../brushsettings-gen.h:14
 msgid "Fine speed filter"
-msgstr ""
+msgstr "İnce Hız Filtresi"
 
 #: ../brushsettings-gen.h:14
 msgid ""
@@ -158,7 +158,7 @@ msgstr ""
 
 #: ../brushsettings-gen.h:15
 msgid "Gross speed filter"
-msgstr ""
+msgstr "Brüt Hız Filtresi"
 
 #: ../brushsettings-gen.h:15
 msgid "Same as 'fine speed filter', but note that the range is different"
@@ -166,7 +166,7 @@ msgstr ""
 
 #: ../brushsettings-gen.h:16
 msgid "Fine speed gamma"
-msgstr ""
+msgstr "İnce Hız Gaması"
 
 #: ../brushsettings-gen.h:16
 msgid ""
@@ -180,7 +180,7 @@ msgstr ""
 
 #: ../brushsettings-gen.h:17
 msgid "Gross speed gamma"
-msgstr ""
+msgstr "Brüt Hız Gaması"
 
 #: ../brushsettings-gen.h:17
 msgid "Same as 'fine speed gamma' for gross speed"
@@ -200,7 +200,7 @@ msgstr ""
 
 #: ../brushsettings-gen.h:19
 msgid "Offset by speed"
-msgstr ""
+msgstr "Hız ile Konum"
 
 #: ../brushsettings-gen.h:19
 msgid ""
@@ -212,7 +212,7 @@ msgstr ""
 
 #: ../brushsettings-gen.h:20
 msgid "Offset by speed filter"
-msgstr ""
+msgstr "Hız ile Konum Filtresi"
 
 #: ../brushsettings-gen.h:20
 msgid "How slow the offset goes back to zero when the cursor stops moving"
@@ -220,7 +220,7 @@ msgstr ""
 
 #: ../brushsettings-gen.h:21
 msgid "Slow position tracking"
-msgstr ""
+msgstr "Yavaş Konum Takibi"
 
 #: ../brushsettings-gen.h:21
 msgid ""
@@ -230,7 +230,7 @@ msgstr ""
 
 #: ../brushsettings-gen.h:22
 msgid "Slow tracking per dab"
-msgstr ""
+msgstr "Damla Başına Yavaş Takip"
 
 #: ../brushsettings-gen.h:22
 msgid ""
@@ -240,7 +240,7 @@ msgstr ""
 
 #: ../brushsettings-gen.h:23
 msgid "Tracking noise"
-msgstr ""
+msgstr "Takip Gürültüsü"
 
 #: ../brushsettings-gen.h:23
 msgid ""
@@ -250,15 +250,15 @@ msgstr ""
 
 #: ../brushsettings-gen.h:24
 msgid "Color hue"
-msgstr "Renk tonu"
+msgstr "Renk Tonu"
 
 #: ../brushsettings-gen.h:25
 msgid "Color saturation"
-msgstr "Renk doygunluğu"
+msgstr "Renk Doygunluğu"
 
 #: ../brushsettings-gen.h:26
 msgid "Color value"
-msgstr "Renk değeri"
+msgstr "Renk Değeri"
 
 #: ../brushsettings-gen.h:26
 msgid "Color value (brightness, intensity)"
@@ -266,7 +266,7 @@ msgstr ""
 
 #: ../brushsettings-gen.h:27
 msgid "Save color"
-msgstr "Rengi kaydet"
+msgstr "Rengi Kaydet"
 
 #: ../brushsettings-gen.h:27
 msgid ""
@@ -279,7 +279,7 @@ msgstr ""
 
 #: ../brushsettings-gen.h:28
 msgid "Change color hue"
-msgstr "Renk tonunu değiştir"
+msgstr "Renk Tonunu Değiştir"
 
 #: ../brushsettings-gen.h:28
 msgid ""
@@ -291,7 +291,7 @@ msgstr ""
 
 #: ../brushsettings-gen.h:29
 msgid "Change color lightness (HSL)"
-msgstr ""
+msgstr "Renk Açıklığını Değiştir (HSL)"
 
 #: ../brushsettings-gen.h:29
 msgid ""
@@ -303,7 +303,7 @@ msgstr ""
 
 #: ../brushsettings-gen.h:30
 msgid "Change color satur. (HSL)"
-msgstr ""
+msgstr "Renk Doygunluğunu Değiştir (HSL)"
 
 #: ../brushsettings-gen.h:30
 msgid ""
@@ -315,7 +315,7 @@ msgstr ""
 
 #: ../brushsettings-gen.h:31
 msgid "Change color value (HSV)"
-msgstr "Renk değerini değiştir (HSV)"
+msgstr "Renk Değerini Değiştir (HSV)"
 
 #: ../brushsettings-gen.h:31
 msgid ""
@@ -328,7 +328,7 @@ msgstr ""
 
 #: ../brushsettings-gen.h:32
 msgid "Change color satur. (HSV)"
-msgstr ""
+msgstr "Renk Doygunluğunu Değiştir (HSV)"
 
 #: ../brushsettings-gen.h:32
 msgid ""
@@ -354,7 +354,7 @@ msgstr ""
 
 #: ../brushsettings-gen.h:34
 msgid "Smudge length"
-msgstr "Lekeleme uzunluğu"
+msgstr "Lekeleme Uzunluğu"
 
 #: ../brushsettings-gen.h:34
 msgid ""
@@ -368,7 +368,7 @@ msgstr ""
 
 #: ../brushsettings-gen.h:35
 msgid "Smudge radius"
-msgstr ""
+msgstr "Lekeleme Yarıçapı"
 
 #: ../brushsettings-gen.h:35
 msgid ""
@@ -394,7 +394,7 @@ msgstr ""
 
 #: ../brushsettings-gen.h:37
 msgid "Stroke threshold"
-msgstr ""
+msgstr "Darbe Eşiği"
 
 #: ../brushsettings-gen.h:37
 msgid ""
@@ -404,7 +404,7 @@ msgstr ""
 
 #: ../brushsettings-gen.h:38
 msgid "Stroke duration"
-msgstr ""
+msgstr "Darbe Süresi"
 
 #: ../brushsettings-gen.h:38
 msgid ""
@@ -414,7 +414,7 @@ msgstr ""
 
 #: ../brushsettings-gen.h:39
 msgid "Stroke hold time"
-msgstr ""
+msgstr "Darbe Kalış Süresi"
 
 #: ../brushsettings-gen.h:39
 msgid ""
@@ -427,7 +427,7 @@ msgstr ""
 
 #: ../brushsettings-gen.h:40
 msgid "Custom input"
-msgstr "Özel giriş"
+msgstr "Özel Girdi"
 
 #: ../brushsettings-gen.h:40
 msgid ""
@@ -442,7 +442,7 @@ msgstr ""
 
 #: ../brushsettings-gen.h:41
 msgid "Custom input filter"
-msgstr "Özel giriş filtresi"
+msgstr "Özel Girdi Filtresi"
 
 #: ../brushsettings-gen.h:41
 msgid ""
@@ -454,7 +454,7 @@ msgstr ""
 
 #: ../brushsettings-gen.h:42
 msgid "Elliptical dab: ratio"
-msgstr ""
+msgstr "Eliptik Damla: Yarıçap"
 
 #: ../brushsettings-gen.h:42
 msgid ""
@@ -464,7 +464,7 @@ msgstr ""
 
 #: ../brushsettings-gen.h:43
 msgid "Elliptical dab: angle"
-msgstr ""
+msgstr "Eliptik Damla: Açı"
 
 #: ../brushsettings-gen.h:43
 msgid ""
@@ -476,7 +476,7 @@ msgstr ""
 
 #: ../brushsettings-gen.h:44
 msgid "Direction filter"
-msgstr ""
+msgstr "Yön Filtresi"
 
 #: ../brushsettings-gen.h:44
 msgid ""
@@ -486,7 +486,7 @@ msgstr ""
 
 #: ../brushsettings-gen.h:45
 msgid "Lock alpha"
-msgstr ""
+msgstr "Alfayı Kilitle"
 
 #: ../brushsettings-gen.h:45
 msgid ""
@@ -499,7 +499,7 @@ msgstr ""
 
 #: ../brushsettings-gen.h:46
 msgid "Colorize"
-msgstr ""
+msgstr "Renklendir"
 
 #: ../brushsettings-gen.h:46
 msgid ""
@@ -509,7 +509,7 @@ msgstr ""
 
 #: ../brushsettings-gen.h:47
 msgid "Snap to pixel"
-msgstr ""
+msgstr "Piksele Uydur"
 
 #: ../brushsettings-gen.h:47
 msgid ""
@@ -519,7 +519,7 @@ msgstr ""
 
 #: ../brushsettings-gen.h:48
 msgid "Pressure gain"
-msgstr ""
+msgstr "Basınç Kazancı"
 
 #: ../brushsettings-gen.h:48
 msgid ""
@@ -540,7 +540,7 @@ msgstr ""
 
 #: ../brushsettings-gen.h:54
 msgid "Fine speed"
-msgstr ""
+msgstr "İnce Hız"
 
 #: ../brushsettings-gen.h:54
 msgid ""
@@ -551,7 +551,7 @@ msgstr ""
 
 #: ../brushsettings-gen.h:55
 msgid "Gross speed"
-msgstr ""
+msgstr "Brüt Hız"
 
 #: ../brushsettings-gen.h:55
 msgid ""
@@ -571,7 +571,7 @@ msgstr ""
 
 #: ../brushsettings-gen.h:57
 msgid "Stroke"
-msgstr ""
+msgstr "Darbe"
 
 #: ../brushsettings-gen.h:57
 msgid ""
@@ -592,7 +592,7 @@ msgstr ""
 
 #: ../brushsettings-gen.h:59
 msgid "Declination"
-msgstr ""
+msgstr "Alçalış"
 
 #: ../brushsettings-gen.h:59
 msgid ""
@@ -602,7 +602,7 @@ msgstr ""
 
 #: ../brushsettings-gen.h:60
 msgid "Ascension"
-msgstr ""
+msgstr "Yükseliş"
 
 #: ../brushsettings-gen.h:60
 msgid ""

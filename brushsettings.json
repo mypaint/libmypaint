@@ -739,7 +739,7 @@
             "internal_name": "posterize_num",
             "maximum": 1.28,
             "minimum": 0.01,
-            "tooltip": "Level of posterization (x100).  Values above 0.5 may not be noticable."
+            "tooltip": "Level of posterization (x100).  Values above 0.5 may not be noticeable."
         },
         {
             "constant": false,

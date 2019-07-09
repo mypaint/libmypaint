@@ -21,8 +21,6 @@
 #include <string.h>
 #include <assert.h>
 
-#define GETTEXT_PACKAGE "libmypaint"
-
 #ifdef HAVE_GETTEXT
   #include <libintl.h>
   #define N_(String) (String)

@@ -207,7 +207,6 @@ else
   PKG_CONFIG_REQUIRES="json-c"
 fi
 
-AC_DEFINE(HAVE_JSON_C, 1, [Define to 1 if json is available])
 AC_SUBST(JSON_LIBS)
 AC_SUBST(JSON_CFLAGS)
 

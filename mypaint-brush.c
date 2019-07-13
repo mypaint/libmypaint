@@ -36,9 +36,7 @@
 #include "helpers.h"
 #include "rng-double.h"
 
-#ifdef HAVE_JSON_C
 #include <json.h>
-#endif // HAVE_JSON_C
 
 #ifdef _MSC_VER
 #if _MSC_VER < 1700     // Visual Studio 2012 and later has isfinite and roundf
@@ -109,9 +107,7 @@ struct MyPaintBrush {
     float speed_mapping_q[2];
 
     gboolean reset_requested;
-#ifdef HAVE_JSON_C
     json_object *brush_json;
-#endif
     int refcount;
 };
 
@@ -153,9 +149,7 @@ mypaint_brush_new(void)
 
     self->reset_requested = TRUE;
 
-#ifdef HAVE_JSON_C
     self->brush_json = json_object_new_object();
-#endif
 
     return self;
 }
@@ -169,11 +163,9 @@ brush_free(MyPaintBrush *self)
     rng_double_free (self->rng);
     self->rng = NULL;
 
-#ifdef HAVE_JSON_C
     if (self->brush_json) {
         json_object_put(self->brush_json);
     }
-#endif
 
     free(self);
 }
@@ -1349,8 +1341,6 @@ mypaint_brush_set_state(MyPaintBrush *self, MyPaintBrushState i, float value)
     return FALSE;
   }
 
-#ifdef HAVE_JSON_C
-
 // Compat wrapper, for supporting libjson
 static gboolean
 obj_get(json_object *self, const gchar *key, json_object **obj_out) {
@@ -1460,12 +1450,10 @@ update_brush_from_json_object(MyPaintBrush *self)
     }
     return updated_any;
 }
-#endif // HAVE_JSON_C
 
 gboolean
 mypaint_brush_from_string(MyPaintBrush *self, const char *string)
 {
-#ifdef HAVE_JSON_C
     json_object *brush_json = NULL;
 
     if (self->brush_json) {
@@ -1485,9 +1473,6 @@ mypaint_brush_from_string(MyPaintBrush *self, const char *string)
         self->brush_json = json_object_new_object();
         return FALSE;
     }
-#else
-    return FALSE;
-#endif
 }
 
 

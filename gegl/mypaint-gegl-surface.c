@@ -78,7 +78,11 @@ tile_request_start(MyPaintTiledSurface *tiled_surface, MyPaintTileRequest *reque
 
     if (buffer_is_native(self)) {
         GeglBufferIterator *iterator = gegl_buffer_iterator_new(self->buffer, &tile_bbox, 0, self->format,
+#if GEGL_MAJOR_VERSION == 0 && GEGL_MINOR_VERSION == 4 && GEGL_MICRO_VERSION >= 14
+                                      read_write_flags, GEGL_ABYSS_NONE, 8);
+#else
                                       read_write_flags, GEGL_ABYSS_NONE);
+#endif
 
         // Read out
         gboolean completed = gegl_buffer_iterator_next(iterator);
@@ -88,7 +92,11 @@ tile_request_start(MyPaintTiledSurface *tiled_surface, MyPaintTileRequest *reque
             g_critical("Unable to get tile aligned access to GeglBuffer");
             request->buffer = NULL;
         } else {
+#if GEGL_MAJOR_VERSION == 0 && GEGL_MINOR_VERSION == 4 && GEGL_MICRO_VERSION >= 14
+            request->buffer = (uint16_t *)(iterator->items[0].data);
+#else
             request->buffer = (uint16_t *)(iterator->data[0]);
+#endif
         }
 
         // So we can finish the iterator in tile_request_end()

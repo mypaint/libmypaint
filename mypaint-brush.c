@@ -21,8 +21,6 @@
 #include <string.h>
 #include <math.h>
 #include <assert.h>
-#include "fastapprox/fastpow.h"
-#include "fastapprox/fastexp.h"
 
 #if MYPAINT_CONFIG_USE_GLIB
 #include <glib.h>
@@ -376,7 +374,7 @@ mypaint_brush_set_state(MyPaintBrush *self, MyPaintBrushState i, float value)
     }
 
     const float arg = -t / T_const;
-    return fastexp(arg);
+    return expf(arg);
   }
 
 
@@ -400,7 +398,7 @@ mypaint_brush_set_state(MyPaintBrush *self, MyPaintBrushState i, float value)
     for (i=0; i<2; i++) {
       float gamma;
       gamma = mypaint_mapping_get_base_value(self->settings[(i==0)?MYPAINT_BRUSH_SETTING_SPEED1_GAMMA:MYPAINT_BRUSH_SETTING_SPEED2_GAMMA]);
-      gamma = fastexp(gamma);
+      gamma = expf(gamma);
 
       float fix1_x, fix1_y, fix2_x, fix2_dy;
       fix1_x = 45.0;
@@ -462,7 +460,7 @@ mypaint_brush_set_state(MyPaintBrush *self, MyPaintBrushState i, float value)
     
     self->states[MYPAINT_BRUSH_STATE_VIEWZOOM] = step_viewzoom;
     self->states[MYPAINT_BRUSH_STATE_VIEWROTATION] = mod_arith((step_viewrotation * 180.0 / M_PI) + 180.0, 360.0) -180.0;
-    gridmap_scale = fastexp(self->settings_value[MYPAINT_BRUSH_SETTING_GRIDMAP_SCALE]);
+    gridmap_scale = expf(self->settings_value[MYPAINT_BRUSH_SETTING_GRIDMAP_SCALE]);
     gridmap_scale_x = self->settings_value[MYPAINT_BRUSH_SETTING_GRIDMAP_SCALE_X];
     gridmap_scale_y = self->settings_value[MYPAINT_BRUSH_SETTING_GRIDMAP_SCALE_Y];
     self->states[MYPAINT_BRUSH_STATE_GRIDMAP_X] = mod_arith(fabsf(self->states[MYPAINT_BRUSH_STATE_ACTUAL_X] * gridmap_scale_x), (gridmap_scale * 256.0)) / (gridmap_scale * 256.0) * 256.0;
@@ -476,7 +474,7 @@ mypaint_brush_set_state(MyPaintBrush *self, MyPaintBrushState i, float value)
       self->states[MYPAINT_BRUSH_STATE_GRIDMAP_Y] = 256.0 - self->states[MYPAINT_BRUSH_STATE_GRIDMAP_Y];
     }
 
-    float base_radius = fastexp(mypaint_mapping_get_base_value(self->settings[MYPAINT_BRUSH_SETTING_RADIUS_LOGARITHMIC]));
+    float base_radius = expf(mypaint_mapping_get_base_value(self->settings[MYPAINT_BRUSH_SETTING_RADIUS_LOGARITHMIC]));
     self->states[MYPAINT_BRUSH_STATE_BARREL_ROTATION] += step_barrel_rotation;
 
     
@@ -520,7 +518,7 @@ mypaint_brush_set_state(MyPaintBrush *self, MyPaintBrushState i, float value)
     //norm_dist should relate to brush size, whereas norm_speed should not
     norm_dist = hypotf(step_dx / step_dtime / base_radius, step_dy / step_dtime / base_radius) * step_dtime;
 
-    inputs[MYPAINT_BRUSH_INPUT_PRESSURE] = pressure * fastexp(mypaint_mapping_get_base_value(self->settings[MYPAINT_BRUSH_SETTING_PRESSURE_GAIN_LOG]));
+    inputs[MYPAINT_BRUSH_INPUT_PRESSURE] = pressure * expf(mypaint_mapping_get_base_value(self->settings[MYPAINT_BRUSH_SETTING_PRESSURE_GAIN_LOG]));
     inputs[MYPAINT_BRUSH_INPUT_SPEED1] = log(self->speed_mapping_gamma[0] + self->states[MYPAINT_BRUSH_STATE_NORM_SPEED1_SLOW])*self->speed_mapping_m[0] + self->speed_mapping_q[0], 0.0, 4.0;
     inputs[MYPAINT_BRUSH_INPUT_SPEED2] = log(self->speed_mapping_gamma[1] + self->states[MYPAINT_BRUSH_STATE_NORM_SPEED2_SLOW])*self->speed_mapping_m[1] + self->speed_mapping_q[1], 0.0, 4.0;
     
@@ -575,7 +573,7 @@ mypaint_brush_set_state(MyPaintBrush *self, MyPaintBrushState i, float value)
       //   Is it broken, non-smooth, system-dependent math?!
       //   A replacement could be a directed random offset.
 
-      float time_constant = fastexp(self->settings_value[MYPAINT_BRUSH_SETTING_OFFSET_BY_SPEED_SLOWNESS]*0.01)-1.0;
+      float time_constant = expf(self->settings_value[MYPAINT_BRUSH_SETTING_OFFSET_BY_SPEED_SLOWNESS]*0.01)-1.0;
       // Workaround for a bug that happens mainly on Windows, causing
       // individual dabs to be placed far far away. Using the speed
       // with zero filtering is just asking for trouble anyway.
@@ -593,7 +591,7 @@ mypaint_brush_set_state(MyPaintBrush *self, MyPaintBrushState i, float value)
 
 
       float step_in_dabtime = hypotf(dx, dy); // FIXME: are we recalculating something here that we already have?
-      float fac = 1.0 - exp_decay (fastexp(self->settings_value[MYPAINT_BRUSH_SETTING_DIRECTION_FILTER]*0.5)-1.0, step_in_dabtime);
+      float fac = 1.0 - exp_decay (expf(self->settings_value[MYPAINT_BRUSH_SETTING_DIRECTION_FILTER]*0.5)-1.0, step_in_dabtime);
 
       float dx_old = self->states[MYPAINT_BRUSH_STATE_DIRECTION_DX];
       float dy_old = self->states[MYPAINT_BRUSH_STATE_DIRECTION_DY];
@@ -620,7 +618,7 @@ mypaint_brush_set_state(MyPaintBrush *self, MyPaintBrushState i, float value)
     { // stroke length
       float frequency;
       float wrap;
-      frequency = fastexp(-self->settings_value[MYPAINT_BRUSH_SETTING_STROKE_DURATION_LOGARITHMIC]);
+      frequency = expf(-self->settings_value[MYPAINT_BRUSH_SETTING_STROKE_DURATION_LOGARITHMIC]);
       self->states[MYPAINT_BRUSH_STATE_STROKE] += norm_dist * frequency;
       // can happen, probably caused by rounding
       if (self->states[MYPAINT_BRUSH_STATE_STROKE] < 0) self->states[MYPAINT_BRUSH_STATE_STROKE] = 0;
@@ -640,7 +638,7 @@ mypaint_brush_set_state(MyPaintBrush *self, MyPaintBrushState i, float value)
     // calculate final radius
     float radius_log;
     radius_log = self->settings_value[MYPAINT_BRUSH_SETTING_RADIUS_LOGARITHMIC];
-    self->states[MYPAINT_BRUSH_STATE_ACTUAL_RADIUS] = fastexp(radius_log);
+    self->states[MYPAINT_BRUSH_STATE_ACTUAL_RADIUS] = expf(radius_log);
     if (self->states[MYPAINT_BRUSH_STATE_ACTUAL_RADIUS] < ACTUAL_RADIUS_MIN) self->states[MYPAINT_BRUSH_STATE_ACTUAL_RADIUS] = ACTUAL_RADIUS_MIN;
     if (self->states[MYPAINT_BRUSH_STATE_ACTUAL_RADIUS] > ACTUAL_RADIUS_MAX) self->states[MYPAINT_BRUSH_STATE_ACTUAL_RADIUS] = ACTUAL_RADIUS_MAX;
 
@@ -687,7 +685,7 @@ mypaint_brush_set_state(MyPaintBrush *self, MyPaintBrushState i, float value)
       // <==> beta_dab = beta^(1/dabs_per_pixel)
       alpha = opaque;
       beta = 1.0-alpha;
-      beta_dab = fastpow(beta, 1.0/dabs_per_pixel);
+      beta_dab = powf(beta, 1.0/dabs_per_pixel);
       alpha_dab = 1.0-beta_dab;
       opaque = alpha_dab;
     }
@@ -695,8 +693,8 @@ mypaint_brush_set_state(MyPaintBrush *self, MyPaintBrushState i, float value)
     x = self->states[MYPAINT_BRUSH_STATE_ACTUAL_X];
     y = self->states[MYPAINT_BRUSH_STATE_ACTUAL_Y];
 
-    float base_radius = fastexp(mypaint_mapping_get_base_value(self->settings[MYPAINT_BRUSH_SETTING_RADIUS_LOGARITHMIC]));
-    float offset_mult = fastexp(self->settings_value[MYPAINT_BRUSH_SETTING_OFFSET_MULTIPLIER]);
+    float base_radius = expf(mypaint_mapping_get_base_value(self->settings[MYPAINT_BRUSH_SETTING_RADIUS_LOGARITHMIC]));
+    float offset_mult = expf(self->settings_value[MYPAINT_BRUSH_SETTING_OFFSET_MULTIPLIER]);
 
     if (self->settings_value[MYPAINT_BRUSH_SETTING_OFFSET_X]) {
       x += self->settings_value[MYPAINT_BRUSH_SETTING_OFFSET_X] * base_radius * offset_mult;
@@ -707,7 +705,6 @@ mypaint_brush_set_state(MyPaintBrush *self, MyPaintBrushState i, float value)
     }
     
     //Anti_Art offsets tweaked by BrienD.  Adjusted with ANGLE_ADJ and OFFSET_MULTIPLIER
-    
     //offset to one side of direction
     if (self->settings_value[MYPAINT_BRUSH_SETTING_OFFSET_ANGLE]) {
       x += cos((fmodf ((atan2f(self->states[MYPAINT_BRUSH_STATE_DIRECTION_ANGLE_DY], self->states[MYPAINT_BRUSH_STATE_DIRECTION_ANGLE_DX]) ) / (2 * M_PI) * 360 - 90, 360.0) + self->settings_value[MYPAINT_BRUSH_SETTING_OFFSET_ANGLE_ADJ])* M_PI / 180) * base_radius * self->settings_value[MYPAINT_BRUSH_SETTING_OFFSET_ANGLE] * offset_mult;
@@ -773,7 +770,7 @@ mypaint_brush_set_state(MyPaintBrush *self, MyPaintBrushState i, float value)
       // go back to logarithmic radius to add the noise
       radius_log  = self->settings_value[MYPAINT_BRUSH_SETTING_RADIUS_LOGARITHMIC];
       radius_log += rand_gauss (self->rng) * self->settings_value[MYPAINT_BRUSH_SETTING_RADIUS_BY_RANDOM];
-      radius = fastexp(radius_log);
+      radius = expf(radius_log);
       radius = CLAMP(radius, ACTUAL_RADIUS_MIN, ACTUAL_RADIUS_MAX);
       alpha_correction = self->states[MYPAINT_BRUSH_STATE_ACTUAL_RADIUS] / radius;
       alpha_correction = SQR(alpha_correction);
@@ -810,14 +807,14 @@ mypaint_brush_set_state(MyPaintBrush *self, MyPaintBrushState i, float value)
       float r, g, b, a;
 
       smudge_buckets[bucket][8] *= fac;
-      if (smudge_buckets[bucket][8] < (fastpow(0.5*fac, self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE_LENGTH_LOG])) + 0.0000000000000001) {
+      if (smudge_buckets[bucket][8] < (powf(0.5*fac, self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE_LENGTH_LOG])) + 0.0000000000000001) {
         if (smudge_buckets[bucket][8] == 0.0) {
           // first initialization of smudge color
           fac = 0.0;
         }
         smudge_buckets[bucket][8] = 1.0;
 
-        float smudge_radius = radius * fasterexp(self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE_RADIUS_LOG]);
+        float smudge_radius = radius * expf(self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE_RADIUS_LOG]);
         smudge_radius = CLAMP(smudge_radius, ACTUAL_RADIUS_MIN, ACTUAL_RADIUS_MAX);
 
         mypaint_surface_get_color(surface, px, py, smudge_radius, &r, &g, &b, &a, self->settings_value[MYPAINT_BRUSH_SETTING_PAINT_MODE]);
@@ -1016,13 +1013,13 @@ mypaint_brush_set_state(MyPaintBrush *self, MyPaintBrushState i, float value)
     float res1, res2, res3;
     float dist;
 
-    if (self->states[MYPAINT_BRUSH_STATE_ACTUAL_RADIUS] == 0.0) self->states[MYPAINT_BRUSH_STATE_ACTUAL_RADIUS] = fastexp(mypaint_mapping_get_base_value(self->settings[MYPAINT_BRUSH_SETTING_RADIUS_LOGARITHMIC]));
+    if (self->states[MYPAINT_BRUSH_STATE_ACTUAL_RADIUS] == 0.0) self->states[MYPAINT_BRUSH_STATE_ACTUAL_RADIUS] = expf(mypaint_mapping_get_base_value(self->settings[MYPAINT_BRUSH_SETTING_RADIUS_LOGARITHMIC]));
     if (self->states[MYPAINT_BRUSH_STATE_ACTUAL_RADIUS] < ACTUAL_RADIUS_MIN) self->states[MYPAINT_BRUSH_STATE_ACTUAL_RADIUS] = ACTUAL_RADIUS_MIN;
     if (self->states[MYPAINT_BRUSH_STATE_ACTUAL_RADIUS] > ACTUAL_RADIUS_MAX) self->states[MYPAINT_BRUSH_STATE_ACTUAL_RADIUS] = ACTUAL_RADIUS_MAX;
 
 
-    // OPTIMIZE: fastexp() called too often
-    float base_radius = fastexp(mypaint_mapping_get_base_value(self->settings[MYPAINT_BRUSH_SETTING_RADIUS_LOGARITHMIC]));
+    // OPTIMIZE: expf() called too often
+    float base_radius = expf(mypaint_mapping_get_base_value(self->settings[MYPAINT_BRUSH_SETTING_RADIUS_LOGARITHMIC]));
     if (base_radius < ACTUAL_RADIUS_MIN) base_radius = ACTUAL_RADIUS_MIN;
     if (base_radius > ACTUAL_RADIUS_MAX) base_radius = ACTUAL_RADIUS_MAX;
     //if (base_radius < 0.5) base_radius = 0.5;
@@ -1151,8 +1148,8 @@ mypaint_brush_set_state(MyPaintBrush *self, MyPaintBrushState i, float value)
 
       // noise first
       if (mypaint_mapping_get_base_value(self->settings[MYPAINT_BRUSH_SETTING_TRACKING_NOISE])) {
-        // OPTIMIZE: fastexp() called too often
-        const float base_radius = fastexp(mypaint_mapping_get_base_value(self->settings[MYPAINT_BRUSH_SETTING_RADIUS_LOGARITHMIC]));
+        // OPTIMIZE: expf() called too often
+        const float base_radius = expf(mypaint_mapping_get_base_value(self->settings[MYPAINT_BRUSH_SETTING_RADIUS_LOGARITHMIC]));
         const float noise = base_radius * mypaint_mapping_get_base_value(self->settings[MYPAINT_BRUSH_SETTING_TRACKING_NOISE]);
 
         if (noise > 0.001) {

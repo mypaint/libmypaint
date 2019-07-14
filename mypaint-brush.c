@@ -1394,6 +1394,12 @@ update_brush_setting_from_json_object(MyPaintBrush *self,
             return FALSE;
         }
 
+        if (!(input_id >= 0 && input_id < MYPAINT_BRUSH_INPUTS_COUNT)) {
+            fprintf(stderr, "Warning: Unknown input_id: %d for input: %s\n",
+                    input_id, input_name);
+            return FALSE;
+        }
+
         const int number_of_mapping_points = json_object_array_length(input_obj);
 
         mypaint_brush_set_mapping_n(self, setting_id, input_id, number_of_mapping_points);

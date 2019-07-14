@@ -44,6 +44,12 @@ main(int argc, char **argv)
             LIBMYPAINT_TESTING_ABS_TOP_SRCDIR
                 "/tests/brushes/bad/some_unknown_settings.myb"
         },
+        {
+            "/brush/load/bad/some_unknown_inputs",
+            test_brush_load_succeeds,
+            LIBMYPAINT_TESTING_ABS_TOP_SRCDIR
+                "/tests/brushes/bad/some_unknown_inputs.myb"
+        },
 
         // Irrecoverably pathological brush data, missing global stuff
         // or entirely useless. We expect these to fail.

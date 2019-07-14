@@ -58,6 +58,7 @@ EXTRA_DIST = \
 	brushes/bad/missing_settings.bad-myb \
 	brushes/bad/missing_version.bad-myb \
 	brushes/bad/some_unknown_settings.myb \
+	brushes/bad/some_unknown_inputs.myb \
 	brushes/bad/truncated.bad-myb \
 	events/painting30sec.dat
 

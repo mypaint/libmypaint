@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-02-25 17:11+0000\n"
-"PO-Revision-Date: 2019-08-10 09:58+0000\n"
-"Last-Translator: Ajay Kumar <ajayk.12122000@gmail.com>\n"
+"PO-Revision-Date: 2019-08-11 11:22+0000\n"
+"Last-Translator: Madhumitha Thanneeru <chinni.t2000@gmail.com>\n"
 "Language-Team: Telugu <https://hosted.weblate.org/projects/mypaint/"
 "libmypaint/te/>\n"
 "Language: te\n"
@@ -21,7 +21,7 @@ msgstr ""
 
 #: ../brushsettings-gen.h:4
 msgid "Opacity"
-msgstr "Aspastatha"
+msgstr "అస్పష్టత"
 
 #: ../brushsettings-gen.h:4
 msgid ""
@@ -59,7 +59,7 @@ msgstr ""
 
 #: ../brushsettings-gen.h:7
 msgid "Radius"
-msgstr ""
+msgstr "వ్యాసార్ధం"
 
 #: ../brushsettings-gen.h:7
 msgid ""
@@ -70,7 +70,7 @@ msgstr ""
 
 #: ../brushsettings-gen.h:8
 msgid "Hardness"
-msgstr ""
+msgstr "డృడథ్వం"
 
 #: ../brushsettings-gen.h:8
 msgid ""

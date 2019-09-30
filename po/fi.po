@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-04 18:33+0100\n"
-"PO-Revision-Date: 2019-09-24 21:27+0000\n"
+"PO-Revision-Date: 2019-10-01 13:56+0000\n"
 "Last-Translator: Tuomas Hietala <tuomas.hietala@iki.fi>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/mypaint/"
 "libmypaint/fi/>\n"
@@ -28,8 +28,8 @@ msgid ""
 "0 means brush is transparent, 1 fully visible\n"
 "(also known as alpha or opacity)"
 msgstr ""
-"0 tarkoittaa että sivellin on läpinäkyvä, 1 tarkoittaa täysin näkyvää\n"
-"(kutsutaan myös alphaksi tai peittävyydeksi)"
+"0 tarkoittaa, että sivellin on läpinäkyvä, 1 tarkoittaa täysin näkyvää\n"
+"(kutsutaan myös alfaksi tai peittävyydeksi)"
 
 #: ../brushsettings-gen.h:5
 msgid "Opacity multiply"
@@ -69,7 +69,7 @@ msgid ""
 " 0.7 means 2 pixels\n"
 " 3.0 means 20 pixels"
 msgstr ""
-"Perus siveltimen säde (logaritminen)\n"
+"Perussiveltimen säde (logaritminen)\n"
 " 0.7 tarkoittaa 2 pikseliä\n"
 " 3.0 tarkoitaa 20 pikseliä"
 
@@ -88,7 +88,6 @@ msgid "Pixel feather"
 msgstr "Pikselipehmennys"
 
 #: ../brushsettings-gen.h:9
-#, fuzzy
 msgid ""
 "This setting decreases the hardness when necessary to prevent a pixel "
 "staircase effect (aliasing) by making the dab more blurred.\n"
@@ -98,9 +97,9 @@ msgid ""
 msgstr ""
 "This setting decreases the hardness when necessary to prevent a pixel "
 "staircase effect (aliasing) by making the dab more blurred.\n"
-" 0.0 posita käytöstä (todella vahva)\n"
+" 0.0 poista käytöstä (hyvin vahvoille pyyhekumeille ja pikselisiveltimille)\n"
 " 1.0 sumenna yksi pikseli (hyvä arvo)\n"
-" 5.0 kuomattava sumennus, ohuet viivat katoavat"
+" 5.0 huomattava sumennus, ohuet vedot katoavat"
 
 #: ../brushsettings-gen.h:10
 msgid "Dabs per basic radius"
@@ -132,7 +131,7 @@ msgstr ""
 
 #: ../brushsettings-gen.h:13
 msgid "Radius by random"
-msgstr ""
+msgstr "Satunnainen säde"
 
 #: ../brushsettings-gen.h:13
 msgid ""
@@ -159,7 +158,7 @@ msgstr "Karkea nopeussuodatin"
 
 #: ../brushsettings-gen.h:15
 msgid "Same as 'fine speed filter', but note that the range is different"
-msgstr ""
+msgstr "Sama kuin 'Hieno nopeussuodatin', mutta eri vaihteluväli"
 
 #: ../brushsettings-gen.h:16
 msgid "Fine speed gamma"
@@ -181,7 +180,7 @@ msgstr "Karkea nopeusgamma"
 
 #: ../brushsettings-gen.h:17
 msgid "Same as 'fine speed gamma' for gross speed"
-msgstr ""
+msgstr "Sama kuin 'Hieno nopeusgamma' karkealle nopeudelle"
 
 #: ../brushsettings-gen.h:18
 msgid "Jitter"
@@ -259,7 +258,7 @@ msgstr "Värin valööri"
 
 #: ../brushsettings-gen.h:26
 msgid "Color value (brightness, intensity)"
-msgstr "Värin valööri (kirkkaus)"
+msgstr "Värin valööri (kirkkaus, intensiteetti)"
 
 #: ../brushsettings-gen.h:27
 msgid "Save color"
@@ -273,6 +272,11 @@ msgid ""
 " 0.5 change active color towards brush color\n"
 " 1.0 set the active color to the brush color when selected"
 msgstr ""
+"Sivellintä valittaessa väri voidaan palauttaa väriin, joka tallennettiin "
+"siveltimen kanssa.\n"
+" 0.0 älä muuta aktiivista väriä, kun tämä sivellin valitaan\n"
+" 0.5 muuta aktiivista väriä kohti siveltimen väriä\n"
+" 1.0 vaihda aktiivinen väri siveltimen väriksi, kun sivellin valitaan"
 
 #: ../brushsettings-gen.h:28
 msgid "Change color hue"
@@ -285,6 +289,10 @@ msgid ""
 " 0.0 disable\n"
 " 0.5 counterclockwise hue shift by 180 degrees"
 msgstr ""
+"Muuta värin sävyä.\n"
+"-0.1 pieni sävyn muutos myötäpäivään\n"
+" 0.0 pois käytöstä\n"
+" 0.5 sävyn muutos 180 astetta vastapäivään"
 
 #: ../brushsettings-gen.h:29
 msgid "Change color lightness (HSL)"
@@ -297,6 +305,10 @@ msgid ""
 " 0.0 disable\n"
 " 1.0 whiter"
 msgstr ""
+"Muuta värin vaaleutta HSL-värimallia käyttäen.\n"
+"-1.0 mustempi\n"
+" 0.0 pois käytöstä\n"
+" 1.0 valkoisempi"
 
 #: ../brushsettings-gen.h:30
 msgid "Change color satur. (HSL)"
@@ -309,6 +321,10 @@ msgid ""
 " 0.0 disable\n"
 " 1.0 more saturated"
 msgstr ""
+"Muuta värin kylläisyyttä HSL-värimallia käyttäen.\n"
+"-1.0 harmaampi\n"
+" 0.0 pois käytöstä\n"
+" 1.0 kylläisempi"
 
 #: ../brushsettings-gen.h:31
 msgid "Change color value (HSV)"
@@ -322,6 +338,11 @@ msgid ""
 " 0.0 disable\n"
 " 1.0 brigher"
 msgstr ""
+"Muuta värin valööriä (kirkkautta, intensiteettiä) HSV-värimallia käyttäen. "
+"HSV-muutokset tehdään ennen HSL-muutoksia.\n"
+"-1.0 tummempi\n"
+" 0.0 pois käytöstä\n"
+" 1.0 kirkkaampi"
 
 #: ../brushsettings-gen.h:32
 msgid "Change color satur. (HSV)"
@@ -335,6 +356,11 @@ msgid ""
 " 0.0 disable\n"
 " 1.0 more saturated"
 msgstr ""
+"Muuta värin kylläisyyttä HSV-värimallia käyttäen. HSV-muutokset tehdään "
+"ennen HSL-muutoksia.\n"
+"-1.0 harmaampi\n"
+" 0.0 pois käytöstä\n"
+" 1.0 kylläisempi"
 
 #: ../brushsettings-gen.h:33
 msgid "Smudge"
@@ -388,6 +414,10 @@ msgid ""
 " 1.0 standard eraser\n"
 " 0.5 pixels go towards 50% transparency"
 msgstr ""
+"missä määrin tämä työkalu toimii kuin pyyhekumi\n"
+" 0.0 normaali maalaus\n"
+" 1.0 vakiopyyhekumi\n"
+" 0.5 pikselit menevät 50% läpinäkyvyyttä kohti"
 
 #: ../brushsettings-gen.h:37
 msgid "Stroke threshold"
@@ -483,7 +513,7 @@ msgstr ""
 
 #: ../brushsettings-gen.h:45
 msgid "Lock alpha"
-msgstr ""
+msgstr "Lukitse alfa"
 
 #: ../brushsettings-gen.h:45
 msgid ""
@@ -493,6 +523,11 @@ msgid ""
 " 0.5 half of the paint gets applied normally\n"
 " 1.0 alpha channel fully locked"
 msgstr ""
+"Älä muuta tason alfakanavaa (maalaa ainoastaan sinne, missä maalia on "
+"ennestään)\n"
+" 0.0 normaali maalaus\n"
+" 0.5 puolet maalista käytetään normaalisti\n"
+" 1.0 alfakanava täysin lukittu"
 
 #: ../brushsettings-gen.h:46
 msgid "Colorize"
@@ -516,7 +551,7 @@ msgstr ""
 
 #: ../brushsettings-gen.h:48
 msgid "Pressure gain"
-msgstr ""
+msgstr "Paineen vahvistus"
 
 #: ../brushsettings-gen.h:48
 msgid ""
@@ -534,6 +569,9 @@ msgid ""
 "get larger when a pressure gain is used. If you use the mouse, it will be "
 "0.5 when a button is pressed and 0.0 otherwise."
 msgstr ""
+"Piirtopöydän ilmoittama paine. Yleensä 0.0:n ja 1.0:n välillä, mutta voi "
+"kasvaa suuremmaksi jos paineen vahvistus on käytössä. Hiirtä käytettäessä "
+"paine on 0.5 kun painike on painettuna, muuten 0.0."
 
 #: ../brushsettings-gen.h:54
 msgid "Fine speed"

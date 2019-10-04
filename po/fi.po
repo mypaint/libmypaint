@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-04 18:33+0100\n"
-"PO-Revision-Date: 2019-10-01 13:56+0000\n"
+"PO-Revision-Date: 2019-10-05 18:56+0000\n"
 "Last-Translator: Tuomas Hietala <tuomas.hietala@iki.fi>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/mypaint/"
 "libmypaint/fi/>\n"
@@ -69,7 +69,7 @@ msgid ""
 " 0.7 means 2 pixels\n"
 " 3.0 means 20 pixels"
 msgstr ""
-"Perussiveltimen säde (logaritminen)\n"
+"Siveltimen perussäde (logaritminen)\n"
 " 0.7 tarkoittaa 2 pikseliä\n"
 " 3.0 tarkoitaa 20 pikseliä"
 
@@ -82,6 +82,8 @@ msgid ""
 "Hard brush-circle borders (setting to zero will draw nothing). To reach the "
 "maximum hardness, you need to disable Pixel feather."
 msgstr ""
+"Kovat sivellinympyrän reunat (arvo nolla ei piirrä mitään). Suurimman "
+"kovuuden saavuttamiseksi ota pikselipehmennys pois käytöstä."
 
 #: ../brushsettings-gen.h:9
 msgid "Pixel feather"
@@ -120,6 +122,8 @@ msgid ""
 "Same as above, but the radius actually drawn is used, which can change "
 "dynamically"
 msgstr ""
+"Sama kuin yllä, mutta käyttää todellista sädettä, joka voi muuttua "
+"dynaamisesti"
 
 #: ../brushsettings-gen.h:12
 msgid "Dabs per second"
@@ -205,6 +209,10 @@ msgid ""
 "> 0 draw where the pointer moves to\n"
 "< 0 draw where the pointer comes from"
 msgstr ""
+"Muuta sijaintia osoittimen nopeudesta riippuen\n"
+"= 0 pois käytöstä\n"
+"> 0 piirrä sinne, minne osoitin liikkuu\n"
+"< 0 piirrä sinne, mistä osoitin tulee"
 
 #: ../brushsettings-gen.h:20
 msgid "Offset by speed filter"
@@ -216,13 +224,16 @@ msgstr ""
 
 #: ../brushsettings-gen.h:21
 msgid "Slow position tracking"
-msgstr ""
+msgstr "Hidas sijainnin seuranta"
 
 #: ../brushsettings-gen.h:21
 msgid ""
 "Slowdown pointer tracking speed. 0 disables it, higher values remove more "
 "jitter in cursor movements. Useful for drawing smooth, comic-like outlines."
 msgstr ""
+"Hidasta osoittimen seurannan nopeutta. 0 poistaa käytöstä, korkeat arvot "
+"poistavat enemmän tärinää kursorin liikkeistä. Sopii sileiden, "
+"sarjakuvamaisten ääriviivojen piirtämiseen."
 
 #: ../brushsettings-gen.h:22
 msgid "Slow tracking per dab"
@@ -236,13 +247,16 @@ msgstr ""
 
 #: ../brushsettings-gen.h:23
 msgid "Tracking noise"
-msgstr ""
+msgstr "Seurantakohina"
 
 #: ../brushsettings-gen.h:23
 msgid ""
 "Add randomness to the mouse pointer; this usually generates many small lines "
 "in random directions; maybe try this together with 'slow tracking'"
 msgstr ""
+"Lisää satunnaisuutta hiiren kohdistimeen. Tämä luo yleensä monia pieniä "
+"viivoja satunnaisiin suuntiin. Voit kokeilla tätä yhdessä 'hitaan seurannan' "
+"kanssa."
 
 #: ../brushsettings-gen.h:24
 msgid "Color hue"
@@ -428,6 +442,9 @@ msgid ""
 "How much pressure is needed to start a stroke. This affects the stroke input "
 "only. MyPaint does not need a minimum pressure to start drawing."
 msgstr ""
+"Paljonko painetta tarvitaan vedon aloittamiseen. Tämä vaikuttaa vain "
+"vetosyötteeseen. MyPaint ei tarvitse minimipainetta piirtämisen "
+"aloittamiseen."
 
 #: ../brushsettings-gen.h:38
 msgid "Stroke duration"
@@ -438,6 +455,9 @@ msgid ""
 "How far you have to move until the stroke input reaches 1.0. This value is "
 "logarithmic (negative values will not invert the process)."
 msgstr ""
+"Kuinka pitkälle tarvitsee liikkua, ennen kuin vetosyöte saavuttaa arvon 1.0. "
+"Tämä arvo on logaritminen (negatiiviset arvot eivät käännä prosessia "
+"päinvastaiseksi)."
 
 #: ../brushsettings-gen.h:39
 msgid "Stroke hold time"
@@ -451,6 +471,12 @@ msgid ""
 "2.0 means twice as long as it takes to go from 0.0 to 1.0\n"
 "9.9 or higher stands for infinite"
 msgstr ""
+"Määrittelee, kuinka kauan vetosyöte säilyy arvossa 1.0. Sen jälkeen se "
+"palautuu arvoon 0.0 ja alkaa kasvaa uudelleen, vaikka veto ei olisikaan "
+"vielä valmis.\n"
+"2.0 tarkoittaa kaksi kertaa pidempään kuin mitä kestää arvosta 0.0 arvoon 1."
+"0\n"
+"9.9 tai korkeampi tarkoittaa ääretöntä"
 
 #: ../brushsettings-gen.h:40
 msgid "Custom input"
@@ -510,6 +536,8 @@ msgid ""
 "A low value will make the direction input adapt more quickly, a high value "
 "will make it smoother"
 msgstr ""
+"Matala arvo saa suuntasyötteen muuttumaan nopeammin, korkea arvo tekee siitä "
+"sileämmän"
 
 #: ../brushsettings-gen.h:45
 msgid "Lock alpha"
@@ -531,13 +559,15 @@ msgstr ""
 
 #: ../brushsettings-gen.h:46
 msgid "Colorize"
-msgstr ""
+msgstr "Väritä"
 
 #: ../brushsettings-gen.h:46
 msgid ""
 "Colorize the target layer, setting its hue and saturation from the active "
 "brush color while retaining its value and alpha."
 msgstr ""
+"Väritä kohteena olevaa tasoa, ottaen sille sävyn ja kylläisyyden aktiivisen "
+"siveltimen väristä ja säilyttäen sen valöörin ja alfan."
 
 #: ../brushsettings-gen.h:47
 msgid "Snap to pixel"
@@ -558,6 +588,7 @@ msgid ""
 "This changes how hard you have to press. It multiplies tablet pressure by a "
 "constant factor."
 msgstr ""
+"Muuttaa vaadittavaa painetta. Kertoo piirtopöydän paineen vakiokertoimella."
 
 #: ../brushsettings-gen.h:53
 msgid "Pressure"
@@ -603,6 +634,8 @@ msgid ""
 "Fast random noise, changing at each evaluation. Evenly distributed between 0 "
 "and 1."
 msgstr ""
+"Nopea satunnaiskohina, joka muuttuu joka laskentakerralla. Jakautuu "
+"tasaisesti nollan ja ykkösen välille."
 
 #: ../brushsettings-gen.h:57
 msgid "Stroke"
@@ -634,6 +667,8 @@ msgid ""
 "Declination of stylus tilt. 0 when stylus is parallel to tablet and 90.0 "
 "when it's perpendicular to tablet."
 msgstr ""
+"Kynän kallistus. Arvo on 0 silloin kun kynä on samansuuntainen piirtopöytään "
+"nähden ja 90.0 kun se on kohtisuorassa piirtopöytään nähden."
 
 #: ../brushsettings-gen.h:60
 msgid "Ascension"

@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-04 18:33+0100\n"
-"PO-Revision-Date: 2019-10-05 18:56+0000\n"
+"PO-Revision-Date: 2019-10-08 19:58+0000\n"
 "Last-Translator: Tuomas Hietala <tuomas.hietala@iki.fi>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/mypaint/"
 "libmypaint/fi/>\n"
@@ -105,17 +105,19 @@ msgstr ""
 
 #: ../brushsettings-gen.h:10
 msgid "Dabs per basic radius"
-msgstr ""
+msgstr "Pisaroita perussädettä kohti"
 
 #: ../brushsettings-gen.h:10
 msgid ""
 "How many dabs to draw while the pointer moves a distance of one brush radius "
 "(more precise: the base value of the radius)"
 msgstr ""
+"Montako pisaraa piirretään, kun osoitin liikkuu yhden siveltimen säteen "
+"verran (tarkemmin: säteen perusarvon verran)"
 
 #: ../brushsettings-gen.h:11
 msgid "Dabs per actual radius"
-msgstr ""
+msgstr "Pisaroita todellista sädettä kohti"
 
 #: ../brushsettings-gen.h:11
 msgid ""
@@ -127,11 +129,13 @@ msgstr ""
 
 #: ../brushsettings-gen.h:12
 msgid "Dabs per second"
-msgstr ""
+msgstr "Pisaroita sekuntia kohti"
 
 #: ../brushsettings-gen.h:12
 msgid "Dabs to draw each second, no matter how far the pointer moves"
 msgstr ""
+"Piirrettävät pisarat sekuntia kohti, riippumatta siitä, kuinka kauas osoitin "
+"liikkuu"
 
 #: ../brushsettings-gen.h:13
 msgid "Radius by random"
@@ -197,6 +201,10 @@ msgid ""
 " 1.0 standard deviation is one basic radius away\n"
 "<0.0 negative values produce no jitter"
 msgstr ""
+"Lisää satunnainen siirros sijaintiin, mihin kukin pisara piirretään\n"
+" 0.0 pois käytöstä\n"
+" 1.0 standardipoikkeama on yhden perussäteen päässä\n"
+"<0.0 negatiiviset arvot eivät tuota tärinää"
 
 #: ../brushsettings-gen.h:19
 msgid "Offset by speed"
@@ -378,7 +386,7 @@ msgstr ""
 
 #: ../brushsettings-gen.h:33
 msgid "Smudge"
-msgstr ""
+msgstr "Suttaus"
 
 #: ../brushsettings-gen.h:33
 msgid ""
@@ -388,10 +396,15 @@ msgid ""
 " 0.5 mix the smudge color with the brush color\n"
 " 1.0 use only the smudge color"
 msgstr ""
+"Maalaa suttausvärillä siveltimen värin sijaan. Suttausväri muuttuu hitaasti "
+"väriksi, jonka päälle maalaat.\n"
+" 0.0 älä käytä suttausväriä\n"
+" 0.5 sekoita suttausväri siveltimen värin kanssa\n"
+" 1.0 käytä vain suttausväriä"
 
 #: ../brushsettings-gen.h:34
 msgid "Smudge length"
-msgstr ""
+msgstr "Suttauksen pituus"
 
 #: ../brushsettings-gen.h:34
 msgid ""
@@ -405,7 +418,7 @@ msgstr ""
 
 #: ../brushsettings-gen.h:35
 msgid "Smudge radius"
-msgstr ""
+msgstr "Suttauksen säde"
 
 #: ../brushsettings-gen.h:35
 msgid ""
@@ -416,6 +429,12 @@ msgid ""
 "+0.7 twice the brush radius\n"
 "+1.6 five times the brush radius (slow performance)"
 msgstr ""
+"Tämä muuttaa suttaukseen käytettävän värin poimintaan käytettävän ympyrän "
+"sädettä.\n"
+" 0.0 käytä siveltimen sädettä\n"
+"-0.7 puolet siveltimen säteestä (nopea, muttei aina intuitiivinen)\n"
+"+0.7 kaksi kertaa siveltimen säde\n"
+"+1.6 viisi kertaa siveltimen säde (hidas)"
 
 #: ../brushsettings-gen.h:36
 msgid "Eraser"
@@ -480,7 +499,7 @@ msgstr ""
 
 #: ../brushsettings-gen.h:40
 msgid "Custom input"
-msgstr ""
+msgstr "Mukautettu syöte"
 
 #: ../brushsettings-gen.h:40
 msgid ""
@@ -495,7 +514,7 @@ msgstr ""
 
 #: ../brushsettings-gen.h:41
 msgid "Custom input filter"
-msgstr ""
+msgstr "Mukautetun syötteen suodatin"
 
 #: ../brushsettings-gen.h:41
 msgid ""
@@ -507,7 +526,7 @@ msgstr ""
 
 #: ../brushsettings-gen.h:42
 msgid "Elliptical dab: ratio"
-msgstr ""
+msgstr "Elliptinen pisara: suhde"
 
 #: ../brushsettings-gen.h:42
 msgid ""
@@ -517,7 +536,7 @@ msgstr ""
 
 #: ../brushsettings-gen.h:43
 msgid "Elliptical dab: angle"
-msgstr ""
+msgstr "Elliptinen pisara: kulma"
 
 #: ../brushsettings-gen.h:43
 msgid ""
@@ -526,6 +545,10 @@ msgid ""
 " 45.0 45 degrees, turned clockwise\n"
 " 180.0 horizontal again"
 msgstr ""
+"Elliptisten pisaroiden kallistuskulma\n"
+" 0.0 vaakasuuntaiset pisarat\n"
+" 45.0 45 astetta myötäpäivään\n"
+" 180.0 jälleen vaakasuuntaiset"
 
 #: ../brushsettings-gen.h:44
 msgid "Direction filter"
@@ -624,6 +647,8 @@ msgid ""
 "Same as fine speed, but changes slower. Also look at the 'gross speed "
 "filter' setting."
 msgstr ""
+"Sama kuin hieno nopeus, mutta muuttuu hitaammin. Katso myös 'karkea "
+"nopeussuodatin'-asetus."
 
 #: ../brushsettings-gen.h:56
 msgid "Random"
@@ -647,6 +672,9 @@ msgid ""
 "be configured to jump back to zero periodically while you move. Look at the "
 "'stroke duration' and 'stroke hold time' settings."
 msgstr ""
+"Tämä syöte kasvaa hitaasti nollasta ykköseen, kun piirrät vedon. Sen voi "
+"säätää myös hyppäämään aika-ajoin takaisin nollaan liikkuessasi. Katso "
+"'vedon pituus'- ja 'vedon pitoaika'-asetukset."
 
 #: ../brushsettings-gen.h:58
 msgid "Direction"
@@ -657,6 +685,8 @@ msgid ""
 "The angle of the stroke, in degrees. The value will stay between 0.0 and "
 "180.0, effectively ignoring turns of 180 degrees."
 msgstr ""
+"Vedon kulma asteissa. Arvo pysyy 0.0:n ja 180.0:n välillä, käytännössä "
+"jättäen huomiotta yli 180 asteen käännökset."
 
 #: ../brushsettings-gen.h:59
 msgid "Declination"
@@ -672,7 +702,7 @@ msgstr ""
 
 #: ../brushsettings-gen.h:60
 msgid "Ascension"
-msgstr ""
+msgstr "Nousukulma"
 
 #: ../brushsettings-gen.h:60
 msgid ""
@@ -680,10 +710,13 @@ msgid ""
 "when rotated 90 degrees clockwise, -90 when rotated 90 degrees "
 "counterclockwise."
 msgstr ""
+"Kynän kallistuksen oikea nousukulma. 0, kun kynän piirtopää osoittaa itseäsi "
+"kohti, +90, kun kynää on käännetty 90 astetta myötäpäivään, -90, kun kynää "
+"on käännetty 90 astetta vastapäivään."
 
 #: ../brushsettings-gen.h:61
 msgid "Custom"
-msgstr "Oma koko"
+msgstr "Oma asetus"
 
 #: ../brushsettings-gen.h:61
 msgid ""

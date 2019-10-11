@@ -128,7 +128,7 @@ void write_ppm(MyPaintFixedTiledSurface *fixed_surface, char *filepath)
     fprintf(data.fp, "P3\n#Handwritten\n%d %d\n255\n", width, height);
     
     iterate_over_line_chunks((MyPaintTiledSurface *)fixed_surface,
-                             width, height,
+                             height, width,
                              write_ppm_chunk, &data);
 
     fclose(data.fp);

@@ -1,7 +1,7 @@
 #ifndef MYPAINTBRUSHGLIB_H
 #define MYPAINTBRUSHGLIB_H
 
-#include <mypaint-config.h>
+#include "mypaint-config.h"
 
 #include <glib-object.h>
 

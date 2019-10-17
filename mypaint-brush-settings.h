@@ -17,9 +17,9 @@
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
-#include <mypaint-config.h>
-#include <mypaint-glib-compat.h>
-#include <mypaint-brush-settings-gen.h>
+#include "mypaint-config.h"
+#include "mypaint-glib-compat.h"
+#include "mypaint-brush-settings-gen.h"
 
 G_BEGIN_DECLS
 

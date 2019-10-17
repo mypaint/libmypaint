@@ -1,5 +1,5 @@
-#include <config.h>
-#include <mypaint-config.h>
+#include "config.h"
+#include "mypaint-config.h"
 
 #if MYPAINT_CONFIG_USE_GLIB
 

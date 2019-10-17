@@ -17,7 +17,7 @@
 #ifndef HELPERS_C
 #define HELPERS_C
 
-#include <config.h>
+#include "config.h"
 
 #include <assert.h>
 #include <stdint.h>

@@ -6,7 +6,7 @@
 #if MYPAINT_CONFIG_USE_GLIB
 #include <glib.h>
 #else // not MYPAINT_CONFIG_USE_GLIB
-#include <mypaint-glib-compat.h>
+#include "mypaint-glib-compat.h"
 #endif
 
 

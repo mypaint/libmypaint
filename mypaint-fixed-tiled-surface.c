@@ -4,13 +4,13 @@
 #include <stdio.h>
 #include <string.h>
 
-#include <config.h>
+#include "config.h"
 
 #if MYPAINT_CONFIG_USE_GLIB
 #include <glib.h>
 #endif
 
-#include <mypaint-fixed-tiled-surface.h>
+#include "mypaint-fixed-tiled-surface.h"
 
 
 struct MyPaintFixedTiledSurface {

@@ -1,7 +1,7 @@
 
 #include <stddef.h>
 
-#include <mypaint-fixed-tiled-surface.h>
+#include "mypaint-fixed-tiled-surface.h"
 #include "mypaint-test-surface.h"
 
 MyPaintSurface *

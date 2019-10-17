@@ -14,7 +14,7 @@
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
-#include <config.h>
+#include "config.h"
 
 #include <stdlib.h>
 #include <stdio.h>
@@ -24,7 +24,7 @@
 
 #if MYPAINT_CONFIG_USE_GLIB
 #include <glib.h>
-#include <glib/mypaint-brush.h>
+#include "glib/mypaint-brush.h"
 #endif
 
 #include "mypaint-brush.h"

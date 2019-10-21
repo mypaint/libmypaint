@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-02-25 17:11+0000\n"
-"PO-Revision-Date: 2019-10-17 15:52+0000\n"
+"PO-Revision-Date: 2019-10-22 12:52+0000\n"
 "Last-Translator: Ecron <ecron_89@hotmail.com>\n"
 "Language-Team: Valencian <https://hosted.weblate.org/projects/mypaint/"
 "libmypaint/ca@valencia/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.9\n"
+"X-Generator: Weblate 3.9.1-dev\n"
 
 #: ../brushsettings-gen.h:4
 msgid "Opacity"
@@ -236,12 +236,10 @@ msgstr ""
 "<0.0 els valors negatius no produeixen desfasament"
 
 #: ../brushsettings-gen.h:19
-#, fuzzy
 msgid "Offset by speed"
-msgstr "Desplaçament per la velocitat"
+msgstr "Desfasament per velocitat"
 
 #: ../brushsettings-gen.h:19
-#, fuzzy
 msgid ""
 "Change position depending on pointer speed\n"
 "= 0 disable\n"
@@ -249,20 +247,18 @@ msgid ""
 "< 0 draw where the pointer comes from"
 msgstr ""
 "Canvia la posició depenent de la velocitat del punter\n"
-"=0 deshabilita\n"
-">0 dibuixa on el punter es mou a\n"
-"<o dibuixa on el punter ve de"
+"= 0 deshabilita\n"
+"> 0 dibuixa cap a on es mou el punter\n"
+"< 0 dibuixa des d'on ve el punter"
 
 #: ../brushsettings-gen.h:20
-#, fuzzy
 msgid "Offset by speed filter"
-msgstr "Desplaçament per filtre de velocitat"
+msgstr "Desfasament per filtre de velocitat"
 
 #: ../brushsettings-gen.h:20
-#, fuzzy
 msgid "How slow the offset goes back to zero when the cursor stops moving"
 msgstr ""
-"Com alentir el desplaçament que torna a zero quan el cursor atura el moviment"
+"Lentitud amb què torna a zero el desfasament quan el cursor atura el moviment"
 
 #: ../brushsettings-gen.h:21
 #, fuzzy

@@ -48,11 +48,22 @@
 #define M_PI 3.14159265358979323846
 #endif
 
+// Conversion from degree to radians
+#define RADIANS(x) ((x) * M_PI / 180.0)
+
 #define ACTUAL_RADIUS_MIN 0.2
 #define ACTUAL_RADIUS_MAX 1000 // safety guard against radius like 1e20 and against rendering overload with unexpected brush dynamics
 
 //array for smudge states, which allow much higher more variety and "memory" of the brush
 float smudge_buckets[256][9] = {{0.0f}};
+
+/* Named indices for the smudge bucket arrays */
+enum {
+  SMUDGE_R, SMUDGE_G, SMUDGE_B, SMUDGE_A,
+  PREV_COL_R, PREV_COL_G, PREV_COL_B, PREV_COL_A,
+  PREV_COL_RECENTNESS
+};
+
 
 /* The Brush class stores two things:
    b) settings: constant during a stroke (eg. size, spacing, dynamics, color selected by the user)
@@ -655,15 +666,15 @@ mypaint_brush_set_state(MyPaintBrush *self, MyPaintBrushState i, float value)
   // Returns TRUE if the surface was modified.
   gboolean prepare_and_draw_dab (MyPaintBrush *self, MyPaintSurface * surface)
   {
-    float x, y, opaque;
-    float radius;
-
+    const float opaque_fac = self->settings_value[MYPAINT_BRUSH_SETTING_OPAQUE_MULTIPLY];
     // ensure we don't get a positive result with two negative opaque values
-    if (self->settings_value[MYPAINT_BRUSH_SETTING_OPAQUE] < 0) self->settings_value[MYPAINT_BRUSH_SETTING_OPAQUE] = 0;
-    opaque = self->settings_value[MYPAINT_BRUSH_SETTING_OPAQUE] * self->settings_value[MYPAINT_BRUSH_SETTING_OPAQUE_MULTIPLY];
-    opaque = CLAMP(opaque, 0.0, 1.0);
-    //if (opaque == 0.0) return FALSE; <-- cannot do that, since we need to update smudge state.
-    if (self->settings_value[MYPAINT_BRUSH_SETTING_OPAQUE_LINEARIZE]) {
+    float opaque = MAX(0.0, self->settings_value[MYPAINT_BRUSH_SETTING_OPAQUE]);
+    opaque = CLAMP(opaque * opaque_fac, 0.0, 1.0);
+
+    const float opaque_linearize = mypaint_mapping_get_base_value(
+        self->settings[MYPAINT_BRUSH_SETTING_OPAQUE_LINEARIZE]);
+
+    if (opaque_linearize) {
       // OPTIMIZE: no need to recalculate this for each dab
       float alpha, beta, alpha_dab, beta_dab;
       float dabs_per_pixel;
@@ -678,7 +689,7 @@ mypaint_brush_set_state(MyPaintBrush *self, MyPaintBrushState i, float value)
       if (dabs_per_pixel < 1.0) dabs_per_pixel = 1.0;
 
       // interpret the user-setting smoothly
-      dabs_per_pixel = 1.0 + mypaint_mapping_get_base_value(self->settings[MYPAINT_BRUSH_SETTING_OPAQUE_LINEARIZE])*(dabs_per_pixel-1.0);
+      dabs_per_pixel = 1.0 + opaque_linearize * (dabs_per_pixel-1.0);
 
       // see doc/brushdab_saturation.png
       //      beta = beta_dab^dabs_per_pixel
@@ -690,94 +701,113 @@ mypaint_brush_set_state(MyPaintBrush *self, MyPaintBrushState i, float value)
       opaque = alpha_dab;
     }
 
-    x = self->states[MYPAINT_BRUSH_STATE_ACTUAL_X];
-    y = self->states[MYPAINT_BRUSH_STATE_ACTUAL_Y];
-
+    float x = self->states[MYPAINT_BRUSH_STATE_ACTUAL_X];
+    float y = self->states[MYPAINT_BRUSH_STATE_ACTUAL_Y];
     float base_radius = expf(mypaint_mapping_get_base_value(self->settings[MYPAINT_BRUSH_SETTING_RADIUS_LOGARITHMIC]));
-    float offset_mult = expf(self->settings_value[MYPAINT_BRUSH_SETTING_OFFSET_MULTIPLIER]);
+    const float offset_mult = expf(self->settings_value[MYPAINT_BRUSH_SETTING_OFFSET_MULTIPLIER]);
+    const float base_mul = base_radius * offset_mult;
 
-    if (self->settings_value[MYPAINT_BRUSH_SETTING_OFFSET_X]) {
-      x += self->settings_value[MYPAINT_BRUSH_SETTING_OFFSET_X] * base_radius * offset_mult;
+    const float offset_x = self->settings_value[MYPAINT_BRUSH_SETTING_OFFSET_X];
+    if (offset_x) {
+      x += offset_x * base_mul;
+    }
+    const float offset_y = self->settings_value[MYPAINT_BRUSH_SETTING_OFFSET_Y];
+    if (offset_y) {
+      y += offset_y * base_mul;
     }
 
-    if (self->settings_value[MYPAINT_BRUSH_SETTING_OFFSET_Y]) {
-      y += self->settings_value[MYPAINT_BRUSH_SETTING_OFFSET_Y] * base_radius * offset_mult;
-    }
-    
     //Anti_Art offsets tweaked by BrienD.  Adjusted with ANGLE_ADJ and OFFSET_MULTIPLIER
+    const float offset_angle_adj = self->settings_value[MYPAINT_BRUSH_SETTING_OFFSET_ANGLE_ADJ];
+    const float dir_angle_dy = self->states[MYPAINT_BRUSH_STATE_DIRECTION_ANGLE_DY];
+    const float dir_angle_dx = self->states[MYPAINT_BRUSH_STATE_DIRECTION_ANGLE_DX];
+    const float angle_deg = fmodf(atan2f(dir_angle_dy, dir_angle_dx) / (2 * M_PI) * 360 - 90, 360);
+
     //offset to one side of direction
-    if (self->settings_value[MYPAINT_BRUSH_SETTING_OFFSET_ANGLE]) {
-      x += cos((fmodf ((atan2f(self->states[MYPAINT_BRUSH_STATE_DIRECTION_ANGLE_DY], self->states[MYPAINT_BRUSH_STATE_DIRECTION_ANGLE_DX]) ) / (2 * M_PI) * 360 - 90, 360.0) + self->settings_value[MYPAINT_BRUSH_SETTING_OFFSET_ANGLE_ADJ])* M_PI / 180) * base_radius * self->settings_value[MYPAINT_BRUSH_SETTING_OFFSET_ANGLE] * offset_mult;
-      y += sin((fmodf ((atan2f(self->states[MYPAINT_BRUSH_STATE_DIRECTION_ANGLE_DY], self->states[MYPAINT_BRUSH_STATE_DIRECTION_ANGLE_DX]) ) / (2 * M_PI) * 360 - 90, 360.0) + self->settings_value[MYPAINT_BRUSH_SETTING_OFFSET_ANGLE_ADJ])* M_PI / 180) * base_radius * self->settings_value[MYPAINT_BRUSH_SETTING_OFFSET_ANGLE] * offset_mult;
+    const float offset_angle = self->settings_value[MYPAINT_BRUSH_SETTING_OFFSET_ANGLE];
+    if (offset_angle) {
+        const float dir_angle = RADIANS(angle_deg + offset_angle_adj);
+        x += cos(dir_angle) * base_mul * offset_angle;
+        y += sin(dir_angle) * base_mul * offset_angle;
     }
 
     //offset to one side of ascension angle
-    if (self->settings_value[MYPAINT_BRUSH_SETTING_OFFSET_ANGLE_ASC]) {
-      x += cos((self->states[MYPAINT_BRUSH_STATE_ASCENSION] - self->states[MYPAINT_BRUSH_STATE_VIEWROTATION] + self->settings_value[MYPAINT_BRUSH_SETTING_OFFSET_ANGLE_ADJ]) * M_PI / 180) * base_radius * self->settings_value[MYPAINT_BRUSH_SETTING_OFFSET_ANGLE_ASC] * offset_mult;
-      y += sin((self->states[MYPAINT_BRUSH_STATE_ASCENSION] - self->states[MYPAINT_BRUSH_STATE_VIEWROTATION] + self->settings_value[MYPAINT_BRUSH_SETTING_OFFSET_ANGLE_ADJ]) * M_PI / 180) * base_radius * self->settings_value[MYPAINT_BRUSH_SETTING_OFFSET_ANGLE_ASC] * offset_mult;
+    const float view_rotation = self->states[MYPAINT_BRUSH_STATE_VIEWROTATION];
+    const float offset_angle_asc = self->settings_value[MYPAINT_BRUSH_SETTING_OFFSET_ANGLE_ASC];
+    if (offset_angle_asc) {
+        const float ascension = self->states[MYPAINT_BRUSH_STATE_ASCENSION];
+        const float asc_angle = RADIANS(ascension - view_rotation + offset_angle_adj);
+        const float offset_factor = base_mul * offset_angle_asc;
+        x += cos(asc_angle) * offset_factor;
+        y += sin(asc_angle) * offset_factor;
       }
 
     //offset to one side of view orientation
-    if (self->settings_value[MYPAINT_BRUSH_SETTING_OFFSET_ANGLE_VIEW]) {
-      x += sin((self->states[MYPAINT_BRUSH_STATE_VIEWROTATION] + 90 + self->settings_value[MYPAINT_BRUSH_SETTING_OFFSET_ANGLE_ADJ]) * M_PI / 180) * base_radius * self->settings_value[MYPAINT_BRUSH_SETTING_OFFSET_ANGLE_VIEW] * offset_mult;
-      y += cos((self->states[MYPAINT_BRUSH_STATE_VIEWROTATION] + 90 + self->settings_value[MYPAINT_BRUSH_SETTING_OFFSET_ANGLE_ADJ]) * M_PI / 180) * base_radius * self->settings_value[MYPAINT_BRUSH_SETTING_OFFSET_ANGLE_VIEW] * offset_mult;
+    const float view_offset = self->settings_value[MYPAINT_BRUSH_SETTING_OFFSET_ANGLE_VIEW];
+    if (view_offset) {
+        const float view_angle = RADIANS(view_rotation + offset_angle_adj);
+        const float offset_factor = base_mul * view_offset;
+        x += cos(-view_angle) * offset_factor;
+        y += sin(-view_angle) * offset_factor;
     }
 
     //offset mirrored to sides of direction
-    if (self->settings_value[MYPAINT_BRUSH_SETTING_OFFSET_ANGLE_2]) {
-      
-      if (self->settings_value[MYPAINT_BRUSH_SETTING_OFFSET_ANGLE_2] < 0) {
-        self->settings_value[MYPAINT_BRUSH_SETTING_OFFSET_ANGLE_2] = 0;
-      }
-      x += cos((fmodf ((atan2f(self->states[MYPAINT_BRUSH_STATE_DIRECTION_ANGLE_DY], self->states[MYPAINT_BRUSH_STATE_DIRECTION_ANGLE_DX]) ) / (2 * M_PI) * 360 - 90, 360.0) + self->settings_value[MYPAINT_BRUSH_SETTING_OFFSET_ANGLE_ADJ] * self->states[MYPAINT_BRUSH_STATE_FLIP])* M_PI / 180) * base_radius * self->settings_value[MYPAINT_BRUSH_SETTING_OFFSET_ANGLE_2] * offset_mult * self->states[MYPAINT_BRUSH_STATE_FLIP];
-      y += sin((fmodf ((atan2f(self->states[MYPAINT_BRUSH_STATE_DIRECTION_ANGLE_DY], self->states[MYPAINT_BRUSH_STATE_DIRECTION_ANGLE_DX]) ) / (2 * M_PI) * 360 - 90, 360.0) + self->settings_value[MYPAINT_BRUSH_SETTING_OFFSET_ANGLE_ADJ] * self->states[MYPAINT_BRUSH_STATE_FLIP])* M_PI / 180) * base_radius * self->settings_value[MYPAINT_BRUSH_SETTING_OFFSET_ANGLE_2] * offset_mult * self->states[MYPAINT_BRUSH_STATE_FLIP];
+    const float offset_dir_mirror = MAX(0.0, self->settings_value[MYPAINT_BRUSH_SETTING_OFFSET_ANGLE_2]);
+    if (offset_dir_mirror) {
+        const float brush_flip = self->states[MYPAINT_BRUSH_STATE_FLIP];
+        const float dir_mirror_angle = RADIANS(angle_deg + offset_angle_adj * brush_flip);
+        const float offset_factor = base_mul * offset_dir_mirror * brush_flip;
+        x += cos(dir_mirror_angle) * offset_factor;
+        y += sin(dir_mirror_angle) * offset_factor;
     }
 
     //offset mirrored to sides of ascension angle
-    if (self->settings_value[MYPAINT_BRUSH_SETTING_OFFSET_ANGLE_2_ASC]) {
-      
-      if (self->settings_value[MYPAINT_BRUSH_SETTING_OFFSET_ANGLE_2_ASC] < 0) {
-        self->settings_value[MYPAINT_BRUSH_SETTING_OFFSET_ANGLE_2_ASC] = 0;
-      }
-      x += cos((self->states[MYPAINT_BRUSH_STATE_ASCENSION] - self->states[MYPAINT_BRUSH_STATE_VIEWROTATION] + self->settings_value[MYPAINT_BRUSH_SETTING_OFFSET_ANGLE_ADJ] * self->states[MYPAINT_BRUSH_STATE_FLIP]) * M_PI / 180) * base_radius * self->states[MYPAINT_BRUSH_STATE_FLIP] * self->settings_value[MYPAINT_BRUSH_SETTING_OFFSET_ANGLE_2_ASC] * offset_mult;
-      y += sin((self->states[MYPAINT_BRUSH_STATE_ASCENSION] - self->states[MYPAINT_BRUSH_STATE_VIEWROTATION] + self->settings_value[MYPAINT_BRUSH_SETTING_OFFSET_ANGLE_ADJ] * self->states[MYPAINT_BRUSH_STATE_FLIP]) * M_PI / 180) * base_radius * self->states[MYPAINT_BRUSH_STATE_FLIP] * self->settings_value[MYPAINT_BRUSH_SETTING_OFFSET_ANGLE_2_ASC] * offset_mult;
+    const float offset_asc_mirror = MAX(0.0, self->settings_value[MYPAINT_BRUSH_SETTING_OFFSET_ANGLE_2_ASC]);
+    if (offset_asc_mirror) {
+        const float ascension = self->states[MYPAINT_BRUSH_STATE_ASCENSION];
+        const float brush_flip = self->states[MYPAINT_BRUSH_STATE_FLIP];
+        const float asc_angle = RADIANS(ascension - view_rotation + offset_angle_adj * brush_flip);
+        const float offset_factor = base_mul * brush_flip * offset_asc_mirror;
+        x += cos(asc_angle) * offset_factor;
+        y += sin(asc_angle) * offset_factor;
     }
 
     //offset mirrored to sides of view orientation
-    if (self->settings_value[MYPAINT_BRUSH_SETTING_OFFSET_ANGLE_2_VIEW]) {
-      if (self->settings_value[MYPAINT_BRUSH_SETTING_OFFSET_ANGLE_2_VIEW] < 0) {
-        self->settings_value[MYPAINT_BRUSH_SETTING_OFFSET_ANGLE_2_VIEW] = 0;
-      }
-      x += sin((self->states[MYPAINT_BRUSH_STATE_VIEWROTATION] + 90 + self->settings_value[MYPAINT_BRUSH_SETTING_OFFSET_ANGLE_ADJ]) * M_PI / 180) * base_radius * self->states[MYPAINT_BRUSH_STATE_FLIP] * self->settings_value[MYPAINT_BRUSH_SETTING_OFFSET_ANGLE_2_VIEW] * offset_mult;
-      y += cos((self->states[MYPAINT_BRUSH_STATE_VIEWROTATION] + 90 + self->settings_value[MYPAINT_BRUSH_SETTING_OFFSET_ANGLE_ADJ]) * M_PI / 180) * base_radius * self->states[MYPAINT_BRUSH_STATE_FLIP] * self->settings_value[MYPAINT_BRUSH_SETTING_OFFSET_ANGLE_2_VIEW] * offset_mult;
+    const float offset_view_mirror = MAX(0.0, self->settings_value[MYPAINT_BRUSH_SETTING_OFFSET_ANGLE_2_VIEW]);
+    if (offset_view_mirror) {
+        const float brush_flip = self->states[MYPAINT_BRUSH_STATE_FLIP];
+        const float offset_factor = base_mul * brush_flip * offset_view_mirror;
+        const float offset_angle_rad = RADIANS(view_rotation + offset_angle_adj);
+        x += cos(-offset_angle_rad) * offset_factor;
+        y += sin(-offset_angle_rad) * offset_factor;
     }
 
-    if (self->settings_value[MYPAINT_BRUSH_SETTING_OFFSET_BY_SPEED]) {
-      x += self->states[MYPAINT_BRUSH_STATE_NORM_DX_SLOW] * self->settings_value[MYPAINT_BRUSH_SETTING_OFFSET_BY_SPEED] * 0.1 / self->states[MYPAINT_BRUSH_STATE_VIEWZOOM];
-      y += self->states[MYPAINT_BRUSH_STATE_NORM_DY_SLOW] * self->settings_value[MYPAINT_BRUSH_SETTING_OFFSET_BY_SPEED] * 0.1 / self->states[MYPAINT_BRUSH_STATE_VIEWZOOM];
+    const float view_zoom = self->states[MYPAINT_BRUSH_STATE_VIEWZOOM];
+    const float offset_by_speed = self->settings_value[MYPAINT_BRUSH_SETTING_OFFSET_BY_SPEED];
+    if (offset_by_speed) {
+        x += self->states[MYPAINT_BRUSH_STATE_NORM_DX_SLOW] * offset_by_speed * 0.1 / view_zoom;
+        y += self->states[MYPAINT_BRUSH_STATE_NORM_DY_SLOW] * offset_by_speed * 0.1 / view_zoom;
     }
 
-    if (self->settings_value[MYPAINT_BRUSH_SETTING_OFFSET_BY_RANDOM]) {
-      float amp = self->settings_value[MYPAINT_BRUSH_SETTING_OFFSET_BY_RANDOM];
-      if (amp < 0.0) amp = 0.0;
-      x += rand_gauss (self->rng) * amp * base_radius;
-      y += rand_gauss (self->rng) * amp * base_radius;
+    const float offset_by_random = self->settings_value[MYPAINT_BRUSH_SETTING_OFFSET_BY_RANDOM];
+    if (offset_by_random) {
+        float amp = MAX(0.0, offset_by_random);
+        x += rand_gauss (self->rng) * amp * base_radius;
+        y += rand_gauss (self->rng) * amp * base_radius;
     }
 
-    radius = self->states[MYPAINT_BRUSH_STATE_ACTUAL_RADIUS];
-    if (self->settings_value[MYPAINT_BRUSH_SETTING_RADIUS_BY_RANDOM]) {
-      float radius_log, alpha_correction;
-      // go back to logarithmic radius to add the noise
-      radius_log  = self->settings_value[MYPAINT_BRUSH_SETTING_RADIUS_LOGARITHMIC];
-      radius_log += rand_gauss (self->rng) * self->settings_value[MYPAINT_BRUSH_SETTING_RADIUS_BY_RANDOM];
-      radius = expf(radius_log);
-      radius = CLAMP(radius, ACTUAL_RADIUS_MIN, ACTUAL_RADIUS_MAX);
-      alpha_correction = self->states[MYPAINT_BRUSH_STATE_ACTUAL_RADIUS] / radius;
-      alpha_correction = SQR(alpha_correction);
-      if (alpha_correction <= 1.0) {
-        opaque *= alpha_correction;
-      }
+    float radius = self->states[MYPAINT_BRUSH_STATE_ACTUAL_RADIUS];
+    const float radius_by_random = self->settings_value[MYPAINT_BRUSH_SETTING_RADIUS_BY_RANDOM];
+    if (radius_by_random) {
+        const float noise = rand_gauss(self->rng) * radius_by_random;
+        float radius_log = self->settings_value[MYPAINT_BRUSH_SETTING_RADIUS_LOGARITHMIC] + noise;
+        radius = CLAMP(expf(radius_log), ACTUAL_RADIUS_MIN, ACTUAL_RADIUS_MAX);
+        float alpha_correction = SQR(self->states[MYPAINT_BRUSH_STATE_ACTUAL_RADIUS] / radius);
+        if (alpha_correction <= 1.0) {
+            opaque *= alpha_correction;
+        }
     }
+
+    const float paint_factor = self->settings_value[MYPAINT_BRUSH_SETTING_PAINT_MODE];
 
     //convert to RGB here instead of later
     // color part
@@ -786,130 +816,116 @@ mypaint_brush_set_state(MyPaintBrush *self, MyPaintBrushState i, float value)
     float color_v = mypaint_mapping_get_base_value(self->settings[MYPAINT_BRUSH_SETTING_COLOR_V]);
     hsv_to_rgb_float (&color_h, &color_s, &color_v);
     // update smudge color
-    if (self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE_LENGTH] < 1.0 &&
+    const float smudge_length = self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE_LENGTH];
+    if (smudge_length < 1.0 &&
        // optimization, since normal brushes have smudge_length == 0.5 without actually smudging
        (self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE] != 0.0 ||
        !mypaint_mapping_is_constant(self->settings[MYPAINT_BRUSH_SETTING_SMUDGE]))) {
 
-      float fac = self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE_LENGTH];
-      if (fac < 0.01) fac = 0.01;
-      int px, py;
-      px = ROUND(x);
-      py = ROUND(y);
+      // Value between 0.01 and 1.0 that determines how often the canvas should be resampled
+      float update_factor = MAX(0.01, smudge_length);
+      int px = ROUND(x);
+      int py = ROUND(y);
 
       //determine which smudge bucket to use and update
-      int bucket = CLAMP(roundf(self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE_BUCKET]), 0, 255);
+      int bucket_index = CLAMP(roundf(self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE_BUCKET]), 0, 255);
+      float* smudge_bucket = smudge_buckets[bucket_index];
 
       // Calling get_color() is almost as expensive as rendering a
       // dab. Because of this we use the previous value if it is not
       // expected to hurt quality too much. We call it at most every
       // second dab.
       float r, g, b, a;
+      const float smudge_length_log = self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE_LENGTH_LOG];
 
-      smudge_buckets[bucket][8] *= fac;
-      if (smudge_buckets[bucket][8] < (powf(0.5*fac, self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE_LENGTH_LOG])) + 0.0000000000000001) {
-        if (smudge_buckets[bucket][8] == 0.0) {
-          // first initialization of smudge color
-          fac = 0.0;
+      const float recentness = smudge_bucket[PREV_COL_RECENTNESS] * update_factor;
+      smudge_bucket[PREV_COL_RECENTNESS] = recentness;
+
+      const float margin = 0.0000000000000001;
+      if (recentness < MIN(1.0, powf(0.5 * update_factor, smudge_length_log) + margin)) {
+        if (recentness == 0.0) {
+          // first initialization of smudge color (initiate with color sampled from canvas)
+          update_factor = 0.0;
         }
-        smudge_buckets[bucket][8] = 1.0;
+        smudge_bucket[PREV_COL_RECENTNESS] = 1.0;
 
-        float smudge_radius = radius * expf(self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE_RADIUS_LOG]);
-        smudge_radius = CLAMP(smudge_radius, ACTUAL_RADIUS_MIN, ACTUAL_RADIUS_MAX);
+        const float radius_log = self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE_RADIUS_LOG];
+        const float smudge_radius = CLAMP(radius * expf(radius_log), ACTUAL_RADIUS_MIN, ACTUAL_RADIUS_MAX);
 
-        mypaint_surface_get_color(surface, px, py, smudge_radius, &r, &g, &b, &a, self->settings_value[MYPAINT_BRUSH_SETTING_PAINT_MODE]);
-
+        mypaint_surface_get_color(surface, px, py, smudge_radius, &r, &g, &b, &a, paint_factor);
 
         //don't draw unless the picked-up alpha is above a certain level
         //this is sort of like lock_alpha but for smudge
         //negative values reverse this idea
-        if ((self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE_TRANSPARENCY] > 0.0 && 
-             a < self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE_TRANSPARENCY]) ||
-             (self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE_TRANSPARENCY] < 0.0 && 
-             a > self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE_TRANSPARENCY] * -1)) {
+        const float smudge_op_lim = self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE_TRANSPARENCY];
+        if ((smudge_op_lim > 0.0 && a < smudge_op_lim) || (smudge_op_lim < 0.0 && a > -smudge_op_lim)) {
           return FALSE;
         }
         //avoid color noise from low alpha
-        if (a > WGM_EPSILON * 10) { 
-          smudge_buckets[bucket][4] = r;
-          smudge_buckets[bucket][5] = g;
-          smudge_buckets[bucket][6] = b;
-          smudge_buckets[bucket][7] = a;
+        if (a > WGM_EPSILON * 10) {
+          smudge_bucket[PREV_COL_R] = r;
+          smudge_bucket[PREV_COL_G] = g;
+          smudge_bucket[PREV_COL_B] = b;
+          smudge_bucket[PREV_COL_A] = a;
         } else {
-          fac = 1.0;
+          update_factor = 1.0;
         }
       } else {
-        r = smudge_buckets[bucket][4];
-        g = smudge_buckets[bucket][5];
-        b = smudge_buckets[bucket][6];
-        a = smudge_buckets[bucket][7];
+        r = smudge_bucket[PREV_COL_R];
+        g = smudge_bucket[PREV_COL_G];
+        b = smudge_bucket[PREV_COL_B];
+        a = smudge_bucket[PREV_COL_A];
       }
-      
-      float smudge_state[4] = {smudge_buckets[bucket][0], smudge_buckets[bucket][1], smudge_buckets[bucket][2], smudge_buckets[bucket][3]};
-      
-      float smudge_get[4] = {r, g, b, a};
 
-      float *smudge_new;
-      smudge_new = mix_colors(smudge_state,
-                              smudge_get,
-                              fac,
-                              self->settings_value[MYPAINT_BRUSH_SETTING_PAINT_MODE] );
+      float prev_smudge_color[4] = {
+        smudge_bucket[SMUDGE_R],
+        smudge_bucket[SMUDGE_G],
+        smudge_bucket[SMUDGE_B],
+        smudge_bucket[SMUDGE_A]
+      };
+      float sampled_color[4] = {r, g, b, a};
+
+      float *smudge_new = mix_colors(
+          prev_smudge_color,
+          sampled_color,
+          update_factor,
+          paint_factor
+          );
       // updated the smudge color (stored with straight alpha)
-      smudge_buckets[bucket][0] = smudge_new[0];
-      smudge_buckets[bucket][1] = smudge_new[1];
-      smudge_buckets[bucket][2] = smudge_new[2];
-      smudge_buckets[bucket][3] = smudge_new[3];
-      
-      //update all the states
-      self->states[MYPAINT_BRUSH_STATE_SMUDGE_RA] = smudge_buckets[bucket][0];
-      self->states[MYPAINT_BRUSH_STATE_SMUDGE_GA] = smudge_buckets[bucket][1];
-      self->states[MYPAINT_BRUSH_STATE_SMUDGE_BA] = smudge_buckets[bucket][2];
-      self->states[MYPAINT_BRUSH_STATE_SMUDGE_A] = smudge_buckets[bucket][3];
-      self->states[MYPAINT_BRUSH_STATE_LAST_GETCOLOR_R] = smudge_buckets[bucket][4];
-      self->states[MYPAINT_BRUSH_STATE_LAST_GETCOLOR_G] = smudge_buckets[bucket][5];
-      self->states[MYPAINT_BRUSH_STATE_LAST_GETCOLOR_B] = smudge_buckets[bucket][6];
-      self->states[MYPAINT_BRUSH_STATE_LAST_GETCOLOR_A] = smudge_buckets[bucket][7];
-      self->states[MYPAINT_BRUSH_STATE_LAST_GETCOLOR_RECENTNESS] = smudge_buckets[bucket][8];
+      smudge_bucket[SMUDGE_R] = smudge_new[SMUDGE_R];
+      smudge_bucket[SMUDGE_G] = smudge_new[SMUDGE_G];
+      smudge_bucket[SMUDGE_B] = smudge_new[SMUDGE_B];
+      smudge_bucket[SMUDGE_A] = smudge_new[SMUDGE_A];
     }
 
-
     float eraser_target_alpha = 1.0;
+    const float smudge_value = self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE];
 
-    if (self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE] > 0.0) {
-      float fac = self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE];
-      //hsv_to_rgb_float (&color_h, &color_s, &color_v);
+    if (smudge_value > 0.0) {
+      float smudge_factor = MIN(1.0, smudge_value);
 
       //determine which smudge bucket to use when mixing with brush color
-      int bucket = CLAMP(roundf(self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE_BUCKET]), 0, 255);
-            
-      if (fac > 1.0) fac = 1.0;
+      int bucket_index = CLAMP(roundf(self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE_BUCKET]), 0, 255);
+      float *smudge_bucket = smudge_buckets[bucket_index];
+
         // If the smudge color somewhat transparent, then the resulting
         // dab will do erasing towards that transparency level.
         // see also ../doc/smudge_math.png
-        eraser_target_alpha = (1-fac)*1.0 + fac*smudge_buckets[bucket][3];
-        // fix rounding errors (they really seem to happen in the previous line)
-        eraser_target_alpha = CLAMP(eraser_target_alpha, 0.0, 1.0);
+        eraser_target_alpha = CLAMP((1.0 - smudge_factor) + smudge_factor*smudge_bucket[SMUDGE_A], 0.0, 1.0);
+
         if (eraser_target_alpha > 0) {
-          
-          float smudge_state[4] = {
-            smudge_buckets[bucket][0],
-            smudge_buckets[bucket][1],
-            smudge_buckets[bucket][2], 
-            smudge_buckets[bucket][3]
+          float smudge_color[4] = {
+            smudge_bucket[SMUDGE_R],
+            smudge_bucket[SMUDGE_G],
+            smudge_bucket[SMUDGE_B],
+            smudge_bucket[SMUDGE_A]
           };
           float brush_color[4] = {color_h, color_s, color_v, 1.0};
-          float *color_new;
-          
-          color_new = mix_colors(
-            smudge_state,
-            brush_color,
-            fac,
-            self->settings_value[MYPAINT_BRUSH_SETTING_PAINT_MODE]
-          );  
-          
-          color_h = color_new[0];// / eraser_target_alpha;
-          color_s = color_new[1];// / eraser_target_alpha;
-          color_v = color_new[2];// / eraser_target_alpha;
+          float *color_new = mix_colors(smudge_color, brush_color, smudge_factor, paint_factor);
+
+          color_h = color_new[SMUDGE_R];// / eraser_target_alpha;
+          color_s = color_new[SMUDGE_G];// / eraser_target_alpha;
+          color_v = color_new[SMUDGE_B];// / eraser_target_alpha;
 
         } else {
           // we are only erasing; the color does not matter
@@ -917,8 +933,6 @@ mypaint_brush_set_state(MyPaintBrush *self, MyPaintBrushState i, float value)
           color_s = 1.0;
           color_v = 1.0;
         }
-        
-      //rgb_to_hsv_float (&color_h, &color_s, &color_v);
     }
 
     // eraser
@@ -927,7 +941,7 @@ mypaint_brush_set_state(MyPaintBrush *self, MyPaintBrushState i, float value)
     }
 
     // HSV color change
-    if (self->settings_value[MYPAINT_BRUSH_SETTING_CHANGE_COLOR_H] || 
+    if (self->settings_value[MYPAINT_BRUSH_SETTING_CHANGE_COLOR_H] ||
         self->settings_value[MYPAINT_BRUSH_SETTING_CHANGE_COLOR_HSV_S] ||
         self->settings_value[MYPAINT_BRUSH_SETTING_CHANGE_COLOR_V]) {
       rgb_to_hsv_float (&color_h, &color_s, &color_v);
@@ -941,17 +955,17 @@ mypaint_brush_set_state(MyPaintBrush *self, MyPaintBrushState i, float value)
     if (self->settings_value[MYPAINT_BRUSH_SETTING_CHANGE_COLOR_L] || self->settings_value[MYPAINT_BRUSH_SETTING_CHANGE_COLOR_HSL_S]) {
       // (calculating way too much here, can be optimized if necessary)
       // this function will CLAMP the inputs
-      
+
       //hsv_to_rgb_float (&color_h, &color_s, &color_v);
       rgb_to_hsl_float (&color_h, &color_s, &color_v);
       color_v += self->settings_value[MYPAINT_BRUSH_SETTING_CHANGE_COLOR_L];
-      color_s += color_s * MIN(fabsf(1.0 - color_v), fabsf(color_v)) * 2.0
+      color_s += color_s * MIN(fabsf(1.0f - color_v), fabsf(color_v)) * 2.0f
         * self->settings_value[MYPAINT_BRUSH_SETTING_CHANGE_COLOR_HSL_S];
       hsl_to_rgb_float (&color_h, &color_s, &color_v);
       //rgb_to_hsv_float (&color_h, &color_s, &color_v);
     }
 
-    float hardness = CLAMP(self->settings_value[MYPAINT_BRUSH_SETTING_HARDNESS], 0.0, 1.0);
+    float hardness = CLAMP(self->settings_value[MYPAINT_BRUSH_SETTING_HARDNESS], 0.0f, 1.0f);
 
     // anti-aliasing attempt (works surprisingly well for ink brushes)
     float current_fadeout_in_pixels = radius * (1.0 - hardness);
@@ -959,7 +973,7 @@ mypaint_brush_set_state(MyPaintBrush *self, MyPaintBrushState i, float value)
     if (current_fadeout_in_pixels < min_fadeout_in_pixels) {
       // need to soften the brush (decrease hardness), but keep optical radius
       // so we tune both radius and hardness, to get the desired fadeout_in_pixels
-      float current_optical_radius = radius - (1.0-hardness)*radius/2.0;
+      float current_optical_radius = radius - (1.0 - hardness)*radius/2.0;
 
       // Equation 1: (new fadeout must be equal to min_fadeout)
       //   min_fadeout_in_pixels = radius_new*(1.0 - hardness_new)
@@ -998,12 +1012,16 @@ mypaint_brush_set_state(MyPaintBrush *self, MyPaintBrushState i, float value)
       radius = radius + (snapped_radius - radius) * snapToPixel;
     }
 
-    // the functions below will CLAMP most inputs
-    //hsv_to_rgb_float (&color_h, &color_s, &color_v);
-    return mypaint_surface_draw_dab (surface, x, y, radius, color_h, color_s, color_v, opaque, hardness, eraser_target_alpha,
-                              self->states[MYPAINT_BRUSH_STATE_ACTUAL_ELLIPTICAL_DAB_RATIO], self->states[MYPAINT_BRUSH_STATE_ACTUAL_ELLIPTICAL_DAB_ANGLE],
-                              self->settings_value[MYPAINT_BRUSH_SETTING_LOCK_ALPHA],
-                              self->settings_value[MYPAINT_BRUSH_SETTING_COLORIZE], self->settings_value[MYPAINT_BRUSH_SETTING_POSTERIZE], self->settings_value[MYPAINT_BRUSH_SETTING_POSTERIZE_NUM], self->settings_value[MYPAINT_BRUSH_SETTING_PAINT_MODE]);
+    const float dab_ratio = self->states[MYPAINT_BRUSH_STATE_ACTUAL_ELLIPTICAL_DAB_RATIO];
+    const float dab_angle = self->states[MYPAINT_BRUSH_STATE_ACTUAL_ELLIPTICAL_DAB_ANGLE];
+    const float lock_alpha = self->settings_value[MYPAINT_BRUSH_SETTING_LOCK_ALPHA];
+    const float colorize = self->settings_value[MYPAINT_BRUSH_SETTING_COLORIZE];
+    const float posterize = self->settings_value[MYPAINT_BRUSH_SETTING_POSTERIZE];
+    const float posterize_num = self->settings_value[MYPAINT_BRUSH_SETTING_POSTERIZE_NUM];
+
+    return mypaint_surface_draw_dab (
+        surface, x, y, radius, color_h, color_s, color_v, opaque, hardness, eraser_target_alpha,
+        dab_ratio, dab_angle, lock_alpha, colorize, posterize, posterize_num, paint_factor);
   }
 
   // How many dabs will be drawn between the current and the next (x, y, pressure, +dt) position?

@@ -429,6 +429,41 @@ mypaint_brush_set_state(MyPaintBrush *self, MyPaintBrushState i, float value)
     }
   }
 
+// Debugging: print brush inputs/states (not all of them)
+void print_inputs(MyPaintBrush *self, float* inputs)
+{
+    printf(
+        "press=% 4.3f, speed1=% 4.4f\tspeed2=% 4.4f",
+        inputs[MYPAINT_BRUSH_INPUT_PRESSURE],
+        inputs[MYPAINT_BRUSH_INPUT_SPEED1],
+        inputs[MYPAINT_BRUSH_INPUT_SPEED2]
+        );
+    printf(
+        "\tstroke=% 4.3f\tcustom=% 4.3f",
+        inputs[MYPAINT_BRUSH_INPUT_STROKE],
+        inputs[MYPAINT_BRUSH_INPUT_CUSTOM]
+        );
+    printf(
+        "\tviewzoom=% 4.3f\tviewrotation=% 4.3f",
+        inputs[MYPAINT_BRUSH_INPUT_VIEWZOOM],
+        self->states[MYPAINT_BRUSH_STATE_VIEWROTATION]
+        );
+    printf(
+        "\tasc=% 4.3f\tdir=% 4.3f\tdec=% 4.3f\tdabang=% 4.3f",
+        inputs[MYPAINT_BRUSH_INPUT_TILT_ASCENSION],
+        inputs[MYPAINT_BRUSH_INPUT_DIRECTION],
+        inputs[MYPAINT_BRUSH_INPUT_TILT_DECLINATION],
+        self->states[MYPAINT_BRUSH_STATE_ACTUAL_ELLIPTICAL_DAB_ANGLE]
+        );
+    printf(
+        "\txtilt=% 4.3f\tytilt=% 4.3fattack=% 4.3f",
+        inputs[MYPAINT_BRUSH_INPUT_TILT_DECLINATIONX],
+        inputs[MYPAINT_BRUSH_INPUT_TILT_DECLINATIONY],
+        inputs[MYPAINT_BRUSH_INPUT_ATTACK_ANGLE]
+        );
+    printf("\n");
+}
+
   // This function runs a brush "simulation" step. Usually it is
   // called once or twice per dab. In theory the precision of the
   // "simulation" gets better when it is called more often. In
@@ -554,7 +589,7 @@ mypaint_brush_set_state(MyPaintBrush *self, MyPaintBrushState i, float value)
     inputs[MYPAINT_BRUSH_INPUT_BARREL_ROTATION] = mod_arith(self->states[MYPAINT_BRUSH_STATE_BARREL_ROTATION], 360);
 
     if (self->print_inputs) {
-      printf("press=% 4.3f, speed1=% 4.4f\tspeed2=% 4.4f\tstroke=% 4.3f\tcustom=% 4.3f\tviewzoom=% 4.3f\tviewrotation=% 4.3f\tasc=% 4.3f\tdir=% 4.3f\tdec=% 4.3f\tdabang=% 4.3f\txtilt=% 4.3f\tytilt=% 4.3fattack=% 4.3f\n", (double)inputs[MYPAINT_BRUSH_INPUT_PRESSURE], (double)inputs[MYPAINT_BRUSH_INPUT_SPEED1], (double)inputs[MYPAINT_BRUSH_INPUT_SPEED2], (double)inputs[MYPAINT_BRUSH_INPUT_STROKE], (double)inputs[MYPAINT_BRUSH_INPUT_CUSTOM], (double)inputs[MYPAINT_BRUSH_INPUT_VIEWZOOM], (double)self->states[MYPAINT_BRUSH_STATE_VIEWROTATION], (double)inputs[MYPAINT_BRUSH_INPUT_TILT_ASCENSION], (double)inputs[MYPAINT_BRUSH_INPUT_DIRECTION], (double)inputs[MYPAINT_BRUSH_INPUT_TILT_DECLINATION], (double)self->states[MYPAINT_BRUSH_STATE_ACTUAL_ELLIPTICAL_DAB_ANGLE], (double)inputs[MYPAINT_BRUSH_INPUT_TILT_DECLINATIONX], (double)inputs[MYPAINT_BRUSH_INPUT_TILT_DECLINATIONY], (double)inputs[MYPAINT_BRUSH_INPUT_ATTACK_ANGLE]);
+        print_inputs(self, inputs);
     }
     // FIXME: this one fails!!!
     //assert(inputs[MYPAINT_BRUSH_INPUT_SPEED1] >= 0.0 && inputs[MYPAINT_BRUSH_INPUT_SPEED1] < 1e8); // checking for inf

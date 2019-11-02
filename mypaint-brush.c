@@ -896,15 +896,10 @@ void print_inputs(MyPaintBrush *self, float* inputs)
         if ((smudge_op_lim > 0.0 && a < smudge_op_lim) || (smudge_op_lim < 0.0 && a > -smudge_op_lim)) {
           return FALSE;
         }
-        //avoid color noise from low alpha
-        if (a > WGM_EPSILON * 10) {
-          smudge_bucket[PREV_COL_R] = r;
-          smudge_bucket[PREV_COL_G] = g;
-          smudge_bucket[PREV_COL_B] = b;
-          smudge_bucket[PREV_COL_A] = a;
-        } else {
-          update_factor = 1.0;
-        }
+        smudge_bucket[PREV_COL_R] = r;
+        smudge_bucket[PREV_COL_G] = g;
+        smudge_bucket[PREV_COL_B] = b;
+        smudge_bucket[PREV_COL_A] = a;
       } else {
         r = smudge_bucket[PREV_COL_R];
         g = smudge_bucket[PREV_COL_G];

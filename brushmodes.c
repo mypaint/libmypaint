@@ -469,7 +469,7 @@ void get_color_pixels_accumulate (uint16_t * mask,
   // Sample the canvas as additive and subtractive
   // According to paint parameter
   // Average the results normally
-  // Only sample a random selection of pixels
+  // Only sample a partially random subset of pixels
 
   float avg_spectral[10] = {0};
   float avg_rgb[3] = {*sum_r, *sum_g, *sum_b};
@@ -477,10 +477,19 @@ void get_color_pixels_accumulate (uint16_t * mask,
     rgb_to_spectral(*sum_r, *sum_g, *sum_b, avg_spectral);
   }
 
+  // Rolling counter determining which pixels to sample
+  // This sampling _is_ biased (but hopefully not too bad).
+  // Ideally, the selection of pixels to be sampled should
+  // be determined before this function is called.
+  uint8_t pixel_index = 0;
+  const uint8_t sample_every_n = 31;
+
   while (1) {
     for (; mask[0]; mask++, rgba+=4) {
-      // sample at least one pixel but then only 1%
-      if (rand() % 100 != 0 && *sum_a > 0.0) {
+      // Sample every n pixels, and skip 90% of the rest
+      // At least one pixel (the first) will always be sampled.
+      pixel_index = (pixel_index + 1) % sample_every_n;
+      if (pixel_index != 1 && rand() % 10 > 0) {
         continue;
       }
       float a = (float)mask[0] * rgba[3] / (1<<30);
@@ -492,36 +501,30 @@ void get_color_pixels_accumulate (uint16_t * mask,
         fac_a = a / alpha_sums;
         fac_b = 1.0 - fac_a;
       }
-      if (paint > 0.0f) {
+      if (paint > 0.0f && rgba[3] > 0) {
         float spectral[10] = {0};
-        if (rgba[3] > 0) {
-          rgb_to_spectral((float)rgba[0] / rgba[3], (float)rgba[1] / rgba[3], (float)rgba[2] / rgba[3], spectral);
-          for (int i=0; i<10; i++) {
-            avg_spectral[i] = fastpow(spectral[i], fac_a) * fastpow(avg_spectral[i], fac_b);
-          }
+        rgb_to_spectral((float)rgba[0] / rgba[3], (float)rgba[1] / rgba[3], (float)rgba[2] / rgba[3], spectral);
+        for (int i=0; i<10; i++) {
+          avg_spectral[i] = fastpow(spectral[i], fac_a) * fastpow(avg_spectral[i], fac_b);
         }
       }
-      if (paint < 1.0f) {
-        if (rgba[3] > 0) {
-          for (int i=0; i<3; i++) {
-            avg_rgb[i] = (float)rgba[i] * fac_a / rgba[3] + (float)avg_rgb[i] * fac_b;
-          }
+      if (paint < 1.0f && rgba[3] > 0) {
+        for (int i=0; i<3; i++) {
+          avg_rgb[i] = (float)rgba[i] * fac_a / rgba[3] + (float)avg_rgb[i] * fac_b;
         }
       }
       *sum_a += a;
     }
-    float spec_rgb[3] = {0};
-    spectral_to_rgb(avg_spectral, spec_rgb);
-
-    *sum_r = spec_rgb[0] * paint + (1.0 - paint) * avg_rgb[0];
-    *sum_g = spec_rgb[1] * paint + (1.0 - paint) * avg_rgb[1];
-    *sum_b = spec_rgb[2] * paint + (1.0 - paint) * avg_rgb[2];
-
     if (!mask[1]) break;
     rgba += mask[1];
     mask += 2;
   }
+  // Convert the spectral average to rgb and write the result
+  // back weighted with the rgb average.
+  float spec_rgb[3] = {0};
+  spectral_to_rgb(avg_spectral, spec_rgb);
+
+  *sum_r = spec_rgb[0] * paint + (1.0 - paint) * avg_rgb[0];
+  *sum_g = spec_rgb[1] * paint + (1.0 - paint) * avg_rgb[1];
+  *sum_b = spec_rgb[2] * paint + (1.0 - paint) * avg_rgb[2];
 };
-
-
-

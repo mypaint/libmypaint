@@ -843,6 +843,8 @@ void print_inputs(MyPaintBrush *self, float* inputs)
     }
 
     const float paint_factor = self->settings_value[MYPAINT_BRUSH_SETTING_PAINT_MODE];
+    const gboolean paint_setting_constant = mypaint_mapping_is_constant(self->settings[MYPAINT_BRUSH_SETTING_PAINT_MODE]);
+    const gboolean legacy_smudge = paint_factor <= 0.0 && paint_setting_constant;
 
     //convert to RGB here instead of later
     // color part
@@ -863,8 +865,8 @@ void print_inputs(MyPaintBrush *self, float* inputs)
       int py = ROUND(y);
 
       //determine which smudge bucket to use and update
-      int bucket_index = CLAMP(roundf(self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE_BUCKET]), 0, 255);
-      float* smudge_bucket = smudge_buckets[bucket_index];
+      const int bucket_index = CLAMP(roundf(self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE_BUCKET]), 0, 255);
+      float* const smudge_bucket = smudge_buckets[bucket_index];
 
       // Calling get_color() is almost as expensive as rendering a
       // dab. Because of this we use the previous value if it is not
@@ -887,7 +889,12 @@ void print_inputs(MyPaintBrush *self, float* inputs)
         const float radius_log = self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE_RADIUS_LOG];
         const float smudge_radius = CLAMP(radius * expf(radius_log), ACTUAL_RADIUS_MIN, ACTUAL_RADIUS_MAX);
 
-        mypaint_surface_get_color(surface, px, py, smudge_radius, &r, &g, &b, &a, paint_factor);
+        // Sample colors on the canvas, using a negative value for the paint factor
+        // means that the old sampling method is used, instead of weighted spectral.
+        mypaint_surface_get_color(
+            surface, px, py, smudge_radius,
+            &r, &g, &b, &a,
+            legacy_smudge ? -1.0 : paint_factor);
 
         //don't draw unless the picked-up alpha is above a certain level
         //this is sort of like lock_alpha but for smudge
@@ -907,25 +914,28 @@ void print_inputs(MyPaintBrush *self, float* inputs)
         a = smudge_bucket[PREV_COL_A];
       }
 
-      float prev_smudge_color[4] = {
-        smudge_bucket[SMUDGE_R],
-        smudge_bucket[SMUDGE_G],
-        smudge_bucket[SMUDGE_B],
-        smudge_bucket[SMUDGE_A]
-      };
-      float sampled_color[4] = {r, g, b, a};
+      if (legacy_smudge) {
+        const float fac_old = update_factor;
+        const float fac_new = (1.0 - update_factor) * a;
+        smudge_bucket[SMUDGE_R] = fac_old * smudge_bucket[SMUDGE_R] + fac_new * r;
+        smudge_bucket[SMUDGE_G] = fac_old * smudge_bucket[SMUDGE_G] + fac_new * g;
+        smudge_bucket[SMUDGE_B] = fac_old * smudge_bucket[SMUDGE_B] + fac_new * b;
+        smudge_bucket[SMUDGE_A] = CLAMP((fac_old * smudge_bucket[SMUDGE_A] + fac_new), 0.0, 1.0);
+      } else {
+        float prev_smudge_color[4] = {
+            smudge_bucket[SMUDGE_R], smudge_bucket[SMUDGE_G],
+            smudge_bucket[SMUDGE_B], smudge_bucket[SMUDGE_A]};
+        float sampled_color[4] = {r, g, b, a};
 
-      float *smudge_new = mix_colors(
-          prev_smudge_color,
-          sampled_color,
-          update_factor,
-          paint_factor
-          );
-      // updated the smudge color (stored with straight alpha)
-      smudge_bucket[SMUDGE_R] = smudge_new[SMUDGE_R];
-      smudge_bucket[SMUDGE_G] = smudge_new[SMUDGE_G];
-      smudge_bucket[SMUDGE_B] = smudge_new[SMUDGE_B];
-      smudge_bucket[SMUDGE_A] = smudge_new[SMUDGE_A];
+        float *smudge_new = mix_colors(
+            prev_smudge_color, sampled_color,
+            update_factor, paint_factor
+            );
+        smudge_bucket[SMUDGE_R] = smudge_new[SMUDGE_R];
+        smudge_bucket[SMUDGE_G] = smudge_new[SMUDGE_G];
+        smudge_bucket[SMUDGE_B] = smudge_new[SMUDGE_B];
+        smudge_bucket[SMUDGE_A] = smudge_new[SMUDGE_A];
+      }
     }
 
     float eraser_target_alpha = 1.0;
@@ -936,32 +946,36 @@ void print_inputs(MyPaintBrush *self, float* inputs)
 
       //determine which smudge bucket to use when mixing with brush color
       int bucket_index = CLAMP(roundf(self->settings_value[MYPAINT_BRUSH_SETTING_SMUDGE_BUCKET]), 0, 255);
-      float *smudge_bucket = smudge_buckets[bucket_index];
+      const float* const smudge_bucket = smudge_buckets[bucket_index];
 
         // If the smudge color somewhat transparent, then the resulting
         // dab will do erasing towards that transparency level.
         // see also ../doc/smudge_math.png
-        eraser_target_alpha = CLAMP((1.0 - smudge_factor) + smudge_factor*smudge_bucket[SMUDGE_A], 0.0, 1.0);
+        eraser_target_alpha = CLAMP((1.0 - smudge_factor) + smudge_factor * smudge_bucket[SMUDGE_A], 0.0, 1.0);
 
         if (eraser_target_alpha > 0) {
-          float smudge_color[4] = {
-            smudge_bucket[SMUDGE_R],
-            smudge_bucket[SMUDGE_G],
-            smudge_bucket[SMUDGE_B],
-            smudge_bucket[SMUDGE_A]
-          };
-          float brush_color[4] = {color_h, color_s, color_v, 1.0};
-          float *color_new = mix_colors(smudge_color, brush_color, smudge_factor, paint_factor);
-
-          color_h = color_new[SMUDGE_R];// / eraser_target_alpha;
-          color_s = color_new[SMUDGE_G];// / eraser_target_alpha;
-          color_v = color_new[SMUDGE_B];// / eraser_target_alpha;
-
+          if (legacy_smudge) {
+              const float col_factor = 1.0 - smudge_factor;
+              color_h = (smudge_factor * smudge_bucket[SMUDGE_R] + col_factor * color_h) / eraser_target_alpha;
+              color_s = (smudge_factor * smudge_bucket[SMUDGE_G] + col_factor * color_s) / eraser_target_alpha;
+              color_v = (smudge_factor * smudge_bucket[SMUDGE_B] + col_factor * color_v) / eraser_target_alpha;
+          } else {
+            float smudge_color[4] = {
+                smudge_bucket[SMUDGE_R], smudge_bucket[SMUDGE_G],
+                smudge_bucket[SMUDGE_B], smudge_bucket[SMUDGE_A]};
+            float brush_color[4] = {color_h, color_s, color_v, 1.0};
+            float *color_new = mix_colors(smudge_color, brush_color,
+                                          smudge_factor, paint_factor);
+            color_h = color_new[SMUDGE_R];
+            color_s = color_new[SMUDGE_G];
+            color_v = color_new[SMUDGE_B];
+          }
         } else {
-          // we are only erasing; the color does not matter
+          // we are only erasing; the color does (should) not matter
+          // we set the color to a clear red to see bugs easier.
           color_h = 1.0;
-          color_s = 1.0;
-          color_v = 1.0;
+          color_s = 0.0;
+          color_v = 0.0;
         }
     }
 

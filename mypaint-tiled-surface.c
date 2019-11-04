@@ -849,12 +849,23 @@ void get_color (MyPaintSurface *surface, float x, float y,
 
     assert(sum_weight > 0.0f);
     sum_a /= sum_weight;
-    *color_a = sum_a;
-    // now un-premultiply the alpha
+
+    // For legacy sampling, we need to divide
+    // by the total after the accumulation.
+    if (paint < 0.0) {
+        sum_r /= sum_weight;
+        sum_g /= sum_weight;
+        sum_b /= sum_weight;
+    }
+
+    *color_a = CLAMP(sum_a, 0.0f, 1.0f);
     if (sum_a > 0.0f) {
-      *color_r = sum_r;
-      *color_g = sum_g;
-      *color_b = sum_b;
+      // Straighten the color channels if using legacy sampling.
+      // Clamp to guard against rounding errors.
+      const float demul = paint < 0.0 ? sum_a : 1.0;
+      *color_r = CLAMP(sum_r / demul, 0.0f, 1.0f);
+      *color_g = CLAMP(sum_g / demul, 0.0f, 1.0f);
+      *color_b = CLAMP(sum_b / demul, 0.0f, 1.0f);
     } else {
       // it is all transparent, so don't care about the colors
       // (let's make them ugly so bugs will be visible)
@@ -862,12 +873,6 @@ void get_color (MyPaintSurface *surface, float x, float y,
       *color_g = 1.0f;
       *color_b = 0.0f;
     }
-
-    // fix rounding problems that do happen due to floating point math
-    *color_r = CLAMP(*color_r, 0.0f, 1.0f);
-    *color_g = CLAMP(*color_g, 0.0f, 1.0f);
-    *color_b = CLAMP(*color_b, 0.0f, 1.0f);
-    *color_a = CLAMP(*color_a, 0.0f, 1.0f);
 }
 
 

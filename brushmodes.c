@@ -326,48 +326,72 @@ void draw_dab_pixels_BlendMode_Normal_and_Eraser_Paint (uint16_t * mask,
                                                   uint16_t color_a,
                                                   uint16_t opacity) {
 
+  // Convert input color to spectral, it is not premultiplied
+  float spectral_a[10] = {0};
+  rgb_to_spectral(
+    (float)color_r / (1<<15),
+    (float)color_g / (1<<15),
+    (float)color_b / (1<<15),
+    spectral_a
+    );
+
   while (1) {
     for (; mask[0]; mask++, rgba+=4) {
-      opacity = MAX(opacity, 150);
-      uint32_t opa_a = mask[0]*(uint32_t)opacity/(1<<15); // topAlpha
-      uint32_t opa_b = (1<<15)-opa_a; // bottomAlpha
-      if (rgba[3] <= 0) {
-        opa_a = opa_a * color_a / (1<<15);
-        rgba[3] = opa_a + opa_b * rgba[3] / (1<<15);
-        rgba[0] = (opa_a*color_r + opa_b*rgba[0])/(1<<15);
-        rgba[1] = (opa_a*color_g + opa_b*rgba[1])/(1<<15);
-        rgba[2] = (opa_a*color_b + opa_b*rgba[2])/(1<<15);
-        continue;
+      const uint32_t opa_a = mask[0]*(uint32_t)opacity/(1<<15); // topAlpha
+      const uint32_t opa_b = (1<<15)-opa_a; // bottomAlpha
+      const uint32_t opa_a2 = opa_a * color_a / (1<<15); // erase-adjusted alpha
+      const uint32_t opa_out = opa_a2 + opa_b * rgba[3] / (1<<15);
+
+      // Artifact-mitigation; it would be nice to get a better grasp on whether this can
+      // be tackled more elegantly, but for now just avoid dealing with very low alphas.
+      const uint16_t alpha_limit = 65; // 65 ~= 0.002 * (1<<15), chosen through experimentation
+      if (opa_out <= alpha_limit) {
+        // At 0.2% output opacity or lower, clear output (to avoid artifacts)
+        rgba[3] = 0;
+        rgba[0] = 0;
+        rgba[1] = 0;
+        rgba[2] = 0;
+      } else if (rgba[3] <= alpha_limit) {
+        // At 0.2% canvas opacity or lower, use additive blending
+        // (to avoid artifacts, and division by zero)
+        rgba[3] = opa_out;
+        rgba[0] = (opa_a2 * color_r + opa_b * rgba[0]) / (1<<15);
+        rgba[1] = (opa_a2 * color_g + opa_b * rgba[1]) / (1<<15);
+        rgba[2] = (opa_a2 * color_b + opa_b * rgba[2]) / (1<<15);
+      } else {
+        // Hopefully safe enough to use  spectral blending
+        // (artifacts _can_ still occur under some rare circumstances)
+
+        // Convert straightened tile pixel color to a spectral
+        float spectral_b[10] = {0};
+        rgb_to_spectral(
+          (float)rgba[0] / rgba[3],
+          (float)rgba[1] / rgba[3],
+          (float)rgba[2] / rgba[3],
+          spectral_b
+          );
+
+        float fac_a = (float)opa_a / (opa_a + opa_b * rgba[3] / (1 << 15));
+        fac_a *= (float)color_a / (1 << 15);
+        float fac_b = 1.0 - fac_a;
+
+        // Mix input and tile pixel colors using WGM
+        float spectral_result[10] = {0};
+        for (int i = 0; i < 10; i++) {
+          spectral_result[i] =
+              fastpow(spectral_a[i], fac_a) * fastpow(spectral_b[i], fac_b);
+        }
+
+        // Convert back to RGB
+        float rgb_result[3] = {0};
+        spectral_to_rgb(spectral_result, rgb_result);
+
+        // Premultiply and write result back to tile
+        rgba[3] = opa_out;
+        for (int i = 0; i < 3; i++) {
+          rgba[i] = rgb_result[i] * opa_out;
+        }
       }
-      float fac_a = (float)opa_a / (opa_a + opa_b * rgba[3] / (1<<15));
-      fac_a *= (float)color_a / (1<<15);
-      float fac_b = 1.0 - fac_a;
-      float spectral_b[10] = {0};
-      rgb_to_spectral((float)rgba[0] / rgba[3], (float)rgba[1] / rgba[3], (float)rgba[2] / rgba[3], spectral_b);
-
-      // convert top to spectral.  Already straight color
-      float spectral_a[10] = {0};
-      rgb_to_spectral((float)color_r / (1<<15), (float)color_g / (1<<15), (float)color_b / (1<<15), spectral_a);
-
-      // mix to the two spectral colors using WGM
-      float spectral_result[10] = {0};
-      for (int i=0; i<10; i++) {
-        spectral_result[i] = fastpow(spectral_a[i], fac_a) * fastpow(spectral_b[i], fac_b);
-      }
-      // convert back to RGB
-      float rgb_result[3] = {0};
-      spectral_to_rgb(spectral_result, rgb_result);
-      
-      // apply eraser
-      opa_a = opa_a * color_a / (1<<15);
-      
-      // calculate alpha normally
-      rgba[3] = opa_a + opa_b * rgba[3] / (1<<15);
-
-      for (int i=0; i<3; i++) {
-        rgba[i] =(rgb_result[i] * rgba[3]) + 0.5;
-      }
-
     }
     if (!mask[1]) break;
     rgba += mask[1];

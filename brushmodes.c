@@ -335,6 +335,14 @@ void draw_dab_pixels_BlendMode_Normal_and_Eraser_Paint (uint16_t * mask,
     spectral_a
     );
 
+  // We check what corresponds to the V in HSV to decide whether a
+  // color is too dark to use spectral mixing - the limit value was
+  // determined by experimentation and could possibly be tighter.
+  const uint16_t darkness_lim = 32;
+#define DARK(r, g, b) (MAX3(r, g, b) < darkness_lim)
+
+  gboolean dark_input = DARK(color_r, color_g, color_b);
+
   while (1) {
     for (; mask[0]; mask++, rgba+=4) {
       const uint32_t opa_a = mask[0]*(uint32_t)opacity/(1<<15); // topAlpha
@@ -345,15 +353,18 @@ void draw_dab_pixels_BlendMode_Normal_and_Eraser_Paint (uint16_t * mask,
       // Artifact-mitigation; it would be nice to get a better grasp on whether this can
       // be tackled more elegantly, but for now just avoid dealing with very low alphas.
       const uint16_t alpha_limit = 65; // 65 ~= 0.002 * (1<<15), chosen through experimentation
-      if (opa_out <= alpha_limit) {
-        // At 0.2% output opacity or lower, clear output (to avoid artifacts)
+      if (opa_out <= alpha_limit/2) {
+        // At 0.1% output opacity or lower, clear output (to avoid artifacts)
         rgba[3] = 0;
         rgba[0] = 0;
         rgba[1] = 0;
         rgba[2] = 0;
-      } else if (rgba[3] <= alpha_limit) {
+      } else if (dark_input || rgba[3] <= alpha_limit || DARK(rgba[0],rgba[1],rgba[2])) {
+#undef DARK
         // At 0.2% canvas opacity or lower, use additive blending
         // (to avoid artifacts, and division by zero)
+        // Also use it if the input or canvas colors are very dark,
+        // where underflow causes problematic pixels that stick around.
         rgba[3] = opa_out;
         rgba[0] = (opa_a2 * color_r + opa_b * rgba[0]) / (1<<15);
         rgba[1] = (opa_a2 * color_g + opa_b * rgba[1]) / (1<<15);

@@ -921,7 +921,7 @@ void print_inputs(MyPaintBrush *self, float* inputs)
         smudge_bucket[SMUDGE_G] = fac_old * smudge_bucket[SMUDGE_G] + fac_new * g;
         smudge_bucket[SMUDGE_B] = fac_old * smudge_bucket[SMUDGE_B] + fac_new * b;
         smudge_bucket[SMUDGE_A] = CLAMP((fac_old * smudge_bucket[SMUDGE_A] + fac_new), 0.0, 1.0);
-      } else {
+      } else if (a > WGM_EPSILON * 10) {
         float prev_smudge_color[4] = {
             smudge_bucket[SMUDGE_R], smudge_bucket[SMUDGE_G],
             smudge_bucket[SMUDGE_B], smudge_bucket[SMUDGE_A]};
@@ -935,6 +935,10 @@ void print_inputs(MyPaintBrush *self, float* inputs)
         smudge_bucket[SMUDGE_G] = smudge_new[SMUDGE_G];
         smudge_bucket[SMUDGE_B] = smudge_new[SMUDGE_B];
         smudge_bucket[SMUDGE_A] = smudge_new[SMUDGE_A];
+      } else {
+        // To avoid color noise from spectral mixing with a low alpha,
+        // we'll just decrease the alpha of the existing smudge color.
+        smudge_bucket[SMUDGE_A] = (smudge_bucket[SMUDGE_A] + a) / 2;
       }
     }
 

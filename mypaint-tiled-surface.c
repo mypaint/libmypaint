@@ -465,7 +465,7 @@ process_op(uint16_t *rgba_p, uint16_t *mask,
         }
       }
 
-      if (op->lock_alpha) {
+      if (op->lock_alpha && op->color_a != 0) {
         draw_dab_pixels_BlendMode_LockAlpha(mask, rgba_p,
                                             op->color_r, op->color_g, op->color_b,
                                             op->lock_alpha*op->opaque*(1 - op->colorize)*(1 - op->posterize)*(1 - op->paint)*(1<<15));
@@ -485,7 +485,7 @@ process_op(uint16_t *rgba_p, uint16_t *mask,
         }
       }
 
-      if (op->lock_alpha) {
+      if (op->lock_alpha && op->color_a != 0) {
         draw_dab_pixels_BlendMode_LockAlpha_Paint(mask, rgba_p,
                                             op->color_r, op->color_g, op->color_b,
                                             op->lock_alpha*op->opaque*(1 - op->colorize)*(1 - op->posterize)*op->paint*(1<<15));

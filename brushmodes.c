@@ -16,7 +16,7 @@
 
 #include "config.h"
 
-#include <stdint.h>
+#include <stdlib.h>
 #include <assert.h>
 #include <math.h>
 #include "fastapprox/fastpow.h"
@@ -532,6 +532,15 @@ void get_color_pixels_legacy (
 // Sum up the color/alpha components inside the masked region.
 // Called by get_color().
 //
+// The sample interval guarantees that every n pixels are sampled in
+// the provided mask segment.
+// Setting the interval to 1 means that all pixels will be sampled,
+// but note that this may result in large rounding errors.
+//
+// The sample rate is the probability of any pixel being sampled,
+// with the exception of the guaranteed ones. Range: 0.0..1.0.
+// The random sample rate can be set to 0, in which case no random
+// sampling will occur.
 void get_color_pixels_accumulate (uint16_t * mask,
                                   uint16_t * rgba,
                                   float * sum_weight,
@@ -539,7 +548,9 @@ void get_color_pixels_accumulate (uint16_t * mask,
                                   float * sum_g,
                                   float * sum_b,
                                   float * sum_a,
-                                  float paint
+                                  float paint,
+                                  uint16_t sample_interval,
+                                  float random_sample_rate
                                   ) {
   // Fall back to legacy sampling if using static 0 paint setting
   // Indicated by passing a negative paint factor (normal range 0..1)
@@ -563,39 +574,40 @@ void get_color_pixels_accumulate (uint16_t * mask,
   // This sampling _is_ biased (but hopefully not too bad).
   // Ideally, the selection of pixels to be sampled should
   // be determined before this function is called.
-  uint8_t pixel_index = 0;
-  const uint8_t sample_every_n = 31;
+  uint16_t interval_counter = 0;
+  const int random_sample_threshold = (int)(random_sample_rate * RAND_MAX);
 
   while (1) {
     for (; mask[0]; mask++, rgba+=4) {
-      // Sample every n pixels, and skip 90% of the rest
+      // Sample every n pixels, and a percentage of the rest.
       // At least one pixel (the first) will always be sampled.
-      pixel_index = (pixel_index + 1) % sample_every_n;
-      if (pixel_index != 1 && rand() % 10 > 0) {
-        continue;
-      }
-      float a = (float)mask[0] * rgba[3] / (1<<30);
-      float alpha_sums = a + *sum_a;
-      *sum_weight += (float)mask[0] / (1<<15);
-      float fac_a, fac_b;
-      fac_a = fac_b = 1.0f;
-      if (alpha_sums > 0.0f) {
-        fac_a = a / alpha_sums;
-        fac_b = 1.0 - fac_a;
-      }
-      if (paint > 0.0f && rgba[3] > 0) {
-        float spectral[10] = {0};
-        rgb_to_spectral((float)rgba[0] / rgba[3], (float)rgba[1] / rgba[3], (float)rgba[2] / rgba[3], spectral);
-        for (int i=0; i<10; i++) {
-          avg_spectral[i] = fastpow(spectral[i], fac_a) * fastpow(avg_spectral[i], fac_b);
+      if (interval_counter == 0 || rand() < random_sample_threshold) {
+
+        float a = (float)mask[0] * rgba[3] / (1 << 30);
+        float alpha_sums = a + *sum_a;
+        *sum_weight += (float)mask[0] / (1 << 15);
+        float fac_a, fac_b;
+        fac_a = fac_b = 1.0f;
+        if (alpha_sums > 0.0f) {
+          fac_a = a / alpha_sums;
+          fac_b = 1.0 - fac_a;
         }
-      }
-      if (paint < 1.0f && rgba[3] > 0) {
-        for (int i=0; i<3; i++) {
-          avg_rgb[i] = (float)rgba[i] * fac_a / rgba[3] + (float)avg_rgb[i] * fac_b;
+        if (paint > 0.0f && rgba[3] > 0) {
+          float spectral[10] = {0};
+          rgb_to_spectral((float)rgba[0] / rgba[3], (float)rgba[1] / rgba[3], (float)rgba[2] / rgba[3], spectral);
+
+          for (int i = 0; i < 10; i++) {
+            avg_spectral[i] = fastpow(spectral[i], fac_a) * fastpow(avg_spectral[i], fac_b);
+          }
         }
+        if (paint < 1.0f && rgba[3] > 0) {
+          for (int i = 0; i < 3; i++) {
+            avg_rgb[i] = (float)rgba[i] * fac_a / rgba[3] + (float)avg_rgb[i] * fac_b;
+          }
+        }
+        *sum_a += a;
       }
-      *sum_a += a;
+      interval_counter = (interval_counter + 1) % sample_interval;
     }
     if (!mask[1]) break;
     rgba += mask[1];

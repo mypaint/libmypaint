@@ -807,6 +807,27 @@ void get_color (MyPaintSurface *surface, float x, float y,
     int tiles_n = (tx2 - tx1) * (ty2 - ty1);
     #endif
 
+    // Calculate the `guaranteed sample` interval and
+    // the percentage of pixels to sample for the dab.
+    // The basic idea is to have larger intervals and
+    // lower percentages for really large dabs, to
+    // avoid accumulated rounding errors and heavier
+    // calculations.
+    //
+    // The values are set so that the number of pixels
+    // sampled is _bounded_ linearly by the radius.
+    //
+    // The constant factor 7 is chosen through manual
+    // evaluation of results and gives us a total sample
+    // rate bounded by '1/(r * 3.5)'
+    // Other models may have better properties, some
+    // more thinking needed here.
+    //
+    // For really small radii we'll sample every pixel
+    // in the dab to avoid biasing.
+    const int sample_interval = radius <= 2.0f ? 1 : (int)(radius * 7);
+    const float random_sample_rate = 1.0f / (7 * radius);
+
     #pragma omp parallel for schedule(static) if(self->threadsafe_tile_requests && tiles_n > 3)
     for (int ty = ty1; ty <= ty2; ty++) {
       for (int tx = tx1; tx <= tx2; tx++) {
@@ -839,8 +860,9 @@ void get_color (MyPaintSurface *surface, float x, float y,
         // TODO: try atomic operations instead
         #pragma omp critical
         {
-        get_color_pixels_accumulate (mask, rgba_p,
-                                     &sum_weight, &sum_r, &sum_g, &sum_b, &sum_a, paint);
+        get_color_pixels_accumulate (
+          mask, rgba_p, &sum_weight, &sum_r, &sum_g, &sum_b, &sum_a, paint,
+          sample_interval, random_sample_rate);
         }
 
         mypaint_tiled_surface_tile_request_end(self, &request_data);

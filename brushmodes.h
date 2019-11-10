@@ -1,6 +1,8 @@
 #ifndef BRUSHMODES_H
 #define BRUSHMODES_H
 
+#include <stdint.h>
+
 void draw_dab_pixels_BlendMode_Normal (uint16_t * mask,
                                        uint16_t * rgba,
                                        uint16_t color_r,
@@ -64,7 +66,9 @@ void get_color_pixels_accumulate (uint16_t * mask,
                                   float * sum_g,
                                   float * sum_b,
                                   float * sum_a,
-                                  float paint
+                                  float paint,
+                                  int sample_interval,
+                                  float random_sample_rate
                                   );
 
 

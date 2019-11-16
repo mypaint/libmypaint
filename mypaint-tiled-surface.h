@@ -5,6 +5,8 @@
 #include "mypaint-surface.h"
 #include "mypaint-config.h"
 
+#define NUM_BBOXES_DEFAULT 32
+
 typedef enum {
     MYPAINT_SYMMETRY_TYPE_VERTICAL,
     MYPAINT_SYMMETRY_TYPE_HORIZONTAL,
@@ -54,7 +56,10 @@ struct MyPaintTiledSurface {
     float surface_center_y;
     int rot_symmetry_lines;
     struct OperationQueue *operation_queue;
-    MyPaintRectangle dirty_bbox;
+    int num_bboxes;
+    int num_bboxes_dirtied;
+    MyPaintRectangle *bboxes;
+    MyPaintRectangle default_bboxes[NUM_BBOXES_DEFAULT];
     gboolean threadsafe_tile_requests;
     int tile_size;
 };
@@ -79,7 +84,7 @@ void mypaint_tiled_surface_tile_request_start(MyPaintTiledSurface *self, MyPaint
 void mypaint_tiled_surface_tile_request_end(MyPaintTiledSurface *self, MyPaintTileRequest *request);
 
 void mypaint_tiled_surface_begin_atomic(MyPaintTiledSurface *self);
-void mypaint_tiled_surface_end_atomic(MyPaintTiledSurface *self, MyPaintRectangle *roi);
+void mypaint_tiled_surface_end_atomic(MyPaintTiledSurface *self, MyPaintRectangles *roi);
 
 G_END_DECLS
 

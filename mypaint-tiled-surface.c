@@ -19,6 +19,7 @@
 #include <math.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include <assert.h>
 
 #ifdef _OPENMP
@@ -45,9 +46,44 @@ begin_atomic_default(MyPaintSurface *surface)
 }
 
 static void
-end_atomic_default(MyPaintSurface *surface, MyPaintRectangle *roi)
+end_atomic_default(MyPaintSurface *surface, MyPaintRectangles *roi)
 {
     mypaint_tiled_surface_end_atomic((MyPaintTiledSurface *)surface, roi);
+}
+
+void
+prepare_bounding_boxes(MyPaintTiledSurface *self) {
+    const gboolean snowflake = self->symmetry_type == MYPAINT_SYMMETRY_TYPE_SNOWFLAKE;
+    const int num_bboxes_desired = self->rot_symmetry_lines * (snowflake ? 2 : 1);
+    // If the bounding box array cannot fit one rectangle per symmetry dab,
+    // try to allocate enough space for that to be possible.
+    // Failure is ok, as the bounding box assignments will be functional anyway.
+    if (num_bboxes_desired > self->num_bboxes) {
+        const int margin = 10; // Add margin to avoid unnecessary reallocations.
+        const int num_to_allocate = num_bboxes_desired + margin;
+        int bytes_to_allocate = num_to_allocate * sizeof(MyPaintRectangle);
+        MyPaintRectangle* new_bboxes = malloc(bytes_to_allocate);
+        if (new_bboxes) {
+            if (self->num_bboxes > NUM_BBOXES_DEFAULT) {
+                // Free previous allocation
+                free(self->bboxes);
+            }
+            // Initialize memory
+            memset(new_bboxes, 0, bytes_to_allocate);
+            self->bboxes = new_bboxes;
+            self->num_bboxes = num_to_allocate;
+            // No need to clear anything after the memset, so reset counter
+            self->num_bboxes_dirtied = 0;
+        }
+    }
+    // Clean up any previously populated bounding boxes and reset the counter
+    for (int i = 0; i < MIN(self->num_bboxes, self->num_bboxes_dirtied); ++i) {
+        self->bboxes[i].height = 0;
+        self->bboxes[i].width = 0;
+        self->bboxes[i].x = 0;
+        self->bboxes[i].y = 0;
+    }
+    self->num_bboxes_dirtied = 0;
 }
 
 /**
@@ -61,10 +97,7 @@ end_atomic_default(MyPaintSurface *surface, MyPaintRectangle *roi)
 void
 mypaint_tiled_surface_begin_atomic(MyPaintTiledSurface *self)
 {
-    self->dirty_bbox.height = 0;
-    self->dirty_bbox.width = 0;
-    self->dirty_bbox.y = 0;
-    self->dirty_bbox.x = 0;
+    prepare_bounding_boxes(self);
 }
 
 /**
@@ -76,7 +109,7 @@ mypaint_tiled_surface_begin_atomic(MyPaintTiledSurface *self)
  * Application code should only use mypaint_surface_end_atomic().
  */
 void
-mypaint_tiled_surface_end_atomic(MyPaintTiledSurface *self, MyPaintRectangle *roi)
+mypaint_tiled_surface_end_atomic(MyPaintTiledSurface *self, MyPaintRectangles *roi)
 {
     // Process tiles
     TileIndex *tiles;
@@ -90,7 +123,30 @@ mypaint_tiled_surface_end_atomic(MyPaintTiledSurface *self, MyPaintRectangle *ro
     operation_queue_clear_dirty_tiles(self->operation_queue);
 
     if (roi) {
-        *roi = self->dirty_bbox;
+        const int roi_rects = roi->num_rectangles;
+        const int num_dirty = self->num_bboxes_dirtied;
+        // Clear out the input rectangles that will be overwritten
+        for (int i = 0; i < MIN(roi_rects, num_dirty); ++i) {
+            roi->rectangles[i].x = 0;
+            roi->rectangles[i].y = 0;
+            roi->rectangles[i].width = 0;
+            roi->rectangles[i].height = 0;
+        }
+        // Write bounding box rectangles to the output array
+        const float bboxes_per_output = MAX(1, (float)num_dirty / roi_rects);
+        for (int i = 0; i < num_dirty; ++i) {
+            int out_index;
+            // If there is not enough space for all rectangles in the output,
+            // merge some of the rectangles with their list-adjacent neighbours.
+            if (num_dirty > roi_rects) {
+                out_index = (int)MIN(roi_rects - 1, roundf((float)i / bboxes_per_output));
+            } else {
+                out_index = i;
+            }
+            mypaint_rectangle_expand_to_include_rect(&(roi->rectangles[out_index]), &(self->bboxes[i]));
+        }
+        // Set the number of rectangles written to, so the caller knows which ones to act on.
+        roi->num_rectangles = MIN(roi_rects, num_dirty);
     }
 }
 
@@ -536,10 +592,8 @@ process_tile(MyPaintTiledSurface *self, int tx, int ty)
     mypaint_tiled_surface_tile_request_end(self, &request_data);
 }
 
-// OPTIMIZE: send a list of the exact changed rects instead of a bounding box
-// to minimize the area being composited? Profile to see the effect first.
 void
-update_dirty_bbox(MyPaintTiledSurface *self, OperationDataDrawDab *op)
+update_dirty_bbox(MyPaintRectangle *bbox, OperationDataDrawDab *op)
 {
     int bb_x, bb_y, bb_w, bb_h;
     float r_fringe = op->radius + 1.0f; // +1.0 should not be required, only to be sure
@@ -548,8 +602,8 @@ update_dirty_bbox(MyPaintTiledSurface *self, OperationDataDrawDab *op)
     bb_w = floor (op->x + r_fringe) - bb_x + 1;
     bb_h = floor (op->y + r_fringe) - bb_y + 1;
 
-    mypaint_rectangle_expand_to_include_point(&self->dirty_bbox, bb_x, bb_y);
-    mypaint_rectangle_expand_to_include_point(&self->dirty_bbox, bb_x+bb_w-1, bb_y+bb_h-1);
+    mypaint_rectangle_expand_to_include_point(bbox, bb_x, bb_y);
+    mypaint_rectangle_expand_to_include_point(bbox, bb_x+bb_w-1, bb_y+bb_h-1);
 }
 
 // returns TRUE if the surface was modified
@@ -563,7 +617,8 @@ gboolean draw_dab_internal (MyPaintTiledSurface *self, float x, float y,
                float colorize,
                float posterize,
                float posterize_num,
-               float paint
+               float paint,
+               int bbox_index
                )
 
 {
@@ -622,10 +677,11 @@ gboolean draw_dab_internal (MyPaintTiledSurface *self, float x, float y,
         }
     }
 
-    update_dirty_bbox(self, op);
+    update_dirty_bbox(&self->bboxes[bbox_index], op);
 
     return TRUE;
 }
+
 
 // returns TRUE if the surface was modified
 int draw_dab (MyPaintSurface *surface, float x, float y,
@@ -640,137 +696,120 @@ int draw_dab (MyPaintSurface *surface, float x, float y,
                float posterize_num,
                float paint)
 {
-  MyPaintTiledSurface *self = (MyPaintTiledSurface *)surface;
+    MyPaintTiledSurface* self = (MyPaintTiledSurface*)surface;
 
-  gboolean surface_modified = FALSE;
+    // These calls are repeated enough to warrant a local macro, for both readability and correctness.
+#define DDI(x, y, angle, bb_idx) (draw_dab_internal(\
+        self, (x), (y), radius, color_r, color_g, color_b, opaque, \
+	hardness, color_a, aspect_ratio, (angle), \
+	lock_alpha, colorize, posterize, posterize_num, paint, (bb_idx)))
 
-  // Normal pass
-  if (draw_dab_internal(self, x, y, radius, color_r, color_g, color_b,
-                        opaque, hardness, color_a, aspect_ratio, angle,
-                        lock_alpha, colorize, posterize, posterize_num, paint)) {
-      surface_modified = TRUE;
-  }
+    // Normal pass
+    gboolean surface_modified = DDI(x, y, angle, 0);
 
-  // Symmetry pass
-  if(self->surface_do_symmetry) {
-    const float dist_x = (self->surface_center_x - x);
-    const float dist_y = (self->surface_center_y - y);
-    const float symm_x = self->surface_center_x + dist_x;
-    const float symm_y = self->surface_center_y + dist_y;
+    int num_bboxes_used = surface_modified ? 1 : 0;
 
-    const float dab_dist = sqrt(dist_x * dist_x + dist_y * dist_y);
-    const float rot_width = 360.0 / ((float) self->rot_symmetry_lines);
-    const float dab_angle_offset = atan2(-dist_y, -dist_x) / (2 * M_PI) * 360.0;
+    // Symmetry pass
 
-    int dab_count = 1;
-    int sub_dab_count = 0;
+    // OPTIMIZATION: skip the symmetry pass if surface was not modified by the initial dab;
+    // at current if the initial dab does not modify the surface, none of the symmetry dabs
+    // will either. If/when selection masks are added, this optimization _must_ be removed,
+    // and `surface_modified` must be or'ed with the result of each call to draw_dab_internal.
+    if (surface_modified && self->surface_do_symmetry) {
 
-      switch(self->symmetry_type) {
-          case MYPAINT_SYMMETRY_TYPE_VERTICAL:
-            if (draw_dab_internal(self, symm_x, y, radius, color_r, color_g, color_b,
-                                   opaque, hardness, color_a, aspect_ratio, -angle,
-                                   lock_alpha, colorize, posterize, posterize_num, paint)) {
-                surface_modified = TRUE;
-            }
+        const int symm_lines = self->rot_symmetry_lines;
+        const int num_bboxes = self->num_bboxes;
+
+        const float dist_x = (self->surface_center_x - x);
+        const float dist_y = (self->surface_center_y - y);
+        const float symm_x = self->surface_center_x + dist_x;
+        const float symm_y = self->surface_center_y + dist_y;
+
+        const float dab_dist = sqrt(dist_x * dist_x + dist_y * dist_y);
+        const float rot_width = 360.0 / symm_lines;
+        const float dab_angle_offset = atan2(-dist_y, -dist_x) / (2 * M_PI) * 360.0;
+
+        switch (self->symmetry_type) {
+        case MYPAINT_SYMMETRY_TYPE_VERTICAL: {
+            DDI(symm_x, y, -angle, 1);
+            num_bboxes_used = 2;
             break;
-
-          case MYPAINT_SYMMETRY_TYPE_HORIZONTAL:
-            if (draw_dab_internal(self, x, symm_y, radius, color_r, color_g, color_b,
-                                   opaque, hardness, color_a, aspect_ratio, angle + 180.0,
-                                   lock_alpha, colorize, posterize, posterize_num, paint)) {
-                surface_modified = TRUE;
-            }
+        }
+        case MYPAINT_SYMMETRY_TYPE_HORIZONTAL: {
+            DDI(x, symm_y, angle + 180.0, 1);
+            num_bboxes_used = 2;
             break;
-
-          case MYPAINT_SYMMETRY_TYPE_VERTHORZ:
-            // reflect vertically
-            if (draw_dab_internal(self, symm_x, y, radius, color_r, color_g, color_b,
-                                   opaque, hardness, color_a, aspect_ratio, -angle,
-                                   lock_alpha, colorize, posterize, posterize_num, paint)) {
-                dab_count++;
-            }
-            // reflect horizontally
-            if (draw_dab_internal(self, x, symm_y, radius, color_r, color_g, color_b,
-                                   opaque, hardness, color_a, aspect_ratio, angle + 180.0,
-                                   lock_alpha, colorize, posterize, posterize_num, paint)) {
-                dab_count++;
-            }
-            // reflect horizontally and vertically
-            if (draw_dab_internal(self, symm_x, symm_y, radius, color_r, color_g, color_b,
-                                   opaque, hardness, color_a, aspect_ratio, -angle - 180.0,
-                                   lock_alpha, colorize, posterize, posterize_num, paint)) {
-                dab_count++;
-            }
-            if (dab_count == 4) {
-                surface_modified = TRUE;
-            }
+        }
+        case MYPAINT_SYMMETRY_TYPE_VERTHORZ: {
+            DDI(symm_x, y, -angle, 1); // Vertical reflection
+            DDI(x, symm_y, angle + 180, 2); // Horizontal reflection
+            DDI(symm_x, symm_y, -angle - 180, 3); // Diagonal reflection
+            num_bboxes_used = 4;
             break;
-          case MYPAINT_SYMMETRY_TYPE_SNOWFLAKE: {
-                gboolean failed_subdabs = FALSE;
+        }
+        case MYPAINT_SYMMETRY_TYPE_SNOWFLAKE: {
 
-                // draw self->rot_symmetry_lines snowflake dabs
-                // because the snowflaked version of the initial dab
-                // was not done through carrying out the initial pass
-                for (sub_dab_count = 0; sub_dab_count < self->rot_symmetry_lines; sub_dab_count++) {
-                    // calculate the offset from rotational symmetry
-                    const float symmetry_angle_offset = ((float)sub_dab_count) * rot_width;
+            // These dabs will occupy the bboxes after the last bbox used by the rotational dabs.
+            const int offset = MIN(num_bboxes / 2, symm_lines);
+            const float dabs_per_bbox = MAX(1, (float)symm_lines * 2.0 / num_bboxes);
 
-                    // subtract the angle offset since we're progressing clockwise
-                    const float cur_angle = symmetry_angle_offset - dab_angle_offset;
+            // draw snowflake dabs for _all_ symmetry lines as we need to reflect the initial dab.
+            for (int dab_count = 0; dab_count < symm_lines; dab_count++) {
 
-                    // progress through the rotation angle offsets clockwise
-                    // to reflect the dab relative to itself
-                    const float rot_x = self->surface_center_x - dab_dist*cos(cur_angle / 180.0 * M_PI);
-                    const float rot_y = self->surface_center_y - dab_dist*sin(cur_angle / 180.0 * M_PI);
+                // calculate the offset from rotational symmetry
+                const float symmetry_angle_offset = ((float)dab_count) * rot_width;
 
-                    if (!draw_dab_internal(self, rot_x, rot_y, radius, color_r, color_g, color_b,
-                                           opaque, hardness, color_a,
-                                           aspect_ratio, -angle + symmetry_angle_offset,
-                                           lock_alpha, colorize, posterize, posterize_num, paint)) {
-                        failed_subdabs = TRUE;
-                        break;
-                    }
-                }
+                // subtract the angle offset since we're progressing clockwise
+                const float cur_angle = symmetry_angle_offset - dab_angle_offset;
 
-                // do not bother falling to rotational if the snowflaked dabs failed
-                if (failed_subdabs) {
-                    break;
-                }
-                // if it succeeded, fallthrough to rotational to finish the process
+                // progress through the rotation angle offsets clockwise to reflect the dab relative to itself
+                const float rot_x = self->surface_center_x - dab_dist * cos(cur_angle / 180.0 * M_PI);
+                const float rot_y = self->surface_center_y - dab_dist * sin(cur_angle / 180.0 * M_PI);
+
+                // If the number of bboxes cannot fit all snowflake dabs, use half for the rotational dabs
+                // and the other half for the reflected dabs. This is not always optimal, but seldom bad.
+                const int bbox_idx = offset + MIN(roundf(dab_count / dabs_per_bbox), num_bboxes - 1);
+                DDI(rot_x, rot_y, -angle + symmetry_angle_offset, bbox_idx);
+            }
+            num_bboxes_used = MIN(self->num_bboxes, symm_lines * 2);
+            // fall through to rotational to finish the process
+        }
+        case MYPAINT_SYMMETRY_TYPE_ROTATIONAL: {
+
+            // Set the dab bbox distribution factor based on whether the pass is only
+            // rotational, or following a snowflake pass. For the latter, we compress
+            // the available range (unimportant if there are enough bboxes to go around).
+            const gboolean snowflake = self->symmetry_type == MYPAINT_SYMMETRY_TYPE_SNOWFLAKE;
+            float dabs_per_bbox = MAX(1, (float)(symm_lines * (snowflake ? 2 : 1)) / num_bboxes);
+
+            // draw self->rot_symmetry_lines - 1 rotational dabs since initial pass handles the first dab
+            for (int dab_count = 1; dab_count < symm_lines; dab_count++) {
+                // calculate the offset from rotational symmetry
+                const float symmetry_angle_offset = ((float)dab_count) * rot_width;
+
+                // add the angle initial dab is from center point
+                const float cur_angle = symmetry_angle_offset + dab_angle_offset;
+
+                // progress through the rotation angle offsets counterclockwise
+                const float rot_x = self->surface_center_x + dab_dist * cos(cur_angle / 180.0 * M_PI);
+                const float rot_y = self->surface_center_y + dab_dist * sin(cur_angle / 180.0 * M_PI);
+
+                const int bbox_index = MIN(roundf(dab_count / dabs_per_bbox), num_bboxes - 1);
+                DDI(rot_x, rot_y, angle + symmetry_angle_offset, bbox_index);
             }
 
-          case MYPAINT_SYMMETRY_TYPE_ROTATIONAL: {
-                // draw self-rot_symmetry_lines rotational dabs
-                // since initial pass handles the first dab
-                for (dab_count = 1; dab_count < self->rot_symmetry_lines; dab_count++)
-                {
-                    // calculate the offset from rotational symmetry
-                    const float symmetry_angle_offset = ((float)dab_count) * rot_width;
-
-                    // add the angle initial dab is from center point
-                    const float cur_angle = symmetry_angle_offset + dab_angle_offset;
-
-                    // progress through the rotation cangle offsets counterclockwise
-                    const float rot_x = self->surface_center_x + dab_dist*cos(cur_angle / 180.0 * M_PI);
-                    const float rot_y = self->surface_center_y + dab_dist*sin(cur_angle / 180.0 * M_PI);
-
-                    if (!draw_dab_internal(self, rot_x, rot_y, radius, color_r, color_g, color_b,
-                                           opaque, hardness, color_a, aspect_ratio,
-                                           angle + symmetry_angle_offset,
-                                           lock_alpha, colorize, posterize, posterize_num, paint)) {
-                        break;
-                    }
-                }
-                if (dab_count == self->rot_symmetry_lines) {
-                    surface_modified = TRUE;
-                }
-                break;
-            }
-      }
-
-  }
-
-  return surface_modified;
+            // Use existing (larger) number of bboxes if it was set (in a snowflake pass)
+            num_bboxes_used = MIN(self->num_bboxes, MAX(symm_lines, num_bboxes_used));
+            break;
+        }
+        default:
+            fprintf(stderr, "Warning: Unhandled symmetry type: %d\n", self->symmetry_type);
+            break;
+        }
+    }
+    self->num_bboxes_dirtied = MIN(self->num_bboxes, num_bboxes_used);
+    return surface_modified;
+#undef DDI
 }
 
 
@@ -921,10 +960,10 @@ mypaint_tiled_surface_init(MyPaintTiledSurface *self,
     self->tile_size = MYPAINT_TILE_SIZE;
     self->threadsafe_tile_requests = FALSE;
 
-    self->dirty_bbox.x = 0;
-    self->dirty_bbox.y = 0;
-    self->dirty_bbox.width = 0;
-    self->dirty_bbox.height = 0;
+    self->num_bboxes = NUM_BBOXES_DEFAULT;
+    self->bboxes = self->default_bboxes;
+    memset(self->bboxes, 0, sizeof(MyPaintRectangle) * NUM_BBOXES_DEFAULT);
+
     self->surface_do_symmetry = FALSE;
     self->symmetry_type = MYPAINT_SYMMETRY_TYPE_VERTICAL;
     self->surface_center_x = 0.0f;
@@ -944,4 +983,8 @@ void
 mypaint_tiled_surface_destroy(MyPaintTiledSurface *self)
 {
     operation_queue_free(self->operation_queue);
+    if (self->bboxes != self->default_bboxes) {
+      // Free allocated bounding box memory
+      free(self->bboxes);
+    }
 }

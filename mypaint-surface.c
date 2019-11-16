@@ -120,12 +120,14 @@ mypaint_surface_begin_atomic(MyPaintSurface *self)
 
 /**
  * mypaint_surface_end_atomic:
- * @roi: (out) (allow-none) (transfer none): Place to put invalidated rectangle
+ * @roi: (out) (allow-none) (transfer none): Invalidated rectangles will be stored here.
+ * The value of roi->num_rectangles must be at least 1, and roi->rectangles must point to
+ * sufficient accessible memory to contain n = roi->num_rectangles of MyPaintRectangle structs.
  *
  * Returns: s
  */
 void
-mypaint_surface_end_atomic(MyPaintSurface *self, MyPaintRectangle *roi)
+mypaint_surface_end_atomic(MyPaintSurface *self, MyPaintRectangles *roi)
 {
     assert(self->end_atomic);
     self->end_atomic(self, roi);

@@ -726,8 +726,9 @@ int draw_dab (MyPaintSurface *surface, float x, float y,
         const float symm_y = self->surface_center_y + dist_y;
 
         const float dab_dist = sqrt(dist_x * dist_x + dist_y * dist_y);
-        const float rot_width = 360.0 / symm_lines;
-        const float dab_angle_offset = atan2(-dist_y, -dist_x) / (2 * M_PI) * 360.0;
+        // Angles in radians
+        const float rot_width = (M_PI * 2) / symm_lines;
+        const float dab_angle_offset = atan2(-dist_y, -dist_x);
 
         switch (self->symmetry_type) {
         case MYPAINT_SYMMETRY_TYPE_VERTICAL: {
@@ -736,7 +737,7 @@ int draw_dab (MyPaintSurface *surface, float x, float y,
             break;
         }
         case MYPAINT_SYMMETRY_TYPE_HORIZONTAL: {
-            DDI(x, symm_y, angle + 180.0, 1);
+            DDI(x, symm_y, angle + 180, 1);
             num_bboxes_used = 2;
             break;
         }
@@ -763,13 +764,13 @@ int draw_dab (MyPaintSurface *surface, float x, float y,
                 const float cur_angle = symmetry_angle_offset - dab_angle_offset;
 
                 // progress through the rotation angle offsets clockwise to reflect the dab relative to itself
-                const float rot_x = self->surface_center_x - dab_dist * cos(cur_angle / 180.0 * M_PI);
-                const float rot_y = self->surface_center_y - dab_dist * sin(cur_angle / 180.0 * M_PI);
+                const float rot_x = self->surface_center_x - dab_dist * cos(cur_angle);
+                const float rot_y = self->surface_center_y - dab_dist * sin(cur_angle);
 
                 // If the number of bboxes cannot fit all snowflake dabs, use half for the rotational dabs
                 // and the other half for the reflected dabs. This is not always optimal, but seldom bad.
                 const int bbox_idx = offset + MIN(roundf(dab_count / dabs_per_bbox), num_bboxes - 1);
-                DDI(rot_x, rot_y, -angle + symmetry_angle_offset, bbox_idx);
+                DDI(rot_x, rot_y, -angle + symmetry_angle_offset * (180.0f / M_PI), bbox_idx);
             }
             num_bboxes_used = MIN(self->num_bboxes, symm_lines * 2);
             // fall through to rotational to finish the process
@@ -791,11 +792,11 @@ int draw_dab (MyPaintSurface *surface, float x, float y,
                 const float cur_angle = symmetry_angle_offset + dab_angle_offset;
 
                 // progress through the rotation angle offsets counterclockwise
-                const float rot_x = self->surface_center_x + dab_dist * cos(cur_angle / 180.0 * M_PI);
-                const float rot_y = self->surface_center_y + dab_dist * sin(cur_angle / 180.0 * M_PI);
+                const float rot_x = self->surface_center_x + dab_dist * cos(cur_angle);
+                const float rot_y = self->surface_center_y + dab_dist * sin(cur_angle);
 
                 const int bbox_index = MIN(roundf(dab_count / dabs_per_bbox), num_bboxes - 1);
-                DDI(rot_x, rot_y, angle + symmetry_angle_offset, bbox_index);
+                DDI(rot_x, rot_y, angle + symmetry_angle_offset * (180.0f / M_PI), bbox_index);
             }
 
             // Use existing (larger) number of bboxes if it was set (in a snowflake pass)

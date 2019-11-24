@@ -429,6 +429,92 @@ mypaint_brush_set_state(MyPaintBrush *self, MyPaintBrushState i, float value)
     }
   }
 
+typedef struct {
+  float x;
+  float y;
+} Offsets;
+
+Offsets directional_offsets(MyPaintBrush *self, float base_radius) {
+    const float offset_mult = expf(self->settings_value[MYPAINT_BRUSH_SETTING_OFFSET_MULTIPLIER]);
+    // Sanity check - it is easy to reach infinite multipliers w. logarithmic parameters
+    if (!isfinite(offset_mult)) {
+        Offsets offs = {0.0f, 0.0f};
+        return offs;
+    }
+
+    float dx = self->settings_value[MYPAINT_BRUSH_SETTING_OFFSET_X];
+    float dy = self->settings_value[MYPAINT_BRUSH_SETTING_OFFSET_Y];
+
+    //Anti_Art offsets tweaked by BrienD.  Adjusted with ANGLE_ADJ and OFFSET_MULTIPLIER
+    const float offset_angle_adj = self->settings_value[MYPAINT_BRUSH_SETTING_OFFSET_ANGLE_ADJ];
+    const float dir_angle_dy = self->states[MYPAINT_BRUSH_STATE_DIRECTION_ANGLE_DY];
+    const float dir_angle_dx = self->states[MYPAINT_BRUSH_STATE_DIRECTION_ANGLE_DX];
+    const float angle_deg = fmodf(atan2f(dir_angle_dy, dir_angle_dx) / (2 * M_PI) * 360 - 90, 360);
+
+    //offset to one side of direction
+    const float offset_angle = self->settings_value[MYPAINT_BRUSH_SETTING_OFFSET_ANGLE];
+    if (offset_angle) {
+        const float dir_angle = RADIANS(angle_deg + offset_angle_adj);
+        dx += cos(dir_angle) * offset_angle;
+        dy += sin(dir_angle) * offset_angle;
+    }
+
+    //offset to one side of ascension angle
+    const float view_rotation = self->states[MYPAINT_BRUSH_STATE_VIEWROTATION];
+    const float offset_angle_asc = self->settings_value[MYPAINT_BRUSH_SETTING_OFFSET_ANGLE_ASC];
+    if (offset_angle_asc) {
+        const float ascension = self->states[MYPAINT_BRUSH_STATE_ASCENSION];
+        const float asc_angle = RADIANS(ascension - view_rotation + offset_angle_adj);
+        dx += cos(asc_angle) * offset_angle_asc;
+        dy += sin(asc_angle) * offset_angle_asc;
+      }
+
+    //offset to one side of view orientation
+    const float view_offset = self->settings_value[MYPAINT_BRUSH_SETTING_OFFSET_ANGLE_VIEW];
+    if (view_offset) {
+        const float view_angle = RADIANS(view_rotation + offset_angle_adj);
+        dx += cos(-view_angle) * view_offset;
+        dy += sin(-view_angle) * view_offset;
+    }
+
+    //offset mirrored to sides of direction
+    const float offset_dir_mirror = MAX(0.0, self->settings_value[MYPAINT_BRUSH_SETTING_OFFSET_ANGLE_2]);
+    if (offset_dir_mirror) {
+        const float brush_flip = self->states[MYPAINT_BRUSH_STATE_FLIP];
+        const float dir_mirror_angle = RADIANS(angle_deg + offset_angle_adj * brush_flip);
+        const float offset_factor = offset_dir_mirror * brush_flip;
+        dx += cos(dir_mirror_angle) * offset_factor;
+        dy += sin(dir_mirror_angle) * offset_factor;
+    }
+
+    //offset mirrored to sides of ascension angle
+    const float offset_asc_mirror = MAX(0.0, self->settings_value[MYPAINT_BRUSH_SETTING_OFFSET_ANGLE_2_ASC]);
+    if (offset_asc_mirror) {
+        const float ascension = self->states[MYPAINT_BRUSH_STATE_ASCENSION];
+        const float brush_flip = self->states[MYPAINT_BRUSH_STATE_FLIP];
+        const float asc_angle = RADIANS(ascension - view_rotation + offset_angle_adj * brush_flip);
+        const float offset_factor = brush_flip * offset_asc_mirror;
+        dx += cos(asc_angle) * offset_factor;
+        dy += sin(asc_angle) * offset_factor;
+    }
+
+    //offset mirrored to sides of view orientation
+    const float offset_view_mirror = MAX(0.0, self->settings_value[MYPAINT_BRUSH_SETTING_OFFSET_ANGLE_2_VIEW]);
+    if (offset_view_mirror) {
+        const float brush_flip = self->states[MYPAINT_BRUSH_STATE_FLIP];
+        const float offset_factor = brush_flip * offset_view_mirror;
+        const float offset_angle_rad = RADIANS(view_rotation + offset_angle_adj);
+        dx += cos(-offset_angle_rad) * offset_factor;
+        dy += sin(-offset_angle_rad) * offset_factor;
+    }
+    // Clamp the final offsets to avoid potential memory issues (extreme memory use from redraws)
+    // Allow offsets up to the 1080 * 3 pixels. Unlikely to hamper anyone artistically.
+    const float lim = 3240;
+    const float base_mul = base_radius * offset_mult;
+    Offsets offs = {CLAMP(dx * base_mul, -lim, lim),  CLAMP(dy * base_mul, -lim, lim)};
+    return offs;
+}
+
 // Debugging: print brush inputs/states (not all of them)
 void print_inputs(MyPaintBrush *self, float* inputs)
 {
@@ -523,7 +609,6 @@ void print_inputs(MyPaintBrush *self, float* inputs)
     float base_radius = expf(mypaint_mapping_get_base_value(self->settings[MYPAINT_BRUSH_SETTING_RADIUS_LOGARITHMIC]));
     self->states[MYPAINT_BRUSH_STATE_BARREL_ROTATION] += step_barrel_rotation;
 
-    
     //first iteration is zero, set to 1, then flip to -1, back and forth
     //useful for Anti-Art's mirrored offset but could be useful elsewhere
     if (self->states[MYPAINT_BRUSH_STATE_FLIP] == 0) {
@@ -738,83 +823,13 @@ void print_inputs(MyPaintBrush *self, float* inputs)
 
     float x = self->states[MYPAINT_BRUSH_STATE_ACTUAL_X];
     float y = self->states[MYPAINT_BRUSH_STATE_ACTUAL_Y];
+
     float base_radius = expf(mypaint_mapping_get_base_value(self->settings[MYPAINT_BRUSH_SETTING_RADIUS_LOGARITHMIC]));
-    const float offset_mult = expf(self->settings_value[MYPAINT_BRUSH_SETTING_OFFSET_MULTIPLIER]);
-    const float base_mul = base_radius * offset_mult;
 
-    const float offset_x = self->settings_value[MYPAINT_BRUSH_SETTING_OFFSET_X];
-    if (offset_x) {
-      x += offset_x * base_mul;
-    }
-    const float offset_y = self->settings_value[MYPAINT_BRUSH_SETTING_OFFSET_Y];
-    if (offset_y) {
-      y += offset_y * base_mul;
-    }
-
-    //Anti_Art offsets tweaked by BrienD.  Adjusted with ANGLE_ADJ and OFFSET_MULTIPLIER
-    const float offset_angle_adj = self->settings_value[MYPAINT_BRUSH_SETTING_OFFSET_ANGLE_ADJ];
-    const float dir_angle_dy = self->states[MYPAINT_BRUSH_STATE_DIRECTION_ANGLE_DY];
-    const float dir_angle_dx = self->states[MYPAINT_BRUSH_STATE_DIRECTION_ANGLE_DX];
-    const float angle_deg = fmodf(atan2f(dir_angle_dy, dir_angle_dx) / (2 * M_PI) * 360 - 90, 360);
-
-    //offset to one side of direction
-    const float offset_angle = self->settings_value[MYPAINT_BRUSH_SETTING_OFFSET_ANGLE];
-    if (offset_angle) {
-        const float dir_angle = RADIANS(angle_deg + offset_angle_adj);
-        x += cos(dir_angle) * base_mul * offset_angle;
-        y += sin(dir_angle) * base_mul * offset_angle;
-    }
-
-    //offset to one side of ascension angle
-    const float view_rotation = self->states[MYPAINT_BRUSH_STATE_VIEWROTATION];
-    const float offset_angle_asc = self->settings_value[MYPAINT_BRUSH_SETTING_OFFSET_ANGLE_ASC];
-    if (offset_angle_asc) {
-        const float ascension = self->states[MYPAINT_BRUSH_STATE_ASCENSION];
-        const float asc_angle = RADIANS(ascension - view_rotation + offset_angle_adj);
-        const float offset_factor = base_mul * offset_angle_asc;
-        x += cos(asc_angle) * offset_factor;
-        y += sin(asc_angle) * offset_factor;
-      }
-
-    //offset to one side of view orientation
-    const float view_offset = self->settings_value[MYPAINT_BRUSH_SETTING_OFFSET_ANGLE_VIEW];
-    if (view_offset) {
-        const float view_angle = RADIANS(view_rotation + offset_angle_adj);
-        const float offset_factor = base_mul * view_offset;
-        x += cos(-view_angle) * offset_factor;
-        y += sin(-view_angle) * offset_factor;
-    }
-
-    //offset mirrored to sides of direction
-    const float offset_dir_mirror = MAX(0.0, self->settings_value[MYPAINT_BRUSH_SETTING_OFFSET_ANGLE_2]);
-    if (offset_dir_mirror) {
-        const float brush_flip = self->states[MYPAINT_BRUSH_STATE_FLIP];
-        const float dir_mirror_angle = RADIANS(angle_deg + offset_angle_adj * brush_flip);
-        const float offset_factor = base_mul * offset_dir_mirror * brush_flip;
-        x += cos(dir_mirror_angle) * offset_factor;
-        y += sin(dir_mirror_angle) * offset_factor;
-    }
-
-    //offset mirrored to sides of ascension angle
-    const float offset_asc_mirror = MAX(0.0, self->settings_value[MYPAINT_BRUSH_SETTING_OFFSET_ANGLE_2_ASC]);
-    if (offset_asc_mirror) {
-        const float ascension = self->states[MYPAINT_BRUSH_STATE_ASCENSION];
-        const float brush_flip = self->states[MYPAINT_BRUSH_STATE_FLIP];
-        const float asc_angle = RADIANS(ascension - view_rotation + offset_angle_adj * brush_flip);
-        const float offset_factor = base_mul * brush_flip * offset_asc_mirror;
-        x += cos(asc_angle) * offset_factor;
-        y += sin(asc_angle) * offset_factor;
-    }
-
-    //offset mirrored to sides of view orientation
-    const float offset_view_mirror = MAX(0.0, self->settings_value[MYPAINT_BRUSH_SETTING_OFFSET_ANGLE_2_VIEW]);
-    if (offset_view_mirror) {
-        const float brush_flip = self->states[MYPAINT_BRUSH_STATE_FLIP];
-        const float offset_factor = base_mul * brush_flip * offset_view_mirror;
-        const float offset_angle_rad = RADIANS(view_rotation + offset_angle_adj);
-        x += cos(-offset_angle_rad) * offset_factor;
-        y += sin(-offset_angle_rad) * offset_factor;
-    }
+    // Directional offsets
+    Offsets offs = directional_offsets(self, base_radius);
+    x += offs.x;
+    y += offs.y;
 
     const float view_zoom = self->states[MYPAINT_BRUSH_STATE_VIEWZOOM];
     const float offset_by_speed = self->settings_value[MYPAINT_BRUSH_SETTING_OFFSET_BY_SPEED];

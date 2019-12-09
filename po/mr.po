@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-12-11 16:08+0100\n"
-"PO-Revision-Date: 2019-02-27 00:18+0000\n"
-"Last-Translator: glixx <roman_romul@mail.ru>\n"
+"POT-Creation-Date: 2017-02-25 17:11+0000\n"
+"PO-Revision-Date: 2019-12-10 06:59+0000\n"
+"Last-Translator: Prachi Joshi <josprachi@yahoo.com>\n"
 "Language-Team: Marathi <https://hosted.weblate.org/projects/mypaint/"
 "libmypaint/mr/>\n"
 "Language: mr\n"
@@ -17,21 +17,23 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 3.5-dev\n"
+"X-Generator: Weblate 3.10-dev\n"
 
 #: ../brushsettings-gen.h:4
 msgid "Opacity"
-msgstr ""
+msgstr "अस्पष्टता"
 
 #: ../brushsettings-gen.h:4
 msgid ""
 "0 means brush is transparent, 1 fully visible\n"
 "(also known as alpha or opacity)"
 msgstr ""
+"0 म्हणजे ब्रश पारदर्शक आहे, 1 पूर्णपणे दृश्यमान आहे\n"
+"(अल्फा किंवा अस्पष्टता म्हणून देखील ओळखले जाते)"
 
 #: ../brushsettings-gen.h:5
 msgid "Opacity multiply"
-msgstr ""
+msgstr "अपारदर्शकता गुणाकार"
 
 #: ../brushsettings-gen.h:5
 msgid ""
@@ -40,10 +42,15 @@ msgid ""
 "This setting is responsible to stop painting when there is zero pressure. "
 "This is just a convention, the behaviour is identical to 'opaque'."
 msgstr ""
+"येथे अस्पष्टता गुणका सह गुणाकार होईल. आपण केवळ या सेटिंगचे प्रेशर इनपुट बदलले"
+" पाहिजे. अस्पष्टतेच्या वेगावर अवलंबून राहण्यासाठी त्याऐवजी 'अपारदर्शक' वापरा."
+"\n"
+"जेव्हा शून्य दबाव असतो तेव्हा पेंटिंग थांबविण्यास ही सेटिंग जबाबदार आहे. ही "
+"केवळ एक पद्धत आहे, वर्तन 'अपारदर्शक' सारखेच आहे."
 
 #: ../brushsettings-gen.h:6
 msgid "Opacity linearize"
-msgstr ""
+msgstr "अपारदर्शकता रेखीय करा"
 
 #: ../brushsettings-gen.h:6
 msgid ""
@@ -59,7 +66,7 @@ msgstr ""
 
 #: ../brushsettings-gen.h:7
 msgid "Radius"
-msgstr ""
+msgstr "त्रिज्या"
 
 #: ../brushsettings-gen.h:7
 msgid ""
@@ -70,7 +77,7 @@ msgstr ""
 
 #: ../brushsettings-gen.h:8
 msgid "Hardness"
-msgstr ""
+msgstr "कडकपणा"
 
 #: ../brushsettings-gen.h:8
 msgid ""
@@ -80,7 +87,7 @@ msgstr ""
 
 #: ../brushsettings-gen.h:9
 msgid "Pixel feather"
-msgstr ""
+msgstr "पिक्सेल पंख"
 
 #: ../brushsettings-gen.h:9
 msgid ""
@@ -93,7 +100,7 @@ msgstr ""
 
 #: ../brushsettings-gen.h:10
 msgid "Dabs per basic radius"
-msgstr ""
+msgstr "प्रति मूलभूत त्रिज्या डॅब्स"
 
 #: ../brushsettings-gen.h:10
 msgid ""
@@ -103,7 +110,7 @@ msgstr ""
 
 #: ../brushsettings-gen.h:11
 msgid "Dabs per actual radius"
-msgstr ""
+msgstr "प्रति वास्तविक त्रिज्या डॅब्स"
 
 #: ../brushsettings-gen.h:11
 msgid ""

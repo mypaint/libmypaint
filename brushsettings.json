@@ -108,7 +108,7 @@
             "normal": 0.0, 
             "soft_maximum": 180.0, 
             "soft_minimum": -180.0, 
-            "tooltip": "The difference between the angle the stylus is pointing and the angle of its stroke movement on the canvas (degrees). The value will stay between 0.0 and +/-180.0.  An attack angle of 0.0 would indicate the stylus is moving in the same direction that the stylus tip is pointing.  An Attack Angle of 90 would mean the direction is perpendicular to the stylus tip, and 180 would mean the pen is being dragged in the opposite direction that the stylus tip is pointing."
+            "tooltip": "The difference, in degrees, between the angle the stylus is pointing and the angle of the stroke movement.\nThe range is +/-180.0.\n0.0 means the stroke angle corresponds to the angle of the stylus.\n90 means the stroke angle is perpendicular to the angle of the stylus.\n180 means the angle of the stroke is directly opposite the angle of the stylus."
         },
         {
             "displayed_name": "Declination/Tilt X", 
@@ -138,7 +138,7 @@
             "normal": 0.0, 
             "soft_maximum": 256.0, 
             "soft_minimum": 0.0, 
-            "tooltip": "The X coordinate on a 256 pixel grid.  This will wrap around 0-256 as the cursor is moved on the X axis.  Similar to stroke.  Can be used to add paper texture by modifying opacity, etc.\nNote the brush size should be considerably smaller than the grid scale for best results."
+            "tooltip": "The X coordinate on a 256 pixel grid. This will wrap around 0-256 as the cursor is moved on the X axis. Similar to \"Stroke\". Can be used to add paper texture by modifying opacity, etc.\nThe brush size should be considerably smaller than the grid scale for best results."
         },
         {
             "displayed_name": "GridMap Y",
@@ -148,7 +148,7 @@
             "normal": 0.0, 
             "soft_maximum": 256.0, 
             "soft_minimum": 0.0, 
-            "tooltip": "The Y coordinate on a 256 pixel grid.  This will wrap around 0-256 as the cursor is moved on the Y axis.  Similar to stroke.  Can be used to add paper texture by modifying opacity, etc.\nNote the brush size should be considerably smaller than the grid scale for best results."
+            "tooltip": "The Y coordinate on a 256 pixel grid. This will wrap around 0-256 as the cursor is moved on the Y axis. Similar to \"Stroke\". Can be used to add paper texture by modifying opacity, etc.\nThe brush size should be considerably smaller than the grid scale for best results."
         },
         {
             "displayed_name": "Zoom Level", 
@@ -158,7 +158,7 @@
             "normal": 0.0, 
             "soft_maximum": 4.15, 
             "soft_minimum": -2.77, 
-            "tooltip": "The current zoom level of the canvas view.  Logarithmic: 100% is 0.  200% is .69, 25% is -1.38\nFor Radius Setting, try dragging the slider to -4.15 to create a brush that stays the same size at (almost) every zoom level."
+            "tooltip": "The current zoom level of the canvas view.\nLogarithmic: 0.0 is 100%, 0.69 is 200%, -1.38 is 25%\nFor the Radius setting, using a value of -4.15 makes the brush size roughly constant, relative to the level of zoom."
         },
         {
             "displayed_name": "Base Brush Radius", 
@@ -168,7 +168,7 @@
             "normal": 0.0, 
             "soft_maximum": 6.0, 
             "soft_minimum": -2.0, 
-            "tooltip": "The base brush radius of the current brush.  This allows you to change the behavior of a brush as you make it bigger or smaller.\nYou can even cancel-out dab size increase and adjust something else to make a brush bigger.\nTake note of dabs-per-basic radius and dabs-per-actual radius, which behave much differently."
+            "tooltip": "The base brush radius allows you to change the behavior of a brush as you make it bigger or smaller.\nYou can even cancel out dab size increase and adjust something else to make a brush bigger.\nTake note of \"Dabs per basic radius\" and \"Dabs per actual radius\", which behave much differently."
         }, 
         {
             "displayed_name": "Barrel Rotation", 
@@ -178,7 +178,7 @@
             "normal": 0.0, 
             "soft_maximum": 180.0, 
             "soft_minimum": -180.0, 
-            "tooltip": "Barrel rotation of Stylus. 0 when not twisted +90 when twisted clockwise 90 degrees, -90 when twisted counterclockwise."
+            "tooltip": "Barrel rotation of stylus.\n0 when not twisted\n+90 when twisted clockwise 90 degrees\n-90 when twisted counterclockwise 90 degrees"
         }
     ],
     "settings": [
@@ -270,7 +270,7 @@
             "internal_name": "gridmap_scale",
             "maximum": 10.0, 
             "minimum": -10.0, 
-            "tooltip": "Changes the overall scale that the GridMap brush input operates on.  Logarithmic (same scale as brush radius).  A scale of 0 will make the grid 256x256 pixels."
+            "tooltip": "Changes the overall scale that the GridMap brush input operates on.\nLogarithmic (same scale as brush radius).\nA scale of 0 will make the grid 256x256 pixels."
         },
                 {
             "constant": false, 
@@ -279,7 +279,7 @@
             "internal_name": "gridmap_scale_x",
             "maximum": 10.0, 
             "minimum": 0.0, 
-            "tooltip": "Changes the scale that the GridMap brush input operates on- affects X axis only.  Scale 0X-5X.  This allows you to stretch or compress the GridMap pattern."
+            "tooltip": "Changes the scale that the GridMap brush input operates on - affects X axis only.\nThe range is 0-5x.\nThis allows you to stretch or compress the GridMap pattern."
         },  
                 {
             "constant": false, 
@@ -288,7 +288,7 @@
             "internal_name": "gridmap_scale_y",
             "maximum": 10.0, 
             "minimum": 0.0, 
-            "tooltip": "Changes the scale that the GridMap brush input operates on- affects Y axis only.  Scale 0X-5X.  This allows you to stretch or compress the GridMap pattern."
+            "tooltip": "Changes the scale that the GridMap brush input operates on - affects Y axis only.\nThe range is 0-5x.\nThis allows you to stretch or compress the GridMap pattern."
         },  
         {
             "constant": false, 
@@ -378,7 +378,7 @@
             "internal_name": "offset_angle_asc",
             "maximum": 40.0,
             "minimum": -40.0,
-            "tooltip": "Follows the tilt direction to offset the dabs to one side.  Requires Tilt."
+            "tooltip": "Follows the tilt direction to offset the dabs to one side. Requires Tilt."
         },
         {
             "constant": false,
@@ -405,7 +405,7 @@
             "internal_name": "offset_angle_2_asc",
             "maximum": 40.0,
             "minimum": 0.0,
-            "tooltip": "Follows the tilt direction to offset the dabs, but to both sides of the stroke.  Requires Tilt."
+            "tooltip": "Follows the tilt direction to offset the dabs, but to both sides of the stroke. Requires Tilt."
         },
         {
             "constant": false,
@@ -577,7 +577,7 @@
             "internal_name": "paint_mode", 
             "maximum": 1.0, 
             "minimum": 0.0, 
-            "tooltip": "Spectral pigment Mixing mode.  0 is normal RGB, 1 is 10 channel spectral pigment mode"
+            "tooltip": "Subtractive spectral color mixing mode.\n0.0 no spectral mixing\n1.0 only spectral mixing"
         },
         {
             "constant": false, 
@@ -586,7 +586,7 @@
             "internal_name": "smudge_transparency", 
             "maximum": 1.0, 
             "minimum": -1.0, 
-            "tooltip": "Control how much transparency is picked up and smudged, similar to lock alpha.  1.0 will not move any transparency.\n0.5 will move only 50% transparency and above. 0.0 will have no effect.  Negative values do the reverse"
+            "tooltip": "Control how much transparency is picked up and smudged, similar to lock alpha.\n1.0 will not move any transparency.\n0.5 will move only 50% transparency and above.\n0.0 will have no effect.\nNegative values do the reverse"
         },
         {
             "constant": false, 
@@ -604,7 +604,7 @@
             "internal_name": "smudge_length_log",
             "maximum": 20.0,
             "minimum": 0.0,
-            "tooltip": "Lengthens the smudge_length, logarithmic.\nUseful to correct for high-definition/large brushes with lots of dabs.\nThe longer the smudge length the more a paint will spread and will also boost performance dramatically, as the canvas is sampled less often"
+            "tooltip": "Logarithmic multiplier for the \"Smudge length\" value.\nUseful to correct for high-definition/large brushes with lots of dabs.\nThe longer the smudge length the more a color will spread and will also boost performance dramatically, as the canvas is sampled less often"
         },
         {
             "constant": false, 
@@ -613,7 +613,7 @@
             "internal_name": "smudge_bucket", 
             "maximum": 255.0, 
             "minimum": 0.0, 
-            "tooltip": "There are 256 buckets that hold a bit of color picked up from the canvas.\nYou can control which bucket to use to improve variability and realism of the brush.\nEspecially useful with Custom Input to correlate buckets with other settings such as offset"
+            "tooltip": "There are 256 buckets that each can hold a color picked up from the canvas.\nYou can control which bucket to use to improve variability and realism of the brush.\nEspecially useful with the \"Custom input\" setting to correlate buckets with other settings such as offsets."
         },
         {
             "constant": false,
@@ -730,16 +730,16 @@
             "internal_name": "posterize",
             "maximum": 1.0,
             "minimum": 0.0,
-            "tooltip": "Strength of posteriztion, reducing its colors via the Posterize Levels setting, while retaining alpha."
+            "tooltip": "Strength of posterization, reducing number of colors based on the \"Posterization Levels\" setting, while retaining alpha."
         },
         {
             "constant": false,
             "default": 0.05,
-            "displayed_name": "Posterize Levels",
+            "displayed_name": "Posterization Levels",
             "internal_name": "posterize_num",
             "maximum": 1.28,
             "minimum": 0.01,
-            "tooltip": "Level of posterization (x100).  Values above 0.5 may not be noticeable."
+            "tooltip": "Number of posterization levels (divided by 100).\n0.05 = 5 levels, 0.2 = 20 levels, etc.\nValues above 0.5 may not be noticeable."
         },
         {
             "constant": false,

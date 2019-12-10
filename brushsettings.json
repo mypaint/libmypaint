@@ -423,7 +423,7 @@
             "internal_name": "offset_angle_adj",
             "maximum": 180.0,
             "minimum": -180.0,
-            "tooltip": "Change the Angular Offset Angle from the default, which is 90 degrees."
+            "tooltip": "Change the Angular Offset angle from the default, which is 90 degrees."
         },
         {
             "constant": false,
@@ -582,7 +582,7 @@
         {
             "constant": false, 
             "default": 0.0, 
-            "displayed_name": "Smudge Transparency", 
+            "displayed_name": "Smudge transparency",
             "internal_name": "smudge_transparency", 
             "maximum": 1.0, 
             "minimum": -1.0, 
@@ -600,7 +600,7 @@
         {
             "constant": false,
             "default": 0.0,
-            "displayed_name": "Smudge Length Multiplier",
+            "displayed_name": "Smudge length multiplier",
             "internal_name": "smudge_length_log",
             "maximum": 20.0,
             "minimum": 0.0,
@@ -609,7 +609,7 @@
         {
             "constant": false, 
             "default": 0.0, 
-            "displayed_name": "Smudge Bucket", 
+            "displayed_name": "Smudge bucket",
             "internal_name": "smudge_bucket", 
             "maximum": 255.0, 
             "minimum": 0.0, 
@@ -730,12 +730,12 @@
             "internal_name": "posterize",
             "maximum": 1.0,
             "minimum": 0.0,
-            "tooltip": "Strength of posterization, reducing number of colors based on the \"Posterization Levels\" setting, while retaining alpha."
+            "tooltip": "Strength of posterization, reducing number of colors based on the \"Posterization levels\" setting, while retaining alpha."
         },
         {
             "constant": false,
             "default": 0.05,
-            "displayed_name": "Posterization Levels",
+            "displayed_name": "Posterization levels",
             "internal_name": "posterize_num",
             "maximum": 1.28,
             "minimum": 0.01,

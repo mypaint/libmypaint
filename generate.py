@@ -31,11 +31,13 @@ PY3 = sys.version_info >= (3,)
 _SETTINGS = []  # brushsettings.settings
 _SETTING_ORDER = [
     "internal_name",  # cname
+    "tcomment_name",  # comment for translators (optional)
     "displayed_name",   # name
     "constant",
     "minimum",  # min
     "default",
     "maximum",  # max
+    "tcomment_tooltip",  # comment for translators (optional)
     "tooltip",
 ]
 _INPUTS = []  # brushsettings.inputs
@@ -46,7 +48,9 @@ _INPUT_ORDER = [
     "normal",
     "soft_maximum",   # soft_max
     "hard_maximum",     # hard_max
+    "tcomment_name",  # comment for translators (optional)
     "displayed_name",  # dname
+    "tcomment_tooltip",  # comment for translators (optional)
     "tooltip",
 ]
 _STATES = []   # brushsettings.states
@@ -83,15 +87,21 @@ class _BrushInput (namedtuple("_BrushInput", _INPUT_ORDER)):
 
 def _init_globals_from_json(filename):
     """Populate global variables above from the canonical JSON definition."""
+
+    def with_comments(d):
+        d.setdefault('tcomment_name', None)
+        d.setdefault('tcomment_tooltip', None)
+        return d
+
     flag = "r" if PY3 else "rb"
     with open(filename, flag) as fp:
         defs = json.load(fp)
     for input_def in defs["inputs"]:
-        input = _BrushInput(**input_def)
+        input = _BrushInput(**with_comments(input_def))
         input.validate()
         _INPUTS.append(input)
     for setting_def in defs["settings"]:
-        setting = _BrushSetting(**setting_def)
+        setting = _BrushSetting(**with_comments(setting_def))
         setting.validate()
         _SETTINGS.append(setting)
     for state_name in defs["states"]:
@@ -149,8 +159,12 @@ def floatify(value, positive_inf=True):
     return str(value)
 
 
-def gettextify(value):
-    return "N_(%s)" % stringify(value)
+def gettextify(value, comment=None):
+    result = "N_(%s)" % stringify(value)
+    if comment:
+        assert isinstance(comment, str) or isinstance(comment, unicode)
+        result = "/* %s */ %s" % (comment, result)
+    return result
 
 
 def boolify(value):
@@ -165,20 +179,20 @@ def input_info_struct(i):
         floatify(i.normal),
         floatify(i.soft_maximum),
         floatify(i.hard_maximum),
-        gettextify(i.displayed_name),
-        gettextify(i.tooltip),
+        gettextify(i.displayed_name, i.tcomment_name),
+        gettextify(i.tooltip, i.tcomment_tooltip),
     )
 
 
 def settings_info_struct(s):
     return (
         stringify(s.internal_name),
-        gettextify(s.displayed_name),
+        gettextify(s.displayed_name, s.tcomment_name),
         boolify(s.constant),
         floatify(s.minimum, positive_inf=False),
         floatify(s.default),
         floatify(s.maximum),
-        gettextify(s.tooltip),
+        gettextify(s.tooltip, s.tcomment_tooltip),
     )
 
 

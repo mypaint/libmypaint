@@ -26,6 +26,7 @@ from os.path import basename
 import json
 from collections import namedtuple
 
+PY3 = sys.version_info >= (3,)
 
 _SETTINGS = []  # brushsettings.settings
 _SETTING_ORDER = [
@@ -82,7 +83,8 @@ class _BrushInput (namedtuple("_BrushInput", _INPUT_ORDER)):
 
 def _init_globals_from_json(filename):
     """Populate global variables above from the canonical JSON definition."""
-    with open(filename, "rb") as fp:
+    flag = "r" if PY3 else "rb"
+    with open(filename, flag) as fp:
         defs = json.load(fp)
     for input_def in defs["inputs"]:
         input = _BrushInput(**input_def)

@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-02-25 17:11+0000\n"
-"PO-Revision-Date: 2019-12-10 06:59+0000\n"
+"PO-Revision-Date: 2019-12-11 17:10+0000\n"
 "Last-Translator: Prachi Joshi <josprachi@yahoo.com>\n"
 "Language-Team: Marathi <https://hosted.weblate.org/projects/mypaint/"
 "libmypaint/mr/>\n"
@@ -120,11 +120,11 @@ msgstr ""
 
 #: ../brushsettings-gen.h:12
 msgid "Dabs per second"
-msgstr ""
+msgstr "प्रति सेकंद डॅब्स"
 
 #: ../brushsettings-gen.h:12
 msgid "Dabs to draw each second, no matter how far the pointer moves"
-msgstr ""
+msgstr "प्रत्येक सेकंद रेखांकित करण्यासाठी डॅब्स, पॉईंटर किती दूर हलवितो"
 
 #: ../brushsettings-gen.h:13
 msgid "GridMap Scale"
@@ -186,7 +186,7 @@ msgstr ""
 
 #: ../brushsettings-gen.h:18
 msgid "Gross speed filter"
-msgstr ""
+msgstr "सकल वेग फिल्टर"
 
 #: ../brushsettings-gen.h:18
 msgid "Same as 'fine speed filter', but note that the range is different"
@@ -194,7 +194,7 @@ msgstr ""
 
 #: ../brushsettings-gen.h:19
 msgid "Fine speed gamma"
-msgstr ""
+msgstr "फाईन स्पीड गामा"
 
 #: ../brushsettings-gen.h:19
 msgid ""
@@ -216,7 +216,7 @@ msgstr ""
 
 #: ../brushsettings-gen.h:21
 msgid "Jitter"
-msgstr ""
+msgstr "जिटर"
 
 #: ../brushsettings-gen.h:21
 msgid ""
@@ -345,7 +345,7 @@ msgstr ""
 
 #: ../brushsettings-gen.h:35
 msgid "Slow tracking per dab"
-msgstr ""
+msgstr "प्रति डॅब हळू ट्रॅकिंग"
 
 #: ../brushsettings-gen.h:35
 msgid ""

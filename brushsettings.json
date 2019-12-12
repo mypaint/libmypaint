@@ -61,6 +61,7 @@
             "tooltip": "Right ascension of stylus tilt. 0 when stylus working end points to you, +90 when rotated 90 degrees clockwise, -90 when rotated 90 degrees counterclockwise."
         },
         {
+	    "tcomment_name": "\"fine\" refers to the accuracy and update frequency of the speed value, as in \"fine grained\"",
             "displayed_name": "Fine speed",
             "hard_maximum": null,
             "hard_minimum": null,
@@ -71,6 +72,7 @@
             "tooltip": "How fast you currently move. This can change very quickly. Try 'print input values' from the 'help' menu to get a feeling for the range; negative values are rare but possible for very low speed."
         },
         {
+	    "tcomment_name": "changes more smoothly but is less accurate than \"Fine speed\"",
             "displayed_name": "Gross speed",
             "hard_maximum": null,
             "hard_minimum": null,
@@ -81,6 +83,7 @@
             "tooltip": "Same as fine speed, but changes slower. Also look at the 'gross speed filter' setting."
         },
         {
+	    "tcomment_name": "the input is the output of the \"Custom input\" setting",
             "displayed_name": "Custom", 
             "hard_maximum": null, 
             "hard_minimum": null, 
@@ -91,6 +94,7 @@
             "tooltip": "This is a user defined input. Look at the 'custom input' setting for details."
         },
         {
+	    "tcomment_name": "refers to the direction of the stroke",
             "displayed_name": "Direction 360",
             "hard_maximum": 360.0,
             "hard_minimum": 0.0,
@@ -151,6 +155,7 @@
             "tooltip": "The Y coordinate on a 256 pixel grid. This will wrap around 0-256 as the cursor is moved on the Y axis. Similar to \"Stroke\". Can be used to add paper texture by modifying opacity, etc.\nThe brush size should be considerably smaller than the grid scale for best results."
         },
         {
+	    "tcomment_name": "refers to canvas zoom",
             "displayed_name": "Zoom Level", 
             "hard_maximum": 4.15, 
             "hard_minimum": -2.77, 

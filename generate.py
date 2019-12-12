@@ -28,6 +28,14 @@ from collections import namedtuple
 
 PY3 = sys.version_info >= (3,)
 
+# A basic translator comment is generated for each string,
+# noting whether it is an input or a setting, and for tooltips
+# stating which input/setting it belongs to.
+#
+# In addition to that, more descriptive addendums can be added
+# for individual strings using the tcomment_x attributes, where
+# x is either 'name' or 'tooltip'.
+
 _SETTINGS = []  # brushsettings.settings
 _SETTING_ORDER = [
     "internal_name",  # cname
@@ -171,7 +179,23 @@ def boolify(value):
     return str("TRUE") if value else str("FALSE")
 
 
+def tcomment(base_comment, addendum=None):
+    comment = base_comment
+    if addendum:
+        comment = "{c} - {a}".format(c=comment, a=addendum)
+    return comment
+
+
+def tooltip_comment(name, name_type, addendum=None):
+    comment = 'Tooltip for the "{n}" brush {t}'.format(
+        n=name, t=name_type)
+    return tcomment(comment, addendum)
+
+
 def input_info_struct(i):
+    name_comment = tcomment("Brush input", i.tcomment_name)
+    _tooltip_comment = tooltip_comment(
+        i.displayed_name, "input", i.tcomment_tooltip)
     return (
         stringify(i.id),
         floatify(i.hard_minimum, positive_inf=False),
@@ -179,20 +203,23 @@ def input_info_struct(i):
         floatify(i.normal),
         floatify(i.soft_maximum),
         floatify(i.hard_maximum),
-        gettextify(i.displayed_name, i.tcomment_name),
-        gettextify(i.tooltip, i.tcomment_tooltip),
+        gettextify(i.displayed_name, name_comment),
+        gettextify(i.tooltip, _tooltip_comment),
     )
 
 
 def settings_info_struct(s):
+    name_comment = tcomment("Brush setting", s.tcomment_name)
+    _tooltip_comment = tooltip_comment(
+        s.displayed_name, "setting", s.tcomment_tooltip)
     return (
         stringify(s.internal_name),
-        gettextify(s.displayed_name, s.tcomment_name),
+        gettextify(s.displayed_name, name_comment),
         boolify(s.constant),
         floatify(s.minimum, positive_inf=False),
         floatify(s.default),
         floatify(s.maximum),
-        gettextify(s.tooltip, s.tcomment_tooltip),
+        gettextify(s.tooltip, _tooltip_comment),
     )
 
 

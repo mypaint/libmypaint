@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-12-12 23:51+0100\n"
-"PO-Revision-Date: 2019-09-19 02:27+0000\n"
+"PO-Revision-Date: 2019-12-22 08:48+0000\n"
 "Last-Translator: Sabri Ünal <libreajans@gmail.com>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/mypaint/"
 "libmypaint/tr/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.9-dev\n"
+"X-Generator: Weblate 3.10\n"
 
 #. Brush setting
 #: ../brushsettings-gen.h:4
@@ -97,13 +97,12 @@ msgid ""
 "maximum hardness, you need to disable Pixel feather."
 msgstr ""
 "Sert fırça daire sınırları (sıfıra ayarlamak hiçbir şey çizmez). En yüksek "
-"sertliğe ulaşmak için Piksel geçiş yumuşatmasını devre dışı bırakmanız "
-"gerekir."
+"sertliğe ulaşmak için Piksel tüylemesini devre dışı bırakmanız gerekir."
 
 #. Brush setting
 #: ../brushsettings-gen.h:9
 msgid "Pixel feather"
-msgstr "Piksel Geçiş Yumuşatması"
+msgstr "Piksel Tüyleme"
 
 #. Tooltip for the "Pixel feather" brush setting
 #: ../brushsettings-gen.h:9
@@ -154,7 +153,7 @@ msgstr ""
 #. Brush setting
 #: ../brushsettings-gen.h:13
 msgid "GridMap Scale"
-msgstr ""
+msgstr "Izgara Eşlemi Ölçeği"
 
 #. Tooltip for the "GridMap Scale" brush setting
 #: ../brushsettings-gen.h:13
@@ -167,7 +166,7 @@ msgstr ""
 #. Brush setting
 #: ../brushsettings-gen.h:14
 msgid "GridMap Scale X"
-msgstr ""
+msgstr "Izgara Eşlemi Ölçeği X"
 
 #. Tooltip for the "GridMap Scale X" brush setting
 #: ../brushsettings-gen.h:14
@@ -181,7 +180,7 @@ msgstr ""
 #. Brush setting
 #: ../brushsettings-gen.h:15
 msgid "GridMap Scale Y"
-msgstr ""
+msgstr "Izgara Eşlemi Ölçeği Y"
 
 #. Tooltip for the "GridMap Scale Y" brush setting
 #: ../brushsettings-gen.h:15
@@ -271,9 +270,8 @@ msgstr ""
 
 #. Brush setting
 #: ../brushsettings-gen.h:22
-#, fuzzy
 msgid "Offset Y"
-msgstr "Hız ile Konum"
+msgstr "Konum Y"
 
 #. Tooltip for the "Offset Y" brush setting
 #: ../brushsettings-gen.h:22
@@ -282,9 +280,8 @@ msgstr ""
 
 #. Brush setting
 #: ../brushsettings-gen.h:23
-#, fuzzy
 msgid "Offset X"
-msgstr "Hız ile Konum"
+msgstr "Konum X"
 
 #. Tooltip for the "Offset X" brush setting
 #: ../brushsettings-gen.h:23
@@ -294,7 +291,7 @@ msgstr ""
 #. Brush setting
 #: ../brushsettings-gen.h:24
 msgid "Angular Offset: Direction"
-msgstr ""
+msgstr "Açısal Konum: Yön"
 
 #. Tooltip for the "Angular Offset: Direction" brush setting
 #: ../brushsettings-gen.h:24
@@ -304,7 +301,7 @@ msgstr ""
 #. Brush setting
 #: ../brushsettings-gen.h:25
 msgid "Angular Offset: Ascension"
-msgstr ""
+msgstr "Açısal Konum: Yükseliş"
 
 #. Tooltip for the "Angular Offset: Ascension" brush setting
 #: ../brushsettings-gen.h:25
@@ -315,7 +312,7 @@ msgstr ""
 #. Brush setting
 #: ../brushsettings-gen.h:26
 msgid "Angular Offset: View"
-msgstr ""
+msgstr "Açısal Konum: Görünüm"
 
 #. Tooltip for the "Angular Offset: View" brush setting
 #: ../brushsettings-gen.h:26
@@ -325,7 +322,7 @@ msgstr ""
 #. Brush setting
 #: ../brushsettings-gen.h:27
 msgid "Angular Offset Mirrored: Direction"
-msgstr ""
+msgstr "Açısal Yansıtılmış Konum: Yön"
 
 #. Tooltip for the "Angular Offset Mirrored: Direction" brush setting
 #: ../brushsettings-gen.h:27
@@ -337,7 +334,7 @@ msgstr ""
 #. Brush setting
 #: ../brushsettings-gen.h:28
 msgid "Angular Offset Mirrored: Ascension"
-msgstr ""
+msgstr "Açısal Yansıtılmış Konum: Yükseliş"
 
 #. Tooltip for the "Angular Offset Mirrored: Ascension" brush setting
 #: ../brushsettings-gen.h:28
@@ -349,7 +346,7 @@ msgstr ""
 #. Brush setting
 #: ../brushsettings-gen.h:29
 msgid "Angular Offset Mirrored: View"
-msgstr ""
+msgstr "Açısal Yansıtılmış Konum: Görünüm"
 
 #. Tooltip for the "Angular Offset Mirrored: View" brush setting
 #: ../brushsettings-gen.h:29
@@ -361,7 +358,7 @@ msgstr ""
 #. Brush setting
 #: ../brushsettings-gen.h:30
 msgid "Angular Offsets Adjustment"
-msgstr ""
+msgstr "Açısal Konum Ayarlama"
 
 #. Tooltip for the "Angular Offsets Adjustment" brush setting
 #: ../brushsettings-gen.h:30
@@ -370,9 +367,8 @@ msgstr ""
 
 #. Brush setting
 #: ../brushsettings-gen.h:31
-#, fuzzy
 msgid "Offsets Multiplier"
-msgstr "Hız ile Konum Filtresi"
+msgstr "Konum Çoklayıcı"
 
 #. Tooltip for the "Offsets Multiplier" brush setting
 #: ../brushsettings-gen.h:31
@@ -459,7 +455,7 @@ msgstr "Renk Değeri"
 #. Tooltip for the "Color value" brush setting
 #: ../brushsettings-gen.h:39
 msgid "Color value (brightness, intensity)"
-msgstr ""
+msgstr "Renk Değeri (Parlaklık, Yoğunluk)"
 
 #. Brush setting
 #: ../brushsettings-gen.h:40
@@ -566,7 +562,7 @@ msgstr ""
 #. Brush setting
 #: ../brushsettings-gen.h:47
 msgid "Pigment"
-msgstr ""
+msgstr "Pigment"
 
 #. Tooltip for the "Pigment" brush setting
 #: ../brushsettings-gen.h:47
@@ -578,9 +574,8 @@ msgstr ""
 
 #. Brush setting
 #: ../brushsettings-gen.h:48
-#, fuzzy
 msgid "Smudge transparency"
-msgstr "Lekeleme Yarıçapı"
+msgstr "Lekeleme Saydamlığı"
 
 #. Tooltip for the "Smudge transparency" brush setting
 #: ../brushsettings-gen.h:48
@@ -611,9 +606,8 @@ msgstr ""
 
 #. Brush setting
 #: ../brushsettings-gen.h:50
-#, fuzzy
 msgid "Smudge length multiplier"
-msgstr "Lekeleme Uzunluğu"
+msgstr "Lekeleme Uzunluk Çoklayıcı"
 
 #. Tooltip for the "Smudge length multiplier" brush setting
 #: ../brushsettings-gen.h:50
@@ -626,9 +620,8 @@ msgstr ""
 
 #. Brush setting
 #: ../brushsettings-gen.h:51
-#, fuzzy
 msgid "Smudge bucket"
-msgstr "Lekeleme Uzunluğu"
+msgstr "Lekeleme Kovası"
 
 #. Tooltip for the "Smudge bucket" brush setting
 #: ../brushsettings-gen.h:51
@@ -808,7 +801,7 @@ msgstr ""
 #. Brush setting
 #: ../brushsettings-gen.h:64
 msgid "Posterize"
-msgstr ""
+msgstr "Posterleştir"
 
 #. Tooltip for the "Posterize" brush setting
 #: ../brushsettings-gen.h:64
@@ -820,7 +813,7 @@ msgstr ""
 #. Brush setting
 #: ../brushsettings-gen.h:65
 msgid "Posterization levels"
-msgstr ""
+msgstr "Posterleştirme Düzeyleri"
 
 #. Tooltip for the "Posterization levels" brush setting
 #: ../brushsettings-gen.h:65
@@ -906,9 +899,8 @@ msgstr ""
 
 #. Brush input
 #: ../brushsettings-gen.h:76
-#, fuzzy
 msgid "Declination/Tilt"
-msgstr "Alçalış"
+msgstr "Alçalış/Eğim"
 
 #. Tooltip for the "Declination/Tilt" brush input
 #: ../brushsettings-gen.h:76
@@ -968,9 +960,8 @@ msgstr ""
 
 #. Brush input - refers to the direction of the stroke
 #: ../brushsettings-gen.h:81
-#, fuzzy
 msgid "Direction 360"
-msgstr "Yön"
+msgstr "Yön 360"
 
 #. Tooltip for the "Direction 360" brush input
 #: ../brushsettings-gen.h:81
@@ -980,7 +971,7 @@ msgstr ""
 #. Brush input
 #: ../brushsettings-gen.h:82
 msgid "Attack Angle"
-msgstr ""
+msgstr "Saldırı Açısı"
 
 #. Tooltip for the "Attack Angle" brush input
 #: ../brushsettings-gen.h:82
@@ -996,9 +987,8 @@ msgstr ""
 
 #. Brush input
 #: ../brushsettings-gen.h:83
-#, fuzzy
 msgid "Declination/Tilt X"
-msgstr "Alçalış"
+msgstr "Alçalış/Eğim X"
 
 #. Tooltip for the "Declination/Tilt X" brush input
 #: ../brushsettings-gen.h:83
@@ -1009,9 +999,8 @@ msgstr ""
 
 #. Brush input
 #: ../brushsettings-gen.h:84
-#, fuzzy
 msgid "Declination/Tilt Y"
-msgstr "Alçalış"
+msgstr "Alçalış/Eğim Y"
 
 #. Tooltip for the "Declination/Tilt Y" brush input
 #: ../brushsettings-gen.h:84
@@ -1023,7 +1012,7 @@ msgstr ""
 #. Brush input
 #: ../brushsettings-gen.h:85
 msgid "GridMap X"
-msgstr ""
+msgstr "Izgara Eşlemi X"
 
 #. Tooltip for the "GridMap X" brush input
 #: ../brushsettings-gen.h:85
@@ -1038,7 +1027,7 @@ msgstr ""
 #. Brush input
 #: ../brushsettings-gen.h:86
 msgid "GridMap Y"
-msgstr ""
+msgstr "Izgara Eşlemi Y"
 
 #. Tooltip for the "GridMap Y" brush input
 #: ../brushsettings-gen.h:86
@@ -1053,7 +1042,7 @@ msgstr ""
 #. Brush input - refers to canvas zoom
 #: ../brushsettings-gen.h:87
 msgid "Zoom Level"
-msgstr ""
+msgstr "Yaklaştırma Seviyesi"
 
 #. Tooltip for the "Zoom Level" brush input
 #: ../brushsettings-gen.h:87
@@ -1067,7 +1056,7 @@ msgstr ""
 #. Brush input
 #: ../brushsettings-gen.h:88
 msgid "Base Brush Radius"
-msgstr ""
+msgstr "Temel Fırça Yarıçapı"
 
 #. Tooltip for the "Base Brush Radius" brush input
 #: ../brushsettings-gen.h:88
@@ -1083,7 +1072,7 @@ msgstr ""
 #. Brush input
 #: ../brushsettings-gen.h:89
 msgid "Barrel Rotation"
-msgstr ""
+msgstr "Barrel Döndürmesi"
 
 #. Tooltip for the "Barrel Rotation" brush input
 #: ../brushsettings-gen.h:89

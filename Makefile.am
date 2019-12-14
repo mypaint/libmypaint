@@ -103,6 +103,7 @@ nobase_libmypaint_public_HEADERS = \
 	mypaint-config.h				\
 	mypaint-glib-compat.h			\
 	mypaint-mapping.h				\
+	mypaint-matrix.h	\
 	$(MyPaint_introspectable_headers)
 
 LIBMYPAINT_SOURCES = \
@@ -116,6 +117,7 @@ LIBMYPAINT_SOURCES = \
 	mypaint-brush.c					\
 	mypaint-brush-settings.c		\
 	mypaint-fixed-tiled-surface.c	\
+	mypaint-matrix.c	\
 	mypaint-rectangle.c				\
 	mypaint-surface.c				\
 	mypaint-tiled-surface.c			\

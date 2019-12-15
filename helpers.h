@@ -14,6 +14,10 @@
 #define MIN3(a, b, c) ((a)<(b)?MIN((a),(c)):MIN((b),(c)))
 #define WGM_EPSILON 0.001
 
+#ifndef M_PI
+#define M_PI 3.14159265358979323846
+#endif
+
 void
 hsl_to_rgb_float (float *h_, float *s_, float *l_);
 void

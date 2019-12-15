@@ -33,10 +33,6 @@
 #include "brushmodes.h"
 #include "operationqueue.h"
 
-#ifndef M_PI
-#define M_PI 3.14159265358979323846
-#endif
-
 void process_tile(MyPaintTiledSurface *self, int tx, int ty);
 
 static void
@@ -53,8 +49,9 @@ end_atomic_default(MyPaintSurface *surface, MyPaintRectangles *roi)
 
 void
 prepare_bounding_boxes(MyPaintTiledSurface *self) {
-    const gboolean snowflake = self->symmetry_type == MYPAINT_SYMMETRY_TYPE_SNOWFLAKE;
-    const int num_bboxes_desired = self->rot_symmetry_lines * (snowflake ? 2 : 1);
+    MyPaintSymmetryState symm_state = self->symmetry_data.state_current;
+    const gboolean snowflake = symm_state.type == MYPAINT_SYMMETRY_TYPE_SNOWFLAKE;
+    const int num_bboxes_desired = symm_state.num_lines * (snowflake ? 2 : 1);
     // If the bounding box array cannot fit one rectangle per symmetry dab,
     // try to allocate enough space for that to be possible.
     // Failure is ok, as the bounding box assignments will be functional anyway.
@@ -97,6 +94,7 @@ prepare_bounding_boxes(MyPaintTiledSurface *self) {
 void
 mypaint_tiled_surface_begin_atomic(MyPaintTiledSurface *self)
 {
+    mypaint_update_symmetry_state(&self->symmetry_data);
     prepare_bounding_boxes(self);
 }
 
@@ -184,22 +182,22 @@ void mypaint_tiled_surface_tile_request_end(MyPaintTiledSurface *self, MyPaintTi
  * @active: TRUE to enable, FALSE to disable.
  * @center_x: X axis to mirror events across.
  * @center_y: Y axis to mirror events across.
+ * @symmetry_angle: Angle to rotate the symmetry lines
  * @symmetry_type: Symmetry type to activate.
  * @rot_symmetry_lines: Number of rotational symmetry lines.
  *
  * Enable/Disable symmetric brush painting across an X axis.
+ *
  */
 void
 mypaint_tiled_surface_set_symmetry_state(MyPaintTiledSurface *self, gboolean active,
                                          float center_x, float center_y,
+                                         float symmetry_angle,
                                          MyPaintSymmetryType symmetry_type,
                                          int rot_symmetry_lines)
 {
-    self->surface_do_symmetry = active;
-    self->surface_center_x = center_x;
-    self->surface_center_y = center_y;
-    self->symmetry_type = symmetry_type;
-    self->rot_symmetry_lines = MAX(2, rot_symmetry_lines);
+    mypaint_symmetry_set_pending( // Only write to the pending new state, nothing gets recalculated here
+        &self->symmetry_data, active, center_x, center_y, symmetry_angle, symmetry_type, rot_symmetry_lines);
 }
 
 /**
@@ -701,8 +699,8 @@ int draw_dab (MyPaintSurface *surface, float x, float y,
     // These calls are repeated enough to warrant a local macro, for both readability and correctness.
 #define DDI(x, y, angle, bb_idx) (draw_dab_internal(\
         self, (x), (y), radius, color_r, color_g, color_b, opaque, \
-	hardness, color_a, aspect_ratio, (angle), \
-	lock_alpha, colorize, posterize, posterize_num, paint, (bb_idx)))
+        hardness, color_a, aspect_ratio, (angle), \
+        lock_alpha, colorize, posterize, posterize_num, paint, (bb_idx)))
 
     // Normal pass
     gboolean surface_modified = DDI(x, y, angle, 0);
@@ -715,64 +713,56 @@ int draw_dab (MyPaintSurface *surface, float x, float y,
     // at current if the initial dab does not modify the surface, none of the symmetry dabs
     // will either. If/when selection masks are added, this optimization _must_ be removed,
     // and `surface_modified` must be or'ed with the result of each call to draw_dab_internal.
-    if (surface_modified && self->surface_do_symmetry) {
-
-        const int symm_lines = self->rot_symmetry_lines;
+    MyPaintSymmetryData *symm_data = &self->symmetry_data;
+    if (surface_modified && symm_data->active && symm_data->num_symmetry_matrices) {
+        const MyPaintSymmetryState symm = symm_data->state_current;
         const int num_bboxes = self->num_bboxes;
+        const float rot_angle = 360.0 / symm.num_lines;
+        const MyPaintTransform* const matrices = symm_data->symmetry_matrices;
+        float x_out, y_out;
 
-        const float dist_x = (self->surface_center_x - x);
-        const float dist_y = (self->surface_center_y - y);
-        const float symm_x = self->surface_center_x + dist_x;
-        const float symm_y = self->surface_center_y + dist_y;
-
-        const float dab_dist = sqrt(dist_x * dist_x + dist_y * dist_y);
-        // Angles in radians
-        const float rot_width = (M_PI * 2) / symm_lines;
-        const float dab_angle_offset = atan2(-dist_y, -dist_x);
-
-        switch (self->symmetry_type) {
+        switch (symm.type) {
         case MYPAINT_SYMMETRY_TYPE_VERTICAL: {
-            DDI(symm_x, y, -angle, 1);
+            mypaint_transform_point(&matrices[0], x, y, &x_out, &y_out);
+            DDI(x_out, y_out, -2.0 * (90 + symm.angle) - angle, 1);
             num_bboxes_used = 2;
             break;
         }
         case MYPAINT_SYMMETRY_TYPE_HORIZONTAL: {
-            DDI(x, symm_y, angle + 180, 1);
+            mypaint_transform_point(&matrices[0], x, y, &x_out, &y_out);
+            DDI(x_out, y_out, -2.0 * symm.angle - angle, 1);
             num_bboxes_used = 2;
             break;
         }
         case MYPAINT_SYMMETRY_TYPE_VERTHORZ: {
-            DDI(symm_x, y, -angle, 1); // Vertical reflection
-            DDI(x, symm_y, angle + 180, 2); // Horizontal reflection
-            DDI(symm_x, symm_y, -angle - 180, 3); // Diagonal reflection
+            // Reflect across horizontal line
+            mypaint_transform_point(&matrices[0], x, y, &x_out, &y_out);
+            DDI(x_out, y_out, -2.0 * symm.angle - angle, 1);
+            // Then across the vertical line (diagonal)
+            mypaint_transform_point(&matrices[1], x, y, &x_out, &y_out);
+            DDI(x_out, y_out, angle, 2);
+            // Then back across the horizontal line
+            mypaint_transform_point(&matrices[2], x, y, &x_out, &y_out);
+            DDI(x_out, y_out, -2.0 * symm.angle - angle, 3);
             num_bboxes_used = 4;
             break;
         }
         case MYPAINT_SYMMETRY_TYPE_SNOWFLAKE: {
 
             // These dabs will occupy the bboxes after the last bbox used by the rotational dabs.
-            const int offset = MIN(num_bboxes / 2, symm_lines);
-            const float dabs_per_bbox = MAX(1, (float)symm_lines * 2.0 / num_bboxes);
-
+            const int offset = MIN(num_bboxes / 2, symm.num_lines);
+            const float dabs_per_bbox = MAX(1, (float)symm.num_lines * 2.0 / num_bboxes);
+            const int base_idx = symm.num_lines - 1;
+            const float base_angle = -2 * symm.angle - angle;
             // draw snowflake dabs for _all_ symmetry lines as we need to reflect the initial dab.
-            for (int dab_count = 0; dab_count < symm_lines; dab_count++) {
-
-                // calculate the offset from rotational symmetry
-                const float symmetry_angle_offset = ((float)dab_count) * rot_width;
-
-                // subtract the angle offset since we're progressing clockwise
-                const float cur_angle = symmetry_angle_offset - dab_angle_offset;
-
-                // progress through the rotation angle offsets clockwise to reflect the dab relative to itself
-                const float rot_x = self->surface_center_x - dab_dist * cos(cur_angle);
-                const float rot_y = self->surface_center_y - dab_dist * sin(cur_angle);
-
+            for (int dab_count = 0; dab_count < symm.num_lines; dab_count++) {
                 // If the number of bboxes cannot fit all snowflake dabs, use half for the rotational dabs
                 // and the other half for the reflected dabs. This is not always optimal, but seldom bad.
                 const int bbox_idx = offset + MIN(roundf(dab_count / dabs_per_bbox), num_bboxes - 1);
-                DDI(rot_x, rot_y, -angle + symmetry_angle_offset * (180.0f / M_PI), bbox_idx);
+                mypaint_transform_point(&matrices[base_idx + dab_count], x, y, &x_out, &y_out);
+                DDI(x_out, y_out, base_angle - dab_count * rot_angle, bbox_idx);
             }
-            num_bboxes_used = MIN(self->num_bboxes, symm_lines * 2);
+            num_bboxes_used = MIN(self->num_bboxes, symm.num_lines * 2);
             // fall through to rotational to finish the process
         }
         case MYPAINT_SYMMETRY_TYPE_ROTATIONAL: {
@@ -780,31 +770,22 @@ int draw_dab (MyPaintSurface *surface, float x, float y,
             // Set the dab bbox distribution factor based on whether the pass is only
             // rotational, or following a snowflake pass. For the latter, we compress
             // the available range (unimportant if there are enough bboxes to go around).
-            const gboolean snowflake = self->symmetry_type == MYPAINT_SYMMETRY_TYPE_SNOWFLAKE;
-            float dabs_per_bbox = MAX(1, (float)(symm_lines * (snowflake ? 2 : 1)) / num_bboxes);
+            const gboolean snowflake = symm.type == MYPAINT_SYMMETRY_TYPE_SNOWFLAKE;
+            float dabs_per_bbox = MAX(1, (float)(symm.num_lines * (snowflake ? 2 : 1)) / num_bboxes);
 
             // draw self->rot_symmetry_lines - 1 rotational dabs since initial pass handles the first dab
-            for (int dab_count = 1; dab_count < symm_lines; dab_count++) {
-                // calculate the offset from rotational symmetry
-                const float symmetry_angle_offset = ((float)dab_count) * rot_width;
-
-                // add the angle initial dab is from center point
-                const float cur_angle = symmetry_angle_offset + dab_angle_offset;
-
-                // progress through the rotation angle offsets counterclockwise
-                const float rot_x = self->surface_center_x + dab_dist * cos(cur_angle);
-                const float rot_y = self->surface_center_y + dab_dist * sin(cur_angle);
-
+            for (int dab_count = 1; dab_count < symm.num_lines; dab_count++) {
                 const int bbox_index = MIN(roundf(dab_count / dabs_per_bbox), num_bboxes - 1);
-                DDI(rot_x, rot_y, angle + symmetry_angle_offset * (180.0f / M_PI), bbox_index);
+                mypaint_transform_point(&matrices[dab_count - 1], x, y, &x_out, &y_out);
+                DDI(x_out, y_out, angle - dab_count * rot_angle, bbox_index);
             }
 
             // Use existing (larger) number of bboxes if it was set (in a snowflake pass)
-            num_bboxes_used = MIN(self->num_bboxes, MAX(symm_lines, num_bboxes_used));
+            num_bboxes_used = MIN(self->num_bboxes, MAX(symm.num_lines, num_bboxes_used));
             break;
         }
         default:
-            fprintf(stderr, "Warning: Unhandled symmetry type: %d\n", self->symmetry_type);
+            fprintf(stderr, "Warning: Unhandled symmetry type: %d\n", symm.type);
             break;
         }
     }
@@ -937,7 +918,6 @@ void get_color (MyPaintSurface *surface, float x, float y,
     }
 }
 
-
 /**
  * mypaint_tiled_surface_init: (skip)
  *
@@ -965,11 +945,7 @@ mypaint_tiled_surface_init(MyPaintTiledSurface *self,
     self->bboxes = self->default_bboxes;
     memset(self->bboxes, 0, sizeof(MyPaintRectangle) * NUM_BBOXES_DEFAULT);
 
-    self->surface_do_symmetry = FALSE;
-    self->symmetry_type = MYPAINT_SYMMETRY_TYPE_VERTICAL;
-    self->surface_center_x = 0.0f;
-    self->surface_center_y = 0.0f;
-    self->rot_symmetry_lines = 2;
+    self->symmetry_data = mypaint_default_symmetry_data();
     self->operation_queue = operation_queue_new();
 }
 
@@ -985,7 +961,7 @@ mypaint_tiled_surface_destroy(MyPaintTiledSurface *self)
 {
     operation_queue_free(self->operation_queue);
     if (self->bboxes != self->default_bboxes) {
-      // Free allocated bounding box memory
       free(self->bboxes);
     }
+    mypaint_symmetry_data_destroy(&self->symmetry_data);
 }

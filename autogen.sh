@@ -235,7 +235,7 @@ $LIBTOOLIZE --force || exit $?
 # configure script. The internal-only brushsettings-gen.h is also used
 # as the source of strings for gettext.
 
-python2 generate.py mypaint-brush-settings-gen.h brushsettings-gen.h
+python generate.py mypaint-brush-settings-gen.h brushsettings-gen.h
 
 # The MyPaint code no longer needs the .json file at runtime, and it is
 # not installed as data.

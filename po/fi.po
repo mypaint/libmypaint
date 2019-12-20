@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-12-12 23:51+0100\n"
-"PO-Revision-Date: 2019-10-22 12:52+0000\n"
+"PO-Revision-Date: 2019-12-22 08:48+0000\n"
 "Last-Translator: Tuomas Hietala <tuomas.hietala@iki.fi>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/mypaint/"
 "libmypaint/fi/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.9.1-dev\n"
+"X-Generator: Weblate 3.10\n"
 
 #. Brush setting
 #: ../brushsettings-gen.h:4
@@ -282,25 +282,26 @@ msgstr ""
 
 #. Brush setting
 #: ../brushsettings-gen.h:22
-#, fuzzy
 msgid "Offset Y"
-msgstr "Siirros nopeuden perusteella"
+msgstr "Y-siirros"
 
 #. Tooltip for the "Offset Y" brush setting
 #: ../brushsettings-gen.h:22
 msgid "Moves the dabs up or down based on canvas coordinates."
 msgstr ""
+"Siirtää pisaroita ylös tai alas piirtoalueen koordinaattien perusteella."
 
 #. Brush setting
 #: ../brushsettings-gen.h:23
-#, fuzzy
 msgid "Offset X"
-msgstr "Siirros nopeuden perusteella"
+msgstr "X-siirros"
 
 #. Tooltip for the "Offset X" brush setting
 #: ../brushsettings-gen.h:23
 msgid "Moves the dabs left or right based on canvas coordinates."
 msgstr ""
+"Siirtää pisaroita vasemmalle tai oikealle piirtoalueen koordinaattien "
+"perusteella."
 
 #. Brush setting
 #: ../brushsettings-gen.h:24
@@ -381,14 +382,13 @@ msgstr ""
 
 #. Brush setting
 #: ../brushsettings-gen.h:31
-#, fuzzy
 msgid "Offsets Multiplier"
-msgstr "Siirros nopeuden perusteella -suodatin"
+msgstr "Siirrosten kerroin"
 
 #. Tooltip for the "Offsets Multiplier" brush setting
 #: ../brushsettings-gen.h:31
 msgid "Logarithmic multiplier for X, Y, and Angular Offset settings."
-msgstr ""
+msgstr "Logaritminen kerroin X-, Y- ja kulmasiirrosasetuksille."
 
 #. Brush setting
 #: ../brushsettings-gen.h:32
@@ -622,7 +622,7 @@ msgstr ""
 #. Brush setting
 #: ../brushsettings-gen.h:47
 msgid "Pigment"
-msgstr ""
+msgstr "Pigmentti"
 
 #. Tooltip for the "Pigment" brush setting
 #: ../brushsettings-gen.h:47
@@ -634,9 +634,8 @@ msgstr ""
 
 #. Brush setting
 #: ../brushsettings-gen.h:48
-#, fuzzy
 msgid "Smudge transparency"
-msgstr "Suttauksen säde"
+msgstr "Suttauksen läpinäkyvyys"
 
 #. Tooltip for the "Smudge transparency" brush setting
 #: ../brushsettings-gen.h:48
@@ -672,9 +671,8 @@ msgstr ""
 
 #. Brush setting
 #: ../brushsettings-gen.h:50
-#, fuzzy
 msgid "Smudge length multiplier"
-msgstr "Suttauksen pituus"
+msgstr "Suttauksen pituuden kerroin"
 
 #. Tooltip for the "Smudge length multiplier" brush setting
 #: ../brushsettings-gen.h:50
@@ -1017,7 +1015,6 @@ msgstr ""
 
 #. Brush input
 #: ../brushsettings-gen.h:76
-#, fuzzy
 msgid "Declination/Tilt"
 msgstr "Kallistus"
 
@@ -1086,14 +1083,13 @@ msgstr ""
 
 #. Brush input - refers to the direction of the stroke
 #: ../brushsettings-gen.h:81
-#, fuzzy
 msgid "Direction 360"
-msgstr "Suunta"
+msgstr "Suunta 360"
 
 #. Tooltip for the "Direction 360" brush input
 #: ../brushsettings-gen.h:81
 msgid "The angle of the stroke, from 0 to 360 degrees."
-msgstr ""
+msgstr "Vedon kulma, nollasta 360 asteeseen."
 
 #. Brush input
 #: ../brushsettings-gen.h:82
@@ -1114,35 +1110,31 @@ msgstr ""
 
 #. Brush input
 #: ../brushsettings-gen.h:83
-#, fuzzy
 msgid "Declination/Tilt X"
-msgstr "Kallistus"
+msgstr "X-kallistus"
 
 #. Tooltip for the "Declination/Tilt X" brush input
 #: ../brushsettings-gen.h:83
-#, fuzzy
 msgid ""
 "Declination of stylus tilt on X-Axis. 90/-90 when stylus is parallel to "
 "tablet and 0 when it's perpendicular to tablet."
 msgstr ""
-"Kynän kallistus. Arvo on 0 silloin kun kynä on samansuuntainen piirtopöytään "
-"nähden ja 90.0 kun se on kohtisuorassa piirtopöytään nähden."
+"Kynän kallistus X-akselilla. 90/-90 kun kynä on samansuuntainen "
+"piirtopöytään nähden ja 0 kun se on kohtisuorassa piirtopöytään nähden."
 
 #. Brush input
 #: ../brushsettings-gen.h:84
-#, fuzzy
 msgid "Declination/Tilt Y"
-msgstr "Kallistus"
+msgstr "Y-kallistus"
 
 #. Tooltip for the "Declination/Tilt Y" brush input
 #: ../brushsettings-gen.h:84
-#, fuzzy
 msgid ""
 "Declination of stylus tilt on Y-Axis. 90/-90 when stylus is parallel to "
 "tablet and 0 when it's perpendicular to tablet."
 msgstr ""
-"Kynän kallistus. Arvo on 0 silloin kun kynä on samansuuntainen piirtopöytään "
-"nähden ja 90.0 kun se on kohtisuorassa piirtopöytään nähden."
+"Kynän kallistus Y-akselilla. 90/-90 kun kynä on samansuuntainen "
+"piirtopöytään nähden ja 0 kun se on kohtisuorassa piirtopöytään nähden."
 
 #. Brush input
 #: ../brushsettings-gen.h:85
@@ -1177,7 +1169,7 @@ msgstr ""
 #. Brush input - refers to canvas zoom
 #: ../brushsettings-gen.h:87
 msgid "Zoom Level"
-msgstr ""
+msgstr "Zoomaustaso"
 
 #. Tooltip for the "Zoom Level" brush input
 #: ../brushsettings-gen.h:87

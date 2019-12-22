@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: Mypaint Korean\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-12-12 23:51+0100\n"
-"PO-Revision-Date: 2019-02-27 00:18+0000\n"
-"Last-Translator: glixx <roman_romul@mail.ru>\n"
+"PO-Revision-Date: 2019-12-23 09:02+0000\n"
+"Last-Translator: geun-tak Jeong <beroberos@gmail.com>\n"
 "Language-Team: Korean <https://hosted.weblate.org/projects/mypaint/"
 "libmypaint/ko/>\n"
 "Language: ko\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 3.5-dev\n"
+"X-Generator: Weblate 3.10\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
 #. Brush setting
@@ -47,6 +47,8 @@ msgid ""
 "This setting is responsible to stop painting when there is zero pressure. "
 "This is just a convention, the behaviour is identical to 'opaque'."
 msgstr ""
+"이것은 불투명하게 곱해집니다. 이 설정의 압력 입력 만 변경해야합니다. 불투명도를 속도에 의존하게하려면 대신 '불투명'을 사용하십시오.\n"
+"이 설정은 압력이 0 일 때 페인팅을 중지합니다. 이것은 단지 컨벤션이며 동작은 '불투명'과 동일합니다."
 
 #. Brush setting
 #: ../brushsettings-gen.h:6
@@ -65,6 +67,12 @@ msgid ""
 "1.0 the opaque value above is for the final brush stroke, assuming each "
 "pixel gets (dabs_per_radius*2) brushdabs on average during a stroke"
 msgstr ""
+"여러 개의 뎁스을 서로 혼합하여 도입 된 비선형성을 수정하십시오. 이 수정은 일반적으로 수행되는 것처럼 압력이 "
+"opaque_multiply에 매핑 될 때 선형 ( \"자연\") 압력 응답을 가져옵니다. 0.9는 표준 스트로크에 적합합니다. 브러시가 "
+"많이 흩어지면 작게 설정하고 dabs_per_second를 사용하면 더 높게 설정하십시오.\n"
+"0.0 위의 불투명 한 값은 개별 dab에 대한 것입니다\n"
+"1.0 위의 불투명 한 값은 최종 브러시 스트로크에 대한 것으로, 스트로크 중에 각 픽셀이 평균적으로 (dabs_per_radius * "
+"2) 브러시 dabs를 얻는다고 가정"
 
 #. Brush setting
 #: ../brushsettings-gen.h:7
@@ -92,7 +100,7 @@ msgstr "경도"
 msgid ""
 "Hard brush-circle borders (setting to zero will draw nothing). To reach the "
 "maximum hardness, you need to disable Pixel feather."
-msgstr ""
+msgstr "단단한 브러시 원형 테두리 (0으로 설정하면 아무것도 그릴 수 없음) 최대 경도에 도달하려면 픽셀 페더를 비활성화해야합니다."
 
 #. Brush setting
 #: ../brushsettings-gen.h:9
@@ -108,16 +116,15 @@ msgid ""
 " 1.0 blur one pixel (good value)\n"
 " 5.0 notable blur, thin strokes will disappear"
 msgstr ""
-"계단 현상(앨리어싱)을 막기 위해 흐리게 칠하는 것을 원한다면, 이 설정을 통해 "
-"붓질의 경도를 낮출 수 있습니다.\n"
+"계단 현상(앨리어싱)을 막기 위해 흐리게 칠하는 것을 원한다면, 이 설정을 통해 붓질의 경도를 낮출 수 있습니다.\n"
 "0.0 사용하지 않음 (매우 강한 지우개와 붓질)\n"
 "1.0 1픽셀만큼 블러 (권장)\n"
-"5.0 눈에 띄게 블러, 붓질을 가늘게 하면 선이 보이지 않음"
+"5.0 눈에 띄게 블러, 스트로크을 가늘게 하면 선이 보이지 않음"
 
 #. Brush setting
 #: ../brushsettings-gen.h:10
 msgid "Dabs per basic radius"
-msgstr "칠/기본 반경"
+msgstr "기본 반경 당 뎁스"
 
 #. Tooltip for the "Dabs per basic radius" brush setting
 #: ../brushsettings-gen.h:10
@@ -129,7 +136,7 @@ msgstr "포인터가 하나의 브러쉬 반경을 이동시 분사되는 량량
 #. Brush setting
 #: ../brushsettings-gen.h:11
 msgid "Dabs per actual radius"
-msgstr "칠/실제 반경"
+msgstr "실제 반경 당 뎁스"
 
 #. Tooltip for the "Dabs per actual radius" brush setting
 #: ../brushsettings-gen.h:11
@@ -143,7 +150,7 @@ msgstr ""
 #. Brush setting
 #: ../brushsettings-gen.h:12
 msgid "Dabs per second"
-msgstr "칠/시간 초"
+msgstr "초 당 뎁스"
 
 #. Tooltip for the "Dabs per second" brush setting
 #: ../brushsettings-gen.h:12
@@ -153,7 +160,7 @@ msgstr "초당 그릴 칠, 포인터의 움직임과 관계 없이 초마다 일
 #. Brush setting
 #: ../brushsettings-gen.h:13
 msgid "GridMap Scale"
-msgstr ""
+msgstr "그리드맵 스케일"
 
 #. Tooltip for the "GridMap Scale" brush setting
 #: ../brushsettings-gen.h:13
@@ -162,11 +169,14 @@ msgid ""
 "Logarithmic (same scale as brush radius).\n"
 "A scale of 0 will make the grid 256x256 pixels."
 msgstr ""
+"GridMap 브러쉬 입력이 작동하는 전체 크기를 변경합니다.\n"
+"대수 (브러쉬 반경과 동일한 스케일).\n"
+"배율이 0이면 격자를 256x256 픽셀로 만듭니다."
 
 #. Brush setting
 #: ../brushsettings-gen.h:14
 msgid "GridMap Scale X"
-msgstr ""
+msgstr "그리드맵 스케일 X"
 
 #. Tooltip for the "GridMap Scale X" brush setting
 #: ../brushsettings-gen.h:14
@@ -176,11 +186,14 @@ msgid ""
 "The range is 0-5x.\n"
 "This allows you to stretch or compress the GridMap pattern."
 msgstr ""
+"GridMap 브러시 입력이 작동하는 배율을 변경합니다. X 축에만 영향을줍니다.\n"
+"범위는 0-5x입니다.\n"
+"이를 통해 GridMap 패턴을 늘리거나 압축 할 수 있습니다."
 
 #. Brush setting
 #: ../brushsettings-gen.h:15
 msgid "GridMap Scale Y"
-msgstr ""
+msgstr "그리드맵 스케일 Y"
 
 #. Tooltip for the "GridMap Scale Y" brush setting
 #: ../brushsettings-gen.h:15
@@ -190,6 +203,9 @@ msgid ""
 "The range is 0-5x.\n"
 "This allows you to stretch or compress the GridMap pattern."
 msgstr ""
+"GridMap 브러시 입력이 작동하는 배율을 변경합니다. Y 축에만 영향을줍니다.\n"
+"범위는 0-5x입니다.\n"
+"이를 통해 GridMap 패턴을 늘리거나 압축 할 수 있습니다."
 
 #. Brush setting
 #: ../brushsettings-gen.h:16
@@ -270,132 +286,128 @@ msgstr "지터"
 
 #. Tooltip for the "Jitter" brush setting
 #: ../brushsettings-gen.h:21
-#, fuzzy
 msgid ""
 "Add a random offset to the position where each dab is drawn\n"
 " 0.0 disabled\n"
 " 1.0 standard deviation is one basic radius away\n"
 "<0.0 negative values produce no jitter"
 msgstr ""
-"무작위로 포인터 주위에 입자를 생성한다.\n"
-" 0.0 없음\n"
-" 1.0 하나의 기본 반경내에 표준 편차를 뿌린다\n"
-"<0.0 negative values produce no jitter"
+"각 dab가 그려지는 위치에 임의의 오프셋을 추가하합니다.\n"
+" 0.0 비활성화\n"
+" 1.0 표준 편차는 기본 반경 하나입니다\n"
+"<0.0 음수 값은 지터를 생성하지 않습니다"
 
 #. Brush setting
 #: ../brushsettings-gen.h:22
-#, fuzzy
 msgid "Offset Y"
-msgstr "속도에 의해 오프셋"
+msgstr "오프셋 Y"
 
 #. Tooltip for the "Offset Y" brush setting
 #: ../brushsettings-gen.h:22
 msgid "Moves the dabs up or down based on canvas coordinates."
-msgstr ""
+msgstr "캔버스 좌표를 기준으로 뎁스를 위 또는 아래로 이동합니다."
 
 #. Brush setting
 #: ../brushsettings-gen.h:23
-#, fuzzy
 msgid "Offset X"
-msgstr "속도에 의해 오프셋"
+msgstr "오프셋 X"
 
 #. Tooltip for the "Offset X" brush setting
 #: ../brushsettings-gen.h:23
 msgid "Moves the dabs left or right based on canvas coordinates."
-msgstr ""
+msgstr "캔바스 좌표를 기준으로 뎁스를 왼쪽 또는 오른쪽으로 이동합니다."
 
 #. Brush setting
 #: ../brushsettings-gen.h:24
 msgid "Angular Offset: Direction"
-msgstr ""
+msgstr "각도 오프셋: 방향"
 
 #. Tooltip for the "Angular Offset: Direction" brush setting
 #: ../brushsettings-gen.h:24
 msgid "Follows the stroke direction to offset the dabs to one side."
-msgstr ""
+msgstr "스트로크 방향을 따라 뎁스를 한쪽으로 오프셋합니다."
 
 #. Brush setting
 #: ../brushsettings-gen.h:25
 msgid "Angular Offset: Ascension"
-msgstr ""
+msgstr "각도 오프셋: 오름"
 
 #. Tooltip for the "Angular Offset: Ascension" brush setting
 #: ../brushsettings-gen.h:25
 msgid ""
 "Follows the tilt direction to offset the dabs to one side. Requires Tilt."
-msgstr ""
+msgstr "기울기 방향을 따라 뎁스를 한쪽으로 오프셋합니다. 틸트가 필요합니다."
 
 #. Brush setting
 #: ../brushsettings-gen.h:26
 msgid "Angular Offset: View"
-msgstr ""
+msgstr "각도 오프셋: 보기"
 
 #. Tooltip for the "Angular Offset: View" brush setting
 #: ../brushsettings-gen.h:26
 msgid "Follows the view orientation to offset the dabs to one side."
-msgstr ""
+msgstr "각도 오프셋: 보기 방향을 따라 뎁스를 한쪽으로 오프셋합니다."
 
 #. Brush setting
 #: ../brushsettings-gen.h:27
 msgid "Angular Offset Mirrored: Direction"
-msgstr ""
+msgstr "각도 오프셋 미러됨: 방향"
 
 #. Tooltip for the "Angular Offset Mirrored: Direction" brush setting
 #: ../brushsettings-gen.h:27
 msgid ""
 "Follows the stroke direction to offset the dabs, but to both sides of the "
 "stroke."
-msgstr ""
+msgstr "스트로크 방향을 따라 뎁스를 오프셋하지만 스트로크의 양쪽으로 오프셋합니다."
 
 #. Brush setting
 #: ../brushsettings-gen.h:28
 msgid "Angular Offset Mirrored: Ascension"
-msgstr ""
+msgstr "각도 오프셋 미러됨 : 오름"
 
 #. Tooltip for the "Angular Offset Mirrored: Ascension" brush setting
 #: ../brushsettings-gen.h:28
 msgid ""
 "Follows the tilt direction to offset the dabs, but to both sides of the "
 "stroke. Requires Tilt."
-msgstr ""
+msgstr "기울기 방향을 따라 뎁스를 오프셋하지만 스트로크의 양쪽으로 오프셋합니다. 틸트가 필요합니다."
 
 #. Brush setting
 #: ../brushsettings-gen.h:29
 msgid "Angular Offset Mirrored: View"
-msgstr ""
+msgstr "각도 오프셋 미러됨: 뷰"
 
 #. Tooltip for the "Angular Offset Mirrored: View" brush setting
 #: ../brushsettings-gen.h:29
 msgid ""
 "Follows the view orientation to offset the dabs, but to both sides of the "
 "stroke."
-msgstr ""
+msgstr "뷰 방향을 따라 뎁스를 오프셋하지만 스트로크의 양쪽으로 오프셋합니다."
 
 #. Brush setting
 #: ../brushsettings-gen.h:30
 msgid "Angular Offsets Adjustment"
-msgstr ""
+msgstr "각도 오프셋 조정"
 
 #. Tooltip for the "Angular Offsets Adjustment" brush setting
 #: ../brushsettings-gen.h:30
 msgid "Change the Angular Offset angle from the default, which is 90 degrees."
-msgstr ""
+msgstr "각도 오프셋 각도를 기본값 (90도)에서 변경하십시오."
 
 #. Brush setting
 #: ../brushsettings-gen.h:31
-#, fuzzy
 msgid "Offsets Multiplier"
-msgstr "속도 필터에 의해 오프셋"
+msgstr "오프셋 승수"
 
 #. Tooltip for the "Offsets Multiplier" brush setting
 #: ../brushsettings-gen.h:31
 msgid "Logarithmic multiplier for X, Y, and Angular Offset settings."
-msgstr ""
+msgstr "X, Y 및 각도 오프셋 설정을 위한 로그 승수입니다."
 
 #. Brush setting
 #: ../brushsettings-gen.h:32
 msgid "Offset by speed"
-msgstr "속도에 의해 오프셋"
+msgstr "속도에 의한 오프셋"
 
 #. Tooltip for the "Offset by speed" brush setting
 #: ../brushsettings-gen.h:32
@@ -405,15 +417,15 @@ msgid ""
 "> 0 draw where the pointer moves to\n"
 "< 0 draw where the pointer comes from"
 msgstr ""
-"포인터 속도에 따라 뿌려지는 입자의 위치를 변경한다.\n"
-" = 0 해제\n"
-" > 0 포인터가 지나가는 곳 \n"
-" < 0 포인터가 지나가는 앞방향"
+"포인터 속도에 따라 위치를 변경\n"
+"= 0 비활성화\n"
+"> 0 포인터가 이동하는 곳을 그립니다.\n"
+"< 0 포인터의 출처"
 
 #. Brush setting
 #: ../brushsettings-gen.h:33
 msgid "Offset by speed filter"
-msgstr "속도 필터에 의해 오프셋"
+msgstr "속도 필터에 의한 오프셋"
 
 #. Tooltip for the "Offset by speed filter" brush setting
 #: ../brushsettings-gen.h:33
@@ -620,7 +632,7 @@ msgstr ""
 #. Brush setting
 #: ../brushsettings-gen.h:47
 msgid "Pigment"
-msgstr ""
+msgstr "그림 물감"
 
 #. Tooltip for the "Pigment" brush setting
 #: ../brushsettings-gen.h:47
@@ -629,12 +641,14 @@ msgid ""
 "0.0 no spectral mixing\n"
 "1.0 only spectral mixing"
 msgstr ""
+"감산 스펙트럼 색상 혼합 모드.\n"
+" 0.0 스펙트럼 혼합 없음\n"
+" 1.0 스펙트럼 혼합"
 
 #. Brush setting
 #: ../brushsettings-gen.h:48
-#, fuzzy
 msgid "Smudge transparency"
-msgstr "자국 반경"
+msgstr "얼룩 투명도"
 
 #. Tooltip for the "Smudge transparency" brush setting
 #: ../brushsettings-gen.h:48
@@ -646,11 +660,16 @@ msgid ""
 "0.0 will have no effect.\n"
 "Negative values do the reverse"
 msgstr ""
+"잠금 알파와 유사하게 얼마나 많은 투명도를 선택하고 번질지를 제어합니다.\n"
+" 1.0은 투명도를 이동시키지 않습니다.\n"
+" 0.5는 50 % 이상의 투명도 만 이동합니다.\n"
+" 0.0은 효과가 없습니다. \n"
+" 음수 값은 반대로"
 
 #. Brush setting
 #: ../brushsettings-gen.h:49
 msgid "Smudge length"
-msgstr "자국 길이"
+msgstr "얼룩 길이"
 
 #. Tooltip for the "Smudge length" brush setting
 #: ../brushsettings-gen.h:49
@@ -662,18 +681,15 @@ msgid ""
 "0.5 change the smudge color steadily towards the canvas color\n"
 "1.0 never change the smudge color"
 msgstr ""
-"이 설정은 스머지 컬러가 얼마나 빨리 캔버스 위의 색으로 변하는지를 조절합니"
-"다.\n"
-"0.0 스머지 컬러를 즉시 업데이트 (잦은 색 확인으로 인해 CPU 사이클이 더 많이 "
-"필요함)\n"
-"0.5 스머지 컬러를 일정한 속도로 캔버스 컬러로 변경\n"
-"1.0 스머지 컬러를 변경하지 않음"
+"이 설정은 얼룩 색상이 얼마나 빨리 캔버스 위의 색으로 변하는지를 조절합니다.\n"
+"0.0 얼룩 컬러를 즉시 업데이트 (잦은 색 확인으로 인해 CPU 사이클이 더 많이 필요함)\n"
+"0.5 얼룩 컬러를 일정한 속도로 캔버스 컬러로 변경\n"
+"1.0 얼룩 컬러를 변경하지 않음"
 
 #. Brush setting
 #: ../brushsettings-gen.h:50
-#, fuzzy
 msgid "Smudge length multiplier"
-msgstr "자국 길이"
+msgstr "얼룩 길이 승수"
 
 #. Tooltip for the "Smudge length multiplier" brush setting
 #: ../brushsettings-gen.h:50
@@ -683,12 +699,14 @@ msgid ""
 "The longer the smudge length the more a color will spread and will also "
 "boost performance dramatically, as the canvas is sampled less often"
 msgstr ""
+"\"얼룩 길이\"값의 로그 승수입니다.\n"
+"다브가 많은 고화질 / 대형 브러시를 수정하는 데 유용합니다.\n"
+"얼룩 길이가 길수록 색상이 더 많이 퍼지고 캔버스가 덜 자주 샘플링되므로 성능이 크게 향상됩니다"
 
 #. Brush setting
 #: ../brushsettings-gen.h:51
-#, fuzzy
 msgid "Smudge bucket"
-msgstr "자국 길이"
+msgstr "얼룩 버킷"
 
 #. Tooltip for the "Smudge bucket" brush setting
 #: ../brushsettings-gen.h:51
@@ -699,11 +717,14 @@ msgid ""
 "Especially useful with the \"Custom input\" setting to correlate buckets "
 "with other settings such as offsets."
 msgstr ""
+"각각 캔버스에서 가져온 색상을 담을 수있는 256개의 버킷이 있습니다.\n"
+"브러시의 가변성과 현실감을 향상시키기 위해 사용할 버킷을 제어 할 수 있습니다.\n"
+"버킷을 오프셋과 같은 다른 설정과 연관시키기 위해 \"사용자 정의 입력\"설정에 특히 유용합니다."
 
 #. Brush setting
 #: ../brushsettings-gen.h:52
 msgid "Smudge radius"
-msgstr "자국 반경"
+msgstr "얼룩 반경"
 
 #. Tooltip for the "Smudge radius" brush setting
 #: ../brushsettings-gen.h:52
@@ -715,6 +736,11 @@ msgid ""
 "+0.7 twice the brush radius\n"
 "+1.6 five times the brush radius (slow performance)"
 msgstr ""
+"얼룩을 내기 위해 색상을 선택하는 원의 반지름을 수정합니다.\n"
+" 0.0 브러시 반경 사용\n"
+" -0.7 브러시 반경의 절반 (빠르지 만 항상 직관적 인 것은 아님)\n"
+"+0.7 브러시 두배 반경\n"
+"+1.6 브러쉬 반경의 5 배 (성능 저하)"
 
 #. Brush setting
 #: ../brushsettings-gen.h:53
@@ -737,7 +763,7 @@ msgstr ""
 #. Brush setting
 #: ../brushsettings-gen.h:54
 msgid "Stroke threshold"
-msgstr "획 임계 값"
+msgstr "스트로크 임계 값"
 
 #. Tooltip for the "Stroke threshold" brush setting
 #: ../brushsettings-gen.h:54
@@ -745,13 +771,13 @@ msgid ""
 "How much pressure is needed to start a stroke. This affects the stroke input "
 "only. MyPaint does not need a minimum pressure to start drawing."
 msgstr ""
-"한 획의 시작점에 얼마만큼의 필압을 사용할지를 나타냅니다. 오직 획의 인풋에만 "
-"영향을 끼칩니다. MyPaint는 그림을 그릴 때에 최소 필압을 요구하지 않습니다."
+"한 스트로크의 시작점에 얼마만큼의 필압을 사용할지를 나타냅니다. 오직 스트로크의 인풋에만 영향을 끼칩니다. MyPaint는 그림을 그릴 "
+"때에 최소 필압을 요구하지 않습니다."
 
 #. Brush setting
 #: ../brushsettings-gen.h:55
 msgid "Stroke duration"
-msgstr "획 기간"
+msgstr "스트로크 기간"
 
 #. Tooltip for the "Stroke duration" brush setting
 #: ../brushsettings-gen.h:55
@@ -759,13 +785,13 @@ msgid ""
 "How far you have to move until the stroke input reaches 1.0. This value is "
 "logarithmic (negative values will not invert the process)."
 msgstr ""
-"획의 인풋 값이 1.0에 도달할 때까지의 이동 거리를 나타냅니다. 대수값을 사용합"
-"니다 (마이너스 값이 프로세스를 반대로 만들지 않습니다)."
+"스트로크의 인풋 값이 1.0에 도달할 때까지의 이동 거리를 나타냅니다. 대수값을 사용합니다 (마이너스 값이 프로세스를 반대로 만들지 "
+"않습니다)."
 
 #. Brush setting
 #: ../brushsettings-gen.h:56
 msgid "Stroke hold time"
-msgstr "획 보류 시간"
+msgstr "스트로크 보류 시간"
 
 #. Tooltip for the "Stroke hold time" brush setting
 #: ../brushsettings-gen.h:56
@@ -776,6 +802,10 @@ msgid ""
 "2.0 means twice as long as it takes to go from 0.0 to 1.0\n"
 "9.9 or higher stands for infinite"
 msgstr ""
+"스트로크 입력이 1.0에 머무르는 시간을 정의합니다. 그런 다음 스트로크가 아직 완료되지 않은 경우에도 0.0으로 재설정되고 다시 커지기 "
+"시작합니다.\n"
+"2.0은 0.0에서 1.0으로 이동하는 데 걸리는 시간의 두 배입니다.\n"
+"9.9 이상은 무한을 나타냅니다"
 
 #. Brush setting
 #: ../brushsettings-gen.h:57
@@ -808,6 +838,9 @@ msgid ""
 "if brushdabs do not depend on time).\n"
 "0.0 no slowdown (changes apply instantly)"
 msgstr ""
+"사용자 정의 입력이 실제로 원하는 값 (위의 값)을 따르는 속도. 이것은 brushdab 수준에서 발생합니다 (brushdabs가 시간에 "
+"의존하지 않는 경우 경과 한 시간은 무시).\n"
+"0.0 둔화 없음 (변경 사항이 즉시 적용됨)"
 
 #. Brush setting
 #: ../brushsettings-gen.h:59
@@ -836,6 +869,10 @@ msgid ""
 " 45.0 45 degrees, turned clockwise\n"
 " 180.0 horizontal again"
 msgstr ""
+"타원형 lip이 기울어지는 각도\n"
+" 0.0 수평 뎁스\n"
+" 45.0 시계 방향으로 45도 회전\n"
+" 180.0 다시 수평"
 
 #. Brush setting
 #: ../brushsettings-gen.h:61
@@ -887,19 +924,19 @@ msgstr ""
 #. Brush setting
 #: ../brushsettings-gen.h:64
 msgid "Posterize"
-msgstr ""
+msgstr "포스터화"
 
 #. Tooltip for the "Posterize" brush setting
 #: ../brushsettings-gen.h:64
 msgid ""
 "Strength of posterization, reducing number of colors based on the "
 "\"Posterization levels\" setting, while retaining alpha."
-msgstr ""
+msgstr "알파를 유지하면서 \"포스터화 레벨\" 설정에 따라 색상 수를 줄인 포스터화의 강도."
 
 #. Brush setting
 #: ../brushsettings-gen.h:65
 msgid "Posterization levels"
-msgstr ""
+msgstr "포스터화 레벨"
 
 #. Tooltip for the "Posterization levels" brush setting
 #: ../brushsettings-gen.h:65
@@ -908,6 +945,9 @@ msgid ""
 "0.05 = 5 levels, 0.2 = 20 levels, etc.\n"
 "Values above 0.5 may not be noticeable."
 msgstr ""
+"포스터화 레벨의 수 (100으로 나눔)\n"
+"0.05 = 5 레벨, 0.2 = 20 레벨 등\n"
+"0.5보다 큰 값은 눈에 띄지 않을 수 있습니다."
 
 #. Brush setting
 #: ../brushsettings-gen.h:66
@@ -919,7 +959,7 @@ msgstr "픽셀에 스냅"
 msgid ""
 "Snap brush dab's center and its radius to pixels. Set this to 1.0 for a thin "
 "pixel brush."
-msgstr ""
+msgstr "브러시 뎁스의 중심과 반경을 픽셀에 맞춥니 다. 얇은 픽셀 브러시의 경우 1.0으로 설정하십시오."
 
 #. Brush setting
 #: ../brushsettings-gen.h:67
@@ -931,7 +971,7 @@ msgstr "압력 이득"
 msgid ""
 "This changes how hard you have to press. It multiplies tablet pressure by a "
 "constant factor."
-msgstr ""
+msgstr "이렇게하면 얼마나 세게 눌러야하는지 변경됩니다. 정제 압력에 일정한 계수를 곱합니다."
 
 #. Brush input
 #: ../brushsettings-gen.h:72
@@ -945,11 +985,13 @@ msgid ""
 "get larger when a pressure gain is used. If you use the mouse, it will be "
 "0.5 when a button is pressed and 0.0 otherwise."
 msgstr ""
+"정제에 의해보고 된 압력. 일반적으로 0.0과 1.0 사이이지만 압력 게인을 사용할 때 더 커질 수 있습니다. 마우스를 사용하는 경우 "
+"버튼을 누르면 0.5, 그렇지 않으면 0.0이됩니다."
 
 #. Brush input
 #: ../brushsettings-gen.h:73
 msgid "Random"
-msgstr "무작위"
+msgstr "랜덤"
 
 #. Tooltip for the "Random" brush input
 #: ../brushsettings-gen.h:73
@@ -961,7 +1003,7 @@ msgstr "빠른 무작위 노이즈, 각 평가에서 변화. 균등하게 0과 1
 #. Brush input
 #: ../brushsettings-gen.h:74
 msgid "Stroke"
-msgstr "자획"
+msgstr "스트로크"
 
 #. Tooltip for the "Stroke" brush input
 #: ../brushsettings-gen.h:74
@@ -970,9 +1012,8 @@ msgid ""
 "be configured to jump back to zero periodically while you move. Look at the "
 "'stroke duration' and 'stroke hold time' settings."
 msgstr ""
-"이값은 블러시 값이 줄어드는 정도을 정한다.(붓의 잉크가 줄어드는 것을 상상해보"
-"아라.) 또 다시 이동하는 동안 주기적으로 값이 0변하도록 구성할 수있다. '자획 "
-"적용 시간'과 '자획 유지 시간'에서 설정해보아라."
+"이값은 스트로크 값이 줄어드는 정도을 정한다.(붓의 잉크가 줄어드는 것을 상상해보아라.) 또 다시 이동하는 동안 주기적으로 값이 "
+"0변하도록 구성할 수있다. '스트로크 적용 시간'과 '스트로크 유지 시간'에서 설정해보아라."
 
 #. Brush input
 #: ../brushsettings-gen.h:75
@@ -984,22 +1025,19 @@ msgstr "방향"
 msgid ""
 "The angle of the stroke, in degrees. The value will stay between 0.0 and "
 "180.0, effectively ignoring turns of 180 degrees."
-msgstr ""
-"자획의 각도. 값은 0.0과 180.0 사이 값이 가장 유효한 값이다. 180의 값은 0.0과 "
-"시각적으로 같다."
+msgstr "스트로크의 각도. 값은 0.0과 180.0 사이 값이 가장 유효한 값이다. 180의 값은 0.0과 시각적으로 같다."
 
 #. Brush input
 #: ../brushsettings-gen.h:76
-#, fuzzy
 msgid "Declination/Tilt"
-msgstr "경사도"
+msgstr "편각/기울기"
 
 #. Tooltip for the "Declination/Tilt" brush input
 #: ../brushsettings-gen.h:76
 msgid ""
 "Declination of stylus tilt. 0 when stylus is parallel to tablet and 90.0 "
 "when it's perpendicular to tablet."
-msgstr ""
+msgstr "스타일러스 틸트 경사. 스타일러스가 태블릿과 평행이면 0, 태블릿과 수직이면 90.0입니다."
 
 #. Brush input
 #: ../brushsettings-gen.h:77
@@ -1013,6 +1051,8 @@ msgid ""
 "when rotated 90 degrees clockwise, -90 when rotated 90 degrees "
 "counterclockwise."
 msgstr ""
+"스타일러스 기울기의 오른쪽 상승 스타일러스 작업 끝이 사용자를 가리킬 때 0, 시계 방향으로 90도 회전하면 +90, 시계 반대 방향으로 "
+"90도 회전하면 -90."
 
 #. Brush input - "fine" refers to the accuracy and update frequency of the speed value, as in "fine grained"
 #: ../brushsettings-gen.h:78
@@ -1058,19 +1098,18 @@ msgstr ""
 
 #. Brush input - refers to the direction of the stroke
 #: ../brushsettings-gen.h:81
-#, fuzzy
 msgid "Direction 360"
-msgstr "방향"
+msgstr "방향 360"
 
 #. Tooltip for the "Direction 360" brush input
 #: ../brushsettings-gen.h:81
 msgid "The angle of the stroke, from 0 to 360 degrees."
-msgstr ""
+msgstr "0에서 360도 사이의 스트로크 각도."
 
 #. Brush input
 #: ../brushsettings-gen.h:82
 msgid "Attack Angle"
-msgstr ""
+msgstr "공격 각도"
 
 #. Tooltip for the "Attack Angle" brush input
 #: ../brushsettings-gen.h:82
@@ -1083,37 +1122,40 @@ msgid ""
 "180 means the angle of the stroke is directly opposite the angle of the "
 "stylus."
 msgstr ""
+"스타일러스가 가리키는 각도와 스트로크 이동 각도의 차이 (도)입니다.\n"
+"범위는 +/- 180.0입니다.\n"
+"0.0은 스트로크 각도가 스타일러스 각도에 해당함을 의미합니다.\n"
+"90은 스트로크 각도가 스타일러스 각도에 수직임을 의미합니다.\n"
+"180은 스트로크 각도가 스타일러스 각도와 직접 반대됨을 의미합니다."
 
 #. Brush input
 #: ../brushsettings-gen.h:83
-#, fuzzy
 msgid "Declination/Tilt X"
-msgstr "경사도"
+msgstr "편각/기울기 X"
 
 #. Tooltip for the "Declination/Tilt X" brush input
 #: ../brushsettings-gen.h:83
 msgid ""
 "Declination of stylus tilt on X-Axis. 90/-90 when stylus is parallel to "
 "tablet and 0 when it's perpendicular to tablet."
-msgstr ""
+msgstr "X 축에서 스타일러스 기울기의 경사. 스타일러스가 태블릿과 평행이면 90 / -90, 태블릿과 수직이면 0."
 
 #. Brush input
 #: ../brushsettings-gen.h:84
-#, fuzzy
 msgid "Declination/Tilt Y"
-msgstr "경사도"
+msgstr "편각/기울기 Y"
 
 #. Tooltip for the "Declination/Tilt Y" brush input
 #: ../brushsettings-gen.h:84
 msgid ""
 "Declination of stylus tilt on Y-Axis. 90/-90 when stylus is parallel to "
 "tablet and 0 when it's perpendicular to tablet."
-msgstr ""
+msgstr "Y 축 스타일러스 경사의 편각. 스타일러스가 태블릿과 평행이면 90 / -90, 태블릿과 수직이면 0."
 
 #. Brush input
 #: ../brushsettings-gen.h:85
 msgid "GridMap X"
-msgstr ""
+msgstr "그리드맵 X"
 
 #. Tooltip for the "GridMap X" brush input
 #: ../brushsettings-gen.h:85
@@ -1124,11 +1166,14 @@ msgid ""
 "The brush size should be considerably smaller than the grid scale for best "
 "results."
 msgstr ""
+"256 픽셀 격자의 X 좌표입니다. 커서가 X 축에서 움직일 때 0-256 주위를 감싸줍니다. \"스트로크\"와 유사합니다. 불투명도 "
+"등을 수정하여 종이 질감을 추가하는 데 사용할 수 있습니다.\n"
+"최상의 결과를 얻으려면 브러시 크기가 그리드 스케일보다 상당히 작아야합니다."
 
 #. Brush input
 #: ../brushsettings-gen.h:86
 msgid "GridMap Y"
-msgstr ""
+msgstr "그리드맵 Y"
 
 #. Tooltip for the "GridMap Y" brush input
 #: ../brushsettings-gen.h:86
@@ -1139,11 +1184,14 @@ msgid ""
 "The brush size should be considerably smaller than the grid scale for best "
 "results."
 msgstr ""
+"256 픽셀 격자의 Y 좌표입니다. 커서가 Y 축에서 움직일 때 0-256 정도를 감 쌉니다. \"스트로크\"와 유사합니다. 불투명도 "
+"등을 수정하여 종이 질감을 추가하는 데 사용할 수 있습니다.\n"
+"최상의 결과를 얻으려면 브러시 크기가 그리드 스케일보다 상당히 작아야합니다."
 
 #. Brush input - refers to canvas zoom
 #: ../brushsettings-gen.h:87
 msgid "Zoom Level"
-msgstr ""
+msgstr "줌 레벨"
 
 #. Tooltip for the "Zoom Level" brush input
 #: ../brushsettings-gen.h:87
@@ -1153,11 +1201,14 @@ msgid ""
 "For the Radius setting, using a value of -4.15 makes the brush size roughly "
 "constant, relative to the level of zoom."
 msgstr ""
+"캔버스보기의 현재 확대 / 축소 수준입니다.\n"
+"대수 : 0.0은 100 %, 0.69는 200 %, -1.38은 25 %\n"
+"반지름 설정의 경우 -4.15 값을 사용하면 확대 / 축소 수준을 기준으로 브러시 크기가 대략 일정합니다."
 
 #. Brush input
 #: ../brushsettings-gen.h:88
 msgid "Base Brush Radius"
-msgstr ""
+msgstr "베이스 브러쉬 반경"
 
 #. Tooltip for the "Base Brush Radius" brush input
 #: ../brushsettings-gen.h:88
@@ -1169,11 +1220,14 @@ msgid ""
 "Take note of \"Dabs per basic radius\" and \"Dabs per actual radius\", which "
 "behave much differently."
 msgstr ""
+"기본 브러시 반경을 사용하면 브러시를 더 크거나 작게 만들 때 브러시의 동작을 변경할 수 있습니다.\n"
+"dab 크기 증가를 취소하고 브러시를 더 크게 만들기 위해 다른 것을 조정할 수도 있습니다.\n"
+"\"기본 반경 당 Dab\"및 \"실제 반경 당 Dab\"은 매우 다르게 동작합니다."
 
 #. Brush input
 #: ../brushsettings-gen.h:89
 msgid "Barrel Rotation"
-msgstr ""
+msgstr "배럴 회전"
 
 #. Tooltip for the "Barrel Rotation" brush input
 #: ../brushsettings-gen.h:89
@@ -1183,6 +1237,10 @@ msgid ""
 "+90 when twisted clockwise 90 degrees\n"
 "-90 when twisted counterclockwise 90 degrees"
 msgstr ""
+"스타일러스의 배럴 회전.\n"
+"꼬이지 않을 때 0\n"
+"시계 방향으로 90도 비틀면 +90\n"
+"시계 반대 방향으로 90도 비틀면 -90"
 
 #~ msgid "Anti-aliasing"
 #~ msgstr "안티앨리어싱"

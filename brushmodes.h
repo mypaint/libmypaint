@@ -67,7 +67,7 @@ void get_color_pixels_accumulate (uint16_t * mask,
                                   float * sum_b,
                                   float * sum_a,
                                   float paint,
-                                  int sample_interval,
+                                  uint16_t sample_interval,
                                   float random_sample_rate
                                   );
 

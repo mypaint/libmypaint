@@ -21,6 +21,7 @@
 #include <math.h>
 #include "fastapprox/fastpow.h"
 
+#include "brushmodes.h"
 #include "helpers.h"
 
 // parameters to those methods:

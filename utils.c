@@ -16,10 +16,10 @@ fix15_to_rgba8(uint16_t *src, uint8_t *dst, int length)
     for (int i = 0; i < length; i++) {
       uint32_t r, g, b, a;
 
-      r = *src;
-      g = *src;
-      b = *src;
-      a = *src;
+      r = *src++;
+      g = *src++;
+      b = *src++;
+      a = *src++;
 
       // un-premultiply alpha (with rounding)
       if (a != 0) {

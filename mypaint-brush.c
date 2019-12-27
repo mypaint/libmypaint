@@ -1437,7 +1437,7 @@ update_brush_setting_from_json_object(MyPaintBrush *self,
 {
     MyPaintBrushSetting setting_id = mypaint_brush_setting_from_cname(setting_name);
 
-    if (!(setting_id >= 0 && setting_id < MYPAINT_BRUSH_SETTINGS_COUNT)) {
+    if (setting_id >= MYPAINT_BRUSH_SETTINGS_COUNT) {
         fprintf(stderr, "Warning: Unknown setting_id: %d for setting: %s\n",
                 setting_id, setting_name);
         return FALSE;

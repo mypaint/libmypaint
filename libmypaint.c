@@ -15,6 +15,8 @@
 #include "mypaint-brush.c"
 #include "mypaint-brush-settings.c"
 #include "mypaint-fixed-tiled-surface.c"
+#include "mypaint-matrix.c"
+#include "mypaint-symmetry.c"
 #include "mypaint-surface.c"
 #include "mypaint-tiled-surface.c"
 #include "mypaint-rectangle.c"

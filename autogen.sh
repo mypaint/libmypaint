@@ -24,7 +24,7 @@ LIBTOOL_WIN32_REQUIRED_VERSION=2.2
 
 PROJECT="libmypaint"
 TEST_TYPE=-f
-FILE=libmypaint.c
+FILE=mypaint-config.h
 
 
 srcdir=`dirname $0`

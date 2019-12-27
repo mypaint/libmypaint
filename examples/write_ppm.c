@@ -59,7 +59,7 @@ iterate_over_line_chunks(MyPaintTiledSurface * tiled_surface, int height, int wi
     const int tiles_per_row = (width / tile_size) + 1*(width % tile_size != 0);
 
     MyPaintTileRequest *requests = (MyPaintTileRequest *)malloc(tiles_per_row * sizeof(MyPaintTileRequest));
-    
+
     for (int ty = 0; ty < number_of_tile_rows; ty++) {
 
         // Fetch all horizontal tiles in current tile row
@@ -121,7 +121,7 @@ void write_ppm(MyPaintFixedTiledSurface *fixed_surface, char *filepath)
     const int width = mypaint_fixed_tiled_surface_get_width(fixed_surface);
     const int height = mypaint_fixed_tiled_surface_get_height(fixed_surface);
     fprintf(data.fp, "P3\n#Handwritten\n%d %d\n255\n", width, height);
-    
+
     iterate_over_line_chunks((MyPaintTiledSurface *)fixed_surface,
                              height, width,
                              write_ppm_chunk, &data);

@@ -1,8 +1,6 @@
 #include "libmypaint.c"
 #include "mypaint-fixed-tiled-surface.h"
 
-#include "utils.h" /* Not public API, just used for write_ppm to demonstrate */
-
 void
 stroke_to(MyPaintBrush *brush, MyPaintSurface *surf, float x, float y)
 {

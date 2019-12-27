@@ -8,7 +8,7 @@
 #include "fifo.c"
 #include "operationqueue.c"
 #include "rng-double.c"
-#include "utils.c"
+#include "write_ppm.c"
 #include "tilemap.c"
 
 #include "mypaint.c"

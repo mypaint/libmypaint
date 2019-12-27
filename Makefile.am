@@ -43,11 +43,9 @@ if HAVE_INTROSPECTION
 introspection_sources = \
 	$(MyPaint_introspectable_headers)	\
 	brushmodes.c					\
-	libmypaint.c					\
 	mypaint-brush-settings.c		\
 	mypaint-rectangle.c				\
 	operationqueue.c				\
-	utils.c							\
 	fifo.c							\
 	mypaint-mapping.c				\
 	mypaint.c						\
@@ -125,8 +123,7 @@ LIBMYPAINT_SOURCES = \
 	mypaint-tiled-surface.c			\
 	operationqueue.c				\
 	rng-double.c					\
-	tilemap.c						\
-	utils.c
+	tilemap.c
 
 libmypaint_@LIBMYPAINT_API_PLATFORM_VERSION@_la_SOURCES = $(libmypaint_public_HEADERS) $(LIBMYPAINT_SOURCES)
 
@@ -144,12 +141,10 @@ EXTRA_DIST = \
 	fifo.h							\
 	generate.py						\
 	helpers.h						\
-	libmypaint.c					\
 	operationqueue.h				\
 	rng-double.h					\
 	tiled-surface-private.h			\
 	tilemap.h						\
-	utils.h							\
 	glib/mypaint-brush.c
 
 if HAVE_I18N

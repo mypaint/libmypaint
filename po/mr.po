@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-12-12 23:51+0100\n"
-"PO-Revision-Date: 2019-12-11 17:10+0000\n"
+"PO-Revision-Date: 2019-12-29 02:50+0000\n"
 "Last-Translator: Prachi Joshi <josprachi@yahoo.com>\n"
 "Language-Team: Marathi <https://hosted.weblate.org/projects/mypaint/"
 "libmypaint/mr/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 3.10-dev\n"
+"X-Generator: Weblate 3.10\n"
 
 #. Brush setting
 #: ../brushsettings-gen.h:4
@@ -305,7 +305,7 @@ msgstr ""
 #. Brush setting
 #: ../brushsettings-gen.h:26
 msgid "Angular Offset: View"
-msgstr ""
+msgstr "कोणीय ऑफसेट: पहा"
 
 #. Tooltip for the "Angular Offset: View" brush setting
 #: ../brushsettings-gen.h:26
@@ -361,7 +361,7 @@ msgstr ""
 #. Brush setting
 #: ../brushsettings-gen.h:31
 msgid "Offsets Multiplier"
-msgstr ""
+msgstr "ऑफसेट गुणक"
 
 #. Tooltip for the "Offsets Multiplier" brush setting
 #: ../brushsettings-gen.h:31

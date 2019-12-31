@@ -10,7 +10,7 @@ AC_PREREQ(2.62)
 m4_define([libmypaint_api_major], [2])
 m4_define([libmypaint_api_minor], [0])
 m4_define([libmypaint_api_micro], [0])
-m4_define([libmypaint_api_prerelease], [alpha])  # may be blank
+m4_define([libmypaint_api_prerelease], [beta])  # may be blank
 
 # ABI version. Changes independently of API version.
 # See: https://autotools.io/libtool/version.html

@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-12-12 23:51+0100\n"
-"PO-Revision-Date: 2020-01-01 21:21+0000\n"
+"PO-Revision-Date: 2020-01-05 12:37+0000\n"
 "Last-Translator: Milo Ivir <mail@milotype.de>\n"
 "Language-Team: Croatian <https://hosted.weblate.org/projects/mypaint/"
 "libmypaint/hr/>\n"
@@ -23,7 +23,7 @@ msgstr ""
 #. Brush setting
 #: ../brushsettings-gen.h:4
 msgid "Opacity"
-msgstr ""
+msgstr "Neprozirnost"
 
 #. Tooltip for the "Opacity" brush setting
 #: ../brushsettings-gen.h:4
@@ -35,7 +35,7 @@ msgstr ""
 #. Brush setting
 #: ../brushsettings-gen.h:5
 msgid "Opacity multiply"
-msgstr ""
+msgstr "Množena neprozirnosti"
 
 #. Tooltip for the "Opacity multiply" brush setting
 #: ../brushsettings-gen.h:5
@@ -49,7 +49,7 @@ msgstr ""
 #. Brush setting
 #: ../brushsettings-gen.h:6
 msgid "Opacity linearize"
-msgstr ""
+msgstr "Linearna neprozirnosti"
 
 #. Tooltip for the "Opacity linearize" brush setting
 #: ../brushsettings-gen.h:6
@@ -67,7 +67,7 @@ msgstr ""
 #. Brush setting
 #: ../brushsettings-gen.h:7
 msgid "Radius"
-msgstr ""
+msgstr "Područje"
 
 #. Tooltip for the "Radius" brush setting
 #: ../brushsettings-gen.h:7
@@ -80,7 +80,7 @@ msgstr ""
 #. Brush setting
 #: ../brushsettings-gen.h:8
 msgid "Hardness"
-msgstr ""
+msgstr "Tvrdoća"
 
 #. Tooltip for the "Hardness" brush setting
 #: ../brushsettings-gen.h:8
@@ -92,7 +92,7 @@ msgstr ""
 #. Brush setting
 #: ../brushsettings-gen.h:9
 msgid "Pixel feather"
-msgstr ""
+msgstr "Zamućivanje piksela"
 
 #. Tooltip for the "Pixel feather" brush setting
 #: ../brushsettings-gen.h:9
@@ -107,7 +107,7 @@ msgstr ""
 #. Brush setting
 #: ../brushsettings-gen.h:10
 msgid "Dabs per basic radius"
-msgstr ""
+msgstr "Otisci po osnovnom polumjeru"
 
 #. Tooltip for the "Dabs per basic radius" brush setting
 #: ../brushsettings-gen.h:10
@@ -119,7 +119,7 @@ msgstr ""
 #. Brush setting
 #: ../brushsettings-gen.h:11
 msgid "Dabs per actual radius"
-msgstr ""
+msgstr "Otisci po stvarnom polumjeru"
 
 #. Tooltip for the "Dabs per actual radius" brush setting
 #: ../brushsettings-gen.h:11
@@ -131,7 +131,7 @@ msgstr ""
 #. Brush setting
 #: ../brushsettings-gen.h:12
 msgid "Dabs per second"
-msgstr ""
+msgstr "Otisci po sekundi"
 
 #. Tooltip for the "Dabs per second" brush setting
 #: ../brushsettings-gen.h:12
@@ -141,7 +141,7 @@ msgstr ""
 #. Brush setting
 #: ../brushsettings-gen.h:13
 msgid "GridMap Scale"
-msgstr ""
+msgstr "Omjer mreže"
 
 #. Tooltip for the "GridMap Scale" brush setting
 #: ../brushsettings-gen.h:13
@@ -154,7 +154,7 @@ msgstr ""
 #. Brush setting
 #: ../brushsettings-gen.h:14
 msgid "GridMap Scale X"
-msgstr ""
+msgstr "Omjer mreže x"
 
 #. Tooltip for the "GridMap Scale X" brush setting
 #: ../brushsettings-gen.h:14
@@ -168,7 +168,7 @@ msgstr ""
 #. Brush setting
 #: ../brushsettings-gen.h:15
 msgid "GridMap Scale Y"
-msgstr ""
+msgstr "Omjer mreže y"
 
 #. Tooltip for the "GridMap Scale Y" brush setting
 #: ../brushsettings-gen.h:15
@@ -182,7 +182,7 @@ msgstr ""
 #. Brush setting
 #: ../brushsettings-gen.h:16
 msgid "Radius by random"
-msgstr ""
+msgstr "Polumjer slučajno"
 
 #. Tooltip for the "Radius by random" brush setting
 #: ../brushsettings-gen.h:16
@@ -197,7 +197,7 @@ msgstr ""
 #. Brush setting
 #: ../brushsettings-gen.h:17
 msgid "Fine speed filter"
-msgstr ""
+msgstr "Filtar fine brzine"
 
 #. Tooltip for the "Fine speed filter" brush setting
 #: ../brushsettings-gen.h:17
@@ -209,7 +209,7 @@ msgstr ""
 #. Brush setting
 #: ../brushsettings-gen.h:18
 msgid "Gross speed filter"
-msgstr ""
+msgstr "Filtar grube brzine"
 
 #. Tooltip for the "Gross speed filter" brush setting
 #: ../brushsettings-gen.h:18
@@ -219,7 +219,7 @@ msgstr ""
 #. Brush setting
 #: ../brushsettings-gen.h:19
 msgid "Fine speed gamma"
-msgstr ""
+msgstr "Gama fine brzine"
 
 #. Tooltip for the "Fine speed gamma" brush setting
 #: ../brushsettings-gen.h:19
@@ -235,7 +235,7 @@ msgstr ""
 #. Brush setting
 #: ../brushsettings-gen.h:20
 msgid "Gross speed gamma"
-msgstr ""
+msgstr "Gama grube brzine"
 
 #. Tooltip for the "Gross speed gamma" brush setting
 #: ../brushsettings-gen.h:20
@@ -245,7 +245,7 @@ msgstr ""
 #. Brush setting
 #: ../brushsettings-gen.h:21
 msgid "Jitter"
-msgstr ""
+msgstr "Rasprši"
 
 #. Tooltip for the "Jitter" brush setting
 #: ../brushsettings-gen.h:21
@@ -259,7 +259,7 @@ msgstr ""
 #. Brush setting
 #: ../brushsettings-gen.h:22
 msgid "Offset Y"
-msgstr ""
+msgstr "Odmak Y"
 
 #. Tooltip for the "Offset Y" brush setting
 #: ../brushsettings-gen.h:22
@@ -269,7 +269,7 @@ msgstr ""
 #. Brush setting
 #: ../brushsettings-gen.h:23
 msgid "Offset X"
-msgstr ""
+msgstr "Odmak X"
 
 #. Tooltip for the "Offset X" brush setting
 #: ../brushsettings-gen.h:23
@@ -279,7 +279,7 @@ msgstr ""
 #. Brush setting
 #: ../brushsettings-gen.h:24
 msgid "Angular Offset: Direction"
-msgstr ""
+msgstr "Kutni odmak: Smjer"
 
 #. Tooltip for the "Angular Offset: Direction" brush setting
 #: ../brushsettings-gen.h:24
@@ -289,7 +289,7 @@ msgstr ""
 #. Brush setting
 #: ../brushsettings-gen.h:25
 msgid "Angular Offset: Ascension"
-msgstr ""
+msgstr "Kutni odmak: Uzlazni potez"
 
 #. Tooltip for the "Angular Offset: Ascension" brush setting
 #: ../brushsettings-gen.h:25
@@ -300,7 +300,7 @@ msgstr ""
 #. Brush setting
 #: ../brushsettings-gen.h:26
 msgid "Angular Offset: View"
-msgstr ""
+msgstr "Kutni odmak: Pogled"
 
 #. Tooltip for the "Angular Offset: View" brush setting
 #: ../brushsettings-gen.h:26
@@ -310,7 +310,7 @@ msgstr ""
 #. Brush setting
 #: ../brushsettings-gen.h:27
 msgid "Angular Offset Mirrored: Direction"
-msgstr ""
+msgstr "Kutni odmak zrcaljen: Smjer"
 
 #. Tooltip for the "Angular Offset Mirrored: Direction" brush setting
 #: ../brushsettings-gen.h:27
@@ -322,7 +322,7 @@ msgstr ""
 #. Brush setting
 #: ../brushsettings-gen.h:28
 msgid "Angular Offset Mirrored: Ascension"
-msgstr ""
+msgstr "Kutni odmak zrcaljen: Uzlazni potez"
 
 #. Tooltip for the "Angular Offset Mirrored: Ascension" brush setting
 #: ../brushsettings-gen.h:28
@@ -334,7 +334,7 @@ msgstr ""
 #. Brush setting
 #: ../brushsettings-gen.h:29
 msgid "Angular Offset Mirrored: View"
-msgstr ""
+msgstr "Kutni odmak zrcaljen: Pogled"
 
 #. Tooltip for the "Angular Offset Mirrored: View" brush setting
 #: ../brushsettings-gen.h:29
@@ -346,7 +346,7 @@ msgstr ""
 #. Brush setting
 #: ../brushsettings-gen.h:30
 msgid "Angular Offsets Adjustment"
-msgstr ""
+msgstr "Podešavanje kutnih odmaka"
 
 #. Tooltip for the "Angular Offsets Adjustment" brush setting
 #: ../brushsettings-gen.h:30
@@ -356,7 +356,7 @@ msgstr ""
 #. Brush setting
 #: ../brushsettings-gen.h:31
 msgid "Offsets Multiplier"
-msgstr ""
+msgstr "Množitelj odmaka"
 
 #. Tooltip for the "Offsets Multiplier" brush setting
 #: ../brushsettings-gen.h:31
@@ -366,7 +366,7 @@ msgstr ""
 #. Brush setting
 #: ../brushsettings-gen.h:32
 msgid "Offset by speed"
-msgstr ""
+msgstr "Odmakni brzinom"
 
 #. Tooltip for the "Offset by speed" brush setting
 #: ../brushsettings-gen.h:32
@@ -380,7 +380,7 @@ msgstr ""
 #. Brush setting
 #: ../brushsettings-gen.h:33
 msgid "Offset by speed filter"
-msgstr ""
+msgstr "Odmakni filtrom brzine"
 
 #. Tooltip for the "Offset by speed filter" brush setting
 #: ../brushsettings-gen.h:33
@@ -390,7 +390,7 @@ msgstr ""
 #. Brush setting
 #: ../brushsettings-gen.h:34
 msgid "Slow position tracking"
-msgstr ""
+msgstr "Sporo praćenje položaja"
 
 #. Tooltip for the "Slow position tracking" brush setting
 #: ../brushsettings-gen.h:34
@@ -402,7 +402,7 @@ msgstr ""
 #. Brush setting
 #: ../brushsettings-gen.h:35
 msgid "Slow tracking per dab"
-msgstr ""
+msgstr "Sporo praćenje po otisku"
 
 #. Tooltip for the "Slow tracking per dab" brush setting
 #: ../brushsettings-gen.h:35
@@ -414,7 +414,7 @@ msgstr ""
 #. Brush setting
 #: ../brushsettings-gen.h:36
 msgid "Tracking noise"
-msgstr ""
+msgstr "Šum praćenja"
 
 #. Tooltip for the "Tracking noise" brush setting
 #: ../brushsettings-gen.h:36
@@ -427,28 +427,28 @@ msgstr ""
 #. Tooltip for the "Color hue" brush setting
 #: ../brushsettings-gen.h:37
 msgid "Color hue"
-msgstr ""
+msgstr "Nijansa boje"
 
 #. Brush setting
 #. Tooltip for the "Color saturation" brush setting
 #: ../brushsettings-gen.h:38
 msgid "Color saturation"
-msgstr ""
+msgstr "Zasićenost boje"
 
 #. Brush setting
 #: ../brushsettings-gen.h:39
 msgid "Color value"
-msgstr ""
+msgstr "Vrijednost boje"
 
 #. Tooltip for the "Color value" brush setting
 #: ../brushsettings-gen.h:39
 msgid "Color value (brightness, intensity)"
-msgstr ""
+msgstr "Vrijednost boje (svjetlina, intenzitet)"
 
 #. Brush setting
 #: ../brushsettings-gen.h:40
 msgid "Save color"
-msgstr ""
+msgstr "Spremi boju"
 
 #. Tooltip for the "Save color" brush setting
 #: ../brushsettings-gen.h:40
@@ -463,7 +463,7 @@ msgstr ""
 #. Brush setting
 #: ../brushsettings-gen.h:41
 msgid "Change color hue"
-msgstr ""
+msgstr "Promijeni nijansu boje"
 
 #. Tooltip for the "Change color hue" brush setting
 #: ../brushsettings-gen.h:41
@@ -477,7 +477,7 @@ msgstr ""
 #. Brush setting
 #: ../brushsettings-gen.h:42
 msgid "Change color lightness (HSL)"
-msgstr ""
+msgstr "Promijeni osvijetljenost boje (HSL)"
 
 #. Tooltip for the "Change color lightness (HSL)" brush setting
 #: ../brushsettings-gen.h:42
@@ -491,7 +491,7 @@ msgstr ""
 #. Brush setting
 #: ../brushsettings-gen.h:43
 msgid "Change color satur. (HSL)"
-msgstr ""
+msgstr "Promijeni zasićenost boje (HSL)"
 
 #. Tooltip for the "Change color satur. (HSL)" brush setting
 #: ../brushsettings-gen.h:43
@@ -505,7 +505,7 @@ msgstr ""
 #. Brush setting
 #: ../brushsettings-gen.h:44
 msgid "Change color value (HSV)"
-msgstr ""
+msgstr "Promijeni vrijednost boje (HSV)"
 
 #. Tooltip for the "Change color value (HSV)" brush setting
 #: ../brushsettings-gen.h:44
@@ -520,7 +520,7 @@ msgstr ""
 #. Brush setting
 #: ../brushsettings-gen.h:45
 msgid "Change color satur. (HSV)"
-msgstr ""
+msgstr "Promijeni zasićenost boje (HSV)"
 
 #. Tooltip for the "Change color satur. (HSV)" brush setting
 #: ../brushsettings-gen.h:45
@@ -535,7 +535,7 @@ msgstr ""
 #. Brush setting
 #: ../brushsettings-gen.h:46
 msgid "Smudge"
-msgstr ""
+msgstr "Razmazivanje"
 
 #. Tooltip for the "Smudge" brush setting
 #: ../brushsettings-gen.h:46
@@ -550,7 +550,7 @@ msgstr ""
 #. Brush setting
 #: ../brushsettings-gen.h:47
 msgid "Pigment"
-msgstr ""
+msgstr "Pigment"
 
 #. Tooltip for the "Pigment" brush setting
 #: ../brushsettings-gen.h:47
@@ -563,7 +563,7 @@ msgstr ""
 #. Brush setting
 #: ../brushsettings-gen.h:48
 msgid "Smudge transparency"
-msgstr ""
+msgstr "Prozirnost razmazivanja"
 
 #. Tooltip for the "Smudge transparency" brush setting
 #: ../brushsettings-gen.h:48
@@ -579,7 +579,7 @@ msgstr ""
 #. Brush setting
 #: ../brushsettings-gen.h:49
 msgid "Smudge length"
-msgstr ""
+msgstr "Duljina razmazivanja"
 
 #. Tooltip for the "Smudge length" brush setting
 #: ../brushsettings-gen.h:49
@@ -595,7 +595,7 @@ msgstr ""
 #. Brush setting
 #: ../brushsettings-gen.h:50
 msgid "Smudge length multiplier"
-msgstr ""
+msgstr "Množitelj duljine razmazivanja"
 
 #. Tooltip for the "Smudge length multiplier" brush setting
 #: ../brushsettings-gen.h:50
@@ -609,7 +609,7 @@ msgstr ""
 #. Brush setting
 #: ../brushsettings-gen.h:51
 msgid "Smudge bucket"
-msgstr ""
+msgstr "Kante za razmazivanje"
 
 #. Tooltip for the "Smudge bucket" brush setting
 #: ../brushsettings-gen.h:51
@@ -624,7 +624,7 @@ msgstr ""
 #. Brush setting
 #: ../brushsettings-gen.h:52
 msgid "Smudge radius"
-msgstr ""
+msgstr "Područje razmazivanja"
 
 #. Tooltip for the "Smudge radius" brush setting
 #: ../brushsettings-gen.h:52
@@ -640,7 +640,7 @@ msgstr ""
 #. Brush setting
 #: ../brushsettings-gen.h:53
 msgid "Eraser"
-msgstr ""
+msgstr "Gumica"
 
 #. Tooltip for the "Eraser" brush setting
 #: ../brushsettings-gen.h:53
@@ -654,7 +654,7 @@ msgstr ""
 #. Brush setting
 #: ../brushsettings-gen.h:54
 msgid "Stroke threshold"
-msgstr ""
+msgstr "Prag poteza"
 
 #. Tooltip for the "Stroke threshold" brush setting
 #: ../brushsettings-gen.h:54
@@ -666,7 +666,7 @@ msgstr ""
 #. Brush setting
 #: ../brushsettings-gen.h:55
 msgid "Stroke duration"
-msgstr ""
+msgstr "Trajanje poteza"
 
 #. Tooltip for the "Stroke duration" brush setting
 #: ../brushsettings-gen.h:55
@@ -678,7 +678,7 @@ msgstr ""
 #. Brush setting
 #: ../brushsettings-gen.h:56
 msgid "Stroke hold time"
-msgstr ""
+msgstr "Vrijeme držanja poteza"
 
 #. Tooltip for the "Stroke hold time" brush setting
 #: ../brushsettings-gen.h:56
@@ -693,7 +693,7 @@ msgstr ""
 #. Brush setting
 #: ../brushsettings-gen.h:57
 msgid "Custom input"
-msgstr ""
+msgstr "Prilagođeni unos"
 
 #. Tooltip for the "Custom input" brush setting
 #: ../brushsettings-gen.h:57
@@ -710,7 +710,7 @@ msgstr ""
 #. Brush setting
 #: ../brushsettings-gen.h:58
 msgid "Custom input filter"
-msgstr ""
+msgstr "Prilagođeni filtar unosa"
 
 #. Tooltip for the "Custom input filter" brush setting
 #: ../brushsettings-gen.h:58
@@ -724,7 +724,7 @@ msgstr ""
 #. Brush setting
 #: ../brushsettings-gen.h:59
 msgid "Elliptical dab: ratio"
-msgstr ""
+msgstr "Eliptičan otisak: omjer"
 
 #. Tooltip for the "Elliptical dab: ratio" brush setting
 #: ../brushsettings-gen.h:59
@@ -736,7 +736,7 @@ msgstr ""
 #. Brush setting
 #: ../brushsettings-gen.h:60
 msgid "Elliptical dab: angle"
-msgstr ""
+msgstr "Eliptičan otisak: kut"
 
 #. Tooltip for the "Elliptical dab: angle" brush setting
 #: ../brushsettings-gen.h:60
@@ -750,7 +750,7 @@ msgstr ""
 #. Brush setting
 #: ../brushsettings-gen.h:61
 msgid "Direction filter"
-msgstr ""
+msgstr "Filtar smjera"
 
 #. Tooltip for the "Direction filter" brush setting
 #: ../brushsettings-gen.h:61
@@ -762,7 +762,7 @@ msgstr ""
 #. Brush setting
 #: ../brushsettings-gen.h:62
 msgid "Lock alpha"
-msgstr ""
+msgstr "Zaključaj alfu"
 
 #. Tooltip for the "Lock alpha" brush setting
 #: ../brushsettings-gen.h:62
@@ -777,7 +777,7 @@ msgstr ""
 #. Brush setting
 #: ../brushsettings-gen.h:63
 msgid "Colorize"
-msgstr ""
+msgstr "Oboji"
 
 #. Tooltip for the "Colorize" brush setting
 #: ../brushsettings-gen.h:63
@@ -789,7 +789,7 @@ msgstr ""
 #. Brush setting
 #: ../brushsettings-gen.h:64
 msgid "Posterize"
-msgstr ""
+msgstr "Posterizacija"
 
 #. Tooltip for the "Posterize" brush setting
 #: ../brushsettings-gen.h:64
@@ -801,7 +801,7 @@ msgstr ""
 #. Brush setting
 #: ../brushsettings-gen.h:65
 msgid "Posterization levels"
-msgstr ""
+msgstr "Razine posterizacije"
 
 #. Tooltip for the "Posterization levels" brush setting
 #: ../brushsettings-gen.h:65
@@ -814,7 +814,7 @@ msgstr ""
 #. Brush setting
 #: ../brushsettings-gen.h:66
 msgid "Snap to pixel"
-msgstr ""
+msgstr "Privlači na piksel"
 
 #. Tooltip for the "Snap to pixel" brush setting
 #: ../brushsettings-gen.h:66
@@ -826,7 +826,7 @@ msgstr ""
 #. Brush setting
 #: ../brushsettings-gen.h:67
 msgid "Pressure gain"
-msgstr ""
+msgstr "Prirast pritiska"
 
 #. Tooltip for the "Pressure gain" brush setting
 #: ../brushsettings-gen.h:67
@@ -838,7 +838,7 @@ msgstr ""
 #. Brush input
 #: ../brushsettings-gen.h:72
 msgid "Pressure"
-msgstr ""
+msgstr "Pritisak"
 
 #. Tooltip for the "Pressure" brush input
 #: ../brushsettings-gen.h:72
@@ -863,7 +863,7 @@ msgstr ""
 #. Brush input
 #: ../brushsettings-gen.h:74
 msgid "Stroke"
-msgstr ""
+msgstr "Potez"
 
 #. Tooltip for the "Stroke" brush input
 #: ../brushsettings-gen.h:74
@@ -888,7 +888,7 @@ msgstr ""
 #. Brush input
 #: ../brushsettings-gen.h:76
 msgid "Declination/Tilt"
-msgstr ""
+msgstr "Silazni potez/Nagib"
 
 #. Tooltip for the "Declination/Tilt" brush input
 #: ../brushsettings-gen.h:76
@@ -900,7 +900,7 @@ msgstr ""
 #. Brush input
 #: ../brushsettings-gen.h:77
 msgid "Ascension"
-msgstr ""
+msgstr "Uzlazni potez"
 
 #. Tooltip for the "Ascension" brush input
 #: ../brushsettings-gen.h:77
@@ -913,7 +913,7 @@ msgstr ""
 #. Brush input - "fine" refers to the accuracy and update frequency of the speed value, as in "fine grained"
 #: ../brushsettings-gen.h:78
 msgid "Fine speed"
-msgstr ""
+msgstr "Fina brzina"
 
 #. Tooltip for the "Fine speed" brush input
 #: ../brushsettings-gen.h:78
@@ -926,7 +926,7 @@ msgstr ""
 #. Brush input - changes more smoothly but is less accurate than "Fine speed"
 #: ../brushsettings-gen.h:79
 msgid "Gross speed"
-msgstr ""
+msgstr "Gruba brzina"
 
 #. Tooltip for the "Gross speed" brush input
 #: ../brushsettings-gen.h:79
@@ -948,9 +948,8 @@ msgstr ""
 
 #. Brush input - refers to the direction of the stroke
 #: ../brushsettings-gen.h:81
-#, fuzzy
 msgid "Direction 360"
-msgstr "Smjer"
+msgstr "Smjer 360"
 
 #. Tooltip for the "Direction 360" brush input
 #: ../brushsettings-gen.h:81
@@ -960,7 +959,7 @@ msgstr ""
 #. Brush input
 #: ../brushsettings-gen.h:82
 msgid "Attack Angle"
-msgstr ""
+msgstr "Kut prelaza"
 
 #. Tooltip for the "Attack Angle" brush input
 #: ../brushsettings-gen.h:82
@@ -977,7 +976,7 @@ msgstr ""
 #. Brush input
 #: ../brushsettings-gen.h:83
 msgid "Declination/Tilt X"
-msgstr ""
+msgstr "Silazni potez/Nagib x"
 
 #. Tooltip for the "Declination/Tilt X" brush input
 #: ../brushsettings-gen.h:83
@@ -989,7 +988,7 @@ msgstr ""
 #. Brush input
 #: ../brushsettings-gen.h:84
 msgid "Declination/Tilt Y"
-msgstr ""
+msgstr "Silazni potez/Nagib y"
 
 #. Tooltip for the "Declination/Tilt Y" brush input
 #: ../brushsettings-gen.h:84
@@ -1001,7 +1000,7 @@ msgstr ""
 #. Brush input
 #: ../brushsettings-gen.h:85
 msgid "GridMap X"
-msgstr ""
+msgstr "Mreža x"
 
 #. Tooltip for the "GridMap X" brush input
 #: ../brushsettings-gen.h:85
@@ -1016,7 +1015,7 @@ msgstr ""
 #. Brush input
 #: ../brushsettings-gen.h:86
 msgid "GridMap Y"
-msgstr ""
+msgstr "Mreža y"
 
 #. Tooltip for the "GridMap Y" brush input
 #: ../brushsettings-gen.h:86
@@ -1031,7 +1030,7 @@ msgstr ""
 #. Brush input - refers to canvas zoom
 #: ../brushsettings-gen.h:87
 msgid "Zoom Level"
-msgstr ""
+msgstr "Razina zumiranja"
 
 #. Tooltip for the "Zoom Level" brush input
 #: ../brushsettings-gen.h:87
@@ -1045,7 +1044,7 @@ msgstr ""
 #. Brush input
 #: ../brushsettings-gen.h:88
 msgid "Base Brush Radius"
-msgstr ""
+msgstr "Osnovni polumjer kista"
 
 #. Tooltip for the "Base Brush Radius" brush input
 #: ../brushsettings-gen.h:88
@@ -1061,7 +1060,7 @@ msgstr ""
 #. Brush input
 #: ../brushsettings-gen.h:89
 msgid "Barrel Rotation"
-msgstr ""
+msgstr "Okretanje oko vlastite osi"
 
 #. Tooltip for the "Barrel Rotation" brush input
 #: ../brushsettings-gen.h:89

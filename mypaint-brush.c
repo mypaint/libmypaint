@@ -258,7 +258,7 @@ mypaint_brush_new_stroke(MyPaintBrush *self)
 void
 mypaint_brush_set_base_value(MyPaintBrush *self, MyPaintBrushSetting id, float value)
 {
-    assert (id >= 0 && id < MYPAINT_BRUSH_SETTINGS_COUNT);
+    assert (id < MYPAINT_BRUSH_SETTINGS_COUNT);
     mypaint_mapping_set_base_value(self->settings[id], value);
 
     settings_base_values_have_changed (self);
@@ -272,7 +272,7 @@ mypaint_brush_set_base_value(MyPaintBrush *self, MyPaintBrushSetting id, float v
 float
 mypaint_brush_get_base_value(MyPaintBrush *self, MyPaintBrushSetting id)
 {
-    assert (id >= 0 && id < MYPAINT_BRUSH_SETTINGS_COUNT);
+    assert (id < MYPAINT_BRUSH_SETTINGS_COUNT);
     return mypaint_mapping_get_base_value(self->settings[id]);
 }
 
@@ -284,7 +284,7 @@ mypaint_brush_get_base_value(MyPaintBrush *self, MyPaintBrushSetting id)
 void
 mypaint_brush_set_mapping_n(MyPaintBrush *self, MyPaintBrushSetting id, MyPaintBrushInput input, int n)
 {
-    assert (id >= 0 && id < MYPAINT_BRUSH_SETTINGS_COUNT);
+    assert (id < MYPAINT_BRUSH_SETTINGS_COUNT);
     mypaint_mapping_set_n(self->settings[id], input, n);
 }
 
@@ -307,7 +307,7 @@ mypaint_brush_get_mapping_n(MyPaintBrush *self, MyPaintBrushSetting id, MyPaintB
 gboolean
 mypaint_brush_is_constant(MyPaintBrush *self, MyPaintBrushSetting id)
 {
-    assert (id >= 0 && id < MYPAINT_BRUSH_SETTINGS_COUNT);
+    assert (id < MYPAINT_BRUSH_SETTINGS_COUNT);
     return mypaint_mapping_is_constant(self->settings[id]);
 }
 
@@ -319,7 +319,7 @@ mypaint_brush_is_constant(MyPaintBrush *self, MyPaintBrushSetting id)
 int
 mypaint_brush_get_inputs_used_n(MyPaintBrush *self, MyPaintBrushSetting id)
 {
-    assert (id >= 0 && id < MYPAINT_BRUSH_SETTINGS_COUNT);
+    assert (id < MYPAINT_BRUSH_SETTINGS_COUNT);
     return mypaint_mapping_get_inputs_used_n(self->settings[id]);
 }
 
@@ -332,7 +332,7 @@ mypaint_brush_get_inputs_used_n(MyPaintBrush *self, MyPaintBrushSetting id)
 void
 mypaint_brush_set_mapping_point(MyPaintBrush *self, MyPaintBrushSetting id, MyPaintBrushInput input, int index, float x, float y)
 {
-    assert (id >= 0 && id < MYPAINT_BRUSH_SETTINGS_COUNT);
+    assert (id < MYPAINT_BRUSH_SETTINGS_COUNT);
     mypaint_mapping_set_point(self->settings[id], input, index, x, y);
 }
 
@@ -346,7 +346,7 @@ mypaint_brush_set_mapping_point(MyPaintBrush *self, MyPaintBrushSetting id, MyPa
 void
 mypaint_brush_get_mapping_point(MyPaintBrush *self, MyPaintBrushSetting id, MyPaintBrushInput input, int index, float *x, float *y)
 {
-    assert (id >= 0 && id < MYPAINT_BRUSH_SETTINGS_COUNT);
+    assert (id < MYPAINT_BRUSH_SETTINGS_COUNT);
     mypaint_mapping_get_point(self->settings[id], input, index, x, y);
 }
 
@@ -359,7 +359,7 @@ mypaint_brush_get_mapping_point(MyPaintBrush *self, MyPaintBrushSetting id, MyPa
 float
 mypaint_brush_get_state(MyPaintBrush *self, MyPaintBrushState i)
 {
-    assert (i >= 0 && i < MYPAINT_BRUSH_STATES_COUNT);
+    assert (i < MYPAINT_BRUSH_STATES_COUNT);
     return self->states[i];
 }
 
@@ -372,7 +372,7 @@ mypaint_brush_get_state(MyPaintBrush *self, MyPaintBrushState i)
 void
 mypaint_brush_set_state(MyPaintBrush *self, MyPaintBrushState i, float value)
 {
-    assert (i >= 0 && i < MYPAINT_BRUSH_STATES_COUNT);
+    assert (i < MYPAINT_BRUSH_STATES_COUNT);
     self->states[i] = value;
 }
 
@@ -678,8 +678,6 @@ void print_inputs(MyPaintBrush *self, float* inputs)
     if (self->print_inputs) {
         print_inputs(self, inputs);
     }
-    // FIXME: this one fails!!!
-    //assert(inputs[MYPAINT_BRUSH_INPUT_SPEED1] >= 0.0 && inputs[MYPAINT_BRUSH_INPUT_SPEED1] < 1e8); // checking for inf
 
     int i=0;
     for (i=0; i<MYPAINT_BRUSH_SETTINGS_COUNT; i++) {
@@ -1472,7 +1470,7 @@ update_brush_setting_from_json_object(MyPaintBrush *self,
             return FALSE;
         }
 
-        if (!(input_id >= 0 && input_id < MYPAINT_BRUSH_INPUTS_COUNT)) {
+        if (input_id >= MYPAINT_BRUSH_INPUTS_COUNT) {
             fprintf(stderr, "Warning: Unknown input_id: %d for input: %s\n",
                     input_id, input_name);
             return FALSE;

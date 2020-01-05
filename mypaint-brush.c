@@ -44,8 +44,10 @@
 #endif
 #endif
 
-// Conversion from degree to radians
+// Conversion from degrees to radians
 #define RADIANS(x) ((x) * M_PI / 180.0)
+// Conversion from radians to degrees
+#define DEGREES(x) (((x) / (2 * M_PI)) * 360.0)
 
 #define ACTUAL_RADIUS_MIN 0.2
 #define ACTUAL_RADIUS_MAX 1000 // safety guard against radius like 1e20 and against rendering overload with unexpected brush dynamics
@@ -445,7 +447,7 @@ Offsets directional_offsets(MyPaintBrush *self, float base_radius) {
     const float offset_angle_adj = self->settings_value[MYPAINT_BRUSH_SETTING_OFFSET_ANGLE_ADJ];
     const float dir_angle_dy = self->states[MYPAINT_BRUSH_STATE_DIRECTION_ANGLE_DY];
     const float dir_angle_dx = self->states[MYPAINT_BRUSH_STATE_DIRECTION_ANGLE_DX];
-    const float angle_deg = fmodf(atan2f(dir_angle_dy, dir_angle_dx) / (2 * M_PI) * 360 - 90, 360);
+    const float angle_deg = fmodf(DEGREES(atan2f(dir_angle_dy, dir_angle_dx)) - 90, 360);
 
     //offset to one side of direction
     const float offset_angle = self->settings_value[MYPAINT_BRUSH_SETTING_OFFSET_ANGLE];
@@ -575,25 +577,25 @@ void print_inputs(MyPaintBrush *self, float* inputs)
     self->states[MYPAINT_BRUSH_STATE_X]        += step_dx;
     self->states[MYPAINT_BRUSH_STATE_Y]        += step_dy;
     self->states[MYPAINT_BRUSH_STATE_PRESSURE] += step_dpressure;
-    
+
     self->states[MYPAINT_BRUSH_STATE_DABS_PER_BASIC_RADIUS] = self->settings_value[MYPAINT_BRUSH_SETTING_DABS_PER_BASIC_RADIUS];
     self->states[MYPAINT_BRUSH_STATE_DABS_PER_ACTUAL_RADIUS] = self->settings_value[MYPAINT_BRUSH_SETTING_DABS_PER_ACTUAL_RADIUS];
     self->states[MYPAINT_BRUSH_STATE_DABS_PER_SECOND] = self->settings_value[MYPAINT_BRUSH_SETTING_DABS_PER_SECOND];
-    
+
 
     self->states[MYPAINT_BRUSH_STATE_DECLINATION] += step_declination;
     self->states[MYPAINT_BRUSH_STATE_DECLINATIONX] += step_declinationx;
     self->states[MYPAINT_BRUSH_STATE_DECLINATIONY] += step_declinationy;
     self->states[MYPAINT_BRUSH_STATE_ASCENSION] += step_ascension;
-    
+
     self->states[MYPAINT_BRUSH_STATE_VIEWZOOM] = step_viewzoom;
-    self->states[MYPAINT_BRUSH_STATE_VIEWROTATION] = mod_arith((step_viewrotation * 180.0 / M_PI) + 180.0, 360.0) -180.0;
+    self->states[MYPAINT_BRUSH_STATE_VIEWROTATION] = mod_arith(DEGREES(step_viewrotation) + 180.0, 360.0) - 180.0;
     gridmap_scale = expf(self->settings_value[MYPAINT_BRUSH_SETTING_GRIDMAP_SCALE]);
     gridmap_scale_x = self->settings_value[MYPAINT_BRUSH_SETTING_GRIDMAP_SCALE_X];
     gridmap_scale_y = self->settings_value[MYPAINT_BRUSH_SETTING_GRIDMAP_SCALE_Y];
     self->states[MYPAINT_BRUSH_STATE_GRIDMAP_X] = mod_arith(fabsf(self->states[MYPAINT_BRUSH_STATE_ACTUAL_X] * gridmap_scale_x), (gridmap_scale * 256.0)) / (gridmap_scale * 256.0) * 256.0;
     self->states[MYPAINT_BRUSH_STATE_GRIDMAP_Y] = mod_arith(fabsf(self->states[MYPAINT_BRUSH_STATE_ACTUAL_Y] * gridmap_scale_y), (gridmap_scale * 256.0)) / (gridmap_scale * 256.0) * 256.0;
-    
+
     if (self->states[MYPAINT_BRUSH_STATE_ACTUAL_X] < 0.0) {
       self->states[MYPAINT_BRUSH_STATE_GRIDMAP_X] = 256.0 - self->states[MYPAINT_BRUSH_STATE_GRIDMAP_X];
     }
@@ -648,23 +650,24 @@ void print_inputs(MyPaintBrush *self, float* inputs)
     inputs[MYPAINT_BRUSH_INPUT_PRESSURE] = pressure * expf(mypaint_mapping_get_base_value(self->settings[MYPAINT_BRUSH_SETTING_PRESSURE_GAIN_LOG]));
     inputs[MYPAINT_BRUSH_INPUT_SPEED1] = log(self->speed_mapping_gamma[0] + self->states[MYPAINT_BRUSH_STATE_NORM_SPEED1_SLOW])*self->speed_mapping_m[0] + self->speed_mapping_q[0], 0.0, 4.0;
     inputs[MYPAINT_BRUSH_INPUT_SPEED2] = log(self->speed_mapping_gamma[1] + self->states[MYPAINT_BRUSH_STATE_NORM_SPEED2_SLOW])*self->speed_mapping_m[1] + self->speed_mapping_q[1], 0.0, 4.0;
-    
+
     inputs[MYPAINT_BRUSH_INPUT_RANDOM] = self->random_input;
     inputs[MYPAINT_BRUSH_INPUT_STROKE] = MIN(self->states[MYPAINT_BRUSH_STATE_STROKE], 1.0);
     //correct direction for varying view rotation
-    inputs[MYPAINT_BRUSH_INPUT_DIRECTION] = mod_arith(atan2f (self->states[MYPAINT_BRUSH_STATE_DIRECTION_DY], self->states[MYPAINT_BRUSH_STATE_DIRECTION_DX])/(2*M_PI)*360 + self->states[MYPAINT_BRUSH_STATE_VIEWROTATION] + 180.0, 180.0);
-    inputs[MYPAINT_BRUSH_INPUT_DIRECTION_ANGLE] = fmodf(atan2f(self->states[MYPAINT_BRUSH_STATE_DIRECTION_ANGLE_DY], self->states[MYPAINT_BRUSH_STATE_DIRECTION_ANGLE_DX]) / (2 * M_PI) * 360 + self->states[MYPAINT_BRUSH_STATE_VIEWROTATION] + 360.0, 360.0) ;
+    const float dir_angle = atan2f(self->states[MYPAINT_BRUSH_STATE_DIRECTION_DY], self->states[MYPAINT_BRUSH_STATE_DIRECTION_DX]);
+    inputs[MYPAINT_BRUSH_INPUT_DIRECTION] = mod_arith(DEGREES(dir_angle) + self->states[MYPAINT_BRUSH_STATE_VIEWROTATION] + 180.0, 180.0);
+    const float dir_angle_360 = atan2f(self->states[MYPAINT_BRUSH_STATE_DIRECTION_ANGLE_DY], self->states[MYPAINT_BRUSH_STATE_DIRECTION_ANGLE_DX]);
+    inputs[MYPAINT_BRUSH_INPUT_DIRECTION_ANGLE] = fmodf(DEGREES(dir_angle_360) + self->states[MYPAINT_BRUSH_STATE_VIEWROTATION] + 360.0, 360.0) ;
     inputs[MYPAINT_BRUSH_INPUT_TILT_DECLINATION] = self->states[MYPAINT_BRUSH_STATE_DECLINATION];
     //correct ascension for varying view rotation, use custom mod
     inputs[MYPAINT_BRUSH_INPUT_TILT_ASCENSION] = mod_arith(self->states[MYPAINT_BRUSH_STATE_ASCENSION] + self->states[MYPAINT_BRUSH_STATE_VIEWROTATION] + 180.0, 360.0) - 180.0;
     inputs[MYPAINT_BRUSH_INPUT_VIEWZOOM] = (mypaint_mapping_get_base_value(self->settings[MYPAINT_BRUSH_SETTING_RADIUS_LOGARITHMIC])) - logf(base_radius * 1 / self->states[MYPAINT_BRUSH_STATE_VIEWZOOM]);
-    inputs[MYPAINT_BRUSH_INPUT_ATTACK_ANGLE] = smallest_angular_difference(self->states[MYPAINT_BRUSH_STATE_ASCENSION], mod_arith(atan2f(self->states[MYPAINT_BRUSH_STATE_DIRECTION_ANGLE_DY], self->states[MYPAINT_BRUSH_STATE_DIRECTION_ANGLE_DX]) / (2 * M_PI) * 360 + 90, 360));
+    inputs[MYPAINT_BRUSH_INPUT_ATTACK_ANGLE] = smallest_angular_difference(self->states[MYPAINT_BRUSH_STATE_ASCENSION], mod_arith(DEGREES(dir_angle_360) + 90, 360));
     inputs[MYPAINT_BRUSH_INPUT_BRUSH_RADIUS] = mypaint_mapping_get_base_value(self->settings[MYPAINT_BRUSH_SETTING_RADIUS_LOGARITHMIC]);
     inputs[MYPAINT_BRUSH_INPUT_GRIDMAP_X] = CLAMP(self->states[MYPAINT_BRUSH_STATE_GRIDMAP_X], 0.0, 256.0);
     inputs[MYPAINT_BRUSH_INPUT_GRIDMAP_Y] = CLAMP(self->states[MYPAINT_BRUSH_STATE_GRIDMAP_Y], 0.0, 256.0);
     inputs[MYPAINT_BRUSH_INPUT_TILT_DECLINATIONX] = self->states[MYPAINT_BRUSH_STATE_DECLINATIONX];
     inputs[MYPAINT_BRUSH_INPUT_TILT_DECLINATIONY] = self->states[MYPAINT_BRUSH_STATE_DECLINATIONY];
-    inputs[MYPAINT_BRUSH_INPUT_ATTACK_ANGLE] = smallest_angular_difference(self->states[MYPAINT_BRUSH_STATE_ASCENSION], mod_arith(atan2f(self->states[MYPAINT_BRUSH_STATE_DIRECTION_ANGLE_DY], self->states[MYPAINT_BRUSH_STATE_DIRECTION_ANGLE_DX]) / (2 * M_PI) * 360 + 90 + self->states[MYPAINT_BRUSH_STATE_VIEWROTATION], 360));
 
     inputs[MYPAINT_BRUSH_INPUT_CUSTOM] = self->states[MYPAINT_BRUSH_STATE_CUSTOM_INPUT];
     inputs[MYPAINT_BRUSH_INPUT_BARREL_ROTATION] = mod_arith(self->states[MYPAINT_BRUSH_STATE_BARREL_ROTATION], 360);
@@ -722,11 +725,11 @@ void print_inputs(MyPaintBrush *self, float* inputs)
 
       float dx_old = self->states[MYPAINT_BRUSH_STATE_DIRECTION_DX];
       float dy_old = self->states[MYPAINT_BRUSH_STATE_DIRECTION_DY];
-      
+
       // 360 Direction
       self->states[MYPAINT_BRUSH_STATE_DIRECTION_ANGLE_DX] += (dx - self->states[MYPAINT_BRUSH_STATE_DIRECTION_ANGLE_DX]) * fac;
       self->states[MYPAINT_BRUSH_STATE_DIRECTION_ANGLE_DY] += (dy - self->states[MYPAINT_BRUSH_STATE_DIRECTION_ANGLE_DY]) * fac;
-      
+
       // use the opposite speed vector if it is closer (we don't care about 180 degree turns)
       if (SQR(dx_old-dx) + SQR(dy_old-dy) > SQR(dx_old-(-dx)) + SQR(dy_old-(-dy))) {
         dx = -dx;
@@ -1109,7 +1112,7 @@ void print_inputs(MyPaintBrush *self, float* inputs)
 
     if (self->states[MYPAINT_BRUSH_STATE_ACTUAL_ELLIPTICAL_DAB_RATIO] > 1.0) {
       // code duplication, see tiledsurface::draw_dab()
-      float angle_rad=self->states[MYPAINT_BRUSH_STATE_ACTUAL_ELLIPTICAL_DAB_ANGLE]/360*2*M_PI;
+      float angle_rad=RADIANS(self->states[MYPAINT_BRUSH_STATE_ACTUAL_ELLIPTICAL_DAB_ANGLE]);
       float cs=cos(angle_rad);
       float sn=sin(angle_rad);
       float yyr=(yy*cs-xx*sn)*self->states[MYPAINT_BRUSH_STATE_ACTUAL_ELLIPTICAL_DAB_RATIO];
@@ -1157,7 +1160,7 @@ void print_inputs(MyPaintBrush *self, float* inputs)
       ytilt = CLAMP(ytilt, -1.0, 1.0);
       assert(isfinite(xtilt) && isfinite(ytilt));
 
-      tilt_ascension = 180.0*atan2(-xtilt, ytilt)/M_PI;
+      tilt_ascension = DEGREES(atan2(-xtilt, ytilt));
       const float rad = hypot(xtilt, ytilt);
       tilt_declination = 90-(rad*60);
       tilt_declinationx = (xtilt * 60);

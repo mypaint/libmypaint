@@ -626,19 +626,16 @@ void print_inputs(MyPaintBrush *self, float* inputs)
     pressure = self->states[MYPAINT_BRUSH_STATE_PRESSURE];
 
     { // start / end stroke (for "stroke" input only)
-      if (!self->states[MYPAINT_BRUSH_STATE_STROKE_STARTED]) {
-        if (pressure > mypaint_mapping_get_base_value(self->settings[MYPAINT_BRUSH_SETTING_STROKE_THRESHOLD]) + 0.0001) {
-          // start new stroke
-          //printf("stroke start %f\n", pressure);
-          self->states[MYPAINT_BRUSH_STATE_STROKE_STARTED] = 1;
-          self->states[MYPAINT_BRUSH_STATE_STROKE] = 0.0;
-        }
-      } else {
-        if (pressure <= mypaint_mapping_get_base_value(self->settings[MYPAINT_BRUSH_SETTING_STROKE_THRESHOLD]) * 0.9 + 0.0001) {
-          // end stroke
-          //printf("stroke end\n");
-          self->states[MYPAINT_BRUSH_STATE_STROKE_STARTED] = 0;
-        }
+      const float lim = 0.0001;
+      const float threshold = mypaint_mapping_get_base_value(self->settings[MYPAINT_BRUSH_SETTING_STROKE_THRESHOLD]);
+      const float started = self->states[MYPAINT_BRUSH_STATE_STROKE_STARTED];
+      if (!started && pressure > threshold + lim) {
+        // start new stroke
+        self->states[MYPAINT_BRUSH_STATE_STROKE_STARTED] = 1;
+        self->states[MYPAINT_BRUSH_STATE_STROKE] = 0.0;
+      } else if (started && pressure <= threshold * 0.9 + lim) {
+        // end stroke
+        self->states[MYPAINT_BRUSH_STATE_STROKE_STARTED] = 0;
       }
     }
 
@@ -752,22 +749,17 @@ void print_inputs(MyPaintBrush *self, float* inputs)
     }
 
     { // stroke length
-      float frequency;
-      float wrap;
-      frequency = expf(-self->settings_value[MYPAINT_BRUSH_SETTING_STROKE_DURATION_LOGARITHMIC]);
-      self->states[MYPAINT_BRUSH_STATE_STROKE] += norm_dist * frequency;
-      // can happen, probably caused by rounding
-      if (self->states[MYPAINT_BRUSH_STATE_STROKE] < 0) self->states[MYPAINT_BRUSH_STATE_STROKE] = 0;
-      wrap = 1.0 + self->settings_value[MYPAINT_BRUSH_SETTING_STROKE_HOLDTIME];
-      if (self->states[MYPAINT_BRUSH_STATE_STROKE] > wrap) {
-        if (wrap > 9.9 + 1.0) {
-          // "inifinity", just hold stroke somewhere >= 1.0
-          self->states[MYPAINT_BRUSH_STATE_STROKE] = 1.0;
-        } else {
-          self->states[MYPAINT_BRUSH_STATE_STROKE] = fmodf(self->states[MYPAINT_BRUSH_STATE_STROKE], wrap);
-          // just in case
-          if (self->states[MYPAINT_BRUSH_STATE_STROKE] < 0) self->states[MYPAINT_BRUSH_STATE_STROKE] = 0;
-        }
+      const float frequency = expf(-self->settings_value[MYPAINT_BRUSH_SETTING_STROKE_DURATION_LOGARITHMIC]);
+      const float stroke = MAX(0, self->states[MYPAINT_BRUSH_STATE_STROKE] + norm_dist * frequency);
+      const float wrap = 1.0 + MAX(0, self->settings_value[MYPAINT_BRUSH_SETTING_STROKE_HOLDTIME]);
+      // If the hold time is above 9.9, it is considered infinite, and if the stroke value has reached
+      // that threshold it is no longer updated (until the stroke is reset, or the hold time changes).
+      if (stroke >= wrap && wrap > 9.9 + 1.0) {
+        self->states[MYPAINT_BRUSH_STATE_STROKE] = 1.0;
+      } else if (stroke >= wrap) {
+        self->states[MYPAINT_BRUSH_STATE_STROKE] = fmodf(stroke, wrap);
+      } else {
+        self->states[MYPAINT_BRUSH_STATE_STROKE] = stroke;
       }
     }
 

@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-12-12 23:51+0100\n"
-"PO-Revision-Date: 2020-01-05 12:37+0000\n"
+"PO-Revision-Date: 2020-01-09 13:21+0000\n"
 "Last-Translator: Milo Ivir <mail@milotype.de>\n"
 "Language-Team: Croatian <https://hosted.weblate.org/projects/mypaint/"
 "libmypaint/hr/>\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<="
 "4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 3.10\n"
+"X-Generator: Weblate 3.10.1-dev\n"
 
 #. Brush setting
 #: ../brushsettings-gen.h:4
@@ -31,6 +31,8 @@ msgid ""
 "0 means brush is transparent, 1 fully visible\n"
 "(also known as alpha or opacity)"
 msgstr ""
+"0 znači da je kist proziran, 1 da je potpuno vidljiv\n"
+"(također poznato kao alfa ili neprozirnost)"
 
 #. Brush setting
 #: ../brushsettings-gen.h:5
@@ -76,6 +78,9 @@ msgid ""
 " 0.7 means 2 pixels\n"
 " 3.0 means 20 pixels"
 msgstr ""
+"Osnovni polumjer kista (logaritmički)\n"
+" 0,7 znači 2 piksela\n"
+" 3,0 znači 20 piksela"
 
 #. Brush setting
 #: ../brushsettings-gen.h:8
@@ -107,7 +112,7 @@ msgstr ""
 #. Brush setting
 #: ../brushsettings-gen.h:10
 msgid "Dabs per basic radius"
-msgstr "Otisci po osnovnom polumjeru"
+msgstr "Broj otisaka po osnovnom polumjeru"
 
 #. Tooltip for the "Dabs per basic radius" brush setting
 #: ../brushsettings-gen.h:10
@@ -119,7 +124,7 @@ msgstr ""
 #. Brush setting
 #: ../brushsettings-gen.h:11
 msgid "Dabs per actual radius"
-msgstr "Otisci po stvarnom polumjeru"
+msgstr "Broj otisaka po stvarnom polumjeru"
 
 #. Tooltip for the "Dabs per actual radius" brush setting
 #: ../brushsettings-gen.h:11
@@ -131,12 +136,13 @@ msgstr ""
 #. Brush setting
 #: ../brushsettings-gen.h:12
 msgid "Dabs per second"
-msgstr "Otisci po sekundi"
+msgstr "Broj otisaka po sekundi"
 
 #. Tooltip for the "Dabs per second" brush setting
 #: ../brushsettings-gen.h:12
 msgid "Dabs to draw each second, no matter how far the pointer moves"
 msgstr ""
+"Broj otisaka koji se crtaju u sekundi, neovisno o veličini pomaka pokazivača"
 
 #. Brush setting
 #: ../brushsettings-gen.h:13
@@ -264,7 +270,7 @@ msgstr "Odmak Y"
 #. Tooltip for the "Offset Y" brush setting
 #: ../brushsettings-gen.h:22
 msgid "Moves the dabs up or down based on canvas coordinates."
-msgstr ""
+msgstr "Premješta otiske gore i dolje, ovisno o koordinatama platna."
 
 #. Brush setting
 #: ../brushsettings-gen.h:23
@@ -274,7 +280,7 @@ msgstr "Odmak X"
 #. Tooltip for the "Offset X" brush setting
 #: ../brushsettings-gen.h:23
 msgid "Moves the dabs left or right based on canvas coordinates."
-msgstr ""
+msgstr "Premješta otiske lijevo i desno, ovisno o koordinatama platna."
 
 #. Brush setting
 #: ../brushsettings-gen.h:24
@@ -746,6 +752,10 @@ msgid ""
 " 45.0 45 degrees, turned clockwise\n"
 " 180.0 horizontal again"
 msgstr ""
+"Kut pod kojim se naginju eliptički otisci\n"
+" 0,0 vodoravni otisci\n"
+" 45,0 45 °, okrenuto na desno\n"
+" 180,0 ponovo vodoravno"
 
 #. Brush setting
 #: ../brushsettings-gen.h:61
@@ -1070,3 +1080,7 @@ msgid ""
 "+90 when twisted clockwise 90 degrees\n"
 "-90 when twisted counterclockwise 90 degrees"
 msgstr ""
+"Okretanje pera oko vlastite osi.\n"
+"0 kad nije okrenuto\n"
+"+90 kad je okrenuto 90 ° na desno\n"
+"−90 kad je okrenuto 90 ° na lijevo"

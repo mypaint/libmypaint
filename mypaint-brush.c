@@ -52,6 +52,8 @@
 #define ACTUAL_RADIUS_MIN 0.2
 #define ACTUAL_RADIUS_MAX 1000 // safety guard against radius like 1e20 and against rendering overload with unexpected brush dynamics
 
+#define GRID_SIZE 256.0
+
 //array for smudge states, which allow much higher more variety and "memory" of the brush
 float smudge_buckets[256][9] = {{0.0f}};
 
@@ -561,9 +563,6 @@ void print_inputs(MyPaintBrush *self, float* inputs)
     float inputs[MYPAINT_BRUSH_INPUTS_COUNT];
     float viewzoom;
     float viewrotation;
-    float gridmap_scale;
-    float gridmap_scale_x;
-    float gridmap_scale_y;
     float barrel_rotation;
 
     if (step_dtime < 0.0) {
@@ -590,19 +589,26 @@ void print_inputs(MyPaintBrush *self, float* inputs)
 
     self->states[MYPAINT_BRUSH_STATE_VIEWZOOM] = step_viewzoom;
     self->states[MYPAINT_BRUSH_STATE_VIEWROTATION] = mod_arith(DEGREES(step_viewrotation) + 180.0, 360.0) - 180.0;
-    gridmap_scale = expf(self->settings_value[MYPAINT_BRUSH_SETTING_GRIDMAP_SCALE]);
-    gridmap_scale_x = self->settings_value[MYPAINT_BRUSH_SETTING_GRIDMAP_SCALE_X];
-    gridmap_scale_y = self->settings_value[MYPAINT_BRUSH_SETTING_GRIDMAP_SCALE_Y];
-    self->states[MYPAINT_BRUSH_STATE_GRIDMAP_X] = mod_arith(fabsf(self->states[MYPAINT_BRUSH_STATE_ACTUAL_X] * gridmap_scale_x), (gridmap_scale * 256.0)) / (gridmap_scale * 256.0) * 256.0;
-    self->states[MYPAINT_BRUSH_STATE_GRIDMAP_Y] = mod_arith(fabsf(self->states[MYPAINT_BRUSH_STATE_ACTUAL_Y] * gridmap_scale_y), (gridmap_scale * 256.0)) / (gridmap_scale * 256.0) * 256.0;
 
-    if (self->states[MYPAINT_BRUSH_STATE_ACTUAL_X] < 0.0) {
-      self->states[MYPAINT_BRUSH_STATE_GRIDMAP_X] = 256.0 - self->states[MYPAINT_BRUSH_STATE_GRIDMAP_X];
-    }
+    { // Gridmap state update - start
+        const float x = self->states[MYPAINT_BRUSH_STATE_ACTUAL_X];
+        const float y = self->states[MYPAINT_BRUSH_STATE_ACTUAL_Y];
+        const float scale = expf(self->settings_value[MYPAINT_BRUSH_SETTING_GRIDMAP_SCALE]);
+        const float scale_x = self->settings_value[MYPAINT_BRUSH_SETTING_GRIDMAP_SCALE_X];
+        const float scale_y = self->settings_value[MYPAINT_BRUSH_SETTING_GRIDMAP_SCALE_Y];
+        const float scaled_size = scale * GRID_SIZE;
+        self->states[MYPAINT_BRUSH_STATE_GRIDMAP_X] =
+            mod_arith(fabsf(x * scale_x), scaled_size) / scaled_size * GRID_SIZE;
+        self->states[MYPAINT_BRUSH_STATE_GRIDMAP_Y] =
+            mod_arith(fabsf(y * scale_y), scaled_size) / scaled_size * GRID_SIZE;
+        if (x < 0.0) {
+            self->states[MYPAINT_BRUSH_STATE_GRIDMAP_X] = GRID_SIZE - self->states[MYPAINT_BRUSH_STATE_GRIDMAP_X];
+        }
 
-    if (self->states[MYPAINT_BRUSH_STATE_ACTUAL_Y] < 0.0) {
-      self->states[MYPAINT_BRUSH_STATE_GRIDMAP_Y] = 256.0 - self->states[MYPAINT_BRUSH_STATE_GRIDMAP_Y];
-    }
+        if (self->states[MYPAINT_BRUSH_STATE_ACTUAL_Y] < 0.0) {
+            self->states[MYPAINT_BRUSH_STATE_GRIDMAP_Y] = GRID_SIZE - self->states[MYPAINT_BRUSH_STATE_GRIDMAP_Y];
+        }
+    } // Gridmap state update - end
 
     float base_radius = expf(mypaint_mapping_get_base_value(self->settings[MYPAINT_BRUSH_SETTING_RADIUS_LOGARITHMIC]));
     self->states[MYPAINT_BRUSH_STATE_BARREL_ROTATION] += step_barrel_rotation;

@@ -54,15 +54,18 @@
 
 #define GRID_SIZE 256.0
 
-//array for smudge states, which allow much higher more variety and "memory" of the brush
-float smudge_buckets[256][9] = {{0.0f}};
-
 /* Named indices for the smudge bucket arrays */
 enum {
   SMUDGE_R, SMUDGE_G, SMUDGE_B, SMUDGE_A,
   PREV_COL_R, PREV_COL_G, PREV_COL_B, PREV_COL_A,
-  PREV_COL_RECENTNESS
+  PREV_COL_RECENTNESS,
+  SMUDGE_BUCKET_SIZE
 };
+
+#define NUM_SMUDGE_BUCKETS 256
+
+// Array of smudge states, which allow much more variety and "memory" of the brush
+float smudge_buckets[NUM_SMUDGE_BUCKETS][SMUDGE_BUCKET_SIZE] = {{0.0f}};
 
 
 /* The Brush class stores two things:
@@ -137,8 +140,7 @@ mypaint_brush_new(void)
     MyPaintBrush *self = (MyPaintBrush *)malloc(sizeof(MyPaintBrush));
 
     self->refcount = 1;
-    int i=0;
-    for (i=0; i<MYPAINT_BRUSH_SETTINGS_COUNT; i++) {
+    for (int i = 0; i < MYPAINT_BRUSH_SETTINGS_COUNT; i++) {
       self->settings[i] = mypaint_mapping_new(MYPAINT_BRUSH_INPUTS_COUNT);
     }
     self->rng = rng_double_new(1000);
@@ -149,7 +151,7 @@ mypaint_brush_new(void)
     self->skipped_dtime = 0;
     self->print_inputs = FALSE;
 
-    for (i=0; i<MYPAINT_BRUSH_STATES_COUNT; i++) {
+    for (int i = 0; i < MYPAINT_BRUSH_STATES_COUNT; i++) {
       self->states[i] = 0;
     }
     mypaint_brush_new_stroke(self);
@@ -166,7 +168,7 @@ mypaint_brush_new(void)
 void
 brush_free(MyPaintBrush *self)
 {
-    for (int i=0; i<MYPAINT_BRUSH_SETTINGS_COUNT; i++) {
+    for (int i = 0; i < MYPAINT_BRUSH_SETTINGS_COUNT; i++) {
         mypaint_mapping_free(self->settings[i]);
     }
     rng_double_free (self->rng);
@@ -405,8 +407,7 @@ mypaint_brush_set_state(MyPaintBrush *self, MyPaintBrushState i, float value)
     //
     // The code below calculates m and q given gamma and two hardcoded constraints.
     //
-    int i=0;
-    for (i=0; i<2; i++) {
+    for (int i = 0; i < 2; i++) {
       float gamma;
       gamma = mypaint_mapping_get_base_value(self->settings[(i==0)?MYPAINT_BRUSH_SETTING_SPEED1_GAMMA:MYPAINT_BRUSH_SETTING_SPEED2_GAMMA]);
       gamma = expf(gamma);
@@ -559,12 +560,6 @@ void print_inputs(MyPaintBrush *self, float* inputs)
   // note: parameters are is dx/ddab, ..., dtime/ddab (dab is the number, 5.0 = 5th dab)
   void update_states_and_setting_values (MyPaintBrush *self, float step_ddab, float step_dx, float step_dy, float step_dpressure, float step_declination, float step_ascension, float step_dtime, float step_viewzoom, float step_viewrotation, float step_declinationx, float step_declinationy, float step_barrel_rotation)
   {
-    float pressure;
-    float inputs[MYPAINT_BRUSH_INPUTS_COUNT];
-    float viewzoom;
-    float viewrotation;
-    float barrel_rotation;
-
     if (step_dtime < 0.0) {
       printf("Time is running backwards!\n");
       step_dtime = 0.001;
@@ -623,7 +618,7 @@ void print_inputs(MyPaintBrush *self, float* inputs)
 
     // FIXME: does happen (interpolation problem?)
     if (self->states[MYPAINT_BRUSH_STATE_PRESSURE] <= 0.0) self->states[MYPAINT_BRUSH_STATE_PRESSURE] = 0.0;
-    pressure = self->states[MYPAINT_BRUSH_STATE_PRESSURE];
+    const float pressure = self->states[MYPAINT_BRUSH_STATE_PRESSURE];
 
     { // start / end stroke (for "stroke" input only)
       const float lim = 0.0001;
@@ -650,9 +645,11 @@ void print_inputs(MyPaintBrush *self, float* inputs)
     //norm_dist should relate to brush size, whereas norm_speed should not
     norm_dist = hypotf(step_dx / step_dtime / base_radius, step_dy / step_dtime / base_radius) * step_dtime;
 
+    float inputs[MYPAINT_BRUSH_INPUTS_COUNT];
+
     inputs[MYPAINT_BRUSH_INPUT_PRESSURE] = pressure * expf(mypaint_mapping_get_base_value(self->settings[MYPAINT_BRUSH_SETTING_PRESSURE_GAIN_LOG]));
-    inputs[MYPAINT_BRUSH_INPUT_SPEED1] = log(self->speed_mapping_gamma[0] + self->states[MYPAINT_BRUSH_STATE_NORM_SPEED1_SLOW])*self->speed_mapping_m[0] + self->speed_mapping_q[0], 0.0, 4.0;
-    inputs[MYPAINT_BRUSH_INPUT_SPEED2] = log(self->speed_mapping_gamma[1] + self->states[MYPAINT_BRUSH_STATE_NORM_SPEED2_SLOW])*self->speed_mapping_m[1] + self->speed_mapping_q[1], 0.0, 4.0;
+    inputs[MYPAINT_BRUSH_INPUT_SPEED1] = log(self->speed_mapping_gamma[0] + self->states[MYPAINT_BRUSH_STATE_NORM_SPEED1_SLOW]) * self->speed_mapping_m[0] + self->speed_mapping_q[0];
+    inputs[MYPAINT_BRUSH_INPUT_SPEED2] = log(self->speed_mapping_gamma[1] + self->states[MYPAINT_BRUSH_STATE_NORM_SPEED2_SLOW]) * self->speed_mapping_m[1] + self->speed_mapping_q[1];
 
     inputs[MYPAINT_BRUSH_INPUT_RANDOM] = self->random_input;
     inputs[MYPAINT_BRUSH_INPUT_STROKE] = MIN(self->states[MYPAINT_BRUSH_STATE_STROKE], 1.0);
@@ -679,31 +676,24 @@ void print_inputs(MyPaintBrush *self, float* inputs)
         print_inputs(self, inputs);
     }
 
-    int i=0;
-    for (i=0; i<MYPAINT_BRUSH_SETTINGS_COUNT; i++) {
+    for (int i = 0; i < MYPAINT_BRUSH_SETTINGS_COUNT; i++) {
       self->settings_value[i] = mypaint_mapping_calculate(self->settings[i], (inputs));
     }
 
     {
-      float fac = 1.0 - exp_decay (self->settings_value[MYPAINT_BRUSH_SETTING_SLOW_TRACKING_PER_DAB], step_ddab);
+      float fac = 1.0 - exp_decay(self->settings_value[MYPAINT_BRUSH_SETTING_SLOW_TRACKING_PER_DAB], step_ddab);
       self->states[MYPAINT_BRUSH_STATE_ACTUAL_X] += (self->states[MYPAINT_BRUSH_STATE_X] - self->states[MYPAINT_BRUSH_STATE_ACTUAL_X]) * fac;
       self->states[MYPAINT_BRUSH_STATE_ACTUAL_Y] += (self->states[MYPAINT_BRUSH_STATE_Y] - self->states[MYPAINT_BRUSH_STATE_ACTUAL_Y]) * fac;
     }
 
     { // slow speed
-      float fac;
-      fac = 1.0 - exp_decay (self->settings_value[MYPAINT_BRUSH_SETTING_SPEED1_SLOWNESS], step_dtime);
-      self->states[MYPAINT_BRUSH_STATE_NORM_SPEED1_SLOW] += (norm_speed - self->states[MYPAINT_BRUSH_STATE_NORM_SPEED1_SLOW]) * fac;
-      fac = 1.0 - exp_decay (self->settings_value[MYPAINT_BRUSH_SETTING_SPEED2_SLOWNESS], step_dtime);
-      self->states[MYPAINT_BRUSH_STATE_NORM_SPEED2_SLOW] += (norm_speed - self->states[MYPAINT_BRUSH_STATE_NORM_SPEED2_SLOW]) * fac;
+      const float fac1 = 1.0 - exp_decay(self->settings_value[MYPAINT_BRUSH_SETTING_SPEED1_SLOWNESS], step_dtime);
+      self->states[MYPAINT_BRUSH_STATE_NORM_SPEED1_SLOW] += (norm_speed - self->states[MYPAINT_BRUSH_STATE_NORM_SPEED1_SLOW]) * fac1;
+      const float fac2 = 1.0 - exp_decay (self->settings_value[MYPAINT_BRUSH_SETTING_SPEED2_SLOWNESS], step_dtime);
+      self->states[MYPAINT_BRUSH_STATE_NORM_SPEED2_SLOW] += (norm_speed - self->states[MYPAINT_BRUSH_STATE_NORM_SPEED2_SLOW]) * fac2;
     }
 
     { // slow speed, but as vector this time
-
-      // FIXME: offset_by_speed should be removed.
-      //   Is it broken, non-smooth, system-dependent math?!
-      //   A replacement could be a directed random offset.
-
       float time_constant = expf(self->settings_value[MYPAINT_BRUSH_SETTING_OFFSET_BY_SPEED_SLOWNESS]*0.01)-1.0;
       // Workaround for a bug that happens mainly on Windows, causing
       // individual dabs to be placed far far away. Using the speed
@@ -715,13 +705,11 @@ void print_inputs(MyPaintBrush *self, float* inputs)
     }
 
     { // orientation (similar lowpass filter as above, but use dabtime instead of wallclock time)
-      //adjust speed with viewzoom
-      float dx = step_dx *self->states[MYPAINT_BRUSH_STATE_VIEWZOOM];
-      float dy = step_dy *self->states[MYPAINT_BRUSH_STATE_VIEWZOOM];
+      // adjust speed with viewzoom
+      float dx = step_dx * self->states[MYPAINT_BRUSH_STATE_VIEWZOOM];
+      float dy = step_dy * self->states[MYPAINT_BRUSH_STATE_VIEWZOOM];
 
-
-
-      float step_in_dabtime = hypotf(dx, dy); // FIXME: are we recalculating something here that we already have?
+      float step_in_dabtime = hypotf(dx, dy);
       float fac = 1.0 - exp_decay (expf(self->settings_value[MYPAINT_BRUSH_SETTING_DIRECTION_FILTER]*0.5)-1.0, step_in_dabtime);
 
       float dx_old = self->states[MYPAINT_BRUSH_STATE_DIRECTION_DX];
@@ -762,8 +750,7 @@ void print_inputs(MyPaintBrush *self, float* inputs)
     }
 
     // calculate final radius
-    float radius_log;
-    radius_log = self->settings_value[MYPAINT_BRUSH_SETTING_RADIUS_LOGARITHMIC];
+    const float radius_log = self->settings_value[MYPAINT_BRUSH_SETTING_RADIUS_LOGARITHMIC];
     self->states[MYPAINT_BRUSH_STATE_ACTUAL_RADIUS] = expf(radius_log);
     if (self->states[MYPAINT_BRUSH_STATE_ACTUAL_RADIUS] < ACTUAL_RADIUS_MIN) self->states[MYPAINT_BRUSH_STATE_ACTUAL_RADIUS] = ACTUAL_RADIUS_MIN;
     if (self->states[MYPAINT_BRUSH_STATE_ACTUAL_RADIUS] > ACTUAL_RADIUS_MAX) self->states[MYPAINT_BRUSH_STATE_ACTUAL_RADIUS] = ACTUAL_RADIUS_MAX;
@@ -1082,47 +1069,36 @@ void print_inputs(MyPaintBrush *self, float* inputs)
         dab_ratio, dab_angle, lock_alpha, colorize, posterize, posterize_num, paint_factor);
   }
 
-  // How many dabs will be drawn between the current and the next (x, y, pressure, +dt) position?
-  float count_dabs_to (MyPaintBrush *self, float x, float y, float pressure, float dt)
+  // How many dabs will be drawn between the current and the next (x, y, +dt) position?
+  float count_dabs_to (MyPaintBrush *self, float x, float y, float dt)
   {
-    float xx, yy;
-    float res1, res2, res3;
-    float dist;
+    const float base_radius_log = mypaint_mapping_get_base_value(self->settings[MYPAINT_BRUSH_SETTING_RADIUS_LOGARITHMIC]);
+    const float base_radius = CLAMP(expf(base_radius_log), ACTUAL_RADIUS_MIN, ACTUAL_RADIUS_MAX);
 
-    if (self->states[MYPAINT_BRUSH_STATE_ACTUAL_RADIUS] == 0.0) self->states[MYPAINT_BRUSH_STATE_ACTUAL_RADIUS] = expf(mypaint_mapping_get_base_value(self->settings[MYPAINT_BRUSH_SETTING_RADIUS_LOGARITHMIC]));
-    if (self->states[MYPAINT_BRUSH_STATE_ACTUAL_RADIUS] < ACTUAL_RADIUS_MIN) self->states[MYPAINT_BRUSH_STATE_ACTUAL_RADIUS] = ACTUAL_RADIUS_MIN;
-    if (self->states[MYPAINT_BRUSH_STATE_ACTUAL_RADIUS] > ACTUAL_RADIUS_MAX) self->states[MYPAINT_BRUSH_STATE_ACTUAL_RADIUS] = ACTUAL_RADIUS_MAX;
-
-
-    // OPTIMIZE: expf() called too often
-    float base_radius = expf(mypaint_mapping_get_base_value(self->settings[MYPAINT_BRUSH_SETTING_RADIUS_LOGARITHMIC]));
-    if (base_radius < ACTUAL_RADIUS_MIN) base_radius = ACTUAL_RADIUS_MIN;
-    if (base_radius > ACTUAL_RADIUS_MAX) base_radius = ACTUAL_RADIUS_MAX;
-    //if (base_radius < 0.5) base_radius = 0.5;
-    //if (base_radius > 500.0) base_radius = 500.0;
-
-    xx = x - self->states[MYPAINT_BRUSH_STATE_X];
-    yy = y - self->states[MYPAINT_BRUSH_STATE_Y];
-    //dp = pressure - pressure; // Not useful?
-    // TODO: control rate with pressure (dabs per pressure) (dpressure is useless)
-
-    if (self->states[MYPAINT_BRUSH_STATE_ACTUAL_ELLIPTICAL_DAB_RATIO] > 1.0) {
-      // code duplication, see tiledsurface::draw_dab()
-      float angle_rad=RADIANS(self->states[MYPAINT_BRUSH_STATE_ACTUAL_ELLIPTICAL_DAB_ANGLE]);
-      float cs=cos(angle_rad);
-      float sn=sin(angle_rad);
-      float yyr=(yy*cs-xx*sn)*self->states[MYPAINT_BRUSH_STATE_ACTUAL_ELLIPTICAL_DAB_RATIO];
-      float xxr=yy*sn+xx*cs;
-      dist = sqrt(yyr*yyr + xxr*xxr);
-    } else {
-      dist = hypotf(xx, yy);
+    if (self->states[MYPAINT_BRUSH_STATE_ACTUAL_RADIUS] == 0.0) {
+      self->states[MYPAINT_BRUSH_STATE_ACTUAL_RADIUS] = base_radius;
     }
 
-    // FIXME: no need for base_value or for the range checks above IF always the interpolation
-    //        function will be called before this one
-    res1 = dist / self->states[MYPAINT_BRUSH_STATE_ACTUAL_RADIUS] * self->states[MYPAINT_BRUSH_STATE_DABS_PER_ACTUAL_RADIUS];
-    res2 = dist / base_radius   * self->states[MYPAINT_BRUSH_STATE_DABS_PER_BASIC_RADIUS];
-    res3 = dt * self->states[MYPAINT_BRUSH_STATE_DABS_PER_SECOND];
+    const float dx = x - self->states[MYPAINT_BRUSH_STATE_X];
+    const float dy = y - self->states[MYPAINT_BRUSH_STATE_Y];
+
+    float dist;
+
+    if (self->states[MYPAINT_BRUSH_STATE_ACTUAL_ELLIPTICAL_DAB_RATIO] > 1.0) {
+      // code duplication, see calculate_rr in mypaint-tiled-surface.c
+      float angle_rad = RADIANS(self->states[MYPAINT_BRUSH_STATE_ACTUAL_ELLIPTICAL_DAB_ANGLE]);
+      float cs = cos(angle_rad);
+      float sn = sin(angle_rad);
+      float yyr = (dy * cs - dx * sn) * self->states[MYPAINT_BRUSH_STATE_ACTUAL_ELLIPTICAL_DAB_RATIO];
+      float xxr = dy * sn + dx * cs;
+      dist = sqrt(yyr * yyr + xxr * xxr);
+    } else {
+      dist = hypotf(dx, dy);
+    }
+
+    const float res1 = dist / self->states[MYPAINT_BRUSH_STATE_ACTUAL_RADIUS] * self->states[MYPAINT_BRUSH_STATE_DABS_PER_ACTUAL_RADIUS];
+    const float res2 = dist / base_radius * self->states[MYPAINT_BRUSH_STATE_DABS_PER_BASIC_RADIUS];
+    const float res3 = dt * self->states[MYPAINT_BRUSH_STATE_DABS_PER_SECOND];
     //on first load if isnan the engine messes up and won't paint
     //until you switch modes
     float res4 = res1 + res2 + res3;
@@ -1143,8 +1119,6 @@ void print_inputs(MyPaintBrush *self, float* inputs)
                                 float xtilt, float ytilt, double dtime, float viewzoom, float viewrotation, float barrel_rotation)
   {
     const float max_dtime = 5;
-
-    //printf("%f %f %f %f\n", (double)dtime, (double)x, (double)y, (double)pressure);
 
     float tilt_ascension = 0.0;
     float tilt_declination = 90.0;
@@ -1168,9 +1142,6 @@ void print_inputs(MyPaintBrush *self, float* inputs)
       assert(isfinite(tilt_declinationy));
     }
 
-    // printf("xtilt %f, ytilt %f\n", (double)xtilt, (double)ytilt);
-    // printf("ascension %f, declination %f\n", (double)tilt_ascension, (double)tilt_declination);
-
     if (pressure <= 0.0) pressure = 0.0;
     if (!isfinite(x) || !isfinite(y) ||
         (x > 1e10 || y > 1e10 || x < -1e10 || y < -1e10)) {
@@ -1188,10 +1159,6 @@ void print_inputs(MyPaintBrush *self, float* inputs)
 
     if (dtime < 0) printf("Time jumped backwards by dtime=%f seconds!\n", dtime);
     if (dtime <= 0) dtime = 0.0001; // protect against possible division by zero bugs
-
-    /* way too slow with the new rng, and not working any more anyway...
-    rng_double_set_seed (self->rng, self->states[MYPAINT_BRUSH_STATE_RNG_SEED]*0x40000000);
-    */
 
     if (dtime > 0.100 && pressure && self->states[MYPAINT_BRUSH_STATE_PRESSURE] == 0) {
       // Workaround for tablets that don't report motion events without pressure.
@@ -1219,7 +1186,6 @@ void print_inputs(MyPaintBrush *self, float* inputs)
       self->skipped_dtime = 0;
     }
 
-
     { // calculate the actual "virtual" cursor position
 
       // noise first
@@ -1246,12 +1212,6 @@ void print_inputs(MyPaintBrush *self, float* inputs)
       y = self->states[MYPAINT_BRUSH_STATE_Y] + (y - self->states[MYPAINT_BRUSH_STATE_Y]) * fac;
     }
 
-    // draw many (or zero) dabs to the next position
-
-    // see doc/images/stroke2dabs.png
-    float dabs_moved = self->states[MYPAINT_BRUSH_STATE_PARTIAL_DABS];
-    float dabs_todo = count_dabs_to (self, x, y, pressure, dtime);
-
     if (dtime > max_dtime || self->reset_requested) {
       self->reset_requested = FALSE;
 
@@ -1264,9 +1224,7 @@ void print_inputs(MyPaintBrush *self, float* inputs)
       // reset value of random input
       self->random_input = rng_double_next(self->rng);
 
-      //printf("Brush reset.\n");
-      int i=0;
-      for (i=0; i<MYPAINT_BRUSH_STATES_COUNT; i++) {
+      for (int i = 0; i < MYPAINT_BRUSH_STATES_COUNT; i++) {
         self->states[i] = 0;
       }
 
@@ -1288,8 +1246,12 @@ void print_inputs(MyPaintBrush *self, float* inputs)
     double dtime_left = dtime;
 
     float step_ddab, step_dx, step_dy, step_dpressure, step_dtime;
-    float step_declination, step_ascension, step_declinationx, step_declinationy, step_viewzoom, step_viewrotation, step_barrel_rotation;
+    float step_declination, step_ascension, step_declinationx, step_declinationy, step_barrel_rotation;
 
+    // draw many (or zero) dabs to the next position
+    // see doc/images/stroke2dabs.png
+    float dabs_moved = self->states[MYPAINT_BRUSH_STATE_PARTIAL_DABS];
+    float dabs_todo = count_dabs_to (self, x, y, dtime);
     while (dabs_moved + dabs_todo >= 1.0) { // there are dabs pending
       { // linear interpolation (nonlinear variant was too slow, see SVN log)
         float frac; // fraction of the remaining distance to move
@@ -1310,15 +1272,13 @@ void print_inputs(MyPaintBrush *self, float* inputs)
         step_declinationx = frac * (tilt_declinationx - self->states[MYPAINT_BRUSH_STATE_DECLINATIONX]);
         step_declinationy = frac * (tilt_declinationy - self->states[MYPAINT_BRUSH_STATE_DECLINATIONY]);
         step_ascension   = frac * smallest_angular_difference(self->states[MYPAINT_BRUSH_STATE_ASCENSION], tilt_ascension);
-        step_viewzoom = viewzoom;
-        step_viewrotation = viewrotation;
         //converts barrel_ration to degrees,
         step_barrel_rotation = frac * smallest_angular_difference(self->states[MYPAINT_BRUSH_STATE_BARREL_ROTATION],barrel_rotation * 360);
 
         update_states_and_setting_values (self, step_ddab, step_dx, step_dy,
                                           step_dpressure, step_declination,
-                                          step_ascension, step_dtime, step_viewzoom,
-                                          step_viewrotation, step_declinationx,
+                                          step_ascension, step_dtime, viewzoom,
+                                          viewrotation, step_declinationx,
                                           step_declinationy, step_barrel_rotation);
       }
 
@@ -1329,11 +1289,11 @@ void print_inputs(MyPaintBrush *self, float* inputs)
         painted = NO;
       }
 
-      // update value of random input only when draw the dab
+      // update value of random input only when drawing the dab
       self->random_input = rng_double_next(self->rng);
 
-      dtime_left   -= step_dtime;
-      dabs_todo  = count_dabs_to (self, x, y, pressure, dtime_left);
+      dtime_left -= step_dtime;
+      dabs_todo = count_dabs_to(self, x, y, dtime_left);
     }
 
     {
@@ -1351,14 +1311,9 @@ void print_inputs(MyPaintBrush *self, float* inputs)
       step_declinationy = tilt_declinationy - self->states[MYPAINT_BRUSH_STATE_DECLINATIONY];
       step_ascension = smallest_angular_difference(self->states[MYPAINT_BRUSH_STATE_ASCENSION], tilt_ascension);
       step_dtime     = dtime_left;
-      step_viewzoom  = viewzoom;
-      step_viewrotation = viewrotation;
       step_barrel_rotation = smallest_angular_difference(self->states[MYPAINT_BRUSH_STATE_BARREL_ROTATION], barrel_rotation * 360);
-      step_barrel_rotation = smallest_angular_difference(self->states[MYPAINT_BRUSH_STATE_BARREL_ROTATION],barrel_rotation * 360);
 
-      //dtime_left = 0; but that value is not used any more
-
-      update_states_and_setting_values (self, step_ddab, step_dx, step_dy, step_dpressure, step_declination, step_ascension, step_dtime, step_viewzoom, step_viewrotation, step_declinationx, step_declinationy, step_barrel_rotation);
+      update_states_and_setting_values (self, step_ddab, step_dx, step_dy, step_dpressure, step_declination, step_ascension, step_dtime, viewzoom, viewrotation, step_declinationx, step_declinationy, step_barrel_rotation);
     }
 
     // save the fraction of a dab that is already done now
@@ -1518,14 +1473,8 @@ update_brush_from_json_object(MyPaintBrush *self)
     }
 
     gboolean updated_any = FALSE;
-    gboolean updated_all = TRUE;
     json_object_object_foreach(settings, setting_name, setting_obj) {
-        if (update_brush_setting_from_json_object(self, setting_name, setting_obj)) {
-            updated_any = TRUE;
-        }
-        else {
-            updated_all = FALSE;
-        }
+      updated_any |= update_brush_setting_from_json_object(self, setting_name, setting_obj);
     }
     return updated_any;
 }

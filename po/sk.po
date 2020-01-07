@@ -7,16 +7,16 @@ msgstr ""
 "Project-Id-Version: libmypaint for mypaint 1.2.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-12-12 23:51+0100\n"
-"PO-Revision-Date: 2015-12-01 17:39+0100\n"
-"Last-Translator: Dušan Kazik <prescott66@gmail.com>\n"
-"Language-Team: Slovak <https://hosted.weblate.org/projects/mypaint/mypaint/"
-"sk/>\n"
+"PO-Revision-Date: 2020-01-09 13:21+0000\n"
+"Last-Translator: Blake <adam.otruba@protonmail.com>\n"
+"Language-Team: Slovak <https://hosted.weblate.org/projects/mypaint/"
+"libmypaint/sk/>\n"
 "Language: sk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Generator: Poedit 1.8.6\n"
+"X-Generator: Weblate 3.10.1-dev\n"
 
 #. Brush setting
 #: ../brushsettings-gen.h:4
@@ -69,7 +69,7 @@ msgid ""
 "pixel gets (dabs_per_radius*2) brushdabs on average during a stroke"
 msgstr ""
 "Napráva nelineárnosť spôsobenú prekrývaním viacerých kvapiek. Táto náprava "
-"by mala mať za výsledok lineárny (\"prirodzenú\") odozvu na tlak, ak je tlak "
+"by mala mať za výsledok lineárnu (\"prirodzenú\") odozvu na tlak, ak je tlak "
 "priradený k nastaveniu \"násobenie_krytia\", ako je zvykom. 0,9 je vhodné "
 "pre bežné ťahy, nastavte menšie hodnoty, ak má váš štetec priveľký rozptyl, "
 "alebo väčšie, ak používate nastavenie \"kvapky_za_sekundu\".\n"
@@ -172,7 +172,7 @@ msgstr ""
 #. Brush setting
 #: ../brushsettings-gen.h:13
 msgid "GridMap Scale"
-msgstr ""
+msgstr "Mierka mriežky"
 
 #. Tooltip for the "GridMap Scale" brush setting
 #: ../brushsettings-gen.h:13
@@ -181,11 +181,14 @@ msgid ""
 "Logarithmic (same scale as brush radius).\n"
 "A scale of 0 will make the grid 256x256 pixels."
 msgstr ""
+"Mení celkovú mierku, na ktorej pracuje vstup štetca \"mriežka\".\n"
+"Logaritmická škála (rovnaká ako pre polomer štetca).\n"
+"Mierka 0 zodpovedá mriežke 256x256 pixelov."
 
 #. Brush setting
 #: ../brushsettings-gen.h:14
 msgid "GridMap Scale X"
-msgstr ""
+msgstr "Mierka mriežky X"
 
 #. Tooltip for the "GridMap Scale X" brush setting
 #: ../brushsettings-gen.h:14
@@ -195,11 +198,15 @@ msgid ""
 "The range is 0-5x.\n"
 "This allows you to stretch or compress the GridMap pattern."
 msgstr ""
+"Mení mierku mriežky, na ktorej pracuje vstup štetca \"mriežka\" - iba v "
+"smere osi X.\n"
+"Rozsah je 0 až 5.\n"
+"Umožňuje natiahnuť alebo stlačiť vzor mriežky."
 
 #. Brush setting
 #: ../brushsettings-gen.h:15
 msgid "GridMap Scale Y"
-msgstr ""
+msgstr "Mierka mriežky Y"
 
 #. Tooltip for the "GridMap Scale Y" brush setting
 #: ../brushsettings-gen.h:15
@@ -209,6 +216,10 @@ msgid ""
 "The range is 0-5x.\n"
 "This allows you to stretch or compress the GridMap pattern."
 msgstr ""
+"Mení mierku mriežky, na ktorej pracuje vstup štetca \"mriežka\" - iba v "
+"smere osi Y.\n"
+"Rozsah je 0 až 5.\n"
+"Umožňuje natiahnuť alebo stlačiť vzor mriežky."
 
 #. Brush setting
 #: ../brushsettings-gen.h:16
@@ -309,73 +320,74 @@ msgstr ""
 
 #. Brush setting
 #: ../brushsettings-gen.h:22
-#, fuzzy
 msgid "Offset Y"
-msgstr "Posun podľa rýchlosti"
+msgstr "Posun Y"
 
 #. Tooltip for the "Offset Y" brush setting
 #: ../brushsettings-gen.h:22
 msgid "Moves the dabs up or down based on canvas coordinates."
-msgstr ""
+msgstr "Presúva kvapky hore alebo dole, na základe súradníc plátna."
 
 #. Brush setting
 #: ../brushsettings-gen.h:23
-#, fuzzy
 msgid "Offset X"
-msgstr "Posun podľa rýchlosti"
+msgstr "Posun X"
 
 #. Tooltip for the "Offset X" brush setting
 #: ../brushsettings-gen.h:23
 msgid "Moves the dabs left or right based on canvas coordinates."
-msgstr ""
+msgstr "Presúva kvapky doprava alebo doľava, na základe súradníc plátna."
 
 #. Brush setting
 #: ../brushsettings-gen.h:24
 msgid "Angular Offset: Direction"
-msgstr ""
+msgstr "Uhlový posun: Smer"
 
 #. Tooltip for the "Angular Offset: Direction" brush setting
 #: ../brushsettings-gen.h:24
 msgid "Follows the stroke direction to offset the dabs to one side."
-msgstr ""
+msgstr "Sleduje smer ťahu, na základe čoho posúva kvapky na jednu stranu."
 
 #. Brush setting
 #: ../brushsettings-gen.h:25
 msgid "Angular Offset: Ascension"
-msgstr ""
+msgstr "Uhlový posun: Rektascenzia"
 
 #. Tooltip for the "Angular Offset: Ascension" brush setting
 #: ../brushsettings-gen.h:25
 msgid ""
 "Follows the tilt direction to offset the dabs to one side. Requires Tilt."
 msgstr ""
+"Sleduje smer náklonu, na základe čoho posúva kvapky na jednu stranu. "
+"Vyžaduje náklon."
 
 #. Brush setting
 #: ../brushsettings-gen.h:26
 msgid "Angular Offset: View"
-msgstr ""
+msgstr "Uhlový posun: Zobrazenie"
 
 #. Tooltip for the "Angular Offset: View" brush setting
 #: ../brushsettings-gen.h:26
 msgid "Follows the view orientation to offset the dabs to one side."
 msgstr ""
+"Sleduje orientáciu zobrazenia, na základe čoho posúva kvapky na jednu stranu."
 
 #. Brush setting
 #: ../brushsettings-gen.h:27
 msgid "Angular Offset Mirrored: Direction"
-msgstr ""
+msgstr "Zrkadlený uhlový posun: Smer"
 
 #. Tooltip for the "Angular Offset Mirrored: Direction" brush setting
 #: ../brushsettings-gen.h:27
 msgid ""
 "Follows the stroke direction to offset the dabs, but to both sides of the "
 "stroke."
-msgstr ""
+msgstr "Sleduje smer ťahu, na základe čoho posúva kvapky na obe strany."
 
 #. Brush setting
 #: ../brushsettings-gen.h:28
 msgid "Angular Offset Mirrored: Ascension"
-msgstr ""
+msgstr "Zrkadlený uhlový posun: Rektascenzia"
 
 #. Tooltip for the "Angular Offset Mirrored: Ascension" brush setting
 #: ../brushsettings-gen.h:28
@@ -383,11 +395,13 @@ msgid ""
 "Follows the tilt direction to offset the dabs, but to both sides of the "
 "stroke. Requires Tilt."
 msgstr ""
+"Sleduje smer náklonu, na základe čoho posúva kvapky na obe strany ťahu. "
+"Vyžaduje náklon."
 
 #. Brush setting
 #: ../brushsettings-gen.h:29
 msgid "Angular Offset Mirrored: View"
-msgstr ""
+msgstr "Zrkadlený uhlový posun: Zobrazenie"
 
 #. Tooltip for the "Angular Offset Mirrored: View" brush setting
 #: ../brushsettings-gen.h:29
@@ -395,27 +409,28 @@ msgid ""
 "Follows the view orientation to offset the dabs, but to both sides of the "
 "stroke."
 msgstr ""
+"Sleduje orientáciu zobrazenia, na základe čoho posúva kvapky na obe strany "
+"ťahu."
 
 #. Brush setting
 #: ../brushsettings-gen.h:30
 msgid "Angular Offsets Adjustment"
-msgstr ""
+msgstr "Úprava uhlových posunov"
 
 #. Tooltip for the "Angular Offsets Adjustment" brush setting
 #: ../brushsettings-gen.h:30
 msgid "Change the Angular Offset angle from the default, which is 90 degrees."
-msgstr ""
+msgstr "Mení uhol uhlového posunu od predvolenej hodnoty 90 stupňov."
 
 #. Brush setting
 #: ../brushsettings-gen.h:31
-#, fuzzy
 msgid "Offsets Multiplier"
-msgstr "Filter posunu podľa rýchlosti"
+msgstr "Koeficient posunov"
 
 #. Tooltip for the "Offsets Multiplier" brush setting
 #: ../brushsettings-gen.h:31
 msgid "Logarithmic multiplier for X, Y, and Angular Offset settings."
-msgstr ""
+msgstr "Logaritmický koeficient pre posuny X, Y a Uhlový posun."
 
 #. Brush setting
 #: ../brushsettings-gen.h:32
@@ -646,7 +661,7 @@ msgstr ""
 #. Brush setting
 #: ../brushsettings-gen.h:47
 msgid "Pigment"
-msgstr ""
+msgstr "Pigment"
 
 #. Tooltip for the "Pigment" brush setting
 #: ../brushsettings-gen.h:47
@@ -658,9 +673,8 @@ msgstr ""
 
 #. Brush setting
 #: ../brushsettings-gen.h:48
-#, fuzzy
 msgid "Smudge transparency"
-msgstr "Polomer rozmazania"
+msgstr "Priehľadnosť rozmazania"
 
 #. Tooltip for the "Smudge transparency" brush setting
 #: ../brushsettings-gen.h:48
@@ -672,6 +686,12 @@ msgid ""
 "0.0 will have no effect.\n"
 "Negative values do the reverse"
 msgstr ""
+"Určuje aká priehľadnosť sa zachytí a rozmaže, podobne ako pri uzamknutom "
+"alfa kanále.\n"
+"1,0 nezachytáva priehľadnosť\n"
+"0,5 zachytí iba 50% priehľadnosť a vyššiu\n"
+"0,0 nemá žiaden efekt.\n"
+"Záporné hodnoty robia opak (-0,5 zachytí 50% a menšiu)"
 
 #. Brush setting
 #: ../brushsettings-gen.h:49
@@ -696,9 +716,8 @@ msgstr ""
 
 #. Brush setting
 #: ../brushsettings-gen.h:50
-#, fuzzy
 msgid "Smudge length multiplier"
-msgstr "Dĺžka rozmazania"
+msgstr "Koeficient dĺžky rozmazania"
 
 #. Tooltip for the "Smudge length multiplier" brush setting
 #: ../brushsettings-gen.h:50
@@ -708,12 +727,15 @@ msgid ""
 "The longer the smudge length the more a color will spread and will also "
 "boost performance dramatically, as the canvas is sampled less often"
 msgstr ""
+"Logaritmický koeficient pre hodnotu Dĺžka rozmazania.\n"
+"Užitočné pre veľké štetce s mnohými kvapkami.\n"
+"Čím väčšia je dĺžka rozmazania, tým viac sa rozprestrie farba. To tiež "
+"dramaticky zlepšuje beh programu, keďže sa menej často vzorkuje plátno"
 
 #. Brush setting
 #: ../brushsettings-gen.h:51
-#, fuzzy
 msgid "Smudge bucket"
-msgstr "Dĺžka rozmazania"
+msgstr "Vedro rozmazania"
 
 #. Tooltip for the "Smudge bucket" brush setting
 #: ../brushsettings-gen.h:51
@@ -724,6 +746,11 @@ msgid ""
 "Especially useful with the \"Custom input\" setting to correlate buckets "
 "with other settings such as offsets."
 msgstr ""
+"Je 256 vedier, každé z nich môže obsahovať farbu vybranú z plána.\n"
+"Nastavenie určuje, ktoré vedro má byť použité, pre lepšiu variabilitu a "
+"realizmus štetca.\n"
+"Užitočné najmä v spojení s nastavením \"Vlastný vstup\" na prepojenie s "
+"inými nastaveniami, napr. s posunmi."
 
 #. Brush setting
 #: ../brushsettings-gen.h:52
@@ -744,7 +771,7 @@ msgstr ""
 " 0,0 používa polomer štetca\n"
 "-0,7 používa polovicu polomeru štetca (rýchle, no nie vždy intuitívne)\n"
 "+0,7 používa dvojnásobok polomeru štetca\n"
-"+1,6 používa päťnásobok polomeru štetca (pomalý výkon)"
+"+1,6 používa päťnásobok polomeru štetca (pomalé)"
 
 #. Brush setting
 #: ../brushsettings-gen.h:53
@@ -903,9 +930,9 @@ msgid ""
 " 1.0 alpha channel fully locked"
 msgstr ""
 "Nezmení alfa kanál vrstvy (kreslenie iba tam, kde už je farba)\n"
-" 0.0 normálne kreslenie\n"
-" 0.5 polovica farby je normálne použitá\n"
-" 1.0 alfa kanál plne uzamknutý"
+" 0,0 normálne kreslenie\n"
+" 0,5 polovica farby je normálne použitá\n"
+" 1,0 alfa kanál plne uzamknutý"
 
 #. Brush setting
 #: ../brushsettings-gen.h:63
@@ -1035,9 +1062,8 @@ msgstr ""
 
 #. Brush input
 #: ../brushsettings-gen.h:76
-#, fuzzy
 msgid "Declination/Tilt"
-msgstr "Deklinácia"
+msgstr "Deklinácia/Náklon"
 
 #. Tooltip for the "Declination/Tilt" brush input
 #: ../brushsettings-gen.h:76
@@ -1076,6 +1102,9 @@ msgid ""
 "values' from the 'help' menu to get a feeling for the range; negative values "
 "are rare but possible for very low speed."
 msgstr ""
+"Ako rýchlo sa aktuálne hýbe kurzor. Môže sa veľmi rýchlo meniť. Na osvojenie "
+"si rozsahu skúste možnosť „Vypísať vstupné hodnoty“ v menu „Pomocník“. "
+"Záporné hodnoty sú neobvyklé, ale možné pri veľmi nízkej rýchlosti."
 
 #. Brush input - changes more smoothly but is less accurate than "Fine speed"
 #: ../brushsettings-gen.h:79
@@ -1106,14 +1135,13 @@ msgstr ""
 
 #. Brush input - refers to the direction of the stroke
 #: ../brushsettings-gen.h:81
-#, fuzzy
 msgid "Direction 360"
-msgstr "Smerovanie"
+msgstr "Smerovanie 360"
 
 #. Tooltip for the "Direction 360" brush input
 #: ../brushsettings-gen.h:81
 msgid "The angle of the stroke, from 0 to 360 degrees."
-msgstr ""
+msgstr "Uhol ťahu, od 0 po 360 stupňov."
 
 #. Brush input
 #: ../brushsettings-gen.h:82
@@ -1134,35 +1162,31 @@ msgstr ""
 
 #. Brush input
 #: ../brushsettings-gen.h:83
-#, fuzzy
 msgid "Declination/Tilt X"
-msgstr "Deklinácia"
+msgstr "Deklinácia/Náklon X"
 
 #. Tooltip for the "Declination/Tilt X" brush input
 #: ../brushsettings-gen.h:83
-#, fuzzy
 msgid ""
 "Declination of stylus tilt on X-Axis. 90/-90 when stylus is parallel to "
 "tablet and 0 when it's perpendicular to tablet."
 msgstr ""
-"Deklinácia stylusu. 0 ak je stylus rovnobežne s tabletom, 90 ak je na tablet "
-"kolmo."
+"Deklinácia stylusu voči osi X. 90/-90 ak je stylus rovnobežne s tabletom, 0 "
+"ak je na tablet kolmo."
 
 #. Brush input
 #: ../brushsettings-gen.h:84
-#, fuzzy
 msgid "Declination/Tilt Y"
-msgstr "Deklinácia"
+msgstr "Deklinácia/Náklon Y"
 
 #. Tooltip for the "Declination/Tilt Y" brush input
 #: ../brushsettings-gen.h:84
-#, fuzzy
 msgid ""
 "Declination of stylus tilt on Y-Axis. 90/-90 when stylus is parallel to "
 "tablet and 0 when it's perpendicular to tablet."
 msgstr ""
-"Deklinácia stylusu. 0 ak je stylus rovnobežne s tabletom, 90 ak je na tablet "
-"kolmo."
+"Deklinácia stylusu voči osi Y. 90/-90 ak je stylus rovnobežne s tabletom, 0 "
+"ak je na tablet kolmo."
 
 #. Brush input
 #: ../brushsettings-gen.h:85
@@ -1197,7 +1221,7 @@ msgstr ""
 #. Brush input - refers to canvas zoom
 #: ../brushsettings-gen.h:87
 msgid "Zoom Level"
-msgstr ""
+msgstr "Úroveň priblíženia"
 
 #. Tooltip for the "Zoom Level" brush input
 #: ../brushsettings-gen.h:87
@@ -1207,11 +1231,15 @@ msgid ""
 "For the Radius setting, using a value of -4.15 makes the brush size roughly "
 "constant, relative to the level of zoom."
 msgstr ""
+"Aktuálna úroveň priblíženia zobrazenia plátna.\n"
+"Logaritmická škála: 0.0 je 100%, 0.69 je 200%, -1.38 je 25%\n"
+"Pre nastavenie Polomer, hodnota -4,15 spôsobuje približne konštantnú veľkosť "
+"štetca vo vzťahu k úrovni priblíženia."
 
 #. Brush input
 #: ../brushsettings-gen.h:88
 msgid "Base Brush Radius"
-msgstr ""
+msgstr "Základný polomer štetca"
 
 #. Tooltip for the "Base Brush Radius" brush input
 #: ../brushsettings-gen.h:88
@@ -1223,11 +1251,17 @@ msgid ""
 "Take note of \"Dabs per basic radius\" and \"Dabs per actual radius\", which "
 "behave much differently."
 msgstr ""
+"Základný polomer štetca umožňuje upraviť správanie štetca keď sa zväčšuje "
+"alebo zmenšuje.\n"
+"Je dokonca možné vyrovnať nárast veľkosti kvapiek a na zväčšenie štetca "
+"využiť iné nastavenie.\n"
+"Všimnite si nastavenia „Kvapiek na základný polomer“ a „Kvapiek na skutočný "
+"polomer“, ktoré sa správajú značne rozdielne."
 
 #. Brush input
 #: ../brushsettings-gen.h:89
 msgid "Barrel Rotation"
-msgstr ""
+msgstr "Rotácia v osi"
 
 #. Tooltip for the "Barrel Rotation" brush input
 #: ../brushsettings-gen.h:89

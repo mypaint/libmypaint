@@ -826,7 +826,7 @@ void print_inputs(MyPaintBrush *self, float* inputs)
   gboolean
   update_smudge_color(
       const MyPaintBrush* self, MyPaintSurface* surface, float* const smudge_bucket, const float smudge_length, int px,
-      int py, const float radius, const float legacy_smudge, const float paint_factor)
+      int py, const float radius, const float legacy_smudge, const float paint_factor, gboolean legacy)
   {
 
       // Value between 0.01 and 1.0 that determines how often the canvas should be resampled
@@ -856,8 +856,12 @@ void print_inputs(MyPaintBrush *self, float* inputs)
 
           // Sample colors on the canvas, using a negative value for the paint factor
           // means that the old sampling method is used, instead of weighted spectral.
-          mypaint_surface_get_color(
-              surface, px, py, smudge_radius, &r, &g, &b, &a, legacy_smudge ? -1.0 : paint_factor);
+          if (legacy) {
+              mypaint_surface_get_color(surface, px, py, smudge_radius, &r, &g, &b, &a);
+          } else {
+              mypaint_surface2_get_color(
+                  (MyPaintSurface2*)surface, px, py, smudge_radius, &r, &g, &b, &a, legacy_smudge ? -1.0 : paint_factor);
+          }
 
           // don't draw unless the picked-up alpha is above a certain level
           // this is sort of like lock_alpha but for smudge
@@ -945,7 +949,7 @@ void print_inputs(MyPaintBrush *self, float* inputs)
   //
   // This is only gets called right after update_states_and_setting_values().
   // Returns TRUE if the surface was modified.
-  gboolean prepare_and_draw_dab (MyPaintBrush *self, MyPaintSurface * surface)
+gboolean prepare_and_draw_dab (MyPaintBrush *self, MyPaintSurface * surface, gboolean legacy)
   {
     const float opaque_fac = SETTING(self, OPAQUE_MULTIPLY);
     // ensure we don't get a positive result with two negative opaque values
@@ -1014,8 +1018,9 @@ void print_inputs(MyPaintBrush *self, float* inputs)
         }
     }
 
-    const float paint_factor = SETTING(self, PAINT_MODE);
-    const gboolean paint_setting_constant = mypaint_mapping_is_constant(self->settings[MYPAINT_BRUSH_SETTING_PAINT_MODE]);
+    const float paint_factor = legacy ? 0.0 : SETTING(self, PAINT_MODE);
+    const gboolean paint_setting_constant =
+        legacy ? TRUE : mypaint_mapping_is_constant(self->settings[MYPAINT_BRUSH_SETTING_PAINT_MODE]);
     const gboolean legacy_smudge = paint_factor <= 0.0 && paint_setting_constant;
 
     //convert to RGB here instead of later
@@ -1031,7 +1036,7 @@ void print_inputs(MyPaintBrush *self, float* inputs)
         (SETTING(self, SMUDGE) != 0.0 || !mypaint_mapping_is_constant(self->settings[MYPAINT_BRUSH_SETTING_SMUDGE]))) {
         float* const bucket = fetch_smudge_bucket(self);
         gboolean return_early = update_smudge_color(
-            self, surface, bucket, smudge_length, ROUND(x), ROUND(y), radius, legacy_smudge, paint_factor);
+          self, surface, bucket, smudge_length, ROUND(x), ROUND(y), radius, legacy_smudge, paint_factor, legacy);
         if (return_early) {
           return FALSE;
         }
@@ -1123,12 +1128,19 @@ void print_inputs(MyPaintBrush *self, float* inputs)
     const float dab_angle = STATE(self, ACTUAL_ELLIPTICAL_DAB_ANGLE);
     const float lock_alpha = SETTING(self, LOCK_ALPHA);
     const float colorize = SETTING(self, COLORIZE);
-    const float posterize = SETTING(self, POSTERIZE);
-    const float posterize_num = SETTING(self, POSTERIZE_NUM);
 
+    if (legacy) {
     return mypaint_surface_draw_dab (
         surface, x, y, radius, color_h, color_s, color_v, opaque, hardness, eraser_target_alpha,
+        dab_ratio, dab_angle, lock_alpha, colorize);
+    }
+    else {
+    const float posterize = SETTING(self, POSTERIZE);
+    const float posterize_num = SETTING(self, POSTERIZE_NUM);
+    return mypaint_surface2_draw_dab (
+        (MyPaintSurface2*)surface, x, y, radius, color_h, color_s, color_v, opaque, hardness, eraser_target_alpha,
         dab_ratio, dab_angle, lock_alpha, colorize, posterize, posterize_num, paint_factor);
+    }
   }
 
   // How many dabs will be drawn between the current and the next (x, y, +dt) position?
@@ -1168,18 +1180,54 @@ void print_inputs(MyPaintBrush *self, float* inputs)
     return res4;
   }
 
-  /**
-   * mypaint_brush_stroke_to:
-   * @dtime: Time since last motion event, in seconds.
-   *
-   * Should be called once for each motion event.
-   *
-   * Returns: non-0 if the stroke is finished or empty, else 0.
-   */
-  int mypaint_brush_stroke_to (MyPaintBrush *self, MyPaintSurface *surface,
-                                float x, float y, float pressure,
-                                float xtilt, float ytilt, double dtime, float viewzoom, float viewrotation, float barrel_rotation)
-  {
+int
+mypaint_brush_stroke_to_internal(
+    MyPaintBrush* self, MyPaintSurface* surface, float x, float y, float pressure, float xtilt, float ytilt,
+    double dtime, float viewzoom, float viewrotation, float barrel_rotation, gboolean legacy);
+
+
+/**
+ * mypaint_brush_stroke_to:
+ * @dtime: Time since last motion event, in seconds.
+ *
+ * Should be called once for each motion event.
+ *
+ * Returns: non-0 if the stroke is finished or empty, else 0.
+*/
+int
+mypaint_brush_stroke_to(
+    MyPaintBrush* self, MyPaintSurface* surface, float x, float y, float pressure, float xtilt, float ytilt,
+    double dtime)
+{
+  const float viewzoom = 1.0;
+  const float viewrotation = 0.0;
+  const float barrel_rotation = 0.0;
+  return mypaint_brush_stroke_to_internal(
+      self, surface, x, y, pressure, xtilt, ytilt, dtime, viewzoom, viewrotation, barrel_rotation, TRUE);
+}
+
+/**
+ * mypaint_brush_stroke_to_2:
+ * @dtime: Time since last motion event, in seconds.
+ *
+ * Should be called once for each motion event.
+ *
+ * Returns: non-0 if the stroke is finished or empty, else 0.
+ */
+int
+mypaint_brush_stroke_to_2(
+    MyPaintBrush* self, MyPaintSurface2* surface, float x, float y, float pressure, float xtilt, float ytilt,
+    double dtime, float viewzoom, float viewrotation, float barrel_rotation)
+{
+    return mypaint_brush_stroke_to_internal(
+      self, mypaint_surface2_to_surface(surface), x, y, pressure, xtilt, ytilt, dtime, viewzoom, viewrotation, barrel_rotation, FALSE);
+}
+
+int
+mypaint_brush_stroke_to_internal(
+    MyPaintBrush* self, MyPaintSurface* surface, float x, float y, float pressure, float xtilt, float ytilt,
+    double dtime, float viewzoom, float viewrotation, float barrel_rotation, gboolean legacy)
+{
     const float max_dtime = 5;
 
     float tilt_ascension = 0.0;
@@ -1225,7 +1273,8 @@ void print_inputs(MyPaintBrush *self, float* inputs)
     if (dtime > 0.100 && pressure && STATE(self, PRESSURE) == 0) {
       // Workaround for tablets that don't report motion events without pressure.
       // This is to avoid linear interpolation of the pressure between two events.
-      mypaint_brush_stroke_to (self, surface, x, y, 0.0, 90.0, 0.0, dtime-0.0001, viewzoom, viewrotation, 0.0);
+      mypaint_brush_stroke_to_internal(
+          self, surface, x, y, 0.0, 90.0, 0.0, dtime - 0.0001, viewzoom, viewrotation, barrel_rotation, legacy);
       dtime = 0.0001;
     }
 
@@ -1338,7 +1387,7 @@ void print_inputs(MyPaintBrush *self, float* inputs)
 
       // Flips between 1 and -1, used for "mirrored" offsets.
       STATE(self, FLIP) *= -1;
-      gboolean painted_now = prepare_and_draw_dab (self, surface);
+      gboolean painted_now = prepare_and_draw_dab (self, surface, legacy);
       if (painted_now) {
         painted = YES;
       } else if (painted == UNKNOWN) {

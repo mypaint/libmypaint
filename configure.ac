@@ -7,8 +7,8 @@ AC_PREREQ(2.62)
 # API version: see https://github.com/mypaint/libmypaint/wiki/Versioning
 # See http://semver.org/ for what this means.
 
-m4_define([libmypaint_api_major], [2])
-m4_define([libmypaint_api_minor], [0])
+m4_define([libmypaint_api_major], [1])
+m4_define([libmypaint_api_minor], [5])
 m4_define([libmypaint_api_micro], [0])
 m4_define([libmypaint_api_prerelease], [beta])  # may be blank
 

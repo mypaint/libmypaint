@@ -33,7 +33,13 @@
 #include "brushmodes.h"
 #include "operationqueue.h"
 
-void process_tile(MyPaintTiledSurface *self, int tx, int ty);
+#define NUM_BBOXES_DEFAULT 32
+
+void tiled_surface_process_tile(MyPaintTiledSurface *self, int tx, int ty);
+
+void process_tile_internal(
+    void* tiled_surface, void (*request_start)(void*, void*), void (*request_end)(void*, void*),
+    OperationQueue* op_queue, int tx, int ty);
 
 static void
 begin_atomic_default(MyPaintSurface *surface)
@@ -42,45 +48,9 @@ begin_atomic_default(MyPaintSurface *surface)
 }
 
 static void
-end_atomic_default(MyPaintSurface *surface, MyPaintRectangles *roi)
+end_atomic_default(MyPaintSurface *surface, MyPaintRectangle *roi)
 {
     mypaint_tiled_surface_end_atomic((MyPaintTiledSurface *)surface, roi);
-}
-
-void
-prepare_bounding_boxes(MyPaintTiledSurface *self) {
-    MyPaintSymmetryState symm_state = self->symmetry_data.state_current;
-    const gboolean snowflake = symm_state.type == MYPAINT_SYMMETRY_TYPE_SNOWFLAKE;
-    const int num_bboxes_desired = symm_state.num_lines * (snowflake ? 2 : 1);
-    // If the bounding box array cannot fit one rectangle per symmetry dab,
-    // try to allocate enough space for that to be possible.
-    // Failure is ok, as the bounding box assignments will be functional anyway.
-    if (num_bboxes_desired > self->num_bboxes) {
-        const int margin = 10; // Add margin to avoid unnecessary reallocations.
-        const int num_to_allocate = num_bboxes_desired + margin;
-        int bytes_to_allocate = num_to_allocate * sizeof(MyPaintRectangle);
-        MyPaintRectangle* new_bboxes = malloc(bytes_to_allocate);
-        if (new_bboxes) {
-            if (self->num_bboxes > NUM_BBOXES_DEFAULT) {
-                // Free previous allocation
-                free(self->bboxes);
-            }
-            // Initialize memory
-            memset(new_bboxes, 0, bytes_to_allocate);
-            self->bboxes = new_bboxes;
-            self->num_bboxes = num_to_allocate;
-            // No need to clear anything after the memset, so reset counter
-            self->num_bboxes_dirtied = 0;
-        }
-    }
-    // Clean up any previously populated bounding boxes and reset the counter
-    for (int i = 0; i < MIN(self->num_bboxes, self->num_bboxes_dirtied); ++i) {
-        self->bboxes[i].height = 0;
-        self->bboxes[i].width = 0;
-        self->bboxes[i].x = 0;
-        self->bboxes[i].y = 0;
-    }
-    self->num_bboxes_dirtied = 0;
 }
 
 /**
@@ -94,8 +64,10 @@ prepare_bounding_boxes(MyPaintTiledSurface *self) {
 void
 mypaint_tiled_surface_begin_atomic(MyPaintTiledSurface *self)
 {
-    mypaint_update_symmetry_state(&self->symmetry_data);
-    prepare_bounding_boxes(self);
+  self->dirty_bbox.x = 0;
+  self->dirty_bbox.y = 0;
+  self->dirty_bbox.width = 0;
+  self->dirty_bbox.height = 0;
 }
 
 /**
@@ -107,7 +79,7 @@ mypaint_tiled_surface_begin_atomic(MyPaintTiledSurface *self)
  * Application code should only use mypaint_surface_end_atomic().
  */
 void
-mypaint_tiled_surface_end_atomic(MyPaintTiledSurface *self, MyPaintRectangles *roi)
+mypaint_tiled_surface_end_atomic(MyPaintTiledSurface *self, MyPaintRectangle *roi)
 {
     // Process tiles
     TileIndex *tiles;
@@ -115,38 +87,16 @@ mypaint_tiled_surface_end_atomic(MyPaintTiledSurface *self, MyPaintRectangles *r
 
     #pragma omp parallel for schedule(static) if(self->threadsafe_tile_requests && tiles_n > 3)
     for (int i = 0; i < tiles_n; i++) {
-        process_tile(self, tiles[i].x, tiles[i].y);
+      tiled_surface_process_tile(self, tiles[i].x, tiles[i].y);
     }
 
     operation_queue_clear_dirty_tiles(self->operation_queue);
 
     if (roi) {
-        const int roi_rects = roi->num_rectangles;
-        const int num_dirty = self->num_bboxes_dirtied;
-        // Clear out the input rectangles that will be overwritten
-        for (int i = 0; i < MIN(roi_rects, num_dirty); ++i) {
-            roi->rectangles[i].x = 0;
-            roi->rectangles[i].y = 0;
-            roi->rectangles[i].width = 0;
-            roi->rectangles[i].height = 0;
-        }
-        // Write bounding box rectangles to the output array
-        const float bboxes_per_output = MAX(1, (float)num_dirty / roi_rects);
-        for (int i = 0; i < num_dirty; ++i) {
-            int out_index;
-            // If there is not enough space for all rectangles in the output,
-            // merge some of the rectangles with their list-adjacent neighbours.
-            if (num_dirty > roi_rects) {
-                out_index = (int)MIN(roi_rects - 1, roundf((float)i / bboxes_per_output));
-            } else {
-                out_index = i;
-            }
-            mypaint_rectangle_expand_to_include_rect(&(roi->rectangles[out_index]), &(self->bboxes[i]));
-        }
-        // Set the number of rectangles written to, so the caller knows which ones to act on.
-        roi->num_rectangles = MIN(roi_rects, num_dirty);
+        *roi = self->dirty_bbox;
     }
 }
+
 
 /**
  * mypaint_tiled_surface_tile_request_start:
@@ -176,28 +126,18 @@ void mypaint_tiled_surface_tile_request_end(MyPaintTiledSurface *self, MyPaintTi
     self->tile_request_end(self, request);
 }
 
-/* FIXME: either expose this through MyPaintSurface, or move it into the brush engine */
 /**
  * mypaint_tiled_surface_set_symmetry_state:
  * @active: TRUE to enable, FALSE to disable.
  * @center_x: X axis to mirror events across.
- * @center_y: Y axis to mirror events across.
- * @symmetry_angle: Angle to rotate the symmetry lines
- * @symmetry_type: Symmetry type to activate.
- * @rot_symmetry_lines: Number of rotational symmetry lines.
  *
  * Enable/Disable symmetric brush painting across an X axis.
- *
  */
 void
-mypaint_tiled_surface_set_symmetry_state(MyPaintTiledSurface *self, gboolean active,
-                                         float center_x, float center_y,
-                                         float symmetry_angle,
-                                         MyPaintSymmetryType symmetry_type,
-                                         int rot_symmetry_lines)
+mypaint_tiled_surface_set_symmetry_state(MyPaintTiledSurface *self, gboolean active, float center_x)
 {
-    mypaint_symmetry_set_pending( // Only write to the pending new state, nothing gets recalculated here
-        &self->symmetry_data, active, center_x, center_y, symmetry_angle, symmetry_type, rot_symmetry_lines);
+    self->surface_do_symmetry = active;
+    self->surface_center_x = center_x;
 }
 
 /**
@@ -525,7 +465,7 @@ process_op(uint16_t *rgba_p, uint16_t *mask,
                                             op->lock_alpha*op->opaque*(1 - op->colorize)*(1 - op->posterize)*(1 - op->paint)*(1<<15));
       }
     }
-    
+
     if (op->paint > 0.0) {
       if (op->normal) {
         if (op->color_a == 1.0) {
@@ -545,7 +485,7 @@ process_op(uint16_t *rgba_p, uint16_t *mask,
                                             op->lock_alpha*op->opaque*(1 - op->colorize)*(1 - op->posterize)*op->paint*(1<<15));
       }
     }
-    
+
     if (op->colorize) {
       draw_dab_pixels_BlendMode_Color(mask, rgba_p,
                                       op->color_r, op->color_g, op->color_b,
@@ -560,10 +500,14 @@ process_op(uint16_t *rgba_p, uint16_t *mask,
 
 // Must be threadsafe
 void
-process_tile(MyPaintTiledSurface *self, int tx, int ty)
+process_tile_internal(
+  void *tiled_surface,
+  void (*request_start) (void*, void*),
+  void (*request_end) (void*, void*),
+  OperationQueue* op_queue, int tx, int ty)
 {
     TileIndex tile_index = {tx, ty};
-    OperationDataDrawDab *op = operation_queue_pop(self->operation_queue, tile_index);
+    OperationDataDrawDab *op = operation_queue_pop(op_queue, tile_index);
     if (!op) {
         return;
     }
@@ -572,7 +516,7 @@ process_tile(MyPaintTiledSurface *self, int tx, int ty)
     const int mipmap_level = 0;
     mypaint_tile_request_init(&request_data, mipmap_level, tx, ty, FALSE);
 
-    mypaint_tiled_surface_tile_request_start(self, &request_data);
+    request_start(tiled_surface, &request_data);
     uint16_t * rgba_p = request_data.buffer;
     if (!rgba_p) {
         printf("Warning: Unable to get tile!\n");
@@ -584,10 +528,9 @@ process_tile(MyPaintTiledSurface *self, int tx, int ty)
     while (op) {
         process_op(rgba_p, mask, tile_index.x, tile_index.y, op);
         free(op);
-        op = operation_queue_pop(self->operation_queue, tile_index);
+        op = operation_queue_pop(op_queue, tile_index);
     }
-
-    mypaint_tiled_surface_tile_request_end(self, &request_data);
+    request_end(tiled_surface, &request_data);
 }
 
 void
@@ -605,19 +548,20 @@ update_dirty_bbox(MyPaintRectangle *bbox, OperationDataDrawDab *op)
 }
 
 // returns TRUE if the surface was modified
-gboolean draw_dab_internal (MyPaintTiledSurface *self, float x, float y,
-               float radius,
-               float color_r, float color_g, float color_b,
-               float opaque, float hardness,
-               float color_a,
-               float aspect_ratio, float angle,
-               float lock_alpha,
-               float colorize,
-               float posterize,
-               float posterize_num,
-               float paint,
-               int bbox_index
-               )
+gboolean draw_dab_internal (
+  OperationQueue *op_queue, float x, float y,
+  float radius,
+  float color_r, float color_g, float color_b,
+  float opaque, float hardness,
+  float color_a,
+  float aspect_ratio, float angle,
+  float lock_alpha,
+  float colorize,
+  float posterize,
+  float posterize_num,
+  float paint,
+  MyPaintRectangle *bbox
+  )
 
 {
     OperationDataDrawDab op_struct;
@@ -660,7 +604,7 @@ gboolean draw_dab_internal (MyPaintTiledSurface *self, float x, float y,
 
     // Determine the tiles influenced by operation, and queue it for processing for each tile
     float r_fringe = radius + 1.0f; // +1.0 should not be required, only to be sure
-      
+
     int tx1 = floor(floor(x - r_fringe) / MYPAINT_TILE_SIZE);
     int tx2 = floor(floor(x + r_fringe) / MYPAINT_TILE_SIZE);
     int ty1 = floor(floor(y - r_fringe) / MYPAINT_TILE_SIZE);
@@ -671,18 +615,316 @@ gboolean draw_dab_internal (MyPaintTiledSurface *self, float x, float y,
             const TileIndex tile_index = {tx, ty};
             OperationDataDrawDab *op_copy = (OperationDataDrawDab *)malloc(sizeof(OperationDataDrawDab));
             *op_copy = *op;
-            operation_queue_add(self->operation_queue, tile_index, op_copy);
+            operation_queue_add(op_queue, tile_index, op_copy);
         }
     }
 
-    update_dirty_bbox(&self->bboxes[bbox_index], op);
+    update_dirty_bbox(bbox, op);
 
     return TRUE;
 }
 
-
 // returns TRUE if the surface was modified
 int draw_dab (MyPaintSurface *surface, float x, float y,
+               float radius,
+               float r, float g, float b,
+               float opaque, float hardness,
+               float color_a,
+               float aspect_ratio, float angle,
+               float lock_alpha,
+               float colorize)
+{
+    MyPaintTiledSurface* self = (MyPaintTiledSurface*)surface;
+    // Normal pass
+    gboolean surface_modified = (draw_dab_internal(
+        self->operation_queue, x, y, radius, r, g, b, opaque, hardness, color_a, aspect_ratio, angle, lock_alpha,
+        colorize, 0.0, 0.0, 0.0, &self->dirty_bbox));
+    // Symmetry pass
+    if (surface_modified && self->surface_do_symmetry) {
+        const float symm_x = self->surface_center_x + (self->surface_center_x - x);
+        draw_dab_internal(
+            self->operation_queue, symm_x, y, radius, r, g, b, opaque, hardness, color_a, aspect_ratio, -angle,
+            lock_alpha, colorize, 0.0, 0.0, 0.0, &self->dirty_bbox);
+    }
+    return surface_modified;
+}
+
+
+void get_color_internal
+(
+ void *tiled_surface,
+ void (*request_start) (void*, void*),
+ void (*request_end) (void*, void*),
+ gboolean threadsafe_tile_requests,
+ OperationQueue *op_queue,
+ float x, float y,
+ float radius,
+ float * color_r, float * color_g, float * color_b, float * color_a,
+ float paint
+  )
+{
+    if (radius < 1.0f) radius = 1.0f;
+    const float hardness = 0.5f;
+    const float aspect_ratio = 1.0f;
+    const float angle = 0.0f;
+
+    float sum_weight, sum_r, sum_g, sum_b, sum_a;
+    sum_weight = sum_r = sum_g = sum_b = sum_a = 0.0f;
+
+    // in case we return with an error
+    *color_r = 0.0f;
+    *color_g = 1.0f;
+    *color_b = 0.0f;
+
+    // WARNING: some code duplication with draw_dab
+
+    float r_fringe = radius + 1.0f; // +1 should not be required, only to be sure
+
+    int tx1 = floor(floor(x - r_fringe) / MYPAINT_TILE_SIZE);
+    int tx2 = floor(floor(x + r_fringe) / MYPAINT_TILE_SIZE);
+    int ty1 = floor(floor(y - r_fringe) / MYPAINT_TILE_SIZE);
+    int ty2 = floor(floor(y + r_fringe) / MYPAINT_TILE_SIZE);
+    #ifdef _OPENMP
+    int tiles_n = (tx2 - tx1) * (ty2 - ty1);
+    #endif
+
+    // Calculate the `guaranteed sample` interval and
+    // the percentage of pixels to sample for the dab.
+    // The basic idea is to have larger intervals and
+    // lower percentages for really large dabs, to
+    // avoid accumulated rounding errors and heavier
+    // calculations.
+    //
+    // The values are set so that the number of pixels
+    // sampled is _bounded_ linearly by the radius.
+    //
+    // The constant factor 7 is chosen through manual
+    // evaluation of results and gives us a total sample
+    // rate bounded by '1/(r * 3.5)'
+    // Other models may have better properties, some
+    // more thinking needed here.
+    //
+    // For really small radii we'll sample every pixel
+    // in the dab to avoid biasing.
+    const int sample_interval = radius <= 2.0f ? 1 : (int)(radius * 7);
+    const float random_sample_rate = 1.0f / (7 * radius);
+
+    #ifdef _OPENMP
+    #pragma omp parallel for schedule(static) if(threadsafe_tile_requests && tiles_n > 3)
+    #endif
+    for (int ty = ty1; ty <= ty2; ty++) {
+      for (int tx = tx1; tx <= tx2; tx++) {
+
+        // Flush queued draw_dab operations
+        process_tile_internal(tiled_surface, request_start, request_end, op_queue, tx, ty);
+
+        MyPaintTileRequest request_data;
+        const int mipmap_level = 0;
+        mypaint_tile_request_init(&request_data, mipmap_level, tx, ty, TRUE);
+        request_start(tiled_surface, &request_data);
+        uint16_t * rgba_p = request_data.buffer;
+        if (!rgba_p) {
+          printf("Warning: Unable to get tile!\n");
+          break;
+        }
+
+        // first, we calculate the mask (opacity for each pixel)
+        uint16_t mask[MYPAINT_TILE_SIZE*MYPAINT_TILE_SIZE+2*MYPAINT_TILE_SIZE];
+
+        render_dab_mask(mask,
+                        x - tx*MYPAINT_TILE_SIZE,
+                        y - ty*MYPAINT_TILE_SIZE,
+                        radius,
+                        hardness,
+                        aspect_ratio, angle
+                        );
+
+        // TODO: try atomic operations instead
+        #pragma omp critical
+        {
+        get_color_pixels_accumulate (
+          mask, rgba_p, &sum_weight, &sum_r, &sum_g, &sum_b, &sum_a, paint,
+          sample_interval, random_sample_rate);
+        }
+
+        request_end(tiled_surface, &request_data);
+      }
+    }
+
+    assert(sum_weight > 0.0f);
+    sum_a /= sum_weight;
+
+    // For legacy sampling, we need to divide
+    // by the total after the accumulation.
+    if (paint < 0.0) {
+        sum_r /= sum_weight;
+        sum_g /= sum_weight;
+        sum_b /= sum_weight;
+    }
+
+    *color_a = CLAMP(sum_a, 0.0f, 1.0f);
+    if (sum_a > 0.0f) {
+      // Straighten the color channels if using legacy sampling.
+      // Clamp to guard against rounding errors.
+      const float demul = paint < 0.0 ? sum_a : 1.0;
+      *color_r = CLAMP(sum_r / demul, 0.0f, 1.0f);
+      *color_g = CLAMP(sum_g / demul, 0.0f, 1.0f);
+      *color_b = CLAMP(sum_b / demul, 0.0f, 1.0f);
+    } else {
+      // it is all transparent, so don't care about the colors
+      // (let's make them ugly so bugs will be visible)
+      *color_r = 0.0f;
+      *color_g = 1.0f;
+      *color_b = 0.0f;
+    }
+}
+
+/* Go-betweens for more clarity  */
+void tsf1_request_start(void* surface, void* request) {
+  MyPaintTiledSurface *self = (MyPaintTiledSurface*) surface;
+  self->tile_request_start(self, (MyPaintTileRequest*) request);
+}
+void tsf1_request_end(void* surface, void* request) {
+  MyPaintTiledSurface *self = (MyPaintTiledSurface*) surface;
+  self->tile_request_end(self, (MyPaintTileRequest*) request);
+}
+
+void
+get_color(
+    MyPaintSurface* surface, float x, float y, float radius, float* color_r, float* color_g, float* color_b,
+    float* color_a)
+{
+    MyPaintTiledSurface* self = (MyPaintTiledSurface*)surface;
+    return get_color_internal(
+        surface, tsf1_request_start, tsf1_request_end, self->threadsafe_tile_requests, self->operation_queue, x, y,
+        radius, color_r, color_g, color_b, color_a, -1.0);
+}
+
+void tiled_surface_process_tile(MyPaintTiledSurface *self, int tx, int ty) {
+  process_tile_internal(self, tsf1_request_start, tsf1_request_end, self->operation_queue, tx, ty);
+}
+
+/**
+ * mypaint_tiled_surface_init: (skip)
+ *
+ * Initialize the surface, passing in implementations of the tile backend.
+ * Note: Only intended to be called from subclasses of #MyPaintTiledSurface
+ **/
+void
+mypaint_tiled_surface_init(MyPaintTiledSurface *self,
+                           MyPaintTileRequestStartFunction tile_request_start,
+                           MyPaintTileRequestEndFunction tile_request_end)
+{
+    mypaint_surface_init(&self->parent);
+    self->parent.draw_dab = draw_dab;
+    self->parent.get_color = get_color;
+    self->parent.begin_atomic = begin_atomic_default;
+    self->parent.end_atomic = end_atomic_default;
+
+    self->tile_request_end = tile_request_end;
+    self->tile_request_start = tile_request_start;
+
+    self->tile_size = MYPAINT_TILE_SIZE;
+    self->threadsafe_tile_requests = FALSE;
+
+    self->dirty_bbox.x = 0;
+    self->dirty_bbox.y = 0;
+    self->dirty_bbox.width = 0;
+    self->dirty_bbox.height = 0;
+    self->surface_do_symmetry = FALSE;
+    self->surface_center_x = 0.0f;
+    self->operation_queue = operation_queue_new();
+}
+
+
+/**
+ * mypaint_tiled_surface_destroy: (skip)
+ *
+ * Deallocate resources set up by mypaint_tiled_surface_init()
+ * Does not free the #MyPaintTiledSurface itself.
+ * Note: Only intended to be called from subclasses of #MyPaintTiledSurface
+ */
+void
+mypaint_tiled_surface_destroy(MyPaintTiledSurface *self)
+{
+    operation_queue_free(self->operation_queue);
+}
+
+/* -- Extended interface -- */
+
+/* Go-betweens for more clarity  */
+void tsf2_request_start(void* surface, void* request) {
+  MyPaintTiledSurface2 *self = (MyPaintTiledSurface2*) surface;
+  self->tile_request_start(self, (MyPaintTileRequest*) request);
+}
+
+void tsf2_request_end(void* surface, void* request) {
+  MyPaintTiledSurface2 *self = (MyPaintTiledSurface2*) surface;
+  self->tile_request_end(self, (MyPaintTileRequest*) request);
+}
+
+void tiled_surface2_process_tile(MyPaintTiledSurface2 *self, int tx, int ty) {
+  process_tile_internal(self, tsf2_request_start, tsf2_request_end, self->operation_queue, tx, ty);
+}
+
+void
+get_color_pigment(
+    MyPaintSurface2* surface, float x, float y, float radius, float* color_r, float* color_g, float* color_b,
+    float* color_a, float paint)
+{
+    MyPaintTiledSurface2* self = (MyPaintTiledSurface2*)surface;
+    return get_color_internal(
+        surface, tsf2_request_start, tsf2_request_end, self->threadsafe_tile_requests, self->operation_queue, x, y,
+        radius, color_r, color_g, color_b, color_a, paint);
+}
+
+static void
+begin_atomic_default_2(MyPaintSurface *surface)
+{
+  mypaint_tiled_surface2_begin_atomic((MyPaintTiledSurface2 *)surface);
+}
+
+static void
+end_atomic_default_2(MyPaintSurface2 *surface, MyPaintRectangles *roi)
+{
+    mypaint_tiled_surface2_end_atomic((MyPaintTiledSurface2 *)surface, roi);
+}
+
+void
+prepare_bounding_boxes(MyPaintTiledSurface2 *self) {
+    MyPaintSymmetryState symm_state = self->symmetry_data.state_current;
+    const gboolean snowflake = symm_state.type == MYPAINT_SYMMETRY_TYPE_SNOWFLAKE;
+    const int num_bboxes_desired = symm_state.num_lines * (snowflake ? 2 : 1);
+    // If the bounding box array cannot fit one rectangle per symmetry dab,
+    // try to allocate enough space for that to be possible.
+    // Failure is ok, as the bounding box assignments will be functional anyway.
+    if (num_bboxes_desired > self->num_bboxes) {
+        const int margin = 10; // Add margin to avoid unnecessary reallocations.
+        const int num_to_allocate = num_bboxes_desired + margin;
+        int bytes_to_allocate = num_to_allocate * sizeof(MyPaintRectangle);
+        MyPaintRectangle* new_bboxes = malloc(bytes_to_allocate);
+        if (new_bboxes) {
+            free(self->bboxes);
+            // Initialize memory
+            memset(new_bboxes, 0, bytes_to_allocate);
+            self->bboxes = new_bboxes;
+            self->num_bboxes = num_to_allocate;
+            // No need to clear anything after the memset, so reset counter
+            self->num_bboxes_dirtied = 0;
+        }
+    }
+    // Clean up any previously populated bounding boxes and reset the counter
+    for (int i = 0; i < MIN(self->num_bboxes, self->num_bboxes_dirtied); ++i) {
+        self->bboxes[i].height = 0;
+        self->bboxes[i].width = 0;
+        self->bboxes[i].x = 0;
+        self->bboxes[i].y = 0;
+    }
+    self->num_bboxes_dirtied = 0;
+}
+
+// returns TRUE if the surface was modified
+int draw_dab_2 (MyPaintSurface2 *surface, float x, float y,
                float radius,
                float color_r, float color_g, float color_b,
                float opaque, float hardness,
@@ -694,13 +936,13 @@ int draw_dab (MyPaintSurface *surface, float x, float y,
                float posterize_num,
                float paint)
 {
-    MyPaintTiledSurface* self = (MyPaintTiledSurface*)surface;
+    MyPaintTiledSurface2* self = (MyPaintTiledSurface2*)surface;
 
     // These calls are repeated enough to warrant a local macro, for both readability and correctness.
 #define DDI(x, y, angle, bb_idx) (draw_dab_internal(\
-        self, (x), (y), radius, color_r, color_g, color_b, opaque, \
+        self->operation_queue, (x), (y), radius, color_r, color_g, color_b, opaque, \
         hardness, color_a, aspect_ratio, (angle), \
-        lock_alpha, colorize, posterize, posterize_num, paint, (bb_idx)))
+        lock_alpha, colorize, posterize, posterize_num, paint, &self->bboxes[(bb_idx)]))
 
     // Normal pass
     gboolean surface_modified = DDI(x, y, angle, 0);
@@ -794,174 +1036,165 @@ int draw_dab (MyPaintSurface *surface, float x, float y,
 #undef DDI
 }
 
-
-void get_color (MyPaintSurface *surface, float x, float y,
-                  float radius,
-                  float * color_r, float * color_g, float * color_b, float * color_a,
-                  float paint
-                  )
+int
+draw_dab_wrapper(
+    MyPaintSurface* surface, float x, float y, float radius, float r, float g, float b, float opaque, float hardness,
+    float color_a, float aspect_ratio, float angle, float lock_alpha, float colorize)
 {
-    MyPaintTiledSurface *self = (MyPaintTiledSurface *)surface;
+    const float posterize = 0.0;
+    const float posterize_num = 1.0;
+    const float pigment = 0.0;
+    return draw_dab_2(
+        (MyPaintSurface2*)surface, x, y, radius, r, g, b, opaque, hardness, color_a, aspect_ratio, angle, lock_alpha,
+        colorize, posterize, posterize_num, pigment);
+}
 
-    if (radius < 1.0f) radius = 1.0f;
-    const float hardness = 0.5f;
-    const float aspect_ratio = 1.0f;
-    const float angle = 0.0f;
+void
+get_color_wrapper(
+    MyPaintSurface* surface, float x, float y, float radius, float* color_r, float* color_g, float* color_b,
+    float* color_a)
+{
+    MyPaintTiledSurface2* self = (MyPaintTiledSurface2*)surface;
+    return get_color_internal(
+        surface, tsf2_request_start, tsf2_request_end, self->threadsafe_tile_requests, self->operation_queue, x, y,
+        radius, color_r, color_g, color_b, color_a, -1.0);
+}
 
-    float sum_weight, sum_r, sum_g, sum_b, sum_a;
-    sum_weight = sum_r = sum_g = sum_b = sum_a = 0.0f;
-
-    // in case we return with an error
-    *color_r = 0.0f;
-    *color_g = 1.0f;
-    *color_b = 0.0f;
-
-    // WARNING: some code duplication with draw_dab
-
-    float r_fringe = radius + 1.0f; // +1 should not be required, only to be sure
-
-    int tx1 = floor(floor(x - r_fringe) / MYPAINT_TILE_SIZE);
-    int tx2 = floor(floor(x + r_fringe) / MYPAINT_TILE_SIZE);
-    int ty1 = floor(floor(y - r_fringe) / MYPAINT_TILE_SIZE);
-    int ty2 = floor(floor(y + r_fringe) / MYPAINT_TILE_SIZE);
-    #ifdef _OPENMP
-    int tiles_n = (tx2 - tx1) * (ty2 - ty1);
-    #endif
-
-    // Calculate the `guaranteed sample` interval and
-    // the percentage of pixels to sample for the dab.
-    // The basic idea is to have larger intervals and
-    // lower percentages for really large dabs, to
-    // avoid accumulated rounding errors and heavier
-    // calculations.
-    //
-    // The values are set so that the number of pixels
-    // sampled is _bounded_ linearly by the radius.
-    //
-    // The constant factor 7 is chosen through manual
-    // evaluation of results and gives us a total sample
-    // rate bounded by '1/(r * 3.5)'
-    // Other models may have better properties, some
-    // more thinking needed here.
-    //
-    // For really small radii we'll sample every pixel
-    // in the dab to avoid biasing.
-    const int sample_interval = radius <= 2.0f ? 1 : (int)(radius * 7);
-    const float random_sample_rate = 1.0f / (7 * radius);
-
-    #pragma omp parallel for schedule(static) if(self->threadsafe_tile_requests && tiles_n > 3)
-    for (int ty = ty1; ty <= ty2; ty++) {
-      for (int tx = tx1; tx <= tx2; tx++) {
-
-        // Flush queued draw_dab operations
-        process_tile(self, tx, ty);
-
-        MyPaintTileRequest request_data;
-        const int mipmap_level = 0;
-        mypaint_tile_request_init(&request_data, mipmap_level, tx, ty, TRUE);
-
-        mypaint_tiled_surface_tile_request_start(self, &request_data);
-        uint16_t * rgba_p = request_data.buffer;
-        if (!rgba_p) {
-          printf("Warning: Unable to get tile!\n");
-          break;
-        }
-
-        // first, we calculate the mask (opacity for each pixel)
-        uint16_t mask[MYPAINT_TILE_SIZE*MYPAINT_TILE_SIZE+2*MYPAINT_TILE_SIZE];
-
-        render_dab_mask(mask,
-                        x - tx*MYPAINT_TILE_SIZE,
-                        y - ty*MYPAINT_TILE_SIZE,
-                        radius,
-                        hardness,
-                        aspect_ratio, angle
-                        );
-
-        // TODO: try atomic operations instead
-        #pragma omp critical
-        {
-        get_color_pixels_accumulate (
-          mask, rgba_p, &sum_weight, &sum_r, &sum_g, &sum_b, &sum_a, paint,
-          sample_interval, random_sample_rate);
-        }
-
-        mypaint_tiled_surface_tile_request_end(self, &request_data);
-      }
-    }
-
-    assert(sum_weight > 0.0f);
-    sum_a /= sum_weight;
-
-    // For legacy sampling, we need to divide
-    // by the total after the accumulation.
-    if (paint < 0.0) {
-        sum_r /= sum_weight;
-        sum_g /= sum_weight;
-        sum_b /= sum_weight;
-    }
-
-    *color_a = CLAMP(sum_a, 0.0f, 1.0f);
-    if (sum_a > 0.0f) {
-      // Straighten the color channels if using legacy sampling.
-      // Clamp to guard against rounding errors.
-      const float demul = paint < 0.0 ? sum_a : 1.0;
-      *color_r = CLAMP(sum_r / demul, 0.0f, 1.0f);
-      *color_g = CLAMP(sum_g / demul, 0.0f, 1.0f);
-      *color_b = CLAMP(sum_b / demul, 0.0f, 1.0f);
-    } else {
-      // it is all transparent, so don't care about the colors
-      // (let's make them ugly so bugs will be visible)
-      *color_r = 0.0f;
-      *color_g = 1.0f;
-      *color_b = 0.0f;
-    }
+static void
+end_atomic_wrapper(MyPaintSurface *surface, MyPaintRectangle *roi)
+{
+  MyPaintRectangles rois = {1, roi};
+  mypaint_tiled_surface2_end_atomic((MyPaintTiledSurface2*)surface, &rois);
 }
 
 /**
- * mypaint_tiled_surface_init: (skip)
+ * mypaint_tiled_surface2_init: (skip)
  *
  * Initialize the surface, passing in implementations of the tile backend.
  * Note: Only intended to be called from subclasses of #MyPaintTiledSurface
  **/
 void
-mypaint_tiled_surface_init(MyPaintTiledSurface *self,
-                           MyPaintTileRequestStartFunction tile_request_start,
-                           MyPaintTileRequestEndFunction tile_request_end)
+mypaint_tiled_surface2_init(MyPaintTiledSurface2 *self,
+                           MyPaintTileRequestStartFunction2 tile_request_start,
+                           MyPaintTileRequestEndFunction2 tile_request_end)
 {
-    mypaint_surface_init(&self->parent);
-    self->parent.draw_dab = draw_dab;
-    self->parent.get_color = get_color;
-    self->parent.begin_atomic = begin_atomic_default;
-    self->parent.end_atomic = end_atomic_default;
+    mypaint_surface_init(&self->parent.parent);
 
     self->tile_request_end = tile_request_end;
     self->tile_request_start = tile_request_start;
-
     self->tile_size = MYPAINT_TILE_SIZE;
     self->threadsafe_tile_requests = FALSE;
+    self->operation_queue = operation_queue_new();
+
+    MyPaintSurface2 *s = &self->parent;
+
+    s->draw_dab_pigment = draw_dab_2;
+    s->get_color_pigment = get_color_pigment;
+    s->end_atomic_multi = end_atomic_default_2;
+    s->parent.begin_atomic = begin_atomic_default_2;
+
+    // Adapters supporting the base interface
+    s->parent.draw_dab = draw_dab_wrapper;
+    s->parent.get_color = get_color_wrapper;
+    s->parent.end_atomic = end_atomic_wrapper;
 
     self->num_bboxes = NUM_BBOXES_DEFAULT;
-    self->bboxes = self->default_bboxes;
+    self->bboxes = malloc(sizeof(MyPaintRectangle) * NUM_BBOXES_DEFAULT);
     memset(self->bboxes, 0, sizeof(MyPaintRectangle) * NUM_BBOXES_DEFAULT);
-
     self->symmetry_data = mypaint_default_symmetry_data();
-    self->operation_queue = operation_queue_new();
+}
+
+void
+mypaint_tiled_surface2_begin_atomic(MyPaintTiledSurface2 *self)
+{
+    mypaint_update_symmetry_state(&self->symmetry_data);
+    prepare_bounding_boxes(self);
 }
 
 /**
- * mypaint_tiled_surface_destroy: (skip)
+ * mypaint_tiled_surface_end_atomic_2: (skip)
  *
- * Deallocate resources set up by mypaint_tiled_surface_init()
+ * Implementation of #MyPaintSurface::end_atomic vfunc
+ * Note: Only intended to be used from #MyPaintTiledSurface subclasses, which should chain up to this
+ * if implementing their own #MyPaintSurface::end_atomic vfunc.
+ * Application code should only use mypaint_surface_end_atomic().
+ */
+void
+mypaint_tiled_surface2_end_atomic(MyPaintTiledSurface2 *self, MyPaintRectangles *roi)
+{
+    // Process tiles
+    TileIndex *tiles;
+    int tiles_n = operation_queue_get_dirty_tiles(self->operation_queue, &tiles);
+
+    #pragma omp parallel for schedule(static) if(self->threadsafe_tile_requests && tiles_n > 3)
+    for (int i = 0; i < tiles_n; i++) {
+      tiled_surface2_process_tile(self, tiles[i].x, tiles[i].y);
+    }
+
+    operation_queue_clear_dirty_tiles(self->operation_queue);
+
+    if (roi) {
+        const int roi_rects = roi->num_rectangles;
+        const int num_dirty = self->num_bboxes_dirtied;
+        // Clear out the input rectangles that will be overwritten
+        for (int i = 0; i < MIN(roi_rects, num_dirty); ++i) {
+            roi->rectangles[i].x = 0;
+            roi->rectangles[i].y = 0;
+            roi->rectangles[i].width = 0;
+            roi->rectangles[i].height = 0;
+        }
+        // Write bounding box rectangles to the output array
+        const float bboxes_per_output = MAX(1, (float)num_dirty / roi_rects);
+        for (int i = 0; i < num_dirty; ++i) {
+            int out_index;
+            // If there is not enough space for all rectangles in the output,
+            // merge some of the rectangles with their list-adjacent neighbours.
+            if (num_dirty > roi_rects) {
+                out_index = (int)MIN(roi_rects - 1, roundf((float)i / bboxes_per_output));
+            } else {
+                out_index = i;
+            }
+            mypaint_rectangle_expand_to_include_rect(&(roi->rectangles[out_index]), &(self->bboxes[i]));
+        }
+        // Set the number of rectangles written to, so the caller knows which ones to act on.
+        roi->num_rectangles = MIN(roi_rects, num_dirty);
+    }
+}
+
+/**
+ * mypaint_tiled_surface_set_symmetry_state_2: (skip)
+ * @active: TRUE to enable, FALSE to disable.
+ * @center_x: X axis to mirror events across.
+ * @center_y: Y axis to mirror events across.
+ * @symmetry_angle: Angle to rotate the symmetry lines
+ * @symmetry_type: Symmetry type to activate.
+ * @rot_symmetry_lines: Number of rotational symmetry lines.
+ *
+ * Enable/Disable symmetric brush painting across an X axis.
+ *
+ */
+void
+mypaint_tiled_surface2_set_symmetry_state(MyPaintTiledSurface2 *self, gboolean active,
+                                         float center_x, float center_y,
+                                         float symmetry_angle,
+                                         MyPaintSymmetryType symmetry_type,
+                                         int rot_symmetry_lines)
+{
+    mypaint_symmetry_set_pending( // Only write to the pending new state, nothing gets recalculated here
+        &self->symmetry_data, active, center_x, center_y, symmetry_angle, symmetry_type, rot_symmetry_lines);
+}
+
+/**
+ * mypaint_tiled_surface2_destroy: (skip)
+ *
+ * Deallocate resources set up by mypaint_tiled_surface2_init()
  * Does not free the #MyPaintTiledSurface itself.
  * Note: Only intended to be called from subclasses of #MyPaintTiledSurface
  */
 void
-mypaint_tiled_surface_destroy(MyPaintTiledSurface *self)
+mypaint_tiled_surface2_destroy(MyPaintTiledSurface2 *self)
 {
     operation_queue_free(self->operation_queue);
-    if (self->bboxes != self->default_bboxes) {
-      free(self->bboxes);
-    }
+    free(self->bboxes);
     mypaint_symmetry_data_destroy(&self->symmetry_data);
 }

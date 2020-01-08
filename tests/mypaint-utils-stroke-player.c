@@ -145,10 +145,9 @@ mypaint_utils_stroke_player_iterate(MyPaintUtilsStrokePlayer *self)
             mypaint_surface_begin_atomic(self->surface);
         }
 
-        mypaint_brush_stroke_to(self->brush, self->surface,
-                                event->x*self->scale, event->y*self->scale,
-                                event->pressure,
-                                event->xtilt, event->ytilt, dtime, event->viewzoom, event->viewrotation, event->barrel_rotation);
+        mypaint_brush_stroke_to(
+            self->brush, self->surface, event->x * self->scale, event->y * self->scale, event->pressure, event->xtilt,
+            event->ytilt, dtime);
 
         if (self->transaction_on_stroke) {
             mypaint_surface_end_atomic(self->surface, NULL);

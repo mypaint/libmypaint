@@ -11,6 +11,28 @@
             "tooltip": "The pressure reported by the tablet. Usually between 0.0 and 1.0, but it may get larger when a pressure gain is used. If you use the mouse, it will be 0.5 when a button is pressed and 0.0 otherwise."
         },
         {
+            "tcomment_name": "\"fine\" refers to the accuracy and update frequency of the speed value, as in \"fine grained\"",
+            "displayed_name": "Fine speed",
+            "hard_maximum": null,
+            "hard_minimum": null,
+            "id": "speed1",
+            "normal": 0.5,
+            "soft_maximum": 4.0,
+            "soft_minimum": 0.0,
+            "tooltip": "How fast you currently move. This can change very quickly. Try 'print input values' from the 'help' menu to get a feeling for the range; negative values are rare but possible for very low speed."
+        },
+        {
+            "tcomment_name": "changes more smoothly but is less accurate than \"Fine speed\"",
+            "displayed_name": "Gross speed",
+            "hard_maximum": null,
+            "hard_minimum": null,
+            "id": "speed2",
+            "normal": 0.5,
+            "soft_maximum": 4.0,
+            "soft_minimum": 0.0,
+            "tooltip": "Same as fine speed, but changes slower. Also look at the 'gross speed filter' setting."
+        },
+        {
             "displayed_name": "Random",
             "hard_maximum": 1.0,
             "hard_minimum": 0.0,
@@ -61,40 +83,18 @@
             "tooltip": "Right ascension of stylus tilt. 0 when stylus working end points to you, +90 when rotated 90 degrees clockwise, -90 when rotated 90 degrees counterclockwise."
         },
         {
-	    "tcomment_name": "\"fine\" refers to the accuracy and update frequency of the speed value, as in \"fine grained\"",
-            "displayed_name": "Fine speed",
+            "tcomment_name": "the input is the output of the \"Custom input\" setting",
+            "displayed_name": "Custom",
             "hard_maximum": null,
             "hard_minimum": null,
-            "id": "speed1",
-            "normal": 0.5,
-            "soft_maximum": 4.0,
-            "soft_minimum": 0.0,
-            "tooltip": "How fast you currently move. This can change very quickly. Try 'print input values' from the 'help' menu to get a feeling for the range; negative values are rare but possible for very low speed."
-        },
-        {
-	    "tcomment_name": "changes more smoothly but is less accurate than \"Fine speed\"",
-            "displayed_name": "Gross speed",
-            "hard_maximum": null,
-            "hard_minimum": null,
-            "id": "speed2",
-            "normal": 0.5,
-            "soft_maximum": 4.0,
-            "soft_minimum": 0.0,
-            "tooltip": "Same as fine speed, but changes slower. Also look at the 'gross speed filter' setting."
-        },
-        {
-	    "tcomment_name": "the input is the output of the \"Custom input\" setting",
-            "displayed_name": "Custom", 
-            "hard_maximum": null, 
-            "hard_minimum": null, 
-            "id": "custom", 
-            "normal": 0.0, 
-            "soft_maximum": 10.0, 
-            "soft_minimum": -10.0, 
+            "id": "custom",
+            "normal": 0.0,
+            "soft_maximum": 10.0,
+            "soft_minimum": -10.0,
             "tooltip": "This is a user defined input. Look at the 'custom input' setting for details."
         },
         {
-	    "tcomment_name": "refers to the direction of the stroke",
+            "tcomment_name": "refers to the direction of the stroke",
             "displayed_name": "Direction 360",
             "hard_maximum": 360.0,
             "hard_minimum": 0.0,
@@ -105,85 +105,85 @@
             "tooltip": "The angle of the stroke, from 0 to 360 degrees."
         },
         {
-            "displayed_name": "Attack Angle", 
-            "hard_maximum": 180.0, 
-            "hard_minimum": -180.0, 
-            "id": "attack_angle", 
-            "normal": 0.0, 
-            "soft_maximum": 180.0, 
-            "soft_minimum": -180.0, 
+            "displayed_name": "Attack Angle",
+            "hard_maximum": 180.0,
+            "hard_minimum": -180.0,
+            "id": "attack_angle",
+            "normal": 0.0,
+            "soft_maximum": 180.0,
+            "soft_minimum": -180.0,
             "tooltip": "The difference, in degrees, between the angle the stylus is pointing and the angle of the stroke movement.\nThe range is +/-180.0.\n0.0 means the stroke angle corresponds to the angle of the stylus.\n90 means the stroke angle is perpendicular to the angle of the stylus.\n180 means the angle of the stroke is directly opposite the angle of the stylus."
         },
         {
-            "displayed_name": "Declination/Tilt X", 
-            "hard_maximum": 90.0, 
-            "hard_minimum": -90.0, 
-            "id": "tilt_declinationx", 
-            "normal": 0.0, 
-            "soft_maximum": 90.0, 
-            "soft_minimum": -90.0, 
+            "displayed_name": "Declination/Tilt X",
+            "hard_maximum": 90.0,
+            "hard_minimum": -90.0,
+            "id": "tilt_declinationx",
+            "normal": 0.0,
+            "soft_maximum": 90.0,
+            "soft_minimum": -90.0,
             "tooltip": "Declination of stylus tilt on X-Axis. 90/-90 when stylus is parallel to tablet and 0 when it's perpendicular to tablet."
         },
         {
-            "displayed_name": "Declination/Tilt Y", 
-            "hard_maximum": 90.0, 
-            "hard_minimum": -90.0, 
-            "id": "tilt_declinationy", 
-            "normal": 0.0, 
-            "soft_maximum": 90.0, 
-            "soft_minimum": -90.0, 
+            "displayed_name": "Declination/Tilt Y",
+            "hard_maximum": 90.0,
+            "hard_minimum": -90.0,
+            "id": "tilt_declinationy",
+            "normal": 0.0,
+            "soft_maximum": 90.0,
+            "soft_minimum": -90.0,
             "tooltip": "Declination of stylus tilt on Y-Axis. 90/-90 when stylus is parallel to tablet and 0 when it's perpendicular to tablet."
         },
-        { 
+        {
             "displayed_name": "GridMap X",
-            "hard_maximum": 256.0, 
-            "hard_minimum": 0, 
+            "hard_maximum": 256.0,
+            "hard_minimum": 0,
             "id": "gridmap_x",
-            "normal": 0.0, 
-            "soft_maximum": 256.0, 
-            "soft_minimum": 0.0, 
+            "normal": 0.0,
+            "soft_maximum": 256.0,
+            "soft_minimum": 0.0,
             "tooltip": "The X coordinate on a 256 pixel grid. This will wrap around 0-256 as the cursor is moved on the X axis. Similar to \"Stroke\". Can be used to add paper texture by modifying opacity, etc.\nThe brush size should be considerably smaller than the grid scale for best results."
         },
         {
             "displayed_name": "GridMap Y",
-            "hard_maximum": 256.0, 
-            "hard_minimum": 0, 
+            "hard_maximum": 256.0,
+            "hard_minimum": 0,
             "id": "gridmap_y",
-            "normal": 0.0, 
-            "soft_maximum": 256.0, 
-            "soft_minimum": 0.0, 
+            "normal": 0.0,
+            "soft_maximum": 256.0,
+            "soft_minimum": 0.0,
             "tooltip": "The Y coordinate on a 256 pixel grid. This will wrap around 0-256 as the cursor is moved on the Y axis. Similar to \"Stroke\". Can be used to add paper texture by modifying opacity, etc.\nThe brush size should be considerably smaller than the grid scale for best results."
         },
         {
-	    "tcomment_name": "refers to canvas zoom",
-            "displayed_name": "Zoom Level", 
-            "hard_maximum": 4.15, 
-            "hard_minimum": -2.77, 
-            "id": "viewzoom", 
-            "normal": 0.0, 
-            "soft_maximum": 4.15, 
-            "soft_minimum": -2.77, 
+            "tcomment_name": "refers to canvas zoom",
+            "displayed_name": "Zoom Level",
+            "hard_maximum": 4.15,
+            "hard_minimum": -2.77,
+            "id": "viewzoom",
+            "normal": 0.0,
+            "soft_maximum": 4.15,
+            "soft_minimum": -2.77,
             "tooltip": "The current zoom level of the canvas view.\nLogarithmic: 0.0 is 100%, 0.69 is 200%, -1.38 is 25%\nFor the Radius setting, using a value of -4.15 makes the brush size roughly constant, relative to the level of zoom."
         },
         {
-            "displayed_name": "Base Brush Radius", 
-            "hard_maximum": 6.0, 
-            "hard_minimum": -2.0, 
-            "id": "brush_radius", 
-            "normal": 0.0, 
-            "soft_maximum": 6.0, 
-            "soft_minimum": -2.0, 
-            "tooltip": "The base brush radius allows you to change the behavior of a brush as you make it bigger or smaller.\nYou can even cancel out dab size increase and adjust something else to make a brush bigger.\nTake note of \"Dabs per basic radius\" and \"Dabs per actual radius\", which behave much differently."
-        }, 
-        {
-            "displayed_name": "Barrel Rotation", 
-            "hard_maximum": 180.0, 
-            "hard_minimum": -180.0, 
-            "id": "barrel_rotation", 
-            "normal": 0.0, 
-            "soft_maximum": 180.0, 
-            "soft_minimum": -180.0, 
+            "displayed_name": "Barrel Rotation",
+            "hard_maximum": 180.0,
+            "hard_minimum": -180.0,
+            "id": "barrel_rotation",
+            "normal": 0.0,
+            "soft_maximum": 180.0,
+            "soft_minimum": -180.0,
             "tooltip": "Barrel rotation of stylus.\n0 when not twisted\n+90 when twisted clockwise 90 degrees\n-90 when twisted counterclockwise 90 degrees"
+        },
+        {
+            "displayed_name": "Base Brush Radius",
+            "hard_maximum": 6.0,
+            "hard_minimum": -2.0,
+            "id": "brush_radius",
+            "normal": 0.0,
+            "soft_maximum": 6.0,
+            "soft_minimum": -2.0,
+            "tooltip": "The base brush radius allows you to change the behavior of a brush as you make it bigger or smaller.\nYou can even cancel out dab size increase and adjust something else to make a brush bigger.\nTake note of \"Dabs per basic radius\" and \"Dabs per actual radius\", which behave much differently."
         }
     ],
     "settings": [
@@ -269,39 +269,12 @@
             "tooltip": "Dabs to draw each second, no matter how far the pointer moves"
         },
         {
-            "constant": false, 
+            "constant": false,
             "default": 0.0,
-            "displayed_name": "GridMap Scale",
-            "internal_name": "gridmap_scale",
-            "maximum": 10.0, 
-            "minimum": -10.0, 
-            "tooltip": "Changes the overall scale that the GridMap brush input operates on.\nLogarithmic (same scale as brush radius).\nA scale of 0 will make the grid 256x256 pixels."
-        },
-                {
-            "constant": false, 
-            "default": 1.0, 
-            "displayed_name": "GridMap Scale X",
-            "internal_name": "gridmap_scale_x",
-            "maximum": 10.0, 
-            "minimum": 0.0, 
-            "tooltip": "Changes the scale that the GridMap brush input operates on - affects X axis only.\nThe range is 0-5x.\nThis allows you to stretch or compress the GridMap pattern."
-        },  
-                {
-            "constant": false, 
-            "default": 1.0, 
-            "displayed_name": "GridMap Scale Y",
-            "internal_name": "gridmap_scale_y",
-            "maximum": 10.0, 
-            "minimum": 0.0, 
-            "tooltip": "Changes the scale that the GridMap brush input operates on - affects Y axis only.\nThe range is 0-5x.\nThis allows you to stretch or compress the GridMap pattern."
-        },  
-        {
-            "constant": false, 
-            "default": 0.0, 
-            "displayed_name": "Radius by random", 
-            "internal_name": "radius_by_random", 
-            "maximum": 1.5, 
-            "minimum": 0.0, 
+            "displayed_name": "Radius by random",
+            "internal_name": "radius_by_random",
+            "maximum": 1.5,
+            "minimum": 0.0,
             "tooltip": "Alter the radius randomly each dab. You can also do this with the by_random input on the radius setting. If you do it here, there are two differences:\n1) the opaque value will be corrected such that a big-radius dabs is more transparent\n2) it will not change the actual radius seen by dabs_per_actual_radius"
         },
         {
@@ -348,96 +321,6 @@
             "maximum": 25.0,
             "minimum": 0.0,
             "tooltip": "Add a random offset to the position where each dab is drawn\n 0.0 disabled\n 1.0 standard deviation is one basic radius away\n<0.0 negative values produce no jitter"
-        },
-        {
-            "constant": false,
-            "default": 0.0,
-            "displayed_name": "Offset Y",
-            "internal_name": "offset_y",
-            "maximum": 40.0,
-            "minimum": -40.0,
-            "tooltip": "Moves the dabs up or down based on canvas coordinates."
-        },
-        {
-            "constant": false,
-            "default": 0.0,
-            "displayed_name": "Offset X",
-            "internal_name": "offset_x",
-            "maximum": 40.0,
-            "minimum": -40.0,
-            "tooltip": "Moves the dabs left or right based on canvas coordinates."
-        },
-        {
-            "constant": false,
-            "default": 0.0,
-            "displayed_name": "Angular Offset: Direction",
-            "internal_name": "offset_angle",
-            "maximum": 40.0,
-            "minimum": -40.0,
-            "tooltip": "Follows the stroke direction to offset the dabs to one side."
-        },
-        {
-            "constant": false,
-            "default": 0.0,
-            "displayed_name": "Angular Offset: Ascension",
-            "internal_name": "offset_angle_asc",
-            "maximum": 40.0,
-            "minimum": -40.0,
-            "tooltip": "Follows the tilt direction to offset the dabs to one side. Requires Tilt."
-        },
-        {
-            "constant": false,
-            "default": 0.0,
-            "displayed_name": "Angular Offset: View",
-            "internal_name": "offset_angle_view",
-            "maximum": 40.0,
-            "minimum": -40.0,
-            "tooltip": "Follows the view orientation to offset the dabs to one side."
-        },
-        {
-            "constant": false,
-            "default": 0.0,
-            "displayed_name": "Angular Offset Mirrored: Direction",
-            "internal_name": "offset_angle_2",
-            "maximum": 40.0,
-            "minimum": 0.0,
-            "tooltip": "Follows the stroke direction to offset the dabs, but to both sides of the stroke."
-        },
-        {
-            "constant": false,
-            "default": 0.0,
-            "displayed_name": "Angular Offset Mirrored: Ascension",
-            "internal_name": "offset_angle_2_asc",
-            "maximum": 40.0,
-            "minimum": 0.0,
-            "tooltip": "Follows the tilt direction to offset the dabs, but to both sides of the stroke. Requires Tilt."
-        },
-        {
-            "constant": false,
-            "default": 0.0,
-            "displayed_name": "Angular Offset Mirrored: View",
-            "internal_name": "offset_angle_2_view",
-            "maximum": 40.0,
-            "minimum": 0.0,
-            "tooltip": "Follows the view orientation to offset the dabs, but to both sides of the stroke."
-        },
-        {
-            "constant": false,
-            "default": 0.0,
-            "displayed_name": "Angular Offsets Adjustment",
-            "internal_name": "offset_angle_adj",
-            "maximum": 180.0,
-            "minimum": -180.0,
-            "tooltip": "Change the Angular Offset angle from the default, which is 90 degrees."
-        },
-        {
-            "constant": false,
-            "default": 0.0,
-            "displayed_name": "Offsets Multiplier",
-            "internal_name": "offset_multiplier",
-            "maximum": 3.0,
-            "minimum": -2.0,
-            "tooltip": "Logarithmic multiplier for X, Y, and Angular Offset settings."
         },
         {
             "constant": false,
@@ -574,53 +457,14 @@
             "minimum": 0.0,
             "tooltip": "Paint with the smudge color instead of the brush color. The smudge color is slowly changed to the color you are painting on.\n 0.0 do not use the smudge color\n 0.5 mix the smudge color with the brush color\n 1.0 use only the smudge color"
         },
-
         {
-            "tcomment_name": "The name Pigment refers to the fact that this kind of color mixing is more similar to how colors mix in physical paint.",
             "constant": false,
-            "default": 1.0,
-            "displayed_name": "Pigment",
-            "internal_name": "paint_mode",
+            "default": 0.5,
+            "displayed_name": "Smudge length",
+            "internal_name": "smudge_length",
             "maximum": 1.0,
             "minimum": 0.0,
-            "tcomment_tooltip": "If this string is difficult to translate, feel free to change it to something more descriptive. Just try to be succinct and consistent.",
-            "tooltip": "Subtractive spectral color mixing mode.\n0.0 no spectral mixing\n1.0 only spectral mixing"
-        },
-        {
-            "constant": false, 
-            "default": 0.0, 
-            "displayed_name": "Smudge transparency",
-            "internal_name": "smudge_transparency", 
-            "maximum": 1.0, 
-            "minimum": -1.0, 
-            "tooltip": "Control how much transparency is picked up and smudged, similar to lock alpha.\n1.0 will not move any transparency.\n0.5 will move only 50% transparency and above.\n0.0 will have no effect.\nNegative values do the reverse"
-        },
-        {
-            "constant": false, 
-            "default": 0.5, 
-            "displayed_name": "Smudge length", 
-            "internal_name": "smudge_length", 
-            "maximum": 1.0, 
-            "minimum": 0.0,
             "tooltip": "This controls how fast the smudge color becomes the color you are painting on.\n0.0 immediately update the smudge color (requires more CPU cycles because of the frequent color checks)\n0.5 change the smudge color steadily towards the canvas color\n1.0 never change the smudge color"
-        },
-        {
-            "constant": false,
-            "default": 0.0,
-            "displayed_name": "Smudge length multiplier",
-            "internal_name": "smudge_length_log",
-            "maximum": 20.0,
-            "minimum": 0.0,
-            "tooltip": "Logarithmic multiplier for the \"Smudge length\" value.\nUseful to correct for high-definition/large brushes with lots of dabs.\nThe longer the smudge length the more a color will spread and will also boost performance dramatically, as the canvas is sampled less often"
-        },
-        {
-            "constant": false, 
-            "default": 0.0, 
-            "displayed_name": "Smudge bucket",
-            "internal_name": "smudge_bucket", 
-            "maximum": 255.0, 
-            "minimum": 0.0, 
-            "tooltip": "There are 256 buckets that each can hold a color picked up from the canvas.\nYou can control which bucket to use to improve variability and realism of the brush.\nEspecially useful with the \"Custom input\" setting to correlate buckets with other settings such as offsets."
         },
         {
             "constant": false,
@@ -733,6 +577,168 @@
         {
             "constant": false,
             "default": 0.0,
+            "displayed_name": "Snap to pixel",
+            "internal_name": "snap_to_pixel",
+            "maximum": 1.0,
+            "minimum": 0.0,
+            "tooltip": "Snap brush dab's center and its radius to pixels. Set this to 1.0 for a thin pixel brush."
+        },
+        {
+            "constant": true,
+            "default": 0.0,
+            "displayed_name": "Pressure gain",
+            "internal_name": "pressure_gain_log",
+            "maximum": 1.8,
+            "minimum": -1.8,
+            "tooltip": "This changes how hard you have to press. It multiplies tablet pressure by a constant factor."
+        },
+        {
+            "constant": false,
+            "default": 0.0,
+            "displayed_name": "GridMap Scale",
+            "internal_name": "gridmap_scale",
+            "maximum": 10.0,
+            "minimum": -10.0,
+            "tooltip": "Changes the overall scale that the GridMap brush input operates on.\nLogarithmic (same scale as brush radius).\nA scale of 0 will make the grid 256x256 pixels."
+        },
+        {
+            "constant": false,
+            "default": 1.0,
+            "displayed_name": "GridMap Scale X",
+            "internal_name": "gridmap_scale_x",
+            "maximum": 10.0,
+            "minimum": 0.0,
+            "tooltip": "Changes the scale that the GridMap brush input operates on - affects X axis only.\nThe range is 0-5x.\nThis allows you to stretch or compress the GridMap pattern."
+        },
+        {
+            "constant": false,
+            "default": 1.0,
+            "displayed_name": "GridMap Scale Y",
+            "internal_name": "gridmap_scale_y",
+            "maximum": 10.0,
+            "minimum": 0.0,
+            "tooltip": "Changes the scale that the GridMap brush input operates on - affects Y axis only.\nThe range is 0-5x.\nThis allows you to stretch or compress the GridMap pattern."
+        },
+        {
+            "constant": false,
+            "default": 0.0,
+            "displayed_name": "Smudge length multiplier",
+            "internal_name": "smudge_length_log",
+            "maximum": 20.0,
+            "minimum": 0.0,
+            "tooltip": "Logarithmic multiplier for the \"Smudge length\" value.\nUseful to correct for high-definition/large brushes with lots of dabs.\nThe longer the smudge length the more a color will spread and will also boost performance dramatically, as the canvas is sampled less often"
+        },
+        {
+            "constant": false,
+            "default": 0.0,
+            "displayed_name": "Smudge bucket",
+            "internal_name": "smudge_bucket",
+            "maximum": 255.0,
+            "minimum": 0.0,
+            "tooltip": "There are 256 buckets that each can hold a color picked up from the canvas.\nYou can control which bucket to use to improve variability and realism of the brush.\nEspecially useful with the \"Custom input\" setting to correlate buckets with other settings such as offsets."
+        },
+        {
+            "constant": false,
+            "default": 0.0,
+            "displayed_name": "Smudge transparency",
+            "internal_name": "smudge_transparency",
+            "maximum": 1.0,
+            "minimum": -1.0,
+            "tooltip": "Control how much transparency is picked up and smudged, similar to lock alpha.\n1.0 will not move any transparency.\n0.5 will move only 50% transparency and above.\n0.0 will have no effect.\nNegative values do the reverse"
+        },
+        {
+            "constant": false,
+            "default": 0.0,
+            "displayed_name": "Offset Y",
+            "internal_name": "offset_y",
+            "maximum": 40.0,
+            "minimum": -40.0,
+            "tooltip": "Moves the dabs up or down based on canvas coordinates."
+        },
+        {
+            "constant": false,
+            "default": 0.0,
+            "displayed_name": "Offset X",
+            "internal_name": "offset_x",
+            "maximum": 40.0,
+            "minimum": -40.0,
+            "tooltip": "Moves the dabs left or right based on canvas coordinates."
+        },
+        {
+            "constant": false,
+            "default": 0.0,
+            "displayed_name": "Angular Offset: Direction",
+            "internal_name": "offset_angle",
+            "maximum": 40.0,
+            "minimum": -40.0,
+            "tooltip": "Follows the stroke direction to offset the dabs to one side."
+        },
+        {
+            "constant": false,
+            "default": 0.0,
+            "displayed_name": "Angular Offset: Ascension",
+            "internal_name": "offset_angle_asc",
+            "maximum": 40.0,
+            "minimum": -40.0,
+            "tooltip": "Follows the tilt direction to offset the dabs to one side. Requires Tilt."
+        },
+        {
+            "constant": false,
+            "default": 0.0,
+            "displayed_name": "Angular Offset: View",
+            "internal_name": "offset_angle_view",
+            "maximum": 40.0,
+            "minimum": -40.0,
+            "tooltip": "Follows the view orientation to offset the dabs to one side."
+        },
+        {
+            "constant": false,
+            "default": 0.0,
+            "displayed_name": "Angular Offset Mirrored: Direction",
+            "internal_name": "offset_angle_2",
+            "maximum": 40.0,
+            "minimum": 0.0,
+            "tooltip": "Follows the stroke direction to offset the dabs, but to both sides of the stroke."
+        },
+        {
+            "constant": false,
+            "default": 0.0,
+            "displayed_name": "Angular Offset Mirrored: Ascension",
+            "internal_name": "offset_angle_2_asc",
+            "maximum": 40.0,
+            "minimum": 0.0,
+            "tooltip": "Follows the tilt direction to offset the dabs, but to both sides of the stroke. Requires Tilt."
+        },
+        {
+            "constant": false,
+            "default": 0.0,
+            "displayed_name": "Angular Offset Mirrored: View",
+            "internal_name": "offset_angle_2_view",
+            "maximum": 40.0,
+            "minimum": 0.0,
+            "tooltip": "Follows the view orientation to offset the dabs, but to both sides of the stroke."
+        },
+        {
+            "constant": false,
+            "default": 0.0,
+            "displayed_name": "Angular Offsets Adjustment",
+            "internal_name": "offset_angle_adj",
+            "maximum": 180.0,
+            "minimum": -180.0,
+            "tooltip": "Change the Angular Offset angle from the default, which is 90 degrees."
+        },
+        {
+            "constant": false,
+            "default": 0.0,
+            "displayed_name": "Offsets Multiplier",
+            "internal_name": "offset_multiplier",
+            "maximum": 3.0,
+            "minimum": -2.0,
+            "tooltip": "Logarithmic multiplier for X, Y, and Angular Offset settings."
+        },
+        {
+            "constant": false,
+            "default": 0.0,
             "displayed_name": "Posterize",
             "internal_name": "posterize",
             "maximum": 1.0,
@@ -749,22 +755,15 @@
             "tooltip": "Number of posterization levels (divided by 100).\n0.05 = 5 levels, 0.2 = 20 levels, etc.\nValues above 0.5 may not be noticeable."
         },
         {
+            "tcomment_name": "The name Pigment refers to the fact that this kind of color mixing is more similar to how colors mix in physical paint.",
             "constant": false,
-            "default": 0.0,
-            "displayed_name": "Snap to pixel",
-            "internal_name": "snap_to_pixel",
+            "default": 1.0,
+            "displayed_name": "Pigment",
+            "internal_name": "paint_mode",
             "maximum": 1.0,
             "minimum": 0.0,
-            "tooltip": "Snap brush dab's center and its radius to pixels. Set this to 1.0 for a thin pixel brush."
-        },
-        {
-            "constant": true,
-            "default": 0.0,
-            "displayed_name": "Pressure gain",
-            "internal_name": "pressure_gain_log",
-            "maximum": 1.8,
-            "minimum": -1.8,
-            "tooltip": "This changes how hard you have to press. It multiplies tablet pressure by a constant factor."
+            "tcomment_tooltip": "If this string is difficult to translate, feel free to change it to something more descriptive. Just try to be succinct and consistent.",
+            "tooltip": "Subtractive spectral color mixing mode.\n0.0 no spectral mixing\n1.0 only spectral mixing"
         }
     ],
     "states__comment": "# WARNING: only append to this list, for compatibility of replay files (brush.get_state() in stroke.py)",

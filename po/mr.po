@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-12-12 23:51+0100\n"
-"PO-Revision-Date: 2019-12-29 02:50+0000\n"
+"PO-Revision-Date: 2020-01-10 08:44+0000\n"
 "Last-Translator: Prachi Joshi <josprachi@yahoo.com>\n"
 "Language-Team: Marathi <https://hosted.weblate.org/projects/mypaint/"
 "libmypaint/mr/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 3.10\n"
+"X-Generator: Weblate 3.10.1\n"
 
 #. Brush setting
 #: ../brushsettings-gen.h:4
@@ -794,7 +794,7 @@ msgstr ""
 #. Brush setting
 #: ../brushsettings-gen.h:64
 msgid "Posterize"
-msgstr ""
+msgstr "पोस्टरराइझ"
 
 #. Tooltip for the "Posterize" brush setting
 #: ../brushsettings-gen.h:64
@@ -806,7 +806,7 @@ msgstr ""
 #. Brush setting
 #: ../brushsettings-gen.h:65
 msgid "Posterization levels"
-msgstr ""
+msgstr "पोस्टररायझेशन स्तर"
 
 #. Tooltip for the "Posterization levels" brush setting
 #: ../brushsettings-gen.h:65
@@ -819,7 +819,7 @@ msgstr ""
 #. Brush setting
 #: ../brushsettings-gen.h:66
 msgid "Snap to pixel"
-msgstr ""
+msgstr "पिक्सेलवर स्नॅप करा"
 
 #. Tooltip for the "Snap to pixel" brush setting
 #: ../brushsettings-gen.h:66
@@ -831,7 +831,7 @@ msgstr ""
 #. Brush setting
 #: ../brushsettings-gen.h:67
 msgid "Pressure gain"
-msgstr ""
+msgstr "दबावात वाढ"
 
 #. Tooltip for the "Pressure gain" brush setting
 #: ../brushsettings-gen.h:67

@@ -885,8 +885,7 @@ msgid ""
 "dab."
 msgstr ""
 "Rapport d'aspect des touches ; doit être >= 1,0, où 1,0 signifie une touche "
-"parfaitement ronde. À faire : linéariser ? Peut-être démarrer à 0,0, ou bien "
-"loguer ?"
+"parfaitement ronde."
 
 #. Brush setting
 #: ../brushsettings-gen.h:60

@@ -822,8 +822,7 @@ msgid ""
 "dab."
 msgstr ""
 "proporción de aspecto das pinceladas; ten que ser >= 1.0, onde 1.0 significa "
-"perfectamente redondo. Por facer: linearizar? comezar en 00.0 probablemente "
-"ou rexistrar?"
+"perfectamente redondo."
 
 #. Brush setting
 #: ../brushsettings-gen.h:60

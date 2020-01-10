@@ -878,8 +878,7 @@ msgid ""
 "dab."
 msgstr ""
 "Seitenverhältnis der Tupfer; muss >= 1.0 sein, wobei 1.0 einen perfekt "
-"runden Tupfer produziert. TODO: Linearisierien? Bei 0.0 starten, oder "
-"logarithmisch?"
+"runden Tupfer produziert."
 
 #. Brush setting
 #: ../brushsettings-gen.h:60

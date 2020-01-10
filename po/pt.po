@@ -872,8 +872,7 @@ msgid ""
 "dab."
 msgstr ""
 "Proporção das amostras; tem que ser >= 1.0, onde 1.0 significa amostras "
-"perfeitamente redondas. PENDENTE: Linearizar? Começar em 0.0, talvez? ou "
-"logarítmico?"
+"perfeitamente redondas."
 
 #. Brush setting
 #: ../brushsettings-gen.h:60

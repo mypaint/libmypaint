@@ -887,8 +887,7 @@ msgid ""
 "dab."
 msgstr ""
 "Rapporto proporzioni della pennellata; deve essere >=1.0 dove 1.0 significa "
-"perfettamente tonda. TODO: linearizzazione? partenza a 0.0 forse oppure "
-"logaritmico?"
+"perfettamente tonda."
 
 #. Brush setting
 #: ../brushsettings-gen.h:60

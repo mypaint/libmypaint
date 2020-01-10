@@ -863,7 +863,7 @@ msgid ""
 "dab."
 msgstr ""
 "Raportul de aspect al petelor; trebuie să fie >= 1.0, unde 1.0 înseamnă pată "
-"perfect rotundă. TODO: liniarizare? incepe poate la 0.0, sau logaritmică?"
+"perfect rotundă."
 
 #. Brush setting
 #: ../brushsettings-gen.h:60

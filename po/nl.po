@@ -870,7 +870,7 @@ msgid ""
 "dab."
 msgstr ""
 "Lengte/breedte verhouding van de penseelstreek; moet >= 1,0 zijn waarbij 1,0 "
-"een perfect ronde streek betekent. NOG DOEN: liniair? begint op 0,0 of log?"
+"een perfect ronde streek betekent."
 
 #. Brush setting
 #: ../brushsettings-gen.h:60

@@ -872,8 +872,7 @@ msgid ""
 "dab."
 msgstr ""
 "Tasa de aspecto de las pinceladas. Debe ser >= 1.0, en donde 1.0 significa "
-"una pincelada perfectamente circular. PENDIENTE: ¿Linearizar? ¿Comenzar en "
-"0.0 quizá, o almacenar?"
+"una pincelada perfectamente circular."
 
 #. Brush setting
 #: ../brushsettings-gen.h:60

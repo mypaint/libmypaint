@@ -854,7 +854,7 @@ msgid ""
 "dab."
 msgstr ""
 "칠의 가로 세로 비율; 완벽한 원형 값은 1.0이며 사용자가 줄 수 있는 값은 1.0보"
-"다 크거나 같아야 합니다. TODO: linearize? start at 0.0 maybe, or log?"
+"다 크거나 같아야 합니다."
 
 #. Brush setting
 #: ../brushsettings-gen.h:60

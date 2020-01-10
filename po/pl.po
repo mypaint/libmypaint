@@ -871,8 +871,7 @@ msgid ""
 "dab."
 msgstr ""
 "Proporcja ciapek; musi wynosić >=10 gdzie 1.0 oznacza idealnie okrągłą "
-"ciapkę.\n"
-"TODO: Liniowość? Rozpocznij od 0.0 lub logarytmicznie?"
+"ciapkę."
 
 #. Brush setting
 #: ../brushsettings-gen.h:60

@@ -821,7 +821,7 @@ msgid ""
 "dab."
 msgstr ""
 "nisbah bidang palit; mestilah >= 1.0, yang mana 1.0 bermaksud palit bundar "
-"sempurna. TODO: linearkan? mungkin mula pada 0.0, atau log?"
+"sempurna."
 
 #. Brush setting
 #: ../brushsettings-gen.h:60

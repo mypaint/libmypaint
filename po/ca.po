@@ -868,8 +868,7 @@ msgid ""
 "dab."
 msgstr ""
 "Relació aspecte de les pinzellades: Cal que sigui >= 1.0 , on 1.0 significa "
-"una pinzellada perfectament redona. PENDENT: linealitzar? Comenceu potser a "
-"0.0, potser o registre?"
+"una pinzellada perfectament redona."
 
 #. Brush setting
 #: ../brushsettings-gen.h:60

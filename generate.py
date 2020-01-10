@@ -223,6 +223,17 @@ def settings_info_struct(s):
     )
 
 
+def header_guard_name(file_name):
+    alfa_num = "".join(map(lambda c: c if c.isalnum() else '_', file_name))
+    return alfa_num.upper()
+
+
+def header_guarded(file_name, header_content):
+    guard_name = header_guard_name(file_name)
+    guard = '#ifndef {guard}\n#define {guard}\n{content}\n#endif\n'
+    return guard.format(guard=guard_name, content=header_content)
+
+
 def generate_internal_settings_code():
     content = ''
     content += generate_static_struct_array(
@@ -270,9 +281,11 @@ if __name__ == '__main__':
     script = sys.argv[0]
     try:
         public_header_file, internal_header_file = sys.argv[1:]
-    except:
+    except Exception:
         msg = "usage: {} PUBLICdotH INTERNALdotH".format(script)
         print(msg, file=sys.stderr)
         sys.exit(2)
-    writefile(public_header_file, generate_public_settings_code())
-    writefile(internal_header_file, generate_internal_settings_code())
+    phf = public_header_file
+    writefile(phf, header_guarded(phf, generate_public_settings_code()))
+    ihf = internal_header_file
+    writefile(ihf, header_guarded(ihf, generate_internal_settings_code()))

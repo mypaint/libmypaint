@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: 0.7.1-git\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-01-10 10:35+0100\n"
-"PO-Revision-Date: 2019-12-12 19:36+0000\n"
+"PO-Revision-Date: 2020-01-11 10:21+0000\n"
 "Last-Translator: Jesper Lloyd <jpl.lloyd@gmail.com>\n"
 "Language-Team: Swedish <https://hosted.weblate.org/projects/mypaint/"
 "libmypaint/sv/>\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.10-dev\n"
+"X-Generator: Weblate 3.10.1\n"
 
 #. Brush setting
 #: ../brushsettings-gen.h:4
@@ -908,7 +908,7 @@ msgid ""
 "dab."
 msgstr ""
 "Penselnedslagens förhållande; måste vara >= 1.0, där 1.0 motsvarar ett "
-"perfekt cirkelformat penselnedslag"
+"perfekt cirkelformat penselnedslag."
 
 #. Brush setting
 #: ../brushsettings-gen.h:60

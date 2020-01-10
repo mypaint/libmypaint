@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.7.1-git\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-12-12 23:51+0100\n"
+"POT-Creation-Date: 2020-01-10 10:35+0100\n"
 "PO-Revision-Date: 2020-01-09 13:21+0000\n"
 "Last-Translator: Nathan <bonnemainsnathan@gmail.com>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/mypaint/"
@@ -658,12 +658,12 @@ msgstr ""
 " 0,5 mélange la couleur de barbouillage avec celle de la brosse\n"
 " 1,0 N'utilise que la couleur de barbouillage"
 
-#. Brush setting
+#. Brush setting - The name Pigment refers to the fact that this kind of color mixing is more similar to how colors mix in physical paint.
 #: ../brushsettings-gen.h:47
 msgid "Pigment"
 msgstr ""
 
-#. Tooltip for the "Pigment" brush setting
+#. Tooltip for the "Pigment" brush setting - If this string is difficult to translate, feel free to change it to something more descriptive. Just try to be succinct and consistent.
 #: ../brushsettings-gen.h:47
 msgid ""
 "Subtractive spectral color mixing mode.\n"

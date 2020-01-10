@@ -576,12 +576,14 @@
         },
 
         {
-            "constant": false, 
-            "default": 1.0, 
-            "displayed_name": "Pigment", 
-            "internal_name": "paint_mode", 
-            "maximum": 1.0, 
-            "minimum": 0.0, 
+            "tcomment_name": "The name Pigment refers to the fact that this kind of color mixing is more similar to how colors mix in physical paint.",
+            "constant": false,
+            "default": 1.0,
+            "displayed_name": "Pigment",
+            "internal_name": "paint_mode",
+            "maximum": 1.0,
+            "minimum": 0.0,
+            "tcomment_tooltip": "If this string is difficult to translate, feel free to change it to something more descriptive. Just try to be succinct and consistent.",
             "tooltip": "Subtractive spectral color mixing mode.\n0.0 no spectral mixing\n1.0 only spectral mixing"
         },
         {

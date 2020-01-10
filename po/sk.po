@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: libmypaint for mypaint 1.2.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-12-12 23:51+0100\n"
+"POT-Creation-Date: 2020-01-10 10:35+0100\n"
 "PO-Revision-Date: 2020-01-09 13:21+0000\n"
 "Last-Translator: Blake <adam.otruba@protonmail.com>\n"
 "Language-Team: Slovak <https://hosted.weblate.org/projects/mypaint/"
@@ -658,12 +658,12 @@ msgstr ""
 " 0,5 mieša rozmazávanú farbu s farbou štetca\n"
 " 1,0 používa iba rozmazávanú farbu"
 
-#. Brush setting
+#. Brush setting - The name Pigment refers to the fact that this kind of color mixing is more similar to how colors mix in physical paint.
 #: ../brushsettings-gen.h:47
 msgid "Pigment"
 msgstr "Pigment"
 
-#. Tooltip for the "Pigment" brush setting
+#. Tooltip for the "Pigment" brush setting - If this string is difficult to translate, feel free to change it to something more descriptive. Just try to be succinct and consistent.
 #: ../brushsettings-gen.h:47
 msgid ""
 "Subtractive spectral color mixing mode.\n"

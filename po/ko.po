@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Mypaint Korean\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-12-12 23:51+0100\n"
+"POT-Creation-Date: 2020-01-10 10:35+0100\n"
 "PO-Revision-Date: 2019-12-23 09:02+0000\n"
 "Last-Translator: geun-tak Jeong <beroberos@gmail.com>\n"
 "Language-Team: Korean <https://hosted.weblate.org/projects/mypaint/"
@@ -47,8 +47,10 @@ msgid ""
 "This setting is responsible to stop painting when there is zero pressure. "
 "This is just a convention, the behaviour is identical to 'opaque'."
 msgstr ""
-"이것은 불투명하게 곱해집니다. 이 설정의 압력 입력 만 변경해야합니다. 불투명도를 속도에 의존하게하려면 대신 '불투명'을 사용하십시오.\n"
-"이 설정은 압력이 0 일 때 페인팅을 중지합니다. 이것은 단지 컨벤션이며 동작은 '불투명'과 동일합니다."
+"이것은 불투명하게 곱해집니다. 이 설정의 압력 입력 만 변경해야합니다. 불투명도"
+"를 속도에 의존하게하려면 대신 '불투명'을 사용하십시오.\n"
+"이 설정은 압력이 0 일 때 페인팅을 중지합니다. 이것은 단지 컨벤션이며 동작은 "
+"'불투명'과 동일합니다."
 
 #. Brush setting
 #: ../brushsettings-gen.h:6
@@ -67,12 +69,13 @@ msgid ""
 "1.0 the opaque value above is for the final brush stroke, assuming each "
 "pixel gets (dabs_per_radius*2) brushdabs on average during a stroke"
 msgstr ""
-"여러 개의 뎁스을 서로 혼합하여 도입 된 비선형성을 수정하십시오. 이 수정은 일반적으로 수행되는 것처럼 압력이 "
-"opaque_multiply에 매핑 될 때 선형 ( \"자연\") 압력 응답을 가져옵니다. 0.9는 표준 스트로크에 적합합니다. 브러시가 "
-"많이 흩어지면 작게 설정하고 dabs_per_second를 사용하면 더 높게 설정하십시오.\n"
+"여러 개의 뎁스을 서로 혼합하여 도입 된 비선형성을 수정하십시오. 이 수정은 일"
+"반적으로 수행되는 것처럼 압력이 opaque_multiply에 매핑 될 때 선형 ( \"자연"
+"\") 압력 응답을 가져옵니다. 0.9는 표준 스트로크에 적합합니다. 브러시가 많이 "
+"흩어지면 작게 설정하고 dabs_per_second를 사용하면 더 높게 설정하십시오.\n"
 "0.0 위의 불투명 한 값은 개별 dab에 대한 것입니다\n"
-"1.0 위의 불투명 한 값은 최종 브러시 스트로크에 대한 것으로, 스트로크 중에 각 픽셀이 평균적으로 (dabs_per_radius * "
-"2) 브러시 dabs를 얻는다고 가정"
+"1.0 위의 불투명 한 값은 최종 브러시 스트로크에 대한 것으로, 스트로크 중에 각 "
+"픽셀이 평균적으로 (dabs_per_radius * 2) 브러시 dabs를 얻는다고 가정"
 
 #. Brush setting
 #: ../brushsettings-gen.h:7
@@ -100,7 +103,9 @@ msgstr "경도"
 msgid ""
 "Hard brush-circle borders (setting to zero will draw nothing). To reach the "
 "maximum hardness, you need to disable Pixel feather."
-msgstr "단단한 브러시 원형 테두리 (0으로 설정하면 아무것도 그릴 수 없음) 최대 경도에 도달하려면 픽셀 페더를 비활성화해야합니다."
+msgstr ""
+"단단한 브러시 원형 테두리 (0으로 설정하면 아무것도 그릴 수 없음) 최대 경도에 "
+"도달하려면 픽셀 페더를 비활성화해야합니다."
 
 #. Brush setting
 #: ../brushsettings-gen.h:9
@@ -116,7 +121,8 @@ msgid ""
 " 1.0 blur one pixel (good value)\n"
 " 5.0 notable blur, thin strokes will disappear"
 msgstr ""
-"계단 현상(앨리어싱)을 막기 위해 흐리게 칠하는 것을 원한다면, 이 설정을 통해 붓질의 경도를 낮출 수 있습니다.\n"
+"계단 현상(앨리어싱)을 막기 위해 흐리게 칠하는 것을 원한다면, 이 설정을 통해 "
+"붓질의 경도를 낮출 수 있습니다.\n"
 "0.0 사용하지 않음 (매우 강한 지우개와 붓질)\n"
 "1.0 1픽셀만큼 블러 (권장)\n"
 "5.0 눈에 띄게 블러, 스트로크을 가늘게 하면 선이 보이지 않음"
@@ -358,7 +364,8 @@ msgstr "각도 오프셋 미러됨: 방향"
 msgid ""
 "Follows the stroke direction to offset the dabs, but to both sides of the "
 "stroke."
-msgstr "스트로크 방향을 따라 뎁스를 오프셋하지만 스트로크의 양쪽으로 오프셋합니다."
+msgstr ""
+"스트로크 방향을 따라 뎁스를 오프셋하지만 스트로크의 양쪽으로 오프셋합니다."
 
 #. Brush setting
 #: ../brushsettings-gen.h:28
@@ -370,7 +377,9 @@ msgstr "각도 오프셋 미러됨 : 오름"
 msgid ""
 "Follows the tilt direction to offset the dabs, but to both sides of the "
 "stroke. Requires Tilt."
-msgstr "기울기 방향을 따라 뎁스를 오프셋하지만 스트로크의 양쪽으로 오프셋합니다. 틸트가 필요합니다."
+msgstr ""
+"기울기 방향을 따라 뎁스를 오프셋하지만 스트로크의 양쪽으로 오프셋합니다. 틸트"
+"가 필요합니다."
 
 #. Brush setting
 #: ../brushsettings-gen.h:29
@@ -629,12 +638,12 @@ msgstr ""
 " 0.5 색과 얼룩을 함깨 사용\n"
 " 1.0 알파체널 얼룩만 사용"
 
-#. Brush setting
+#. Brush setting - The name Pigment refers to the fact that this kind of color mixing is more similar to how colors mix in physical paint.
 #: ../brushsettings-gen.h:47
 msgid "Pigment"
 msgstr "그림 물감"
 
-#. Tooltip for the "Pigment" brush setting
+#. Tooltip for the "Pigment" brush setting - If this string is difficult to translate, feel free to change it to something more descriptive. Just try to be succinct and consistent.
 #: ../brushsettings-gen.h:47
 msgid ""
 "Subtractive spectral color mixing mode.\n"
@@ -682,7 +691,8 @@ msgid ""
 "1.0 never change the smudge color"
 msgstr ""
 "이 설정은 얼룩 색상이 얼마나 빨리 캔버스 위의 색으로 변하는지를 조절합니다.\n"
-"0.0 얼룩 컬러를 즉시 업데이트 (잦은 색 확인으로 인해 CPU 사이클이 더 많이 필요함)\n"
+"0.0 얼룩 컬러를 즉시 업데이트 (잦은 색 확인으로 인해 CPU 사이클이 더 많이 필"
+"요함)\n"
 "0.5 얼룩 컬러를 일정한 속도로 캔버스 컬러로 변경\n"
 "1.0 얼룩 컬러를 변경하지 않음"
 
@@ -701,7 +711,8 @@ msgid ""
 msgstr ""
 "\"얼룩 길이\"값의 로그 승수입니다.\n"
 "다브가 많은 고화질 / 대형 브러시를 수정하는 데 유용합니다.\n"
-"얼룩 길이가 길수록 색상이 더 많이 퍼지고 캔버스가 덜 자주 샘플링되므로 성능이 크게 향상됩니다"
+"얼룩 길이가 길수록 색상이 더 많이 퍼지고 캔버스가 덜 자주 샘플링되므로 성능"
+"이 크게 향상됩니다"
 
 #. Brush setting
 #: ../brushsettings-gen.h:51
@@ -718,8 +729,10 @@ msgid ""
 "with other settings such as offsets."
 msgstr ""
 "각각 캔버스에서 가져온 색상을 담을 수있는 256개의 버킷이 있습니다.\n"
-"브러시의 가변성과 현실감을 향상시키기 위해 사용할 버킷을 제어 할 수 있습니다.\n"
-"버킷을 오프셋과 같은 다른 설정과 연관시키기 위해 \"사용자 정의 입력\"설정에 특히 유용합니다."
+"브러시의 가변성과 현실감을 향상시키기 위해 사용할 버킷을 제어 할 수 있습니"
+"다.\n"
+"버킷을 오프셋과 같은 다른 설정과 연관시키기 위해 \"사용자 정의 입력\"설정에 "
+"특히 유용합니다."
 
 #. Brush setting
 #: ../brushsettings-gen.h:52
@@ -771,8 +784,9 @@ msgid ""
 "How much pressure is needed to start a stroke. This affects the stroke input "
 "only. MyPaint does not need a minimum pressure to start drawing."
 msgstr ""
-"한 스트로크의 시작점에 얼마만큼의 필압을 사용할지를 나타냅니다. 오직 스트로크의 인풋에만 영향을 끼칩니다. MyPaint는 그림을 그릴 "
-"때에 최소 필압을 요구하지 않습니다."
+"한 스트로크의 시작점에 얼마만큼의 필압을 사용할지를 나타냅니다. 오직 스트로크"
+"의 인풋에만 영향을 끼칩니다. MyPaint는 그림을 그릴 때에 최소 필압을 요구하지 "
+"않습니다."
 
 #. Brush setting
 #: ../brushsettings-gen.h:55
@@ -785,8 +799,8 @@ msgid ""
 "How far you have to move until the stroke input reaches 1.0. This value is "
 "logarithmic (negative values will not invert the process)."
 msgstr ""
-"스트로크의 인풋 값이 1.0에 도달할 때까지의 이동 거리를 나타냅니다. 대수값을 사용합니다 (마이너스 값이 프로세스를 반대로 만들지 "
-"않습니다)."
+"스트로크의 인풋 값이 1.0에 도달할 때까지의 이동 거리를 나타냅니다. 대수값을 "
+"사용합니다 (마이너스 값이 프로세스를 반대로 만들지 않습니다)."
 
 #. Brush setting
 #: ../brushsettings-gen.h:56
@@ -802,8 +816,8 @@ msgid ""
 "2.0 means twice as long as it takes to go from 0.0 to 1.0\n"
 "9.9 or higher stands for infinite"
 msgstr ""
-"스트로크 입력이 1.0에 머무르는 시간을 정의합니다. 그런 다음 스트로크가 아직 완료되지 않은 경우에도 0.0으로 재설정되고 다시 커지기 "
-"시작합니다.\n"
+"스트로크 입력이 1.0에 머무르는 시간을 정의합니다. 그런 다음 스트로크가 아직 "
+"완료되지 않은 경우에도 0.0으로 재설정되고 다시 커지기 시작합니다.\n"
 "2.0은 0.0에서 1.0으로 이동하는 데 걸리는 시간의 두 배입니다.\n"
 "9.9 이상은 무한을 나타냅니다"
 
@@ -838,8 +852,9 @@ msgid ""
 "if brushdabs do not depend on time).\n"
 "0.0 no slowdown (changes apply instantly)"
 msgstr ""
-"사용자 정의 입력이 실제로 원하는 값 (위의 값)을 따르는 속도. 이것은 brushdab 수준에서 발생합니다 (brushdabs가 시간에 "
-"의존하지 않는 경우 경과 한 시간은 무시).\n"
+"사용자 정의 입력이 실제로 원하는 값 (위의 값)을 따르는 속도. 이것은 brushdab "
+"수준에서 발생합니다 (brushdabs가 시간에 의존하지 않는 경우 경과 한 시간은 무"
+"시).\n"
 "0.0 둔화 없음 (변경 사항이 즉시 적용됨)"
 
 #. Brush setting
@@ -931,7 +946,9 @@ msgstr "포스터화"
 msgid ""
 "Strength of posterization, reducing number of colors based on the "
 "\"Posterization levels\" setting, while retaining alpha."
-msgstr "알파를 유지하면서 \"포스터화 레벨\" 설정에 따라 색상 수를 줄인 포스터화의 강도."
+msgstr ""
+"알파를 유지하면서 \"포스터화 레벨\" 설정에 따라 색상 수를 줄인 포스터화의 강"
+"도."
 
 #. Brush setting
 #: ../brushsettings-gen.h:65
@@ -959,7 +976,9 @@ msgstr "픽셀에 스냅"
 msgid ""
 "Snap brush dab's center and its radius to pixels. Set this to 1.0 for a thin "
 "pixel brush."
-msgstr "브러시 뎁스의 중심과 반경을 픽셀에 맞춥니 다. 얇은 픽셀 브러시의 경우 1.0으로 설정하십시오."
+msgstr ""
+"브러시 뎁스의 중심과 반경을 픽셀에 맞춥니 다. 얇은 픽셀 브러시의 경우 1.0으"
+"로 설정하십시오."
 
 #. Brush setting
 #: ../brushsettings-gen.h:67
@@ -971,7 +990,9 @@ msgstr "압력 이득"
 msgid ""
 "This changes how hard you have to press. It multiplies tablet pressure by a "
 "constant factor."
-msgstr "이렇게하면 얼마나 세게 눌러야하는지 변경됩니다. 정제 압력에 일정한 계수를 곱합니다."
+msgstr ""
+"이렇게하면 얼마나 세게 눌러야하는지 변경됩니다. 정제 압력에 일정한 계수를 곱"
+"합니다."
 
 #. Brush input
 #: ../brushsettings-gen.h:72
@@ -985,8 +1006,9 @@ msgid ""
 "get larger when a pressure gain is used. If you use the mouse, it will be "
 "0.5 when a button is pressed and 0.0 otherwise."
 msgstr ""
-"정제에 의해보고 된 압력. 일반적으로 0.0과 1.0 사이이지만 압력 게인을 사용할 때 더 커질 수 있습니다. 마우스를 사용하는 경우 "
-"버튼을 누르면 0.5, 그렇지 않으면 0.0이됩니다."
+"정제에 의해보고 된 압력. 일반적으로 0.0과 1.0 사이이지만 압력 게인을 사용할 "
+"때 더 커질 수 있습니다. 마우스를 사용하는 경우 버튼을 누르면 0.5, 그렇지 않으"
+"면 0.0이됩니다."
 
 #. Brush input
 #: ../brushsettings-gen.h:73
@@ -1012,8 +1034,9 @@ msgid ""
 "be configured to jump back to zero periodically while you move. Look at the "
 "'stroke duration' and 'stroke hold time' settings."
 msgstr ""
-"이값은 스트로크 값이 줄어드는 정도을 정한다.(붓의 잉크가 줄어드는 것을 상상해보아라.) 또 다시 이동하는 동안 주기적으로 값이 "
-"0변하도록 구성할 수있다. '스트로크 적용 시간'과 '스트로크 유지 시간'에서 설정해보아라."
+"이값은 스트로크 값이 줄어드는 정도을 정한다.(붓의 잉크가 줄어드는 것을 상상해"
+"보아라.) 또 다시 이동하는 동안 주기적으로 값이 0변하도록 구성할 수있다. '스트"
+"로크 적용 시간'과 '스트로크 유지 시간'에서 설정해보아라."
 
 #. Brush input
 #: ../brushsettings-gen.h:75
@@ -1025,7 +1048,9 @@ msgstr "방향"
 msgid ""
 "The angle of the stroke, in degrees. The value will stay between 0.0 and "
 "180.0, effectively ignoring turns of 180 degrees."
-msgstr "스트로크의 각도. 값은 0.0과 180.0 사이 값이 가장 유효한 값이다. 180의 값은 0.0과 시각적으로 같다."
+msgstr ""
+"스트로크의 각도. 값은 0.0과 180.0 사이 값이 가장 유효한 값이다. 180의 값은 "
+"0.0과 시각적으로 같다."
 
 #. Brush input
 #: ../brushsettings-gen.h:76
@@ -1037,7 +1062,9 @@ msgstr "편각/기울기"
 msgid ""
 "Declination of stylus tilt. 0 when stylus is parallel to tablet and 90.0 "
 "when it's perpendicular to tablet."
-msgstr "스타일러스 틸트 경사. 스타일러스가 태블릿과 평행이면 0, 태블릿과 수직이면 90.0입니다."
+msgstr ""
+"스타일러스 틸트 경사. 스타일러스가 태블릿과 평행이면 0, 태블릿과 수직이면 "
+"90.0입니다."
 
 #. Brush input
 #: ../brushsettings-gen.h:77
@@ -1051,8 +1078,8 @@ msgid ""
 "when rotated 90 degrees clockwise, -90 when rotated 90 degrees "
 "counterclockwise."
 msgstr ""
-"스타일러스 기울기의 오른쪽 상승 스타일러스 작업 끝이 사용자를 가리킬 때 0, 시계 방향으로 90도 회전하면 +90, 시계 반대 방향으로 "
-"90도 회전하면 -90."
+"스타일러스 기울기의 오른쪽 상승 스타일러스 작업 끝이 사용자를 가리킬 때 0, 시"
+"계 방향으로 90도 회전하면 +90, 시계 반대 방향으로 90도 회전하면 -90."
 
 #. Brush input - "fine" refers to the accuracy and update frequency of the speed value, as in "fine grained"
 #: ../brushsettings-gen.h:78
@@ -1138,7 +1165,9 @@ msgstr "편각/기울기 X"
 msgid ""
 "Declination of stylus tilt on X-Axis. 90/-90 when stylus is parallel to "
 "tablet and 0 when it's perpendicular to tablet."
-msgstr "X 축에서 스타일러스 기울기의 경사. 스타일러스가 태블릿과 평행이면 90 / -90, 태블릿과 수직이면 0."
+msgstr ""
+"X 축에서 스타일러스 기울기의 경사. 스타일러스가 태블릿과 평행이면 90 / -90, "
+"태블릿과 수직이면 0."
 
 #. Brush input
 #: ../brushsettings-gen.h:84
@@ -1150,7 +1179,9 @@ msgstr "편각/기울기 Y"
 msgid ""
 "Declination of stylus tilt on Y-Axis. 90/-90 when stylus is parallel to "
 "tablet and 0 when it's perpendicular to tablet."
-msgstr "Y 축 스타일러스 경사의 편각. 스타일러스가 태블릿과 평행이면 90 / -90, 태블릿과 수직이면 0."
+msgstr ""
+"Y 축 스타일러스 경사의 편각. 스타일러스가 태블릿과 평행이면 90 / -90, 태블릿"
+"과 수직이면 0."
 
 #. Brush input
 #: ../brushsettings-gen.h:85
@@ -1166,8 +1197,9 @@ msgid ""
 "The brush size should be considerably smaller than the grid scale for best "
 "results."
 msgstr ""
-"256 픽셀 격자의 X 좌표입니다. 커서가 X 축에서 움직일 때 0-256 주위를 감싸줍니다. \"스트로크\"와 유사합니다. 불투명도 "
-"등을 수정하여 종이 질감을 추가하는 데 사용할 수 있습니다.\n"
+"256 픽셀 격자의 X 좌표입니다. 커서가 X 축에서 움직일 때 0-256 주위를 감싸줍니"
+"다. \"스트로크\"와 유사합니다. 불투명도 등을 수정하여 종이 질감을 추가하는 "
+"데 사용할 수 있습니다.\n"
 "최상의 결과를 얻으려면 브러시 크기가 그리드 스케일보다 상당히 작아야합니다."
 
 #. Brush input
@@ -1184,8 +1216,9 @@ msgid ""
 "The brush size should be considerably smaller than the grid scale for best "
 "results."
 msgstr ""
-"256 픽셀 격자의 Y 좌표입니다. 커서가 Y 축에서 움직일 때 0-256 정도를 감 쌉니다. \"스트로크\"와 유사합니다. 불투명도 "
-"등을 수정하여 종이 질감을 추가하는 데 사용할 수 있습니다.\n"
+"256 픽셀 격자의 Y 좌표입니다. 커서가 Y 축에서 움직일 때 0-256 정도를 감 쌉니"
+"다. \"스트로크\"와 유사합니다. 불투명도 등을 수정하여 종이 질감을 추가하는 "
+"데 사용할 수 있습니다.\n"
 "최상의 결과를 얻으려면 브러시 크기가 그리드 스케일보다 상당히 작아야합니다."
 
 #. Brush input - refers to canvas zoom
@@ -1203,7 +1236,8 @@ msgid ""
 msgstr ""
 "캔버스보기의 현재 확대 / 축소 수준입니다.\n"
 "대수 : 0.0은 100 %, 0.69는 200 %, -1.38은 25 %\n"
-"반지름 설정의 경우 -4.15 값을 사용하면 확대 / 축소 수준을 기준으로 브러시 크기가 대략 일정합니다."
+"반지름 설정의 경우 -4.15 값을 사용하면 확대 / 축소 수준을 기준으로 브러시 크"
+"기가 대략 일정합니다."
 
 #. Brush input
 #: ../brushsettings-gen.h:88
@@ -1220,8 +1254,10 @@ msgid ""
 "Take note of \"Dabs per basic radius\" and \"Dabs per actual radius\", which "
 "behave much differently."
 msgstr ""
-"기본 브러시 반경을 사용하면 브러시를 더 크거나 작게 만들 때 브러시의 동작을 변경할 수 있습니다.\n"
-"dab 크기 증가를 취소하고 브러시를 더 크게 만들기 위해 다른 것을 조정할 수도 있습니다.\n"
+"기본 브러시 반경을 사용하면 브러시를 더 크거나 작게 만들 때 브러시의 동작을 "
+"변경할 수 있습니다.\n"
+"dab 크기 증가를 취소하고 브러시를 더 크게 만들기 위해 다른 것을 조정할 수도 "
+"있습니다.\n"
 "\"기본 반경 당 Dab\"및 \"실제 반경 당 Dab\"은 매우 다르게 동작합니다."
 
 #. Brush input

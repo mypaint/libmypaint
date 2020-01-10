@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MyPaint GIT\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-12-12 23:51+0100\n"
+"POT-Creation-Date: 2020-01-10 10:35+0100\n"
 "PO-Revision-Date: 2016-08-29 16:59+0000\n"
 "Last-Translator: Mariusz Kryjak <cerb3ruspl@gmail.com>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/mypaint/"
@@ -648,12 +648,12 @@ msgstr ""
 "0.5 mieszaj kolor rozmazania z kolorem pędzla\n"
 "1.0 używaj tylko koloru rozmazania"
 
-#. Brush setting
+#. Brush setting - The name Pigment refers to the fact that this kind of color mixing is more similar to how colors mix in physical paint.
 #: ../brushsettings-gen.h:47
 msgid "Pigment"
 msgstr ""
 
-#. Tooltip for the "Pigment" brush setting
+#. Tooltip for the "Pigment" brush setting - If this string is difficult to translate, feel free to change it to something more descriptive. Just try to be succinct and consistent.
 #: ../brushsettings-gen.h:47
 msgid ""
 "Subtractive spectral color mixing mode.\n"

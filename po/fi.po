@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-12-12 23:51+0100\n"
+"POT-Creation-Date: 2020-01-10 10:35+0100\n"
 "PO-Revision-Date: 2020-01-09 13:21+0000\n"
 "Last-Translator: Tuomas Hietala <tuomas.hietala@iki.fi>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/mypaint/"
@@ -623,12 +623,12 @@ msgstr ""
 " 0,5 sekoita suttausväri siveltimen värin kanssa\n"
 " 1,0 käytä vain suttausväriä"
 
-#. Brush setting
+#. Brush setting - The name Pigment refers to the fact that this kind of color mixing is more similar to how colors mix in physical paint.
 #: ../brushsettings-gen.h:47
 msgid "Pigment"
 msgstr "Pigmentti"
 
-#. Tooltip for the "Pigment" brush setting
+#. Tooltip for the "Pigment" brush setting - If this string is difficult to translate, feel free to change it to something more descriptive. Just try to be succinct and consistent.
 #: ../brushsettings-gen.h:47
 msgid ""
 "Subtractive spectral color mixing mode.\n"
@@ -790,8 +790,8 @@ msgstr ""
 "Määrittelee, kuinka kauan vetosyöte säilyy arvossa 1,0. Sen jälkeen se "
 "palautuu arvoon 0,0 ja alkaa kasvaa uudelleen, vaikka veto ei olisikaan "
 "vielä valmis.\n"
-"2,0 tarkoittaa kaksi kertaa pidempään kuin mitä kestää arvosta 0,0 arvoon 1,"
-"0\n"
+"2,0 tarkoittaa kaksi kertaa pidempään kuin mitä kestää arvosta 0,0 arvoon "
+"1,0\n"
 "9,9 tai korkeampi tarkoittaa ääretöntä"
 
 #. Brush setting

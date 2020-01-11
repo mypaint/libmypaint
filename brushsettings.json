@@ -234,7 +234,7 @@
         },
         {
             "constant": false,
-            "default": 0.5,
+            "default": 0.0,
             "displayed_name": "Softness",
             "internal_name": "softness",
             "maximum": 1.0,

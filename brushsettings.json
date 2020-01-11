@@ -234,6 +234,15 @@
         },
         {
             "constant": false,
+            "default": 0.5,
+            "displayed_name": "Softness",
+            "internal_name": "softness",
+            "maximum": 1.0,
+            "minimum": 0.0,
+            "tooltip": "Soften brush-circle from center to edge (setting to 1.0 will draw nothing)."
+        },
+        {
+            "constant": false,
             "default": 1.0,
             "displayed_name": "Pixel feather",
             "internal_name": "anti_aliasing",

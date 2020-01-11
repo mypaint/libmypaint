@@ -28,7 +28,7 @@ mypaint_surface_draw_dab(MyPaintSurface *self,
                        float x, float y,
                        float radius,
                        float color_r, float color_g, float color_b,
-                       float opaque, float hardness,
+                       float opaque, float hardness, float softness,
                        float alpha_eraser,
                        float aspect_ratio, float angle,
                        float lock_alpha,
@@ -40,7 +40,7 @@ mypaint_surface_draw_dab(MyPaintSurface *self,
 {
     assert(self->draw_dab);
     return self->draw_dab(self, x, y, radius, color_r, color_g, color_b,
-                   opaque, hardness, alpha_eraser, aspect_ratio, angle,
+                   opaque, hardness, softness, alpha_eraser, aspect_ratio, angle,
                    lock_alpha, colorize, posterize, posterize_num, paint);
 }
 

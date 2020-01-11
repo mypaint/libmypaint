@@ -795,9 +795,17 @@ get_color(
     float* color_a)
 {
     MyPaintTiledSurface* self = (MyPaintTiledSurface*)surface;
-    return get_color_internal(
-        surface, tsf1_request_start, tsf1_request_end, self->threadsafe_tile_requests, self->operation_queue, x, y,
-        radius, color_r, color_g, color_b, color_a, -1.0);
+    get_color_internal(
+      surface, tsf1_request_start, tsf1_request_end, self->threadsafe_tile_requests, self->operation_queue, x, y,
+      radius, color_r, color_g, color_b, color_a, -1.0);
+}
+
+
+float
+mypaint_tiled_surface_get_alpha (MyPaintTiledSurface *self, float x, float y, float radius) {
+  float r, g, b, a;
+  get_color(&self->parent, x, y, radius, &r, &g, &b, &a);
+  return a;
 }
 
 void tiled_surface_process_tile(MyPaintTiledSurface *self, int tx, int ty) {
@@ -873,7 +881,7 @@ get_color_pigment(
     float* color_a, float paint)
 {
     MyPaintTiledSurface2* self = (MyPaintTiledSurface2*)surface;
-    return get_color_internal(
+    get_color_internal(
         surface, tsf2_request_start, tsf2_request_end, self->threadsafe_tile_requests, self->operation_queue, x, y,
         radius, color_r, color_g, color_b, color_a, paint);
 }

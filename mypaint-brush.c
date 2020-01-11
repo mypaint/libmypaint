@@ -1167,6 +1167,7 @@ void print_inputs(MyPaintBrush *self, float* inputs)
     }
 
     float hardness = CLAMP(SETTING(self, HARDNESS), 0.0f, 1.0f);
+    float softness = CLAMP(SETTING(self, SOFTNESS), 0.0f, 1.0f);
 
     // anti-aliasing attempt (works surprisingly well for ink brushes)
     float current_fadeout_in_pixels = radius * (1.0 - hardness);
@@ -1221,7 +1222,7 @@ void print_inputs(MyPaintBrush *self, float* inputs)
     const float posterize_num = SETTING(self, POSTERIZE_NUM);
 
     return mypaint_surface_draw_dab (
-        surface, x, y, radius, color_h, color_s, color_v, opaque, hardness, eraser_target_alpha,
+        surface, x, y, radius, color_h, color_s, color_v, opaque, hardness, softness, eraser_target_alpha,
         dab_ratio, dab_angle, lock_alpha, colorize, posterize, posterize_num, paint_factor);
   }
 

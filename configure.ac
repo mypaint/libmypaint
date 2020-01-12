@@ -233,7 +233,7 @@ AC_ARG_ENABLE(i18n,
 
 if test "x$enable_i18n" != "xno"; then
   enable_i18n="yes"
-  GETTEXT_PACKAGE=libmypaint-libmypaint_api_platform_version
+  GETTEXT_PACKAGE=libmypaint
   AC_SUBST(GETTEXT_PACKAGE)
   AC_DEFINE_UNQUOTED(GETTEXT_PACKAGE, "$GETTEXT_PACKAGE",
                      [The prefix for our gettext translation domains.])
@@ -265,7 +265,7 @@ else
 fi
 AM_CONDITIONAL(WITH_GLIB, test "x$with_glib" = "xyes")
 
-## GEGL ##
+## GEGL - NOT REQUIRED TO BUILD, NOT USED BY ANY MAJOR PROJECT ##
 AC_ARG_ENABLE(gegl,
   AS_HELP_STRING([--enable-gegl],
     [enable GEGL based code in build (yes|no, default=no)])
@@ -281,9 +281,9 @@ AC_SUBST(PKG_CONFIG_REQUIRES)
 
 AC_CONFIG_FILES([
   doc/Makefile
-  gegl/libmypaint-gegl-]libmypaint_api_platform_version()[.pc:gegl/libmypaint-gegl.pc.in
+  gegl/libmypaint-gegl.pc:gegl/libmypaint-gegl.pc.in
   gegl/Makefile
-  libmypaint-]libmypaint_api_platform_version()[.pc:libmypaint.pc.in
+  libmypaint.pc:libmypaint.pc.in
   Makefile
   po/Makefile.in
   tests/Makefile

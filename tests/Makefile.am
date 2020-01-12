@@ -41,7 +41,7 @@ endif
 LDADD = \
 	$(DEPS)							\
 	libmypaint-tests.a				\
-	$(top_builddir)/libmypaint-@LIBMYPAINT_API_PLATFORM_VERSION@.la
+	$(top_builddir)/libmypaint.la
 
 EXTRA_DIST = \
 	brushes/bulk.myb			\

@@ -126,12 +126,14 @@ struct MyPaintBrush {
 /* Macros for accessing states and setting values
    Although macros are never nice, simple file-local macros are warranted
    here since it massively improves code readability.
-   These macros rely on 'self' being a pointer to the relevant brush and
-   'inputs' being a float array of size MYPAINT_BRUSH_INPUTS_COUNT.
+   These macros rely on 'self' being a pointer to the relevant brush
+   and 'inputs' being a float array of size MYPAINT_BRUSH_INPUTS_COUNT.
 */
 #define STATE(state_name) (self->states[MYPAINT_BRUSH_STATE_##state_name])
 #define SETTING(setting_name) (self->settings_value[MYPAINT_BRUSH_SETTING_##setting_name])
+#define BASEVAL(setting_name) (mypaint_mapping_get_base_value(self->settings[MYPAINT_BRUSH_SETTING_##setting_name]))
 #define INPUT(input_name) (inputs[MYPAINT_BRUSH_INPUT_##input_name])
+
 
 void settings_base_values_have_changed (MyPaintBrush *self);
 
@@ -419,7 +421,7 @@ mypaint_brush_set_state(MyPaintBrush *self, MyPaintBrushState i, float value)
     //
     for (int i = 0; i < 2; i++) {
       float gamma;
-      gamma = mypaint_mapping_get_base_value(self->settings[(i==0)?MYPAINT_BRUSH_SETTING_SPEED1_GAMMA:MYPAINT_BRUSH_SETTING_SPEED2_GAMMA]);
+      gamma = i == 0 ? BASEVAL(SPEED1_GAMMA) : BASEVAL(SPEED2_GAMMA);
       gamma = expf(gamma);
 
       float fix1_x, fix1_y, fix2_x, fix2_dy;
@@ -615,7 +617,7 @@ void print_inputs(MyPaintBrush *self, float* inputs)
         }
     } // Gridmap state update - end
 
-    float base_radius = expf(mypaint_mapping_get_base_value(self->settings[MYPAINT_BRUSH_SETTING_RADIUS_LOGARITHMIC]));
+    float base_radius = expf(BASEVAL(RADIUS_LOGARITHMIC));
     STATE(BARREL_ROTATION) += step_barrel_rotation;
 
     //first iteration is zero, set to 1, then flip to -1, back and forth
@@ -632,7 +634,7 @@ void print_inputs(MyPaintBrush *self, float* inputs)
 
     { // start / end stroke (for "stroke" input only)
       const float lim = 0.0001;
-      const float threshold = mypaint_mapping_get_base_value(self->settings[MYPAINT_BRUSH_SETTING_STROKE_THRESHOLD]);
+      const float threshold = BASEVAL(STROKE_THRESHOLD);
       const float started = STATE(STROKE_STARTED);
       if (!started && pressure > threshold + lim) {
         // start new stroke
@@ -657,7 +659,7 @@ void print_inputs(MyPaintBrush *self, float* inputs)
 
     float inputs[MYPAINT_BRUSH_INPUTS_COUNT];
 
-    INPUT(PRESSURE) = pressure * expf(mypaint_mapping_get_base_value(self->settings[MYPAINT_BRUSH_SETTING_PRESSURE_GAIN_LOG]));
+    INPUT(PRESSURE) = pressure * expf(BASEVAL(PRESSURE_GAIN_LOG));
     INPUT(SPEED1) = log(self->speed_mapping_gamma[0] + STATE(NORM_SPEED1_SLOW)) * self->speed_mapping_m[0] + self->speed_mapping_q[0];
     INPUT(SPEED2) = log(self->speed_mapping_gamma[1] + STATE(NORM_SPEED2_SLOW)) * self->speed_mapping_m[1] + self->speed_mapping_q[1];
 
@@ -671,9 +673,9 @@ void print_inputs(MyPaintBrush *self, float* inputs)
     INPUT(TILT_DECLINATION) = STATE(DECLINATION);
     //correct ascension for varying view rotation, use custom mod
     INPUT(TILT_ASCENSION) = mod_arith(STATE(ASCENSION) + STATE(VIEWROTATION) + 180.0, 360.0) - 180.0;
-    INPUT(VIEWZOOM) = (mypaint_mapping_get_base_value(self->settings[MYPAINT_BRUSH_SETTING_RADIUS_LOGARITHMIC])) - logf(base_radius * 1 / STATE(VIEWZOOM));
+    INPUT(VIEWZOOM) = BASEVAL(RADIUS_LOGARITHMIC) - logf(base_radius / STATE(VIEWZOOM));
     INPUT(ATTACK_ANGLE) = smallest_angular_difference(STATE(ASCENSION), mod_arith(DEGREES(dir_angle_360) + 90, 360));
-    INPUT(BRUSH_RADIUS) = mypaint_mapping_get_base_value(self->settings[MYPAINT_BRUSH_SETTING_RADIUS_LOGARITHMIC]);
+    INPUT(BRUSH_RADIUS) = BASEVAL(RADIUS_LOGARITHMIC);
     INPUT(GRIDMAP_X) = CLAMP(STATE(GRIDMAP_X), 0.0, 256.0);
     INPUT(GRIDMAP_Y) = CLAMP(STATE(GRIDMAP_Y), 0.0, 256.0);
     INPUT(TILT_DECLINATIONX) = STATE(DECLINATIONX);
@@ -783,8 +785,7 @@ void print_inputs(MyPaintBrush *self, float* inputs)
     float opaque = MAX(0.0, SETTING(OPAQUE));
     opaque = CLAMP(opaque * opaque_fac, 0.0, 1.0);
 
-    const float opaque_linearize = mypaint_mapping_get_base_value(
-        self->settings[MYPAINT_BRUSH_SETTING_OPAQUE_LINEARIZE]);
+    const float opaque_linearize = BASEVAL(OPAQUE_LINEARIZE);
 
     if (opaque_linearize) {
       // OPTIMIZE: no need to recalculate this for each dab
@@ -816,7 +817,7 @@ void print_inputs(MyPaintBrush *self, float* inputs)
     float x = STATE(ACTUAL_X);
     float y = STATE(ACTUAL_Y);
 
-    float base_radius = expf(mypaint_mapping_get_base_value(self->settings[MYPAINT_BRUSH_SETTING_RADIUS_LOGARITHMIC]));
+    float base_radius = expf(BASEVAL(RADIUS_LOGARITHMIC));
 
     // Directional offsets
     Offsets offs = directional_offsets(self, base_radius);
@@ -855,9 +856,9 @@ void print_inputs(MyPaintBrush *self, float* inputs)
 
     //convert to RGB here instead of later
     // color part
-    float color_h = mypaint_mapping_get_base_value(self->settings[MYPAINT_BRUSH_SETTING_COLOR_H]);
-    float color_s = mypaint_mapping_get_base_value(self->settings[MYPAINT_BRUSH_SETTING_COLOR_S]);
-    float color_v = mypaint_mapping_get_base_value(self->settings[MYPAINT_BRUSH_SETTING_COLOR_V]);
+    float color_h = BASEVAL(COLOR_H);
+    float color_s = BASEVAL(COLOR_S);
+    float color_v = BASEVAL(COLOR_V);
     hsv_to_rgb_float (&color_h, &color_s, &color_v);
     // update smudge color
     const float smudge_length = SETTING(SMUDGE_LENGTH);
@@ -1082,7 +1083,7 @@ void print_inputs(MyPaintBrush *self, float* inputs)
   // How many dabs will be drawn between the current and the next (x, y, +dt) position?
   float count_dabs_to (MyPaintBrush *self, float x, float y, float dt)
   {
-    const float base_radius_log = mypaint_mapping_get_base_value(self->settings[MYPAINT_BRUSH_SETTING_RADIUS_LOGARITHMIC]);
+    const float base_radius_log = BASEVAL(RADIUS_LOGARITHMIC);
     const float base_radius = CLAMP(expf(base_radius_log), ACTUAL_RADIUS_MIN, ACTUAL_RADIUS_MAX);
 
     if (STATE(ACTUAL_RADIUS) == 0.0) {
@@ -1199,10 +1200,10 @@ void print_inputs(MyPaintBrush *self, float* inputs)
     { // calculate the actual "virtual" cursor position
 
       // noise first
-      if (mypaint_mapping_get_base_value(self->settings[MYPAINT_BRUSH_SETTING_TRACKING_NOISE])) {
+      if (BASEVAL(TRACKING_NOISE)) {
         // OPTIMIZE: expf() called too often
-        const float base_radius = expf(mypaint_mapping_get_base_value(self->settings[MYPAINT_BRUSH_SETTING_RADIUS_LOGARITHMIC]));
-        const float noise = base_radius * mypaint_mapping_get_base_value(self->settings[MYPAINT_BRUSH_SETTING_TRACKING_NOISE]);
+        const float base_radius = expf(BASEVAL(RADIUS_LOGARITHMIC));
+        const float noise = base_radius * BASEVAL(TRACKING_NOISE);
 
         if (noise > 0.001) {
           // we need to skip some length of input to make
@@ -1217,7 +1218,7 @@ void print_inputs(MyPaintBrush *self, float* inputs)
         }
       }
 
-      const float fac = 1.0 - exp_decay (mypaint_mapping_get_base_value(self->settings[MYPAINT_BRUSH_SETTING_SLOW_TRACKING]), 100.0*dtime);
+      const float fac = 1.0 - exp_decay(BASEVAL(SLOW_TRACKING), 100.0 * dtime);
       x = STATE(X) + (x - STATE(X)) * fac;
       y = STATE(Y) + (y - STATE(Y)) * fac;
     }

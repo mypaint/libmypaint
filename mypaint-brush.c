@@ -420,21 +420,16 @@ mypaint_brush_set_state(MyPaintBrush *self, MyPaintBrushState i, float value)
     // The code below calculates m and q given gamma and two hardcoded constraints.
     //
     for (int i = 0; i < 2; i++) {
-      float gamma;
-      gamma = i == 0 ? BASEVAL(SPEED1_GAMMA) : BASEVAL(SPEED2_GAMMA);
-      gamma = expf(gamma);
+      const float gamma = expf(i == 0 ? BASEVAL(SPEED1_GAMMA) : BASEVAL(SPEED2_GAMMA));
 
-      float fix1_x, fix1_y, fix2_x, fix2_dy;
-      fix1_x = 45.0;
-      fix1_y = 0.5;
-      fix2_x = 45.0;
-      fix2_dy = 0.015;
+      const float fix1_x = 45.0;
+      const float fix1_y = 0.5;
+      const float fix2_x = 45.0;
+      const float fix2_dy = 0.015;
 
-      float m, q;
-      float c1;
-      c1 = log(fix1_x+gamma);
-      m = fix2_dy * (fix2_x + gamma);
-      q = fix1_y - m*c1;
+      const float c1 = log(fix1_x + gamma);
+      const float m = fix2_dy * (fix2_x + gamma);
+      const float q = fix1_y - m * c1;
 
       self->speed_mapping_gamma[i] = gamma;
       self->speed_mapping_m[i] = m;
@@ -447,7 +442,9 @@ typedef struct {
   float y;
 } Offsets;
 
-Offsets directional_offsets(MyPaintBrush *self, float base_radius) {
+Offsets
+directional_offsets(MyPaintBrush* self, float base_radius)
+{
     const float offset_mult = expf(SETTING(OFFSET_MULTIPLIER));
     // Sanity check - it is easy to reach infinite multipliers w. logarithmic parameters
     if (!isfinite(offset_mult)) {
@@ -580,50 +577,47 @@ void print_inputs(MyPaintBrush *self, float* inputs)
       step_dtime = 0.001;
     }
 
-    STATE(X)        += step_dx;
-    STATE(Y)        += step_dy;
+    STATE(X) += step_dx;
+    STATE(Y) += step_dy;
     STATE(PRESSURE) += step_dpressure;
 
     STATE(DABS_PER_BASIC_RADIUS) = SETTING(DABS_PER_BASIC_RADIUS);
     STATE(DABS_PER_ACTUAL_RADIUS) = SETTING(DABS_PER_ACTUAL_RADIUS);
     STATE(DABS_PER_SECOND) = SETTING(DABS_PER_SECOND);
 
-
     STATE(DECLINATION) += step_declination;
+    STATE(ASCENSION) += step_ascension;
     STATE(DECLINATIONX) += step_declinationx;
     STATE(DECLINATIONY) += step_declinationy;
-    STATE(ASCENSION) += step_ascension;
 
     STATE(VIEWZOOM) = step_viewzoom;
-    STATE(VIEWROTATION) = mod_arith(DEGREES(step_viewrotation) + 180.0, 360.0) - 180.0;
+    const float viewrotation = mod_arith(DEGREES(step_viewrotation) + 180.0, 360.0) - 180.0;
+    STATE(VIEWROTATION) = viewrotation;
 
-    { // Gridmap state update - start
+    { // Gridmap state update
         const float x = STATE(ACTUAL_X);
         const float y = STATE(ACTUAL_Y);
         const float scale = expf(SETTING(GRIDMAP_SCALE));
         const float scale_x = SETTING(GRIDMAP_SCALE_X);
         const float scale_y = SETTING(GRIDMAP_SCALE_Y);
         const float scaled_size = scale * GRID_SIZE;
-        STATE(GRIDMAP_X) =
-            mod_arith(fabsf(x * scale_x), scaled_size) / scaled_size * GRID_SIZE;
-        STATE(GRIDMAP_Y) =
-            mod_arith(fabsf(y * scale_y), scaled_size) / scaled_size * GRID_SIZE;
+        STATE(GRIDMAP_X) = mod_arith(fabsf(x * scale_x), scaled_size) / scaled_size * GRID_SIZE;
+        STATE(GRIDMAP_Y) = mod_arith(fabsf(y * scale_y), scaled_size) / scaled_size * GRID_SIZE;
         if (x < 0.0) {
             STATE(GRIDMAP_X) = GRID_SIZE - STATE(GRIDMAP_X);
         }
-
-        if (STATE(ACTUAL_Y) < 0.0) {
+        if (y < 0.0) {
             STATE(GRIDMAP_Y) = GRID_SIZE - STATE(GRIDMAP_Y);
         }
-    } // Gridmap state update - end
+    }
 
     float base_radius = expf(BASEVAL(RADIUS_LOGARITHMIC));
     STATE(BARREL_ROTATION) += step_barrel_rotation;
 
-    //first iteration is zero, set to 1, then flip to -1, back and forth
-    //useful for Anti-Art's mirrored offset but could be useful elsewhere
+    // Flips between 1 and -1, used for mirrored offsets.
+    // STATE(FLIP) = STATE(FLIP) <= 0 ? 1 : -1;
     if (STATE(FLIP) == 0) {
-      STATE(FLIP) = +1;
+      STATE(FLIP) = 1;
     } else {
       STATE(FLIP) *= -1;
     }
@@ -648,36 +642,43 @@ void print_inputs(MyPaintBrush *self, float* inputs)
 
     // now follows input handling
 
-    float norm_dx, norm_dy, norm_dist, norm_speed;
     //adjust speed with viewzoom
-    norm_dx = step_dx / step_dtime *STATE(VIEWZOOM);
-    norm_dy = step_dy / step_dtime *STATE(VIEWZOOM);
+    const float norm_dx = step_dx / step_dtime * STATE(VIEWZOOM);
+    const float norm_dy = step_dy / step_dtime * STATE(VIEWZOOM);
 
-    norm_speed = hypotf(norm_dx, norm_dy);
+    const float norm_speed = hypotf(norm_dx, norm_dy);
     //norm_dist should relate to brush size, whereas norm_speed should not
-    norm_dist = hypotf(step_dx / step_dtime / base_radius, step_dy / step_dtime / base_radius) * step_dtime;
+    const float norm_dist = hypotf(step_dx / step_dtime / base_radius, step_dy / step_dtime / base_radius) * step_dtime;
 
     float inputs[MYPAINT_BRUSH_INPUTS_COUNT];
 
     INPUT(PRESSURE) = pressure * expf(BASEVAL(PRESSURE_GAIN_LOG));
-    INPUT(SPEED1) = log(self->speed_mapping_gamma[0] + STATE(NORM_SPEED1_SLOW)) * self->speed_mapping_m[0] + self->speed_mapping_q[0];
-    INPUT(SPEED2) = log(self->speed_mapping_gamma[1] + STATE(NORM_SPEED2_SLOW)) * self->speed_mapping_m[1] + self->speed_mapping_q[1];
+
+    const float m0 = self->speed_mapping_m[0];
+    const float q0 = self->speed_mapping_q[0];
+    const float m1 = self->speed_mapping_m[1];
+    const float q1 = self->speed_mapping_q[1];
+    INPUT(SPEED1) = log(self->speed_mapping_gamma[0] + STATE(NORM_SPEED1_SLOW)) * m0 + q0;
+    INPUT(SPEED2) = log(self->speed_mapping_gamma[1] + STATE(NORM_SPEED2_SLOW)) * m1 + q1;
 
     INPUT(RANDOM) = self->random_input;
     INPUT(STROKE) = MIN(STATE(STROKE), 1.0);
+
     //correct direction for varying view rotation
     const float dir_angle = atan2f(STATE(DIRECTION_DY), STATE(DIRECTION_DX));
-    INPUT(DIRECTION) = mod_arith(DEGREES(dir_angle) + STATE(VIEWROTATION) + 180.0, 180.0);
+    INPUT(DIRECTION) = mod_arith(DEGREES(dir_angle) + viewrotation + 180.0, 180.0);
     const float dir_angle_360 = atan2f(STATE(DIRECTION_ANGLE_DY), STATE(DIRECTION_ANGLE_DX));
-    INPUT(DIRECTION_ANGLE) = fmodf(DEGREES(dir_angle_360) + STATE(VIEWROTATION) + 360.0, 360.0) ;
+    INPUT(DIRECTION_ANGLE) = fmodf(DEGREES(dir_angle_360) + viewrotation + 360.0, 360.0) ;
     INPUT(TILT_DECLINATION) = STATE(DECLINATION);
     //correct ascension for varying view rotation, use custom mod
-    INPUT(TILT_ASCENSION) = mod_arith(STATE(ASCENSION) + STATE(VIEWROTATION) + 180.0, 360.0) - 180.0;
+    INPUT(TILT_ASCENSION) = mod_arith(STATE(ASCENSION) + viewrotation + 180.0, 360.0) - 180.0;
     INPUT(VIEWZOOM) = BASEVAL(RADIUS_LOGARITHMIC) - logf(base_radius / STATE(VIEWZOOM));
     INPUT(ATTACK_ANGLE) = smallest_angular_difference(STATE(ASCENSION), mod_arith(DEGREES(dir_angle_360) + 90, 360));
     INPUT(BRUSH_RADIUS) = BASEVAL(RADIUS_LOGARITHMIC);
-    INPUT(GRIDMAP_X) = CLAMP(STATE(GRIDMAP_X), 0.0, 256.0);
-    INPUT(GRIDMAP_Y) = CLAMP(STATE(GRIDMAP_Y), 0.0, 256.0);
+
+    INPUT(GRIDMAP_X) = CLAMP(STATE(GRIDMAP_X), 0.0, GRID_SIZE);
+    INPUT(GRIDMAP_Y) = CLAMP(STATE(GRIDMAP_Y), 0.0, GRID_SIZE);
+
     INPUT(TILT_DECLINATIONX) = STATE(DECLINATIONX);
     INPUT(TILT_DECLINATIONY) = STATE(DECLINATIONY);
 
@@ -693,7 +694,7 @@ void print_inputs(MyPaintBrush *self, float* inputs)
     }
 
     {
-      float fac = 1.0 - exp_decay(SETTING(SLOW_TRACKING_PER_DAB), step_ddab);
+      const float fac = 1.0 - exp_decay(SETTING(SLOW_TRACKING_PER_DAB), step_ddab);
       STATE(ACTUAL_X) += (STATE(X) - STATE(ACTUAL_X)) * fac;
       STATE(ACTUAL_Y) += (STATE(Y) - STATE(ACTUAL_Y)) * fac;
     }
@@ -711,7 +712,7 @@ void print_inputs(MyPaintBrush *self, float* inputs)
       // individual dabs to be placed far far away. Using the speed
       // with zero filtering is just asking for trouble anyway.
       if (time_constant < 0.002) time_constant = 0.002;
-      float fac = 1.0 - exp_decay (time_constant, step_dtime);
+      const float fac = 1.0 - exp_decay (time_constant, step_dtime);
       STATE(NORM_DX_SLOW) += (norm_dx - STATE(NORM_DX_SLOW)) * fac;
       STATE(NORM_DY_SLOW) += (norm_dy - STATE(NORM_DY_SLOW)) * fac;
     }
@@ -721,11 +722,11 @@ void print_inputs(MyPaintBrush *self, float* inputs)
       float dx = step_dx * STATE(VIEWZOOM);
       float dy = step_dy * STATE(VIEWZOOM);
 
-      float step_in_dabtime = hypotf(dx, dy);
-      float fac = 1.0 - exp_decay (expf(SETTING(DIRECTION_FILTER)*0.5)-1.0, step_in_dabtime);
+      const float step_in_dabtime = hypotf(dx, dy);
+      const float fac = 1.0 - exp_decay(expf(SETTING(DIRECTION_FILTER) * 0.5) - 1.0, step_in_dabtime);
 
-      float dx_old = STATE(DIRECTION_DX);
-      float dy_old = STATE(DIRECTION_DY);
+      const float dx_old = STATE(DIRECTION_DX);
+      const float dy_old = STATE(DIRECTION_DY);
 
       // 360 Direction
       STATE(DIRECTION_ANGLE_DX) += (dx - STATE(DIRECTION_ANGLE_DX)) * fac;
@@ -741,8 +742,7 @@ void print_inputs(MyPaintBrush *self, float* inputs)
     }
 
     { // custom input
-      float fac;
-      fac = 1.0 - exp_decay (SETTING(CUSTOM_INPUT_SLOWNESS), 0.1);
+      const float fac = 1.0 - exp_decay (SETTING(CUSTOM_INPUT_SLOWNESS), 0.1);
       STATE(CUSTOM_INPUT) += (SETTING(CUSTOM_INPUT) - STATE(CUSTOM_INPUT)) * fac;
     }
 
@@ -769,8 +769,8 @@ void print_inputs(MyPaintBrush *self, float* inputs)
 
     // aspect ratio (needs to be calculated here because it can affect the dab spacing)
     STATE(ACTUAL_ELLIPTICAL_DAB_RATIO) = SETTING(ELLIPTICAL_DAB_RATIO);
-    //correct dab angle for view rotation
-    STATE(ACTUAL_ELLIPTICAL_DAB_ANGLE) = mod_arith(SETTING(ELLIPTICAL_DAB_ANGLE) - STATE(VIEWROTATION) + 180.0, 180.0) - 180.0;
+    // correct dab angle for view rotation
+    STATE(ACTUAL_ELLIPTICAL_DAB_ANGLE) = mod_arith(SETTING(ELLIPTICAL_DAB_ANGLE) - viewrotation + 180.0, 180.0) - 180.0;
   }
 
   // Called only from stroke_to(). Calculate everything needed to
@@ -793,10 +793,7 @@ void print_inputs(MyPaintBrush *self, float* inputs)
       float dabs_per_pixel;
       // dabs_per_pixel is just estimated roughly, I didn't think hard
       // about the case when the radius changes during the stroke
-      dabs_per_pixel = (
-                        STATE(DABS_PER_ACTUAL_RADIUS) +
-                        STATE(DABS_PER_BASIC_RADIUS)
-                        ) * 2.0;
+      dabs_per_pixel = (STATE(DABS_PER_ACTUAL_RADIUS) + STATE(DABS_PER_BASIC_RADIUS)) * 2.0;
 
       // the correction is probably not wanted if the dabs don't overlap
       if (dabs_per_pixel < 1.0) dabs_per_pixel = 1.0;
@@ -899,10 +896,7 @@ void print_inputs(MyPaintBrush *self, float* inputs)
 
         // Sample colors on the canvas, using a negative value for the paint factor
         // means that the old sampling method is used, instead of weighted spectral.
-        mypaint_surface_get_color(
-            surface, px, py, smudge_radius,
-            &r, &g, &b, &a,
-            legacy_smudge ? -1.0 : paint_factor);
+        mypaint_surface_get_color(surface, px, py, smudge_radius, &r, &g, &b, &a, legacy_smudge ? -1.0 : paint_factor);
 
         //don't draw unless the picked-up alpha is above a certain level
         //this is sort of like lock_alpha but for smudge
@@ -997,14 +991,12 @@ void print_inputs(MyPaintBrush *self, float* inputs)
     }
 
     // HSV color change
-    if (SETTING(CHANGE_COLOR_H) ||
-        SETTING(CHANGE_COLOR_HSV_S) ||
-        SETTING(CHANGE_COLOR_V)) {
-      rgb_to_hsv_float (&color_h, &color_s, &color_v);
-      color_h += SETTING(CHANGE_COLOR_H);
-      color_s += color_s * color_v * SETTING(CHANGE_COLOR_HSV_S);
-      color_v += SETTING(CHANGE_COLOR_V);
-      hsv_to_rgb_float (&color_h, &color_s, &color_v);
+    if (SETTING(CHANGE_COLOR_H) || SETTING(CHANGE_COLOR_HSV_S) || SETTING(CHANGE_COLOR_V)) {
+        rgb_to_hsv_float(&color_h, &color_s, &color_v);
+        color_h += SETTING(CHANGE_COLOR_H);
+        color_s += color_s * color_v * SETTING(CHANGE_COLOR_HSV_S);
+        color_v += SETTING(CHANGE_COLOR_V);
+        hsv_to_rgb_float(&color_h, &color_s, &color_v);
     }
 
     // HSL color change
@@ -1012,13 +1004,11 @@ void print_inputs(MyPaintBrush *self, float* inputs)
       // (calculating way too much here, can be optimized if necessary)
       // this function will CLAMP the inputs
 
-      //hsv_to_rgb_float (&color_h, &color_s, &color_v);
       rgb_to_hsl_float (&color_h, &color_s, &color_v);
       color_v += SETTING(CHANGE_COLOR_L);
       color_s += color_s * MIN(fabsf(1.0f - color_v), fabsf(color_v)) * 2.0f
         * SETTING(CHANGE_COLOR_HSL_S);
       hsl_to_rgb_float (&color_h, &color_s, &color_v);
-      //rgb_to_hsv_float (&color_h, &color_s, &color_v);
     }
 
     float hardness = CLAMP(SETTING(HARDNESS), 0.0f, 1.0f);
@@ -1050,8 +1040,8 @@ void print_inputs(MyPaintBrush *self, float* inputs)
     if (snapToPixel > 0.0)
     {
       // linear interpolation between non-snapped and snapped
-      float snapped_x = floor(x) + 0.5;
-      float snapped_y = floor(y) + 0.5;
+      const float snapped_x = floor(x) + 0.5;
+      const float snapped_y = floor(y) + 0.5;
       x = x + (snapped_x - x) * snapToPixel;
       y = y + (snapped_y - y) * snapToPixel;
 

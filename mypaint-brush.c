@@ -166,6 +166,11 @@ mypaint_brush_new(void)
     for (int i = 0; i < MYPAINT_BRUSH_STATES_COUNT; i++) {
       self->states[i] = 0;
     }
+    // Set the flip state such that it will be at "1" for the first
+    // dab, and then switch between -1 and 1 for the subsequent dabs.
+    // Also set to -1 on brush resets.
+    self->states[MYPAINT_BRUSH_STATE_FLIP] = -1;
+
     mypaint_brush_new_stroke(self);
 
     settings_base_values_have_changed(self);
@@ -613,14 +618,6 @@ void print_inputs(MyPaintBrush *self, float* inputs)
 
     float base_radius = expf(BASEVAL(RADIUS_LOGARITHMIC));
     STATE(BARREL_ROTATION) += step_barrel_rotation;
-
-    // Flips between 1 and -1, used for mirrored offsets.
-    // STATE(FLIP) = STATE(FLIP) <= 0 ? 1 : -1;
-    if (STATE(FLIP) == 0) {
-      STATE(FLIP) = 1;
-    } else {
-      STATE(FLIP) *= -1;
-    }
 
     // FIXME: does happen (interpolation problem?)
     if (STATE(PRESSURE) <= 0.0) STATE(PRESSURE) = 0.0;
@@ -1228,6 +1225,7 @@ void print_inputs(MyPaintBrush *self, float* inputs)
       for (int i = 0; i < MYPAINT_BRUSH_STATES_COUNT; i++) {
         self->states[i] = 0;
       }
+      self->states[MYPAINT_BRUSH_STATE_FLIP] = -1;
 
       STATE(X) = x;
       STATE(Y) = y;
@@ -1283,6 +1281,8 @@ void print_inputs(MyPaintBrush *self, float* inputs)
                                           step_declinationy, step_barrel_rotation);
       }
 
+      // Flips between 1 and -1, used for "mirrored" offsets.
+      STATE(FLIP) *= -1;
       gboolean painted_now = prepare_and_draw_dab (self, surface);
       if (painted_now) {
         painted = YES;

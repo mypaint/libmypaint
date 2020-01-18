@@ -18,6 +18,7 @@
 #include <stdio.h>
 #include <assert.h>
 #include <math.h>
+#include <string.h>
 
 #include "mypaint-utils-stroke-player.h"
 #include "mypaint-test-surface.h"
@@ -120,9 +121,10 @@ mypaint_test_surface_run(int argc, char **argv,
                       MyPaintTestsSurfaceFactory surface_factory,
                       gchar *title, gpointer user_data)
 {
-    // FIXME: use an environment variable or commandline switch to
-    // distinguish between running test as a benchmark (multiple iterations and taking the time)
-    // or as a test (just verifying correctness)
+  gboolean correctness_only = TRUE;
+  if (argc > 1 && strcmp(argv[1], "--full-benchmark") == 0) {
+    correctness_only = FALSE;
+  }
 
     printf("Running test: %s\n", title);
 #define BRUSH_PATH(brushname) LIBMYPAINT_TESTING_ABS_TOP_SRCDIR "/tests/brushes/" brushname ".myb"
@@ -133,15 +135,20 @@ mypaint_test_surface_run(int argc, char **argv,
     const int num_brushes = TEST_CASES_NUMBER(brush_paths);
 
     float max_brush_radius[num_brushes];
-    max_brush_radius[0] = 512;
+    max_brush_radius[0] = correctness_only ? 256 : 512;
     max_brush_radius[1] = 512;
     max_brush_radius[2] = 256;
     max_brush_radius[3] = 512;
 
     int num_cases = 0;
-    for (int i = 0; i < num_brushes; ++i) {
-      num_cases += (int)log2(max_brush_radius[i]);
+    if (correctness_only) {
+      num_cases = num_brushes * 2;
+    } else {
+      for (int i = 0; i < num_brushes; ++i) {
+        num_cases += (int)log2(max_brush_radius[i]);
+      }
     }
+
     SurfaceTestData test_data[num_cases];
     int max_id_length = 32;
     char test_ids[num_cases][max_id_length];
@@ -149,7 +156,12 @@ mypaint_test_surface_run(int argc, char **argv,
 
     // Generate test case parameters
     for (int brush = 0; brush < num_brushes; ++brush) {
-      for (int radius = 2; radius <= max_brush_radius[brush]; radius *= 2) {
+      const int max_radius = max_brush_radius[brush];
+      for (int radius = 2; radius <= max_radius; radius *= 2) {
+         // For correctness tests, only run the first and the last radius/scale combo for each brush
+        if (correctness_only && radius != 2 && radius*2 <= max_radius) {
+          continue;
+        }
         const float scale = powf(2, ((int)log2(radius)-1) / 3);
         snprintf(test_ids[case_n], max_id_length, "(b:%02d  r:%-3d s:%-3.1f)", brush, radius, scale);
         const int iterations = 1;

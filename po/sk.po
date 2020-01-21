@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: libmypaint for mypaint 1.2.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-01-10 10:35+0100\n"
-"PO-Revision-Date: 2020-01-09 13:21+0000\n"
+"PO-Revision-Date: 2020-01-22 23:28+0000\n"
 "Last-Translator: Blake <adam.otruba@protonmail.com>\n"
 "Language-Team: Slovak <https://hosted.weblate.org/projects/mypaint/"
 "libmypaint/sk/>\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Generator: Weblate 3.10.1-dev\n"
+"X-Generator: Weblate 3.11-dev\n"
 
 #. Brush setting
 #: ../brushsettings-gen.h:4
@@ -68,10 +68,10 @@ msgid ""
 "1.0 the opaque value above is for the final brush stroke, assuming each "
 "pixel gets (dabs_per_radius*2) brushdabs on average during a stroke"
 msgstr ""
-"Napráva nelineárnosť spôsobenú prekrývaním viacerých kvapiek. Táto náprava "
+"Napráva nelineárnosť spôsobenú zmiešavaním viacerých kvapiek. Táto náprava "
 "by mala mať za výsledok lineárnu (\"prirodzenú\") odozvu na tlak, ak je tlak "
 "priradený k nastaveniu \"násobenie_krytia\", ako je zvykom. 0,9 je vhodné "
-"pre bežné ťahy, nastavte menšie hodnoty, ak má váš štetec priveľký rozptyl, "
+"pre bežné ťahy, menšie hodnoty nastavte ak má váš štetec priveľký rozptyl, "
 "alebo väčšie, ak používate nastavenie \"kvapky_za_sekundu\".\n"
 "Pri hodnote 0,0 sa hodnota krytia počíta pre individuálne kvapky\n"
 "Pri hodnote 1,0 sa hodnota krytia počíta pre výsledný ťah, predpokladajúc, "
@@ -106,7 +106,7 @@ msgid ""
 "maximum hardness, you need to disable Pixel feather."
 msgstr ""
 "Tvrdé okraje kruhu štetca (nastavením na nulu sa nič nenakreslí). Na "
-"dosiahnutie najvyššej tvrdosti, musíte zakázať Zjemnenie pixelov."
+"dosiahnutie najvyššej tvrdosti musíte zakázať Zjemnenie pixelov."
 
 #. Brush setting
 #: ../brushsettings-gen.h:9
@@ -670,6 +670,10 @@ msgid ""
 "0.0 no spectral mixing\n"
 "1.0 only spectral mixing"
 msgstr ""
+"Režim spektrálneho subtraktívneho miešania farieb.\n"
+"Delí spektrum na komponenty, ktoré mieša subtraktívne.\n"
+"0,0 žiadne spektrálne miešanie\n"
+"1,0 iba spektrálne miešanie"
 
 #. Brush setting
 #: ../brushsettings-gen.h:48
@@ -854,6 +858,11 @@ msgid ""
 "If you make it change 'by random' you can generate a slow (smooth) random "
 "input."
 msgstr ""
+"Priradí vlastný vstup tejto hodnote. Ak funguje spomalene, priblížte vstup k "
+"tejto hodnote. Idea je, že tento vstup nastavíte na kombináciu závislostí na "
+"tlaku/rýchlosti/čomkoľvek a iné nastavenia závislé na tomto vstupe, miesto "
+"opakovaného nastavovania tej istej kombinácie.\n"
+"Nastavením na „Náhodne“ môžete generovať pomalý (hladký) náhodný vstup."
 
 #. Brush setting
 #: ../brushsettings-gen.h:58
@@ -868,6 +877,9 @@ msgid ""
 "if brushdabs do not depend on time).\n"
 "0.0 no slowdown (changes apply instantly)"
 msgstr ""
+"Ako pomaly vlastný vstup nasleduje žiadanú hodnotu. Funguje na úrovni "
+"kvapiek (neberie do úvahy uplynutý čas, ak kvapky nezávisia na čase).\n"
+"0,0 nespomaľuje (zmena nastáva okamžite)"
 
 #. Brush setting
 #: ../brushsettings-gen.h:59
@@ -946,12 +958,12 @@ msgid ""
 "brush color while retaining its value and alpha."
 msgstr ""
 "Ofarbenie cieľovej vrstvy nastavením jej odtieňu a sýtosti z aktívnej farby "
-"štetca so zachovaním svojej hodnoty a alfa kanálu."
+"štetca, zachovajúc svoju hodnotu a alfa kanál."
 
 #. Brush setting
 #: ../brushsettings-gen.h:64
 msgid "Posterize"
-msgstr ""
+msgstr "Posterizácia"
 
 #. Tooltip for the "Posterize" brush setting
 #: ../brushsettings-gen.h:64
@@ -959,11 +971,13 @@ msgid ""
 "Strength of posterization, reducing number of colors based on the "
 "\"Posterization levels\" setting, while retaining alpha."
 msgstr ""
+"Intenzita posterizácie, znižuje počet farieb na základe nastavenia „Úrovne "
+"posterizácie“, zachovajúc alfa kanál."
 
 #. Brush setting
 #: ../brushsettings-gen.h:65
 msgid "Posterization levels"
-msgstr ""
+msgstr "Úrovne posterizácie"
 
 #. Tooltip for the "Posterization levels" brush setting
 #: ../brushsettings-gen.h:65
@@ -972,6 +986,9 @@ msgid ""
 "0.05 = 5 levels, 0.2 = 20 levels, etc.\n"
 "Values above 0.5 may not be noticeable."
 msgstr ""
+"Počet úrovní posterizácie (deleno 100).\n"
+"0,05 = 5 úrovní, 0,2 = 20 úrovní, atď.\n"
+"Hodnoty nad 0,5 môžu byť nepatrné."
 
 #. Brush setting
 #: ../brushsettings-gen.h:66
@@ -1146,7 +1163,7 @@ msgstr "Uhol ťahu, od 0 po 360 stupňov."
 #. Brush input
 #: ../brushsettings-gen.h:82
 msgid "Attack Angle"
-msgstr ""
+msgstr "Uhol nábehu"
 
 #. Tooltip for the "Attack Angle" brush input
 #: ../brushsettings-gen.h:82
@@ -1159,6 +1176,11 @@ msgid ""
 "180 means the angle of the stroke is directly opposite the angle of the "
 "stylus."
 msgstr ""
+"Rozdiel uhlov, v stupňoch, medzi smerovaním stylusu, a smerom ťahu.\n"
+"Rozsah je +/- 180,0.\n"
+"0,0 znamená, že smer ťahu zodpovedá smeru stylusu.\n"
+"90 znamená, že smer ťahu je kolmý na smer stylusu.\n"
+"180 znamená, že smer ťahu je priamo proti smeru stylusu."
 
 #. Brush input
 #: ../brushsettings-gen.h:83
@@ -1191,7 +1213,7 @@ msgstr ""
 #. Brush input
 #: ../brushsettings-gen.h:85
 msgid "GridMap X"
-msgstr ""
+msgstr "Mriežka X"
 
 #. Tooltip for the "GridMap X" brush input
 #: ../brushsettings-gen.h:85
@@ -1202,11 +1224,16 @@ msgid ""
 "The brush size should be considerably smaller than the grid scale for best "
 "results."
 msgstr ""
+"Súradnica na osi X na 256-pixelovej mriežke. Cyklicky prechádza medzi 0 až "
+"256 pri tom ako sa kurzor pohybuje po osi X. Podobné nastaveniu „Ťah“. Dá sa "
+"využiť na vytváranie papierovej textúry pomocou zmeny krytia, atď.\n"
+"Najlepšie výsledky sa dajú dosiahnuť veľkosťou štetca značne menšou, než je "
+"mierka mriežky."
 
 #. Brush input
 #: ../brushsettings-gen.h:86
 msgid "GridMap Y"
-msgstr ""
+msgstr "Mriežka Y"
 
 #. Tooltip for the "GridMap Y" brush input
 #: ../brushsettings-gen.h:86
@@ -1217,6 +1244,11 @@ msgid ""
 "The brush size should be considerably smaller than the grid scale for best "
 "results."
 msgstr ""
+"Súradnica na osi Y na 256-pixelovej mriežke. Cyklicky prechádza medzi 0 až "
+"256 pri tom ako sa kurzor pohybuje po osi Y. Podobné nastaveniu „Ťah“. Dá sa "
+"využiť na vytváranie papierovej textúry pomocou zmeny krytia, atď.\n"
+"Najlepšie výsledky sa dajú dosiahnuť veľkosťou štetca značne menšou, než je "
+"mierka mriežky."
 
 #. Brush input - refers to canvas zoom
 #: ../brushsettings-gen.h:87
@@ -1271,3 +1303,7 @@ msgid ""
 "+90 when twisted clockwise 90 degrees\n"
 "-90 when twisted counterclockwise 90 degrees"
 msgstr ""
+"Rotácia stylusu okolo jeho osi.\n"
+"0 keď nie je natočený\n"
+"+90 keď je natočený 90 stupňov v smere hodinových ručičiek\n"
+"-90 keď je natočený 90 stupňov proti smeru hodinových ručičiek"

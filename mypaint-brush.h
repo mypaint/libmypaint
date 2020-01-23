@@ -29,6 +29,9 @@ typedef struct MyPaintBrush MyPaintBrush;
 MyPaintBrush *
 mypaint_brush_new(void);
 
+MyPaintBrush *
+mypaint_brush_new_with_buckets(int num_smudge_buckets);
+
 void
 mypaint_brush_unref(MyPaintBrush *self);
 void

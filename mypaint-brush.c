@@ -62,12 +62,6 @@ enum {
   SMUDGE_BUCKET_SIZE
 };
 
-#define NUM_SMUDGE_BUCKETS 256
-
-// Array of smudge states, which allow much more variety and "memory" of the brush
-float smudge_buckets[NUM_SMUDGE_BUCKETS][SMUDGE_BUCKET_SIZE] = {{0.0f}};
-
-
 /* The Brush class stores two things:
    b) settings: constant during a stroke (eg. size, spacing, dynamics, color selected by the user)
    a) states: modified during a stroke (eg. speed, smudge colors, time/distance to next dab, position filter states)
@@ -97,6 +91,14 @@ struct MyPaintBrush {
 
     // the states (get_state, set_state, reset) that change during a stroke
     float states[MYPAINT_BRUSH_STATES_COUNT];
+    // smudge bucket array: part of the state, but stored separately.
+    // Usually used for brushes with multiple offset dabs, where each
+    // dab is assigned its own bucket containing a smudge state.
+    float *smudge_buckets;
+    int num_buckets;
+    int min_bucket_used;
+    int max_bucket_used;
+
     double random_input;
     float skip;
     float skip_last_x;
@@ -151,6 +153,17 @@ brush_reset(MyPaintBrush *self)
     // Set the flip state such that it will be at "1" for the first
     // dab, and then switch between -1 and 1 for the subsequent dabs.
     STATE(self, FLIP) = -1;
+    // Clear smudge buckets
+    if (self->smudge_buckets) {
+      int min_index = self->min_bucket_used;
+      if (min_index != -1) {
+        int max_index = self->max_bucket_used;
+        size_t num_bytes = (max_index - min_index) * sizeof(self->smudge_buckets[0]) * SMUDGE_BUCKET_SIZE;
+        memset(self->smudge_buckets + min_index, 0, num_bytes);
+        self->min_bucket_used = -1;
+        self->max_bucket_used = -1;
+      }
+    }
 }
 
 /**
@@ -162,7 +175,40 @@ brush_reset(MyPaintBrush *self)
 MyPaintBrush *
 mypaint_brush_new(void)
 {
+  return mypaint_brush_new_with_buckets(0);
+}
+
+/**
+  * mypaint_brush_new_with_buckets:
+  *
+  * Create a new MyPaint brush engine instance with smudge bucket support.
+  * MyPaint 2.0 supports up to 255 buckets per brush.
+  * Initial reference count is 1. Release references using mypaint_brush_unref()
+  */
+MyPaintBrush *
+mypaint_brush_new_with_buckets(int num_smudge_buckets)
+{
     MyPaintBrush *self = (MyPaintBrush *)malloc(sizeof(MyPaintBrush));
+
+    if (!self) {
+      return NULL;
+    }
+
+    if (num_smudge_buckets > 0) {
+      float *bucket_array = malloc(num_smudge_buckets * SMUDGE_BUCKET_SIZE * sizeof(float));
+      if (!bucket_array) {
+        free(self);
+        return NULL;
+      }
+      self->smudge_buckets = bucket_array;
+      self->num_buckets = num_smudge_buckets;
+      // Set up min/max to initialize (clear) the array in the call to brush_reset.
+      self->min_bucket_used = 0;
+      self->max_bucket_used = self->num_buckets - 1;
+    } else {
+      self->smudge_buckets = NULL;
+      self->num_buckets = 0;
+    }
 
     self->refcount = 1;
     for (int i = 0; i < MYPAINT_BRUSH_SETTINGS_COUNT; i++) {
@@ -197,6 +243,7 @@ brush_free(MyPaintBrush *self)
         json_object_put(self->brush_json);
     }
 
+    free(self->smudge_buckets);
     free(self);
 }
 
@@ -395,6 +442,93 @@ mypaint_brush_set_state(MyPaintBrush *self, MyPaintBrushState i, float value)
 {
     assert (i < MYPAINT_BRUSH_STATES_COUNT);
     self->states[i] = value;
+}
+/**
+ * mypaint_brush_set_smudge_bucket_state: (skip)
+ *
+ * Set an internal smudge bucket state for the bucket of the given index.
+ * Returns true if the state could be updated, false otherwise.
+ * Setting the state can only fail if the bucket index lies outside the
+ * capacity of the brush.
+ *
+ **/
+gboolean
+mypaint_brush_set_smudge_bucket_state(
+    MyPaintBrush* self, int bucket_index,
+    float r, float g, float b, float a,
+    float prev_r, float prev_g, float prev_b, float prev_a,
+    float prev_color_recentness)
+{
+  if (self->num_buckets > bucket_index) {
+    float* bucket = &self->smudge_buckets[bucket_index];
+    bucket[SMUDGE_R] = r;
+    bucket[SMUDGE_G] = g;
+    bucket[SMUDGE_B] = b;
+    bucket[SMUDGE_A] = a;
+    bucket[PREV_COL_R] = prev_r;
+    bucket[PREV_COL_G] = prev_g;
+    bucket[PREV_COL_B] = prev_b;
+    bucket[PREV_COL_A] = prev_a;
+    bucket[PREV_COL_RECENTNESS] = prev_color_recentness;
+    return TRUE;
+  }
+  return FALSE;
+}
+
+/**
+ * mypaint_brush_get_smudge_bucket_state: (skip)
+ *
+ * Retrieve the internal state for the smudge bucket of the given index.
+ * If the state could be retrieved, populating the out variables, true is returned.
+ * Getting the state can only fail if the bucket index lies outside the
+ * capacity of the brush.
+ *
+ **/
+gboolean
+mypaint_brush_get_smudge_bucket_state(
+    const MyPaintBrush* self, int bucket_index,
+    float* r, float* g, float* b, float* a,
+    float* prev_r, float* prev_g, float* prev_b, float* prev_a,
+    float* prev_color_recentness)
+{
+  if (self->num_buckets > bucket_index) {
+    float* bucket = &self->smudge_buckets[bucket_index];
+    *r = bucket[SMUDGE_R];
+    *g = bucket[SMUDGE_G];
+    *b = bucket[SMUDGE_B];
+    *a = bucket[SMUDGE_A];
+    *prev_r = bucket[PREV_COL_R];
+    *prev_g = bucket[PREV_COL_G];
+    *prev_b = bucket[PREV_COL_B];
+    *prev_a = bucket[PREV_COL_A];
+    *prev_color_recentness = bucket[PREV_COL_RECENTNESS];
+    return TRUE;
+  }
+  return FALSE;
+}
+
+/**
+ * mypaint_brush_get_min_smudge_bucket_used: (skip)
+ *
+ * Get the lowest index of the indices of buckets that have been written to.
+ * If no smudge bucket has been written to, -1 is returned.
+ *
+ */
+int mypaint_brush_get_min_smudge_bucket_used(const MyPaintBrush* self)
+{
+  return self->min_bucket_used;
+}
+
+/**
+ * mypaint_brush_get_max_smudge_bucket_used: (skip)
+ *
+ * Get the largest index of the indices of buckets that have been written to.
+ * If no smudge bucket has been written to, -1 is returned.
+ *
+ */
+int mypaint_brush_get_max_smudge_bucket_used(const MyPaintBrush* self)
+{
+  return self->max_bucket_used;
 }
 
   // returns the fraction still left after t seconds
@@ -769,18 +903,29 @@ void print_inputs(MyPaintBrush *self, float* inputs)
     STATE(self, ACTUAL_ELLIPTICAL_DAB_ANGLE) = mod_arith(SETTING(self, ELLIPTICAL_DAB_ANGLE) - viewrotation + 180.0, 180.0) - 180.0;
   }
 
+  float *fetch_smudge_bucket(MyPaintBrush *self) {
+    if (!self->smudge_buckets || !self->num_buckets) {
+      return &STATE(self, SMUDGE_RA);
+    }
+    const int bucket_index = CLAMP(roundf(SETTING(self, SMUDGE_BUCKET)), 0, self->num_buckets - 1);
+    if (self->min_bucket_used == -1 || self->min_bucket_used > bucket_index) {
+      self->min_bucket_used = bucket_index;
+    }
+    if (self->max_bucket_used < bucket_index) {
+      self->max_bucket_used = bucket_index;
+    }
+    return &self->smudge_buckets[bucket_index * SMUDGE_BUCKET_SIZE];
+  }
+
   gboolean
   update_smudge_color(
-      const MyPaintBrush* self, MyPaintSurface* surface, const float smudge_length, int px, int py, const float radius,
-      const float legacy_smudge, const float paint_factor)
+      const MyPaintBrush* self, MyPaintSurface* surface, float* const smudge_bucket, const float smudge_length, int px,
+      int py, const float radius, const float legacy_smudge, const float paint_factor)
   {
 
       // Value between 0.01 and 1.0 that determines how often the canvas should be resampled
       float update_factor = MAX(0.01, smudge_length);
 
-      // determine which smudge bucket to use and update
-      const int bucket_index = CLAMP(roundf(SETTING(self, SMUDGE_BUCKET)), 0, 255);
-      float* const smudge_bucket = smudge_buckets[bucket_index];
 
       // Calling get_color() is almost as expensive as rendering a
       // dab. Because of this we use the previous value if it is not
@@ -853,14 +998,10 @@ void print_inputs(MyPaintBrush *self, float* inputs)
 
   float
   apply_smudge(
-      MyPaintBrush* self, const float smudge_value, const gboolean legacy_smudge, const float paint_factor, float* color_r,
-      float* color_g, float* color_b)
+      const float* const smudge_bucket, const float smudge_value, const gboolean legacy_smudge,
+      const float paint_factor, float* color_r, float* color_g, float* color_b)
   {
       float smudge_factor = MIN(1.0, smudge_value);
-
-      // determine which smudge bucket to use when mixing with brush color
-      int bucket_index = CLAMP(roundf(SETTING(self, SMUDGE_BUCKET)), 0, 255);
-      const float* const smudge_bucket = smudge_buckets[bucket_index];
 
       // If the smudge color somewhat transparent, then the resulting
       // dab will do erasing towards that transparency level.
@@ -982,8 +1123,9 @@ void print_inputs(MyPaintBrush *self, float* inputs)
     const float smudge_length = SETTING(self, SMUDGE_LENGTH);
     if (smudge_length < 1.0 && // default smudge length is 0.5, so the smudge factor is checked as well
         (SETTING(self, SMUDGE) != 0.0 || !mypaint_mapping_is_constant(self->settings[MYPAINT_BRUSH_SETTING_SMUDGE]))) {
-        gboolean return_early =
-            update_smudge_color(self, surface, smudge_length, ROUND(x), ROUND(y), radius, legacy_smudge, paint_factor);
+        float* const bucket = fetch_smudge_bucket(self);
+        gboolean return_early = update_smudge_color(
+            self, surface, bucket, smudge_length, ROUND(x), ROUND(y), radius, legacy_smudge, paint_factor);
         if (return_early) {
           return FALSE;
         }
@@ -993,8 +1135,9 @@ void print_inputs(MyPaintBrush *self, float* inputs)
     const float smudge_value = SETTING(self, SMUDGE);
 
     if (smudge_value > 0.0) {
+      float* const bucket = fetch_smudge_bucket(self);
       eraser_target_alpha =
-          apply_smudge(self, smudge_value, legacy_smudge, paint_factor, &color_h, &color_s, &color_v);
+          apply_smudge(bucket, smudge_value, legacy_smudge, paint_factor, &color_h, &color_s, &color_v);
     }
 
     // eraser

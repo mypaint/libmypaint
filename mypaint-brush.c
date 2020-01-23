@@ -447,7 +447,7 @@ typedef struct {
 } Offsets;
 
 Offsets
-directional_offsets(MyPaintBrush* self, float base_radius)
+directional_offsets(const MyPaintBrush* const self, const float base_radius, const int brush_flip)
 {
     const float offset_mult = expf(SETTING(self, OFFSET_MULTIPLIER));
     // Sanity check - it is easy to reach infinite multipliers w. logarithmic parameters
@@ -494,7 +494,6 @@ directional_offsets(MyPaintBrush* self, float base_radius)
     //offset mirrored to sides of direction
     const float offset_dir_mirror = MAX(0.0, SETTING(self, OFFSET_ANGLE_2));
     if (offset_dir_mirror) {
-        const float brush_flip = STATE(self, FLIP);
         const float dir_mirror_angle = RADIANS(angle_deg + offset_angle_adj * brush_flip);
         const float offset_factor = offset_dir_mirror * brush_flip;
         dx += cos(dir_mirror_angle) * offset_factor;
@@ -505,7 +504,6 @@ directional_offsets(MyPaintBrush* self, float base_radius)
     const float offset_asc_mirror = MAX(0.0, SETTING(self, OFFSET_ANGLE_2_ASC));
     if (offset_asc_mirror) {
         const float ascension = STATE(self, ASCENSION);
-        const float brush_flip = STATE(self, FLIP);
         const float asc_angle = RADIANS(ascension - view_rotation + offset_angle_adj * brush_flip);
         const float offset_factor = brush_flip * offset_asc_mirror;
         dx += cos(asc_angle) * offset_factor;
@@ -515,7 +513,6 @@ directional_offsets(MyPaintBrush* self, float base_radius)
     //offset mirrored to sides of view orientation
     const float offset_view_mirror = MAX(0.0, SETTING(self, OFFSET_ANGLE_2_VIEW));
     if (offset_view_mirror) {
-        const float brush_flip = STATE(self, FLIP);
         const float offset_factor = brush_flip * offset_view_mirror;
         const float offset_angle_rad = RADIANS(view_rotation + offset_angle_adj);
         dx += cos(-offset_angle_rad) * offset_factor;
@@ -937,7 +934,7 @@ void print_inputs(MyPaintBrush *self, float* inputs)
     float base_radius = expf(BASEVAL(self, RADIUS_LOGARITHMIC));
 
     // Directional offsets
-    Offsets offs = directional_offsets(self, base_radius);
+    Offsets offs = directional_offsets(self, base_radius, (int)STATE(self, FLIP));
     x += offs.x;
     y += offs.y;
 

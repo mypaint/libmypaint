@@ -139,6 +139,20 @@ void settings_base_values_have_changed (MyPaintBrush *self);
 
 #include "glib/mypaint-brush.c"
 
+void
+brush_reset(MyPaintBrush *self)
+{
+    self->skip = 0;
+    self->skip_last_x = 0;
+    self->skip_last_y = 0;
+    self->skipped_dtime = 0;
+    // Clear states
+    memset(self->states, 0, sizeof(self->states));
+    // Set the flip state such that it will be at "1" for the first
+    // dab, and then switch between -1 and 1 for the subsequent dabs.
+    STATE(self, FLIP) = -1;
+}
+
 /**
   * mypaint_brush_new:
   *
@@ -156,22 +170,11 @@ mypaint_brush_new(void)
     }
     self->rng = rng_double_new(1000);
     self->random_input = 0;
-    self->skip = 0;
-    self->skip_last_x = 0;
-    self->skip_last_y = 0;
-    self->skipped_dtime = 0;
     self->print_inputs = FALSE;
 
-    for (int i = 0; i < MYPAINT_BRUSH_STATES_COUNT; i++) {
-      self->states[i] = 0;
-    }
-    // Set the flip state such that it will be at "1" for the first
-    // dab, and then switch between -1 and 1 for the subsequent dabs.
-    // Also set to -1 on brush resets.
-    self->states[MYPAINT_BRUSH_STATE_FLIP] = -1;
+    brush_reset(self);
 
     mypaint_brush_new_stroke(self);
-
     settings_base_values_have_changed(self);
 
     self->reset_requested = TRUE;
@@ -1225,19 +1228,10 @@ void print_inputs(MyPaintBrush *self, float* inputs)
     if (dtime > max_dtime || self->reset_requested) {
       self->reset_requested = FALSE;
 
-      // reset skipping
-      self->skip = 0;
-      self->skip_last_x = 0;
-      self->skip_last_y = 0;
-      self->skipped_dtime = 0;
+      brush_reset(self);
 
       // reset value of random input
       self->random_input = rng_double_next(self->rng);
-
-      for (int i = 0; i < MYPAINT_BRUSH_STATES_COUNT; i++) {
-        self->states[i] = 0;
-      }
-      self->states[MYPAINT_BRUSH_STATE_FLIP] = -1;
 
       STATE(self, X) = x;
       STATE(self, Y) = y;

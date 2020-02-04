@@ -44,8 +44,6 @@ m4_define([libmypaint_api_platform_version],
 
 
 ## Dependencies ##
-
-m4_define([gegl_required_version], [0.3])
 m4_define([introspection_required_version], [1.32.0])
 
 AC_INIT([libmypaint],
@@ -272,7 +270,13 @@ AC_ARG_ENABLE(gegl,
 )
 
 if eval "test x$enable_gegl = xyes"; then
-  PKG_CHECK_MODULES(GEGL, gegl-0.3 >= gegl_required_version)
+  AC_MSG_NOTICE([Checking whether gegl-0.4 or gegl-0.3 is available])
+  # Prioritize gegl-0.4
+  PKG_CHECK_MODULES(GEGL, gegl-0.4, [GEGL_VERSION=0.4], [
+  # Fall back to gegl-0.3
+    PKG_CHECK_MODULES(GEGL, gegl-0.3, [GEGL_VERSION=0.3])
+])
+AC_SUBST(GEGL_VERSION)
 fi
 AM_CONDITIONAL(ENABLE_GEGL, test "x$enable_gegl" = "xyes")
 
@@ -294,5 +298,10 @@ AC_OUTPUT
 
 echo ""
 echo "  Configured libmypaint $LIBMYPAINT_VERSION_FULL"
+
+if test -n "$GEGL_VERSION"; then
+  echo "  Using gegl-$GEGL_VERSION"
+fi
+
 echo ""
 

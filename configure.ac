@@ -253,15 +253,18 @@ AC_ARG_WITH(glib,
     [use glib (forced on by introspection)])
 )
 
-if test "x$with_glib" = xyes ||
-   test "x$found_introspection" = xyes; then
+use_glib() {
+    test "x$with_glib" = xyes || test "x$found_introspection" = xyes
+}
+
+if use_glib; then
   PKG_CHECK_MODULES(GLIB, gobject-2.0)
   AC_DEFINE(MYPAINT_CONFIG_USE_GLIB, 1, [Define to 1 if glib is used])
   PKG_CONFIG_REQUIRES="$PKG_CONFIG_REQUIRES gobject-2.0"
 else
   AC_DEFINE(MYPAINT_CONFIG_USE_GLIB, 0, [Define to 1 if glib is used])
 fi
-AM_CONDITIONAL(WITH_GLIB, test "x$with_glib" = "xyes")
+AM_CONDITIONAL(WITH_GLIB, use_glib)
 
 ## GEGL ##
 AC_ARG_ENABLE(gegl,

@@ -185,10 +185,19 @@ AC_ARG_ENABLE(docs,
 )
 
 if test "x$enable_docs" = xyes; then
+  AC_MSG_NOTICE([Checking requirements for building docs: doxygen, sphinx + breathe extension])
   AC_CHECK_PROGS(DOXYGEN, doxygen)
+  AS_IF(test "x$DOXYGEN" != "x", [], [AC_MSG_ERROR([doxygen is required to build docs])])
   AC_CHECK_PROGS(SPHINX_BUILD, sphinx-build2 sphinx-build-2 sphinx-build3 sphinx-build-3 sphinx-build)
-  # TODO: the python "breathe" extension is also a dependency to doc building.
-  # The configure script should check for its existence.
+  AS_IF(test "x$SPHINX_BUILD" != "x", [], [AC_MSG_ERROR([sphinx is required to build docs])])
+  AC_MSG_CHECKING(for sphinx extension "breathe")
+  AS_IF([dnl
+  python -c "
+import breathe
+import breathe.exception
+breathe.exception.BreatheError" 2> /dev/null],
+  [AC_MSG_RESULT([yes])],
+  [AC_MSG_RESULT([no]); AC_MSG_ERROR(the sphinx breathe extension is required to build docs)])
 fi
 AM_CONDITIONAL(ENABLE_DOCS,
                test "x$DOXYGEN" != "x" && test "x$SPHINX_BUILD" != "x")

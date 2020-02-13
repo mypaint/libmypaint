@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-01-10 10:35+0100\n"
-"PO-Revision-Date: 2020-01-09 13:21+0000\n"
+"PO-Revision-Date: 2020-02-15 01:50+0000\n"
 "Last-Translator: Milo Ivir <mail@milotype.de>\n"
 "Language-Team: Croatian <https://hosted.weblate.org/projects/mypaint/"
 "libmypaint/hr/>\n"
@@ -16,9 +16,9 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
-"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 3.10.1-dev\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<="
+"4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"X-Generator: Weblate 3.11-dev\n"
 
 #. Brush setting
 #: ../brushsettings-gen.h:4
@@ -65,11 +65,21 @@ msgid ""
 "1.0 the opaque value above is for the final brush stroke, assuming each "
 "pixel gets (dabs_per_radius*2) brushdabs on average during a stroke"
 msgstr ""
+"Ispravi nelinearnost koja nastaje pri miješanju višestrukih otisaka koji se "
+"preklapaju. Tim ispravkom trebalo bi doći do linearnog („prirodnog”) "
+"pritiska, kad je pritisak mapiran na opaque_multiply, kao što se to obično "
+"radi. 0,9 je dobro za standardne poteze. Smanji vrijednost, ako kista snažno "
+"raspršuje ili povisi vrijednost, ako koristiš otiske u sekundi "
+"(dabs_per_second).\n"
+"0,0 neprozirna vrijednost iznad je za pojedinačne otiske\n"
+"1,0 neprozirna vrijednost iznad je za konačni potez kista, pod pretpostavkom "
+"da svaki piksel prosječno dobije (dabs_per_radius*2) otisaka kista tijekom "
+"poteza"
 
 #. Brush setting
 #: ../brushsettings-gen.h:7
 msgid "Radius"
-msgstr "Područje"
+msgstr "Radijus"
 
 #. Tooltip for the "Radius" brush setting
 #: ../brushsettings-gen.h:7
@@ -78,7 +88,7 @@ msgid ""
 " 0.7 means 2 pixels\n"
 " 3.0 means 20 pixels"
 msgstr ""
-"Osnovni polumjer kista (logaritmički)\n"
+"Osnovni radijus kista (logaritmički)\n"
 " 0,7 znači 2 piksela\n"
 " 3,0 znači 20 piksela"
 
@@ -112,7 +122,7 @@ msgstr ""
 #. Brush setting
 #: ../brushsettings-gen.h:10
 msgid "Dabs per basic radius"
-msgstr "Broj otisaka po osnovnom polumjeru"
+msgstr "Broj otisaka po osnovnom radijusu"
 
 #. Tooltip for the "Dabs per basic radius" brush setting
 #: ../brushsettings-gen.h:10
@@ -120,11 +130,13 @@ msgid ""
 "How many dabs to draw while the pointer moves a distance of one brush radius "
 "(more precise: the base value of the radius)"
 msgstr ""
+"Koliko će se otisaka crtati kad se pokazivač pomakne za jedan radijus kista "
+"(točnije: osnovna vrijednost radijusa)"
 
 #. Brush setting
 #: ../brushsettings-gen.h:11
 msgid "Dabs per actual radius"
-msgstr "Broj otisaka po stvarnom polumjeru"
+msgstr "Broj otisaka po stvarnom radijusu"
 
 #. Tooltip for the "Dabs per actual radius" brush setting
 #: ../brushsettings-gen.h:11
@@ -132,11 +144,13 @@ msgid ""
 "Same as above, but the radius actually drawn is used, which can change "
 "dynamically"
 msgstr ""
+"Isto kao gore, ali se koristi stvarno nacrtani radijus, koji se može "
+"dinamički mijenjati"
 
 #. Brush setting
 #: ../brushsettings-gen.h:12
 msgid "Dabs per second"
-msgstr "Broj otisaka po sekundi"
+msgstr "Broj otisaka u sekundi"
 
 #. Tooltip for the "Dabs per second" brush setting
 #: ../brushsettings-gen.h:12
@@ -188,7 +202,7 @@ msgstr ""
 #. Brush setting
 #: ../brushsettings-gen.h:16
 msgid "Radius by random"
-msgstr "Polumjer slučajno"
+msgstr "Slučajni radijus"
 
 #. Tooltip for the "Radius by random" brush setting
 #: ../brushsettings-gen.h:16
@@ -199,6 +213,13 @@ msgid ""
 "transparent\n"
 "2) it will not change the actual radius seen by dabs_per_actual_radius"
 msgstr ""
+"Promijeni radijus slučajno za svaki otisak. To možeš učiniti i sa slučajnim "
+"(by_random) unosom u postavkama radijusa. Ako to učiniš ovdje, postoje dvije "
+"razlike:\n"
+"1) vrijednost za neprozirnost bit će ispravljena, tako da je otisci velikih "
+"radijusa postaju prozirniji\n"
+"2) to neće promijeniti stvarni radijus koji se vidi pri broju otisaka po "
+"stvarnom radijusu (dabs_per_actual_radius)"
 
 #. Brush setting
 #: ../brushsettings-gen.h:17
@@ -237,6 +258,11 @@ msgid ""
 "+8.0 very fast speed increases 'fine speed' a lot\n"
 "For very slow speed the opposite happens."
 msgstr ""
+"Ovime se mijenja reakcija unosa „fina brzina” u ekstremnu fizičku brzinu. "
+"Razlika se najbolje vidi, ako je „fina brzina” mapirana na radijus.\n"
+"−8,0 vrlo brza brzina jedva povećava „finu brzinu”\n"
+"+8,0 vrlo brza brzina snažno povećava „finu brzinu”\n"
+"Za vrlo sporu brzinu, događa se suprotno."
 
 #. Brush setting
 #: ../brushsettings-gen.h:20
@@ -261,6 +287,10 @@ msgid ""
 " 1.0 standard deviation is one basic radius away\n"
 "<0.0 negative values produce no jitter"
 msgstr ""
+"Dodaj slučajni odmak položaju svakog otiska\n"
+" 0,0 deaktivirano\n"
+" 1,0 standardno odstupanje je jedan osnovni radijus\n"
+"<0,0 negativne vrijednosti ne proizvode raspršenost"
 
 #. Brush setting
 #: ../brushsettings-gen.h:22
@@ -404,6 +434,9 @@ msgid ""
 "Slowdown pointer tracking speed. 0 disables it, higher values remove more "
 "jitter in cursor movements. Useful for drawing smooth, comic-like outlines."
 msgstr ""
+"Smanjuje brzinu praćenja pokazivača. 0 je deaktivira, veće vrijednosti "
+"uklanjaju podrhtavanje pri kretnji kursora više. Korisno za crtanje mekanih, "
+"stripovnih kontura."
 
 #. Brush setting
 #: ../brushsettings-gen.h:35
@@ -630,7 +663,7 @@ msgstr ""
 #. Brush setting
 #: ../brushsettings-gen.h:52
 msgid "Smudge radius"
-msgstr "Područje razmazivanja"
+msgstr "Radijus razmazivanja"
 
 #. Tooltip for the "Smudge radius" brush setting
 #: ../brushsettings-gen.h:52
@@ -642,6 +675,11 @@ msgid ""
 "+0.7 twice the brush radius\n"
 "+1.6 five times the brush radius (slow performance)"
 msgstr ""
+"Ovo mijenja radijus kruga gdje se boja uzima za razmazivanje.\n"
+" 0,0 koristi radijus kista\n"
+"−0,7 pola radijusa kista (brzo, ali ne uvijek intuitivno)\n"
+"+0,7 dvostruki radijus kista\n"
+"+1,6 pet puta veći radijus kista (spore performanse)"
 
 #. Brush setting
 #: ../brushsettings-gen.h:53
@@ -738,6 +776,8 @@ msgid ""
 "Aspect ratio of the dabs; must be >= 1.0, where 1.0 means a perfectly round "
 "dab."
 msgstr ""
+"Omjer proporcija otisaka; mora biti veće ili jednako 1,0, pri čemu 1.0 znači "
+"savršeno okrugli otisak."
 
 #. Brush setting
 #: ../brushsettings-gen.h:60
@@ -820,6 +860,9 @@ msgid ""
 "0.05 = 5 levels, 0.2 = 20 levels, etc.\n"
 "Values above 0.5 may not be noticeable."
 msgstr ""
+"Broj razina posterizacije (podijeljeno sa 100).\n"
+"0,05 = 5 razina, 0,2 = 20 razina, itd.\n"
+"Vrijednosti veće od 0,5 se možda neće uočiti."
 
 #. Brush setting
 #: ../brushsettings-gen.h:66
@@ -832,6 +875,8 @@ msgid ""
 "Snap brush dab's center and its radius to pixels. Set this to 1.0 for a thin "
 "pixel brush."
 msgstr ""
+"Privuci centar otiska kista i njegov radijus na piksele. Postavi ovo na 1,0 "
+"za kist s tankim pikselima."
 
 #. Brush setting
 #: ../brushsettings-gen.h:67
@@ -964,7 +1009,7 @@ msgstr "Smjer 360"
 #. Tooltip for the "Direction 360" brush input
 #: ../brushsettings-gen.h:81
 msgid "The angle of the stroke, from 0 to 360 degrees."
-msgstr ""
+msgstr "Kut poteza, od 0 do 360 stupnjeva."
 
 #. Brush input
 #: ../brushsettings-gen.h:82
@@ -1050,11 +1095,15 @@ msgid ""
 "For the Radius setting, using a value of -4.15 makes the brush size roughly "
 "constant, relative to the level of zoom."
 msgstr ""
+"Trenutačna razina zumiranja prikaza platna.\n"
+"Logaritamski: 0,0 je 100 %, 0,69 je 200 %, −1,38 je 25 %\n"
+"Za postavku radijusa, upotrebom vrijednost od −4,15, čini veličinu kista "
+"otprilike konstantnom u odnosu na razinu zumiranja."
 
 #. Brush input
 #: ../brushsettings-gen.h:88
 msgid "Base Brush Radius"
-msgstr "Osnovni polumjer kista"
+msgstr "Osnovni radijus kista"
 
 #. Tooltip for the "Base Brush Radius" brush input
 #: ../brushsettings-gen.h:88
@@ -1066,6 +1115,12 @@ msgid ""
 "Take note of \"Dabs per basic radius\" and \"Dabs per actual radius\", which "
 "behave much differently."
 msgstr ""
+"Osnovni radijus kista omogućuje promjenu ponašanja kista povećavanjem ili "
+"smanjivanjem.\n"
+"Moguće je čak i otkazati povećanje veličine otisaka i prilagoditi nešto "
+"drugo kako bi se kist povećao.\n"
+"Misli na to, da se „Broj otisaka po osnovnom radijusu” i „Broj otisaka po "
+"stvarnom radijusu” ponašaju sasvim drugačije."
 
 #. Brush input
 #: ../brushsettings-gen.h:89

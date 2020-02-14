@@ -5,8 +5,8 @@ msgstr ""
 "Project-Id-Version: 0.8\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-01-10 10:35+0100\n"
-"PO-Revision-Date: 2019-02-27 00:18+0000\n"
-"Last-Translator: glixx <roman_romul@mail.ru>\n"
+"PO-Revision-Date: 2020-02-15 01:50+0000\n"
+"Last-Translator: Rania Amina <reaamina@gmail.com>\n"
 "Language-Team: Indonesian <https://hosted.weblate.org/projects/mypaint/"
 "libmypaint/id/>\n"
 "Language: id\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 3.5-dev\n"
+"X-Generator: Weblate 3.11-dev\n"
 
 #. Brush setting
 #: ../brushsettings-gen.h:4
@@ -169,7 +169,7 @@ msgstr ""
 #. Brush setting
 #: ../brushsettings-gen.h:13
 msgid "GridMap Scale"
-msgstr ""
+msgstr "Skala GridMap"
 
 #. Tooltip for the "GridMap Scale" brush setting
 #: ../brushsettings-gen.h:13

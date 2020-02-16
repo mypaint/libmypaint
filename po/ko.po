@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: Mypaint Korean\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-01-10 10:35+0100\n"
-"PO-Revision-Date: 2019-12-23 09:02+0000\n"
+"PO-Revision-Date: 2020-02-17 19:32+0000\n"
 "Last-Translator: geun-tak Jeong <beroberos@gmail.com>\n"
 "Language-Team: Korean <https://hosted.weblate.org/projects/mypaint/"
 "libmypaint/ko/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 3.10\n"
+"X-Generator: Weblate 3.11\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
 #. Brush setting
@@ -641,7 +641,7 @@ msgstr ""
 #. Brush setting - The name Pigment refers to the fact that this kind of color mixing is more similar to how colors mix in physical paint.
 #: ../brushsettings-gen.h:47
 msgid "Pigment"
-msgstr "그림 물감"
+msgstr "안료"
 
 #. Tooltip for the "Pigment" brush setting - If this string is difficult to translate, feel free to change it to something more descriptive. Just try to be succinct and consistent.
 #: ../brushsettings-gen.h:47

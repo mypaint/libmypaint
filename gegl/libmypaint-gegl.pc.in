@@ -3,9 +3,9 @@ exec_prefix=@exec_prefix@
 libdir=@libdir@
 includedir=@includedir@
 
-Name: libmypaint
+Name: libmypaint-gegl-@LIBMYPAINT_API_PLATFORM_VERSION@
 Description: MyPaint brush engine library, with GEGL integration.
 Version: @LIBMYPAINT_VERSION@
-Requires: gegl-0.3 libmypaint-@LIBMYPAINT_API_PLATFORM_VERSION@
+Requires: gegl-@GEGL_VERSION@ libmypaint-@LIBMYPAINT_API_PLATFORM_VERSION@
 Cflags: -I${includedir}/libmypaint-gegl
 Libs: -L${libdir} -lmypaint-gegl

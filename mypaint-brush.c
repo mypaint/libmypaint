@@ -964,7 +964,12 @@ gboolean prepare_and_draw_dab (MyPaintBrush *self, MyPaintSurface * surface, gbo
       float dabs_per_pixel;
       // dabs_per_pixel is just estimated roughly, I didn't think hard
       // about the case when the radius changes during the stroke
-      dabs_per_pixel = (STATE(self, DABS_PER_ACTUAL_RADIUS) + STATE(self, DABS_PER_BASIC_RADIUS)) * 2.0;
+      if (legacy) {
+        dabs_per_pixel = BASEVAL(self, DABS_PER_ACTUAL_RADIUS) + BASEVAL(self, DABS_PER_BASIC_RADIUS);
+      } else {
+        dabs_per_pixel = STATE(self, DABS_PER_ACTUAL_RADIUS) + STATE(self, DABS_PER_BASIC_RADIUS);
+      }
+      dabs_per_pixel *= 2.0;
 
       // the correction is probably not wanted if the dabs don't overlap
       if (dabs_per_pixel < 1.0) dabs_per_pixel = 1.0;

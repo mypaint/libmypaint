@@ -1143,8 +1143,34 @@ gboolean prepare_and_draw_dab (MyPaintBrush *self, MyPaintSurface * surface, gbo
     }
   }
 
+  static inline float
+  legacy_dab_count(float dist, float base_radius, float dt, MyPaintBrush* self)
+  {
+      const float num_from_actual_radius = dist / STATE(self, ACTUAL_RADIUS) * BASEVAL(self, DABS_PER_ACTUAL_RADIUS);
+      const float num_from_basic_radius = dist / base_radius * BASEVAL(self, DABS_PER_BASIC_RADIUS);
+      const float num_from_seconds = dt * BASEVAL(self, DABS_PER_SECOND);
+      return num_from_actual_radius + num_from_basic_radius + num_from_seconds;
+  }
+
+  static inline float
+  state_based_dab_count(float dist, float base_radius, float dt, MyPaintBrush* self)
+  {
+
+      const float dpar_state = STATE(self, DABS_PER_ACTUAL_RADIUS);
+      const float num_by_actual_radius = dist / STATE(self, ACTUAL_RADIUS) *
+        (dpar_state && !isnan(dpar_state) ? dpar_state : BASEVAL(self, DABS_PER_ACTUAL_RADIUS));
+
+      const float dpbr_state = STATE(self, DABS_PER_BASIC_RADIUS);
+      const float num_by_basic_radius =
+        dist / base_radius * (dpbr_state && !isnan(dpbr_state) ? dpbr_state : BASEVAL(self, DABS_PER_BASIC_RADIUS));
+
+      const float dps_state = STATE(self, DABS_PER_SECOND);
+      const float num_by_time_delta = dt * (!isnan(dps_state) ? dps_state : BASEVAL(self, DABS_PER_SECOND));
+      return num_by_actual_radius + num_by_basic_radius + num_by_time_delta;
+  }
+
   // How many dabs will be drawn between the current and the next (x, y, +dt) position?
-  float count_dabs_to (MyPaintBrush *self, float x, float y, float dt)
+  float count_dabs_to (MyPaintBrush *self, float x, float y, float dt, gboolean legacy)
   {
     const float base_radius_log = BASEVAL(self, RADIUS_LOGARITHMIC);
     const float base_radius = CLAMP(expf(base_radius_log), ACTUAL_RADIUS_MIN, ACTUAL_RADIUS_MAX);
@@ -1170,14 +1196,11 @@ gboolean prepare_and_draw_dab (MyPaintBrush *self, MyPaintSurface * surface, gbo
       dist = hypotf(dx, dy);
     }
 
-    const float res1 = dist / STATE(self, ACTUAL_RADIUS) * STATE(self, DABS_PER_ACTUAL_RADIUS);
-    const float res2 = dist / base_radius * STATE(self, DABS_PER_BASIC_RADIUS);
-    const float res3 = dt * STATE(self, DABS_PER_SECOND);
-    //on first load if isnan the engine messes up and won't paint
-    //until you switch modes
-    float res4 = res1 + res2 + res3;
-    if (isnan(res4) || res4 < 0.0) { res4 = 0.0; }
-    return res4;
+    if (legacy) {
+      return legacy_dab_count(dist, base_radius, dt, self);
+    } else {
+      return state_based_dab_count(dist, base_radius, dt, self);
+    }
   }
 
 int
@@ -1354,7 +1377,7 @@ mypaint_brush_stroke_to_internal(
     // draw many (or zero) dabs to the next position
     // see doc/images/stroke2dabs.png
     float dabs_moved = STATE(self, PARTIAL_DABS);
-    float dabs_todo = count_dabs_to (self, x, y, dtime);
+    float dabs_todo = count_dabs_to (self, x, y, dtime, legacy);
     while (dabs_moved + dabs_todo >= 1.0) { // there are dabs pending
       { // linear interpolation (nonlinear variant was too slow, see SVN log)
         float frac; // fraction of the remaining distance to move
@@ -1398,7 +1421,7 @@ mypaint_brush_stroke_to_internal(
       self->random_input = rng_double_next(self->rng);
 
       dtime_left -= step_dtime;
-      dabs_todo = count_dabs_to(self, x, y, dtime_left);
+      dabs_todo = count_dabs_to(self, x, y, dtime_left, legacy);
     }
 
     {

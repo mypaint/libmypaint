@@ -9,7 +9,7 @@ AC_PREREQ(2.62)
 
 m4_define([libmypaint_api_major], [1])
 m4_define([libmypaint_api_minor], [5])
-m4_define([libmypaint_api_micro], [0])
+m4_define([libmypaint_api_micro], [1])
 m4_define([libmypaint_api_prerelease], [])  # may be blank
 
 # ABI version. Changes independently of API version.
@@ -17,7 +17,7 @@ m4_define([libmypaint_api_prerelease], [])  # may be blank
 # https://www.gnu.org/software/libtool/manual/html_node/Updating-version-info.html
 # The rules are fiddly, and are summarized here.
 
-m4_define([libmypaint_abi_revision], [0])  # increment on every release
+m4_define([libmypaint_abi_revision], [1])  # increment on every release
 m4_define([libmypaint_abi_current], [1])  # inc when add/remove/change interfaces
 m4_define([libmypaint_abi_age], [0])  # inc only if changes backward compat
 

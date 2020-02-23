@@ -1,6 +1,18 @@
 #include "libmypaint.c"
 #include "mypaint-fixed-tiled-surface.h"
 
+/*
+
+This example draws a rectangle on a fixed surface, using the default brush.
+It only uses pre-v1.5.0 interfaces/structures.
+
+Compiling and running it will produce a file called "output.ppm".
+Open it in a compatible image viewer to see the result.
+
+The ppm format is _very_ space-inefficient, so only use low resolutions.
+
+*/
+
 void
 stroke_to(MyPaintBrush *brush, MyPaintSurface *surf, float x, float y)
 {

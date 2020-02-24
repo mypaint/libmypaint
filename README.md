@@ -193,3 +193,11 @@ new strings immediately.
 
 Further documentation can be found in the libmypaint wiki:
 <https://github.com/mypaint/libmypaint/wiki>.
+
+
+## Software using libmypaint
+
+* [MyPaint](https://github.com/mypaint/mypaint)
+* [GIMP](https://gitlab.gnome.org/GNOME/gimp/)
+* [OpenToonz](https://github.com/opentoonz/opentoonz/)
+* [enve](https://github.com/MaurycyLiebner/enve/)

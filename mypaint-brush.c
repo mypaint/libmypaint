@@ -719,10 +719,6 @@ void print_inputs(MyPaintBrush *self, float* inputs)
     STATE(self, Y) += step_dy;
     STATE(self, PRESSURE) += step_dpressure;
 
-    STATE(self, DABS_PER_BASIC_RADIUS) = SETTING(self, DABS_PER_BASIC_RADIUS);
-    STATE(self, DABS_PER_ACTUAL_RADIUS) = SETTING(self, DABS_PER_ACTUAL_RADIUS);
-    STATE(self, DABS_PER_SECOND) = SETTING(self, DABS_PER_SECOND);
-
     STATE(self, DECLINATION) += step_declination;
     STATE(self, ASCENSION) += step_ascension;
     STATE(self, DECLINATIONX) += step_declinationx;
@@ -822,6 +818,10 @@ void print_inputs(MyPaintBrush *self, float* inputs)
     for (int i = 0; i < MYPAINT_BRUSH_SETTINGS_COUNT; i++) {
       self->settings_value[i] = mypaint_mapping_calculate(self->settings[i], (inputs));
     }
+
+    STATE(self, DABS_PER_BASIC_RADIUS) = SETTING(self, DABS_PER_BASIC_RADIUS);
+    STATE(self, DABS_PER_ACTUAL_RADIUS) = SETTING(self, DABS_PER_ACTUAL_RADIUS);
+    STATE(self, DABS_PER_SECOND) = SETTING(self, DABS_PER_SECOND);
 
     {
       const float fac = 1.0 - exp_decay(SETTING(self, SLOW_TRACKING_PER_DAB), step_ddab);

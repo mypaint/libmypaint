@@ -30,7 +30,6 @@ main(int argc, char argv[]) {
 
     /* Draw a rectangle on the surface using the brush */
     mypaint_surface_begin_atomic((MyPaintSurface*)surface);
-    stroke_to(brush, (MyPaintSurface*)surface, 0, 0);
     stroke_to(brush, (MyPaintSurface*)surface, wq, hq);
     stroke_to(brush, (MyPaintSurface*)surface, 4 * wq, hq);
     stroke_to(brush, (MyPaintSurface*)surface, 4 * wq, 4 * hq);

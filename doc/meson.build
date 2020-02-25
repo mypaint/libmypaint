@@ -1,25 +1,31 @@
-if ENABLE_DOCS
-  doc_conf = configuration_data()
-  doc_conf.merge_from(conf)
-  doc_conf.set('SOURCE_ROOT', meson.source_root())
-  doc_conf.set('BUILD_PATH', meson.current_build_dir())
+doc_conf = configuration_data()
+doc_conf.merge_from(conf)
 
-  doxyfile = configure_file(
-    input : 'Doxyfile.in',
-    output : 'Doxyfile',
-    configuration : doc_conf)
+doc_conf.set('SOURCE_ROOT', meson.source_root())
+doc_conf.set('BUILD_PATH', meson.current_build_dir())
 
-  doxygen_index = custom_target('doxygen',
-    command : [DOXYGEN, '@INPUT@'],
-    input : doxyfile,
-    output : 'index.xml')
+doxyfile = configure_file(
+  input: 'Doxyfile.in',
+  output: 'Doxyfile',
+  configuration: doc_conf,
+)
 
-  subdir('source')
+doxygen_index = custom_target('doxygen',
+  input : doxyfile,
+  output: 'index.xml'
+  command: [
+    doxygen, '@INPUT@',
+  ],
+)
 
-  run_target('sphinx',
-    command : [SPHINX_BUILD,
-      '-c', join_paths(meson.current_build_dir(), 'source'),
-      join_paths(meson.current_source_dir(), 'source'),
-      join_paths(meson.current_build_dir(), 'build')],
-    depends : [doxygen_index])
-endif
+subdir('source')
+
+run_target('sphinx',
+  depends: doxygen_index,
+  command: [
+    sphinx_build,
+    '-c', meson.current_build_dir() / 'source',
+    meson.current_source_dir() / 'source',
+    meson.current_build_dir() / 'build',
+  ],
+)

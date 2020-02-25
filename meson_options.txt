@@ -1,23 +1,10 @@
-option('profiling', type : 'boolean', value : false,
-  description : 'Turn on profiling')
+option('glib',          type: 'boolean', value: true,  description: 'Use GLib (forced on by introspection)')
+option('gegl',          type: 'boolean', value: false, description: 'Enable GEGL based code')
+option('openmp',        type: 'boolean', value: false, description: 'Compile with OpenMP')
+option('gperftools',    type: 'boolean', value: false, description: 'Enable gperftools in build, for profiling')
 
-option('openmp', type : 'boolean', value : false,
-  description : 'Compile with OpenMP')
+option('profiling',     type: 'boolean', value: false, description: 'Turn on profiling')
 
-option('gperftools', type : 'boolean', value : false,
-  description : 'Enable gperftools in build, for profiling')
-
-option('docs', type : 'boolean', value : false,
-  description : 'Enable documentation build')
-
-option('i18n', type : 'boolean', value : true,
-  description : 'Enable internationalization')
-
-option('introspection', type : 'boolean', value : true,
-  description : 'Enable GObject Instrospection')
-
-option('glib', type : 'boolean', value : true,
-  description : 'Use GLib (forced on by introspection)')
-
-option('gegl', type : 'boolean', value : false,
-  description : 'Enable GEGL based code')
+option('docs',          type: 'boolean', value: false, description: 'Enable documentation build')
+option('i18n',          type: 'boolean', value: true,  description: 'Enable internationalization')
+option('introspection', type: 'boolean', value: true,  description: 'Enable GObject Instrospection')

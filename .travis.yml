@@ -4,6 +4,7 @@ compiler:
   - gcc
 
 sudo: required
+services: docker
 
 dist: trusty
 
@@ -15,18 +16,36 @@ addons:
       - libgirepository1.0-dev
       - libgegl-dev
 
-script:
-    - ./autogen.sh
-    - ./configure
-    - make
-    - make clean
-    - make distcheck
-    - make maintainer-clean
-    - ./autogen.sh
-    - ./configure --with-introspection
-    - make
-    - make maintainer-clean
-    - ./autogen.sh
-    - ./configure --with-gegl
-    - make
-    - make maintainer-clean
+jobs:
+  include:
+    - stage: "Build"
+      name: "Autotools build"
+      script:
+        - ./autogen.sh
+        - ./configure
+        - make
+        - make clean
+        - make distcheck
+        - make maintainer-clean
+        - ./autogen.sh
+        - ./configure --with-introspection
+        - make
+        - make maintainer-clean
+        - ./autogen.sh
+        - ./configure --with-gegl
+        - make
+        - make maintainer-clean
+
+    - name: "Meson build"
+      script:
+        - sudo docker pull ubuntu:disco
+        - sudo docker run -t -v $(pwd):/sources ubuntu:disco /bin/bash -ec "
+             apt update -y
+          && apt install -y meson gettext libjson-c-dev libgirepository1.0-dev libgegl-dev git
+          && meson /sources _build --buildtype=release
+          && ninja -C _build test
+          && ninja -C _build dist
+          && meson /sources _build_gegl --buildtype=release -Dgegl=true
+          && ninja -C _build_gegl test
+          && ninja -C _build_gegl dist
+          "

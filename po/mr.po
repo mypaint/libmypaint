@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-01-10 10:35+0100\n"
-"PO-Revision-Date: 2020-01-10 08:44+0000\n"
+"PO-Revision-Date: 2020-02-27 17:32+0000\n"
 "Last-Translator: Prachi Joshi <josprachi@yahoo.com>\n"
 "Language-Team: Marathi <https://hosted.weblate.org/projects/mypaint/"
 "libmypaint/mr/>\n"
@@ -16,8 +16,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 3.10.1\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.0-dev\n"
 
 #. Brush setting
 #: ../brushsettings-gen.h:4
@@ -802,6 +802,8 @@ msgid ""
 "Strength of posterization, reducing number of colors based on the "
 "\"Posterization levels\" setting, while retaining alpha."
 msgstr ""
+"अल्फा टिकवून ठेवताना पोस्टररायझेशनची ताकद, \"पोस्टररायझेशन लेव्हल\" सेटिंगवर "
+"आधारित रंगांची संख्या कमी करणारी."
 
 #. Brush setting
 #: ../brushsettings-gen.h:65

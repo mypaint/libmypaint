@@ -37,7 +37,7 @@ meson _build --buildtype=release -Dgegl=false -Ddocs=false
 pushd _build
 ninja test
 ninja dist
-popd _build
+popd
 rm -rf _build
 
 ./autogen.sh

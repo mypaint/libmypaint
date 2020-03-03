@@ -11,7 +11,9 @@ pacman --noconfirm -S --needed \
        base-devel \
        ${PKG_PREFIX}-json-c \
        ${PKG_PREFIX}-glib2 \
-       ${PKG_PREFIX}-gobject-introspection
+       ${PKG_PREFIX}-gobject-introspection \
+       ${PKG_PREFIX}-meson \
+       git
 
 
 # Add m4 directories to the ACLOCAL_PATH
@@ -29,6 +31,14 @@ done
 
 export ACLOCAL_PATH
 export PWD="$APPVEYOR_BULD_FOLDER"
+
+# Meson build, we need a way to parallel this with Autotools
+meson _build --buildtype=release -Dgegl=false -Ddocs=false
+pushd _build
+ninja test
+ninja dist
+popd _build
+rm -rf _build
 
 ./autogen.sh
 ./configure

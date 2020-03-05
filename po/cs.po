@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: 0.7.1-git\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-03-04 06:53+0100\n"
-"PO-Revision-Date: 2020-01-11 10:21+0000\n"
-"Last-Translator: Jesper Lloyd <jpl.lloyd@gmail.com>\n"
+"PO-Revision-Date: 2020-03-07 09:32+0000\n"
+"Last-Translator: Pavel Fric <pavelfric@yahoo.com>\n"
 "Language-Team: Czech <https://hosted.weblate.org/projects/mypaint/libmypaint/"
 "cs/>\n"
 "Language: cs\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Generator: Weblate 3.10.1\n"
+"X-Generator: Weblate 4.0-dev\n"
 "X-Poedit-Language: Czech\n"
 "X-Poedit-Country: CZECH REPUBLIC\n"
 
@@ -114,13 +114,14 @@ msgstr ""
 #. Brush setting
 #: ../brushsettings.json:238
 msgid "Softness"
-msgstr ""
+msgstr "Měkkost"
 
 #. Tooltip for the "Softness" brush setting
 #: ../brushsettings.json:242
 msgid ""
 "Soften brush-circle from center to edge (setting to 1.0 will draw nothing)."
 msgstr ""
+"Změkčit kruh štětce od středu k okraji (nastavení na 1.0 nebude kreslit nic)."
 
 #. Brush setting
 #: ../brushsettings.json:247

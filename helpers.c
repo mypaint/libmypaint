@@ -546,13 +546,15 @@ rgb_to_spectral (float r, float g, float b, float *spectral_) {
 void
 spectral_to_rgb (float *spectral, float *rgb_) {
   float offset = 1.0 - WGM_EPSILON;
+  // We need this tmp. array to allow auto vectorization.
+  float tmp[3] = {0};
   for (int i=0; i<10; i++) {
-    rgb_[0] += T_MATRIX_SMALL[0][i] * spectral[i];
-    rgb_[1] += T_MATRIX_SMALL[1][i] * spectral[i];
-    rgb_[2] += T_MATRIX_SMALL[2][i] * spectral[i];
+    tmp[0] += T_MATRIX_SMALL[0][i] * spectral[i];
+    tmp[1] += T_MATRIX_SMALL[1][i] * spectral[i];
+    tmp[2] += T_MATRIX_SMALL[2][i] * spectral[i];
   }
   for (int i=0; i<3; i++) {
-    rgb_[i] = CLAMP((rgb_[i] - WGM_EPSILON) / offset, 0.0f, 1.0f);
+    rgb_[i] = CLAMP((tmp[i] - WGM_EPSILON) / offset, 0.0f, 1.0f);
   }
 }
 

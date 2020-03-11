@@ -62,6 +62,7 @@ test_surface_drawing(void *user_data)
 
     MyPaintSurface *surface = data->factory_function(data->factory_user_data);
     MyPaintBrush *brush = mypaint_brush_new();
+    mypaint_brush_from_defaults(brush);
     MyPaintUtilsStrokePlayer *player = mypaint_utils_stroke_player_new();
 
     mypaint_brush_from_string(brush, brush_data);

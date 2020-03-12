@@ -77,12 +77,16 @@ void draw_dab_pixels_BlendMode_Normal_Paint (uint16_t * mask,
                                        uint16_t color_b,
                                        uint16_t opacity) {
 
+  // convert top to spectral.  Already straight color
+  float spectral_a[10] = {0};
+  rgb_to_spectral((float)color_r / (1 << 15), (float)color_g / (1 << 15), (float)color_b / (1 << 15), spectral_a);
+  // pigment-mode does not like very low opacity, probably due to rounding
+  // errors with int->float->int round-trip.  Once we convert to pure
+  // float engine this might be fixed.  For now enforce a minimum opacity:
+  opacity = MAX(opacity, 150);
+
   while (1) {
     for (; mask[0]; mask++, rgba+=4) {
-      // pigment-mode does not like very low opacity, probably due to rounding
-      // errors with int->float->int round-trip.  Once we convert to pure
-      // float engine this might be fixed.  For now enforce a minimum opacity:
-      opacity = MAX(opacity, 150);
       uint32_t opa_a = mask[0]*(uint32_t)opacity/(1<<15); // topAlpha
       uint32_t opa_b = (1<<15)-opa_a; // bottomAlpha
       // optimization- if background has 0 alpha we can just do normal additive
@@ -104,16 +108,12 @@ void draw_dab_pixels_BlendMode_Normal_Paint (uint16_t * mask,
 
       rgb_to_spectral((float)rgba[0] / rgba[3], (float)rgba[1] / rgba[3], (float)rgba[2] / rgba[3], spectral_b);
 
-      // convert top to spectral.  Already straight color
-      float spectral_a[10] = {0};
-      rgb_to_spectral((float)color_r / (1<<15), (float)color_g / (1<<15), (float)color_b / (1<<15), spectral_a);
-
       // mix to the two spectral reflectances using WGM
       float spectral_result[10] = {0};
       for (int i=0; i<10; i++) {
         spectral_result[i] = fastpow(spectral_a[i], fac_a) * fastpow(spectral_b[i], fac_b);
       }
-      
+
       // convert back to RGB and premultiply alpha
       float rgb_result[3] = {0};
       spectral_to_rgb(spectral_result, rgb_result);
@@ -447,9 +447,13 @@ void draw_dab_pixels_BlendMode_LockAlpha_Paint (uint16_t * mask,
                                           uint16_t color_b,
                                           uint16_t opacity) {
 
+  // convert top to spectral.  Already straight color
+  float spectral_a[10] = {0};
+  rgb_to_spectral((float)color_r / (1<<15), (float)color_g / (1<<15), (float)color_b / (1<<15), spectral_a);
+  opacity = MAX(opacity, 150);
+
   while (1) {
     for (; mask[0]; mask++, rgba+=4) {
-      opacity = MAX(opacity, 150);
       uint32_t opa_a = mask[0]*(uint32_t)opacity/(1<<15); // topAlpha
       uint32_t opa_b = (1<<15)-opa_a; // bottomAlpha
       opa_a *= rgba[3];
@@ -464,10 +468,6 @@ void draw_dab_pixels_BlendMode_LockAlpha_Paint (uint16_t * mask,
       float fac_b = 1.0 - fac_a;
       float spectral_b[10] = {0};
       rgb_to_spectral((float)rgba[0] / rgba[3], (float)rgba[1] / rgba[3], (float)rgba[2] / rgba[3], spectral_b);
-
-      // convert top to spectral.  Already straight color
-      float spectral_a[10] = {0};
-      rgb_to_spectral((float)color_r / (1<<15), (float)color_g / (1<<15), (float)color_b / (1<<15), spectral_a);
 
       // mix to the two spectral colors using WGM
       float spectral_result[10] = {0};

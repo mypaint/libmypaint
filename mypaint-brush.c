@@ -1266,8 +1266,11 @@ void print_inputs(MyPaintBrush *self, float* inputs)
   /**
    * mypaint_brush_stroke_to:
    * @dtime: Time since last motion event, in seconds.
+   * @viewzoom: Canvas zoom; 1.0 = 100% zoom. Zoom value v *must* be in range:
+   * 0.0 < v < FLOAT_MAX (reasonable max is probably always below 100).
    *
    * Should be called once for each motion event.
+   *
    *
    * Returns: non-0 if the stroke is finished or empty, else 0.
    */

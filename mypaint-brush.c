@@ -1237,6 +1237,9 @@ mypaint_brush_stroke_to(
 /**
  * mypaint_brush_stroke_to_2:
  * @dtime: Time since last motion event, in seconds.
+ * @viewzoom: Canvas zoom; 1.0 = 100% zoom. Zoom value v *must* be in range:
+ * 0.0 < v < FLOAT_MAX (reasonable max is probably always below 100). Zoom value
+ * cannot be 0!
  *
  * Should be called once for each motion event.
  *

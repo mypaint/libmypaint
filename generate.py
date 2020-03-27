@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 # libmypaint - The MyPaint Brush Library
 # Copyright (C) 2007-2012 Martin Renold <martinxyz@gmx.ch>
 # Copyright (C) 2012-2020 by the MyPaint Development Team.

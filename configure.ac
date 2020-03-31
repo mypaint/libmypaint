@@ -281,6 +281,7 @@ AC_ARG_ENABLE(gegl,
     [enable GEGL based code in build (yes|no, default=no)])
 )
 
+DOXYGEN_EXCLUDED=
 if eval "test x$enable_gegl = xyes"; then
   AC_MSG_NOTICE([Checking whether gegl-0.4 or gegl-0.3 is available])
   # Prioritize gegl-0.4
@@ -289,13 +290,17 @@ if eval "test x$enable_gegl = xyes"; then
     PKG_CHECK_MODULES(GEGL, gegl-0.3, [GEGL_VERSION=0.3])
 ])
 AC_SUBST(GEGL_VERSION)
+else
+  DOXYGEN_EXCLUDED="../../gegl/"
 fi
 AM_CONDITIONAL(ENABLE_GEGL, test "x$enable_gegl" = "xyes")
+AC_SUBST(DOXYGEN_EXCLUDED)
 
 # Set pkg-config variables before generation.
 AC_SUBST(PKG_CONFIG_REQUIRES)
 
 AC_CONFIG_FILES([
+  doc/Doxyfile
   doc/Makefile
   gegl/libmypaint-gegl.pc:gegl/libmypaint-gegl.pc.in
   gegl/Makefile

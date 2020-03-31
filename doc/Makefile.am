@@ -1,5 +1,4 @@
 EXTRA_DIST =		\
-	Doxyfile		\
 	source/conf.py	\
 	source/index.rst
 

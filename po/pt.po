@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-01-10 10:35+0100\n"
-"PO-Revision-Date: 2019-05-03 15:48+0000\n"
-"Last-Translator: Rui Mendes <xz9@protonmail.com>\n"
+"POT-Creation-Date: 2020-03-04 06:53+0100\n"
+"PO-Revision-Date: 2020-04-08 02:47+0000\n"
+"Last-Translator: Manuela Silva <mmsrs@sky.com>\n"
 "Language-Team: Portuguese <https://hosted.weblate.org/projects/mypaint/"
 "libmypaint/pt/>\n"
 "Language: pt\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 3.7-dev\n"
+"X-Generator: Weblate 4.0-dev\n"
 
 #. Brush setting
 #: ../brushsettings-gen.h:4
@@ -111,7 +111,20 @@ msgstr ""
 "nada). Para ter o máximo de dureza, deve desativar a suavização do pincel."
 
 #. Brush setting
-#: ../brushsettings-gen.h:9
+#: ../brushsettings.json:238
+msgid "Softness"
+msgstr "Suavidade"
+
+#. Tooltip for the "Softness" brush setting
+#: ../brushsettings.json:242
+msgid ""
+"Soften brush-circle from center to edge (setting to 1.0 will draw nothing)."
+msgstr ""
+"Suavize o círculo do pincel do centro para a borda (a configuração como 1.0 "
+"não desenhará nada)."
+
+#. Brush setting
+#: ../brushsettings.json:247
 msgid "Pixel feather"
 msgstr "Suavizar pincel"
 
@@ -147,7 +160,7 @@ msgstr ""
 #. Brush setting
 #: ../brushsettings-gen.h:11
 msgid "Dabs per actual radius"
-msgstr "Amostras por raio real"
+msgstr "Amostras por raio atual"
 
 #. Tooltip for the "Dabs per actual radius" brush setting
 #: ../brushsettings-gen.h:11
@@ -155,8 +168,8 @@ msgid ""
 "Same as above, but the radius actually drawn is used, which can change "
 "dynamically"
 msgstr ""
-"O mesmo que acima, mas é usado o raio de facto desenhado, que pode variar "
-"dinamicamente"
+"O mesmo que acima, mas é utilizado o raio realmente desenhado, que pode "
+"alterar dinamicamente"
 
 #. Brush setting
 #: ../brushsettings-gen.h:12
@@ -172,7 +185,7 @@ msgstr ""
 #. Brush setting
 #: ../brushsettings-gen.h:13
 msgid "GridMap Scale"
-msgstr ""
+msgstr "Escala do Mapa de Grelha"
 
 #. Tooltip for the "GridMap Scale" brush setting
 #: ../brushsettings-gen.h:13
@@ -185,7 +198,7 @@ msgstr ""
 #. Brush setting
 #: ../brushsettings-gen.h:14
 msgid "GridMap Scale X"
-msgstr ""
+msgstr "Escala do Mapa de Grelha X"
 
 #. Tooltip for the "GridMap Scale X" brush setting
 #: ../brushsettings-gen.h:14
@@ -199,7 +212,7 @@ msgstr ""
 #. Brush setting
 #: ../brushsettings-gen.h:15
 msgid "GridMap Scale Y"
-msgstr ""
+msgstr "Escala do Mapa de Grelha Y"
 
 #. Tooltip for the "GridMap Scale Y" brush setting
 #: ../brushsettings-gen.h:15

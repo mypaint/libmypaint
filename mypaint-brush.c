@@ -1319,7 +1319,7 @@ mypaint_brush_stroke_to_internal(
       dtime = self->skipped_dtime;
 
       if (self->skip > 0.001 && !(dtime > max_dtime || self->reset_requested))
-        return TRUE;
+        return FALSE;
 
       // skipped
       self->skip = 0;

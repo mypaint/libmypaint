@@ -1337,7 +1337,7 @@ void print_inputs(MyPaintBrush *self, float* inputs)
       dtime = self->skipped_dtime;
 
       if (self->skip > 0.001 && !(dtime > max_dtime || self->reset_requested))
-        return TRUE;
+        return FALSE;
 
       // skipped
       self->skip = 0;

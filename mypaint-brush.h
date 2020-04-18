@@ -45,7 +45,8 @@ mypaint_brush_new_stroke(MyPaintBrush *self);
 
 int
 mypaint_brush_stroke_to(MyPaintBrush *self, MyPaintSurface *surface, float x, float y,
-                        float pressure, float xtilt, float ytilt, double dtime, float viewzoom, float viewrotation, float barrel_rotation);
+                        float pressure, float xtilt, float ytilt, double dtime, float viewzoom,
+                        float viewrotation, float barrel_rotation, gboolean linear);
 
 void
 mypaint_brush_set_base_value(MyPaintBrush *self, MyPaintBrushSetting id, float value);

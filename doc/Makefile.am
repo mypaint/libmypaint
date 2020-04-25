@@ -1,6 +1,6 @@
 if ENABLE_DOCS
 
-build/index.html: Doxyfile ../mypaint-*.h
+build/index.html: Doxyfile ../mypaint*.h
 	$(DOXYGEN) Doxyfile
 
 all: build/index.html

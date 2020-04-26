@@ -858,6 +858,25 @@ mypaint_tiled_surface_destroy(MyPaintTiledSurface *self)
   */
 struct MyPaintTiledSurface2;
 
+
+/**
+ * mypaint_tiled_surface2_tile_request_start: (skip)
+ */
+void mypaint_tiled_surface2_tile_request_start(MyPaintTiledSurface2 *self, MyPaintTileRequest *request)
+{
+    assert(self->tile_request_start);
+    self->tile_request_start(self, request);
+}
+
+/**
+ * mypaint_tiled_surface2_tile_request_end: (skip)
+ */
+void mypaint_tiled_surface2_tile_request_end(MyPaintTiledSurface2 *self, MyPaintTileRequest *request)
+{
+    assert(self->tile_request_end);
+    self->tile_request_end(self, request);
+}
+
 /* Go-betweens for more clarity  */
 void tsf2_request_start(void* surface, void* request) {
   MyPaintTiledSurface2 *self = (MyPaintTiledSurface2*) surface;

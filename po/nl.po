@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-03-04 06:53+0100\n"
-"PO-Revision-Date: 2017-09-14 22:44+0000\n"
+"PO-Revision-Date: 2020-04-27 14:11+0000\n"
 "Last-Translator: Just Vecht <justvecht@ziggo.nl>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/mypaint/libmypaint/"
 "nl/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 2.17-dev\n"
+"X-Generator: Weblate 4.0.2-dev\n"
 
 #. Brush setting
 #: ../brushsettings.json:193
@@ -111,13 +111,14 @@ msgstr ""
 #. Brush setting
 #: ../brushsettings.json:238
 msgid "Softness"
-msgstr ""
+msgstr "zacht"
 
 #. Tooltip for the "Softness" brush setting
 #: ../brushsettings.json:242
 msgid ""
 "Soften brush-circle from center to edge (setting to 1.0 will draw nothing)."
 msgstr ""
+"Verzacht het penseel van het midden tot de rand (1.0 instellen tekent niets)."
 
 #. Brush setting
 #: ../brushsettings.json:247
@@ -182,7 +183,7 @@ msgstr ""
 #. Brush setting
 #: ../brushsettings.json:283
 msgid "GridMap Scale"
-msgstr ""
+msgstr "GridMap schaal"
 
 #. Tooltip for the "GridMap Scale" brush setting
 #: ../brushsettings.json:287

@@ -23,6 +23,17 @@
 
 #include "helpers.h"
 
+
+/**
+ * MyPaintSurface:
+ */
+struct MyPaintSurface2;
+
+/**
+  * mypaint_surface_draw_dab:
+  *
+  * Draw a dab onto the surface.
+  */
 int
 mypaint_surface_draw_dab(MyPaintSurface *self,
                        float x, float y,
@@ -131,6 +142,12 @@ mypaint_surface_end_atomic(MyPaintSurface *self, MyPaintRectangle *roi)
 
 // The extended interface is not exposed via GObject introspection
 
+
+/**
+ * MyPaintSurface2: (skip)
+ */
+struct MyPaintSurface2;
+
 /**
  * mypaint_surface2_to_surface: (skip)
  *
@@ -157,7 +174,6 @@ mypaint_surface2_get_color(
     assert(self->get_color_pigment);
     self->get_color_pigment(self, x, y, radius, color_r, color_g, color_b, color_a, paint);
 }
-
 
 /**
  * mypaint_surface2_draw_dab: (skip)

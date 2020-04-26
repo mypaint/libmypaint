@@ -35,6 +35,14 @@
 
 #define NUM_BBOXES_DEFAULT 32
 
+
+/**
+ * MyPaintTiledSurface:
+ *
+ * Testing if this comment ends up in the gir.
+ */
+struct MyPaintTiledSurface;
+
 void tiled_surface_process_tile(MyPaintTiledSurface *self, int tx, int ty);
 
 void process_tile_internal(
@@ -55,11 +63,6 @@ end_atomic_default(MyPaintSurface *surface, MyPaintRectangle *roi)
 
 /**
  * mypaint_tiled_surface_begin_atomic: (skip)
- *
- * Implementation of #MyPaintSurface::being_atomic vfunc
- * Note: Only intended to be used from #MyPaintTiledSurface subclasses, which should chain up to this
- * if implementing their own #MyPaintSurface::begin_atomic vfunc.
- * Application code should only use mypaint_surface_being_atomic()
  */
 void
 mypaint_tiled_surface_begin_atomic(MyPaintTiledSurface *self)
@@ -100,11 +103,6 @@ mypaint_tiled_surface_end_atomic(MyPaintTiledSurface *self, MyPaintRectangle *ro
 
 /**
  * mypaint_tiled_surface_tile_request_start:
- *
- * Fetch a tile out from the underlying tile store.
- * When successful, request->data will be set to point to the fetched tile.
- * Consumers must *always* call mypaint_tiled_surface_tile_request_end() with the same
- * request to complete the transaction.
  */
 void mypaint_tiled_surface_tile_request_start(MyPaintTiledSurface *self, MyPaintTileRequest *request)
 {
@@ -114,11 +112,6 @@ void mypaint_tiled_surface_tile_request_start(MyPaintTiledSurface *self, MyPaint
 
 /**
  * mypaint_tiled_surface_tile_request_end:
- *
- * Put a (potentially modified) tile back into the underlying tile store.
- *
- * Consumers must *always* call mypaint_tiled_surface_tile_request_start() with the same
- * request to start the transaction before calling this function.
  */
 void mypaint_tiled_surface_tile_request_end(MyPaintTiledSurface *self, MyPaintTileRequest *request)
 {
@@ -859,6 +852,11 @@ mypaint_tiled_surface_destroy(MyPaintTiledSurface *self)
 }
 
 /* -- Extended interface -- */
+
+/**
+  * MyPaintTiledSurface2: (skip)
+  */
+struct MyPaintTiledSurface2;
 
 /* Go-betweens for more clarity  */
 void tsf2_request_start(void* surface, void* request) {

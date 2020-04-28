@@ -19,6 +19,17 @@
  *
  * ---
  *
+ * MyPaintSurface is an abstract interface providing the essential calls used
+ * by the _brush engine_, which is made up of the MyPaintBrush struct and its
+ * associated functions (or methods, if you like).
+ *
+ * Having MyPaintSurface be abstract does in theory allow users of the library
+ * to provide their own surface implementations, but in order to be visually
+ * conformant with MyPaint, they need to use the same (or very similar)
+ * dab drawing and blending routines that are used by MyPaintTiledSurface,
+ * requiring them to either derive their own surface from MyPaintTiledSurface,
+ * or copy the relevant internal functions from the libmypaint source code.
+ *
  * \subsection qwe Brief History
  * *
  * What is now `libmypaint` started out as
@@ -100,9 +111,11 @@
  *
  * \section Examples
  *
- * There is a minimal example in the `examples` folder, but for now the best way
- * to learn the structure is to look at how the functions and structures are used
- * by the MyPaint code.
+ * There is a minimal example in the `examples` folder in the source root, but
+ * for now the best way to learn how the structures and functions can be used
+ * is to look at the MyPaint source code. Searching for the string `mypaint_`
+ * in the C/C++ files in the MyPaint source will yield all calls to libmypaint,
+ * providing useful entry points for further exploration.
  */
 
 /*!

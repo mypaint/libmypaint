@@ -10,16 +10,16 @@ AC_PREREQ(2.62)
 m4_define([libmypaint_api_major], [1])
 m4_define([libmypaint_api_minor], [6])
 m4_define([libmypaint_api_micro], [0])
-m4_define([libmypaint_api_prerelease], [alpha])  # may be blank
+m4_define([libmypaint_api_prerelease], [])  # may be blank
 
 # ABI version. Changes independently of API version.
 # See: https://autotools.io/libtool/version.html
 # https://www.gnu.org/software/libtool/manual/html_node/Updating-version-info.html
 # The rules are fiddly, and are summarized here.
 
-m4_define([libmypaint_abi_revision], [1])  # increment on every release
-m4_define([libmypaint_abi_current], [1])  # inc when add/remove/change interfaces
-m4_define([libmypaint_abi_age], [0])  # inc only if changes backward compat
+m4_define([libmypaint_abi_revision], [2])  # increment on every release
+m4_define([libmypaint_abi_current], [2])  # inc when add/remove/change interfaces
+m4_define([libmypaint_abi_age], [1])  # inc only if changes backward compat
 
 
 ## Derivative version macros ##

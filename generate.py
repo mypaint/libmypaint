@@ -1,4 +1,4 @@
-#!/usr/bin/env python2
+#!/usr/bin/env python
 # libmypaint - The MyPaint Brush Library
 # Copyright (C) 2007-2012 Martin Renold <martinxyz@gmx.ch>
 # Copyright (C) 2012-2016 by the MyPaint Development Team.
@@ -26,15 +26,26 @@ from os.path import basename
 import json
 from collections import namedtuple
 
+PY3 = sys.version_info >= (3,)
+
+# A basic translator comment is generated for each string,
+# noting whether it is an input or a setting, and for tooltips
+# stating which input/setting it belongs to.
+#
+# In addition to that, more descriptive addendums can be added
+# for individual strings using the tcomment_x attributes, where
+# x is either 'name' or 'tooltip'.
 
 _SETTINGS = []  # brushsettings.settings
 _SETTING_ORDER = [
     "internal_name",  # cname
+    "tcomment_name",  # comment for translators (optional)
     "displayed_name",   # name
     "constant",
     "minimum",  # min
     "default",
     "maximum",  # max
+    "tcomment_tooltip",  # comment for translators (optional)
     "tooltip",
 ]
 _INPUTS = []  # brushsettings.inputs
@@ -45,7 +56,9 @@ _INPUT_ORDER = [
     "normal",
     "soft_maximum",   # soft_max
     "hard_maximum",     # hard_max
+    "tcomment_name",  # comment for translators (optional)
     "displayed_name",  # dname
+    "tcomment_tooltip",  # comment for translators (optional)
     "tooltip",
 ]
 _STATES = []   # brushsettings.states
@@ -82,14 +95,21 @@ class _BrushInput (namedtuple("_BrushInput", _INPUT_ORDER)):
 
 def _init_globals_from_json(filename):
     """Populate global variables above from the canonical JSON definition."""
-    with open(filename, "rb") as fp:
+
+    def with_comments(d):
+        d.setdefault('tcomment_name', None)
+        d.setdefault('tcomment_tooltip', None)
+        return d
+
+    flag = "r" if PY3 else "rb"
+    with open(filename, flag) as fp:
         defs = json.load(fp)
     for input_def in defs["inputs"]:
-        input = _BrushInput(**input_def)
+        input = _BrushInput(**with_comments(input_def))
         input.validate()
         _INPUTS.append(input)
     for setting_def in defs["settings"]:
-        setting = _BrushSetting(**setting_def)
+        setting = _BrushSetting(**with_comments(setting_def))
         setting.validate()
         _SETTINGS.append(setting)
     for state_name in defs["states"]:
@@ -147,15 +167,35 @@ def floatify(value, positive_inf=True):
     return str(value)
 
 
-def gettextify(value):
-    return "N_(%s)" % stringify(value)
+def gettextify(value, comment=None):
+    result = "N_(%s)" % stringify(value)
+    if comment:
+        assert isinstance(comment, str) or isinstance(comment, unicode)
+        result = "/* %s */ %s" % (comment, result)
+    return result
 
 
 def boolify(value):
     return str("TRUE") if value else str("FALSE")
 
 
+def tcomment(base_comment, addendum=None):
+    comment = base_comment
+    if addendum:
+        comment = "{c} - {a}".format(c=comment, a=addendum)
+    return comment
+
+
+def tooltip_comment(name, name_type, addendum=None):
+    comment = 'Tooltip for the "{n}" brush {t}'.format(
+        n=name, t=name_type)
+    return tcomment(comment, addendum)
+
+
 def input_info_struct(i):
+    name_comment = tcomment("Brush input", i.tcomment_name)
+    _tooltip_comment = tooltip_comment(
+        i.displayed_name, "input", i.tcomment_tooltip)
     return (
         stringify(i.id),
         floatify(i.hard_minimum, positive_inf=False),
@@ -163,21 +203,35 @@ def input_info_struct(i):
         floatify(i.normal),
         floatify(i.soft_maximum),
         floatify(i.hard_maximum),
-        gettextify(i.displayed_name),
-        gettextify(i.tooltip),
+        gettextify(i.displayed_name, name_comment),
+        gettextify(i.tooltip, _tooltip_comment),
     )
 
 
 def settings_info_struct(s):
+    name_comment = tcomment("Brush setting", s.tcomment_name)
+    _tooltip_comment = tooltip_comment(
+        s.displayed_name, "setting", s.tcomment_tooltip)
     return (
         stringify(s.internal_name),
-        gettextify(s.displayed_name),
+        gettextify(s.displayed_name, name_comment),
         boolify(s.constant),
         floatify(s.minimum, positive_inf=False),
         floatify(s.default),
         floatify(s.maximum),
-        gettextify(s.tooltip),
+        gettextify(s.tooltip, _tooltip_comment),
     )
+
+
+def header_guard_name(file_name):
+    alfa_num = "".join(map(lambda c: c if c.isalnum() else '_', file_name))
+    return alfa_num.upper()
+
+
+def header_guarded(file_name, header_content):
+    guard_name = header_guard_name(file_name)
+    guard = '#ifndef {guard}\n#define {guard}\n{content}\n#endif\n'
+    return guard.format(guard=guard_name, content=header_content)
 
 
 def generate_internal_settings_code():
@@ -227,9 +281,11 @@ if __name__ == '__main__':
     script = sys.argv[0]
     try:
         public_header_file, internal_header_file = sys.argv[1:]
-    except:
+    except Exception:
         msg = "usage: {} PUBLICdotH INTERNALdotH".format(script)
         print(msg, file=sys.stderr)
         sys.exit(2)
-    writefile(public_header_file, generate_public_settings_code())
-    writefile(internal_header_file, generate_internal_settings_code())
+    phf = public_header_file
+    writefile(phf, header_guarded(phf, generate_public_settings_code()))
+    ihf = internal_header_file
+    writefile(ihf, header_guarded(ihf, generate_internal_settings_code()))

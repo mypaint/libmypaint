@@ -14,14 +14,12 @@
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
-#include <config.h>
+#include "config.h"
 
 #include "mypaint-brush-settings.h"
 
 #include <string.h>
 #include <assert.h>
-
-#define GETTEXT_PACKAGE "libmypaint"
 
 #ifdef HAVE_GETTEXT
   #include <libintl.h>

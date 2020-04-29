@@ -4,13 +4,13 @@
 #include <stdio.h>
 #include <string.h>
 
-#include <config.h>
+#include "config.h"
 
 #if MYPAINT_CONFIG_USE_GLIB
 #include <glib.h>
 #endif
 
-#include <mypaint-fixed-tiled-surface.h>
+#include "mypaint-fixed-tiled-surface.h"
 
 
 struct MyPaintFixedTiledSurface {
@@ -120,6 +120,7 @@ mypaint_fixed_tiled_surface_new(int width, int height)
     uint16_t * buffer = (uint16_t *)malloc(buffer_size);
     if (!buffer) {
         fprintf(stderr, "CRITICAL: unable to allocate enough memory: %zu bytes", buffer_size);
+        free(self);
         return NULL;
     }
     memset(buffer, 255, buffer_size);

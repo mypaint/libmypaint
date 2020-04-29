@@ -1,7 +1,7 @@
 #ifndef MYPAINTGEGLGLIB_H
 #define MYPAINTGEGLGLIB_H
 
-#include <mypaint-config.h>
+#include "mypaint-config.h"
 
 #include <glib-object.h>
 #define MYPAINT_GEGL_TYPE_TILED_SURFACE (mypaint_gegl_tiled_surface_get_type ())

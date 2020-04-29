@@ -1,8 +1,6 @@
 #ifndef MYPAINTBRUSHGLIB_H
 #define MYPAINTBRUSHGLIB_H
 
-#include <mypaint-config.h>
-
 #include <glib-object.h>
 
 #define MYPAINT_TYPE_BRUSH               (mypaint_brush_get_type ())

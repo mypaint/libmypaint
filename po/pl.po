@@ -7,11 +7,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MyPaint GIT\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-07-04 18:33+0100\n"
+"POT-Creation-Date: 2020-01-10 10:35+0100\n"
 "PO-Revision-Date: 2016-08-29 16:59+0000\n"
 "Last-Translator: Mariusz Kryjak <cerb3ruspl@gmail.com>\n"
-"Language-Team: Polish "
-"<https://hosted.weblate.org/projects/mypaint/libmypaint/pl/>\n"
+"Language-Team: Polish <https://hosted.weblate.org/projects/mypaint/"
+"libmypaint/pl/>\n"
 "Language: pl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -23,20 +23,24 @@ msgstr ""
 "X-Poedit-Country: Polski\n"
 "X-Poedit-SourceCharset: utf-8\n"
 
+#. Brush setting
 #: ../brushsettings-gen.h:4
 msgid "Opacity"
 msgstr "Krycie"
 
+#. Tooltip for the "Opacity" brush setting
 #: ../brushsettings-gen.h:4
 msgid ""
 "0 means brush is transparent, 1 fully visible\n"
 "(also known as alpha or opacity)"
 msgstr "0 oznacza przeźroczysty pędzel, 1 oznacza w pełni widoczny"
 
+#. Brush setting
 #: ../brushsettings-gen.h:5
 msgid "Opacity multiply"
 msgstr "Mnożenie krycia"
 
+#. Tooltip for the "Opacity multiply" brush setting
 #: ../brushsettings-gen.h:5
 msgid ""
 "This gets multiplied with opaque. You should only change the pressure input "
@@ -50,10 +54,12 @@ msgstr ""
 "To ustawienie odpowiada za zatrzymanie malowania gdy zaniknie nacisk - "
 "zachowanie jest identyczne z \"nieprzezroczyste\"."
 
+#. Brush setting
 #: ../brushsettings-gen.h:6
 msgid "Opacity linearize"
 msgstr "Liniowość krycia"
 
+#. Tooltip for the "Opacity linearize" brush setting
 #: ../brushsettings-gen.h:6
 msgid ""
 "Correct the nonlinearity introduced by blending multiple dabs on top of each "
@@ -72,13 +78,15 @@ msgstr ""
 "ustawisz mniej pędzel będzie \"skakał\". Możesz ustawić więcej przy używaniu "
 "opcji \"ilość ciapek na sekundę\".\n"
 "0.0 używana jest przy rysowaniu pojedynczych ciapek\n"
-"1.0 używana jest do końcowych posunięć pędzla - każdy piksel otrzymuje ("
-"ciapek na promień * 2) średnio podczas posunięcia"
+"1.0 używana jest do końcowych posunięć pędzla - każdy piksel otrzymuje "
+"(ciapek na promień * 2) średnio podczas posunięcia"
 
+#. Brush setting
 #: ../brushsettings-gen.h:7
 msgid "Radius"
 msgstr "Średnica"
 
+#. Tooltip for the "Radius" brush setting
 #: ../brushsettings-gen.h:7
 msgid ""
 "Basic brush radius (logarithmic)\n"
@@ -89,10 +97,12 @@ msgstr ""
 " 0.7 oznacza 2 piksele\n"
 " 3.0 oznacza 20 pikseli"
 
+#. Brush setting
 #: ../brushsettings-gen.h:8
 msgid "Hardness"
 msgstr "Twardość"
 
+#. Tooltip for the "Hardness" brush setting
 #: ../brushsettings-gen.h:8
 msgid ""
 "Hard brush-circle borders (setting to zero will draw nothing). To reach the "
@@ -101,10 +111,12 @@ msgstr ""
 "Twardość brzegów okręgu pędzla (ustawienie 0 oznacza, że pędzel nie będzie "
 "malował). By osiągnąć maksimum twardości wyłącz Wygładzanie pikseli."
 
+#. Brush setting
 #: ../brushsettings-gen.h:9
 msgid "Pixel feather"
 msgstr "Wygładzanie pikseli"
 
+#. Tooltip for the "Pixel feather" brush setting
 #: ../brushsettings-gen.h:9
 msgid ""
 "This setting decreases the hardness when necessary to prevent a pixel "
@@ -119,10 +131,12 @@ msgstr ""
 "1.0 rozmyj jeden piksel (dobra wartość)\n"
 "5.0 widoczne rozmycie, a cienkie kreski zanikną"
 
+#. Brush setting
 #: ../brushsettings-gen.h:10
 msgid "Dabs per basic radius"
 msgstr "Ilość ciapek na podstawowy promień"
 
+#. Tooltip for the "Dabs per basic radius" brush setting
 #: ../brushsettings-gen.h:10
 msgid ""
 "How many dabs to draw while the pointer moves a distance of one brush radius "
@@ -131,10 +145,12 @@ msgstr ""
 "Ilość rysowanych ciapek podczas posunięcia pędzlem na odległość jednego "
 "promienia (precyzyjniej: wartość bazowa promienia)"
 
+#. Brush setting
 #: ../brushsettings-gen.h:11
 msgid "Dabs per actual radius"
 msgstr "Ilość ciapek na właściwy promień"
 
+#. Tooltip for the "Dabs per actual radius" brush setting
 #: ../brushsettings-gen.h:11
 msgid ""
 "Same as above, but the radius actually drawn is used, which can change "
@@ -143,19 +159,64 @@ msgstr ""
 "Ilość rysowanych ciapek podczas posunięcia pędzlem na odległość "
 "rzeczywistego promienia, które może zmieniać się dynamicznie poprzez nacisk"
 
+#. Brush setting
 #: ../brushsettings-gen.h:12
 msgid "Dabs per second"
 msgstr "Ilość ciapek na sekundę"
 
+#. Tooltip for the "Dabs per second" brush setting
 #: ../brushsettings-gen.h:12
 msgid "Dabs to draw each second, no matter how far the pointer moves"
 msgstr "Ilość ciapek na sekundę - niezależnie od ruchów kursora"
 
+#. Brush setting
 #: ../brushsettings-gen.h:13
+msgid "GridMap Scale"
+msgstr ""
+
+#. Tooltip for the "GridMap Scale" brush setting
+#: ../brushsettings-gen.h:13
+msgid ""
+"Changes the overall scale that the GridMap brush input operates on.\n"
+"Logarithmic (same scale as brush radius).\n"
+"A scale of 0 will make the grid 256x256 pixels."
+msgstr ""
+
+#. Brush setting
+#: ../brushsettings-gen.h:14
+msgid "GridMap Scale X"
+msgstr ""
+
+#. Tooltip for the "GridMap Scale X" brush setting
+#: ../brushsettings-gen.h:14
+msgid ""
+"Changes the scale that the GridMap brush input operates on - affects X axis "
+"only.\n"
+"The range is 0-5x.\n"
+"This allows you to stretch or compress the GridMap pattern."
+msgstr ""
+
+#. Brush setting
+#: ../brushsettings-gen.h:15
+msgid "GridMap Scale Y"
+msgstr ""
+
+#. Tooltip for the "GridMap Scale Y" brush setting
+#: ../brushsettings-gen.h:15
+msgid ""
+"Changes the scale that the GridMap brush input operates on - affects Y axis "
+"only.\n"
+"The range is 0-5x.\n"
+"This allows you to stretch or compress the GridMap pattern."
+msgstr ""
+
+#. Brush setting
+#: ../brushsettings-gen.h:16
 msgid "Radius by random"
 msgstr "Losowa średnica"
 
-#: ../brushsettings-gen.h:13
+#. Tooltip for the "Radius by random" brush setting
+#: ../brushsettings-gen.h:16
 msgid ""
 "Alter the radius randomly each dab. You can also do this with the by_random "
 "input on the radius setting. If you do it here, there are two differences:\n"
@@ -163,16 +224,18 @@ msgid ""
 "transparent\n"
 "2) it will not change the actual radius seen by dabs_per_actual_radius"
 msgstr ""
-"Zmienia losowo średnicę każdej ciapki. Podobny efekt uzyskuje opcja \""
-"Wartość losowa\"  z tą różnicą, że losowy promień zmniejsza krycie przy "
+"Zmienia losowo średnicę każdej ciapki. Podobny efekt uzyskuje opcja "
+"\"Wartość losowa\"  z tą różnicą, że losowy promień zmniejsza krycie przy "
 "większej ciapce oraz nie jest zależny od parametru \"ilość ciapek na "
 "właściwy promień\""
 
-#: ../brushsettings-gen.h:14
+#. Brush setting
+#: ../brushsettings-gen.h:17
 msgid "Fine speed filter"
 msgstr "Filtr prędkości odpowiedniej"
 
-#: ../brushsettings-gen.h:14
+#. Tooltip for the "Fine speed filter" brush setting
+#: ../brushsettings-gen.h:17
 msgid ""
 "How slow the input fine speed is following the real speed\n"
 "0.0 change immediately as your speed changes (not recommended, but try it)"
@@ -182,19 +245,23 @@ msgstr ""
 "0.0 oznacza natychmiastową zmianę prędkości do rzeczywistej (nie zalecane "
 "ale można eksperymentować)"
 
-#: ../brushsettings-gen.h:15
+#. Brush setting
+#: ../brushsettings-gen.h:18
 msgid "Gross speed filter"
 msgstr "Filtr prędkości całkowitej"
 
-#: ../brushsettings-gen.h:15
+#. Tooltip for the "Gross speed filter" brush setting
+#: ../brushsettings-gen.h:18
 msgid "Same as 'fine speed filter', but note that the range is different"
 msgstr "Podobnie jak 'filtr prędkości odpowiedniej' ale ma inny zasięg"
 
-#: ../brushsettings-gen.h:16
+#. Brush setting
+#: ../brushsettings-gen.h:19
 msgid "Fine speed gamma"
 msgstr "Gamma prędkości odpowiedniej"
 
-#: ../brushsettings-gen.h:16
+#. Tooltip for the "Fine speed gamma" brush setting
+#: ../brushsettings-gen.h:19
 msgid ""
 "This changes the reaction of the 'fine speed' input to extreme physical "
 "speed. You will see the difference best if 'fine speed' is mapped to the "
@@ -212,20 +279,24 @@ msgstr ""
 "ruchy\n"
 "W przypadku bardzo wolnych ruchów reakcje są odwrotne."
 
-#: ../brushsettings-gen.h:17
+#. Brush setting
+#: ../brushsettings-gen.h:20
 msgid "Gross speed gamma"
 msgstr "Gamma całkowitej prędkości"
 
-#: ../brushsettings-gen.h:17
+#. Tooltip for the "Gross speed gamma" brush setting
+#: ../brushsettings-gen.h:20
 msgid "Same as 'fine speed gamma' for gross speed"
 msgstr ""
 "Podobnie jak 'gamma prędkości odpowiedniej' ale dla 'prędkości całkowitej'"
 
-#: ../brushsettings-gen.h:18
+#. Brush setting
+#: ../brushsettings-gen.h:21
 msgid "Jitter"
 msgstr "Drgania"
 
-#: ../brushsettings-gen.h:18
+#. Tooltip for the "Jitter" brush setting
+#: ../brushsettings-gen.h:21
 msgid ""
 "Add a random offset to the position where each dab is drawn\n"
 " 0.0 disabled\n"
@@ -238,11 +309,123 @@ msgstr ""
 "1.0 maksymalny odstęp do wielkości podstawowego promienia\n"
 "<0.0 ujemne wartości wyłączają drgania"
 
-#: ../brushsettings-gen.h:19
+#. Brush setting
+#: ../brushsettings-gen.h:22
+#, fuzzy
+msgid "Offset Y"
+msgstr "Odstęp zależny od prędkości"
+
+#. Tooltip for the "Offset Y" brush setting
+#: ../brushsettings-gen.h:22
+msgid "Moves the dabs up or down based on canvas coordinates."
+msgstr ""
+
+#. Brush setting
+#: ../brushsettings-gen.h:23
+#, fuzzy
+msgid "Offset X"
+msgstr "Odstęp zależny od prędkości"
+
+#. Tooltip for the "Offset X" brush setting
+#: ../brushsettings-gen.h:23
+msgid "Moves the dabs left or right based on canvas coordinates."
+msgstr ""
+
+#. Brush setting
+#: ../brushsettings-gen.h:24
+msgid "Angular Offset: Direction"
+msgstr ""
+
+#. Tooltip for the "Angular Offset: Direction" brush setting
+#: ../brushsettings-gen.h:24
+msgid "Follows the stroke direction to offset the dabs to one side."
+msgstr ""
+
+#. Brush setting
+#: ../brushsettings-gen.h:25
+msgid "Angular Offset: Ascension"
+msgstr ""
+
+#. Tooltip for the "Angular Offset: Ascension" brush setting
+#: ../brushsettings-gen.h:25
+msgid ""
+"Follows the tilt direction to offset the dabs to one side. Requires Tilt."
+msgstr ""
+
+#. Brush setting
+#: ../brushsettings-gen.h:26
+msgid "Angular Offset: View"
+msgstr ""
+
+#. Tooltip for the "Angular Offset: View" brush setting
+#: ../brushsettings-gen.h:26
+msgid "Follows the view orientation to offset the dabs to one side."
+msgstr ""
+
+#. Brush setting
+#: ../brushsettings-gen.h:27
+msgid "Angular Offset Mirrored: Direction"
+msgstr ""
+
+#. Tooltip for the "Angular Offset Mirrored: Direction" brush setting
+#: ../brushsettings-gen.h:27
+msgid ""
+"Follows the stroke direction to offset the dabs, but to both sides of the "
+"stroke."
+msgstr ""
+
+#. Brush setting
+#: ../brushsettings-gen.h:28
+msgid "Angular Offset Mirrored: Ascension"
+msgstr ""
+
+#. Tooltip for the "Angular Offset Mirrored: Ascension" brush setting
+#: ../brushsettings-gen.h:28
+msgid ""
+"Follows the tilt direction to offset the dabs, but to both sides of the "
+"stroke. Requires Tilt."
+msgstr ""
+
+#. Brush setting
+#: ../brushsettings-gen.h:29
+msgid "Angular Offset Mirrored: View"
+msgstr ""
+
+#. Tooltip for the "Angular Offset Mirrored: View" brush setting
+#: ../brushsettings-gen.h:29
+msgid ""
+"Follows the view orientation to offset the dabs, but to both sides of the "
+"stroke."
+msgstr ""
+
+#. Brush setting
+#: ../brushsettings-gen.h:30
+msgid "Angular Offsets Adjustment"
+msgstr ""
+
+#. Tooltip for the "Angular Offsets Adjustment" brush setting
+#: ../brushsettings-gen.h:30
+msgid "Change the Angular Offset angle from the default, which is 90 degrees."
+msgstr ""
+
+#. Brush setting
+#: ../brushsettings-gen.h:31
+#, fuzzy
+msgid "Offsets Multiplier"
+msgstr "Filtr odstępu zależnego od prędkości"
+
+#. Tooltip for the "Offsets Multiplier" brush setting
+#: ../brushsettings-gen.h:31
+msgid "Logarithmic multiplier for X, Y, and Angular Offset settings."
+msgstr ""
+
+#. Brush setting
+#: ../brushsettings-gen.h:32
 msgid "Offset by speed"
 msgstr "Odstęp zależny od prędkości"
 
-#: ../brushsettings-gen.h:19
+#. Tooltip for the "Offset by speed" brush setting
+#: ../brushsettings-gen.h:32
 msgid ""
 "Change position depending on pointer speed\n"
 "= 0 disable\n"
@@ -254,19 +437,24 @@ msgstr ""
 "> 0 przed kursorem\n"
 "< 0 maluj za kursorem"
 
-#: ../brushsettings-gen.h:20
+#. Brush setting
+#: ../brushsettings-gen.h:33
 msgid "Offset by speed filter"
 msgstr "Filtr odstępu zależnego od prędkości"
 
-#: ../brushsettings-gen.h:20
+#. Tooltip for the "Offset by speed filter" brush setting
+#: ../brushsettings-gen.h:33
 msgid "How slow the offset goes back to zero when the cursor stops moving"
-msgstr "Wartość określa jak szybko odstęp wraca do zera gdy kursor się zatrzyma"
+msgstr ""
+"Wartość określa jak szybko odstęp wraca do zera gdy kursor się zatrzyma"
 
-#: ../brushsettings-gen.h:21
+#. Brush setting
+#: ../brushsettings-gen.h:34
 msgid "Slow position tracking"
 msgstr "Powolnienie wygładzanie pozycji"
 
-#: ../brushsettings-gen.h:21
+#. Tooltip for the "Slow position tracking" brush setting
+#: ../brushsettings-gen.h:34
 msgid ""
 "Slowdown pointer tracking speed. 0 disables it, higher values remove more "
 "jitter in cursor movements. Useful for drawing smooth, comic-like outlines."
@@ -275,11 +463,13 @@ msgstr ""
 "przydaje się w przypadku rysowania gładkich, komiksowych linii. 0 wyłącza "
 "opcje. Im większa wartość tym większe wygładzenie."
 
-#: ../brushsettings-gen.h:22
+#. Brush setting
+#: ../brushsettings-gen.h:35
 msgid "Slow tracking per dab"
 msgstr "Powolnie wygładzanie na kropkę"
 
-#: ../brushsettings-gen.h:22
+#. Tooltip for the "Slow tracking per dab" brush setting
+#: ../brushsettings-gen.h:35
 msgid ""
 "Similar as above but at brushdab level (ignoring how much time has passed if "
 "brushdabs do not depend on time)"
@@ -287,11 +477,13 @@ msgstr ""
 "Podobnie jak 'Powolne wygładzanie pozycji', z tą różnicą, że nie jest "
 "zależne od czasu, a tylko od ilości rysowanych ciapek"
 
-#: ../brushsettings-gen.h:23
+#. Brush setting
+#: ../brushsettings-gen.h:36
 msgid "Tracking noise"
 msgstr "Szum wygładzania"
 
-#: ../brushsettings-gen.h:23
+#. Tooltip for the "Tracking noise" brush setting
+#: ../brushsettings-gen.h:36
 msgid ""
 "Add randomness to the mouse pointer; this usually generates many small lines "
 "in random directions; maybe try this together with 'slow tracking'"
@@ -300,27 +492,35 @@ msgstr ""
 "małych linii w losowym kierunku. Można poeksperymentować mieszając tę opcję "
 "z 'Powolnym wygładzaniem'"
 
-#: ../brushsettings-gen.h:24
+#. Brush setting
+#. Tooltip for the "Color hue" brush setting
+#: ../brushsettings-gen.h:37
 msgid "Color hue"
 msgstr "Barwa koloru"
 
-#: ../brushsettings-gen.h:25
+#. Brush setting
+#. Tooltip for the "Color saturation" brush setting
+#: ../brushsettings-gen.h:38
 msgid "Color saturation"
 msgstr "Nasycenie koloru"
 
-#: ../brushsettings-gen.h:26
+#. Brush setting
+#: ../brushsettings-gen.h:39
 msgid "Color value"
 msgstr "Jasność koloru"
 
-#: ../brushsettings-gen.h:26
+#. Tooltip for the "Color value" brush setting
+#: ../brushsettings-gen.h:39
 msgid "Color value (brightness, intensity)"
 msgstr "Wartość koloru (jasność, intensywność)"
 
-#: ../brushsettings-gen.h:27
+#. Brush setting
+#: ../brushsettings-gen.h:40
 msgid "Save color"
 msgstr "Zapisz kolor"
 
-#: ../brushsettings-gen.h:27
+#. Tooltip for the "Save color" brush setting
+#: ../brushsettings-gen.h:40
 msgid ""
 "When selecting a brush, the color can be restored to the color that the "
 "brush was saved with.\n"
@@ -334,11 +534,13 @@ msgstr ""
 "0.5 zmień aktywny kolor do koloru pędzla\n"
 "1.0 ustaw aktywny kolor do koloru pędzla gdy zostanie wybrany"
 
-#: ../brushsettings-gen.h:28
+#. Brush setting
+#: ../brushsettings-gen.h:41
 msgid "Change color hue"
 msgstr "Zmień odcień koloru"
 
-#: ../brushsettings-gen.h:28
+#. Tooltip for the "Change color hue" brush setting
+#: ../brushsettings-gen.h:41
 msgid ""
 "Change color hue.\n"
 "-0.1 small clockwise color hue shift\n"
@@ -350,11 +552,13 @@ msgstr ""
 " 0.0 wyłączone\n"
 " 0.5 zmienia odcień w przeciwnym kierunku do wskazówek zegara o 180 stopni"
 
-#: ../brushsettings-gen.h:29
+#. Brush setting
+#: ../brushsettings-gen.h:42
 msgid "Change color lightness (HSL)"
 msgstr "Zmień jasność koloru (HSL)"
 
-#: ../brushsettings-gen.h:29
+#. Tooltip for the "Change color lightness (HSL)" brush setting
+#: ../brushsettings-gen.h:42
 msgid ""
 "Change the color lightness using the HSL color model.\n"
 "-1.0 blacker\n"
@@ -366,11 +570,13 @@ msgstr ""
 " 0.0 wyłączone\n"
 " 1.0 więcej światła"
 
-#: ../brushsettings-gen.h:30
+#. Brush setting
+#: ../brushsettings-gen.h:43
 msgid "Change color satur. (HSL)"
 msgstr "Zmień nasycenie koloru (HSL)"
 
-#: ../brushsettings-gen.h:30
+#. Tooltip for the "Change color satur. (HSL)" brush setting
+#: ../brushsettings-gen.h:43
 msgid ""
 "Change the color saturation using the HSL color model.\n"
 "-1.0 more grayish\n"
@@ -382,11 +588,13 @@ msgstr ""
 " 0.0 wyłączone\n"
 " 1.0 więcej koloru"
 
-#: ../brushsettings-gen.h:31
+#. Brush setting
+#: ../brushsettings-gen.h:44
 msgid "Change color value (HSV)"
 msgstr "Zmień wartość koloru (HSV)"
 
-#: ../brushsettings-gen.h:31
+#. Tooltip for the "Change color value (HSV)" brush setting
+#: ../brushsettings-gen.h:44
 msgid ""
 "Change the color value (brightness, intensity) using the HSV color model. "
 "HSV changes are applied before HSL.\n"
@@ -400,11 +608,13 @@ msgstr ""
 " 0.0 wyłączone\n"
 " 1.0 jaśniej"
 
-#: ../brushsettings-gen.h:32
+#. Brush setting
+#: ../brushsettings-gen.h:45
 msgid "Change color satur. (HSV)"
 msgstr "Zmień nasycenie koloru (HSV)"
 
-#: ../brushsettings-gen.h:32
+#. Tooltip for the "Change color satur. (HSV)" brush setting
+#: ../brushsettings-gen.h:45
 msgid ""
 "Change the color saturation using the HSV color model. HSV changes are "
 "applied before HSL.\n"
@@ -418,11 +628,13 @@ msgstr ""
 " 0.0 wyłączone\n"
 " 1.0 więcej koloru"
 
-#: ../brushsettings-gen.h:33
+#. Brush setting
+#: ../brushsettings-gen.h:46
 msgid "Smudge"
 msgstr "Rozmazanie"
 
-#: ../brushsettings-gen.h:33
+#. Tooltip for the "Smudge" brush setting
+#: ../brushsettings-gen.h:46
 msgid ""
 "Paint with the smudge color instead of the brush color. The smudge color is "
 "slowly changed to the color you are painting on.\n"
@@ -436,11 +648,43 @@ msgstr ""
 "0.5 mieszaj kolor rozmazania z kolorem pędzla\n"
 "1.0 używaj tylko koloru rozmazania"
 
-#: ../brushsettings-gen.h:34
+#. Brush setting - The name Pigment refers to the fact that this kind of color mixing is more similar to how colors mix in physical paint.
+#: ../brushsettings-gen.h:47
+msgid "Pigment"
+msgstr ""
+
+#. Tooltip for the "Pigment" brush setting - If this string is difficult to translate, feel free to change it to something more descriptive. Just try to be succinct and consistent.
+#: ../brushsettings-gen.h:47
+msgid ""
+"Subtractive spectral color mixing mode.\n"
+"0.0 no spectral mixing\n"
+"1.0 only spectral mixing"
+msgstr ""
+
+#. Brush setting
+#: ../brushsettings-gen.h:48
+#, fuzzy
+msgid "Smudge transparency"
+msgstr "Promień rozmycia"
+
+#. Tooltip for the "Smudge transparency" brush setting
+#: ../brushsettings-gen.h:48
+msgid ""
+"Control how much transparency is picked up and smudged, similar to lock "
+"alpha.\n"
+"1.0 will not move any transparency.\n"
+"0.5 will move only 50% transparency and above.\n"
+"0.0 will have no effect.\n"
+"Negative values do the reverse"
+msgstr ""
+
+#. Brush setting
+#: ../brushsettings-gen.h:49
 msgid "Smudge length"
 msgstr "Długość rozmycia"
 
-#: ../brushsettings-gen.h:34
+#. Tooltip for the "Smudge length" brush setting
+#: ../brushsettings-gen.h:49
 msgid ""
 "This controls how fast the smudge color becomes the color you are painting "
 "on.\n"
@@ -455,11 +699,44 @@ msgstr ""
 "0.5 płynnie zmieniaj kolor rozmazania do koloru płótna\n"
 "1.0 zawsze używaj koloru rozmycia"
 
-#: ../brushsettings-gen.h:35
+#. Brush setting
+#: ../brushsettings-gen.h:50
+#, fuzzy
+msgid "Smudge length multiplier"
+msgstr "Długość rozmycia"
+
+#. Tooltip for the "Smudge length multiplier" brush setting
+#: ../brushsettings-gen.h:50
+msgid ""
+"Logarithmic multiplier for the \"Smudge length\" value.\n"
+"Useful to correct for high-definition/large brushes with lots of dabs.\n"
+"The longer the smudge length the more a color will spread and will also "
+"boost performance dramatically, as the canvas is sampled less often"
+msgstr ""
+
+#. Brush setting
+#: ../brushsettings-gen.h:51
+#, fuzzy
+msgid "Smudge bucket"
+msgstr "Długość rozmycia"
+
+#. Tooltip for the "Smudge bucket" brush setting
+#: ../brushsettings-gen.h:51
+msgid ""
+"There are 256 buckets that each can hold a color picked up from the canvas.\n"
+"You can control which bucket to use to improve variability and realism of "
+"the brush.\n"
+"Especially useful with the \"Custom input\" setting to correlate buckets "
+"with other settings such as offsets."
+msgstr ""
+
+#. Brush setting
+#: ../brushsettings-gen.h:52
 msgid "Smudge radius"
 msgstr "Promień rozmycia"
 
-#: ../brushsettings-gen.h:35
+#. Tooltip for the "Smudge radius" brush setting
+#: ../brushsettings-gen.h:52
 msgid ""
 "This modifies the radius of the circle where color is picked up for "
 "smudging.\n"
@@ -474,11 +751,13 @@ msgstr ""
 "+0.7 podwojony promień pędzla\n"
 "+1.6 pięciokrotny promień pędzla (wolne działanie)"
 
-#: ../brushsettings-gen.h:36
+#. Brush setting
+#: ../brushsettings-gen.h:53
 msgid "Eraser"
 msgstr "Gumka"
 
-#: ../brushsettings-gen.h:36
+#. Tooltip for the "Eraser" brush setting
+#: ../brushsettings-gen.h:53
 msgid ""
 "how much this tool behaves like an eraser\n"
 " 0.0 normal painting\n"
@@ -490,11 +769,13 @@ msgstr ""
 " 1.0 pełna gumka\n"
 " 0.5 działa w 50% jako gumka, a w 50% jako pędzel"
 
-#: ../brushsettings-gen.h:37
+#. Brush setting
+#: ../brushsettings-gen.h:54
 msgid "Stroke threshold"
 msgstr "Margines pociągnięcia"
 
-#: ../brushsettings-gen.h:37
+#. Tooltip for the "Stroke threshold" brush setting
+#: ../brushsettings-gen.h:54
 msgid ""
 "How much pressure is needed to start a stroke. This affects the stroke input "
 "only. MyPaint does not need a minimum pressure to start drawing."
@@ -503,11 +784,13 @@ msgstr ""
 "dotyczy tylko parametrów 'Pociągnięcia pędzla'. MyPaint nie wymaga "
 "minimalnego nacisku by rozpocząć malowanie."
 
-#: ../brushsettings-gen.h:38
+#. Brush setting
+#: ../brushsettings-gen.h:55
 msgid "Stroke duration"
 msgstr "Długość pociągnięcia"
 
-#: ../brushsettings-gen.h:38
+#. Tooltip for the "Stroke duration" brush setting
+#: ../brushsettings-gen.h:55
 msgid ""
 "How far you have to move until the stroke input reaches 1.0. This value is "
 "logarithmic (negative values will not invert the process)."
@@ -516,11 +799,13 @@ msgstr ""
 "doszła do 1.0. Wartość jest wartością logarytmiczną (ujemne wartości nie "
 "odwrócą procesu)."
 
-#: ../brushsettings-gen.h:39
+#. Brush setting
+#: ../brushsettings-gen.h:56
 msgid "Stroke hold time"
 msgstr "Wstrzymanie pociągnięcia"
 
-#: ../brushsettings-gen.h:39
+#. Tooltip for the "Stroke hold time" brush setting
+#: ../brushsettings-gen.h:56
 msgid ""
 "This defines how long the stroke input stays at 1.0. After that it will "
 "reset to 0.0 and start growing again, even if the stroke is not yet "
@@ -533,11 +818,13 @@ msgstr ""
 "2.0 oznacza podwójną wartość 'długości pociągnięcia'\n"
 "9.9 i większe oznaczają nieskończoność"
 
-#: ../brushsettings-gen.h:40
+#. Brush setting
+#: ../brushsettings-gen.h:57
 msgid "Custom input"
 msgstr "Dowolna wartość"
 
-#: ../brushsettings-gen.h:40
+#. Tooltip for the "Custom input" brush setting
+#: ../brushsettings-gen.h:57
 msgid ""
 "Set the custom input to this value. If it is slowed down, move it towards "
 "this value (see below). The idea is that you make this input depend on a "
@@ -554,11 +841,13 @@ msgstr ""
 "Jeśli ustawisz by wartość zmieniała się przez 'losową' możesz uzyskać "
 "powolny (gładki) losowy wynik."
 
-#: ../brushsettings-gen.h:41
+#. Brush setting
+#: ../brushsettings-gen.h:58
 msgid "Custom input filter"
 msgstr "Filtr wartości dowolnej"
 
-#: ../brushsettings-gen.h:41
+#. Tooltip for the "Custom input filter" brush setting
+#: ../brushsettings-gen.h:58
 msgid ""
 "How slow the custom input actually follows the desired value (the one "
 "above). This happens at brushdab level (ignoring how much time has passed, "
@@ -570,24 +859,27 @@ msgstr ""
 "ciapek.\n"
 "0.0 brak opóźnienia (zmiany stosują się bezpośrednio)"
 
-#: ../brushsettings-gen.h:42
+#. Brush setting
+#: ../brushsettings-gen.h:59
 msgid "Elliptical dab: ratio"
 msgstr "Eliptyczna kropka: proporcja"
 
-#: ../brushsettings-gen.h:42
+#. Tooltip for the "Elliptical dab: ratio" brush setting
+#: ../brushsettings-gen.h:59
 msgid ""
 "Aspect ratio of the dabs; must be >= 1.0, where 1.0 means a perfectly round "
-"dab. TODO: linearize? start at 0.0 maybe, or log?"
+"dab."
 msgstr ""
 "Proporcja ciapek; musi wynosić >=10 gdzie 1.0 oznacza idealnie okrągłą "
-"ciapkę.\n"
-"TODO: Liniowość? Rozpocznij od 0.0 lub logarytmicznie?"
+"ciapkę."
 
-#: ../brushsettings-gen.h:43
+#. Brush setting
+#: ../brushsettings-gen.h:60
 msgid "Elliptical dab: angle"
 msgstr "Eliptyczna kropka: kąt"
 
-#: ../brushsettings-gen.h:43
+#. Tooltip for the "Elliptical dab: angle" brush setting
+#: ../brushsettings-gen.h:60
 msgid ""
 "Angle by which elliptical dabs are tilted\n"
 " 0.0 horizontal dabs\n"
@@ -598,11 +890,13 @@ msgstr ""
 "0.0 i 180.0.rysuje horyzontalnie\n"
 "45.0 rysuje kropkę pod kątem 45 stopni (zgodnie ze wskazówkami zegara)"
 
-#: ../brushsettings-gen.h:44
+#. Brush setting
+#: ../brushsettings-gen.h:61
 msgid "Direction filter"
 msgstr "Filtr kierunkowy"
 
-#: ../brushsettings-gen.h:44
+#. Tooltip for the "Direction filter" brush setting
+#: ../brushsettings-gen.h:61
 msgid ""
 "A low value will make the direction input adapt more quickly, a high value "
 "will make it smoother"
@@ -610,11 +904,13 @@ msgstr ""
 "Przy małych wartościach zapewnia szybszą reakcję na zmianę kierunku kursora, "
 "większe wartości złagodzą reakcję na kierunek"
 
-#: ../brushsettings-gen.h:45
+#. Brush setting
+#: ../brushsettings-gen.h:62
 msgid "Lock alpha"
 msgstr "Zablokuj kanał alfa"
 
-#: ../brushsettings-gen.h:45
+#. Tooltip for the "Lock alpha" brush setting
+#: ../brushsettings-gen.h:62
 msgid ""
 "Do not modify the alpha channel of the layer (paint only where there is "
 "paint already)\n"
@@ -628,11 +924,13 @@ msgstr ""
 "0.5 zastosowana tylko połowa farby\n"
 "1.0 kanał alfa całkowicie zablokowany"
 
-#: ../brushsettings-gen.h:46
+#. Brush setting
+#: ../brushsettings-gen.h:63
 msgid "Colorize"
 msgstr "Koloryzacja"
 
-#: ../brushsettings-gen.h:46
+#. Tooltip for the "Colorize" brush setting
+#: ../brushsettings-gen.h:63
 msgid ""
 "Colorize the target layer, setting its hue and saturation from the active "
 "brush color while retaining its value and alpha."
@@ -640,11 +938,38 @@ msgstr ""
 "Koloryzuj docelową warstwę zmieniając jej barwę i nasycenie z aktywnego "
 "koloru pędzla zachowując przy tym wartość i kanał alfa."
 
-#: ../brushsettings-gen.h:47
+#. Brush setting
+#: ../brushsettings-gen.h:64
+msgid "Posterize"
+msgstr ""
+
+#. Tooltip for the "Posterize" brush setting
+#: ../brushsettings-gen.h:64
+msgid ""
+"Strength of posterization, reducing number of colors based on the "
+"\"Posterization levels\" setting, while retaining alpha."
+msgstr ""
+
+#. Brush setting
+#: ../brushsettings-gen.h:65
+msgid "Posterization levels"
+msgstr ""
+
+#. Tooltip for the "Posterization levels" brush setting
+#: ../brushsettings-gen.h:65
+msgid ""
+"Number of posterization levels (divided by 100).\n"
+"0.05 = 5 levels, 0.2 = 20 levels, etc.\n"
+"Values above 0.5 may not be noticeable."
+msgstr ""
+
+#. Brush setting
+#: ../brushsettings-gen.h:66
 msgid "Snap to pixel"
 msgstr "Przyczep do piksela"
 
-#: ../brushsettings-gen.h:47
+#. Tooltip for the "Snap to pixel" brush setting
+#: ../brushsettings-gen.h:66
 msgid ""
 "Snap brush dab's center and its radius to pixels. Set this to 1.0 for a thin "
 "pixel brush."
@@ -652,11 +977,13 @@ msgstr ""
 "Przyczep środek i promień kropki do pikseli. Ustaw 1.0 dla cienkiego pędzla "
 "pikselowego."
 
-#: ../brushsettings-gen.h:48
+#. Brush setting
+#: ../brushsettings-gen.h:67
 msgid "Pressure gain"
 msgstr "Wzmocnienie nacisku"
 
-#: ../brushsettings-gen.h:48
+#. Tooltip for the "Pressure gain" brush setting
+#: ../brushsettings-gen.h:67
 msgid ""
 "This changes how hard you have to press. It multiplies tablet pressure by a "
 "constant factor."
@@ -664,11 +991,13 @@ msgstr ""
 "Ta wartość zmienia siłę której musisz użyć do nacisku - zwielokrotnia nacisk "
 "tabletu przez stały współczynnik."
 
-#: ../brushsettings-gen.h:53
+#. Brush input
+#: ../brushsettings-gen.h:72
 msgid "Pressure"
 msgstr "Nacisk"
 
-#: ../brushsettings-gen.h:53
+#. Tooltip for the "Pressure" brush input
+#: ../brushsettings-gen.h:72
 msgid ""
 "The pressure reported by the tablet. Usually between 0.0 and 1.0, but it may "
 "get larger when a pressure gain is used. If you use the mouse, it will be "
@@ -678,37 +1007,13 @@ msgstr ""
 "może wzrastać gdy 'wzmocnienie nacisku' jest używane. Jeśli używasz myszki "
 "wartość będzie wynosić 0.5 przy naciśniętym przycisku."
 
-#: ../brushsettings-gen.h:54
-msgid "Fine speed"
-msgstr "Prędkość odpowiednia"
-
-#: ../brushsettings-gen.h:54
-msgid ""
-"How fast you currently move. This can change very quickly. Try 'print input "
-"values' from the 'help' menu to get a feeling for the range; negative values "
-"are rare but possible for very low speed."
-msgstr ""
-"Jak szybko poruszasz kursorem. Ta wartość może się bardzo szybko zmieniać. "
-"Jeśli chcesz zobaczyć wartości prędkości użyj funkcji 'Wyświetl na konsoli "
-"informacje o urządzeniach wskazujących' z menu pomoc."
-
-#: ../brushsettings-gen.h:55
-msgid "Gross speed"
-msgstr "Prędkość całkowita"
-
-#: ../brushsettings-gen.h:55
-msgid ""
-"Same as fine speed, but changes slower. Also look at the 'gross speed "
-"filter' setting."
-msgstr ""
-"Podobnie jak 'Prędkość odpowiednia' lecz wolniej zmienia swoje wartości.\n"
-"Sprawdź również 'Filtr prędkości całkowitej'."
-
-#: ../brushsettings-gen.h:56
+#. Brush input
+#: ../brushsettings-gen.h:73
 msgid "Random"
 msgstr "Wartość losowa"
 
-#: ../brushsettings-gen.h:56
+#. Tooltip for the "Random" brush input
+#: ../brushsettings-gen.h:73
 msgid ""
 "Fast random noise, changing at each evaluation. Evenly distributed between 0 "
 "and 1."
@@ -716,11 +1021,13 @@ msgstr ""
 "Szybki losowy szum. Jego wartość zmienia się przy każdej wartości zwróconej "
 "przez tablet. Przyjmuje wartości od 0 do 1."
 
-#: ../brushsettings-gen.h:57
+#. Brush input
+#: ../brushsettings-gen.h:74
 msgid "Stroke"
 msgstr "Pociągnięcie pędzla"
 
-#: ../brushsettings-gen.h:57
+#. Tooltip for the "Stroke" brush input
+#: ../brushsettings-gen.h:74
 msgid ""
 "This input slowly goes from zero to one while you draw a stroke. It can also "
 "be configured to jump back to zero periodically while you move. Look at the "
@@ -731,11 +1038,13 @@ msgstr ""
 "z powrotem wzrastała. Zobacz również na parametry: 'Czas pociągnięcia' i "
 "'wstrzymanie pociągnięcia'."
 
-#: ../brushsettings-gen.h:58
+#. Brush input
+#: ../brushsettings-gen.h:75
 msgid "Direction"
 msgstr "Nachylenie"
 
-#: ../brushsettings-gen.h:58
+#. Tooltip for the "Direction" brush input
+#: ../brushsettings-gen.h:75
 msgid ""
 "The angle of the stroke, in degrees. The value will stay between 0.0 and "
 "180.0, effectively ignoring turns of 180 degrees."
@@ -743,11 +1052,14 @@ msgstr ""
 "Kąt nachylenia pędzla w stopniach. Może przyjmować wartości od 0.0 do 180.0 "
 "stopni. Domyślną wartością jest 180."
 
-#: ../brushsettings-gen.h:59
-msgid "Declination"
+#. Brush input
+#: ../brushsettings-gen.h:76
+#, fuzzy
+msgid "Declination/Tilt"
 msgstr "Odchylenie"
 
-#: ../brushsettings-gen.h:59
+#. Tooltip for the "Declination/Tilt" brush input
+#: ../brushsettings-gen.h:76
 msgid ""
 "Declination of stylus tilt. 0 when stylus is parallel to tablet and 90.0 "
 "when it's perpendicular to tablet."
@@ -755,11 +1067,13 @@ msgstr ""
 "Odchylenie nachylenia rysika. Wartość 0 gdy rysik jest ustawiony równolegle "
 "do tabletu, a gdy prostopadle, wartość wynosi 90.0."
 
-#: ../brushsettings-gen.h:60
+#. Brush input
+#: ../brushsettings-gen.h:77
 msgid "Ascension"
 msgstr "Obrót nachylenia rysika"
 
-#: ../brushsettings-gen.h:60
+#. Tooltip for the "Ascension" brush input
+#: ../brushsettings-gen.h:77
 msgid ""
 "Right ascension of stylus tilt. 0 when stylus working end points to you, +90 "
 "when rotated 90 degrees clockwise, -90 when rotated 90 degrees "
@@ -769,13 +1083,179 @@ msgstr ""
 "zwrócona do ciebie, +90 gdy jest obrócona w prawo o 90 stopni, a -90 gdy "
 "jest obrócona w lewo o 90 stopni."
 
-#: ../brushsettings-gen.h:61
+#. Brush input - "fine" refers to the accuracy and update frequency of the speed value, as in "fine grained"
+#: ../brushsettings-gen.h:78
+msgid "Fine speed"
+msgstr "Prędkość odpowiednia"
+
+#. Tooltip for the "Fine speed" brush input
+#: ../brushsettings-gen.h:78
+msgid ""
+"How fast you currently move. This can change very quickly. Try 'print input "
+"values' from the 'help' menu to get a feeling for the range; negative values "
+"are rare but possible for very low speed."
+msgstr ""
+"Jak szybko poruszasz kursorem. Ta wartość może się bardzo szybko zmieniać. "
+"Jeśli chcesz zobaczyć wartości prędkości użyj funkcji 'Wyświetl na konsoli "
+"informacje o urządzeniach wskazujących' z menu pomoc."
+
+#. Brush input - changes more smoothly but is less accurate than "Fine speed"
+#: ../brushsettings-gen.h:79
+msgid "Gross speed"
+msgstr "Prędkość całkowita"
+
+#. Tooltip for the "Gross speed" brush input
+#: ../brushsettings-gen.h:79
+msgid ""
+"Same as fine speed, but changes slower. Also look at the 'gross speed "
+"filter' setting."
+msgstr ""
+"Podobnie jak 'Prędkość odpowiednia' lecz wolniej zmienia swoje wartości.\n"
+"Sprawdź również 'Filtr prędkości całkowitej'."
+
+#. Brush input - the input is the output of the "Custom input" setting
+#: ../brushsettings-gen.h:80
 msgid "Custom"
 msgstr "Parametry dowolne"
 
-#: ../brushsettings-gen.h:61
+#. Tooltip for the "Custom" brush input
+#: ../brushsettings-gen.h:80
 msgid ""
 "This is a user defined input. Look at the 'custom input' setting for details."
 msgstr ""
 "Te wartości są definiowane przez użytkownika. Więcej szczegółów znajdziesz "
 "pod opcją 'Dowolna wartość'."
+
+#. Brush input - refers to the direction of the stroke
+#: ../brushsettings-gen.h:81
+#, fuzzy
+msgid "Direction 360"
+msgstr "Nachylenie"
+
+#. Tooltip for the "Direction 360" brush input
+#: ../brushsettings-gen.h:81
+msgid "The angle of the stroke, from 0 to 360 degrees."
+msgstr ""
+
+#. Brush input
+#: ../brushsettings-gen.h:82
+msgid "Attack Angle"
+msgstr ""
+
+#. Tooltip for the "Attack Angle" brush input
+#: ../brushsettings-gen.h:82
+msgid ""
+"The difference, in degrees, between the angle the stylus is pointing and the "
+"angle of the stroke movement.\n"
+"The range is +/-180.0.\n"
+"0.0 means the stroke angle corresponds to the angle of the stylus.\n"
+"90 means the stroke angle is perpendicular to the angle of the stylus.\n"
+"180 means the angle of the stroke is directly opposite the angle of the "
+"stylus."
+msgstr ""
+
+#. Brush input
+#: ../brushsettings-gen.h:83
+#, fuzzy
+msgid "Declination/Tilt X"
+msgstr "Odchylenie"
+
+#. Tooltip for the "Declination/Tilt X" brush input
+#: ../brushsettings-gen.h:83
+#, fuzzy
+msgid ""
+"Declination of stylus tilt on X-Axis. 90/-90 when stylus is parallel to "
+"tablet and 0 when it's perpendicular to tablet."
+msgstr ""
+"Odchylenie nachylenia rysika. Wartość 0 gdy rysik jest ustawiony równolegle "
+"do tabletu, a gdy prostopadle, wartość wynosi 90.0."
+
+#. Brush input
+#: ../brushsettings-gen.h:84
+#, fuzzy
+msgid "Declination/Tilt Y"
+msgstr "Odchylenie"
+
+#. Tooltip for the "Declination/Tilt Y" brush input
+#: ../brushsettings-gen.h:84
+#, fuzzy
+msgid ""
+"Declination of stylus tilt on Y-Axis. 90/-90 when stylus is parallel to "
+"tablet and 0 when it's perpendicular to tablet."
+msgstr ""
+"Odchylenie nachylenia rysika. Wartość 0 gdy rysik jest ustawiony równolegle "
+"do tabletu, a gdy prostopadle, wartość wynosi 90.0."
+
+#. Brush input
+#: ../brushsettings-gen.h:85
+msgid "GridMap X"
+msgstr ""
+
+#. Tooltip for the "GridMap X" brush input
+#: ../brushsettings-gen.h:85
+msgid ""
+"The X coordinate on a 256 pixel grid. This will wrap around 0-256 as the "
+"cursor is moved on the X axis. Similar to \"Stroke\". Can be used to add "
+"paper texture by modifying opacity, etc.\n"
+"The brush size should be considerably smaller than the grid scale for best "
+"results."
+msgstr ""
+
+#. Brush input
+#: ../brushsettings-gen.h:86
+msgid "GridMap Y"
+msgstr ""
+
+#. Tooltip for the "GridMap Y" brush input
+#: ../brushsettings-gen.h:86
+msgid ""
+"The Y coordinate on a 256 pixel grid. This will wrap around 0-256 as the "
+"cursor is moved on the Y axis. Similar to \"Stroke\". Can be used to add "
+"paper texture by modifying opacity, etc.\n"
+"The brush size should be considerably smaller than the grid scale for best "
+"results."
+msgstr ""
+
+#. Brush input - refers to canvas zoom
+#: ../brushsettings-gen.h:87
+msgid "Zoom Level"
+msgstr ""
+
+#. Tooltip for the "Zoom Level" brush input
+#: ../brushsettings-gen.h:87
+msgid ""
+"The current zoom level of the canvas view.\n"
+"Logarithmic: 0.0 is 100%, 0.69 is 200%, -1.38 is 25%\n"
+"For the Radius setting, using a value of -4.15 makes the brush size roughly "
+"constant, relative to the level of zoom."
+msgstr ""
+
+#. Brush input
+#: ../brushsettings-gen.h:88
+msgid "Base Brush Radius"
+msgstr ""
+
+#. Tooltip for the "Base Brush Radius" brush input
+#: ../brushsettings-gen.h:88
+msgid ""
+"The base brush radius allows you to change the behavior of a brush as you "
+"make it bigger or smaller.\n"
+"You can even cancel out dab size increase and adjust something else to make "
+"a brush bigger.\n"
+"Take note of \"Dabs per basic radius\" and \"Dabs per actual radius\", which "
+"behave much differently."
+msgstr ""
+
+#. Brush input
+#: ../brushsettings-gen.h:89
+msgid "Barrel Rotation"
+msgstr ""
+
+#. Tooltip for the "Barrel Rotation" brush input
+#: ../brushsettings-gen.h:89
+msgid ""
+"Barrel rotation of stylus.\n"
+"0 when not twisted\n"
+"+90 when twisted clockwise 90 degrees\n"
+"-90 when twisted counterclockwise 90 degrees"
+msgstr ""

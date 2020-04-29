@@ -14,7 +14,7 @@
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
-#include <config.h>
+#include "config.h"
 
 #include <stdlib.h>
 #include <assert.h>
@@ -22,7 +22,7 @@
 #if MYPAINT_CONFIG_USE_GLIB
 #include <glib.h>
 #else // not MYPAINT_CONFIG_USE_GLIB
-#include <mypaint-glib-compat.h>
+#include "mypaint-glib-compat.h"
 #endif
 
 #include "operationqueue.h"
@@ -206,7 +206,7 @@ operation_queue_add(OperationQueue *self, TileIndex index, OperationDataDrawDab 
 }
 
 /* Pop an operation off the queue for tile @index
- * The user of this function is reponsible for freeing the result using free()
+ * The user of this function is responsible for freeing the result using free()
  *
  * Concurrency: This function is reentrant (and lock-free) on different @index */
 OperationDataDrawDab *

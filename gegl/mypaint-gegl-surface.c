@@ -14,13 +14,19 @@
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
-#include <config.h>
+#include "config.h"
 
 #include <stdlib.h>
 #include <assert.h>
 
 #include "mypaint-gegl-surface.h"
 #include <gegl-utils.h>
+
+#define GEGL_GE_0_4_14 (GEGL_MAJOR_VERSION == 0 && GEGL_MINOR_VERSION == 4 && GEGL_MICRO_VERSION >= 14)
+
+#if GEGL_GE_0_4_14
+#define MAX_SLOTS 8
+#endif
 
 struct MyPaintGeglTiledSurface {
     MyPaintTiledSurface parent;
@@ -77,8 +83,13 @@ tile_request_start(MyPaintTiledSurface *tiled_surface, MyPaintTileRequest *reque
     }
 
     if (buffer_is_native(self)) {
-        GeglBufferIterator *iterator = gegl_buffer_iterator_new(self->buffer, &tile_bbox, 0, self->format,
-                                      read_write_flags, GEGL_ABYSS_NONE);
+        GeglBufferIterator *iterator = gegl_buffer_iterator_new(
+          self->buffer, &tile_bbox, 0, self->format,
+          read_write_flags, GEGL_ABYSS_NONE
+#if GEGL_GE_0_4_14
+          , MAX_SLOTS
+#endif
+          );
 
         // Read out
         gboolean completed = gegl_buffer_iterator_next(iterator);
@@ -88,7 +99,13 @@ tile_request_start(MyPaintTiledSurface *tiled_surface, MyPaintTileRequest *reque
             g_critical("Unable to get tile aligned access to GeglBuffer");
             request->buffer = NULL;
         } else {
-            request->buffer = (uint16_t *)(iterator->data[0]);
+            request->buffer = (uint16_t *)(
+#if GEGL_GE_0_4_14
+              iterator->items[0].data
+#else
+              iterator->data[0]
+#endif
+              );
         }
 
         // So we can finish the iterator in tile_request_end()

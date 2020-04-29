@@ -1,6 +1,4 @@
 
-#include <mypaint-config.h>
-
 #if MYPAINT_CONFIG_USE_GLIB
 
 #include <glib-object.h>

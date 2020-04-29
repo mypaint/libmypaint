@@ -1,7 +1,7 @@
 #ifndef MYPAINTGLIBCOMPAT_H
 #define MYPAINTGLIBCOMPAT_H
 
-#include <mypaint-config.h>
+#include "mypaint-config.h"
 
 #ifndef __G_LIB_H__
 

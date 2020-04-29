@@ -1,28 +1,49 @@
 # AC_OPENMP requires autoconf >= 2.62.
 AC_PREREQ(2.62)
 
-# API version: see https://github.com/mypaint/libmypaint/wiki/Versioning
-m4_define([libmypaint_api_major], [1])
-m4_define([libmypaint_api_minor], [4])
-m4_define([libmypaint_api_micro], [1])
-m4_define([libmypaint_api_prerelease], [alpha])  # may be blank
-# The platform version is "major.minor" only.
-# The full version is "major.minor.micro[-prerelease]".
 
-# ABI version see: https://autotools.io/libtool/version.html
+## Canonical version number components ##
+
+# API version: see https://github.com/mypaint/libmypaint/wiki/Versioning
+# See http://semver.org/ for what this means.
+
+m4_define([libmypaint_api_major], [1])
+m4_define([libmypaint_api_minor], [6])
+m4_define([libmypaint_api_micro], [0])
+m4_define([libmypaint_api_prerelease], [alpha])  # may be blank
+
+# ABI version. Changes independently of API version.
+# See: https://autotools.io/libtool/version.html
 # https://www.gnu.org/software/libtool/manual/html_node/Updating-version-info.html
-m4_define([libmypaint_abi_revision], [0])  # increment on every release
-m4_define([libmypaint_abi_current], [0])  # inc when add/remove/change interfaces
+# The rules are fiddly, and are summarized here.
+
+m4_define([libmypaint_abi_revision], [1])  # increment on every release
+m4_define([libmypaint_abi_current], [1])  # inc when add/remove/change interfaces
 m4_define([libmypaint_abi_age], [0])  # inc only if changes backward compat
 
-# Derivative version macros
+
+## Derivative version macros ##
+
+# The full version is "major.minor.micro[-prerelease]".
+
 m4_define([libmypaint_version],
           [libmypaint_api_major.libmypaint_api_minor.libmypaint_api_micro])
 m4_define([libmypaint_version_full],
           [libmypaint_api_major().libmypaint_api_minor().libmypaint_api_micro()m4_bpatsubst(libmypaint_api_prerelease(), [^\(.\)], [-\1])])
 
-# Dependencies.
-m4_define([gegl_required_version], [0.3])
+# The API "platform" or "intercompatibility" version.
+#
+# This one is used for library name prefixes, for introspection
+# namespace versions, for gettext domains, and basically anything that
+# needs to change when backwards or forwards API compatibility changes.
+# Another way of thinking about it: it allows meaningful side by side
+# installations of libmypaint.
+
+m4_define([libmypaint_api_platform_version],
+          [libmypaint_api_major.libmypaint_api_minor])
+
+
+## Dependencies ##
 m4_define([introspection_required_version], [1.32.0])
 
 AC_INIT([libmypaint],
@@ -44,7 +65,8 @@ LIBMYPAINT_MINOR_VERSION=libmypaint_api_minor
 LIBMYPAINT_MICRO_VERSION=libmypaint_api_micro
 LIBMYPAINT_VERSION=libmypaint_version
 LIBMYPAINT_VERSION_FULL=libmypaint_version_full
-LIBMYPAINT_API_PLATFORM_VERSION=libmypaint_api_major.libmypaint_api_minor
+LIBMYPAINT_API_PLATFORM_VERSION=libmypaint_api_platform_version
+LIBMYPAINT_API_PLATFORM_VERSION_UL=m4_bpatsubst(libmypaint_api_platform_version(), [[^A-Za-z0-9]], [_])
 LIBMYPAINT_ABI_VERSION_INFO=libmypaint_abi_current:libmypaint_abi_revision:libmypaint_abi_age
 
 AC_SUBST(LIBMYPAINT_MAJOR_VERSION)
@@ -54,6 +76,7 @@ AC_SUBST(LIBMYPAINT_PRERELEASE_VERSION)
 AC_SUBST(LIBMYPAINT_VERSION)
 AC_SUBST(LIBMYPAINT_VERSION_FULL)
 AC_SUBST(LIBMYPAINT_API_PLATFORM_VERSION)
+AC_SUBST(LIBMYPAINT_API_PLATFORM_VERSION_UL)
 AC_SUBST(LIBMYPAINT_ABI_VERSION_INFO)
 
 AC_PROG_CC
@@ -72,9 +95,8 @@ AM_MAINTAINER_MODE([enable])
 # Check for pkg-config
 PKG_PROG_PKG_CONFIG(0.16)
 
-###########################
-# Check host and platform
-###########################
+
+## Check host and platform ##
 
 AC_CANONICAL_HOST
 
@@ -164,12 +186,12 @@ AC_ARG_ENABLE(docs,
 
 if test "x$enable_docs" = xyes; then
   AC_CHECK_PROGS(DOXYGEN, doxygen)
-  AC_CHECK_PROGS(SPHINX_BUILD, sphinx-build2 sphinx-build-2 sphinx-build3 sphinx-build-3 sphinx-build)
-  # TODO: the python "breathe" extension is also a dependency to doc building.
-  # The configure script should check for its existence.
+  AS_IF(test "x$DOXYGEN" != "x", [],
+    [AC_MSG_ERROR([doxygen is required to build the documentation]);
+     AS_EXIT([1])
+    ])
 fi
-AM_CONDITIONAL(ENABLE_DOCS,
-               test "x$DOXYGEN" != "x" && test "x$SPHINX_BUILD" != "x")
+AM_CONDITIONAL(ENABLE_DOCS, test "x$DOXYGEN" != "x")
 
 ## json-c ##
 PKG_CHECK_MODULES(JSON, json-c,
@@ -183,7 +205,6 @@ else
   PKG_CONFIG_REQUIRES="json-c"
 fi
 
-AC_DEFINE(HAVE_JSON_C, 1, [Define to 1 if json is available])
 AC_SUBST(JSON_LIBS)
 AC_SUBST(JSON_CFLAGS)
 
@@ -232,31 +253,45 @@ AC_ARG_WITH(glib,
     [use glib (forced on by introspection)])
 )
 
-if test "x$with_glib" = xyes ||
-   test "x$found_introspection" = xyes; then
+use_glib() {
+    test "x$with_glib" = xyes || test "x$found_introspection" = xyes
+}
+
+if use_glib; then
   PKG_CHECK_MODULES(GLIB, gobject-2.0)
   AC_DEFINE(MYPAINT_CONFIG_USE_GLIB, 1, [Define to 1 if glib is used])
   PKG_CONFIG_REQUIRES="$PKG_CONFIG_REQUIRES gobject-2.0"
 else
   AC_DEFINE(MYPAINT_CONFIG_USE_GLIB, 0, [Define to 1 if glib is used])
 fi
-AM_CONDITIONAL(WITH_GLIB, test "x$with_glib" = "xyes")
+AM_CONDITIONAL(WITH_GLIB, use_glib)
 
-## GEGL ##
+## GEGL - NOT REQUIRED TO BUILD, NOT USED BY ANY MAJOR PROJECT ##
 AC_ARG_ENABLE(gegl,
   AS_HELP_STRING([--enable-gegl],
     [enable GEGL based code in build (yes|no, default=no)])
 )
 
+DOXYGEN_EXCLUDED=
 if eval "test x$enable_gegl = xyes"; then
-  PKG_CHECK_MODULES(GEGL, gegl-0.3 >= gegl_required_version)
+  AC_MSG_NOTICE([Checking whether gegl-0.4 or gegl-0.3 is available])
+  # Prioritize gegl-0.4
+  PKG_CHECK_MODULES(GEGL, gegl-0.4, [GEGL_VERSION=0.4], [
+  # Fall back to gegl-0.3
+    PKG_CHECK_MODULES(GEGL, gegl-0.3, [GEGL_VERSION=0.3])
+])
+AC_SUBST(GEGL_VERSION)
+else
+  DOXYGEN_EXCLUDED="../gegl/"
 fi
 AM_CONDITIONAL(ENABLE_GEGL, test "x$enable_gegl" = "xyes")
+AC_SUBST(DOXYGEN_EXCLUDED)
 
 # Set pkg-config variables before generation.
 AC_SUBST(PKG_CONFIG_REQUIRES)
 
 AC_CONFIG_FILES([
+  doc/Doxyfile
   doc/Makefile
   gegl/libmypaint-gegl.pc:gegl/libmypaint-gegl.pc.in
   gegl/Makefile
@@ -271,5 +306,10 @@ AC_OUTPUT
 
 echo ""
 echo "  Configured libmypaint $LIBMYPAINT_VERSION_FULL"
+
+if test -n "$GEGL_VERSION"; then
+  echo "  Using gegl-$GEGL_VERSION"
+fi
+
 echo ""
 

@@ -15,9 +15,9 @@
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
-#include <config.h>
+#include "config.h"
 
-#include <mypaint-rectangle.h>
+#include "mypaint-rectangle.h"
 #include <stdlib.h>
 #include <string.h>
 
@@ -48,4 +48,11 @@ mypaint_rectangle_expand_to_include_point(MyPaintRectangle *r, int x, int y)
         if (y < r->y) { r->height += r->y-y; r->y = y; } else
         if (y >= r->y+r->height) { r->height = y - r->y + 1; }
     }
+}
+
+void
+mypaint_rectangle_expand_to_include_rect(MyPaintRectangle *r, MyPaintRectangle *other)
+{
+    mypaint_rectangle_expand_to_include_point(r, other->x, other->y);
+    mypaint_rectangle_expand_to_include_point(r, other->x + other->width - 1, other->y + other->height - 1);
 }

@@ -17,8 +17,8 @@
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
-#include <mypaint-brush.h>
-#include <mypaint-surface.h>
+#include "mypaint-brush.h"
+#include "mypaint-surface.h"
 
 typedef struct MyPaintUtilsStrokePlayer MyPaintUtilsStrokePlayer;
 

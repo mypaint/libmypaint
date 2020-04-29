@@ -21,7 +21,7 @@
  * independent generator objects. All changes made to this file are considered
  * to be in the public domain. */
 
-#include <config.h>
+#include "config.h"
 
 #include "rng-double.h"
 

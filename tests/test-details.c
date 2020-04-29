@@ -21,7 +21,7 @@ int main(int argc, char *argv[])
     const float angle = 0.0;
     const float aspect_ratio = 1.0;
 
-    const int iterations = 1000000;
+    const int iterations = 1000;
 
     uint16_t buffer[MYPAINT_TILE_SIZE*MYPAINT_TILE_SIZE+2*MYPAINT_TILE_SIZE];
     mypaint_benchmark_start("render_dab_mask");

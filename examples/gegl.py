@@ -1,9 +1,15 @@
 
 from __future__ import absolute_import, division, print_function
 
-from gi.repository import GeglGtk3 as GeglGtk
-from gi.repository import Gegl, Gtk
-from gi.repository import MyPaint, MyPaintGegl
+# point GI_TYPELIB_PATH to the location of the installed .typelib files
+
+import gi
+gi.require_version('MyPaint', '1.6')
+gi.require_version('MyPaintGegl', '1.6')
+
+from gi.repository import GeglGtk3 as GeglGtk  # noqa
+from gi.repository import Gegl, Gtk  # noqa
+from gi.repository import MyPaint, MyPaintGegl  # noqa
 
 
 class Application(object):
@@ -29,7 +35,8 @@ class Application(object):
 
         top_box = Gtk.VBox()
 
-        self.view_widget = GeglGtk.View.new_for_buffer(self.gegl_surface.get_buffer())
+        self.view_widget = GeglGtk.View.new_for_buffer(
+            self.gegl_surface.get_buffer())
         self.view_widget.set_autoscale_policy(GeglGtk.ViewAutoscale.DISABLED)
         self.view_widget.set_size_request(400, 400)
         self.view_widget.connect("draw-background", self.draw_background)
@@ -55,11 +62,6 @@ class Application(object):
     def motion_to(self, widget, event):
 
         (x, y, time) = event.x, event.y, event.time
-
-        # FIXME: crashes?
-        #matrix = self.view_widget.get_transformation()
-        #matrix.invert()
-        #x, y = matrix.transform_point2(x, y)
 
         pressure = 0.5
         dtime = (time - self.last_event[2])/1000.0
@@ -89,12 +91,14 @@ def list_settings():
 
     # Create a brush, load from disk
     brush = MyPaint.Brush()
-    brush_def = open("brushes/classic/brush.myb").read()
+    brush_def = open("../tests/brushes/charcoal.myb").read()
     brush.from_string(brush_def)
 
     # List all settings
     # TODO: Is there a better way to list all enums with GI?
-    settings = [str(getattr(MyPaint.BrushSetting, attr)) for attr in dir(MyPaint.BrushSetting) if attr.startswith("SETTING_")]
+    settings = [str(getattr(MyPaint.BrushSetting, attr))
+                for attr in dir(MyPaint.BrushSetting)
+                if attr.startswith("SETTING_")]
     print("Available settings: %s\n" % "\n".join(settings))
 
     # Get info about a given setting
@@ -118,12 +122,14 @@ def list_settings():
     assert brush.get_base_value(setting) == 2.0
 
     # Get dynamics for given setting
-    inputs = [getattr(MyPaint.BrushInput, a) for a in dir(MyPaint.BrushInput) if a.startswith('INPUT_')]
+    inputs = [getattr(MyPaint.BrushInput, a)
+              for a in dir(MyPaint.BrushInput) if a.startswith('INPUT_')]
     if not brush.is_constant(setting):
         for input in inputs:
             mapping_points = brush.get_mapping_n(setting, input)
             if mapping_points > 1:  # If 0, no dynamics for this input
-                points = [brush.get_mapping_point(setting, input, i) for i in range(mapping_points)]
+                points = [brush.get_mapping_point(setting, input, i)
+                          for i in range(mapping_points)]
                 print("Has dynamics for input %s:\n%s" % (input, str(points)))
 
 

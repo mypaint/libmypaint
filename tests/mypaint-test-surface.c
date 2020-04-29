@@ -18,12 +18,18 @@
 #include <stdio.h>
 #include <assert.h>
 #include <math.h>
+#include <string.h>
 
 #include "mypaint-utils-stroke-player.h"
 #include "mypaint-test-surface.h"
 #include "mypaint-test-surface.h"
 #include "testutils.h"
 #include "mypaint-benchmark.h"
+
+#ifndef LIBMYPAINT_TESTING_ABS_TOP_SRCDIR
+#define LIBMYPAINT_TESTING_ABS_TOP_SRCDIR ".."
+#endif
+
 
 typedef enum {
     SurfaceTransactionPerStrokeTo,
@@ -56,6 +62,7 @@ test_surface_drawing(void *user_data)
 
     MyPaintSurface *surface = data->factory_function(data->factory_user_data);
     MyPaintBrush *brush = mypaint_brush_new();
+    mypaint_brush_from_defaults(brush);
     MyPaintUtilsStrokePlayer *player = mypaint_utils_stroke_player_new();
 
     mypaint_brush_from_string(brush, brush_data);
@@ -115,68 +122,70 @@ mypaint_test_surface_run(int argc, char **argv,
                       MyPaintTestsSurfaceFactory surface_factory,
                       gchar *title, gpointer user_data)
 {
-    // FIXME: use an environment variable or commandline switch to
-    // distinguish between running test as a benchmark (multiple iterations and taking the time)
-    // or as a test (just verifying correctness)
+  gboolean correctness_only = TRUE;
+  if (argc > 1 && strcmp(argv[1], "--full-benchmark") == 0) {
+    correctness_only = FALSE;
+  }
 
-    MyPaintTestsSurfaceFactory f = surface_factory;
-    gpointer d = user_data;
+    printf("Running test: %s\n", title);
+#define BRUSH_PATH(brushname) LIBMYPAINT_TESTING_ABS_TOP_SRCDIR "/tests/brushes/" brushname ".myb"
 
-    SurfaceTestData data[] = {
-        {"1", f, d, 2.0, 1.0, 1, LIBMYPAINT_TESTING_ABS_TOP_SRCDIR "/tests/brushes/modelling.myb", SurfaceTransactionPerStrokeTo},
-        {"2", f, d, 4.0, 1.0, 1, LIBMYPAINT_TESTING_ABS_TOP_SRCDIR "/tests/brushes/modelling.myb", SurfaceTransactionPerStrokeTo},
-        {"3", f, d, 8.0, 1.0, 1, LIBMYPAINT_TESTING_ABS_TOP_SRCDIR "/tests/brushes/modelling.myb", SurfaceTransactionPerStrokeTo},
-        {"4", f, d, 16.0, 2.0, 1, LIBMYPAINT_TESTING_ABS_TOP_SRCDIR "/tests/brushes/modelling.myb", SurfaceTransactionPerStrokeTo},
-        {"5", f, d, 32.0, 2.0, 1, LIBMYPAINT_TESTING_ABS_TOP_SRCDIR "/tests/brushes/modelling.myb", SurfaceTransactionPerStrokeTo},
-        {"6", f, d, 64.0, 2.0, 1, LIBMYPAINT_TESTING_ABS_TOP_SRCDIR "/tests/brushes/modelling.myb", SurfaceTransactionPerStrokeTo},
-        {"7", f, d, 128.0, 4.0, 1, LIBMYPAINT_TESTING_ABS_TOP_SRCDIR "/tests/brushes/modelling.myb", SurfaceTransactionPerStrokeTo},
-        {"8", f, d, 256.0, 4.0, 1, LIBMYPAINT_TESTING_ABS_TOP_SRCDIR "/tests/brushes/modelling.myb", SurfaceTransactionPerStrokeTo},
-        {"9", f, d, 512.0, 4.0, 1, LIBMYPAINT_TESTING_ABS_TOP_SRCDIR "/tests/brushes/modelling.myb", SurfaceTransactionPerStrokeTo},
-        {"10", f, d, 2.0, 1.0, 1, LIBMYPAINT_TESTING_ABS_TOP_SRCDIR "/tests/brushes/charcoal.myb", SurfaceTransactionPerStrokeTo},
-        {"11", f, d, 4.0, 1.0, 1, LIBMYPAINT_TESTING_ABS_TOP_SRCDIR "/tests/brushes/charcoal.myb", SurfaceTransactionPerStrokeTo},
-        {"12", f, d, 8.0, 1.0, 1, LIBMYPAINT_TESTING_ABS_TOP_SRCDIR "/tests/brushes/charcoal.myb", SurfaceTransactionPerStrokeTo},
-        {"13", f, d, 16.0, 2.0, 1, LIBMYPAINT_TESTING_ABS_TOP_SRCDIR "/tests/brushes/charcoal.myb", SurfaceTransactionPerStrokeTo},
-        {"14", f, d, 32.0, 2.0, 1, LIBMYPAINT_TESTING_ABS_TOP_SRCDIR "/tests/brushes/charcoal.myb", SurfaceTransactionPerStrokeTo},
-        {"15", f, d, 64.0, 2.0, 1, LIBMYPAINT_TESTING_ABS_TOP_SRCDIR "/tests/brushes/charcoal.myb", SurfaceTransactionPerStrokeTo},
-        {"16", f, d, 128.0, 4.0, 1, LIBMYPAINT_TESTING_ABS_TOP_SRCDIR "/tests/brushes/charcoal.myb", SurfaceTransactionPerStrokeTo},
-        {"17", f, d, 256.0, 4.0, 1, LIBMYPAINT_TESTING_ABS_TOP_SRCDIR "/tests/brushes/charcoal.myb", SurfaceTransactionPerStrokeTo},
-        {"18", f, d, 512.0, 4.0, 1, LIBMYPAINT_TESTING_ABS_TOP_SRCDIR "/tests/brushes/charcoal.myb", SurfaceTransactionPerStrokeTo},
-        {"19", f, d, 2.0, 1.0, 1, LIBMYPAINT_TESTING_ABS_TOP_SRCDIR "/tests/brushes/coarse_bulk_2.myb", SurfaceTransactionPerStrokeTo},
-        {"20", f, d, 4.0, 1.0, 1, LIBMYPAINT_TESTING_ABS_TOP_SRCDIR "/tests/brushes/coarse_bulk_2.myb", SurfaceTransactionPerStrokeTo},
-        {"21", f, d, 8.0, 1.0, 1, LIBMYPAINT_TESTING_ABS_TOP_SRCDIR "/tests/brushes/coarse_bulk_2.myb", SurfaceTransactionPerStrokeTo},
-        {"22", f, d, 16.0, 2.0, 1, LIBMYPAINT_TESTING_ABS_TOP_SRCDIR "/tests/brushes/coarse_bulk_2.myb", SurfaceTransactionPerStrokeTo},
-        {"23", f, d, 32.0, 2.0, 1, LIBMYPAINT_TESTING_ABS_TOP_SRCDIR "/tests/brushes/coarse_bulk_2.myb", SurfaceTransactionPerStrokeTo},
-        {"24", f, d, 64.0, 2.0, 1, LIBMYPAINT_TESTING_ABS_TOP_SRCDIR "/tests/brushes/coarse_bulk_2.myb", SurfaceTransactionPerStrokeTo},
-        {"25", f, d, 128.0, 2.0, 1, LIBMYPAINT_TESTING_ABS_TOP_SRCDIR "/tests/brushes/coarse_bulk_2.myb", SurfaceTransactionPerStrokeTo},
-        {"26", f, d, 256.0, 2.0, 1, LIBMYPAINT_TESTING_ABS_TOP_SRCDIR "/tests/brushes/coarse_bulk_2.myb", SurfaceTransactionPerStrokeTo},
-//        {"27", f, d, 512.0, 2.0, 1, LIBMYPAINT_TESTING_ABS_TOP_SRCDIR "/tests/brushes/coarse_bulk_2.myb", SurfaceTransactionPerStrokeTo}, // uses to much memory on most machines
-        {"28", f, d, 2.0, 1.0, 1, LIBMYPAINT_TESTING_ABS_TOP_SRCDIR "/tests/brushes/bulk.myb", SurfaceTransactionPerStrokeTo},
-        {"29", f, d, 4.0, 1.0, 1, LIBMYPAINT_TESTING_ABS_TOP_SRCDIR "/tests/brushes/bulk.myb", SurfaceTransactionPerStrokeTo},
-        {"30", f, d, 8.0, 1.0, 1, LIBMYPAINT_TESTING_ABS_TOP_SRCDIR "/tests/brushes/bulk.myb", SurfaceTransactionPerStrokeTo},
-        {"31", f, d, 16.0, 2.0, 1, LIBMYPAINT_TESTING_ABS_TOP_SRCDIR "/tests/brushes/bulk.myb", SurfaceTransactionPerStrokeTo},
-        {"32", f, d, 32.0, 2.0, 1, LIBMYPAINT_TESTING_ABS_TOP_SRCDIR "/tests/brushes/bulk.myb", SurfaceTransactionPerStrokeTo},
-        {"33", f, d, 64.0, 2.0, 1, LIBMYPAINT_TESTING_ABS_TOP_SRCDIR "/tests/brushes/bulk.myb", SurfaceTransactionPerStrokeTo},
-        {"34", f, d, 128.0, 4.0, 1, LIBMYPAINT_TESTING_ABS_TOP_SRCDIR "/tests/brushes/bulk.myb", SurfaceTransactionPerStrokeTo},
-        {"35", f, d, 256.0, 4.0, 1, LIBMYPAINT_TESTING_ABS_TOP_SRCDIR "/tests/brushes/bulk.myb", SurfaceTransactionPerStrokeTo},
-        {"36", f, d, 512.0, 4.0, 1, LIBMYPAINT_TESTING_ABS_TOP_SRCDIR "/tests/brushes/bulk.myb", SurfaceTransactionPerStrokeTo}
+    const char* brush_paths[4] = {
+      BRUSH_PATH("modelling"), BRUSH_PATH("charcoal"), BRUSH_PATH("coarse_bulk_2"), BRUSH_PATH("bulk")
     };
+    const int num_brushes = TEST_CASES_NUMBER(brush_paths);
 
-    TestCase test_cases[TEST_CASES_NUMBER(data)];
-    for (int i = 0; i < TEST_CASES_NUMBER(data); i++) {
-        TestCase t;
-        t.id = data[i].test_case_id;
-        t.function = test_surface_drawing;
-        t.user_data = (void *)&data[i];
-        test_cases[i] = t;
-    };
+    float max_brush_radius[num_brushes];
+    max_brush_radius[0] = correctness_only ? 256 : 512;
+    max_brush_radius[1] = 512;
+    max_brush_radius[2] = 256;
+    max_brush_radius[3] = 512;
 
-    int retval = test_cases_run(argc, argv, test_cases, TEST_CASES_NUMBER(test_cases), TEST_CASE_BENCHMARK);
-
-    /*
-    for(int i = 0; i < TEST_CASES_NUMBER(test_cases); i++) {
-        free(test_cases[i].id);
+    int num_cases = 0;
+    if (correctness_only) {
+      num_cases = num_brushes * 2;
+    } else {
+      for (int i = 0; i < num_brushes; ++i) {
+        num_cases += (int)log2(max_brush_radius[i]);
+      }
     }
-    */
 
-    return retval;
+    SurfaceTestData test_data[num_cases];
+    int max_id_length = 32;
+    char test_ids[num_cases][max_id_length];
+    int case_n = 0;
+
+    // Generate test case parameters
+    for (int brush = 0; brush < num_brushes; ++brush) {
+      const int max_radius = max_brush_radius[brush];
+      for (int radius = 2; radius <= max_radius; radius *= 2) {
+         // For correctness tests, only run the first and the last radius/scale combo for each brush
+        if (correctness_only && radius != 2 && radius*2 <= max_radius) {
+          continue;
+        }
+        const float scale = powf(2, ((int)log2(radius)-1) / 3);
+        snprintf(test_ids[case_n], max_id_length, "(b:%02d  r:%-3d s:%-3.1f)", brush, radius, scale);
+        const int iterations = 1;
+        SurfaceTransaction transaction = SurfaceTransactionPerStrokeTo;
+        SurfaceTestData t_data = {
+          test_ids[case_n], surface_factory, user_data, radius, scale, iterations, brush_paths[brush], transaction
+        };
+        test_data[case_n++] = t_data;
+      }
+    }
+
+    // Generate test cases
+     TestCase test_cases[num_cases];
+     for (int i = 0; i < num_cases; ++i) {
+         TestCase t;
+         t.id = test_data[i].test_case_id;
+         t.function = test_surface_drawing;
+         t.user_data = (void*)&test_data[i];
+         test_cases[i] = t;
+     };
+
+     // Run test cases
+     return test_cases_run(argc, argv, test_cases, TEST_CASES_NUMBER(test_cases), TEST_CASE_BENCHMARK);
+
+#undef BRUSH_PATH
 }

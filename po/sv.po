@@ -4,22 +4,24 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.7.1-git\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-07-04 18:33+0100\n"
-"PO-Revision-Date: 2015-08-05 13:37+0200\n"
-"Last-Translator: Martin Trokenheim <martin.trokenheim@aol.se>\n"
-"Language-Team: Swedish "
-"<https://hosted.weblate.org/projects/mypaint/libmypaint/sv/>\n"
+"POT-Creation-Date: 2020-01-10 10:35+0100\n"
+"PO-Revision-Date: 2020-01-11 10:21+0000\n"
+"Last-Translator: Jesper Lloyd <jpl.lloyd@gmail.com>\n"
+"Language-Team: Swedish <https://hosted.weblate.org/projects/mypaint/"
+"libmypaint/sv/>\n"
 "Language: sv\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 2.4-dev\n"
+"X-Generator: Weblate 3.10.1\n"
 
+#. Brush setting
 #: ../brushsettings-gen.h:4
 msgid "Opacity"
 msgstr "Opacitet"
 
+#. Tooltip for the "Opacity" brush setting
 #: ../brushsettings-gen.h:4
 msgid ""
 "0 means brush is transparent, 1 fully visible\n"
@@ -28,10 +30,12 @@ msgstr ""
 "0 anger att penseln är genomskinlig, 1 att den är fullt synlig.\n"
 "(också känt som alfa eller opacitet)"
 
+#. Brush setting
 #: ../brushsettings-gen.h:5
 msgid "Opacity multiply"
 msgstr "Multiplicera opacitet"
 
+#. Tooltip for the "Opacity multiply" brush setting
 #: ../brushsettings-gen.h:5
 msgid ""
 "This gets multiplied with opaque. You should only change the pressure input "
@@ -45,10 +49,12 @@ msgstr ""
 "Denna inställning ser till att sluta måla när trycket är 0. Detta är bara en "
 "konvention, beteendet är samma som för 'ogenomskinlighet'."
 
+#. Brush setting
 #: ../brushsettings-gen.h:6
 msgid "Opacity linearize"
 msgstr "Linjär opacitet"
 
+#. Tooltip for the "Opacity linearize" brush setting
 #: ../brushsettings-gen.h:6
 msgid ""
 "Correct the nonlinearity introduced by blending multiple dabs on top of each "
@@ -68,13 +74,15 @@ msgstr ""
 "'dabs_per_second'\n"
 "0.0 - opacitetsvärdet gäller för de individuella delarna av penselnedslagen\n"
 "1.0 - opacitetsvärdet gäller för det slutgiltiga penseldraget, förmodat att "
-"varje pixel får (dabs_per_radius*2) penseldetslag i medeltal under ett "
+"varje pixel får (dabs_per_radius*2) penselnedslag i medeltal under ett "
 "penseldrag"
 
+#. Brush setting
 #: ../brushsettings-gen.h:7
 msgid "Radius"
 msgstr "Radie"
 
+#. Tooltip for the "Radius" brush setting
 #: ../brushsettings-gen.h:7
 msgid ""
 "Basic brush radius (logarithmic)\n"
@@ -85,10 +93,12 @@ msgstr ""
 " 0.7 betyder 2 pixlar\n"
 " 3.0 betyder 20 pixlar"
 
+#. Brush setting
 #: ../brushsettings-gen.h:8
 msgid "Hardness"
 msgstr "Hårdhet"
 
+#. Tooltip for the "Hardness" brush setting
 #: ../brushsettings-gen.h:8
 msgid ""
 "Hard brush-circle borders (setting to zero will draw nothing). To reach the "
@@ -97,10 +107,12 @@ msgstr ""
 "Hård kantcirkel för penseln (om detta sätts till noll ritas ingenting). För "
 "att nå maximal hårdhet måste också pixelludd deaktiveras."
 
+#. Brush setting
 #: ../brushsettings-gen.h:9
 msgid "Pixel feather"
 msgstr "Pixelludd"
 
+#. Tooltip for the "Pixel feather" brush setting
 #: ../brushsettings-gen.h:9
 msgid ""
 "This setting decreases the hardness when necessary to prevent a pixel "
@@ -115,10 +127,12 @@ msgstr ""
 " 1.0 oskärpa för en pixel (bra värde)\n"
 " 5.0 tydlig oskärpa, tunna streck kommer att försvinna"
 
+#. Brush setting
 #: ../brushsettings-gen.h:10
 msgid "Dabs per basic radius"
 msgstr "Penselnedslag per basradie"
 
+#. Tooltip for the "Dabs per basic radius" brush setting
 #: ../brushsettings-gen.h:10
 msgid ""
 "How many dabs to draw while the pointer moves a distance of one brush radius "
@@ -127,10 +141,12 @@ msgstr ""
 "Hur många penselnedslag som ritas medan pekaren rör sig en penselradie (mer "
 "exakt: radiens basvärde)"
 
+#. Brush setting
 #: ../brushsettings-gen.h:11
 msgid "Dabs per actual radius"
 msgstr "Penselnedslag per faktisk radie"
 
+#. Tooltip for the "Dabs per actual radius" brush setting
 #: ../brushsettings-gen.h:11
 msgid ""
 "Same as above, but the radius actually drawn is used, which can change "
@@ -139,21 +155,75 @@ msgstr ""
 "Samma som ovan, men använder den nuvarande radien (vilken kan ändras "
 "dynamiskt)"
 
+#. Brush setting
 #: ../brushsettings-gen.h:12
 msgid "Dabs per second"
 msgstr "Penselnedslag per sekund"
 
+#. Tooltip for the "Dabs per second" brush setting
 #: ../brushsettings-gen.h:12
 msgid "Dabs to draw each second, no matter how far the pointer moves"
 msgstr ""
 "Penselnedslag som ritas varje sekund, oberoende av hur långt pekaren flyttar "
 "sig"
 
+#. Brush setting
 #: ../brushsettings-gen.h:13
-msgid "Radius by random"
-msgstr "Slumpmässig radien"
+msgid "GridMap Scale"
+msgstr "Rutnätsstorlek"
 
+#. Tooltip for the "GridMap Scale" brush setting
 #: ../brushsettings-gen.h:13
+msgid ""
+"Changes the overall scale that the GridMap brush input operates on.\n"
+"Logarithmic (same scale as brush radius).\n"
+"A scale of 0 will make the grid 256x256 pixels."
+msgstr ""
+"Ändrar skalan som penselinmatningen Rutnät använder sig av.\n"
+"Skalan är logaritmisk (samma skala som för penselradien).\n"
+"Värdet 0 ger ett rutnät av 256x256 pixlar."
+
+#. Brush setting
+#: ../brushsettings-gen.h:14
+msgid "GridMap Scale X"
+msgstr "Rutnätsskalning X"
+
+#. Tooltip for the "GridMap Scale X" brush setting
+#: ../brushsettings-gen.h:14
+msgid ""
+"Changes the scale that the GridMap brush input operates on - affects X axis "
+"only.\n"
+"The range is 0-5x.\n"
+"This allows you to stretch or compress the GridMap pattern."
+msgstr ""
+"Ändrar skalan som rutnätet använder sig av - påverkar endast x-axeln.\n"
+"Omfånget är 0-5x.\n"
+"Detta möjliggör utsträckning eller hoptryckning av rutnätsmönstret."
+
+#. Brush setting
+#: ../brushsettings-gen.h:15
+msgid "GridMap Scale Y"
+msgstr "Rutnätsskalning Y"
+
+#. Tooltip for the "GridMap Scale Y" brush setting
+#: ../brushsettings-gen.h:15
+msgid ""
+"Changes the scale that the GridMap brush input operates on - affects Y axis "
+"only.\n"
+"The range is 0-5x.\n"
+"This allows you to stretch or compress the GridMap pattern."
+msgstr ""
+"Ändrar skalan som rutnätet använder sig av - påverkar endast y-axeln.\n"
+"Omfånget är 0-5x.\n"
+"Detta möjliggör utsträckning eller hoptryckning av rutnätsmönstret."
+
+#. Brush setting
+#: ../brushsettings-gen.h:16
+msgid "Radius by random"
+msgstr "Slumpmässig radie"
+
+#. Tooltip for the "Radius by random" brush setting
+#: ../brushsettings-gen.h:16
 msgid ""
 "Alter the radius randomly each dab. You can also do this with the by_random "
 "input on the radius setting. If you do it here, there are two differences:\n"
@@ -167,11 +237,13 @@ msgstr ""
 "1) Penselnedslag med stor radie blir mer genomskinliga\n"
 "2) Den ändrar inte den faktiska radien använd av vissa inställningar"
 
-#: ../brushsettings-gen.h:14
+#. Brush setting
+#: ../brushsettings-gen.h:17
 msgid "Fine speed filter"
 msgstr "Filter för finjusterad hastighet"
 
-#: ../brushsettings-gen.h:14
+#. Tooltip for the "Fine speed filter" brush setting
+#: ../brushsettings-gen.h:17
 msgid ""
 "How slow the input fine speed is following the real speed\n"
 "0.0 change immediately as your speed changes (not recommended, but try it)"
@@ -180,21 +252,25 @@ msgstr ""
 "hastigheten.\n"
 "0.0 innebär att förändringen sker omedelbart (rekommenderas inte, men testa)"
 
-#: ../brushsettings-gen.h:15
+#. Brush setting
+#: ../brushsettings-gen.h:18
 msgid "Gross speed filter"
 msgstr "Filter för grovjusterad hastighet"
 
-#: ../brushsettings-gen.h:15
+#. Tooltip for the "Gross speed filter" brush setting
+#: ../brushsettings-gen.h:18
 msgid "Same as 'fine speed filter', but note that the range is different"
 msgstr ""
 "Samma som 'filter för finjusterad hastighet', men notera att intervallet "
 "skiljer sig"
 
-#: ../brushsettings-gen.h:16
+#. Brush setting
+#: ../brushsettings-gen.h:19
 msgid "Fine speed gamma"
 msgstr "Gamma för finjusterad hastighet"
 
-#: ../brushsettings-gen.h:16
+#. Tooltip for the "Fine speed gamma" brush setting
+#: ../brushsettings-gen.h:19
 msgid ""
 "This changes the reaction of the 'fine speed' input to extreme physical "
 "speed. You will see the difference best if 'fine speed' is mapped to the "
@@ -204,26 +280,30 @@ msgid ""
 "For very slow speed the opposite happens."
 msgstr ""
 "Detta ändrar hur finjusterad hastighet reagerar mot extrema faktiska "
-"hastigheter. Du ser skillnaden bäst om denna hastighet är knuten till radien."
-"\n"
+"hastigheter. Du ser skillnaden bäst om denna hastighet är knuten till "
+"radien.\n"
 " -8.0 - mycket hög hastighet ökar inte finjusterad hastighet särskilt "
 "mycket\n"
 " +0.0 - mycket hög hastighet påverkar finjusterad hastighet väldigt mycket\n"
 "Det motsatta gäller för mycket långsamma hastigheter."
 
-#: ../brushsettings-gen.h:17
+#. Brush setting
+#: ../brushsettings-gen.h:20
 msgid "Gross speed gamma"
 msgstr "Gamma för grovjusterad hastighet"
 
-#: ../brushsettings-gen.h:17
+#. Tooltip for the "Gross speed gamma" brush setting
+#: ../brushsettings-gen.h:20
 msgid "Same as 'fine speed gamma' for gross speed"
 msgstr "Samma som 'Gamma för finjusterad hastighet' men för grov hastighet"
 
-#: ../brushsettings-gen.h:18
+#. Brush setting
+#: ../brushsettings-gen.h:21
 msgid "Jitter"
 msgstr "Darr"
 
-#: ../brushsettings-gen.h:18
+#. Tooltip for the "Jitter" brush setting
+#: ../brushsettings-gen.h:21
 msgid ""
 "Add a random offset to the position where each dab is drawn\n"
 " 0.0 disabled\n"
@@ -235,11 +315,136 @@ msgstr ""
 " 1.0 ger skakningar stora som en hel penselradie\n"
 " <0.0 negativa värden ger ingen skakning"
 
-#: ../brushsettings-gen.h:19
+#. Brush setting
+#: ../brushsettings-gen.h:22
+msgid "Offset Y"
+msgstr "Förskjutning i y-led"
+
+#. Tooltip for the "Offset Y" brush setting
+#: ../brushsettings-gen.h:22
+msgid "Moves the dabs up or down based on canvas coordinates."
+msgstr ""
+"Förskjuter duttarna uppåt eller nedåt i förhållande till målardukens "
+"grundrotation."
+
+#. Brush setting
+#: ../brushsettings-gen.h:23
+msgid "Offset X"
+msgstr "Förskjutning i x-led"
+
+#. Tooltip for the "Offset X" brush setting
+#: ../brushsettings-gen.h:23
+msgid "Moves the dabs left or right based on canvas coordinates."
+msgstr ""
+"Förskjuter duttarna till vänster eller höger i förhållande till målardukens "
+"grundrotation."
+
+#. Brush setting
+#: ../brushsettings-gen.h:24
+msgid "Angular Offset: Direction"
+msgstr "Vinkelbaserad förskjutning: Riktning"
+
+#. Tooltip for the "Angular Offset: Direction" brush setting
+#: ../brushsettings-gen.h:24
+msgid "Follows the stroke direction to offset the dabs to one side."
+msgstr ""
+"Förskjuter duttarna till ena sidan av penseldraget, baserat på dess riktning."
+
+#. Brush setting
+#: ../brushsettings-gen.h:25
+msgid "Angular Offset: Ascension"
+msgstr "Vinkelbaserad förskjutning: Lutning"
+
+#. Tooltip for the "Angular Offset: Ascension" brush setting
+#: ../brushsettings-gen.h:25
+msgid ""
+"Follows the tilt direction to offset the dabs to one side. Requires Tilt."
+msgstr ""
+"Förskjuter duttarna till ena sidan av penseldraget, baserat på "
+"lutningsriktning. Kräver lutningsinmatning."
+
+#. Brush setting
+#: ../brushsettings-gen.h:26
+msgid "Angular Offset: View"
+msgstr "Vinkelbaserad förskjutning: Vy"
+
+#. Tooltip for the "Angular Offset: View" brush setting
+#: ../brushsettings-gen.h:26
+msgid "Follows the view orientation to offset the dabs to one side."
+msgstr ""
+"Förskjuter duttarna till ena sidan av penseldraget, baserat på vyns rotation."
+
+#. Brush setting
+#: ../brushsettings-gen.h:27
+msgid "Angular Offset Mirrored: Direction"
+msgstr "Speglad vinkelbaserad förskjutning: Riktning"
+
+#. Tooltip for the "Angular Offset Mirrored: Direction" brush setting
+#: ../brushsettings-gen.h:27
+msgid ""
+"Follows the stroke direction to offset the dabs, but to both sides of the "
+"stroke."
+msgstr ""
+"Förskjuter duttarna till båda sidorna av penseldraget, baserat på dess "
+"riktning."
+
+#. Brush setting
+#: ../brushsettings-gen.h:28
+msgid "Angular Offset Mirrored: Ascension"
+msgstr "Speglad vinkelbaserad förskjutning: Lutning"
+
+#. Tooltip for the "Angular Offset Mirrored: Ascension" brush setting
+#: ../brushsettings-gen.h:28
+msgid ""
+"Follows the tilt direction to offset the dabs, but to both sides of the "
+"stroke. Requires Tilt."
+msgstr ""
+"Förskjuter duttarna till båda sidorna av penseldraget, baserat på "
+"lutningsriktning. Kräver lutningsinmatning."
+
+#. Brush setting
+#: ../brushsettings-gen.h:29
+msgid "Angular Offset Mirrored: View"
+msgstr "Speglad vinkelbaserad förskjutning: Vy"
+
+#. Tooltip for the "Angular Offset Mirrored: View" brush setting
+#: ../brushsettings-gen.h:29
+msgid ""
+"Follows the view orientation to offset the dabs, but to both sides of the "
+"stroke."
+msgstr ""
+"Förskjuter duttarna till båda sidorna av penseldraget, baserat på vyns "
+"rotation."
+
+#. Brush setting
+#: ../brushsettings-gen.h:30
+msgid "Angular Offsets Adjustment"
+msgstr "Justering för vinkelbaserade förskjutningar"
+
+#. Tooltip for the "Angular Offsets Adjustment" brush setting
+#: ../brushsettings-gen.h:30
+msgid "Change the Angular Offset angle from the default, which is 90 degrees."
+msgstr ""
+"Använd en anpassad riktningsvinkel för de vinkelbaserade "
+"förskjutningsinställningarna. Standardvärdet är 90 grader."
+
+#. Brush setting
+#: ../brushsettings-gen.h:31
+msgid "Offsets Multiplier"
+msgstr "Förskjutningsfaktor"
+
+#. Tooltip for the "Offsets Multiplier" brush setting
+#: ../brushsettings-gen.h:31
+msgid "Logarithmic multiplier for X, Y, and Angular Offset settings."
+msgstr "Logaritmisk multiplikand för förskjutningsinställningarna."
+
+#. Brush setting
+#: ../brushsettings-gen.h:32
 msgid "Offset by speed"
 msgstr "Förskjutning beroende på hastighet"
 
-#: ../brushsettings-gen.h:19
+#. Tooltip for the "Offset by speed" brush setting
+#: ../brushsettings-gen.h:32
 msgid ""
 "Change position depending on pointer speed\n"
 "= 0 disable\n"
@@ -251,21 +456,25 @@ msgstr ""
 "> 0 - rita där pekaren flyttar till\n"
 "< 0 - rita där pekaren flyttas från"
 
-#: ../brushsettings-gen.h:20
+#. Brush setting
+#: ../brushsettings-gen.h:33
 msgid "Offset by speed filter"
 msgstr "Förskjutning beroende på hastighetsfilter"
 
-#: ../brushsettings-gen.h:20
+#. Tooltip for the "Offset by speed filter" brush setting
+#: ../brushsettings-gen.h:33
 msgid "How slow the offset goes back to zero when the cursor stops moving"
 msgstr ""
 "Hur långsamt förskjutningen går tillbaka till noll efter att pekaren slutat "
 "röra sig"
 
-#: ../brushsettings-gen.h:21
+#. Brush setting
+#: ../brushsettings-gen.h:34
 msgid "Slow position tracking"
 msgstr "Långsam positionsspårning"
 
-#: ../brushsettings-gen.h:21
+#. Tooltip for the "Slow position tracking" brush setting
+#: ../brushsettings-gen.h:34
 msgid ""
 "Slowdown pointer tracking speed. 0 disables it, higher values remove more "
 "jitter in cursor movements. Useful for drawing smooth, comic-like outlines."
@@ -274,11 +483,13 @@ msgstr ""
 "effekten, högre värden tar bort allt mer skakningar i pekarrörelsen. Detta "
 "är användbart för att rita mjuka, serietidningslika linjer."
 
-#: ../brushsettings-gen.h:22
+#. Brush setting
+#: ../brushsettings-gen.h:35
 msgid "Slow tracking per dab"
 msgstr "Långsam spårning per penselnedslag"
 
-#: ../brushsettings-gen.h:22
+#. Tooltip for the "Slow tracking per dab" brush setting
+#: ../brushsettings-gen.h:35
 msgid ""
 "Similar as above but at brushdab level (ignoring how much time has passed if "
 "brushdabs do not depend on time)"
@@ -286,11 +497,13 @@ msgstr ""
 "Liknande ovanstående, men på penselnedslags-nivå (ignorerar hur mycket tid "
 "som gått om penselnedslagen inte beror på tid)"
 
-#: ../brushsettings-gen.h:23
+#. Brush setting
+#: ../brushsettings-gen.h:36
 msgid "Tracking noise"
 msgstr "Spårbrus"
 
-#: ../brushsettings-gen.h:23
+#. Tooltip for the "Tracking noise" brush setting
+#: ../brushsettings-gen.h:36
 msgid ""
 "Add randomness to the mouse pointer; this usually generates many small lines "
 "in random directions; maybe try this together with 'slow tracking'"
@@ -299,27 +512,35 @@ msgstr ""
 "linjer i slumpmässiga riktningar; kan vara värt att testa med 'långsam "
 "spårning'"
 
-#: ../brushsettings-gen.h:24
+#. Brush setting
+#. Tooltip for the "Color hue" brush setting
+#: ../brushsettings-gen.h:37
 msgid "Color hue"
 msgstr "Nyans"
 
-#: ../brushsettings-gen.h:25
+#. Brush setting
+#. Tooltip for the "Color saturation" brush setting
+#: ../brushsettings-gen.h:38
 msgid "Color saturation"
 msgstr "Färgmättnad"
 
-#: ../brushsettings-gen.h:26
+#. Brush setting
+#: ../brushsettings-gen.h:39
 msgid "Color value"
 msgstr "Färgens ljusstyrka"
 
-#: ../brushsettings-gen.h:26
+#. Tooltip for the "Color value" brush setting
+#: ../brushsettings-gen.h:39
 msgid "Color value (brightness, intensity)"
 msgstr "Valör (ljushet, intensitet)"
 
-#: ../brushsettings-gen.h:27
+#. Brush setting
+#: ../brushsettings-gen.h:40
 msgid "Save color"
 msgstr "Spara färg"
 
-#: ../brushsettings-gen.h:27
+#. Tooltip for the "Save color" brush setting
+#: ../brushsettings-gen.h:40
 msgid ""
 "When selecting a brush, the color can be restored to the color that the "
 "brush was saved with.\n"
@@ -327,17 +548,19 @@ msgid ""
 " 0.5 change active color towards brush color\n"
 " 1.0 set the active color to the brush color when selected"
 msgstr ""
-"När man väljer en pensel kan färgen bli återställd till det den sparades med."
-"\n"
+"När man väljer en pensel kan färgen bli återställd till det den sparades "
+"med.\n"
 " 0.0 ändra inte den aktiva färgen när man väljer denna pensel\n"
 " 0.5 ändra den aktiva färgen i riktning mot penselfärgen\n"
 " 1.0 sätt den aktiva färgen till penselfärgen när den väljs"
 
-#: ../brushsettings-gen.h:28
+#. Brush setting
+#: ../brushsettings-gen.h:41
 msgid "Change color hue"
 msgstr "Ändra nyans"
 
-#: ../brushsettings-gen.h:28
+#. Tooltip for the "Change color hue" brush setting
+#: ../brushsettings-gen.h:41
 msgid ""
 "Change color hue.\n"
 "-0.1 small clockwise color hue shift\n"
@@ -349,11 +572,13 @@ msgstr ""
 " 0.0 avstängd\n"
 " 0.5 skifta nyansen 180 grader motsols"
 
-#: ../brushsettings-gen.h:29
+#. Brush setting
+#: ../brushsettings-gen.h:42
 msgid "Change color lightness (HSL)"
 msgstr "Ändra färgens ljusstyrka (HSL)"
 
-#: ../brushsettings-gen.h:29
+#. Tooltip for the "Change color lightness (HSL)" brush setting
+#: ../brushsettings-gen.h:42
 msgid ""
 "Change the color lightness using the HSL color model.\n"
 "-1.0 blacker\n"
@@ -365,11 +590,13 @@ msgstr ""
 " 0.0 avstängd\n"
 " 1.0 mer vit"
 
-#: ../brushsettings-gen.h:30
+#. Brush setting
+#: ../brushsettings-gen.h:43
 msgid "Change color satur. (HSL)"
 msgstr "Ändra färgmättnad (HSL)"
 
-#: ../brushsettings-gen.h:30
+#. Tooltip for the "Change color satur. (HSL)" brush setting
+#: ../brushsettings-gen.h:43
 msgid ""
 "Change the color saturation using the HSL color model.\n"
 "-1.0 more grayish\n"
@@ -381,11 +608,13 @@ msgstr ""
 " 0.0 avstängd\n"
 " 1.0 mer mättad färg"
 
-#: ../brushsettings-gen.h:31
+#. Brush setting
+#: ../brushsettings-gen.h:44
 msgid "Change color value (HSV)"
 msgstr "Ändra färgens ljusstyrka"
 
-#: ../brushsettings-gen.h:31
+#. Tooltip for the "Change color value (HSV)" brush setting
+#: ../brushsettings-gen.h:44
 msgid ""
 "Change the color value (brightness, intensity) using the HSV color model. "
 "HSV changes are applied before HSL.\n"
@@ -399,11 +628,13 @@ msgstr ""
 " 0.0 avstängd\n"
 " 1.0 ljusare"
 
-#: ../brushsettings-gen.h:32
+#. Brush setting
+#: ../brushsettings-gen.h:45
 msgid "Change color satur. (HSV)"
 msgstr "Ändra färgmättnad (HSV)"
 
-#: ../brushsettings-gen.h:32
+#. Tooltip for the "Change color satur. (HSV)" brush setting
+#: ../brushsettings-gen.h:45
 msgid ""
 "Change the color saturation using the HSV color model. HSV changes are "
 "applied before HSL.\n"
@@ -417,11 +648,13 @@ msgstr ""
 " 0.0 avstängd\n"
 " 1.0 mer mättad färg"
 
-#: ../brushsettings-gen.h:33
+#. Brush setting
+#: ../brushsettings-gen.h:46
 msgid "Smudge"
 msgstr "Smeta ut"
 
-#: ../brushsettings-gen.h:33
+#. Tooltip for the "Smudge" brush setting
+#: ../brushsettings-gen.h:46
 msgid ""
 "Paint with the smudge color instead of the brush color. The smudge color is "
 "slowly changed to the color you are painting on.\n"
@@ -429,17 +662,57 @@ msgid ""
 " 0.5 mix the smudge color with the brush color\n"
 " 1.0 use only the smudge color"
 msgstr ""
-"Måla med 'smeta ut'-färg istället för penselfärg. Denna färg justeras "
-"långsamt till att bli lika med den färg du målar över.\n"
-" 0.0 använd inte 'smeta ut'-färg\n"
-" 0.5 blanda 'smeta ut'-färg med penselfärg\n"
-" 1.0 använd bara 'smeta ut'-färg"
+"Måla även med utsmetningsfärg istället för enbart penselfärg. Denna färg är "
+"baserad på färgen på duken som penseln befinner sig över.\n"
+" 0.0 använd inte utsmetningsfärg\n"
+" 0.5 blanda utmsetningsfärg med penselfärg\n"
+" 1.0 använd bara utsmetningsfärg"
 
-#: ../brushsettings-gen.h:34
+#. Brush setting - The name Pigment refers to the fact that this kind of color mixing is more similar to how colors mix in physical paint.
+#: ../brushsettings-gen.h:47
+msgid "Pigment"
+msgstr "Pigment"
+
+#. Tooltip for the "Pigment" brush setting - If this string is difficult to translate, feel free to change it to something more descriptive. Just try to be succinct and consistent.
+#: ../brushsettings-gen.h:47
+msgid ""
+"Subtractive spectral color mixing mode.\n"
+"0.0 no spectral mixing\n"
+"1.0 only spectral mixing"
+msgstr ""
+"Subtraktiv spektral färgblandningsmetod.\n"
+"0.0 ingen spektral färgblandning\n"
+"1.0 endast spektral färgblandning"
+
+#. Brush setting
+#: ../brushsettings-gen.h:48
+msgid "Smudge transparency"
+msgstr "Utsmetningstransparens"
+
+#. Tooltip for the "Smudge transparency" brush setting
+#: ../brushsettings-gen.h:48
+msgid ""
+"Control how much transparency is picked up and smudged, similar to lock "
+"alpha.\n"
+"1.0 will not move any transparency.\n"
+"0.5 will move only 50% transparency and above.\n"
+"0.0 will have no effect.\n"
+"Negative values do the reverse"
+msgstr ""
+"Kontrollera till vilken grad transparens plockas upp och smetas ut. Snarlikt "
+"alfa-låsning.\n"
+"1.0 ingen transparens smetas ut\n"
+"0.5 påverkar endast färger med högst 50% transparens\n"
+"0.0 ingen inverkan på utsmetning\n"
+"Negativa värden har motsatt effekt"
+
+#. Brush setting
+#: ../brushsettings-gen.h:49
 msgid "Smudge length"
-msgstr "Längd för att smeta ut"
+msgstr "Utsmetningslängd"
 
-#: ../brushsettings-gen.h:34
+#. Tooltip for the "Smudge length" brush setting
+#: ../brushsettings-gen.h:49
 msgid ""
 "This controls how fast the smudge color becomes the color you are painting "
 "on.\n"
@@ -448,16 +721,58 @@ msgid ""
 "0.5 change the smudge color steadily towards the canvas color\n"
 "1.0 never change the smudge color"
 msgstr ""
-"Detta styr hur snabbt 'smeta ut'-färg växlar till färgen du målar över.\n"
-" 0.0 ändra omedelbart till dukfärg\n"
-" 0.5 ända 'smeta-utfärg' gradvis mot dukfärg\n"
-" 1.0 ändra aldrig 'smeta ut'-färg"
+"Detta styr hur hastigt utsmetningsfärgen övergår till färgen på målarduken "
+"(under penseln).\n"
+" 0.0 ändra omedelbart till dukens färg\n"
+" 0.5 ända utsmetningsfärgen gradvis mot färger på duken.\n"
+" 1.0 ändra aldrig utsmetningsfärgen"
 
-#: ../brushsettings-gen.h:35
+#. Brush setting
+#: ../brushsettings-gen.h:50
+msgid "Smudge length multiplier"
+msgstr "Utsmetningslängdsfaktor"
+
+#. Tooltip for the "Smudge length multiplier" brush setting
+#: ../brushsettings-gen.h:50
+msgid ""
+"Logarithmic multiplier for the \"Smudge length\" value.\n"
+"Useful to correct for high-definition/large brushes with lots of dabs.\n"
+"The longer the smudge length the more a color will spread and will also "
+"boost performance dramatically, as the canvas is sampled less often"
+msgstr ""
+"Logaritmisk faktor för inställningen \"Utsmetningslängd\".\n"
+"Användbar vid korrigering av väldigt stora penslar med höga mängder duttar.\n"
+"Ju större utsmetningslängd, desto mer kommer en färg att spridas och "
+"dessutom förbättras prestandan markant"
+
+#. Brush setting
+#: ../brushsettings-gen.h:51
+msgid "Smudge bucket"
+msgstr "Utsmetningshink"
+
+#. Tooltip for the "Smudge bucket" brush setting
+#: ../brushsettings-gen.h:51
+msgid ""
+"There are 256 buckets that each can hold a color picked up from the canvas.\n"
+"You can control which bucket to use to improve variability and realism of "
+"the brush.\n"
+"Especially useful with the \"Custom input\" setting to correlate buckets "
+"with other settings such as offsets."
+msgstr ""
+"Det finns 256 s.k hinkar som var och en kan innehålla en färg som hämtats "
+"från målarduken.\n"
+"Du kan kontrollera vilken hink som används vid utsmetningen, för att "
+"förbättra en pensels variation och realism.\n"
+"Särskilt användbar i kombination med \"Användardefinierad indata\", för att "
+"föra samman hinkarna med andra inställningar, såsom förskjutningar."
+
+#. Brush setting
+#: ../brushsettings-gen.h:52
 msgid "Smudge radius"
-msgstr "Smetningsradius"
+msgstr "Utsmetningsradius"
 
-#: ../brushsettings-gen.h:35
+#. Tooltip for the "Smudge radius" brush setting
+#: ../brushsettings-gen.h:52
 msgid ""
 "This modifies the radius of the circle where color is picked up for "
 "smudging.\n"
@@ -466,17 +781,19 @@ msgid ""
 "+0.7 twice the brush radius\n"
 "+1.6 five times the brush radius (slow performance)"
 msgstr ""
-"Detta förändrar radien för den cirkel som används för att smeta ut färg.\n"
+"Detta förändrar radien för den cirkel som utsmetningsfärgen hämtas från.\n"
 "0.0 använd penselns radie\n"
 "-0.7 halva penselradien\n"
 "+0.7 dubbla penselradien\n"
 "+1.6 fem gånger pensel radien (långsamt)"
 
-#: ../brushsettings-gen.h:36
+#. Brush setting
+#: ../brushsettings-gen.h:53
 msgid "Eraser"
 msgstr "Suddgummi"
 
-#: ../brushsettings-gen.h:36
+#. Tooltip for the "Eraser" brush setting
+#: ../brushsettings-gen.h:53
 msgid ""
 "how much this tool behaves like an eraser\n"
 " 0.0 normal painting\n"
@@ -488,11 +805,13 @@ msgstr ""
 " 1.0 vanligt suddgummi\n"
 " 0.5 pixlar som målas blir 50% genomskinliga"
 
-#: ../brushsettings-gen.h:37
+#. Brush setting
+#: ../brushsettings-gen.h:54
 msgid "Stroke threshold"
 msgstr "Anslagskänslighet för penseldrag"
 
-#: ../brushsettings-gen.h:37
+#. Tooltip for the "Stroke threshold" brush setting
+#: ../brushsettings-gen.h:54
 msgid ""
 "How much pressure is needed to start a stroke. This affects the stroke input "
 "only. MyPaint does not need a minimum pressure to start drawing."
@@ -501,11 +820,13 @@ msgstr ""
 "påverkar enbart hur färgen appliceras, det finns ingen undre gräns för att "
 "börja måla."
 
-#: ../brushsettings-gen.h:38
+#. Brush setting
+#: ../brushsettings-gen.h:55
 msgid "Stroke duration"
 msgstr "Penseldragets varaktighet"
 
-#: ../brushsettings-gen.h:38
+#. Tooltip for the "Stroke duration" brush setting
+#: ../brushsettings-gen.h:55
 msgid ""
 "How far you have to move until the stroke input reaches 1.0. This value is "
 "logarithmic (negative values will not invert the process)."
@@ -513,11 +834,13 @@ msgstr ""
 "Hur långt du måste måla innan penseldraget når värdet 1.0. Detta värde är "
 "logaritmiskt (negativa värden kommer inte att vända på processen)."
 
-#: ../brushsettings-gen.h:39
+#. Brush setting
+#: ../brushsettings-gen.h:56
 msgid "Stroke hold time"
 msgstr "Penseldragets hållbarhetstid"
 
-#: ../brushsettings-gen.h:39
+#. Tooltip for the "Stroke hold time" brush setting
+#: ../brushsettings-gen.h:56
 msgid ""
 "This defines how long the stroke input stays at 1.0. After that it will "
 "reset to 0.0 and start growing again, even if the stroke is not yet "
@@ -531,12 +854,13 @@ msgstr ""
 " 2.0 - dubbelt så lång tid som för att växa från 0 till 1.0\n"
 " 9.9 eller mer - oändligt"
 
-#: ../brushsettings-gen.h:40
+#. Brush setting
+#: ../brushsettings-gen.h:57
 msgid "Custom input"
 msgstr "Användardefinierad indata"
 
-#: ../brushsettings-gen.h:40
-#, fuzzy
+#. Tooltip for the "Custom input" brush setting
+#: ../brushsettings-gen.h:57
 msgid ""
 "Set the custom input to this value. If it is slowed down, move it towards "
 "this value (see below). The idea is that you make this input depend on a "
@@ -546,19 +870,21 @@ msgid ""
 "If you make it change 'by random' you can generate a slow (smooth) random "
 "input."
 msgstr ""
-"Sätt de användardefinierade ingångsparametern till detta värde. Om det blir "
+"Sätt den användardefinierade ingångsparametern till detta värde. Om det blir "
 "långsammare, justera det mot detta värde (se nedan). Tanken är att låta "
 "denna parameter bero på en mix av tryck, hastighet, etc - och sedan låta "
-"andra parametrar bero på denna i sin tur - istället för att upprepa denna "
-"konfiguration där den behövs.\n"
+"andra inställningar bero på denna ”anpassade ingångsparameter” i sin tur - "
+"istället för att upprepa denna konfiguration där den behövs.\n"
 "Om du låter parametern variera slumpmässigt kan du skapa en mjuk, långsam "
 "rörelse."
 
-#: ../brushsettings-gen.h:41
+#. Brush setting
+#: ../brushsettings-gen.h:58
 msgid "Custom input filter"
 msgstr "Användardefinierat filter"
 
-#: ../brushsettings-gen.h:41
+#. Tooltip for the "Custom input filter" brush setting
+#: ../brushsettings-gen.h:58
 msgid ""
 "How slow the custom input actually follows the desired value (the one "
 "above). This happens at brushdab level (ignoring how much time has passed, "
@@ -570,23 +896,27 @@ msgstr ""
 "hur mycket tid som gått om uppdateringen inte beror på tid.\n"
 " 0.0 omedelbar uppdatering"
 
-#: ../brushsettings-gen.h:42
+#. Brush setting
+#: ../brushsettings-gen.h:59
 msgid "Elliptical dab: ratio"
-msgstr "Elliptiska penselnedslag: propotion"
+msgstr "Elliptiska penselnedslag: proportion"
 
-#: ../brushsettings-gen.h:42
+#. Tooltip for the "Elliptical dab: ratio" brush setting
+#: ../brushsettings-gen.h:59
 msgid ""
 "Aspect ratio of the dabs; must be >= 1.0, where 1.0 means a perfectly round "
-"dab. TODO: linearize? start at 0.0 maybe, or log?"
+"dab."
 msgstr ""
 "Penselnedslagens förhållande; måste vara >= 1.0, där 1.0 motsvarar ett "
-"perfekt cirkelformat penselnedslag"
+"perfekt cirkelformat penselnedslag."
 
-#: ../brushsettings-gen.h:43
+#. Brush setting
+#: ../brushsettings-gen.h:60
 msgid "Elliptical dab: angle"
 msgstr "Elliptiskt penselnedslag: vinkel"
 
-#: ../brushsettings-gen.h:43
+#. Tooltip for the "Elliptical dab: angle" brush setting
+#: ../brushsettings-gen.h:60
 msgid ""
 "Angle by which elliptical dabs are tilted\n"
 " 0.0 horizontal dabs\n"
@@ -598,23 +928,27 @@ msgstr ""
 " 45.0 - 45 grader, medsols\n"
 " 180.0 - horisontell igen"
 
-#: ../brushsettings-gen.h:44
+#. Brush setting
+#: ../brushsettings-gen.h:61
 msgid "Direction filter"
 msgstr "Riktningsfilter"
 
-#: ../brushsettings-gen.h:44
+#. Tooltip for the "Direction filter" brush setting
+#: ../brushsettings-gen.h:61
 msgid ""
 "A low value will make the direction input adapt more quickly, a high value "
 "will make it smoother"
 msgstr ""
-"Ett lågt värde gör att riktningen justeras snabbare, ett högt värde gör att "
-"det jämnare"
+"Ett lågt värde gör att riktningen justeras snabbare, ett högt värde gör det "
+"jämnare"
 
-#: ../brushsettings-gen.h:45
+#. Brush setting
+#: ../brushsettings-gen.h:62
 msgid "Lock alpha"
 msgstr "Lås alfakanal"
 
-#: ../brushsettings-gen.h:45
+#. Tooltip for the "Lock alpha" brush setting
+#: ../brushsettings-gen.h:62
 msgid ""
 "Do not modify the alpha channel of the layer (paint only where there is "
 "paint already)\n"
@@ -627,11 +961,13 @@ msgstr ""
 " 0.5 hälften av färgen appliceras normalt\n"
 " 1.0 full låsning av alfakanalen"
 
-#: ../brushsettings-gen.h:46
+#. Brush setting
+#: ../brushsettings-gen.h:63
 msgid "Colorize"
 msgstr "Färgsätt"
 
-#: ../brushsettings-gen.h:46
+#. Tooltip for the "Colorize" brush setting
+#: ../brushsettings-gen.h:63
 msgid ""
 "Colorize the target layer, setting its hue and saturation from the active "
 "brush color while retaining its value and alpha."
@@ -639,11 +975,43 @@ msgstr ""
 "Färgsätt mållagret, ställ in dess nyans och mättnad från den aktiva "
 "penselfärgen, medan valör och alfa bibehålls."
 
-#: ../brushsettings-gen.h:47
+#. Brush setting
+#: ../brushsettings-gen.h:64
+msgid "Posterize"
+msgstr "Posterisera"
+
+#. Tooltip for the "Posterize" brush setting
+#: ../brushsettings-gen.h:64
+msgid ""
+"Strength of posterization, reducing number of colors based on the "
+"\"Posterization levels\" setting, while retaining alpha."
+msgstr ""
+"Mängden posterisering, reducerar antalet färger baserat på inställningen "
+"\"Posteriseringsnivåer\", med bibehållen alfakanal."
+
+#. Brush setting
+#: ../brushsettings-gen.h:65
+msgid "Posterization levels"
+msgstr "Posteriseringsnivåer"
+
+#. Tooltip for the "Posterization levels" brush setting
+#: ../brushsettings-gen.h:65
+msgid ""
+"Number of posterization levels (divided by 100).\n"
+"0.05 = 5 levels, 0.2 = 20 levels, etc.\n"
+"Values above 0.5 may not be noticeable."
+msgstr ""
+"Antal färgnivåer för posterisering (delat med 100).\n"
+"0.05 = 5 nivåer, 0.2 = 20 nivåer, etc.\n"
+"Förändringar från värden över 0.5 kan vara svåra att urskilja."
+
+#. Brush setting
+#: ../brushsettings-gen.h:66
 msgid "Snap to pixel"
 msgstr "Fäst mot pixel"
 
-#: ../brushsettings-gen.h:47
+#. Tooltip for the "Snap to pixel" brush setting
+#: ../brushsettings-gen.h:66
 msgid ""
 "Snap brush dab's center and its radius to pixels. Set this to 1.0 for a thin "
 "pixel brush."
@@ -651,11 +1019,13 @@ msgstr ""
 "Fäst penselnedslagens mitt och dess radie mot pixlar. Ställ in det som 1.0 "
 "för en tunn pixelpensel."
 
-#: ../brushsettings-gen.h:48
+#. Brush setting
+#: ../brushsettings-gen.h:67
 msgid "Pressure gain"
 msgstr "Tryckförstärkning"
 
-#: ../brushsettings-gen.h:48
+#. Tooltip for the "Pressure gain" brush setting
+#: ../brushsettings-gen.h:67
 msgid ""
 "This changes how hard you have to press. It multiplies tablet pressure by a "
 "constant factor."
@@ -663,25 +1033,103 @@ msgstr ""
 "Detta ändrar hur hårt du måste trycka. Det multiplicerar ritplattans tryck "
 "med en konstant faktor."
 
-#: ../brushsettings-gen.h:53
+#. Brush input
+#: ../brushsettings-gen.h:72
 msgid "Pressure"
 msgstr "Tryck"
 
 # brushsettings currently not translated
-#: ../brushsettings-gen.h:53
+#. Tooltip for the "Pressure" brush input
+#: ../brushsettings-gen.h:72
 msgid ""
 "The pressure reported by the tablet. Usually between 0.0 and 1.0, but it may "
 "get larger when a pressure gain is used. If you use the mouse, it will be "
 "0.5 when a button is pressed and 0.0 otherwise."
 msgstr ""
-"Trycket som anges av ritplattan, vanligtivis mellan 0.0 och 1.0. Om du "
+"Trycket som anges av ritplattan, vanligtvis mellan 0.0 och 1.0. Om du "
 "använder musen blir det 0.5 när en knapp trycks ner, annars 0.0."
 
-#: ../brushsettings-gen.h:54
+#. Brush input
+#: ../brushsettings-gen.h:73
+msgid "Random"
+msgstr "Slumpmässig"
+
+#. Tooltip for the "Random" brush input
+#: ../brushsettings-gen.h:73
+msgid ""
+"Fast random noise, changing at each evaluation. Evenly distributed between 0 "
+"and 1."
+msgstr ""
+"Snabbt slumpmässigt brus, ändras vid varje uppdatering. Fördelas jämnt "
+"mellan 0 och 1."
+
+#. Brush input
+#: ../brushsettings-gen.h:74
+msgid "Stroke"
+msgstr "Penseldrag"
+
+#. Tooltip for the "Stroke" brush input
+#: ../brushsettings-gen.h:74
+msgid ""
+"This input slowly goes from zero to one while you draw a stroke. It can also "
+"be configured to jump back to zero periodically while you move. Look at the "
+"'stroke duration' and 'stroke hold time' settings."
+msgstr ""
+"Varierar långsamt från 0 till 1 medan du för penseln över duken. Kan också "
+"bli inställd till att hoppa tillbaks till noll periodiskt medan du rör "
+"penseln. Se 'stroke duration' och 'stroke hold time'."
+
+#. Brush input
+#: ../brushsettings-gen.h:75
+msgid "Direction"
+msgstr "Riktning"
+
+#. Tooltip for the "Direction" brush input
+#: ../brushsettings-gen.h:75
+msgid ""
+"The angle of the stroke, in degrees. The value will stay between 0.0 and "
+"180.0, effectively ignoring turns of 180 degrees."
+msgstr ""
+"Penseldragets vinkel i grader. Värdet varierar mellan 0.0 och 180.0 och "
+"ignorerar därmed 180-graderssvängar."
+
+#. Brush input
+#: ../brushsettings-gen.h:76
+msgid "Declination/Tilt"
+msgstr "Lutning"
+
+#. Tooltip for the "Declination/Tilt" brush input
+#: ../brushsettings-gen.h:76
+msgid ""
+"Declination of stylus tilt. 0 when stylus is parallel to tablet and 90.0 "
+"when it's perpendicular to tablet."
+msgstr ""
+"Pennans lutning relativt ritbrädans yta. Är 0 när pennan är parallell och "
+"90.0 när den hålls vinkelrät."
+
+#. Brush input
+#: ../brushsettings-gen.h:77
+msgid "Ascension"
+msgstr "Riktning"
+
+#. Tooltip for the "Ascension" brush input
+#: ../brushsettings-gen.h:77
+msgid ""
+"Right ascension of stylus tilt. 0 when stylus working end points to you, +90 "
+"when rotated 90 degrees clockwise, -90 when rotated 90 degrees "
+"counterclockwise."
+msgstr ""
+"Riktningskomponenten av pennans lutning. 0 när pennans aktiva ände pekar mot "
+"dig. +90 när spetsen är roterad 90 grader medurs. -90 när änden är roterad "
+"90 grader moturs."
+
+#. Brush input - "fine" refers to the accuracy and update frequency of the speed value, as in "fine grained"
+#: ../brushsettings-gen.h:78
 msgid "Fine speed"
 msgstr "Finjusterad hastighet"
 
-#: ../brushsettings-gen.h:54
+#. Tooltip for the "Fine speed" brush input
+#: ../brushsettings-gen.h:78
 msgid ""
 "How fast you currently move. This can change very quickly. Try 'print input "
 "values' from the 'help' menu to get a feeling for the range; negative values "
@@ -692,11 +1140,13 @@ msgstr ""
 "intervallet; negativa värden är ovanliga, men möjliga vid mycket låga "
 "hastigheter."
 
-#: ../brushsettings-gen.h:55
+#. Brush input - changes more smoothly but is less accurate than "Fine speed"
+#: ../brushsettings-gen.h:79
 msgid "Gross speed"
 msgstr "Grovjusterad hastighet"
 
-#: ../brushsettings-gen.h:55
+#. Tooltip for the "Gross speed" brush input
+#: ../brushsettings-gen.h:79
 msgid ""
 "Same as fine speed, but changes slower. Also look at the 'gross speed "
 "filter' setting."
@@ -704,80 +1154,180 @@ msgstr ""
 "Samma som finjusterad hastighet, men ändras långsammare. Se också "
 "inställningen för 'Grovjusterad hastighet'."
 
-#: ../brushsettings-gen.h:56
-msgid "Random"
-msgstr "Slumpmässig"
-
-#: ../brushsettings-gen.h:56
-msgid ""
-"Fast random noise, changing at each evaluation. Evenly distributed between 0 "
-"and 1."
-msgstr ""
-"Snabbt slumpmässigt brus, ändras vid varje uppdatering. Fördelas jämnt "
-"mellan 0 och 1."
-
-#: ../brushsettings-gen.h:57
-msgid "Stroke"
-msgstr "Penseldrag"
-
-#: ../brushsettings-gen.h:57
-msgid ""
-"This input slowly goes from zero to one while you draw a stroke. It can also "
-"be configured to jump back to zero periodically while you move. Look at the "
-"'stroke duration' and 'stroke hold time' settings."
-msgstr ""
-"Varierar långsamt från 0 till 1 medan du för penseln över duken. Kan också "
-"bli inställd till att hoppa tillbaks till noll periodiskt medan du rör "
-"penseln. Se 'stroke duration' och 'stroke hold time'."
-
-#: ../brushsettings-gen.h:58
-msgid "Direction"
-msgstr "Riktning"
-
-#: ../brushsettings-gen.h:58
-msgid ""
-"The angle of the stroke, in degrees. The value will stay between 0.0 and "
-"180.0, effectively ignoring turns of 180 degrees."
-msgstr ""
-"Penseldragets vinkel i grader. Värdet varierar mellan 0.0 och 180.0 och "
-"ignorerar därmed 180-graderssvängar."
-
-#: ../brushsettings-gen.h:59
-msgid "Declination"
-msgstr "Riktning"
-
-#: ../brushsettings-gen.h:59
-msgid ""
-"Declination of stylus tilt. 0 when stylus is parallel to tablet and 90.0 "
-"when it's perpendicular to tablet."
-msgstr ""
-"Pennans lutning relativt ritbrädans yta. Är 0 när pennan är parallell och "
-"90.0 när den hålls vinkelrät."
-
-#: ../brushsettings-gen.h:60
-msgid "Ascension"
-msgstr "Riktning"
-
-#: ../brushsettings-gen.h:60
-msgid ""
-"Right ascension of stylus tilt. 0 when stylus working end points to you, +90 "
-"when rotated 90 degrees clockwise, -90 when rotated 90 degrees "
-"counterclockwise."
-msgstr ""
-"Riktningskomponenten av pennans lutning. 0 när pennans aktiva ände pekar mot "
-"dig. +90 när spetsen är roterad 90 grader medurs. -90 när änden är roterad "
-"90 grader moturs."
-
-#: ../brushsettings-gen.h:61
+#. Brush input - the input is the output of the "Custom input" setting
+#: ../brushsettings-gen.h:80
 msgid "Custom"
 msgstr "Special"
 
-#: ../brushsettings-gen.h:61
+#. Tooltip for the "Custom" brush input
+#: ../brushsettings-gen.h:80
 msgid ""
 "This is a user defined input. Look at the 'custom input' setting for details."
 msgstr ""
 "Detta är en användardefinierad inställning. Se 'användardefinierad' för fler "
 "detaljer."
+
+#. Brush input - refers to the direction of the stroke
+#: ../brushsettings-gen.h:81
+msgid "Direction 360"
+msgstr "Riktning 360"
+
+#. Tooltip for the "Direction 360" brush input
+#: ../brushsettings-gen.h:81
+msgid "The angle of the stroke, from 0 to 360 degrees."
+msgstr "Penseldragets vinkel, från 0 till 360 grader."
+
+#. Brush input
+#: ../brushsettings-gen.h:82
+msgid "Attack Angle"
+msgstr "Angreppsvinkel"
+
+#. Tooltip for the "Attack Angle" brush input
+#: ../brushsettings-gen.h:82
+msgid ""
+"The difference, in degrees, between the angle the stylus is pointing and the "
+"angle of the stroke movement.\n"
+"The range is +/-180.0.\n"
+"0.0 means the stroke angle corresponds to the angle of the stylus.\n"
+"90 means the stroke angle is perpendicular to the angle of the stylus.\n"
+"180 means the angle of the stroke is directly opposite the angle of the "
+"stylus."
+msgstr ""
+"Skillnaden i grader mellan pennans och penseldragets vinklar.\n"
+"Omfånget är +/-180.0.\n"
+"0.0 innebär att penseldragets vinkel motsvarar pennans vinkel.\n"
+"90 innebär att penseldragets vinkel är vinkelrät i förhållande till pennans "
+"vinkel.\n"
+"180 innebär att penseldragets vinkel är rakt motsatt pennans vinkel."
+
+#. Brush input
+#: ../brushsettings-gen.h:83
+msgid "Declination/Tilt X"
+msgstr "Lutning i x-led"
+
+#. Tooltip for the "Declination/Tilt X" brush input
+#: ../brushsettings-gen.h:83
+msgid ""
+"Declination of stylus tilt on X-Axis. 90/-90 when stylus is parallel to "
+"tablet and 0 when it's perpendicular to tablet."
+msgstr ""
+"Pennans lutning i x-led relativt ritbrädans yta. Är 0 när pennan är "
+"parallell och 90.0 när den hålls vinkelrät."
+
+#. Brush input
+#: ../brushsettings-gen.h:84
+msgid "Declination/Tilt Y"
+msgstr "Lutning i y-led"
+
+#. Tooltip for the "Declination/Tilt Y" brush input
+#: ../brushsettings-gen.h:84
+msgid ""
+"Declination of stylus tilt on Y-Axis. 90/-90 when stylus is parallel to "
+"tablet and 0 when it's perpendicular to tablet."
+msgstr ""
+"Pennans lutning i y-led relativt ritbrädans yta. Är 0 när pennan är "
+"parallell och 90.0 när den hålls vinkelrät."
+
+#. Brush input
+#: ../brushsettings-gen.h:85
+msgid "GridMap X"
+msgstr "Rutnät x-led"
+
+#. Tooltip for the "GridMap X" brush input
+#: ../brushsettings-gen.h:85
+msgid ""
+"The X coordinate on a 256 pixel grid. This will wrap around 0-256 as the "
+"cursor is moved on the X axis. Similar to \"Stroke\". Can be used to add "
+"paper texture by modifying opacity, etc.\n"
+"The brush size should be considerably smaller than the grid scale for best "
+"results."
+msgstr ""
+"X-koordinaten på en 256 pixlar bred ruta. Detta värde kommer att löpa mellan "
+"0-256 baserat på pekarens position i x-led. Kan liknas vid \"Penseldrag\". "
+"Kan användas för att lägga till papperslika texturer genom att modifiera "
+"opacitet, etc.\n"
+"Penselns storlek bör vara betydligt mycket mindre än rutorna för bästa "
+"resultat."
+
+#. Brush input
+#: ../brushsettings-gen.h:86
+msgid "GridMap Y"
+msgstr "Rutnät y-led"
+
+#. Tooltip for the "GridMap Y" brush input
+#: ../brushsettings-gen.h:86
+msgid ""
+"The Y coordinate on a 256 pixel grid. This will wrap around 0-256 as the "
+"cursor is moved on the Y axis. Similar to \"Stroke\". Can be used to add "
+"paper texture by modifying opacity, etc.\n"
+"The brush size should be considerably smaller than the grid scale for best "
+"results."
+msgstr ""
+"Y-koordinaten på en 256 pixlar bred ruta. Detta värde kommer att löpa mellan "
+"0-256 baserat på pekarens position i y-led. Kan liknas vid \"Penseldrag\". "
+"Kan användas för att lägga till papperslika texturer genom att modifiera "
+"opacitet, etc.\n"
+"Penselns storlek bör vara betydligt mycket mindre än rutorna för bästa "
+"resultat."
+
+#. Brush input - refers to canvas zoom
+#: ../brushsettings-gen.h:87
+msgid "Zoom Level"
+msgstr "Zoom-nivå"
+
+#. Tooltip for the "Zoom Level" brush input
+#: ../brushsettings-gen.h:87
+msgid ""
+"The current zoom level of the canvas view.\n"
+"Logarithmic: 0.0 is 100%, 0.69 is 200%, -1.38 is 25%\n"
+"For the Radius setting, using a value of -4.15 makes the brush size roughly "
+"constant, relative to the level of zoom."
+msgstr ""
+"Målardukens aktuella zoomningsnivå.\n"
+"Logaritmisk: 0.0 motsvarar 100%, 0.69 motsvarar 200%, -1.38 motsvarar 25%\n"
+"För radie-inställningen kan denna inmatning tilldelas ett värde av -4.15, "
+"för att få en penselstorlek som är ungefär konstant i förhållande till "
+"zoomningsnivån."
+
+#. Brush input
+#: ../brushsettings-gen.h:88
+msgid "Base Brush Radius"
+msgstr "Basradie"
+
+#. Tooltip for the "Base Brush Radius" brush input
+#: ../brushsettings-gen.h:88
+msgid ""
+"The base brush radius allows you to change the behavior of a brush as you "
+"make it bigger or smaller.\n"
+"You can even cancel out dab size increase and adjust something else to make "
+"a brush bigger.\n"
+"Take note of \"Dabs per basic radius\" and \"Dabs per actual radius\", which "
+"behave much differently."
+msgstr ""
+"Basradien gör det möjligt att justera hur en pensel beter sig baserat på "
+"dess storlek.\n"
+"Det är t.o.m. möjligt att väga upp storleksökning av duttar och justera "
+"någonting annat för att göra penseln större.\n"
+"Notera inställningarna \"Penselnedslag per basradie\" och \"Penselnedslag "
+"per faktisk radie\", som har ett helt annat beteende."
+
+#. Brush input
+#: ../brushsettings-gen.h:89
+msgid "Barrel Rotation"
+msgstr "Rotation kring egen axel"
+
+#. Tooltip for the "Barrel Rotation" brush input
+#: ../brushsettings-gen.h:89
+msgid ""
+"Barrel rotation of stylus.\n"
+"0 when not twisted\n"
+"+90 when twisted clockwise 90 degrees\n"
+"-90 when twisted counterclockwise 90 degrees"
+msgstr ""
+"Pennans vridning kring egen axel.\n"
+"0 när pennan inte är vriden alls.\n"
+"+90 när pennan är vriden medsols 90 grader\n"
+"-90 när pennan är vriden motsols 90 grader"
 
 #~ msgid "Anti-aliasing"
 #~ msgstr "Antialiasing"

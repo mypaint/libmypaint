@@ -127,6 +127,24 @@ mypaint_brush_stroke_to_2(
     double dtime, float viewzoom, float viewrotation, float barrel_rotation);
 
 /*!
+ * Same as mypaint_brush_stroke_to_2, but using linear sRGB for color dynamics.
+ *
+ * The settings that are handled differently from the other call are:
+ *
+ * - ::MYPAINT_BRUSH_SETTING_CHANGE_COLOR_H
+ * - ::MYPAINT_BRUSH_SETTING_CHANGE_COLOR_L
+ * - ::MYPAINT_BRUSH_SETTING_CHANGE_COLOR_HSL_S
+ * - ::MYPAINT_BRUSH_SETTING_CHANGE_COLOR_V
+ * - ::MYPAINT_BRUSH_SETTING_CHANGE_COLOR_HSV_S
+ *
+ * @memberof MyPaintBrush
+ */
+int
+mypaint_brush_stroke_to_2_linearsRGB(
+    MyPaintBrush* self, MyPaintSurface2* surface, float x, float y, float pressure, float xtilt, float ytilt,
+    double dtime, float viewzoom, float viewrotation, float barrel_rotation);
+
+/*!
  * Set the base value of a brush setting.
  *
  * @memberof MyPaintBrush

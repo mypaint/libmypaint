@@ -949,7 +949,7 @@ void print_inputs(MyPaintBrush *self, float* inputs)
   //
   // This is only gets called right after update_states_and_setting_values().
   // Returns TRUE if the surface was modified.
-gboolean prepare_and_draw_dab (MyPaintBrush *self, MyPaintSurface * surface, gboolean legacy)
+gboolean prepare_and_draw_dab (MyPaintBrush *self, MyPaintSurface * surface, gboolean legacy, gboolean linear)
   {
     const float opaque_fac = SETTING(self, OPAQUE_MULTIPLY);
     // ensure we don't get a positive result with two negative opaque values
@@ -1061,8 +1061,26 @@ gboolean prepare_and_draw_dab (MyPaintBrush *self, MyPaintSurface * surface, gbo
       eraser_target_alpha *= (1.0-SETTING(self, ERASER));
     }
 
+    /*
+      If the colors are stored as linear sRGB, they need to be transformed to
+      the form compatible with the hsv/hsl conversion functions, and then
+      transformed back after the adjustments.
+    */
+    // Check whether the dynamics are used before the conditionals, to skip needless transformations.
+    gboolean using_hsv_dynamics =
+        SETTING(self, CHANGE_COLOR_H) || SETTING(self, CHANGE_COLOR_HSV_S) || SETTING(self, CHANGE_COLOR_V);
+    gboolean using_hsl_dynamics = SETTING(self, CHANGE_COLOR_L) || SETTING(self, CHANGE_COLOR_HSL_S);
+    gboolean using_color_dynamics = using_hsv_dynamics || using_hsl_dynamics;
+
+    // delinearize
+    if (linear && using_color_dynamics) {
+      color_h = powf(color_h, 1 / 2.2);
+      color_s = powf(color_s, 1 / 2.2);
+      color_v = powf(color_v, 1 / 2.2);
+    }
+
     // HSV color change
-    if (SETTING(self, CHANGE_COLOR_H) || SETTING(self, CHANGE_COLOR_HSV_S) || SETTING(self, CHANGE_COLOR_V)) {
+    if (using_hsv_dynamics) {
         rgb_to_hsv_float(&color_h, &color_s, &color_v);
         color_h += SETTING(self, CHANGE_COLOR_H);
         color_s += color_s * color_v * SETTING(self, CHANGE_COLOR_HSV_S);
@@ -1071,15 +1089,21 @@ gboolean prepare_and_draw_dab (MyPaintBrush *self, MyPaintSurface * surface, gbo
     }
 
     // HSL color change
-    if (SETTING(self, CHANGE_COLOR_L) || SETTING(self, CHANGE_COLOR_HSL_S)) {
+    if (using_hsl_dynamics) {
       // (calculating way too much here, can be optimized if necessary)
       // this function will CLAMP the inputs
-
       rgb_to_hsl_float (&color_h, &color_s, &color_v);
       color_v += SETTING(self, CHANGE_COLOR_L);
       color_s += color_s * MIN(fabsf(1.0f - color_v), fabsf(color_v)) * 2.0f
         * SETTING(self, CHANGE_COLOR_HSL_S);
       hsl_to_rgb_float (&color_h, &color_s, &color_v);
+    }
+
+    // linearize
+    if (linear && using_color_dynamics) {
+      color_h = powf(color_h, 2.2);
+      color_s = powf(color_s, 2.2);
+      color_v = powf(color_v, 2.2);
     }
 
     float hardness = CLAMP(SETTING(self, HARDNESS), 0.0f, 1.0f);
@@ -1211,7 +1235,7 @@ gboolean prepare_and_draw_dab (MyPaintBrush *self, MyPaintSurface * surface, gbo
 int
 mypaint_brush_stroke_to_internal(
     MyPaintBrush* self, MyPaintSurface* surface, float x, float y, float pressure, float xtilt, float ytilt,
-    double dtime, float viewzoom, float viewrotation, float barrel_rotation, gboolean legacy);
+    double dtime, float viewzoom, float viewrotation, float barrel_rotation, gboolean legacy, gboolean linear);
 
 
 /**
@@ -1231,7 +1255,7 @@ mypaint_brush_stroke_to(
   const float viewrotation = 0.0;
   const float barrel_rotation = 0.0;
   return mypaint_brush_stroke_to_internal(
-      self, surface, x, y, pressure, xtilt, ytilt, dtime, viewzoom, viewrotation, barrel_rotation, TRUE);
+      self, surface, x, y, pressure, xtilt, ytilt, dtime, viewzoom, viewrotation, barrel_rotation, TRUE, FALSE);
 }
 
 /**
@@ -1251,13 +1275,28 @@ mypaint_brush_stroke_to_2(
     double dtime, float viewzoom, float viewrotation, float barrel_rotation)
 {
     return mypaint_brush_stroke_to_internal(
-      self, mypaint_surface2_to_surface(surface), x, y, pressure, xtilt, ytilt, dtime, viewzoom, viewrotation, barrel_rotation, FALSE);
+      self, mypaint_surface2_to_surface(surface), x, y, pressure, xtilt, ytilt, dtime, viewzoom, viewrotation, barrel_rotation, FALSE, FALSE);
+}
+
+/**
+ * mypaint_brush_stroke_to_2_linearsRGB:
+ *
+ * Same as mypaint_brush_stroke_to_2, but color _dynamics_ operate in linear sRGB,
+ * i.e. settings that change the hue/value/lightness/saturation of the brush color.
+ */
+int
+mypaint_brush_stroke_to_2_linearsRGB(
+    MyPaintBrush* self, MyPaintSurface2* surface, float x, float y, float pressure, float xtilt, float ytilt,
+    double dtime, float viewzoom, float viewrotation, float barrel_rotation)
+{
+    return mypaint_brush_stroke_to_internal(
+      self, mypaint_surface2_to_surface(surface), x, y, pressure, xtilt, ytilt, dtime, viewzoom, viewrotation, barrel_rotation, FALSE, TRUE);
 }
 
 int
 mypaint_brush_stroke_to_internal(
     MyPaintBrush* self, MyPaintSurface* surface, float x, float y, float pressure, float xtilt, float ytilt,
-    double dtime, float viewzoom, float viewrotation, float barrel_rotation, gboolean legacy)
+    double dtime, float viewzoom, float viewrotation, float barrel_rotation, gboolean legacy, gboolean linear)
 {
     const float max_dtime = 5;
 
@@ -1305,7 +1344,7 @@ mypaint_brush_stroke_to_internal(
       // Workaround for tablets that don't report motion events without pressure.
       // This is to avoid linear interpolation of the pressure between two events.
       mypaint_brush_stroke_to_internal(
-          self, surface, x, y, 0.0, 90.0, 0.0, dtime - 0.0001, viewzoom, viewrotation, barrel_rotation, legacy);
+          self, surface, x, y, 0.0, 90.0, 0.0, dtime - 0.0001, viewzoom, viewrotation, barrel_rotation, legacy, linear);
       dtime = 0.0001;
     }
 
@@ -1418,7 +1457,7 @@ mypaint_brush_stroke_to_internal(
 
       // Flips between 1 and -1, used for "mirrored" offsets.
       STATE(self, FLIP) *= -1;
-      gboolean painted_now = prepare_and_draw_dab (self, surface, legacy);
+      gboolean painted_now = prepare_and_draw_dab (self, surface, legacy, linear);
       if (painted_now) {
         painted = YES;
       } else if (painted == UNKNOWN) {

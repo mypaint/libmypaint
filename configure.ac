@@ -8,8 +8,8 @@ AC_PREREQ(2.62)
 # See http://semver.org/ for what this means.
 
 m4_define([libmypaint_api_major], [1])
-m4_define([libmypaint_api_minor], [5])
-m4_define([libmypaint_api_micro], [2])
+m4_define([libmypaint_api_minor], [6])
+m4_define([libmypaint_api_micro], [0])
 m4_define([libmypaint_api_prerelease], [alpha])  # may be blank
 
 # ABI version. Changes independently of API version.

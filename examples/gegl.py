@@ -1,9 +1,11 @@
 
 from __future__ import absolute_import, division, print_function
 
+# point GI_TYPELIB_PATH to the location of the installed .typelib files
+
 import gi
-gi.require_version('MyPaint', '1.5')
-gi.require_version('MyPaintGegl', '1.5')
+gi.require_version('MyPaint', '1.6')
+gi.require_version('MyPaintGegl', '1.6')
 
 from gi.repository import GeglGtk3 as GeglGtk  # noqa
 from gi.repository import Gegl, Gtk  # noqa

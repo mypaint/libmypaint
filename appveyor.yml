@@ -7,6 +7,13 @@ environment:
 
 image: Visual Studio 2017
 
+for:
+-
+  skip_commits:
+    files:
+      - 'po/*.po'
+      - '*.md'
+
 # Set path for msys
 init:
   - PATH C:\msys64\%MSYSTEM%\bin;C:\msys64\usr\bin;C:\msys64\bin;%PATH%

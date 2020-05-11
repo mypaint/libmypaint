@@ -9,7 +9,7 @@ AC_PREREQ(2.62)
 
 m4_define([libmypaint_api_major], [1])
 m4_define([libmypaint_api_minor], [6])
-m4_define([libmypaint_api_micro], [0])
+m4_define([libmypaint_api_micro], [1])
 m4_define([libmypaint_api_prerelease], [])  # may be blank
 
 # ABI version. Changes independently of API version.

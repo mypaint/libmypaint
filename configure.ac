@@ -17,9 +17,21 @@ m4_define([libmypaint_api_prerelease], [])  # may be blank
 # https://www.gnu.org/software/libtool/manual/html_node/Updating-version-info.html
 # The rules are fiddly, and are summarized here.
 
-m4_define([libmypaint_abi_revision], [2])  # increment on every release
-m4_define([libmypaint_abi_current], [2])  # inc when add/remove/change interfaces
-m4_define([libmypaint_abi_age], [1])  # inc only if changes backward compat
+# NOTE: Due to the use of the ``-release`` flag, prior to the 1.6.1 release,
+# the ABI version fields were not used in a meaningful way, since the SONAME
+# differed even for ABI-compatible versions of the library.
+
+# Increment if any public interfaces have been
+# added/removed/changed since the last release.
+m4_define([libmypaint_abi_current], [0])
+
+# Set to 0 if ``current`` is incremented, otherwise increment
+# if the __code__ has changed at all since the last release.
+m4_define([libmypaint_abi_revision], [0])
+
+# Set to 0 if any public interfaces have been removed/changed since the last release,
+# otherwise increment if any public interfaces have been __added__.
+m4_define([libmypaint_abi_age], [0])  # inc only if changes backward compat
 
 
 ## Derivative version macros ##

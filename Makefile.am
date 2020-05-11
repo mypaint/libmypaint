@@ -90,7 +90,6 @@ LIBS = $(JSON_LIBS) $(GLIB_LIBS) @LIBS@
 lib_LTLIBRARIES = libmypaint.la
 
 libmypaint_la_LDFLAGS = \
-    -release @LIBMYPAINT_API_PLATFORM_VERSION@ \
     -version-info @LIBMYPAINT_ABI_VERSION_INFO@ \
     -no-undefined
 

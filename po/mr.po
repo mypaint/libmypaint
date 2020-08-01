@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-03-04 06:53+0100\n"
-"PO-Revision-Date: 2020-02-27 17:32+0000\n"
+"PO-Revision-Date: 2020-08-02 17:41+0000\n"
 "Last-Translator: Prachi Joshi <josprachi@yahoo.com>\n"
 "Language-Team: Marathi <https://hosted.weblate.org/projects/mypaint/"
 "libmypaint/mr/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.0-dev\n"
+"X-Generator: Weblate 4.2-dev\n"
 
 #. Brush setting
 #: ../brushsettings.json:193
@@ -81,6 +81,9 @@ msgid ""
 " 0.7 means 2 pixels\n"
 " 3.0 means 20 pixels"
 msgstr ""
+"मूलभूत ब्रश त्रिज्या (लघुगणक)\n"
+"  0.7 म्हणजे 2 पिक्सेल\n"
+"  3.0 म्हणजे 20 पिक्सेल"
 
 #. Brush setting
 #: ../brushsettings.json:229
@@ -93,17 +96,20 @@ msgid ""
 "Hard brush-circle borders (setting to zero will draw nothing). To reach the "
 "maximum hardness, you need to disable Pixel feather."
 msgstr ""
+"कठोर ब्रश-वर्तुळ सीमा (शून्यावर सेट करणे काहीही काढणार नाही). जास्तीत जास्त "
+"कठोरतेपर्यंत पोहोचण्यासाठी आपल्याला पिक्सेल पंख अक्षम करणे आवश्यक आहे."
 
 #. Brush setting
 #: ../brushsettings.json:238
 msgid "Softness"
-msgstr ""
+msgstr "मूदुता"
 
 #. Tooltip for the "Softness" brush setting
 #: ../brushsettings.json:242
 msgid ""
 "Soften brush-circle from center to edge (setting to 1.0 will draw nothing)."
 msgstr ""
+"मध्यभागी ते काठावर मृदू ब्रश-वर्तुळ (1.0 वर सेटिंग काहीही दर्शवित नाही)."
 
 #. Brush setting
 #: ../brushsettings.json:247

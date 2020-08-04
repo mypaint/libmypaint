@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-03-04 06:53+0100\n"
-"PO-Revision-Date: 2019-06-23 15:00+0000\n"
-"Last-Translator: mohammadA <mohammadAbdulhadi1@gmail.com>\n"
+"PO-Revision-Date: 2020-08-05 09:32+0000\n"
+"Last-Translator: tamer dab <dabsantamer@yahoo.com>\n"
 "Language-Team: Arabic <https://hosted.weblate.org/projects/mypaint/"
 "libmypaint/ar/>\n"
 "Language: ar\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
 "&& n%100<=10 ? 3 : n%100>=11 ? 4 : 5;\n"
-"X-Generator: Weblate 3.7.1-dev\n"
+"X-Generator: Weblate 4.2-dev\n"
 
 #. Brush setting
 #: ../brushsettings.json:193
@@ -50,7 +50,7 @@ msgstr ""
 "هذه تتضاعف مع المبهم، يجب أن تغير الضغط في هذه الإعدادات. استخدم 'مبهم' لجعل "
 "التعتيم يعتمد على السرعة.\n"
 "هذا الإعداد مسؤول عن التوقف عن الرسم عندما لا يكون هناك أي ضغط. هذا مجرد "
-"اصطلاح، السلوك مطابق لـ\"مبهمة\"."
+"اصطلاح، السلوك مطابق ل\"مبهمة\"."
 
 #. Brush setting
 #: ../brushsettings.json:211
@@ -90,8 +90,8 @@ msgid ""
 " 3.0 means 20 pixels"
 msgstr ""
 "نصف قطر الفرشاة الأساسي (لوغاريذمي)\n"
-"  0.7 تعني 2 بكسل\n"
-"  3.0 تعني 20 بكسل"
+" 0.7 تعني 2 بكسل\n"
+" 3.0 تعني 20 بكسل"
 
 #. Brush setting
 #: ../brushsettings.json:229
@@ -110,13 +110,14 @@ msgstr ""
 #. Brush setting
 #: ../brushsettings.json:238
 msgid "Softness"
-msgstr ""
+msgstr "نعومة"
 
 #. Tooltip for the "Softness" brush setting
 #: ../brushsettings.json:242
 msgid ""
 "Soften brush-circle from center to edge (setting to 1.0 will draw nothing)."
 msgstr ""
+"تنعيم دائرة الفرشاة من المركز إلى الحافة (الإعداد إلى 1.0 لن يرسم أي شيء)."
 
 #. Brush setting
 #: ../brushsettings.json:247
@@ -312,9 +313,8 @@ msgstr ""
 
 #. Brush setting
 #: ../brushsettings.json:364
-#, fuzzy
 msgid "Offset Y"
-msgstr "الموازنة عن طريق السرعة"
+msgstr "تعويض Y"
 
 #. Tooltip for the "Offset Y" brush setting
 #: ../brushsettings.json:368
@@ -323,9 +323,8 @@ msgstr ""
 
 #. Brush setting
 #: ../brushsettings.json:373
-#, fuzzy
 msgid "Offset X"
-msgstr "الموازنة عن طريق السرعة"
+msgstr "تعويض X"
 
 #. Tooltip for the "Offset X" brush setting
 #: ../brushsettings.json:377
@@ -411,9 +410,8 @@ msgstr ""
 
 #. Brush setting
 #: ../brushsettings.json:445
-#, fuzzy
 msgid "Offsets Multiplier"
-msgstr "الموازنة بتصفية السرعة"
+msgstr "إزاحة المضاعف"
 
 #. Tooltip for the "Offsets Multiplier" brush setting
 #: ../brushsettings.json:449
@@ -700,9 +698,8 @@ msgstr ""
 
 #. Brush setting
 #: ../brushsettings.json:628
-#, fuzzy
 msgid "Smudge bucket"
-msgstr "لطخة"
+msgstr "دلو التلطيخ"
 
 #. Tooltip for the "Smudge bucket" brush setting
 #: ../brushsettings.json:632
@@ -1044,9 +1041,8 @@ msgstr ""
 
 #. Brush input - refers to the direction of the stroke
 #: ../brushsettings.json:98
-#, fuzzy
 msgid "Direction 360"
-msgstr "الاتجاه"
+msgstr "الاتجاه 360"
 
 #. Tooltip for the "Direction 360" brush input
 #: ../brushsettings.json:105
@@ -1127,7 +1123,7 @@ msgstr ""
 #. Brush input - refers to canvas zoom
 #: ../brushsettings.json:159
 msgid "Zoom Level"
-msgstr ""
+msgstr "مستوى التكبير"
 
 #. Tooltip for the "Zoom Level" brush input
 #: ../brushsettings.json:166
@@ -1153,6 +1149,11 @@ msgid ""
 "Take note of \"Dabs per basic radius\" and \"Dabs per actual radius\", which "
 "behave much differently."
 msgstr ""
+"يتيح لك نصف قطر الفرشاة الأساسية تغيير سلوك الفرشاة أثناء تكبيرها أو تصغيرها."
+"\n"
+"يمكنك حتى إلغاء زيادة حجم الداب وتعديل شيء آخر لجعل الفرشاة أكبر.\n"
+"لاحظ \"Dabs لكل نصف قطر أساسي\" و \"Dabs لكل نصف قطر فعلي\" ، والتي تتصرف "
+"بشكل مختلف كثيرًا."
 
 #. Brush input
 #: ../brushsettings.json:179

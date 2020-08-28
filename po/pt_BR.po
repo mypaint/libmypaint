@@ -9,7 +9,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-03-04 06:53+0100\n"
 "PO-Revision-Date: 2020-08-30 19:38+0000\n"
-"Last-Translator: Leandro Bovenzo Nazares <fenx315@gmail.com>\n"
+"Last-Translator: Matheus Bastos <matheusmcy1@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://hosted.weblate.org/projects/"
 "mypaint/libmypaint/pt_BR/>\n"
 "Language: pt_BR\n"
@@ -117,13 +117,16 @@ msgstr ""
 #. Brush setting
 #: ../brushsettings.json:238
 msgid "Softness"
-msgstr ""
+msgstr "Suavidade"
 
 #. Tooltip for the "Softness" brush setting
 #: ../brushsettings.json:242
+#, fuzzy
 msgid ""
 "Soften brush-circle from center to edge (setting to 1.0 will draw nothing)."
 msgstr ""
+"Suavize o círculo do pincel do centro para a borda (definido como 1.0 não "
+"desenhará nada)."
 
 #. Brush setting
 #: ../brushsettings.json:247
@@ -186,8 +189,9 @@ msgstr ""
 
 #. Brush setting
 #: ../brushsettings.json:283
+#, fuzzy
 msgid "GridMap Scale"
-msgstr ""
+msgstr "Escala do GridMap"
 
 #. Tooltip for the "GridMap Scale" brush setting
 #: ../brushsettings.json:287
@@ -199,8 +203,9 @@ msgstr ""
 
 #. Brush setting
 #: ../brushsettings.json:292
+#, fuzzy
 msgid "GridMap Scale X"
-msgstr ""
+msgstr "Escala do GridMap X"
 
 #. Tooltip for the "GridMap Scale X" brush setting
 #: ../brushsettings.json:296
@@ -213,8 +218,9 @@ msgstr ""
 
 #. Brush setting
 #: ../brushsettings.json:301
+#, fuzzy
 msgid "GridMap Scale Y"
-msgstr ""
+msgstr "Escala do GridMap Y"
 
 #. Tooltip for the "GridMap Scale Y" brush setting
 #: ../brushsettings.json:305
@@ -352,7 +358,7 @@ msgstr ""
 #. Brush setting
 #: ../brushsettings.json:382
 msgid "Angular Offset: Direction"
-msgstr ""
+msgstr "Deslocamento Angular: Direção"
 
 #. Tooltip for the "Angular Offset: Direction" brush setting
 #: ../brushsettings.json:386

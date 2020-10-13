@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-03-04 06:53+0100\n"
-"PO-Revision-Date: 2020-08-02 17:41+0000\n"
+"PO-Revision-Date: 2020-10-14 19:26+0000\n"
 "Last-Translator: Prachi Joshi <josprachi@yahoo.com>\n"
 "Language-Team: Marathi <https://hosted.weblate.org/projects/mypaint/"
 "libmypaint/mr/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.2-dev\n"
+"X-Generator: Weblate 4.3-dev\n"
 
 #. Brush setting
 #: ../brushsettings.json:193
@@ -163,7 +163,7 @@ msgstr "प्रत्येक सेकंद रेखांकित कर
 #. Brush setting
 #: ../brushsettings.json:283
 msgid "GridMap Scale"
-msgstr ""
+msgstr "ग्रिडमॅप स्केल"
 
 #. Tooltip for the "GridMap Scale" brush setting
 #: ../brushsettings.json:287
@@ -176,7 +176,7 @@ msgstr ""
 #. Brush setting
 #: ../brushsettings.json:292
 msgid "GridMap Scale X"
-msgstr ""
+msgstr "ग्रिडमॅप स्केल X"
 
 #. Tooltip for the "GridMap Scale X" brush setting
 #: ../brushsettings.json:296
@@ -190,7 +190,7 @@ msgstr ""
 #. Brush setting
 #: ../brushsettings.json:301
 msgid "GridMap Scale Y"
-msgstr ""
+msgstr "ग्रिडमॅप स्केल Y"
 
 #. Tooltip for the "GridMap Scale Y" brush setting
 #: ../brushsettings.json:305
@@ -204,7 +204,7 @@ msgstr ""
 #. Brush setting
 #: ../brushsettings.json:310
 msgid "Radius by random"
-msgstr ""
+msgstr "यादृच्छिक त्रिज्या"
 
 #. Tooltip for the "Radius by random" brush setting
 #: ../brushsettings.json:314
@@ -219,7 +219,7 @@ msgstr ""
 #. Brush setting
 #: ../brushsettings.json:319
 msgid "Fine speed filter"
-msgstr ""
+msgstr "'फाईन स्पीड फिल्टर'"
 
 #. Tooltip for the "Fine speed filter" brush setting
 #: ../brushsettings.json:323
@@ -236,7 +236,7 @@ msgstr "सकल वेग फिल्टर"
 #. Tooltip for the "Gross speed filter" brush setting
 #: ../brushsettings.json:332
 msgid "Same as 'fine speed filter', but note that the range is different"
-msgstr ""
+msgstr "'फाईन स्पीड फिल्टर' प्रमाणेच, परंतु लक्षात ठेवा की श्रेणी भिन्न आहे"
 
 #. Brush setting
 #: ../brushsettings.json:337
@@ -257,12 +257,12 @@ msgstr ""
 #. Brush setting
 #: ../brushsettings.json:346
 msgid "Gross speed gamma"
-msgstr ""
+msgstr "ग्रॉस स्पीड"
 
 #. Tooltip for the "Gross speed gamma" brush setting
 #: ../brushsettings.json:350
 msgid "Same as 'fine speed gamma' for gross speed"
-msgstr ""
+msgstr "स्थूल वेगासाठी 'फाईन स्पीड गामा' सारखेच"
 
 #. Brush setting
 #: ../brushsettings.json:355
@@ -281,43 +281,44 @@ msgstr ""
 #. Brush setting
 #: ../brushsettings.json:364
 msgid "Offset Y"
-msgstr ""
+msgstr "ऑफसेट वाय"
 
 #. Tooltip for the "Offset Y" brush setting
 #: ../brushsettings.json:368
 msgid "Moves the dabs up or down based on canvas coordinates."
-msgstr ""
+msgstr "कॅनव्हास निर्देशांकाच्या आधारे डॅब्स वर किंवा खाली हलवते."
 
 #. Brush setting
 #: ../brushsettings.json:373
 msgid "Offset X"
-msgstr ""
+msgstr "ऑफसेट एक्स"
 
 #. Tooltip for the "Offset X" brush setting
 #: ../brushsettings.json:377
 msgid "Moves the dabs left or right based on canvas coordinates."
-msgstr ""
+msgstr "कॅनव्हास निर्देशांकाच्या आधारे डॅब्स डावीकडे किंवा उजवीकडे हलवते."
 
 #. Brush setting
 #: ../brushsettings.json:382
 msgid "Angular Offset: Direction"
-msgstr ""
+msgstr "कोणीय ऑफसेट: दिशा"
 
 #. Tooltip for the "Angular Offset: Direction" brush setting
 #: ../brushsettings.json:386
 msgid "Follows the stroke direction to offset the dabs to one side."
-msgstr ""
+msgstr "डॅब्स एका बाजूला ऑफसेट करण्यासाठी स्ट्रोकच्या दिशेने अनुसरण करते."
 
 #. Brush setting
 #: ../brushsettings.json:391
 msgid "Angular Offset: Ascension"
-msgstr ""
+msgstr "कोणीय ऑफसेट: आरोह"
 
 #. Tooltip for the "Angular Offset: Ascension" brush setting
 #: ../brushsettings.json:395
 msgid ""
 "Follows the tilt direction to offset the dabs to one side. Requires Tilt."
 msgstr ""
+"डॅब्स एका बाजूला ऑफसेट करण्यासाठी टिल्ट दिशेचे अनुसरण करते. टिल्ट आवश्यक आहे."
 
 #. Brush setting
 #: ../brushsettings.json:400
@@ -327,12 +328,12 @@ msgstr "कोणीय ऑफसेट: पहा"
 #. Tooltip for the "Angular Offset: View" brush setting
 #: ../brushsettings.json:404
 msgid "Follows the view orientation to offset the dabs to one side."
-msgstr ""
+msgstr "डॅब्स एका बाजूला ऑफसेट करण्यासाठी दृश्याभिमुखतेचे अनुसरण करते."
 
 #. Brush setting
 #: ../brushsettings.json:409
 msgid "Angular Offset Mirrored: Direction"
-msgstr ""
+msgstr "कोणीय ऑफसेट मिरर केले: दिशा"
 
 #. Tooltip for the "Angular Offset Mirrored: Direction" brush setting
 #: ../brushsettings.json:413

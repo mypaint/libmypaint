@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-03-04 06:53+0100\n"
-"PO-Revision-Date: 2018-05-10 11:41+0000\n"
+"PO-Revision-Date: 2020-11-21 12:28+0000\n"
 "Last-Translator: Ajeje Brazorf <lmelonimamo@yahoo.it>\n"
 "Language-Team: Sardinian <https://hosted.weblate.org/projects/mypaint/"
 "libmypaint/sc/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.0-dev\n"
+"X-Generator: Weblate 4.4-dev\n"
 
 #. Brush setting
 #: ../brushsettings.json:193
@@ -293,7 +293,7 @@ msgstr ""
 "fìsica estrema. As a bìdere mègius sa diferèntzia si sa 'lestresa fine' est "
 "mapada a su raju.\n"
 "-8.0 sas lestresas medas artas non aumentant de meda sa 'lestresa fine'\n"
-"+8.0  sas lestresas medas artas aumentant sa 'lestresa fine' de meda\n"
+"+8.0 sas lestresas medas artas aumentant sa 'lestresa fine' de meda\n"
 "Pro lestresas meda bassas sutzedet s'opostu."
 
 #. Brush setting

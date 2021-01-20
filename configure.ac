@@ -245,7 +245,7 @@ if test "x$enable_i18n" != "xno"; then
   AC_DEFINE_UNQUOTED(GETTEXT_PACKAGE, "$GETTEXT_PACKAGE",
                      [The prefix for our gettext translation domains.])
   AC_SUBST(GETTEXT_PACKAGE)
-  IT_PROG_INTLTOOL
+IT_PROG_INTLTOOL
   AM_GLIB_GNU_GETTEXT
 
   dnl Debian: stdlib

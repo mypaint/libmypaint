@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: MyPaint git\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-03-04 06:53+0100\n"
-"PO-Revision-Date: 2019-02-25 09:25+0000\n"
-"Last-Translator: glixx <roman_romul@mail.ru>\n"
+"PO-Revision-Date: 2021-01-30 12:41+0000\n"
+"Last-Translator: Axhyre <axhyre@gmail.com>\n"
 "Language-Team: Hungarian <https://hosted.weblate.org/projects/mypaint/"
 "libmypaint/hu/>\n"
 "Language: hu\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.5-dev\n"
+"X-Generator: Weblate 4.5-dev\n"
 
 #. Brush setting
 #: ../brushsettings.json:193
@@ -104,7 +104,6 @@ msgstr "Keménység"
 
 #. Tooltip for the "Hardness" brush setting
 #: ../brushsettings.json:233
-#, fuzzy
 msgid ""
 "Hard brush-circle borders (setting to zero will draw nothing). To reach the "
 "maximum hardness, you need to disable Pixel feather."
@@ -115,7 +114,7 @@ msgstr ""
 #. Brush setting
 #: ../brushsettings.json:238
 msgid "Softness"
-msgstr ""
+msgstr "Érzékenység"
 
 #. Tooltip for the "Softness" brush setting
 #: ../brushsettings.json:242
@@ -130,7 +129,6 @@ msgstr ""
 
 #. Tooltip for the "Pixel feather" brush setting
 #: ../brushsettings.json:251
-#, fuzzy
 msgid ""
 "This setting decreases the hardness when necessary to prevent a pixel "
 "staircase effect (aliasing) by making the dab more blurred.\n"

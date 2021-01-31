@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-03-04 06:53+0100\n"
-"PO-Revision-Date: 2020-04-06 22:30+0000\n"
+"PO-Revision-Date: 2020-07-20 16:41+0000\n"
 "Last-Translator: Milo Ivir <mail@milotype.de>\n"
 "Language-Team: Croatian <https://hosted.weblate.org/projects/mypaint/"
 "libmypaint/hr/>\n"
@@ -16,9 +16,9 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<="
-"4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 4.0-dev\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"X-Generator: Weblate 4.2-dev\n"
 
 #. Brush setting
 #: ../brushsettings.json:193
@@ -51,7 +51,7 @@ msgstr ""
 #. Brush setting
 #: ../brushsettings.json:211
 msgid "Opacity linearize"
-msgstr "Linearna neprozirnosti"
+msgstr "Linearna neprozirnost"
 
 #. Tooltip for the "Opacity linearize" brush setting
 #: ../brushsettings.json:215
@@ -257,7 +257,7 @@ msgstr ""
 #. Brush setting
 #: ../brushsettings.json:337
 msgid "Fine speed gamma"
-msgstr "Gama fine brzine"
+msgstr "Gamut fine brzine"
 
 #. Tooltip for the "Fine speed gamma" brush setting
 #: ../brushsettings.json:341
@@ -278,12 +278,12 @@ msgstr ""
 #. Brush setting
 #: ../brushsettings.json:346
 msgid "Gross speed gamma"
-msgstr "Gama grube brzine"
+msgstr "Gamut grube brzine"
 
 #. Tooltip for the "Gross speed gamma" brush setting
 #: ../brushsettings.json:350
 msgid "Same as 'fine speed gamma' for gross speed"
-msgstr ""
+msgstr "Isto kao „gamut fine brzine” za grubu brzinu"
 
 #. Brush setting
 #: ../brushsettings.json:355

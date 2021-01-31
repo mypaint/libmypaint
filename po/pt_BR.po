@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: 0.9.0-git\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-03-04 06:53+0100\n"
-"PO-Revision-Date: 2020-06-21 09:20+0000\n"
-"Last-Translator: Jesper Lloyd <jpl.lloyd@gmail.com>\n"
+"PO-Revision-Date: 2020-12-05 00:29+0000\n"
+"Last-Translator: Leandro Benedet Garcia <leandro.benedet.garcia@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://hosted.weblate.org/projects/"
 "mypaint/libmypaint/pt_BR/>\n"
 "Language: pt_BR\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 4.2-dev\n"
+"X-Generator: Weblate 4.4-dev\n"
 "X-Poedit-Language: Brazilian Portuguese\n"
 "X-Poedit-Country: BRAZIL\n"
 "X-Poedit-SourceCharset: utf-8\n"
@@ -39,7 +39,7 @@ msgstr ""
 #. Brush setting
 #: ../brushsettings.json:202
 msgid "Opacity multiply"
-msgstr "Multiplicador da opacidade"
+msgstr "Multiplicador de opacidade"
 
 #. Tooltip for the "Opacity multiply" brush setting
 #: ../brushsettings.json:206
@@ -117,13 +117,16 @@ msgstr ""
 #. Brush setting
 #: ../brushsettings.json:238
 msgid "Softness"
-msgstr ""
+msgstr "Suavidade"
 
 #. Tooltip for the "Softness" brush setting
 #: ../brushsettings.json:242
+#, fuzzy
 msgid ""
 "Soften brush-circle from center to edge (setting to 1.0 will draw nothing)."
 msgstr ""
+"Suavize o círculo do pincel do centro para a borda (definido como 1.0 não "
+"desenhará nada)."
 
 #. Brush setting
 #: ../brushsettings.json:247
@@ -186,8 +189,9 @@ msgstr ""
 
 #. Brush setting
 #: ../brushsettings.json:283
+#, fuzzy
 msgid "GridMap Scale"
-msgstr ""
+msgstr "Escala do GridMap"
 
 #. Tooltip for the "GridMap Scale" brush setting
 #: ../brushsettings.json:287
@@ -196,11 +200,15 @@ msgid ""
 "Logarithmic (same scale as brush radius).\n"
 "A scale of 0 will make the grid 256x256 pixels."
 msgstr ""
+"Muda a escala geral sob a qual opera a entrada do pincel no Mapa em Grade.\n"
+"Logarítmico (mesma escala do raio do pincel).\n"
+"Numa escala definida em 0, o grid é configurado para 256x256 pixels."
 
 #. Brush setting
 #: ../brushsettings.json:292
+#, fuzzy
 msgid "GridMap Scale X"
-msgstr ""
+msgstr "Escala do GridMap X"
 
 #. Tooltip for the "GridMap Scale X" brush setting
 #: ../brushsettings.json:296
@@ -210,11 +218,16 @@ msgid ""
 "The range is 0-5x.\n"
 "This allows you to stretch or compress the GridMap pattern."
 msgstr ""
+"Muda a escala em que a entrada do pincel opera no Mapa em Grade - afeta "
+"somente o eixo X.\n"
+"O intervalo é de 0 a 5x.\n"
+"Permite que se estique ou comprima o padrão do Mapa em Grade."
 
 #. Brush setting
 #: ../brushsettings.json:301
+#, fuzzy
 msgid "GridMap Scale Y"
-msgstr ""
+msgstr "Escala do GridMap Y"
 
 #. Tooltip for the "GridMap Scale Y" brush setting
 #: ../brushsettings.json:305
@@ -224,6 +237,10 @@ msgid ""
 "The range is 0-5x.\n"
 "This allows you to stretch or compress the GridMap pattern."
 msgstr ""
+"Muda a escala em que a entrada do pincel opera no Mapa em Grade - afeta "
+"somente o eixo Y.\n"
+"O intervalo é de 0 a 5x.\n"
+"Permite esticar ou comprimir o padrão do Mapa em Grande."
 
 #. Brush setting
 #: ../brushsettings.json:310
@@ -334,6 +351,8 @@ msgstr "Deslocamento Y"
 #: ../brushsettings.json:368
 msgid "Moves the dabs up or down based on canvas coordinates."
 msgstr ""
+"Movimenta as amostras para cima ou para baixo com base nas coordenadas da "
+"tela."
 
 #. Brush setting
 #: ../brushsettings.json:373
@@ -344,32 +363,36 @@ msgstr "Deslocamento X"
 #: ../brushsettings.json:377
 msgid "Moves the dabs left or right based on canvas coordinates."
 msgstr ""
+"Movimenta as amostras para a esquerda ou para a direita com base nas "
+"coordenadas da tela."
 
 #. Brush setting
 #: ../brushsettings.json:382
 msgid "Angular Offset: Direction"
-msgstr ""
+msgstr "Deslocamento Angular: Direção"
 
 #. Tooltip for the "Angular Offset: Direction" brush setting
 #: ../brushsettings.json:386
 msgid "Follows the stroke direction to offset the dabs to one side."
-msgstr ""
+msgstr "Segue a direção do traço para deslocar os salpicos para um lado."
 
 #. Brush setting
 #: ../brushsettings.json:391
 msgid "Angular Offset: Ascension"
-msgstr ""
+msgstr "Offset Angular: Ascensão"
 
 #. Tooltip for the "Angular Offset: Ascension" brush setting
 #: ../brushsettings.json:395
 msgid ""
 "Follows the tilt direction to offset the dabs to one side. Requires Tilt."
 msgstr ""
+"Segue a direção da inclinação para deslocar as amostras para um lado. Requer "
+"Inclinação."
 
 #. Brush setting
 #: ../brushsettings.json:400
 msgid "Angular Offset: View"
-msgstr ""
+msgstr "Deslocamento Angular: Ver"
 
 #. Tooltip for the "Angular Offset: View" brush setting
 #: ../brushsettings.json:404
@@ -379,7 +402,7 @@ msgstr ""
 #. Brush setting
 #: ../brushsettings.json:409
 msgid "Angular Offset Mirrored: Direction"
-msgstr ""
+msgstr "Deslocamento Angular espelhado: Direção"
 
 #. Tooltip for the "Angular Offset Mirrored: Direction" brush setting
 #: ../brushsettings.json:413
@@ -429,8 +452,10 @@ msgstr "Multiplicador de deslocamento"
 
 #. Tooltip for the "Offsets Multiplier" brush setting
 #: ../brushsettings.json:449
+#, fuzzy
 msgid "Logarithmic multiplier for X, Y, and Angular Offset settings."
 msgstr ""
+"Multiplicador logarítmico para configurações de X, Y e deslocamento angular."
 
 #. Brush setting
 #: ../brushsettings.json:454
@@ -446,8 +471,8 @@ msgid ""
 "< 0 draw where the pointer comes from"
 msgstr ""
 "Muda a posição de acordo com a velocidade do ponteiro\n"
-"= 0 desligado \n"
-"> 0  é desenhado onde o ponteiro está indo\n"
+"= 0 desligado\n"
+"> 0 é desenhado onde o ponteiro está indo\n"
 "< 0 é desenhado de onde o ponteiro está vindo"
 
 #. Brush setting

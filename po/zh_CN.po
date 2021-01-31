@@ -8,16 +8,16 @@ msgstr ""
 "Project-Id-Version: 0.7.1-git\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-03-04 06:53+0100\n"
-"PO-Revision-Date: 2015-07-18 15:52+0200\n"
-"Last-Translator: Shen Rui <ilovepumpkin@126.com>\n"
-"Language-Team: Chinese (China) <https://hosted.weblate.org/projects/mypaint/"
-"libmypaint/zh_CN/>\n"
+"PO-Revision-Date: 2021-01-09 06:32+0000\n"
+"Last-Translator: Eric <spice2wolf@gmail.com>\n"
+"Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/"
+"mypaint/libmypaint/zh_Hans/>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 2.4-dev\n"
+"X-Generator: Weblate 4.4.1-dev\n"
 
 #. Brush setting
 #: ../brushsettings.json:193
@@ -304,9 +304,8 @@ msgstr ""
 
 #. Brush setting
 #: ../brushsettings.json:364
-#, fuzzy
 msgid "Offset Y"
-msgstr "速度偏移"
+msgstr "Y轴偏移"
 
 #. Tooltip for the "Offset Y" brush setting
 #: ../brushsettings.json:368
@@ -315,9 +314,8 @@ msgstr ""
 
 #. Brush setting
 #: ../brushsettings.json:373
-#, fuzzy
 msgid "Offset X"
-msgstr "速度偏移"
+msgstr "X轴偏移"
 
 #. Tooltip for the "Offset X" brush setting
 #: ../brushsettings.json:377
@@ -403,9 +401,8 @@ msgstr ""
 
 #. Brush setting
 #: ../brushsettings.json:445
-#, fuzzy
 msgid "Offsets Multiplier"
-msgstr "速度偏移滤镜"
+msgstr "偏移倍增器"
 
 #. Tooltip for the "Offsets Multiplier" brush setting
 #: ../brushsettings.json:449
@@ -636,7 +633,7 @@ msgstr ""
 #. Brush setting - The name Pigment refers to the fact that this kind of color mixing is more similar to how colors mix in physical paint.
 #: ../brushsettings.json:591
 msgid "Pigment"
-msgstr ""
+msgstr "颜料"
 
 #. Tooltip for the "Pigment" brush setting - If this string is difficult to translate, feel free to change it to something more descriptive. Just try to be succinct and consistent.
 #: ../brushsettings.json:596
@@ -648,9 +645,8 @@ msgstr ""
 
 #. Brush setting
 #: ../brushsettings.json:601
-#, fuzzy
 msgid "Smudge transparency"
-msgstr "涂抹半径"
+msgstr "污点透明度"
 
 #. Tooltip for the "Smudge transparency" brush setting
 #: ../brushsettings.json:605
@@ -685,9 +681,8 @@ msgstr ""
 
 #. Brush setting
 #: ../brushsettings.json:619
-#, fuzzy
 msgid "Smudge length multiplier"
-msgstr "涂抹长度"
+msgstr "涂抹长度倍增器"
 
 #. Tooltip for the "Smudge length multiplier" brush setting
 #: ../brushsettings.json:623
@@ -700,9 +695,8 @@ msgstr ""
 
 #. Brush setting
 #: ../brushsettings.json:628
-#, fuzzy
 msgid "Smudge bucket"
-msgstr "涂抹长度"
+msgstr "涂抹桶"
 
 #. Tooltip for the "Smudge bucket" brush setting
 #: ../brushsettings.json:632
@@ -1018,9 +1012,8 @@ msgstr ""
 
 #. Brush input
 #: ../brushsettings.json:44
-#, fuzzy
 msgid "Declination/Tilt"
-msgstr "倾斜"
+msgstr "倾斜度"
 
 #. Tooltip for the "Declination/Tilt" brush input
 #: ../brushsettings.json:51
@@ -1084,9 +1077,8 @@ msgstr "这是一个用户定义的输入。详细信息，查看“自定义输
 
 #. Brush input - refers to the direction of the stroke
 #: ../brushsettings.json:98
-#, fuzzy
 msgid "Direction 360"
-msgstr "方向"
+msgstr "方向 360"
 
 #. Tooltip for the "Direction 360" brush input
 #: ../brushsettings.json:105
@@ -1112,31 +1104,27 @@ msgstr ""
 
 #. Brush input
 #: ../brushsettings.json:118
-#, fuzzy
 msgid "Declination/Tilt X"
-msgstr "倾斜"
+msgstr "倾斜 X"
 
 #. Tooltip for the "Declination/Tilt X" brush input
 #: ../brushsettings.json:125
-#, fuzzy
 msgid ""
 "Declination of stylus tilt on X-Axis. 90/-90 when stylus is parallel to "
 "tablet and 0 when it's perpendicular to tablet."
-msgstr "触控笔的倾斜度。当触控笔与手绘板平行时为0，垂直时为90.0。"
+msgstr "X 轴上的笔尖倾斜度。笔尖平行于平板时为90/-90，垂直于平板时为0。"
 
 #. Brush input
 #: ../brushsettings.json:128
-#, fuzzy
 msgid "Declination/Tilt Y"
-msgstr "倾斜"
+msgstr "Y 轴倾斜"
 
 #. Tooltip for the "Declination/Tilt Y" brush input
 #: ../brushsettings.json:135
-#, fuzzy
 msgid ""
 "Declination of stylus tilt on Y-Axis. 90/-90 when stylus is parallel to "
 "tablet and 0 when it's perpendicular to tablet."
-msgstr "触控笔的倾斜度。当触控笔与手绘板平行时为0，垂直时为90.0。"
+msgstr "笔尖在 Y 轴上的倾斜度。笔尖平行于平板时为90/-90，垂直于平板时为0。"
 
 #. Brush input
 #: ../brushsettings.json:138

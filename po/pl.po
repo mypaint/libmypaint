@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: MyPaint GIT\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-03-04 06:53+0100\n"
-"PO-Revision-Date: 2016-08-29 16:59+0000\n"
-"Last-Translator: Mariusz Kryjak <cerb3ruspl@gmail.com>\n"
+"PO-Revision-Date: 2020-12-06 14:29+0000\n"
+"Last-Translator: WaldiS <sto@tutanota.de>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/mypaint/"
 "libmypaint/pl/>\n"
 "Language: pl\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
 "|| n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 2.8-dev\n"
+"X-Generator: Weblate 4.4-dev\n"
 "X-Poedit-Language: Polish\n"
 "X-Poedit-Country: Polski\n"
 "X-Poedit-SourceCharset: utf-8\n"
@@ -113,14 +113,18 @@ msgstr ""
 
 #. Brush setting
 #: ../brushsettings.json:238
+#, fuzzy
 msgid "Softness"
-msgstr ""
+msgstr "Miękkość"
 
 #. Tooltip for the "Softness" brush setting
 #: ../brushsettings.json:242
+#, fuzzy
 msgid ""
 "Soften brush-circle from center to edge (setting to 1.0 will draw nothing)."
 msgstr ""
+"Zmiękczyć koło pędzla od środka do krawędzi (ustawienie na 1.0 nic nie "
+"narysuje)."
 
 #. Brush setting
 #: ../brushsettings.json:247

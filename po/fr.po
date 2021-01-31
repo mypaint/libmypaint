@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: 0.7.1-git\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-03-04 06:53+0100\n"
-"PO-Revision-Date: 2020-04-21 05:11+0000\n"
-"Last-Translator: Jeannette L <j.lavoie@net-c.ca>\n"
+"PO-Revision-Date: 2020-11-15 15:28+0000\n"
+"Last-Translator: J. Lavoie <j.lavoie@net-c.ca>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/mypaint/"
 "libmypaint/fr/>\n"
 "Language: fr\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 4.0.2-dev\n"
+"X-Generator: Weblate 4.4-dev\n"
 
 #. Brush setting
 #: ../brushsettings.json:193
@@ -123,6 +123,8 @@ msgstr "Douceur"
 msgid ""
 "Soften brush-circle from center to edge (setting to 1.0 will draw nothing)."
 msgstr ""
+"Adoucir le cercle de brosse du centre au bord (le réglage à 1,0 ne dessinera "
+"rien)."
 
 #. Brush setting
 #: ../brushsettings.json:247
@@ -671,8 +673,9 @@ msgstr ""
 
 #. Brush setting - The name Pigment refers to the fact that this kind of color mixing is more similar to how colors mix in physical paint.
 #: ../brushsettings.json:591
+#, fuzzy
 msgid "Pigment"
-msgstr ""
+msgstr "Pigment"
 
 #. Tooltip for the "Pigment" brush setting - If this string is difficult to translate, feel free to change it to something more descriptive. Just try to be succinct and consistent.
 #: ../brushsettings.json:596

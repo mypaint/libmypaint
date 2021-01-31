@@ -8,21 +8,18 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-03-04 06:53+0100\n"
-"PO-Revision-Date: 2020-10-14 19:26+0000\n"
-"Last-Translator: Prachi Joshi <josprachi@yahoo.com>\n"
-"Language-Team: Marathi <https://hosted.weblate.org/projects/mypaint/"
-"libmypaint/mr/>\n"
-"Language: mr\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"Language: tzm\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.3-dev\n"
 
 #. Brush setting
 #: ../brushsettings.json:193
 msgid "Opacity"
-msgstr "अस्पष्टता"
+msgstr ""
 
 #. Tooltip for the "Opacity" brush setting
 #: ../brushsettings.json:197
@@ -30,13 +27,11 @@ msgid ""
 "0 means brush is transparent, 1 fully visible\n"
 "(also known as alpha or opacity)"
 msgstr ""
-"0 म्हणजे ब्रश पारदर्शक आहे, 1 पूर्णपणे दृश्यमान आहे\n"
-"(अल्फा किंवा अस्पष्टता म्हणून देखील ओळखले जाते)"
 
 #. Brush setting
 #: ../brushsettings.json:202
 msgid "Opacity multiply"
-msgstr "अपारदर्शकता गुणाकार"
+msgstr ""
 
 #. Tooltip for the "Opacity multiply" brush setting
 #: ../brushsettings.json:206
@@ -46,15 +41,11 @@ msgid ""
 "This setting is responsible to stop painting when there is zero pressure. "
 "This is just a convention, the behaviour is identical to 'opaque'."
 msgstr ""
-"येथे अस्पष्टता गुणका सह गुणाकार होईल. आपण केवळ या सेटिंगचे प्रेशर इनपुट बदलले पाहिजे. "
-"अस्पष्टतेच्या वेगावर अवलंबून राहण्यासाठी त्याऐवजी 'अपारदर्शक' वापरा.\n"
-"जेव्हा शून्य दबाव असतो तेव्हा पेंटिंग थांबविण्यास ही सेटिंग जबाबदार आहे. ही केवळ एक पद्धत "
-"आहे, वर्तन 'अपारदर्शक' सारखेच आहे."
 
 #. Brush setting
 #: ../brushsettings.json:211
 msgid "Opacity linearize"
-msgstr "अपारदर्शकता रेखीय करा"
+msgstr ""
 
 #. Tooltip for the "Opacity linearize" brush setting
 #: ../brushsettings.json:215
@@ -72,7 +63,7 @@ msgstr ""
 #. Brush setting
 #: ../brushsettings.json:220
 msgid "Radius"
-msgstr "त्रिज्या"
+msgstr ""
 
 #. Tooltip for the "Radius" brush setting
 #: ../brushsettings.json:224
@@ -81,14 +72,11 @@ msgid ""
 " 0.7 means 2 pixels\n"
 " 3.0 means 20 pixels"
 msgstr ""
-"मूलभूत ब्रश त्रिज्या (लघुगणक)\n"
-"  0.7 म्हणजे 2 पिक्सेल\n"
-"  3.0 म्हणजे 20 पिक्सेल"
 
 #. Brush setting
 #: ../brushsettings.json:229
 msgid "Hardness"
-msgstr "कडकपणा"
+msgstr ""
 
 #. Tooltip for the "Hardness" brush setting
 #: ../brushsettings.json:233
@@ -96,25 +84,22 @@ msgid ""
 "Hard brush-circle borders (setting to zero will draw nothing). To reach the "
 "maximum hardness, you need to disable Pixel feather."
 msgstr ""
-"कठोर ब्रश-वर्तुळ सीमा (शून्यावर सेट करणे काहीही काढणार नाही). जास्तीत जास्त "
-"कठोरतेपर्यंत पोहोचण्यासाठी आपल्याला पिक्सेल पंख अक्षम करणे आवश्यक आहे."
 
 #. Brush setting
 #: ../brushsettings.json:238
 msgid "Softness"
-msgstr "मूदुता"
+msgstr ""
 
 #. Tooltip for the "Softness" brush setting
 #: ../brushsettings.json:242
 msgid ""
 "Soften brush-circle from center to edge (setting to 1.0 will draw nothing)."
 msgstr ""
-"मध्यभागी ते काठावर मृदू ब्रश-वर्तुळ (1.0 वर सेटिंग काहीही दर्शवित नाही)."
 
 #. Brush setting
 #: ../brushsettings.json:247
 msgid "Pixel feather"
-msgstr "पिक्सेल पंख"
+msgstr ""
 
 #. Tooltip for the "Pixel feather" brush setting
 #: ../brushsettings.json:251
@@ -129,7 +114,7 @@ msgstr ""
 #. Brush setting
 #: ../brushsettings.json:256
 msgid "Dabs per basic radius"
-msgstr "प्रति मूलभूत त्रिज्या डॅब्स"
+msgstr ""
 
 #. Tooltip for the "Dabs per basic radius" brush setting
 #: ../brushsettings.json:260
@@ -141,7 +126,7 @@ msgstr ""
 #. Brush setting
 #: ../brushsettings.json:265
 msgid "Dabs per actual radius"
-msgstr "प्रति वास्तविक त्रिज्या डॅब्स"
+msgstr ""
 
 #. Tooltip for the "Dabs per actual radius" brush setting
 #: ../brushsettings.json:269
@@ -153,17 +138,17 @@ msgstr ""
 #. Brush setting
 #: ../brushsettings.json:274
 msgid "Dabs per second"
-msgstr "प्रति सेकंद डॅब्स"
+msgstr ""
 
 #. Tooltip for the "Dabs per second" brush setting
 #: ../brushsettings.json:278
 msgid "Dabs to draw each second, no matter how far the pointer moves"
-msgstr "प्रत्येक सेकंद रेखांकित करण्यासाठी डॅब्स, पॉईंटर किती दूर हलवितो"
+msgstr ""
 
 #. Brush setting
 #: ../brushsettings.json:283
 msgid "GridMap Scale"
-msgstr "ग्रिडमॅप स्केल"
+msgstr ""
 
 #. Tooltip for the "GridMap Scale" brush setting
 #: ../brushsettings.json:287
@@ -176,7 +161,7 @@ msgstr ""
 #. Brush setting
 #: ../brushsettings.json:292
 msgid "GridMap Scale X"
-msgstr "ग्रिडमॅप स्केल X"
+msgstr ""
 
 #. Tooltip for the "GridMap Scale X" brush setting
 #: ../brushsettings.json:296
@@ -190,7 +175,7 @@ msgstr ""
 #. Brush setting
 #: ../brushsettings.json:301
 msgid "GridMap Scale Y"
-msgstr "ग्रिडमॅप स्केल Y"
+msgstr ""
 
 #. Tooltip for the "GridMap Scale Y" brush setting
 #: ../brushsettings.json:305
@@ -204,7 +189,7 @@ msgstr ""
 #. Brush setting
 #: ../brushsettings.json:310
 msgid "Radius by random"
-msgstr "यादृच्छिक त्रिज्या"
+msgstr ""
 
 #. Tooltip for the "Radius by random" brush setting
 #: ../brushsettings.json:314
@@ -219,7 +204,7 @@ msgstr ""
 #. Brush setting
 #: ../brushsettings.json:319
 msgid "Fine speed filter"
-msgstr "'फाईन स्पीड फिल्टर'"
+msgstr ""
 
 #. Tooltip for the "Fine speed filter" brush setting
 #: ../brushsettings.json:323
@@ -231,17 +216,17 @@ msgstr ""
 #. Brush setting
 #: ../brushsettings.json:328
 msgid "Gross speed filter"
-msgstr "सकल वेग फिल्टर"
+msgstr ""
 
 #. Tooltip for the "Gross speed filter" brush setting
 #: ../brushsettings.json:332
 msgid "Same as 'fine speed filter', but note that the range is different"
-msgstr "'फाईन स्पीड फिल्टर' प्रमाणेच, परंतु लक्षात ठेवा की श्रेणी भिन्न आहे"
+msgstr ""
 
 #. Brush setting
 #: ../brushsettings.json:337
 msgid "Fine speed gamma"
-msgstr "फाईन स्पीड गामा"
+msgstr ""
 
 #. Tooltip for the "Fine speed gamma" brush setting
 #: ../brushsettings.json:341
@@ -257,17 +242,17 @@ msgstr ""
 #. Brush setting
 #: ../brushsettings.json:346
 msgid "Gross speed gamma"
-msgstr "ग्रॉस स्पीड"
+msgstr ""
 
 #. Tooltip for the "Gross speed gamma" brush setting
 #: ../brushsettings.json:350
 msgid "Same as 'fine speed gamma' for gross speed"
-msgstr "स्थूल वेगासाठी 'फाईन स्पीड गामा' सारखेच"
+msgstr ""
 
 #. Brush setting
 #: ../brushsettings.json:355
 msgid "Jitter"
-msgstr "जिटर"
+msgstr ""
 
 #. Tooltip for the "Jitter" brush setting
 #: ../brushsettings.json:359
@@ -281,59 +266,58 @@ msgstr ""
 #. Brush setting
 #: ../brushsettings.json:364
 msgid "Offset Y"
-msgstr "ऑफसेट वाय"
+msgstr ""
 
 #. Tooltip for the "Offset Y" brush setting
 #: ../brushsettings.json:368
 msgid "Moves the dabs up or down based on canvas coordinates."
-msgstr "कॅनव्हास निर्देशांकाच्या आधारे डॅब्स वर किंवा खाली हलवते."
+msgstr ""
 
 #. Brush setting
 #: ../brushsettings.json:373
 msgid "Offset X"
-msgstr "ऑफसेट एक्स"
+msgstr ""
 
 #. Tooltip for the "Offset X" brush setting
 #: ../brushsettings.json:377
 msgid "Moves the dabs left or right based on canvas coordinates."
-msgstr "कॅनव्हास निर्देशांकाच्या आधारे डॅब्स डावीकडे किंवा उजवीकडे हलवते."
+msgstr ""
 
 #. Brush setting
 #: ../brushsettings.json:382
 msgid "Angular Offset: Direction"
-msgstr "कोणीय ऑफसेट: दिशा"
+msgstr ""
 
 #. Tooltip for the "Angular Offset: Direction" brush setting
 #: ../brushsettings.json:386
 msgid "Follows the stroke direction to offset the dabs to one side."
-msgstr "डॅब्स एका बाजूला ऑफसेट करण्यासाठी स्ट्रोकच्या दिशेने अनुसरण करते."
+msgstr ""
 
 #. Brush setting
 #: ../brushsettings.json:391
 msgid "Angular Offset: Ascension"
-msgstr "कोणीय ऑफसेट: आरोह"
+msgstr ""
 
 #. Tooltip for the "Angular Offset: Ascension" brush setting
 #: ../brushsettings.json:395
 msgid ""
 "Follows the tilt direction to offset the dabs to one side. Requires Tilt."
 msgstr ""
-"डॅब्स एका बाजूला ऑफसेट करण्यासाठी टिल्ट दिशेचे अनुसरण करते. टिल्ट आवश्यक आहे."
 
 #. Brush setting
 #: ../brushsettings.json:400
 msgid "Angular Offset: View"
-msgstr "कोणीय ऑफसेट: पहा"
+msgstr ""
 
 #. Tooltip for the "Angular Offset: View" brush setting
 #: ../brushsettings.json:404
 msgid "Follows the view orientation to offset the dabs to one side."
-msgstr "डॅब्स एका बाजूला ऑफसेट करण्यासाठी दृश्याभिमुखतेचे अनुसरण करते."
+msgstr ""
 
 #. Brush setting
 #: ../brushsettings.json:409
 msgid "Angular Offset Mirrored: Direction"
-msgstr "कोणीय ऑफसेट मिरर केले: दिशा"
+msgstr ""
 
 #. Tooltip for the "Angular Offset Mirrored: Direction" brush setting
 #: ../brushsettings.json:413
@@ -379,7 +363,7 @@ msgstr ""
 #. Brush setting
 #: ../brushsettings.json:445
 msgid "Offsets Multiplier"
-msgstr "ऑफसेट गुणक"
+msgstr ""
 
 #. Tooltip for the "Offsets Multiplier" brush setting
 #: ../brushsettings.json:449
@@ -425,7 +409,7 @@ msgstr ""
 #. Brush setting
 #: ../brushsettings.json:481
 msgid "Slow tracking per dab"
-msgstr "प्रति डॅब हळू ट्रॅकिंग"
+msgstr ""
 
 #. Tooltip for the "Slow tracking per dab" brush setting
 #: ../brushsettings.json:485
@@ -448,13 +432,15 @@ msgstr ""
 
 #. Brush setting
 #. Tooltip for the "Color hue" brush setting
-#: ../brushsettings.json:499 ../brushsettings.json:503
+#: ../brushsettings.json:499
+#: ../brushsettings.json:503
 msgid "Color hue"
 msgstr ""
 
 #. Brush setting
 #. Tooltip for the "Color saturation" brush setting
-#: ../brushsettings.json:508 ../brushsettings.json:512
+#: ../brushsettings.json:508
+#: ../brushsettings.json:512
 msgid "Color saturation"
 msgstr ""
 
@@ -812,7 +798,7 @@ msgstr ""
 #. Brush setting
 #: ../brushsettings.json:745
 msgid "Posterize"
-msgstr "पोस्टरराइझ"
+msgstr ""
 
 #. Tooltip for the "Posterize" brush setting
 #: ../brushsettings.json:749
@@ -820,13 +806,11 @@ msgid ""
 "Strength of posterization, reducing number of colors based on the "
 "\"Posterization levels\" setting, while retaining alpha."
 msgstr ""
-"अल्फा टिकवून ठेवताना पोस्टररायझेशनची ताकद, \"पोस्टररायझेशन लेव्हल\" सेटिंगवर आधारित "
-"रंगांची संख्या कमी करणारी."
 
 #. Brush setting
 #: ../brushsettings.json:754
 msgid "Posterization levels"
-msgstr "पोस्टररायझेशन स्तर"
+msgstr ""
 
 #. Tooltip for the "Posterization levels" brush setting
 #: ../brushsettings.json:758
@@ -839,7 +823,7 @@ msgstr ""
 #. Brush setting
 #: ../brushsettings.json:763
 msgid "Snap to pixel"
-msgstr "पिक्सेलवर स्नॅप करा"
+msgstr ""
 
 #. Tooltip for the "Snap to pixel" brush setting
 #: ../brushsettings.json:767
@@ -851,7 +835,7 @@ msgstr ""
 #. Brush setting
 #: ../brushsettings.json:772
 msgid "Pressure gain"
-msgstr "दबावात वाढ"
+msgstr ""
 
 #. Tooltip for the "Pressure gain" brush setting
 #: ../brushsettings.json:776
@@ -901,7 +885,7 @@ msgstr ""
 #. Brush input
 #: ../brushsettings.json:34
 msgid "Direction"
-msgstr "दिशा"
+msgstr ""
 
 #. Tooltip for the "Direction" brush input
 #: ../brushsettings.json:41
@@ -963,7 +947,7 @@ msgstr ""
 #. Brush input - the input is the output of the "Custom input" setting
 #: ../brushsettings.json:87
 msgid "Custom"
-msgstr "स्वपसंत"
+msgstr ""
 
 #. Tooltip for the "Custom" brush input
 #: ../brushsettings.json:94
@@ -973,9 +957,8 @@ msgstr ""
 
 #. Brush input - refers to the direction of the stroke
 #: ../brushsettings.json:98
-#, fuzzy
 msgid "Direction 360"
-msgstr "दिशा"
+msgstr ""
 
 #. Tooltip for the "Direction 360" brush input
 #: ../brushsettings.json:105

@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: 0.7.1-git\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-03-04 06:53+0100\n"
-"PO-Revision-Date: 2021-01-09 06:32+0000\n"
-"Last-Translator: Eric <spice2wolf@gmail.com>\n"
+"PO-Revision-Date: 2021-02-23 08:50+0000\n"
+"Last-Translator: Li Haiyan <kgtyan@gmail.com>\n"
 "Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/"
 "mypaint/libmypaint/zh_Hans/>\n"
 "Language: zh_CN\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 4.4.1-dev\n"
+"X-Generator: Weblate 4.5\n"
 
 #. Brush setting
 #: ../brushsettings.json:193
@@ -36,7 +36,7 @@ msgstr ""
 #. Brush setting
 #: ../brushsettings.json:202
 msgid "Opacity multiply"
-msgstr "不透明叠加"
+msgstr "不透明倍增"
 
 #. Tooltip for the "Opacity multiply" brush setting
 #: ../brushsettings.json:206
@@ -46,10 +46,8 @@ msgid ""
 "This setting is responsible to stop painting when there is zero pressure. "
 "This is just a convention, the behaviour is identical to 'opaque'."
 msgstr ""
-"该设置使得不透明度叠加。你应该只修改该设置的压力值。使用“不透明度”而不是让不"
-"透明度依赖速度。\n"
-"该设置使得当笔压为零时停止绘图。该行为仅仅是惯例，并且该行为与“不透明度”设置"
-"一致。"
+"该设置增加不透明度。你应该只修改该设置的压力值。使用“不透明度”而不是让不透明度依赖速度。\n"
+"该设置使得当笔压为零时停止绘图。该行为仅仅是惯例，并且该行为与“不透明度”设置一致。"
 
 #. Brush setting
 #: ../brushsettings.json:211

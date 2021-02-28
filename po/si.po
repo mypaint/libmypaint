@@ -8,13 +8,16 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-03-04 06:53+0100\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"PO-Revision-Date: 2021-03-01 15:50+0000\n"
+"Last-Translator: HelaBasa <R45XvezA@protonmail.ch>\n"
+"Language-Team: Sinhala <https://hosted.weblate.org/projects/mypaint/"
+"libmypaint/si/>\n"
 "Language: si\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 4.5\n"
 
 #. Brush setting
 #: ../brushsettings.json:193
@@ -885,7 +888,7 @@ msgstr ""
 #. Brush input
 #: ../brushsettings.json:34
 msgid "Direction"
-msgstr ""
+msgstr "දිශාව"
 
 #. Tooltip for the "Direction" brush input
 #: ../brushsettings.json:41
@@ -968,7 +971,7 @@ msgstr ""
 #. Brush input
 #: ../brushsettings.json:108
 msgid "Attack Angle"
-msgstr ""
+msgstr "ප්‍රහාරක කෝණය"
 
 #. Tooltip for the "Attack Angle" brush input
 #: ../brushsettings.json:115

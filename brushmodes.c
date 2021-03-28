@@ -477,7 +477,6 @@ void draw_dab_pixels_BlendMode_LockAlpha_Paint (uint16_t * mask,
       // convert back to RGB
       float rgb_result[3] = {0};
       spectral_to_rgb(spectral_result, rgb_result);
-      rgba[3] = opa_a + opa_b * rgba[3] / (1<<15);
 
       for (int i=0; i<3; i++) {
         rgba[i] =(rgb_result[i] * rgba[3]) + 0.5;

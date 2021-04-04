@@ -8,18 +8,21 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-03-04 06:53+0100\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"PO-Revision-Date: 2021-04-05 08:27+0000\n"
+"Last-Translator: Avag Sayan <avag.sayan@uite.org>\n"
+"Language-Team: Armenian <https://hosted.weblate.org/projects/mypaint/"
+"libmypaint/hy/>\n"
 "Language: hy\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 4.6-dev\n"
 
 #. Brush setting
 #: ../brushsettings.json:193
 msgid "Opacity"
-msgstr ""
+msgstr "Անթափանցիկություն"
 
 #. Tooltip for the "Opacity" brush setting
 #: ../brushsettings.json:197
@@ -27,11 +30,13 @@ msgid ""
 "0 means brush is transparent, 1 fully visible\n"
 "(also known as alpha or opacity)"
 msgstr ""
+"0 նշանակում է վրձինը թափանցիկ է, 1-ն ամբողջությամբ տեսանելի\n"
+"(նաև անվանում են ալֆա կամ անթափանցիկություն)"
 
 #. Brush setting
 #: ../brushsettings.json:202
 msgid "Opacity multiply"
-msgstr ""
+msgstr "Անթափանցիկության բազմապատկում"
 
 #. Tooltip for the "Opacity multiply" brush setting
 #: ../brushsettings.json:206

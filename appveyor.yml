@@ -5,7 +5,14 @@ environment:
     - MSYS2_ARCH: i686
       MSYSTEM: MINGW32
 
-image: Visual Studio 2017
+image: Visual Studio 2019
+
+for:
+-
+  skip_commits:
+    files:
+      - 'po/*.po'
+      - '*.md'
 
 # Set path for msys
 init:

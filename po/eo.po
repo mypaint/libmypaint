@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-03-04 06:53+0100\n"
-"PO-Revision-Date: 2019-02-27 00:18+0000\n"
-"Last-Translator: glixx <roman_romul@mail.ru>\n"
+"PO-Revision-Date: 2021-05-04 11:32+0000\n"
+"Last-Translator: phlostically <phlostically@mailinator.com>\n"
 "Language-Team: Esperanto <https://hosted.weblate.org/projects/mypaint/"
 "libmypaint/eo/>\n"
 "Language: eo\n"
@@ -17,12 +17,12 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.5-dev\n"
+"X-Generator: Weblate 4.7-dev\n"
 
 #. Brush setting
 #: ../brushsettings.json:193
 msgid "Opacity"
-msgstr ""
+msgstr "Opakeco"
 
 #. Tooltip for the "Opacity" brush setting
 #: ../brushsettings.json:197
@@ -30,11 +30,13 @@ msgid ""
 "0 means brush is transparent, 1 fully visible\n"
 "(also known as alpha or opacity)"
 msgstr ""
+"0 signifas ke peniko estas travidebla, 1 plene videbla\n"
+"(ankaŭ konata kiel alfa aŭ opakeco)"
 
 #. Brush setting
 #: ../brushsettings.json:202
 msgid "Opacity multiply"
-msgstr ""
+msgstr "Multipliki opakecon"
 
 #. Tooltip for the "Opacity multiply" brush setting
 #: ../brushsettings.json:206
@@ -48,7 +50,7 @@ msgstr ""
 #. Brush setting
 #: ../brushsettings.json:211
 msgid "Opacity linearize"
-msgstr ""
+msgstr "Linearigi opakecon"
 
 #. Tooltip for the "Opacity linearize" brush setting
 #: ../brushsettings.json:215
@@ -66,7 +68,7 @@ msgstr ""
 #. Brush setting
 #: ../brushsettings.json:220
 msgid "Radius"
-msgstr ""
+msgstr "Radiuso"
 
 #. Tooltip for the "Radius" brush setting
 #: ../brushsettings.json:224
@@ -75,11 +77,14 @@ msgid ""
 " 0.7 means 2 pixels\n"
 " 3.0 means 20 pixels"
 msgstr ""
+"Baza penika radiuso (logaritme)\n"
+"0,7 signifas 2 bilderojn\n"
+"3,0 signifas 20 bilderojn"
 
 #. Brush setting
 #: ../brushsettings.json:229
 msgid "Hardness"
-msgstr ""
+msgstr "Malmoleco"
 
 #. Tooltip for the "Hardness" brush setting
 #: ../brushsettings.json:233
@@ -91,7 +96,7 @@ msgstr ""
 #. Brush setting
 #: ../brushsettings.json:238
 msgid "Softness"
-msgstr ""
+msgstr "Moleco"
 
 #. Tooltip for the "Softness" brush setting
 #: ../brushsettings.json:242
@@ -151,7 +156,7 @@ msgstr ""
 #. Brush setting
 #: ../brushsettings.json:283
 msgid "GridMap Scale"
-msgstr ""
+msgstr "Skalo de kradmapo"
 
 #. Tooltip for the "GridMap Scale" brush setting
 #: ../brushsettings.json:287
@@ -164,7 +169,7 @@ msgstr ""
 #. Brush setting
 #: ../brushsettings.json:292
 msgid "GridMap Scale X"
-msgstr ""
+msgstr "X-skalo de kradmapo"
 
 #. Tooltip for the "GridMap Scale X" brush setting
 #: ../brushsettings.json:296
@@ -178,7 +183,7 @@ msgstr ""
 #. Brush setting
 #: ../brushsettings.json:301
 msgid "GridMap Scale Y"
-msgstr ""
+msgstr "Y-skalo de kradmapo"
 
 #. Tooltip for the "GridMap Scale Y" brush setting
 #: ../brushsettings.json:305
@@ -192,7 +197,7 @@ msgstr ""
 #. Brush setting
 #: ../brushsettings.json:310
 msgid "Radius by random"
-msgstr ""
+msgstr "Hazarda radiuso"
 
 #. Tooltip for the "Radius by random" brush setting
 #: ../brushsettings.json:314
@@ -207,7 +212,7 @@ msgstr ""
 #. Brush setting
 #: ../brushsettings.json:319
 msgid "Fine speed filter"
-msgstr ""
+msgstr "Filtro de fajna rapido"
 
 #. Tooltip for the "Fine speed filter" brush setting
 #: ../brushsettings.json:323
@@ -219,7 +224,7 @@ msgstr ""
 #. Brush setting
 #: ../brushsettings.json:328
 msgid "Gross speed filter"
-msgstr ""
+msgstr "Filtro de malfajna rapido"
 
 #. Tooltip for the "Gross speed filter" brush setting
 #: ../brushsettings.json:332
@@ -229,7 +234,7 @@ msgstr ""
 #. Brush setting
 #: ../brushsettings.json:337
 msgid "Fine speed gamma"
-msgstr ""
+msgstr "Gama de fajna rapido"
 
 #. Tooltip for the "Fine speed gamma" brush setting
 #: ../brushsettings.json:341
@@ -245,7 +250,7 @@ msgstr ""
 #. Brush setting
 #: ../brushsettings.json:346
 msgid "Gross speed gamma"
-msgstr ""
+msgstr "Gama de malfajna rapido"
 
 #. Tooltip for the "Gross speed gamma" brush setting
 #: ../brushsettings.json:350
@@ -437,18 +442,18 @@ msgstr ""
 #. Tooltip for the "Color hue" brush setting
 #: ../brushsettings.json:499 ../brushsettings.json:503
 msgid "Color hue"
-msgstr ""
+msgstr "Kolortono"
 
 #. Brush setting
 #. Tooltip for the "Color saturation" brush setting
 #: ../brushsettings.json:508 ../brushsettings.json:512
 msgid "Color saturation"
-msgstr ""
+msgstr "Kolorsaturo"
 
 #. Brush setting
 #: ../brushsettings.json:517
 msgid "Color value"
-msgstr ""
+msgstr "Kolorvaloro"
 
 #. Tooltip for the "Color value" brush setting
 #: ../brushsettings.json:521
@@ -458,7 +463,7 @@ msgstr ""
 #. Brush setting
 #: ../brushsettings.json:526
 msgid "Save color"
-msgstr ""
+msgstr "Konservi koloron"
 
 #. Tooltip for the "Save color" brush setting
 #: ../brushsettings.json:530
@@ -473,7 +478,7 @@ msgstr ""
 #. Brush setting
 #: ../brushsettings.json:535
 msgid "Change color hue"
-msgstr ""
+msgstr "Ŝanĝi kolortonon"
 
 #. Tooltip for the "Change color hue" brush setting
 #: ../brushsettings.json:539
@@ -487,7 +492,7 @@ msgstr ""
 #. Brush setting
 #: ../brushsettings.json:544
 msgid "Change color lightness (HSL)"
-msgstr ""
+msgstr "Ŝanĝi kolorlumecon (el tono-saturo-lumeco)"
 
 #. Tooltip for the "Change color lightness (HSL)" brush setting
 #: ../brushsettings.json:548
@@ -501,7 +506,7 @@ msgstr ""
 #. Brush setting
 #: ../brushsettings.json:553
 msgid "Change color satur. (HSL)"
-msgstr ""
+msgstr "Ŝanĝi kolorsaturon (el tono-saturo-lumeco)"
 
 #. Tooltip for the "Change color satur. (HSL)" brush setting
 #: ../brushsettings.json:557
@@ -515,7 +520,7 @@ msgstr ""
 #. Brush setting
 #: ../brushsettings.json:562
 msgid "Change color value (HSV)"
-msgstr ""
+msgstr "Ŝanĝi kolorvaloron (el tono-saturo-valoro)"
 
 #. Tooltip for the "Change color value (HSV)" brush setting
 #: ../brushsettings.json:566
@@ -530,7 +535,7 @@ msgstr ""
 #. Brush setting
 #: ../brushsettings.json:571
 msgid "Change color satur. (HSV)"
-msgstr ""
+msgstr "Ŝanĝi kolorsaturon (el tono-saturo-valoro)"
 
 #. Tooltip for the "Change color satur. (HSV)" brush setting
 #: ../brushsettings.json:575
@@ -560,7 +565,7 @@ msgstr ""
 #. Brush setting - The name Pigment refers to the fact that this kind of color mixing is more similar to how colors mix in physical paint.
 #: ../brushsettings.json:591
 msgid "Pigment"
-msgstr ""
+msgstr "Pigmento"
 
 #. Tooltip for the "Pigment" brush setting - If this string is difficult to translate, feel free to change it to something more descriptive. Just try to be succinct and consistent.
 #: ../brushsettings.json:596
@@ -703,7 +708,7 @@ msgstr ""
 #. Brush setting
 #: ../brushsettings.json:682
 msgid "Custom input"
-msgstr ""
+msgstr "Propra enigo"
 
 #. Tooltip for the "Custom input" brush setting
 #: ../brushsettings.json:686
@@ -772,7 +777,7 @@ msgstr ""
 #. Brush setting
 #: ../brushsettings.json:727
 msgid "Lock alpha"
-msgstr ""
+msgstr "Ŝlosi opakecon"
 
 #. Tooltip for the "Lock alpha" brush setting
 #: ../brushsettings.json:731
@@ -787,7 +792,7 @@ msgstr ""
 #. Brush setting
 #: ../brushsettings.json:736
 msgid "Colorize"
-msgstr ""
+msgstr "Kolorigi"
 
 #. Tooltip for the "Colorize" brush setting
 #: ../brushsettings.json:740
@@ -873,7 +878,7 @@ msgstr ""
 #. Brush input
 #: ../brushsettings.json:24
 msgid "Stroke"
-msgstr ""
+msgstr "Streko"
 
 #. Tooltip for the "Stroke" brush input
 #: ../brushsettings.json:31
@@ -958,9 +963,8 @@ msgstr ""
 
 #. Brush input - refers to the direction of the stroke
 #: ../brushsettings.json:98
-#, fuzzy
 msgid "Direction 360"
-msgstr "Direkto"
+msgstr "Direkto 360"
 
 #. Tooltip for the "Direction 360" brush input
 #: ../brushsettings.json:105
@@ -1041,7 +1045,7 @@ msgstr ""
 #. Brush input - refers to canvas zoom
 #: ../brushsettings.json:159
 msgid "Zoom Level"
-msgstr ""
+msgstr "Zomnivelo"
 
 #. Tooltip for the "Zoom Level" brush input
 #: ../brushsettings.json:166

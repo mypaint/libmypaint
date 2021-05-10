@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-03-04 06:53+0100\n"
-"PO-Revision-Date: 2021-05-06 12:32+0000\n"
+"PO-Revision-Date: 2021-05-11 02:33+0000\n"
 "Last-Translator: phlostically <phlostically@mailinator.com>\n"
 "Language-Team: Esperanto <https://hosted.weblate.org/projects/mypaint/"
 "libmypaint/eo/>\n"
@@ -122,7 +122,7 @@ msgstr ""
 #. Brush setting
 #: ../brushsettings.json:256
 msgid "Dabs per basic radius"
-msgstr ""
+msgstr "Ŝmiroj en baza radiuso"
 
 #. Tooltip for the "Dabs per basic radius" brush setting
 #: ../brushsettings.json:260
@@ -134,7 +134,7 @@ msgstr ""
 #. Brush setting
 #: ../brushsettings.json:265
 msgid "Dabs per actual radius"
-msgstr ""
+msgstr "Ŝmiroj en reala radiuso"
 
 #. Tooltip for the "Dabs per actual radius" brush setting
 #: ../brushsettings.json:269
@@ -146,12 +146,14 @@ msgstr ""
 #. Brush setting
 #: ../brushsettings.json:274
 msgid "Dabs per second"
-msgstr ""
+msgstr "Ŝmiroj en sekundo"
 
 #. Tooltip for the "Dabs per second" brush setting
 #: ../brushsettings.json:278
 msgid "Dabs to draw each second, no matter how far the pointer moves"
 msgstr ""
+"Nombro de desegnotaj ŝmiroj en sekundo, sendepende de la movdistanco de la "
+"montrilo"
 
 #. Brush setting
 #: ../brushsettings.json:283
@@ -255,7 +257,7 @@ msgstr "Gama de malfajna rapido"
 #. Tooltip for the "Gross speed gamma" brush setting
 #: ../brushsettings.json:350
 msgid "Same as 'fine speed gamma' for gross speed"
-msgstr ""
+msgstr "Simila al «Gama de fajna rapido», sed por malfajna rapido"
 
 #. Brush setting
 #: ../brushsettings.json:355
@@ -274,27 +276,28 @@ msgstr ""
 #. Brush setting
 #: ../brushsettings.json:364
 msgid "Offset Y"
-msgstr ""
+msgstr "Y-deŝovo"
 
 #. Tooltip for the "Offset Y" brush setting
 #: ../brushsettings.json:368
 msgid "Moves the dabs up or down based on canvas coordinates."
-msgstr ""
+msgstr "Movi la ŝmirojn supren aŭ malsupren laŭ dokumentaj koordinatoj."
 
 #. Brush setting
 #: ../brushsettings.json:373
 msgid "Offset X"
-msgstr ""
+msgstr "X-deŝovo"
 
 #. Tooltip for the "Offset X" brush setting
 #: ../brushsettings.json:377
 msgid "Moves the dabs left or right based on canvas coordinates."
 msgstr ""
+"Movi la ŝmirojn maldekstren aŭ dekstren laŭ koordinatoj de la dokumento."
 
 #. Brush setting
 #: ../brushsettings.json:382
 msgid "Angular Offset: Direction"
-msgstr ""
+msgstr "Angula deŝovo: direkto"
 
 #. Tooltip for the "Angular Offset: Direction" brush setting
 #: ../brushsettings.json:386
@@ -315,7 +318,7 @@ msgstr ""
 #. Brush setting
 #: ../brushsettings.json:400
 msgid "Angular Offset: View"
-msgstr ""
+msgstr "Angula deŝovo: vido"
 
 #. Tooltip for the "Angular Offset: View" brush setting
 #: ../brushsettings.json:404
@@ -325,7 +328,7 @@ msgstr ""
 #. Brush setting
 #: ../brushsettings.json:409
 msgid "Angular Offset Mirrored: Direction"
-msgstr ""
+msgstr "Angula deŝovo inversigita: direkto"
 
 #. Tooltip for the "Angular Offset Mirrored: Direction" brush setting
 #: ../brushsettings.json:413
@@ -349,7 +352,7 @@ msgstr ""
 #. Brush setting
 #: ../brushsettings.json:427
 msgid "Angular Offset Mirrored: View"
-msgstr ""
+msgstr "Angula deŝovo inversigita: vido"
 
 #. Tooltip for the "Angular Offset Mirrored: View" brush setting
 #: ../brushsettings.json:431
@@ -361,7 +364,7 @@ msgstr ""
 #. Brush setting
 #: ../brushsettings.json:436
 msgid "Angular Offsets Adjustment"
-msgstr ""
+msgstr "Alĝustigo de angulaj deŝovoj"
 
 #. Tooltip for the "Angular Offsets Adjustment" brush setting
 #: ../brushsettings.json:440
@@ -371,17 +374,17 @@ msgstr ""
 #. Brush setting
 #: ../brushsettings.json:445
 msgid "Offsets Multiplier"
-msgstr ""
+msgstr "Multiplikanto de deŝovo"
 
 #. Tooltip for the "Offsets Multiplier" brush setting
 #: ../brushsettings.json:449
 msgid "Logarithmic multiplier for X, Y, and Angular Offset settings."
-msgstr ""
+msgstr "Logaritma multiplikanto de X-, Y-, kaj angula deŝovoj."
 
 #. Brush setting
 #: ../brushsettings.json:454
 msgid "Offset by speed"
-msgstr ""
+msgstr "Deŝovo laŭ rapido"
 
 #. Tooltip for the "Offset by speed" brush setting
 #: ../brushsettings.json:458
@@ -395,7 +398,7 @@ msgstr ""
 #. Brush setting
 #: ../brushsettings.json:463
 msgid "Offset by speed filter"
-msgstr ""
+msgstr "Deŝovo laŭ rapido-filtrilo"
 
 #. Tooltip for the "Offset by speed filter" brush setting
 #: ../brushsettings.json:467
@@ -405,7 +408,7 @@ msgstr ""
 #. Brush setting
 #: ../brushsettings.json:472
 msgid "Slow position tracking"
-msgstr ""
+msgstr "Malrapidigi spuradon de pozicio"
 
 #. Tooltip for the "Slow position tracking" brush setting
 #: ../brushsettings.json:476
@@ -417,7 +420,7 @@ msgstr ""
 #. Brush setting
 #: ../brushsettings.json:481
 msgid "Slow tracking per dab"
-msgstr ""
+msgstr "Malrapidigi spuradon laŭ ŝmiroj"
 
 #. Tooltip for the "Slow tracking per dab" brush setting
 #: ../brushsettings.json:485
@@ -429,7 +432,7 @@ msgstr ""
 #. Brush setting
 #: ../brushsettings.json:490
 msgid "Tracking noise"
-msgstr ""
+msgstr "Spura bruo"
 
 #. Tooltip for the "Tracking noise" brush setting
 #: ../brushsettings.json:494
@@ -458,7 +461,7 @@ msgstr "Kolorvaloro"
 #. Tooltip for the "Color value" brush setting
 #: ../brushsettings.json:521
 msgid "Color value (brightness, intensity)"
-msgstr ""
+msgstr "Kolorvaloro (helo, intenso)"
 
 #. Brush setting
 #: ../brushsettings.json:526
@@ -502,6 +505,10 @@ msgid ""
 " 0.0 disable\n"
 " 1.0 whiter"
 msgstr ""
+"Ŝanĝi la helon de la koloro per la kolormodelo de tono-saturo-lumeco.\n"
+"-1,0 malpliheligi\n"
+"0,0 ne ŝanĝi\n"
+"1,0 pliheligi"
 
 #. Brush setting
 #: ../brushsettings.json:553
@@ -516,6 +523,10 @@ msgid ""
 " 0.0 disable\n"
 " 1.0 more saturated"
 msgstr ""
+"Ŝanĝi la saturon de la koloro per la kolormodelo de tono-saturo-lumeco.\n"
+"-1,0 pligrizigi\n"
+"0,0 ne ŝanĝi\n"
+"1,0 plisaturi"
 
 #. Brush setting
 #: ../brushsettings.json:562
@@ -546,6 +557,12 @@ msgid ""
 " 0.0 disable\n"
 " 1.0 more saturated"
 msgstr ""
+"Ŝanĝi la saturon de la koloro per la kolormodelo de tono-saturo-valoro. "
+"Ŝanĝoj per la kolormodelo tono-saturo-valoro estas komputataj antaŭ ol la "
+"ŝanĝoj per la kolormodelo tono-saturo-lumeco.\n"
+"-1,0 pligrizigi\n"
+"0,0 ne ŝanĝi\n"
+"1,0 plisaturi"
 
 #. Brush setting
 #: ../brushsettings.json:580
@@ -655,7 +672,7 @@ msgstr ""
 #. Brush setting
 #: ../brushsettings.json:646
 msgid "Eraser"
-msgstr ""
+msgstr "Skrapgumo"
 
 #. Tooltip for the "Eraser" brush setting
 #: ../brushsettings.json:650
@@ -669,7 +686,7 @@ msgstr ""
 #. Brush setting
 #: ../brushsettings.json:655
 msgid "Stroke threshold"
-msgstr ""
+msgstr "Sojlo de streko"
 
 #. Tooltip for the "Stroke threshold" brush setting
 #: ../brushsettings.json:659
@@ -681,7 +698,7 @@ msgstr ""
 #. Brush setting
 #: ../brushsettings.json:664
 msgid "Stroke duration"
-msgstr ""
+msgstr "Daŭro de streko"
 
 #. Tooltip for the "Stroke duration" brush setting
 #: ../brushsettings.json:668
@@ -693,7 +710,7 @@ msgstr ""
 #. Brush setting
 #: ../brushsettings.json:673
 msgid "Stroke hold time"
-msgstr ""
+msgstr "Streka teno-daŭro"
 
 #. Tooltip for the "Stroke hold time" brush setting
 #: ../brushsettings.json:677
@@ -725,7 +742,7 @@ msgstr ""
 #. Brush setting
 #: ../brushsettings.json:691
 msgid "Custom input filter"
-msgstr ""
+msgstr "Propra filtrilo de enigo"
 
 #. Tooltip for the "Custom input filter" brush setting
 #: ../brushsettings.json:695
@@ -739,7 +756,7 @@ msgstr ""
 #. Brush setting
 #: ../brushsettings.json:700
 msgid "Elliptical dab: ratio"
-msgstr ""
+msgstr "Elipsa ŝmiro: proporcio"
 
 #. Tooltip for the "Elliptical dab: ratio" brush setting
 #: ../brushsettings.json:704
@@ -747,11 +764,13 @@ msgid ""
 "Aspect ratio of the dabs; must be >= 1.0, where 1.0 means a perfectly round "
 "dab."
 msgstr ""
+"Proporcio inter la longa kaj mallonga radiusoj de la elipsa ŝmiro; devas "
+"esti ≥1,0. La valoro 1,0 signifas perfekte cirklan ŝmiron."
 
 #. Brush setting
 #: ../brushsettings.json:709
 msgid "Elliptical dab: angle"
-msgstr ""
+msgstr "Elipsa ŝmiro: angulo"
 
 #. Tooltip for the "Elliptical dab: angle" brush setting
 #: ../brushsettings.json:713
@@ -761,11 +780,15 @@ msgid ""
 " 45.0 45 degrees, turned clockwise\n"
 " 180.0 horizontal again"
 msgstr ""
+"Angulo, kiom turniĝos elipsaj ŝmiroj\n"
+"0,0 horizontala ŝmiro\n"
+"45,0 horloĝdirekta turno de 45 gradoj\n"
+"180,0 horizontala ŝmiro denove"
 
 #. Brush setting
 #: ../brushsettings.json:718
 msgid "Direction filter"
-msgstr ""
+msgstr "Filtrilo de direkto"
 
 #. Tooltip for the "Direction filter" brush setting
 #: ../brushsettings.json:722
@@ -804,7 +827,7 @@ msgstr ""
 #. Brush setting
 #: ../brushsettings.json:745
 msgid "Posterize"
-msgstr ""
+msgstr "Afiŝecigi"
 
 #. Tooltip for the "Posterize" brush setting
 #: ../brushsettings.json:749
@@ -816,7 +839,7 @@ msgstr ""
 #. Brush setting
 #: ../brushsettings.json:754
 msgid "Posterization levels"
-msgstr ""
+msgstr "Niveloj de afiŝecigo"
 
 #. Tooltip for the "Posterization levels" brush setting
 #: ../brushsettings.json:758
@@ -829,7 +852,7 @@ msgstr ""
 #. Brush setting
 #: ../brushsettings.json:763
 msgid "Snap to pixel"
-msgstr ""
+msgstr "Adapti al bildera krado"
 
 #. Tooltip for the "Snap to pixel" brush setting
 #: ../brushsettings.json:767
@@ -837,6 +860,8 @@ msgid ""
 "Snap brush dab's center and its radius to pixels. Set this to 1.0 for a thin "
 "pixel brush."
 msgstr ""
+"Adapti la centron kaj la radiuson de ŝmiro al la bildera kadro. Uzu la "
+"valoron 1,0 por maldika bildera peniko."
 
 #. Brush setting
 #: ../brushsettings.json:772
@@ -969,7 +994,7 @@ msgstr "Direkto 360"
 #. Tooltip for the "Direction 360" brush input
 #: ../brushsettings.json:105
 msgid "The angle of the stroke, from 0 to 360 degrees."
-msgstr ""
+msgstr "La angulo de la streko, inter 0 kaj 360 gradoj."
 
 #. Brush input
 #: ../brushsettings.json:108
@@ -999,6 +1024,8 @@ msgid ""
 "Declination of stylus tilt on X-Axis. 90/-90 when stylus is parallel to "
 "tablet and 0 when it's perpendicular to tablet."
 msgstr ""
+"Klino de la grifelo laŭ la X-akso. 90/-90 kiam la grifelo estas paralela al "
+"la tabuleto; 0 kiam la grifelo estas orta al la tabuleto."
 
 #. Brush input
 #: ../brushsettings.json:128
@@ -1011,6 +1038,8 @@ msgid ""
 "Declination of stylus tilt on Y-Axis. 90/-90 when stylus is parallel to "
 "tablet and 0 when it's perpendicular to tablet."
 msgstr ""
+"Klino de la grifelo laŭ la Y-akso. 90/-90 kiam la grifelo estas paralela al "
+"la tabuleto; 0 kiam la grifelo estas orta al la tabuleto."
 
 #. Brush input
 #: ../brushsettings.json:138
@@ -1059,7 +1088,7 @@ msgstr ""
 #. Brush input
 #: ../brushsettings.json:169
 msgid "Base Brush Radius"
-msgstr ""
+msgstr "Baza penika radiuso"
 
 #. Tooltip for the "Base Brush Radius" brush input
 #: ../brushsettings.json:176

@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-03-04 06:53+0100\n"
-"PO-Revision-Date: 2021-05-11 02:33+0000\n"
+"PO-Revision-Date: 2021-05-12 10:33+0000\n"
 "Last-Translator: phlostically <phlostically@mailinator.com>\n"
 "Language-Team: Esperanto <https://hosted.weblate.org/projects/mypaint/"
 "libmypaint/eo/>\n"
@@ -491,6 +491,10 @@ msgid ""
 " 0.0 disable\n"
 " 0.5 counterclockwise hue shift by 180 degrees"
 msgstr ""
+"Ŝanĝi kolortonon.\n"
+"-0,1 malgranda horloĝdirekta ŝanĝo de la kolortono\n"
+"0,0 sen ŝanĝo\n"
+"0,5 kontraŭhorloĝdirekta 180-grada ŝanĝo de la kolortono"
 
 #. Brush setting
 #: ../brushsettings.json:544
@@ -542,6 +546,12 @@ msgid ""
 " 0.0 disable\n"
 " 1.0 brigher"
 msgstr ""
+"Ŝanĝi la kolorvaloron (helon, intenson) per la kolormodelo de tono-saturo-"
+"lumeco. Ŝanĝoj per la kolormodelo tono-saturo-valoro estas komputataj antaŭ "
+"ol la ŝanĝoj per la kolormodelo tono-saturo-lumeco.\n"
+"-1,0 malpliheligi\n"
+"0,0 ne ŝanĝi\n"
+"1,0 pliheligi"
 
 #. Brush setting
 #: ../brushsettings.json:571

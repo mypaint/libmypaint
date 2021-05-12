@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-03-04 06:53+0100\n"
-"PO-Revision-Date: 2021-05-12 10:33+0000\n"
+"PO-Revision-Date: 2021-05-13 18:34+0000\n"
 "Last-Translator: phlostically <phlostically@mailinator.com>\n"
 "Language-Team: Esperanto <https://hosted.weblate.org/projects/mypaint/"
 "libmypaint/eo/>\n"
@@ -107,7 +107,7 @@ msgstr ""
 #. Brush setting
 #: ../brushsettings.json:247
 msgid "Pixel feather"
-msgstr ""
+msgstr "Bildera svagigo"
 
 #. Tooltip for the "Pixel feather" brush setting
 #: ../brushsettings.json:251
@@ -231,7 +231,7 @@ msgstr "Filtro de malfajna rapido"
 #. Tooltip for the "Gross speed filter" brush setting
 #: ../brushsettings.json:332
 msgid "Same as 'fine speed filter', but note that the range is different"
-msgstr ""
+msgstr "Simila al «Filtro de fajna rapido», sed la gamo diferencas"
 
 #. Brush setting
 #: ../brushsettings.json:337
@@ -876,7 +876,7 @@ msgstr ""
 #. Brush setting
 #: ../brushsettings.json:772
 msgid "Pressure gain"
-msgstr ""
+msgstr "Multiplikanto de premo"
 
 #. Tooltip for the "Pressure gain" brush setting
 #: ../brushsettings.json:776
@@ -884,6 +884,8 @@ msgid ""
 "This changes how hard you have to press. It multiplies tablet pressure by a "
 "constant factor."
 msgstr ""
+"Ĉi tiu ŝanĝas kiom forte vi devas premi. La premo enigita de la tabuleto "
+"multiplikiĝas per ĉi tiu konstanta faktoro."
 
 #. Brush input
 #: ../brushsettings.json:4
@@ -1114,7 +1116,7 @@ msgstr ""
 #. Brush input
 #: ../brushsettings.json:179
 msgid "Barrel Rotation"
-msgstr ""
+msgstr "Turno de grifelo"
 
 #. Tooltip for the "Barrel Rotation" brush input
 #: ../brushsettings.json:186
@@ -1124,3 +1126,7 @@ msgid ""
 "+90 when twisted clockwise 90 degrees\n"
 "-90 when twisted counterclockwise 90 degrees"
 msgstr ""
+"Turno de la grifelo.\n"
+"0: sen turno\n"
+"+90: horloĝdirekta turno de 90 gradoj\n"
+"-90: kontraŭhorloĝdirekta turno de 90 gradoj"

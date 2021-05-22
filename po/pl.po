@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: MyPaint GIT\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-03-04 06:53+0100\n"
-"PO-Revision-Date: 2020-12-06 14:29+0000\n"
+"PO-Revision-Date: 2021-05-23 13:32+0000\n"
 "Last-Translator: WaldiS <sto@tutanota.de>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/mypaint/"
 "libmypaint/pl/>\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
 "|| n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 4.4-dev\n"
+"X-Generator: Weblate 4.7-dev\n"
 "X-Poedit-Language: Polish\n"
 "X-Poedit-Country: Polski\n"
 "X-Poedit-SourceCharset: utf-8\n"
@@ -187,7 +187,7 @@ msgstr "Ilość ciapek na sekundę - niezależnie od ruchów kursora"
 #. Brush setting
 #: ../brushsettings.json:283
 msgid "GridMap Scale"
-msgstr ""
+msgstr "Skala siatki"
 
 #. Tooltip for the "GridMap Scale" brush setting
 #: ../brushsettings.json:287
@@ -239,10 +239,10 @@ msgid ""
 "transparent\n"
 "2) it will not change the actual radius seen by dabs_per_actual_radius"
 msgstr ""
-"Zmienia losowo średnicę każdej ciapki. Podobny efekt uzyskuje opcja "
-"\"Wartość losowa\"  z tą różnicą, że losowy promień zmniejsza krycie przy "
-"większej ciapce oraz nie jest zależny od parametru \"ilość ciapek na "
-"właściwy promień\""
+"Zmienia losowo średnicę każdej ciapki. Podobny efekt uzyskuje opcja \"Wartość"
+" losowa\" z tą różnicą, że losowy promień zmniejsza krycie przy większej "
+"ciapce oraz nie jest zależny od parametru \"ilość ciapek na właściwy "
+"promień\""
 
 #. Brush setting
 #: ../brushsettings.json:319
@@ -666,7 +666,7 @@ msgstr ""
 #. Brush setting - The name Pigment refers to the fact that this kind of color mixing is more similar to how colors mix in physical paint.
 #: ../brushsettings.json:591
 msgid "Pigment"
-msgstr ""
+msgstr "Pigment"
 
 #. Tooltip for the "Pigment" brush setting - If this string is difficult to translate, feel free to change it to something more descriptive. Just try to be succinct and consistent.
 #: ../brushsettings.json:596
@@ -901,8 +901,8 @@ msgid ""
 " 45.0 45 degrees, turned clockwise\n"
 " 180.0 horizontal again"
 msgstr ""
-"Ta wartość określa kąt w jakim będzie rysowana kropka\n"
-"0.0 i 180.0.rysuje horyzontalnie\n"
+"Ta wartość określa kąt, w jakim będzie rysowana kropka\n"
+"0.0 i 180.0 rysuje horyzontalnie\n"
 "45.0 rysuje kropkę pod kątem 45 stopni (zgodnie ze wskazówkami zegara)"
 
 #. Brush setting
@@ -1155,7 +1155,7 @@ msgstr ""
 #. Brush input
 #: ../brushsettings.json:108
 msgid "Attack Angle"
-msgstr ""
+msgstr "Kąt Natarcia"
 
 #. Tooltip for the "Attack Angle" brush input
 #: ../brushsettings.json:115
@@ -1234,7 +1234,7 @@ msgstr ""
 #. Brush input - refers to canvas zoom
 #: ../brushsettings.json:159
 msgid "Zoom Level"
-msgstr ""
+msgstr "Poziom Przybliżenia"
 
 #. Tooltip for the "Zoom Level" brush input
 #: ../brushsettings.json:166
@@ -1248,7 +1248,7 @@ msgstr ""
 #. Brush input
 #: ../brushsettings.json:169
 msgid "Base Brush Radius"
-msgstr ""
+msgstr "Podstawowy Promień Pędzla"
 
 #. Tooltip for the "Base Brush Radius" brush input
 #: ../brushsettings.json:176

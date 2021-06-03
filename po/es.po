@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: mypaint 1.2.0-alpha\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-03-04 06:53+0100\n"
-"PO-Revision-Date: 2021-04-17 14:27+0000\n"
+"PO-Revision-Date: 2021-06-03 23:22+0000\n"
 "Last-Translator: Adolfo Jayme Barrientos <fitojb@ubuntu.com>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/mypaint/"
 "libmypaint/es/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.6-dev\n"
+"X-Generator: Weblate 4.7-dev\n"
 "X-Language: en_GB\n"
 "X-Source-Language: C\n"
 
@@ -785,7 +785,7 @@ msgstr ""
 #. Brush setting
 #: ../brushsettings.json:637
 msgid "Smudge radius"
-msgstr "Radio de manchas"
+msgstr "Radio de borroneado"
 
 #. Tooltip for the "Smudge radius" brush setting
 #: ../brushsettings.json:641
@@ -1183,8 +1183,8 @@ msgstr "Personalizado"
 msgid ""
 "This is a user defined input. Look at the 'custom input' setting for details."
 msgstr ""
-"Esta es una entrada definida por el usuario. Consulte la configuración de "
-"\"entrada personalizada\" para obtener más información."
+"Esta es una entrada definida por el usuario. Consulte la configuración de «"
+"entrada personalizada» para obtener más información."
 
 #. Brush input - refers to the direction of the stroke
 #: ../brushsettings.json:98
@@ -1199,7 +1199,7 @@ msgstr "El ángulo del trazo, entre 0 y 360 grados."
 #. Brush input
 #: ../brushsettings.json:108
 msgid "Attack Angle"
-msgstr "Ángulo de Ataque"
+msgstr "Ángulo de ataque"
 
 #. Tooltip for the "Attack Angle" brush input
 #: ../brushsettings.json:115

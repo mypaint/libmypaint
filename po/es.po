@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: mypaint 1.2.0-alpha\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-03-04 06:53+0100\n"
-"PO-Revision-Date: 2021-06-03 23:22+0000\n"
+"PO-Revision-Date: 2021-06-05 11:32+0000\n"
 "Last-Translator: Adolfo Jayme Barrientos <fitojb@ubuntu.com>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/mypaint/"
 "libmypaint/es/>\n"
@@ -644,7 +644,7 @@ msgstr ""
 #. Brush setting
 #: ../brushsettings.json:571
 msgid "Change color satur. (HSV)"
-msgstr "Cambiar la saturación del color. (HSV)"
+msgstr "Cambiar saturación de color (HSV)"
 
 #. Tooltip for the "Change color satur. (HSV)" brush setting
 #: ../brushsettings.json:575
@@ -723,7 +723,7 @@ msgstr ""
 #. Brush setting
 #: ../brushsettings.json:610
 msgid "Smudge length"
-msgstr "Longitud del difuminado"
+msgstr "Longitud de borroneo"
 
 #. Tooltip for the "Smudge length" brush setting
 #: ../brushsettings.json:614
@@ -745,7 +745,7 @@ msgstr ""
 #. Brush setting
 #: ../brushsettings.json:619
 msgid "Smudge length multiplier"
-msgstr "Longitud del empastado"
+msgstr "Multiplicador de longitud de borroneo"
 
 #. Tooltip for the "Smudge length multiplier" brush setting
 #: ../brushsettings.json:623

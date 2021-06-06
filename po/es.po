@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: mypaint 1.2.0-alpha\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-03-04 06:53+0100\n"
-"PO-Revision-Date: 2021-06-05 11:32+0000\n"
+"PO-Revision-Date: 2021-06-07 11:33+0000\n"
 "Last-Translator: Adolfo Jayme Barrientos <fitojb@ubuntu.com>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/mypaint/"
 "libmypaint/es/>\n"
@@ -48,11 +48,11 @@ msgid ""
 "This setting is responsible to stop painting when there is zero pressure. "
 "This is just a convention, the behaviour is identical to 'opaque'."
 msgstr ""
-"Se multiplica con opaco. Sólo debe cambiar la presión de entrada de este "
-"ajuste. En cambio, utilice \"opaco\" para que la opacidad dependa de la "
-"velocidad.\n"
-"Este ajuste es responsable de dejar de pintar cuando no hay presión. Es sólo "
-"una convención, el comportamiento es idéntico a 'opaco'."
+"Se multiplica con la opacidad. Solo debe cambiar la entrada de presión de "
+"esta configuración. Para que la opacidad dependa de la velocidad, utilice "
+"«opaco».\n"
+"De esta configuración depende dejar de pintar cuando no hay presión. Es solo "
+"una convención; el comportamiento es idéntico a «opaco»."
 
 #. Brush setting
 #: ../brushsettings.json:211
@@ -282,7 +282,8 @@ msgstr "Filtro de velocidad gruesa"
 #. Tooltip for the "Gross speed filter" brush setting
 #: ../brushsettings.json:332
 msgid "Same as 'fine speed filter', but note that the range is different"
-msgstr "Como 'Filtro de velocidad fina', pero note que el rango es diferente"
+msgstr ""
+"Como «Filtro de velocidad fina», pero observe que el alcance es diferente"
 
 #. Brush setting
 #: ../brushsettings.json:337
@@ -755,11 +756,11 @@ msgid ""
 "The longer the smudge length the more a color will spread and will also "
 "boost performance dramatically, as the canvas is sampled less often"
 msgstr ""
-"Factor logarítmico a multiplicar para el valor de \"Largo de empastado\".\n"
-"Útil para corregir brochas de alta definición o grandes, con muchas "
-"pinceladas.\n"
-"Mientras más largo el empastado, más se desparrama un color, y va a mejorar "
-"el rendimiento dramáticamente, ya que se muestrea menos la imagen"
+"Multiplicador logarítmico para el valor «Longitud de borroneo».\n"
+"Es útil para efectuar correcciones en brochas grandes o de alta definición "
+"al hacer muchas pinceladas.\n"
+"Entre mayor sea la longitud del borroneo, más se esparcirá el color y mejor "
+"será el rendimiento, dado que el lienzo se muestreará con menor frecuencia."
 
 #. Brush setting
 #: ../brushsettings.json:628

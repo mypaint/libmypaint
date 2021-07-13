@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: 0.7.1-git\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-03-04 06:53+0100\n"
-"PO-Revision-Date: 2021-07-12 16:15+0000\n"
+"PO-Revision-Date: 2021-07-14 07:33+0000\n"
 "Last-Translator: Eranthis_stellata_Maxim <1012468643@qq.com>\n"
 "Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/"
 "mypaint/libmypaint/zh_Hans/>\n"
@@ -36,7 +36,7 @@ msgstr ""
 #. Brush setting
 #: ../brushsettings.json:202
 msgid "Opacity multiply"
-msgstr "不透明倍增"
+msgstr "不透明度相乘"
 
 #. Tooltip for the "Opacity multiply" brush setting
 #: ../brushsettings.json:206
@@ -46,13 +46,13 @@ msgid ""
 "This setting is responsible to stop painting when there is zero pressure. "
 "This is just a convention, the behaviour is identical to 'opaque'."
 msgstr ""
-"该设置增加不透明度。你应该只修改该设置的压力值。使用“不透明度”而不是让不透明度依赖速度。\n"
-"该设置使得当笔压为零时停止绘图。该行为仅仅是惯例，并且该行为与“不透明度”设置一致。"
+"这会乘以不透明的。你应该只修改该设置的压力输入。改用“不透明的”使不透明度取决于速度。\n"
+"该设置使得当笔压为零时停止绘图。该行为仅仅是惯例，行为与“不透明的”一致。"
 
 #. Brush setting
 #: ../brushsettings.json:211
 msgid "Opacity linearize"
-msgstr "线性化不透明度"
+msgstr "不透明度线性化"
 
 #. Tooltip for the "Opacity linearize" brush setting
 #: ../brushsettings.json:215
@@ -1188,7 +1188,7 @@ msgstr ""
 #. Brush input
 #: ../brushsettings.json:179
 msgid "Barrel Rotation"
-msgstr ""
+msgstr "笔杆旋转"
 
 #. Tooltip for the "Barrel Rotation" brush input
 #: ../brushsettings.json:186
@@ -1198,3 +1198,7 @@ msgid ""
 "+90 when twisted clockwise 90 degrees\n"
 "-90 when twisted counterclockwise 90 degrees"
 msgstr ""
+"压感笔的笔杆旋转。\n"
+"没旋转时为0\n"
+"顺时针旋转90度为+90\n"
+"逆时针旋转90度为-90"

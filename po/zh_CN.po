@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: 0.7.1-git\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-03-04 06:53+0100\n"
-"PO-Revision-Date: 2021-07-16 18:33+0000\n"
-"Last-Translator: Eranthis_stellata_Maxim <1012468643@qq.com>\n"
+"PO-Revision-Date: 2021-10-02 03:38+0000\n"
+"Last-Translator: Eric <spice2wolf@gmail.com>\n"
 "Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/"
 "mypaint/libmypaint/zh_Hans/>\n"
 "Language: zh_CN\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 4.7.2-dev\n"
+"X-Generator: Weblate 4.9-dev\n"
 
 #. Brush setting
 #: ../brushsettings.json:193
@@ -400,9 +400,8 @@ msgstr "偏移乘数"
 
 #. Tooltip for the "Offsets Multiplier" brush setting
 #: ../brushsettings.json:449
-#, fuzzy
 msgid "Logarithmic multiplier for X, Y, and Angular Offset settings."
-msgstr "X、Y 和角度偏移设置的对数乘数。"
+msgstr "X、Y 对数乘法器及角度偏移设置。"
 
 #. Brush setting
 #: ../brushsettings.json:454
@@ -644,7 +643,6 @@ msgstr "涂抹透明度"
 
 #. Tooltip for the "Smudge transparency" brush setting
 #: ../brushsettings.json:605
-#, fuzzy
 msgid ""
 "Control how much transparency is picked up and smudged, similar to lock "
 "alpha.\n"
@@ -655,9 +653,9 @@ msgid ""
 msgstr ""
 "控制拾取和涂抹多少透明度，类似于锁定 alpha。\n"
 "1.0 不会移动任何透明度。\n"
-"0.5 只会移动 50% 以上的透明度。\n"
+"0.5 只会移动 50% 及以上的透明度。\n"
 "0.0 将不起作用。\n"
-"负值则相反"
+"负值则进行反向操作"
 
 #. Brush setting
 #: ../brushsettings.json:610

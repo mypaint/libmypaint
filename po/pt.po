@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-03-04 06:53+0100\n"
-"PO-Revision-Date: 2021-05-04 11:32+0000\n"
-"Last-Translator: ssantos <ssantos@web.de>\n"
+"PO-Revision-Date: 2021-10-27 09:49+0000\n"
+"Last-Translator: SC <lalocas@protonmail.com>\n"
 "Language-Team: Portuguese <https://hosted.weblate.org/projects/mypaint/"
 "libmypaint/pt/>\n"
 "Language: pt\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 4.7-dev\n"
+"X-Generator: Weblate 4.9-dev\n"
 
 #. Brush setting
 #: ../brushsettings.json:193
@@ -194,6 +194,9 @@ msgid ""
 "Logarithmic (same scale as brush radius).\n"
 "A scale of 0 will make the grid 256x256 pixels."
 msgstr ""
+"Altera a escala geral em que a entrada do pincel GridMap opera.\n"
+"Logarítmico (mesma escala do raio do pincel).\n"
+"Uma escala de 0 tornará a grelha 256x256 píxeis."
 
 #. Brush setting
 #: ../brushsettings.json:292
@@ -208,6 +211,10 @@ msgid ""
 "The range is 0-5x.\n"
 "This allows you to stretch or compress the GridMap pattern."
 msgstr ""
+"Altera a escala em que a entrada do pincel GridMap opera - afeta apenas o "
+"eixo X.\n"
+"O intervalo é 0-5x.\n"
+"Isto permite esticar ou comprimir o padrão GridMap."
 
 #. Brush setting
 #: ../brushsettings.json:301
@@ -222,6 +229,10 @@ msgid ""
 "The range is 0-5x.\n"
 "This allows you to stretch or compress the GridMap pattern."
 msgstr ""
+"Altera a escala em que a entrada do pincel GridMap opera - afeta apenas o "
+"eixo Y.\n"
+"O intervalo é 0-5x.\n"
+"Isto permite esticar ou comprimir o padrão GridMap."
 
 #. Brush setting
 #: ../brushsettings.json:310
@@ -324,61 +335,64 @@ msgstr ""
 
 #. Brush setting
 #: ../brushsettings.json:364
-#, fuzzy
 msgid "Offset Y"
-msgstr "Deslocamento por velocidade"
+msgstr "Deslocamento Y"
 
 #. Tooltip for the "Offset Y" brush setting
 #: ../brushsettings.json:368
 msgid "Moves the dabs up or down based on canvas coordinates."
 msgstr ""
+"Move as amostras para cima ou para baixo com base nas coordenadas da tela."
 
 #. Brush setting
 #: ../brushsettings.json:373
-#, fuzzy
 msgid "Offset X"
-msgstr "Deslocamento por velocidade"
+msgstr "Deslocamento X"
 
 #. Tooltip for the "Offset X" brush setting
 #: ../brushsettings.json:377
 msgid "Moves the dabs left or right based on canvas coordinates."
 msgstr ""
+"Movimenta as amostras para a esquerda ou para a direita com base nas "
+"coordenadas da tela."
 
 #. Brush setting
 #: ../brushsettings.json:382
 msgid "Angular Offset: Direction"
-msgstr ""
+msgstr "Deslocamento angular: direção"
 
 #. Tooltip for the "Angular Offset: Direction" brush setting
 #: ../brushsettings.json:386
 msgid "Follows the stroke direction to offset the dabs to one side."
-msgstr ""
+msgstr "Segue a direção do traço para deslocar as pinceladas para um lado."
 
 #. Brush setting
 #: ../brushsettings.json:391
 msgid "Angular Offset: Ascension"
-msgstr ""
+msgstr "Deslocamento angular: ascensão"
 
 #. Tooltip for the "Angular Offset: Ascension" brush setting
 #: ../brushsettings.json:395
 msgid ""
 "Follows the tilt direction to offset the dabs to one side. Requires Tilt."
 msgstr ""
+"Segue a direção da inclinação para deslocar as amostras para um lado. Requer "
+"Inclinação."
 
 #. Brush setting
 #: ../brushsettings.json:400
 msgid "Angular Offset: View"
-msgstr ""
+msgstr "Deslocamento angular: ver"
 
 #. Tooltip for the "Angular Offset: View" brush setting
 #: ../brushsettings.json:404
 msgid "Follows the view orientation to offset the dabs to one side."
-msgstr ""
+msgstr "Segue a orientação da vista para deslocar as amostras para um lado."
 
 #. Brush setting
 #: ../brushsettings.json:409
 msgid "Angular Offset Mirrored: Direction"
-msgstr ""
+msgstr "Deslocamento angular espelhado: direção"
 
 #. Tooltip for the "Angular Offset Mirrored: Direction" brush setting
 #: ../brushsettings.json:413
@@ -386,11 +400,13 @@ msgid ""
 "Follows the stroke direction to offset the dabs, but to both sides of the "
 "stroke."
 msgstr ""
+"Segue a direção do traço para compensar as amostras, mas para ambos os lados "
+"do traço."
 
 #. Brush setting
 #: ../brushsettings.json:418
 msgid "Angular Offset Mirrored: Ascension"
-msgstr ""
+msgstr "Deslocamento angular espelhado: ascensão"
 
 #. Tooltip for the "Angular Offset Mirrored: Ascension" brush setting
 #: ../brushsettings.json:422
@@ -398,11 +414,13 @@ msgid ""
 "Follows the tilt direction to offset the dabs, but to both sides of the "
 "stroke. Requires Tilt."
 msgstr ""
+"Segue a direção de inclinação para compensar as amostras, mas para ambos os "
+"lados do traçado. Requer inclinação."
 
 #. Brush setting
 #: ../brushsettings.json:427
 msgid "Angular Offset Mirrored: View"
-msgstr ""
+msgstr "Deslocamento angular espelhado: ver"
 
 #. Tooltip for the "Angular Offset Mirrored: View" brush setting
 #: ../brushsettings.json:431
@@ -410,27 +428,29 @@ msgid ""
 "Follows the view orientation to offset the dabs, but to both sides of the "
 "stroke."
 msgstr ""
+"Segue a orientação de visão para compensar as amostras, mas para ambos os "
+"lados do traço."
 
 #. Brush setting
 #: ../brushsettings.json:436
 msgid "Angular Offsets Adjustment"
-msgstr ""
+msgstr "Ajuste de deslocamentos angulares"
 
 #. Tooltip for the "Angular Offsets Adjustment" brush setting
 #: ../brushsettings.json:440
 msgid "Change the Angular Offset angle from the default, which is 90 degrees."
-msgstr ""
+msgstr "Alterar o ângulo de deslocamento angular do padrão, que é de 90 graus."
 
 #. Brush setting
 #: ../brushsettings.json:445
-#, fuzzy
 msgid "Offsets Multiplier"
-msgstr "Filtro para o deslocamento por velocidade"
+msgstr "Multiplicador de deslocamentos"
 
 #. Tooltip for the "Offsets Multiplier" brush setting
 #: ../brushsettings.json:449
 msgid "Logarithmic multiplier for X, Y, and Angular Offset settings."
 msgstr ""
+"Multiplicador logarítmico para configurações de deslocamento X, Y e angular."
 
 #. Brush setting
 #: ../brushsettings.json:454
@@ -674,6 +694,9 @@ msgid ""
 "0.0 no spectral mixing\n"
 "1.0 only spectral mixing"
 msgstr ""
+"Modo de mistura de cores espectrais subtraídas.\n"
+"0.0 sem mistura espectral\n"
+"1.0 apenas mistura espectral"
 
 #. Brush setting
 #: ../brushsettings.json:601

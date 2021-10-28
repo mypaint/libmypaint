@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-03-04 06:53+0100\n"
-"PO-Revision-Date: 2021-10-27 09:49+0000\n"
+"PO-Revision-Date: 2021-10-28 23:45+0000\n"
 "Last-Translator: SC <lalocas@protonmail.com>\n"
 "Language-Team: Portuguese <https://hosted.weblate.org/projects/mypaint/"
 "libmypaint/pt/>\n"
@@ -700,9 +700,8 @@ msgstr ""
 
 #. Brush setting
 #: ../brushsettings.json:601
-#, fuzzy
 msgid "Smudge transparency"
-msgstr "Raio de borrão"
+msgstr "Transparência do borrão"
 
 #. Tooltip for the "Smudge transparency" brush setting
 #: ../brushsettings.json:605
@@ -738,9 +737,8 @@ msgstr ""
 
 #. Brush setting
 #: ../brushsettings.json:619
-#, fuzzy
 msgid "Smudge length multiplier"
-msgstr "Comprimento do borrão"
+msgstr "Multiplicador do comprimento do borrão"
 
 #. Tooltip for the "Smudge length multiplier" brush setting
 #: ../brushsettings.json:623

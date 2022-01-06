@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: 0.7.1-git\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-03-04 06:53+0100\n"
-"PO-Revision-Date: 2021-10-02 03:38+0000\n"
-"Last-Translator: Eric <spice2wolf@gmail.com>\n"
+"PO-Revision-Date: 2022-01-07 06:55+0000\n"
+"Last-Translator: poi <erbaotao@outlook.com>\n"
 "Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/"
 "mypaint/libmypaint/zh_Hans/>\n"
 "Language: zh_CN\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 4.9-dev\n"
+"X-Generator: Weblate 4.10.1\n"
 
 #. Brush setting
 #: ../brushsettings.json:193
@@ -324,7 +324,7 @@ msgstr ""
 #. Tooltip for the "Angular Offset: Direction" brush setting
 #: ../brushsettings.json:386
 msgid "Follows the stroke direction to offset the dabs to one side."
-msgstr ""
+msgstr "沿笔画方向，将笔尖印记偏向一侧。"
 
 #. Brush setting
 #: ../brushsettings.json:391
@@ -335,7 +335,7 @@ msgstr ""
 #: ../brushsettings.json:395
 msgid ""
 "Follows the tilt direction to offset the dabs to one side. Requires Tilt."
-msgstr ""
+msgstr "按倾斜方向将笔尖印记偏移到一侧。需要Tilt的支持。"
 
 #. Brush setting
 #: ../brushsettings.json:400

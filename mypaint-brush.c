@@ -158,7 +158,7 @@ brush_reset(MyPaintBrush *self)
       int min_index = self->min_bucket_used;
       if (min_index != -1) {
         int max_index = self->max_bucket_used;
-        size_t num_bytes = (max_index - min_index) * sizeof(self->smudge_buckets[0]) * SMUDGE_BUCKET_SIZE;
+        size_t num_bytes = (max_index - min_index + 1) * sizeof(self->smudge_buckets[0]) * SMUDGE_BUCKET_SIZE;
         memset(self->smudge_buckets + min_index, 0, num_bytes);
         self->min_bucket_used = -1;
         self->max_bucket_used = -1;

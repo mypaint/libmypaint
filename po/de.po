@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: MyPaint GIT\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-03-04 06:53+0100\n"
-"PO-Revision-Date: 2021-09-20 18:39+0000\n"
+"PO-Revision-Date: 2022-10-02 18:17+0000\n"
 "Last-Translator: Ettore Atalan <atalanttore@googlemail.com>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/mypaint/"
 "libmypaint/de/>\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.9-dev\n"
+"X-Generator: Weblate 4.14.1\n"
 "X-Poedit-Language: German\n"
 "X-Poedit-Country: GERMANY\n"
 "X-Poedit-SourceCharset: utf-8\n"
@@ -377,7 +377,7 @@ msgstr ""
 #. Brush setting
 #: ../brushsettings.json:409
 msgid "Angular Offset Mirrored: Direction"
-msgstr ""
+msgstr "Winkelversatz gespiegelt: Richtung"
 
 #. Tooltip for the "Angular Offset Mirrored: Direction" brush setting
 #: ../brushsettings.json:413
@@ -388,8 +388,9 @@ msgstr ""
 
 #. Brush setting
 #: ../brushsettings.json:418
+#, fuzzy
 msgid "Angular Offset Mirrored: Ascension"
-msgstr ""
+msgstr "Winkelversatz gespiegelt: Aufsteigen"
 
 #. Tooltip for the "Angular Offset Mirrored: Ascension" brush setting
 #: ../brushsettings.json:422
@@ -401,7 +402,7 @@ msgstr ""
 #. Brush setting
 #: ../brushsettings.json:427
 msgid "Angular Offset Mirrored: View"
-msgstr ""
+msgstr "Winkelversatz gespiegelt: Ansicht"
 
 #. Tooltip for the "Angular Offset Mirrored: View" brush setting
 #: ../brushsettings.json:431
@@ -413,23 +414,25 @@ msgstr ""
 #. Brush setting
 #: ../brushsettings.json:436
 msgid "Angular Offsets Adjustment"
-msgstr ""
+msgstr "Winkelversatz-Anpassung"
 
 #. Tooltip for the "Angular Offsets Adjustment" brush setting
 #: ../brushsettings.json:440
 msgid "Change the Angular Offset angle from the default, which is 90 degrees."
 msgstr ""
+"Winkel des Winkelversatzes gegenüber dem Standardwert, der 90 Grad beträgt, "
+"ändern."
 
 #. Brush setting
 #: ../brushsettings.json:445
-#, fuzzy
 msgid "Offsets Multiplier"
-msgstr "Versatz durch Geschwindigkeitsfilter"
+msgstr "Multiplikator für Versätze"
 
 #. Tooltip for the "Offsets Multiplier" brush setting
 #: ../brushsettings.json:449
 msgid "Logarithmic multiplier for X, Y, and Angular Offset settings."
 msgstr ""
+"Logarithmischer Multiplikator für X-, Y- und Winkelversatz-Einstellungen."
 
 #. Brush setting
 #: ../brushsettings.json:454
@@ -675,9 +678,8 @@ msgstr ""
 
 #. Brush setting
 #: ../brushsettings.json:601
-#, fuzzy
 msgid "Smudge transparency"
-msgstr "Wischradius"
+msgstr ""
 
 #. Tooltip for the "Smudge transparency" brush setting
 #: ../brushsettings.json:605
@@ -714,9 +716,8 @@ msgstr ""
 
 #. Brush setting
 #: ../brushsettings.json:619
-#, fuzzy
 msgid "Smudge length multiplier"
-msgstr "Wischlänge"
+msgstr ""
 
 #. Tooltip for the "Smudge length multiplier" brush setting
 #: ../brushsettings.json:623
@@ -729,9 +730,8 @@ msgstr ""
 
 #. Brush setting
 #: ../brushsettings.json:628
-#, fuzzy
 msgid "Smudge bucket"
-msgstr "Wischlänge"
+msgstr ""
 
 #. Tooltip for the "Smudge bucket" brush setting
 #: ../brushsettings.json:632
@@ -980,6 +980,9 @@ msgid ""
 "0.05 = 5 levels, 0.2 = 20 levels, etc.\n"
 "Values above 0.5 may not be noticeable."
 msgstr ""
+"Anzahl der Tontrennungsstufen (geteilt durch 100).\n"
+"0.05 = 5 Stufen, 0.2 = 20 Stufen, usw.\n"
+"Werte über 0,5 können unauffällig sein."
 
 #. Brush setting
 #: ../brushsettings.json:763
@@ -1152,12 +1155,12 @@ msgstr "Richtung 360"
 #. Tooltip for the "Direction 360" brush input
 #: ../brushsettings.json:105
 msgid "The angle of the stroke, from 0 to 360 degrees."
-msgstr ""
+msgstr "Der Winkel des Strichs, von 0 bis 360 Grad."
 
 #. Brush input
 #: ../brushsettings.json:108
 msgid "Attack Angle"
-msgstr ""
+msgstr "Anstellwinkel"
 
 #. Tooltip for the "Attack Angle" brush input
 #: ../brushsettings.json:115
@@ -1248,7 +1251,7 @@ msgstr ""
 #. Brush input
 #: ../brushsettings.json:169
 msgid "Base Brush Radius"
-msgstr ""
+msgstr "Basispinselradius"
 
 #. Tooltip for the "Base Brush Radius" brush input
 #: ../brushsettings.json:176

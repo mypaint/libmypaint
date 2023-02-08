@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-03-04 06:53+0100\n"
-"PO-Revision-Date: 2020-01-30 11:50+0000\n"
-"Last-Translator: Joan Montané <joan@montane.cat>\n"
+"PO-Revision-Date: 2023-02-09 19:36+0000\n"
+"Last-Translator: Ecron <ecron_89@hotmail.com>\n"
 "Language-Team: Catalan <https://hosted.weblate.org/projects/mypaint/"
 "libmypaint/ca/>\n"
 "Language: ca\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.11-dev\n"
+"X-Generator: Weblate 4.16-dev\n"
 
 #. Brush setting
 #: ../brushsettings.json:193
@@ -111,13 +111,15 @@ msgstr ""
 #. Brush setting
 #: ../brushsettings.json:238
 msgid "Softness"
-msgstr ""
+msgstr "Suavitat"
 
 #. Tooltip for the "Softness" brush setting
 #: ../brushsettings.json:242
 msgid ""
 "Soften brush-circle from center to edge (setting to 1.0 will draw nothing)."
 msgstr ""
+"Suavitza el cercle del pinzell des del centre cap a fora (si s'estableix "
+"1.0, no dibuixarà res)."
 
 #. Brush setting
 #: ../brushsettings.json:247
@@ -180,7 +182,7 @@ msgstr "Tocs per dibuixar cada segon sense importar com es desplaci el punter"
 #. Brush setting
 #: ../brushsettings.json:283
 msgid "GridMap Scale"
-msgstr ""
+msgstr "Escala del mapa de graella"
 
 #. Tooltip for the "GridMap Scale" brush setting
 #: ../brushsettings.json:287
@@ -189,11 +191,15 @@ msgid ""
 "Logarithmic (same scale as brush radius).\n"
 "A scale of 0 will make the grid 256x256 pixels."
 msgstr ""
+"Canvia l'escala global amb què el pinzell d'entrada del mapa de graella "
+"opera.\n"
+"Logarítmic (la mateixa escala que el radi del pinzell).\n"
+"Una escala de 0 farà la graella de 256x256 píxels."
 
 #. Brush setting
 #: ../brushsettings.json:292
 msgid "GridMap Scale X"
-msgstr ""
+msgstr "Escala X del mapa de graella"
 
 #. Tooltip for the "GridMap Scale X" brush setting
 #: ../brushsettings.json:296
@@ -203,11 +209,15 @@ msgid ""
 "The range is 0-5x.\n"
 "This allows you to stretch or compress the GridMap pattern."
 msgstr ""
+"Canvia l'escala de l'eix horitzontal amb què el pinzell d'entrada del mapa "
+"de graella opera.\n"
+"El rang és 0-5x.\n"
+"Això us permet estirar o comprimir el patró del mapa de graella."
 
 #. Brush setting
 #: ../brushsettings.json:301
 msgid "GridMap Scale Y"
-msgstr ""
+msgstr "Escala Y del mapa de graella"
 
 #. Tooltip for the "GridMap Scale Y" brush setting
 #: ../brushsettings.json:305
@@ -217,6 +227,10 @@ msgid ""
 "The range is 0-5x.\n"
 "This allows you to stretch or compress the GridMap pattern."
 msgstr ""
+"Canvia l'escala de l'eix vertical amb què el pinzell d'entrada del mapa de "
+"graella opera.\n"
+"El rang és 0-5x.\n"
+"Això us permet estirar o comprimir el patró del mapa de graella."
 
 #. Brush setting
 #: ../brushsettings.json:310

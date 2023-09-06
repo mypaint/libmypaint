@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-03-04 06:53+0100\n"
-"PO-Revision-Date: 2023-02-09 19:36+0000\n"
+"PO-Revision-Date: 2023-09-06 23:21+0000\n"
 "Last-Translator: Ecron <ecron_89@hotmail.com>\n"
 "Language-Team: Catalan <https://hosted.weblate.org/projects/mypaint/"
 "libmypaint/ca/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.16-dev\n"
+"X-Generator: Weblate 5.0.1-dev\n"
 
 #. Brush setting
 #: ../brushsettings.json:193
@@ -340,6 +340,7 @@ msgstr "Desplaçament Y"
 #: ../brushsettings.json:368
 msgid "Moves the dabs up or down based on canvas coordinates."
 msgstr ""
+"Mou les pinzellades amunt o avall en funció de les coordenades del llenç."
 
 #. Brush setting
 #: ../brushsettings.json:373
@@ -350,42 +351,49 @@ msgstr "Desplaçament X"
 #: ../brushsettings.json:377
 msgid "Moves the dabs left or right based on canvas coordinates."
 msgstr ""
+"Mou les pinzellades a esquerra o dreta en funció de les coordenades del "
+"llenç."
 
 #. Brush setting
 #: ../brushsettings.json:382
 msgid "Angular Offset: Direction"
-msgstr ""
+msgstr "Desplaçament angular: Direcció"
 
 #. Tooltip for the "Angular Offset: Direction" brush setting
 #: ../brushsettings.json:386
 msgid "Follows the stroke direction to offset the dabs to one side."
 msgstr ""
+"Segueix la direcció del traç per a desplaçar les pinzellades a un costat."
 
 #. Brush setting
 #: ../brushsettings.json:391
 msgid "Angular Offset: Ascension"
-msgstr ""
+msgstr "Desplaçament angular: Ascensió"
 
 #. Tooltip for the "Angular Offset: Ascension" brush setting
 #: ../brushsettings.json:395
 msgid ""
 "Follows the tilt direction to offset the dabs to one side. Requires Tilt."
 msgstr ""
+"Segueix la direcció de la inclinació per a desplaçar les pinzellades a un "
+"costat. Requereix Inclinació."
 
 #. Brush setting
 #: ../brushsettings.json:400
 msgid "Angular Offset: View"
-msgstr ""
+msgstr "Desplaçament angular: Visualització"
 
 #. Tooltip for the "Angular Offset: View" brush setting
 #: ../brushsettings.json:404
 msgid "Follows the view orientation to offset the dabs to one side."
 msgstr ""
+"Segueix l'orientació de la visualització per a desplaçar les pinzellades a "
+"un costat."
 
 #. Brush setting
 #: ../brushsettings.json:409
 msgid "Angular Offset Mirrored: Direction"
-msgstr ""
+msgstr "Desplaçament angular duplicat: Direcció"
 
 #. Tooltip for the "Angular Offset Mirrored: Direction" brush setting
 #: ../brushsettings.json:413
@@ -393,11 +401,13 @@ msgid ""
 "Follows the stroke direction to offset the dabs, but to both sides of the "
 "stroke."
 msgstr ""
+"Segueix la direcció del traç per a desplaçar les pinzellades, però als dos "
+"costats del traç."
 
 #. Brush setting
 #: ../brushsettings.json:418
 msgid "Angular Offset Mirrored: Ascension"
-msgstr ""
+msgstr "Desplaçament angular duplicat: Ascensió"
 
 #. Tooltip for the "Angular Offset Mirrored: Ascension" brush setting
 #: ../brushsettings.json:422
@@ -405,11 +415,13 @@ msgid ""
 "Follows the tilt direction to offset the dabs, but to both sides of the "
 "stroke. Requires Tilt."
 msgstr ""
+"Segueix la direcció de la inclinació per a desplaçar les pinzellades, però "
+"als dos costats del traç. Requereix Inclinació."
 
 #. Brush setting
 #: ../brushsettings.json:427
 msgid "Angular Offset Mirrored: View"
-msgstr ""
+msgstr "Desplaçament angular duplicat: Visualització"
 
 #. Tooltip for the "Angular Offset Mirrored: View" brush setting
 #: ../brushsettings.json:431
@@ -417,16 +429,18 @@ msgid ""
 "Follows the view orientation to offset the dabs, but to both sides of the "
 "stroke."
 msgstr ""
+"Segueix l'orientació de la visualització per a desplaçar les pinzellades, "
+"però als dos costats del traç."
 
 #. Brush setting
 #: ../brushsettings.json:436
 msgid "Angular Offsets Adjustment"
-msgstr ""
+msgstr "Ajustament dels desplaçaments angulars"
 
 #. Tooltip for the "Angular Offsets Adjustment" brush setting
 #: ../brushsettings.json:440
 msgid "Change the Angular Offset angle from the default, which is 90 degrees."
-msgstr ""
+msgstr "Canvia l'angle del desplaçament angular predefinit, que són 90 graus."
 
 #. Brush setting
 #: ../brushsettings.json:445
@@ -437,6 +451,8 @@ msgstr "Multiplicador del desplaçament"
 #: ../brushsettings.json:449
 msgid "Logarithmic multiplier for X, Y, and Angular Offset settings."
 msgstr ""
+"Multiplicador logarítmic per a la configuració del desplaçament en X, Y i "
+"angular."
 
 #. Brush setting
 #: ../brushsettings.json:454
@@ -678,6 +694,9 @@ msgid ""
 "0.0 no spectral mixing\n"
 "1.0 only spectral mixing"
 msgstr ""
+"Mode de mescla de color espectral sostractiu.\n"
+"0.0 cap mescla espectral\n"
+"1.0 només mescla espectral"
 
 #. Brush setting
 #: ../brushsettings.json:601
@@ -694,6 +713,12 @@ msgid ""
 "0.0 will have no effect.\n"
 "Negative values do the reverse"
 msgstr ""
+"Controla quanta transparència es selecciona i difumina, similar al blocatge "
+"alfa.\n"
+"1.0 no mourà cap transparència.\n"
+"0.5 només mourà el 50% de transparència o superior.\n"
+"0.0 no tindrà cap efecte.\n"
+"Els valors negatius fan el contrari"
 
 #. Brush setting
 #: ../brushsettings.json:610
@@ -730,12 +755,16 @@ msgid ""
 "The longer the smudge length the more a color will spread and will also "
 "boost performance dramatically, as the canvas is sampled less often"
 msgstr ""
+"Multiplicador logarítmic per al valor de «Longitud del difuminat».\n"
+"Útil per a corregir pinzells grans o d'alta definició amb multitud de "
+"pinzellades.\n"
+"Com més gran és la longitud del difuminat, més color s'estendrà i millorarà "
+"el rendiment de manera notable, perquè el llenç es carrega menys sovint"
 
 #. Brush setting
 #: ../brushsettings.json:628
-#, fuzzy
 msgid "Smudge bucket"
-msgstr "Longitud del difuminat"
+msgstr "Poal de difuminat"
 
 #. Tooltip for the "Smudge bucket" brush setting
 #: ../brushsettings.json:632
@@ -746,6 +775,12 @@ msgid ""
 "Especially useful with the \"Custom input\" setting to correlate buckets "
 "with other settings such as offsets."
 msgstr ""
+"Hi ha un total de 256 poals, i cadascun pot contenir un color triat al llenç."
+"\n"
+"Podeu controlar quin poal utilitzeu per a millorar la variabilitat i el "
+"realisme del pinzell.\n"
+"Especialment útil amb el paràmetre «Entrada personalitzada» per a "
+"correlacionar poals amb ales paràmetres, com ara desplaçaments."
 
 #. Brush setting
 #: ../brushsettings.json:637

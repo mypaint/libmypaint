@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-03-04 06:53+0100\n"
-"PO-Revision-Date: 2023-09-06 23:21+0000\n"
+"PO-Revision-Date: 2023-10-25 18:52+0000\n"
 "Last-Translator: Ecron <ecron_89@hotmail.com>\n"
 "Language-Team: Catalan <https://hosted.weblate.org/projects/mypaint/"
 "libmypaint/ca/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.0.1-dev\n"
+"X-Generator: Weblate 5.1.1\n"
 
 #. Brush setting
 #: ../brushsettings.json:193
@@ -69,12 +69,12 @@ msgid ""
 "1.0 the opaque value above is for the final brush stroke, assuming each "
 "pixel gets (dabs_per_radius*2) brushdabs on average during a stroke"
 msgstr ""
-"Corregeix la no linealitat introduïda barrejant múltiples tocs un sobre "
+"Corregeix la no-linealitat introduïda en barrejar múltiples tocs l'un sobre "
 "l'altre. Aquesta correcció us hauria de donar una resposta de pressió lineal "
-"(\"natural\") quan es mapege la pressió a multiplica_opacitat, com sol fer-"
-"se. 0.9 és bo per als traços estàndard, estableix-lo més petit si el pinzell "
-"s'escampa molt o més si feu servir tocs_per_segons.\n"
-"0,0 el valor opac anterior és per als tocs individuals\n"
+"(«natural») quan es marqui la pressió a multiplica_opacitat, com sol fer-se. "
+"0.9 és bo per als traços estàndard, establiu-lo més petit si el pinzell "
+"s'escampa molt, o més gran si feu servir tocs_per_segons.\n"
+"0.0 el valor opac anterior és per als tocs individuals\n"
 "1.0 el valor opac anterior és per al traç final del pinzell, suposant que "
 "cada píxel obté (tocs_per_radi * 2) tocs de pinzell de mitjana durant el traç"
 
@@ -91,8 +91,8 @@ msgid ""
 " 3.0 means 20 pixels"
 msgstr ""
 "Radi del pinzell bàsic (logarítmic)\n"
-"  0,7 significa 2 píxels\n"
-"  3.0 significa 20 píxels"
+" 0,7 significa 2 píxels\n"
+" 3.0 significa 20 píxels"
 
 #. Brush setting
 #: ../brushsettings.json:229
@@ -135,11 +135,12 @@ msgid ""
 " 1.0 blur one pixel (good value)\n"
 " 5.0 notable blur, thin strokes will disappear"
 msgstr ""
-"Aquest paràmetre disminueix la duresa quan és necessari per evitar un efecte "
-"escala del píxels (aliàsing) fent que la pinzellada quedi més borrosa.\n"
-"  0,0 deshabilita (per a gomes d'esborrar grosses i pinzells de píxels)\n"
-"  1.0 fes borrós un píxel (valor bo)\n"
-"  5.0 desenfocament notable, desapareixeran els traços prims"
+"Aquest paràmetre disminueix la duresa quan sigui necessari per a evitar un "
+"efecte «escala» dels píxels (aliàsing) fent que la pinzellada quedi més "
+"borrosa.\n"
+" 0.0 deshabilita (per a gomes d'esborrar grosses i pinzells de píxels)\n"
+" 1.0 fa borrós un píxel (valor bo)\n"
+" 5.0 desenfocament notable, desapareixeran els traços prims"
 
 #. Brush setting
 #: ../brushsettings.json:256
@@ -564,9 +565,9 @@ msgid ""
 msgstr ""
 "Quan seleccioneu un pinzell, el color es pot restaurar al color amb el qual "
 "es va desar el pinzell.\n"
-"  0.0 no modifica el color actiu quan seleccioneu aquest pinzell\n"
-"  0.5 canvieu el color actiu al color del pinzell\n"
-"  1.0 estableix el color actiu al color del pinzell quan sigui seleccionat"
+" 0.0 no modifica el color actiu quan seleccioneu aquest pinzell\n"
+" 0.5 canvia el color actiu al color del pinzell\n"
+" 1.0 estableix el color actiu al color del pinzell quan sigui seleccionat"
 
 #. Brush setting
 #: ../brushsettings.json:535
@@ -939,9 +940,9 @@ msgid ""
 " 180.0 horizontal again"
 msgstr ""
 "Angle amb el qual s'inclinen els tocs el·líptics\n"
-"0.0 tocs horitzontals\n"
-"45.0  45 graus en sentit horari\n"
-"180.0 horitzontals de nou"
+" 0.0 tocs horitzontals\n"
+" 45.0 45 graus en sentit horari\n"
+" 180.0 horitzontals de nou"
 
 #. Brush setting
 #: ../brushsettings.json:718
@@ -993,7 +994,7 @@ msgstr ""
 #. Brush setting
 #: ../brushsettings.json:745
 msgid "Posterize"
-msgstr ""
+msgstr "Posteritza"
 
 #. Tooltip for the "Posterize" brush setting
 #: ../brushsettings.json:749
@@ -1001,11 +1002,13 @@ msgid ""
 "Strength of posterization, reducing number of colors based on the "
 "\"Posterization levels\" setting, while retaining alpha."
 msgstr ""
+"Força de la posterització, que redueix el nombre de colors d'acord amb el "
+"paràmetre «Nivells de posterització», tot mantenint el canal alfa."
 
 #. Brush setting
 #: ../brushsettings.json:754
 msgid "Posterization levels"
-msgstr ""
+msgstr "Nivells de posterització"
 
 #. Tooltip for the "Posterization levels" brush setting
 #: ../brushsettings.json:758
@@ -1014,6 +1017,9 @@ msgid ""
 "0.05 = 5 levels, 0.2 = 20 levels, etc.\n"
 "Values above 0.5 may not be noticeable."
 msgstr ""
+"Nombre de nivells de posterització (dividit per 100).\n"
+"0.05 = 5 nivells, 0.2 = 20 nivells, etc.\n"
+"Els valors per sobre de 0.5 no són apreciables."
 
 #. Brush setting
 #: ../brushsettings.json:763
@@ -1185,12 +1191,12 @@ msgstr "Direcció 360"
 #. Tooltip for the "Direction 360" brush input
 #: ../brushsettings.json:105
 msgid "The angle of the stroke, from 0 to 360 degrees."
-msgstr ""
+msgstr "L'angle del traç, de 0 a 360 graus."
 
 #. Brush input
 #: ../brushsettings.json:108
 msgid "Attack Angle"
-msgstr ""
+msgstr "Angle d'atac"
 
 #. Tooltip for the "Attack Angle" brush input
 #: ../brushsettings.json:115
@@ -1203,6 +1209,13 @@ msgid ""
 "180 means the angle of the stroke is directly opposite the angle of the "
 "stylus."
 msgstr ""
+"La diferència, en graus, entre l'angle en què la ploma apunta i l'angle del "
+"moviment del traç.\n"
+"El rang és +/- 180.0.\n"
+"0.0 significa que l'angle de traç correspon amb l'angle de la ploma.\n"
+"90 significa que l'angle del traç és perpendicular a l'angle de la ploma.\n"
+"180 significa que l'angle del traç és justament l'oposat a l'angle de la "
+"ploma."
 
 #. Brush input
 #: ../brushsettings.json:118
@@ -1235,7 +1248,7 @@ msgstr ""
 #. Brush input
 #: ../brushsettings.json:138
 msgid "GridMap X"
-msgstr ""
+msgstr "X del mapa de graella"
 
 #. Tooltip for the "GridMap X" brush input
 #: ../brushsettings.json:145
@@ -1246,11 +1259,16 @@ msgid ""
 "The brush size should be considerably smaller than the grid scale for best "
 "results."
 msgstr ""
+"La coordenada X d'una graella de 256 píxels. S'adaptarà a valors 0-256 a "
+"mesura que el cursor es mogui per l'eix X. Similar a «Traç». Es pot "
+"utilitzar per a afegir textura de paper modificant l'opacitat, etc.\n"
+"La mida del pinzell hauria de ser considerablement menor que l'escala de la "
+"graella per a millors resultats."
 
 #. Brush input
 #: ../brushsettings.json:148
 msgid "GridMap Y"
-msgstr ""
+msgstr "Y del mapa de graella"
 
 #. Tooltip for the "GridMap Y" brush input
 #: ../brushsettings.json:155
@@ -1261,11 +1279,16 @@ msgid ""
 "The brush size should be considerably smaller than the grid scale for best "
 "results."
 msgstr ""
+"La coordenada Y d'una graella de 256 píxels. S'adaptarà a valors 0-256 a "
+"mesura que el cursor es mogui per l'eix Y. Similar a «Traç». Es pot "
+"utilitzar per a afegir textura de paper modificant l'opacitat, etc.\n"
+"La mida del pinzell hauria de ser considerablement menor que l'escala de la "
+"graella per a millors resultats."
 
 #. Brush input - refers to canvas zoom
 #: ../brushsettings.json:159
 msgid "Zoom Level"
-msgstr ""
+msgstr "Nivell d'apropament"
 
 #. Tooltip for the "Zoom Level" brush input
 #: ../brushsettings.json:166
@@ -1275,11 +1298,15 @@ msgid ""
 "For the Radius setting, using a value of -4.15 makes the brush size roughly "
 "constant, relative to the level of zoom."
 msgstr ""
+"El nivell actual d'apropament de la visualització del llenç.\n"
+"Logarítmic: 0.0 és 100%, 0.69 és 200%, -1.38 és 25%.\n"
+"Per al paràmetre del radi, utilitzar el valor -4.15 fa que la mida del "
+"pinzell sigui pràcticament constant, relativa al nivell de l'apropament."
 
 #. Brush input
 #: ../brushsettings.json:169
 msgid "Base Brush Radius"
-msgstr ""
+msgstr "Radi del pinzell base"
 
 #. Tooltip for the "Base Brush Radius" brush input
 #: ../brushsettings.json:176
@@ -1291,11 +1318,17 @@ msgid ""
 "Take note of \"Dabs per basic radius\" and \"Dabs per actual radius\", which "
 "behave much differently."
 msgstr ""
+"El radi del pinzell base us permet canviar el comportament d'un pinzell a "
+"mesura que el feu més gran o menut.\n"
+"Podeu fins i tot cancel·lar l'augment de la mida del toc i ajustar una altra "
+"cosa per a fer el pinzell més gran.\n"
+"No confongueu «Tocs per radi bàsic» i «Tocs per radi actual», que es "
+"comporten de manera molt diferent."
 
 #. Brush input
 #: ../brushsettings.json:179
 msgid "Barrel Rotation"
-msgstr ""
+msgstr "Rotació del cos de la ploma"
 
 #. Tooltip for the "Barrel Rotation" brush input
 #: ../brushsettings.json:186
@@ -1305,3 +1338,7 @@ msgid ""
 "+90 when twisted clockwise 90 degrees\n"
 "-90 when twisted counterclockwise 90 degrees"
 msgstr ""
+"Rotació de la ploma sobre el seu eix central.\n"
+"0 quan no es gira\n"
+"+90 quan es gira 90 graus en sentit horari\n"
+"-90 quan es gira 90 graus en sentit antihorari"

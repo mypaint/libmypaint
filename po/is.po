@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: Icelandic (MyPaint)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-03-04 06:53+0100\n"
-"PO-Revision-Date: 2020-01-16 22:21+0000\n"
+"PO-Revision-Date: 2024-01-16 08:39+0000\n"
 "Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
 "Language-Team: Icelandic <https://hosted.weblate.org/projects/mypaint/"
 "libmypaint/is/>\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n % 10 != 1 || n % 100 == 11;\n"
-"X-Generator: Weblate 3.10.2-dev\n"
+"X-Generator: Weblate 5.4-dev\n"
 
 #. Brush setting
 #: ../brushsettings.json:193
@@ -87,7 +87,7 @@ msgstr ""
 #. Brush setting
 #: ../brushsettings.json:238
 msgid "Softness"
-msgstr ""
+msgstr "Mýking"
 
 #. Tooltip for the "Softness" brush setting
 #: ../brushsettings.json:242
@@ -265,7 +265,7 @@ msgstr ""
 #. Brush setting
 #: ../brushsettings.json:364
 msgid "Offset Y"
-msgstr ""
+msgstr "Hliðrun Y"
 
 #. Tooltip for the "Offset Y" brush setting
 #: ../brushsettings.json:368
@@ -275,7 +275,7 @@ msgstr ""
 #. Brush setting
 #: ../brushsettings.json:373
 msgid "Offset X"
-msgstr ""
+msgstr "Hliðrun X"
 
 #. Tooltip for the "Offset X" brush setting
 #: ../brushsettings.json:377
@@ -372,7 +372,7 @@ msgstr ""
 #. Brush setting
 #: ../brushsettings.json:454
 msgid "Offset by speed"
-msgstr ""
+msgstr "Hliðra eftir hraða"
 
 #. Tooltip for the "Offset by speed" brush setting
 #: ../brushsettings.json:458
@@ -568,9 +568,8 @@ msgstr ""
 
 #. Brush setting
 #: ../brushsettings.json:601
-#, fuzzy
 msgid "Smudge transparency"
-msgstr "Radíus kámunar"
+msgstr "Káma gegnsæi"
 
 #. Tooltip for the "Smudge transparency" brush setting
 #: ../brushsettings.json:605
@@ -601,9 +600,8 @@ msgstr ""
 
 #. Brush setting
 #: ../brushsettings.json:619
-#, fuzzy
 msgid "Smudge length multiplier"
-msgstr "Lengd kámunar"
+msgstr "Margföldun á lengd kámunar"
 
 #. Tooltip for the "Smudge length multiplier" brush setting
 #: ../brushsettings.json:623
@@ -798,7 +796,7 @@ msgstr ""
 #. Brush setting
 #: ../brushsettings.json:745
 msgid "Posterize"
-msgstr ""
+msgstr "Þrykk"
 
 #. Tooltip for the "Posterize" brush setting
 #: ../brushsettings.json:749
@@ -958,9 +956,8 @@ msgstr ""
 
 #. Brush input - refers to the direction of the stroke
 #: ../brushsettings.json:98
-#, fuzzy
 msgid "Direction 360"
-msgstr "Stefna"
+msgstr "Stefna 360"
 
 #. Tooltip for the "Direction 360" brush input
 #: ../brushsettings.json:105
@@ -970,7 +967,7 @@ msgstr ""
 #. Brush input
 #: ../brushsettings.json:108
 msgid "Attack Angle"
-msgstr ""
+msgstr "Áfallshorn"
 
 #. Tooltip for the "Attack Angle" brush input
 #: ../brushsettings.json:115
@@ -1043,7 +1040,7 @@ msgstr ""
 #. Brush input - refers to canvas zoom
 #: ../brushsettings.json:159
 msgid "Zoom Level"
-msgstr ""
+msgstr "Aðdráttarstig"
 
 #. Tooltip for the "Zoom Level" brush input
 #: ../brushsettings.json:166
@@ -1073,7 +1070,7 @@ msgstr ""
 #. Brush input
 #: ../brushsettings.json:179
 msgid "Barrel Rotation"
-msgstr ""
+msgstr "Snúningur um ás"
 
 #. Tooltip for the "Barrel Rotation" brush input
 #: ../brushsettings.json:186

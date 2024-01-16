@@ -30,45 +30,45 @@ License: ISC, see [COPYING](./COPYING) for details.
 On recent Debian-like systems, you can type the following
 to get started with a standard configuration:
 
-    $ sudo apt install -y build-essential
-    $ sudo apt install -y libjson-c-dev libgirepository1.0-dev libglib2.0-dev
+    # apt install -y build-essential
+    # apt install -y libjson-c-dev libgirepository1.0-dev libglib2.0-dev
 
 When building from git:
 
-    $ sudo apt install -y python autotools-dev intltool gettext libtool
+    # apt install -y python autotools-dev intltool gettext libtool
     
 You might also try using your package manager:
 
-    $ sudo apt build-dep mypaint # will get additional deps for MyPaint (GUI)
-    $ sudo apt build-dep libmypaint  # may not exist; included in mypaint
+    # apt build-dep mypaint # will get additional deps for MyPaint (GUI)
+    # apt build-dep libmypaint  # may not exist; included in mypaint
 
 ### Install dependencies (Red Hat and derivatives)
 
 The following works on a minimal CentOS 7 installation:
 
-    $ sudo yum install -y gcc gobject-introspection-devel json-c-devel glib2-devel
+    # yum install -y gcc gobject-introspection-devel json-c-devel glib2-devel
 
 When building from git, you'll want to add:
 
-    $ sudo yum install -y git python autoconf intltool gettext libtool
+    # yum install -y git python autoconf intltool gettext libtool
     
 You might also try your package manager:
-    
-    $ sudo yum builddep libmypaint
+
+    # yum builddep libmypaint
 
 ### Install dependencies (OpenSUSE)
 
 Works with a fresh OpenSUSE Tumbleweed Docker image:
 
-    $ sudo zypper install gcc13 gobject-introspection-devel libjson-c-devel glib2-devel
+    # zypper install gcc13 gobject-introspection-devel libjson-c-devel glib2-devel
 
 When building from git:
 
-    $ sudo zypper install git python311 autoconf intltool gettext-tools libtool
+    # zypper install git python311 autoconf intltool gettext-tools libtool
 
 Package manager:
 
-    $ sudo zypper install libmypaint0
+    # zypper install libmypaint0
 
 ## Build and install
 

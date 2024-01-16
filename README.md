@@ -81,8 +81,8 @@ The traditional setup works just fine.
 
     $ ./autogen.sh    # Only needed when building from git.
     $ ./configure
-    $ sudo make install
-    $ sudo ldconfig
+    # make install
+    # ldconfig
 
 ### Maintainer mode
 
@@ -124,7 +124,7 @@ This runs all the unit tests.
 
 ### Install
 
-    $ sudo make install
+    # make install
 
 Uninstall libmypaint with `make uninstall`.
 
@@ -137,22 +137,22 @@ Make sure that pkg-config can see libmypaint before trying to build with it.
 If it's not found, you'll need to add the relevant pkgconfig directory to
 the `pkg-config` search path. For example, on CentOS, with a default install:
 
-    $ sudo sh -c "echo 'PKG_CONFIG_PATH=/usr/local/lib/pkgconfig' >>/etc/environment"
+    # sh -c "echo 'PKG_CONFIG_PATH=/usr/local/lib/pkgconfig' >>/etc/environment"
 
 Make sure ldconfig can see libmypaint as well
 
-    $ sudo ldconfig -p |grep -i libmypaint
+    # ldconfig -p |grep -i libmypaint
 
 If it's not found, you'll need to add the relevant lib directory to
 the LD_LIBRARY_PATH:
     
     $ export LD_LIBRARY_PATH=/usr/local/lib
-    $ sudo sh -c "echo 'LD_LIBRARY_PATH=/usr/local/lib' >>/etc/environment
+    # sh -c "echo 'LD_LIBRARY_PATH=/usr/local/lib' >>/etc/environment
 
 Alternatively, you may want to enable /usr/local for libraries.  Arch and Redhat derivatives:
 
-    $ sudo sh -c "echo '/usr/local/lib' > /etc/ld.so.conf.d/usrlocal.conf"
-    $ sudo ldconfig
+    # sh -c "echo '/usr/local/lib' > /etc/ld.so.conf.d/usrlocal.conf"
+    # ldconfig
 
 ## Contributing
 

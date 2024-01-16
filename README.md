@@ -56,6 +56,20 @@ You might also try your package manager:
     
     $ sudo yum builddep libmypaint
 
+### Install dependencies (OpenSUSE)
+
+Works with a fresh OpenSUSE Tumbleweed Docker image:
+
+    $ sudo zypper install gcc13 gobject-introspection-devel libjson-c-devel glib2-devel
+
+When building from git:
+
+    $ sudo zypper install git python311 autoconf intltool gettext-tools libtool
+
+Package manager:
+
+    $ sudo zypper install libmypaint0
+
 ## Build and install
 
 MyPaint and libmypaint benefit dramatically from autovectorization and other compiler optimizations.

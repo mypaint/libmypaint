@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: Icelandic (MyPaint)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-03-04 06:53+0100\n"
-"PO-Revision-Date: 2024-01-16 08:39+0000\n"
+"PO-Revision-Date: 2024-01-19 12:00+0000\n"
 "Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
 "Language-Team: Icelandic <https://hosted.weblate.org/projects/mypaint/"
 "libmypaint/is/>\n"
@@ -26,11 +26,13 @@ msgid ""
 "0 means brush is transparent, 1 fully visible\n"
 "(also known as alpha or opacity)"
 msgstr ""
+"0 þýðir að pensill er gegnsær, 1 sýnilegur að fullu\n"
+"(einnig þekkt sem alfa eða ógegnsæi)"
 
 #. Brush setting
 #: ../brushsettings.json:202
 msgid "Opacity multiply"
-msgstr ""
+msgstr "Margföldun gegnsæis"
 
 #. Tooltip for the "Opacity multiply" brush setting
 #: ../brushsettings.json:206
@@ -44,7 +46,7 @@ msgstr ""
 #. Brush setting
 #: ../brushsettings.json:211
 msgid "Opacity linearize"
-msgstr ""
+msgstr "Línulegt gegnsæi"
 
 #. Tooltip for the "Opacity linearize" brush setting
 #: ../brushsettings.json:215
@@ -614,9 +616,8 @@ msgstr ""
 
 #. Brush setting
 #: ../brushsettings.json:628
-#, fuzzy
 msgid "Smudge bucket"
-msgstr "Lengd kámunar"
+msgstr "Kámunarfata"
 
 #. Tooltip for the "Smudge bucket" brush setting
 #: ../brushsettings.json:632
@@ -808,7 +809,7 @@ msgstr ""
 #. Brush setting
 #: ../brushsettings.json:754
 msgid "Posterization levels"
-msgstr ""
+msgstr "Stig litþrykkingar"
 
 #. Tooltip for the "Posterization levels" brush setting
 #: ../brushsettings.json:758
@@ -894,9 +895,8 @@ msgstr ""
 
 #. Brush input
 #: ../brushsettings.json:44
-#, fuzzy
 msgid "Declination/Tilt"
-msgstr "Halli"
+msgstr "Halli/Skekkja"
 
 #. Tooltip for the "Declination/Tilt" brush input
 #: ../brushsettings.json:51
@@ -983,9 +983,8 @@ msgstr ""
 
 #. Brush input
 #: ../brushsettings.json:118
-#, fuzzy
 msgid "Declination/Tilt X"
-msgstr "Halli"
+msgstr "Halli/Skekkja X"
 
 #. Tooltip for the "Declination/Tilt X" brush input
 #: ../brushsettings.json:125
@@ -996,9 +995,8 @@ msgstr ""
 
 #. Brush input
 #: ../brushsettings.json:128
-#, fuzzy
 msgid "Declination/Tilt Y"
-msgstr "Halli"
+msgstr "Halli/Skekkja Y"
 
 #. Tooltip for the "Declination/Tilt Y" brush input
 #: ../brushsettings.json:135
@@ -1054,7 +1052,7 @@ msgstr ""
 #. Brush input
 #: ../brushsettings.json:169
 msgid "Base Brush Radius"
-msgstr ""
+msgstr "Grunnradíus pensils"
 
 #. Tooltip for the "Base Brush Radius" brush input
 #: ../brushsettings.json:176

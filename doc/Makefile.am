@@ -1,5 +1,4 @@
 EXTRA_DIST =		\
-	source/conf.py	\
 	source/index.rst
 
 if ENABLE_DOCS

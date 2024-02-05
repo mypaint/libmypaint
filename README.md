@@ -1,4 +1,8 @@
-# libmypaint - MyPaint brush engine library
+# libmypaint - MyPaint brush engine library NCCA Fork
+
+This fork of libmypait is designed to work as the original but be easier to build under our linux lab setup (CMake / VCPKG) it also have a number of examples to show students how to use this as a basic for 2D drawing / canvas projects. As much as possible the code will remain the same as the original project, however some folder / project layouts will change. 
+
+
 
 [![Translation status](https://hosted.weblate.org/widgets/mypaint/-/libmypaint/svg-badge.svg)](https://hosted.weblate.org/engage/mypaint/?utm_source=widget)
 [![Travis Build Status](https://travis-ci.org/mypaint/libmypaint.svg?branch=master)](https://travis-ci.org/mypaint/libmypaint)

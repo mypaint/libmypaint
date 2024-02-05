@@ -36,7 +36,7 @@ target_sources(${TargetName} PRIVATE ${C_FILES})
 target_link_libraries(${TargetName} PRIVATE json-c::json-c)
 
 
-
+# run python script to generate headers
 add_custom_target(
  run ALL
  COMMAND python ${CMAKE_CURRENT_SOURCE_DIR}/generate.py ${CMAKE_CURRENT_SOURCE_DIR}/include/mypaint-brush-settings-gen.h ${CMAKE_CURRENT_SOURCE_DIR}/include/brushsettings-gen.h
@@ -44,3 +44,6 @@ add_custom_target(
 )
 
 add_dependencies(${TargetName} run)
+
+
+add_subdirectory(${CMAKE_SOURCE_DIR}/tests)

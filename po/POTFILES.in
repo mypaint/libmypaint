@@ -1,7 +1,0 @@
-# Files from libmypaint source which have been marked for runtime
-# translation of messages.
-
-[encoding: UTF-8]
-
-brushsettings-gen.h
-mypaint-brush-settings.c

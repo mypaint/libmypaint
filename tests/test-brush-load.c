@@ -35,20 +35,20 @@ main(int argc, char **argv)
         {
             "/brush/load/good",
             test_brush_load_succeeds,
-            LIBMYPAINT_TESTING_ABS_TOP_SRCDIR
-                "/tests/brushes/impressionism.myb"
+            
+                "brushes/impressionism.myb"
         },
         {
             "/brush/load/bad/some_unknown_settings",
             test_brush_load_succeeds,
-            LIBMYPAINT_TESTING_ABS_TOP_SRCDIR
-                "/tests/brushes/bad/some_unknown_settings.myb"
+            
+                "brushes/bad/some_unknown_settings.myb"
         },
         {
             "/brush/load/bad/some_unknown_inputs",
             test_brush_load_succeeds,
-            LIBMYPAINT_TESTING_ABS_TOP_SRCDIR
-                "/tests/brushes/bad/some_unknown_inputs.myb"
+            
+                "brushes/bad/some_unknown_inputs.myb"
         },
 
         // Irrecoverably pathological brush data, missing global stuff
@@ -56,32 +56,32 @@ main(int argc, char **argv)
         {
             "/brush/load/bad/entirely_unknown_settings",
             test_brush_load_fails,
-            LIBMYPAINT_TESTING_ABS_TOP_SRCDIR
-                "/tests/brushes/bad/entirely_unknown_settings.bad-myb"
+            
+                "brushes/bad/entirely_unknown_settings.bad-myb"
         },
         {
             "/brush/load/bad/missing_settings",
             test_brush_load_fails,
-            LIBMYPAINT_TESTING_ABS_TOP_SRCDIR
-                "/tests/brushes/bad/missing_settings.bad-myb"
+            
+                "brushes/bad/missing_settings.bad-myb"
         },
         {
             "/brush/load/bad/missing_version",
             test_brush_load_fails,
-            LIBMYPAINT_TESTING_ABS_TOP_SRCDIR
-                "/tests/brushes/bad/missing_version.bad-myb"
+            
+                "brushes/bad/missing_version.bad-myb"
         },
         {
             "/brush/load/bad/truncated",
             test_brush_load_fails,
-            LIBMYPAINT_TESTING_ABS_TOP_SRCDIR
-                "/tests/brushes/bad/truncated.bad-myb"
+            
+                "brushes/bad/truncated.bad-myb"
         },
         {
             "/brush/load/bad/empty",
             test_brush_load_fails,
-            LIBMYPAINT_TESTING_ABS_TOP_SRCDIR
-                "/tests/brushes/bad/empty.bad-myb"
+            
+                "brushes/bad/empty.bad-myb"
         },
 
         // More individual bad settings. Covers dereferencing NULLs
@@ -92,26 +92,26 @@ main(int argc, char **argv)
         {
             "/brush/load/bad/bad_setting_types_1",
             test_brush_load_succeeds,
-            LIBMYPAINT_TESTING_ABS_TOP_SRCDIR
-                "/tests/brushes/bad/bad_setting_types_1.myb"
+            
+                "brushes/bad/bad_setting_types_1.myb"
         },
         {
             "/brush/load/bad/bad_setting_types_2",
             test_brush_load_succeeds,
-            LIBMYPAINT_TESTING_ABS_TOP_SRCDIR
-                "/tests/brushes/bad/bad_setting_types_2.myb"
+            
+                "brushes/bad/bad_setting_types_2.myb"
         },
         {
             "/brush/load/bad/bad_setting_types_3",
             test_brush_load_succeeds,
-            LIBMYPAINT_TESTING_ABS_TOP_SRCDIR
-                "/tests/brushes/bad/bad_setting_types_3.myb"
+            
+                "brushes/bad/bad_setting_types_3.myb"
         },
         {
             "/brush/load/bad/bad_setting_types_4",
             test_brush_load_succeeds,
-            LIBMYPAINT_TESTING_ABS_TOP_SRCDIR
-                "/tests/brushes/bad/bad_setting_types_4.myb"
+            
+                "brushes/bad/bad_setting_types_4.myb"
         },
     };
 

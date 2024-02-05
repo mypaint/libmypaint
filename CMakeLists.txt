@@ -45,5 +45,4 @@ add_custom_target(
 
 add_dependencies(${TargetName} run)
 
-
 add_subdirectory(${CMAKE_SOURCE_DIR}/tests)

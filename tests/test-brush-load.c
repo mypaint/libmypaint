@@ -41,7 +41,6 @@ main(int argc, char **argv)
         {
             "/brush/load/bad/some_unknown_settings",
             test_brush_load_succeeds,
-            
                 "brushes/bad/some_unknown_settings.myb"
         },
         {

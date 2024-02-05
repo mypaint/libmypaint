@@ -1,4 +1,6 @@
-#include "libmypaint.c"
+#include <stdio.h>
+#include "write_ppm.h"
+#include "mypaint-brush.h"  
 #include "mypaint-fixed-tiled-surface.h"
 
 void
@@ -6,13 +8,13 @@ stroke_to(MyPaintBrush *brush, MyPaintSurface *surf, float x, float y)
 {
     float viewzoom = 1.0, viewrotation = 0.0, barrel_rotation = 0.0;
     float pressure = 1.0, ytilt = 0.0, xtilt = 0.0, dtime = 1.0/10;
-    gboolean linear = FALSE
+    gboolean linear = FALSE;
     mypaint_brush_stroke_to
       (brush, surf, x, y, pressure, xtilt, ytilt, dtime, viewzoom, viewrotation, barrel_rotation, linear);
 }
 
 int
-main(int argc, char argv[]) {
+main(int argc, char *argv[]) {
 
     MyPaintBrush *brush = mypaint_brush_new();
     int w = 300;

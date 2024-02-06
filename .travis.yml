@@ -1,11 +1,15 @@
 language: c
 
+arch:
+ - amd64
+ - ppc64le
+
 compiler:
   - gcc
 
 sudo: required
 
-dist: trusty
+dist: Xenial
 
 addons:
   apt:

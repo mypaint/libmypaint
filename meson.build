@@ -93,6 +93,20 @@ if use_gegl
 endif
 
 introspection_required_version = '1.32.0'
+introspection_feature = get_option(
+  'introspection',
+).require(
+  use_glib,
+  error_message: 'Generating GObject introspection requires building with GLib support',
+)
+# For g-ir-scanner and g-ir-compiler as used by the gnome module.
+gi = dependency(
+  'gobject-introspection-1.0',
+  version: f'>=@introspection_required_version@',
+  required: introspection_feature,
+  native: true,
+)
+use_introspection = gi.found()
 
 
 # OpenMP
@@ -235,11 +249,7 @@ libmypaint = library(
   install: true,
 )
 
-
-if get_option('introspection')
-  if not use_glib
-    error('Generating GObject introspection requires building with GLib support')
-  endif
+if use_introspection
   gnome = import('gnome')
 
   libmypaint_gir = gnome.generate_gir(

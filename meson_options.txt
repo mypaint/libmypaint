@@ -44,7 +44,7 @@ option(
 )
 option(
   'introspection',
-  type: 'boolean',
-  value: true,
-  description: 'Enable GObject Instrospection',
+  type: 'feature',
+  value: 'auto',
+  description: 'Enable GObject Instrospection (requires glib feature)',
 )

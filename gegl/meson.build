@@ -30,7 +30,7 @@ install_headers(
 )
 
 
-if get_option('introspection')
+if use_introspection
   gnome = import('gnome')
 
   libmypaint_gegl_gir = gnome.generate_gir(

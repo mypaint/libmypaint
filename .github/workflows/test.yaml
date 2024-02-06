@@ -42,11 +42,11 @@ jobs:
         strategy:
             matrix:
                 configureFlags:
-                    - "-Dintrospection=false -Dglib=disabled"
-                    - "-Dglib=disabled"
+                    - ""
+                    - "-Dglib=enabled -Dintrospection=enabled"
                     - "-Dgegl=enabled"
                 include:
-                    - configureFlags: "-Dglib=enabled"
+                    - configureFlags: "-Dglib=enabled -Dintrospection=enabled"
                       extraDeps: "libgirepository1.0-dev"
                     - configureFlags: "-Dgegl=enabled"
                       extraDeps: "libgegl-dev"

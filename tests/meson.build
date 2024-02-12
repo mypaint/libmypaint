@@ -1,18 +1,28 @@
 tests = [
   {
     'name': 'test-brush-load',
+    # Takes less than a second.
+    'timeout': 5,
   },
   {
     'name': 'test-brush-persistence',
+    # Takes less than a second.
+    'timeout': 5,
   },
   {
     'name': 'test-details',
+    # Takes anywhere from 6, 8, 9, 32, 40, seconds
+    'timeout': 60,
   },
   {
     'name': 'test-fixed-tiled-surface',
+    # Takes from 189, 198, 406.45s 205.32s 520.89s 800.01s 13
+    'timeout': 0,
   },
   {
     'name': 'test-rng',
+    # Takes less than a second.
+    'timeout': 5,
   },
 ]
 
@@ -29,6 +39,8 @@ if use_gegl
     'link': [
       libmypaint_gegl,
     ],
+    # Takes around 439. 670.63s 435.06s 647 800+ 800+
+    'timeout': 0,
   }
 endif
 
@@ -54,6 +66,7 @@ foreach test : tests
   test_deps = test.get('deps', [])
   test_incs = test.get('incs', [])
   test_link = test.get('link', [])
+  test_timeout = test.get('timeout', 30)
 
   test_exe = executable(
     test_name,
@@ -80,7 +93,6 @@ foreach test : tests
   test(
     test_name,
     test_exe,
-    # test-gegl-surface takes very long without optimizations.
-    timeout: 0,
+    timeout: test_timeout,
   )
 endforeach

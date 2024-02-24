@@ -296,12 +296,19 @@ fi
 AM_CONDITIONAL(ENABLE_GEGL, test "x$enable_gegl" = "xyes")
 AC_SUBST(DOXYGEN_EXCLUDED)
 
+DOXYXML_BUILD_PATH="$PWD/doc"
+AC_SUBST(DOXYXML_BUILD_PATH)
+
+DOXYGEN_SOURCE_ROOT="$PWD"
+AC_SUBST(DOXYGEN_SOURCE_ROOT)
+
 # Set pkg-config variables before generation.
 AC_SUBST(PKG_CONFIG_REQUIRES)
 
 AC_CONFIG_FILES([
   doc/Doxyfile
   doc/Makefile
+  doc/source/conf.py
   gegl/libmypaint-gegl-]libmypaint_api_platform_version()[.pc:gegl/libmypaint-gegl.pc.in
   gegl/Makefile
   libmypaint-]libmypaint_api_platform_version()[.pc:libmypaint.pc.in

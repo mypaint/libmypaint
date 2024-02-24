@@ -1,0 +1,50 @@
+option(
+  'glib',
+  type: 'feature',
+  value: 'auto',
+  description: 'Use GLib',
+)
+option(
+  'gegl',
+  type: 'feature',
+  value: 'auto',
+  description: 'Enable GEGL based code',
+)
+option(
+  'openmp',
+  type: 'feature',
+  value: 'auto',
+  description: 'Compile with OpenMP',
+)
+option(
+  'gperftools',
+  type: 'boolean',
+  value: false,
+  description: 'Enable gperftools in build, for profiling',
+)
+
+option(
+  'profiling',
+  type: 'boolean',
+  value: false,
+  description: 'Turn on profiling',
+)
+
+option(
+  'docs',
+  type: 'boolean',
+  value: false,
+  description: 'Enable documentation build',
+)
+option(
+  'i18n',
+  type: 'feature',
+  value: 'auto',
+  description: 'Enable internationalization',
+)
+option(
+  'introspection',
+  type: 'feature',
+  value: 'auto',
+  description: 'Enable GObject Instrospection (requires glib feature)',
+)

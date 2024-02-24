@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: 0.7.1-git\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-03-04 06:53+0100\n"
-"PO-Revision-Date: 2021-02-23 08:50+0000\n"
-"Last-Translator: Li Haiyan <kgtyan@gmail.com>\n"
+"PO-Revision-Date: 2022-01-07 06:55+0000\n"
+"Last-Translator: poi <erbaotao@outlook.com>\n"
 "Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/"
 "mypaint/libmypaint/zh_Hans/>\n"
 "Language: zh_CN\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 4.5\n"
+"X-Generator: Weblate 4.10.1\n"
 
 #. Brush setting
 #: ../brushsettings.json:193
@@ -36,7 +36,7 @@ msgstr ""
 #. Brush setting
 #: ../brushsettings.json:202
 msgid "Opacity multiply"
-msgstr "不透明倍增"
+msgstr "不透明度相乘"
 
 #. Tooltip for the "Opacity multiply" brush setting
 #: ../brushsettings.json:206
@@ -46,13 +46,13 @@ msgid ""
 "This setting is responsible to stop painting when there is zero pressure. "
 "This is just a convention, the behaviour is identical to 'opaque'."
 msgstr ""
-"该设置增加不透明度。你应该只修改该设置的压力值。使用“不透明度”而不是让不透明度依赖速度。\n"
-"该设置使得当笔压为零时停止绘图。该行为仅仅是惯例，并且该行为与“不透明度”设置一致。"
+"这会乘以不透明的。你应该只修改该设置的压力输入。改用“不透明的”使不透明度取决于速度。\n"
+"该设置使得当笔压为零时停止绘图。该行为仅仅是惯例，行为与“不透明的”一致。"
 
 #. Brush setting
 #: ../brushsettings.json:211
 msgid "Opacity linearize"
-msgstr "线性化不透明度"
+msgstr "不透明度线性化"
 
 #. Tooltip for the "Opacity linearize" brush setting
 #: ../brushsettings.json:215
@@ -66,12 +66,10 @@ msgid ""
 "1.0 the opaque value above is for the final brush stroke, assuming each "
 "pixel gets (dabs_per_radius*2) brushdabs on average during a stroke"
 msgstr ""
-"纠正由多个笔触点互相叠加导致的非线性。当笔压映射到opaque_multiply时，通常该校"
-"正会为你生成线性的（自然的）压力响应。0.9适合标准的笔触。如果你的笔刷分散的很"
-"多，就把该值减小。如果你使用了dabs_per_second，可以调高该值。\n"
-"0.0 以上的不透明度是为单一的笔触点设置\n"
-"1.0 以上的不透明度是为最终的笔触设置（假设每个像素在一个笔触中平均得到 "
-"dabs_per_radius*2 个笔触点）"
+"纠正由多个笔尖印迹互相叠加导致的非线性。当笔压映射到opaque_multiply时，通常该校正会为你生成线性的（自然的）压力响应。0."
+"9适合标准的笔画。如果你的笔刷分散的很多，就把该值减小。如果你使用了dabs_per_second，可以调高该值。\n"
+"0.0 以上的不透明度是为单一的笔尖印迹设置\n"
+"1.0 以上的不透明度是为最终的笔画设置（假设每个像素在一个笔画中平均得到 dabs_per_radius*2 个笔尖印迹）"
 
 #. Brush setting
 #: ../brushsettings.json:220
@@ -105,13 +103,13 @@ msgstr ""
 #. Brush setting
 #: ../brushsettings.json:238
 msgid "Softness"
-msgstr ""
+msgstr "柔和度"
 
 #. Tooltip for the "Softness" brush setting
 #: ../brushsettings.json:242
 msgid ""
 "Soften brush-circle from center to edge (setting to 1.0 will draw nothing)."
-msgstr ""
+msgstr "从中心到边缘柔和笔刷轮廓（设置为 1.0 将不绘制任何内容）。"
 
 #. Brush setting
 #: ../brushsettings.json:247
@@ -127,11 +125,10 @@ msgid ""
 " 1.0 blur one pixel (good value)\n"
 " 5.0 notable blur, thin strokes will disappear"
 msgstr ""
-"该设置在必要时减小硬度，通过使点更模糊的方式防止出现“像素阶梯效果”（别"
-"名）。\n"
+"该设置在必要时减小硬度，通过使笔尖印迹更模糊的方式防止出现“像素阶梯效果”（别名）。\n"
 "0.0 禁用 （针对非常硬的橡皮擦和像素笔刷）\n"
 "1.0 模糊一个像素 （建议值）\n"
-"5.0 明显的模糊，细的笔触将消失"
+"5.0 明显的模糊，细的笔画将消失"
 
 #. Brush setting
 #: ../brushsettings.json:256
@@ -143,12 +140,12 @@ msgstr "每基本半径的触点数量"
 msgid ""
 "How many dabs to draw while the pointer moves a distance of one brush radius "
 "(more precise: the base value of the radius)"
-msgstr "指针移动一个笔刷半径（更精确的说，是半径的基准值）距离所描绘的笔触点数"
+msgstr "指针移动一个笔刷半径（更精确的说，是半径的基准值）距离所描绘的笔尖印迹数"
 
 #. Brush setting
 #: ../brushsettings.json:265
 msgid "Dabs per actual radius"
-msgstr "每实际半径上的笔触点数量"
+msgstr "每实际半径上的笔尖印迹数量"
 
 #. Tooltip for the "Dabs per actual radius" brush setting
 #: ../brushsettings.json:269
@@ -160,12 +157,12 @@ msgstr "同上，但使用实际绘制的半径（该值会动态变化）"
 #. Brush setting
 #: ../brushsettings.json:274
 msgid "Dabs per second"
-msgstr "每秒的笔触点数量"
+msgstr "每秒的笔尖印迹数量"
 
 #. Tooltip for the "Dabs per second" brush setting
 #: ../brushsettings.json:278
 msgid "Dabs to draw each second, no matter how far the pointer moves"
-msgstr "每秒绘制的笔触点数量（与指针移动的距离无关）"
+msgstr "每秒绘制的笔尖印迹数量（与指针移动的距离无关）"
 
 #. Brush setting
 #: ../brushsettings.json:283
@@ -222,15 +219,14 @@ msgid ""
 "transparent\n"
 "2) it will not change the actual radius seen by dabs_per_actual_radius"
 msgstr ""
-"随机更改每个笔触点的半径。半径设置中的by_random起同样作用。如果你在这里设置，"
-"有两点不同：\n"
-"1) 不透明度只将被纠正所以大半径的笔触点更透明\n"
+"随机更改每个笔尖印迹的半径。半径设置中的by_random起同样作用。如果你在这里设置，有两点不同：\n"
+"1) 不透明度只将被纠正所以大半径的笔尖印迹更透明\n"
 "2) 由dabs_per_actual_radius设置的实际半径将没有变化"
 
 #. Brush setting
 #: ../brushsettings.json:319
 msgid "Fine speed filter"
-msgstr "精细速度滤镜"
+msgstr "精细速度过滤"
 
 #. Tooltip for the "Fine speed filter" brush setting
 #: ../brushsettings.json:323
@@ -244,12 +240,12 @@ msgstr ""
 #. Brush setting
 #: ../brushsettings.json:328
 msgid "Gross speed filter"
-msgstr "毛速度滤镜"
+msgstr "粗略速度过滤"
 
 #. Tooltip for the "Gross speed filter" brush setting
 #: ../brushsettings.json:332
 msgid "Same as 'fine speed filter', but note that the range is different"
-msgstr "同“精细速度滤镜”，但注意范围不同"
+msgstr "同“精细速度过滤”，但注意范围不同"
 
 #. Brush setting
 #: ../brushsettings.json:337
@@ -275,12 +271,12 @@ msgstr ""
 #. Brush setting
 #: ../brushsettings.json:346
 msgid "Gross speed gamma"
-msgstr "毛速度伽玛"
+msgstr "粗略速度伽玛"
 
 #. Tooltip for the "Gross speed gamma" brush setting
 #: ../brushsettings.json:350
 msgid "Same as 'fine speed gamma' for gross speed"
-msgstr "同“精细速度伽马”的毛速度设置"
+msgstr "同“精细速度伽马”的粗略速度设置"
 
 #. Brush setting
 #: ../brushsettings.json:355
@@ -295,7 +291,7 @@ msgid ""
 " 1.0 standard deviation is one basic radius away\n"
 "<0.0 negative values produce no jitter"
 msgstr ""
-"当笔触点绘制时，加入随机的位置偏移\n"
+"当笔尖印迹绘制时，加入随机的位置偏移\n"
 "0.0 禁用\n"
 "1.0 标准偏差，基本的半径偏离\n"
 "<0.0 负数，无抖动"
@@ -328,7 +324,7 @@ msgstr ""
 #. Tooltip for the "Angular Offset: Direction" brush setting
 #: ../brushsettings.json:386
 msgid "Follows the stroke direction to offset the dabs to one side."
-msgstr ""
+msgstr "沿笔画方向，将笔尖印记偏向一侧。"
 
 #. Brush setting
 #: ../brushsettings.json:391
@@ -339,7 +335,7 @@ msgstr ""
 #: ../brushsettings.json:395
 msgid ""
 "Follows the tilt direction to offset the dabs to one side. Requires Tilt."
-msgstr ""
+msgstr "按倾斜方向将笔尖印记偏移到一侧。需要Tilt的支持。"
 
 #. Brush setting
 #: ../brushsettings.json:400
@@ -400,12 +396,12 @@ msgstr ""
 #. Brush setting
 #: ../brushsettings.json:445
 msgid "Offsets Multiplier"
-msgstr "偏移倍增器"
+msgstr "偏移乘数"
 
 #. Tooltip for the "Offsets Multiplier" brush setting
 #: ../brushsettings.json:449
 msgid "Logarithmic multiplier for X, Y, and Angular Offset settings."
-msgstr ""
+msgstr "X、Y 对数乘法器及角度偏移设置。"
 
 #. Brush setting
 #: ../brushsettings.json:454
@@ -428,7 +424,7 @@ msgstr ""
 #. Brush setting
 #: ../brushsettings.json:463
 msgid "Offset by speed filter"
-msgstr "速度偏移滤镜"
+msgstr "速度偏移过滤"
 
 #. Tooltip for the "Offset by speed filter" brush setting
 #: ../brushsettings.json:467
@@ -452,15 +448,14 @@ msgstr ""
 #. Brush setting
 #: ../brushsettings.json:481
 msgid "Slow tracking per dab"
-msgstr "根据每个笔触点减慢跟踪"
+msgstr "根据每个笔尖印迹减慢跟踪"
 
 #. Tooltip for the "Slow tracking per dab" brush setting
 #: ../brushsettings.json:485
 msgid ""
 "Similar as above but at brushdab level (ignoring how much time has passed if "
 "brushdabs do not depend on time)"
-msgstr ""
-"跟上面类似，但该设置针对于笔触点 (如果笔触点不依赖于时间，忽略经过的时间)"
+msgstr "跟上面类似，但该设置针对于笔尖印迹 (如果笔尖印迹不依赖于时间，忽略经过的时间)"
 
 #. Brush setting
 #: ../brushsettings.json:490
@@ -644,7 +639,7 @@ msgstr ""
 #. Brush setting
 #: ../brushsettings.json:601
 msgid "Smudge transparency"
-msgstr "污点透明度"
+msgstr "涂抹透明度"
 
 #. Tooltip for the "Smudge transparency" brush setting
 #: ../brushsettings.json:605
@@ -656,6 +651,11 @@ msgid ""
 "0.0 will have no effect.\n"
 "Negative values do the reverse"
 msgstr ""
+"控制拾取和涂抹多少透明度，类似于锁定 alpha。\n"
+"1.0 不会移动任何透明度。\n"
+"0.5 只会移动 50% 及以上的透明度。\n"
+"0.0 将不起作用。\n"
+"负值则进行反向操作"
 
 #. Brush setting
 #: ../brushsettings.json:610
@@ -680,7 +680,7 @@ msgstr ""
 #. Brush setting
 #: ../brushsettings.json:619
 msgid "Smudge length multiplier"
-msgstr "涂抹长度倍增器"
+msgstr "涂抹长度乘数"
 
 #. Tooltip for the "Smudge length multiplier" brush setting
 #: ../brushsettings.json:623
@@ -748,34 +748,31 @@ msgstr ""
 #. Brush setting
 #: ../brushsettings.json:655
 msgid "Stroke threshold"
-msgstr "笔触阈值"
+msgstr "笔画阈值"
 
 #. Tooltip for the "Stroke threshold" brush setting
 #: ../brushsettings.json:659
 msgid ""
 "How much pressure is needed to start a stroke. This affects the stroke input "
 "only. MyPaint does not need a minimum pressure to start drawing."
-msgstr ""
-"设置开始一个笔触需要的压力。该设置仅影响笔触输入。MyPaint不需要设置最小压力就"
-"能开始绘图。"
+msgstr "设置开始一个笔画需要的压力。该设置仅影响笔画输入。MyPaint不需要设置最小压力就能开始绘图。"
 
 #. Brush setting
 #: ../brushsettings.json:664
 msgid "Stroke duration"
-msgstr "笔触持续时间"
+msgstr "笔画持续时间"
 
 #. Tooltip for the "Stroke duration" brush setting
 #: ../brushsettings.json:668
 msgid ""
 "How far you have to move until the stroke input reaches 1.0. This value is "
 "logarithmic (negative values will not invert the process)."
-msgstr ""
-"设置笔触输入达到1.0之前不得不移动的距离。该值为对数（负数值将不会反转过程）。"
+msgstr "设置笔画输入达到1.0之前不得不移动的距离。该值为对数（负数值将不会反转过程）。"
 
 #. Brush setting
 #: ../brushsettings.json:673
 msgid "Stroke hold time"
-msgstr "笔触保持时间"
+msgstr "笔画保持时间"
 
 #. Tooltip for the "Stroke hold time" brush setting
 #: ../brushsettings.json:677
@@ -786,8 +783,7 @@ msgid ""
 "2.0 means twice as long as it takes to go from 0.0 to 1.0\n"
 "9.9 or higher stands for infinite"
 msgstr ""
-"该设置定义笔触输入停留在1.0的时间长短。那之后，就算笔触没有结束，笔触输入将被"
-"重置为0.0并再次开始增长。\n"
+"该设置定义笔画输入停留在1.0的时间长短。那之后，就算笔画没有结束，笔画输入将被重置为0.0并再次开始增长。\n"
 "2.0 意味这花费两倍时间从0.0到1.0\n"
 "9.9 以及更高值代表无限"
 
@@ -815,7 +811,7 @@ msgstr ""
 #. Brush setting
 #: ../brushsettings.json:691
 msgid "Custom input filter"
-msgstr "自定义输入滤镜"
+msgstr "自定义输入过滤"
 
 #. Tooltip for the "Custom input filter" brush setting
 #: ../brushsettings.json:695
@@ -825,26 +821,25 @@ msgid ""
 "if brushdabs do not depend on time).\n"
 "0.0 no slowdown (changes apply instantly)"
 msgstr ""
-"设置自定义输入实际上跟随期望值（上面的）的快慢。该设置适用于笔触点（如果笔触"
-"点不依赖时间，忽略经过的时间）。\n"
+"设置自定义输入实际上跟随期望值（上面的）的快慢。该设置适用于笔尖印迹（如果笔尖印迹不依赖时间，忽略经过的时间）。\n"
 "0.0 不减慢（改变立刻生效）"
 
 #. Brush setting
 #: ../brushsettings.json:700
 msgid "Elliptical dab: ratio"
-msgstr "椭圆笔触点：宽高比"
+msgstr "椭圆笔尖印迹：宽高比"
 
 #. Tooltip for the "Elliptical dab: ratio" brush setting
 #: ../brushsettings.json:704
 msgid ""
 "Aspect ratio of the dabs; must be >= 1.0, where 1.0 means a perfectly round "
 "dab."
-msgstr "笔触点的宽高比；必须 >=1.0，1.0代表完美的圆形笔触点。"
+msgstr "笔尖印迹的宽高比；必须 >=1.0，1.0代表完美的圆形笔尖印迹。"
 
 #. Brush setting
 #: ../brushsettings.json:709
 msgid "Elliptical dab: angle"
-msgstr "椭圆笔触点：角度"
+msgstr "椭圆笔尖印迹：角度"
 
 #. Tooltip for the "Elliptical dab: angle" brush setting
 #: ../brushsettings.json:713
@@ -854,15 +849,15 @@ msgid ""
 " 45.0 45 degrees, turned clockwise\n"
 " 180.0 horizontal again"
 msgstr ""
-"设置椭圆笔触点的倾斜角度\n"
-"0.0 水平笔触点\n"
+"设置椭圆笔尖印迹的倾斜角度\n"
+"0.0 水平笔尖印迹\n"
 "45.0 顺时针旋转45度\n"
 "180.0 再次水平"
 
 #. Brush setting
 #: ../brushsettings.json:718
 msgid "Direction filter"
-msgstr "方向滤镜"
+msgstr "方向过滤"
 
 #. Tooltip for the "Direction filter" brush setting
 #: ../brushsettings.json:722
@@ -939,7 +934,7 @@ msgstr "对齐到像素"
 msgid ""
 "Snap brush dab's center and its radius to pixels. Set this to 1.0 for a thin "
 "pixel brush."
-msgstr "对齐笔触点的中心和半径到像素。对于细的像素笔刷，把该值设为 1.0。"
+msgstr "对齐笔尖印迹的中心和半径到像素。对于细的像素笔刷，把该值设为 1.0。"
 
 #. Brush setting
 #: ../brushsettings.json:772
@@ -983,7 +978,7 @@ msgstr "快速随机噪声，每次评估时变化。均匀地分布在0和1之�
 #. Brush input
 #: ../brushsettings.json:24
 msgid "Stroke"
-msgstr "勾画"
+msgstr "笔画"
 
 #. Tooltip for the "Stroke" brush input
 #: ../brushsettings.json:31
@@ -991,9 +986,7 @@ msgid ""
 "This input slowly goes from zero to one while you draw a stroke. It can also "
 "be configured to jump back to zero periodically while you move. Look at the "
 "'stroke duration' and 'stroke hold time' settings."
-msgstr ""
-"当你绘画一个笔触时，这个输入慢慢地从0变到1。它也可以配置成当你移动时周期性地"
-"跳回0。看看“笔触持续时间”和“笔触保留时间”设置。"
+msgstr "当你绘画一个笔画时，这个输入慢慢地从0变到1。它也可以配置成当你移动时周期性地跳回0。看看“笔画持续时间”和“笔画保留时间”设置。"
 
 #. Brush input
 #: ../brushsettings.json:34
@@ -1005,8 +998,7 @@ msgstr "方向"
 msgid ""
 "The angle of the stroke, in degrees. The value will stay between 0.0 and "
 "180.0, effectively ignoring turns of 180 degrees."
-msgstr ""
-"笔触的角度，单位为度。该值会保持在0.0到180.0之间，实际上它忽略了180度翻转。"
+msgstr "笔画的角度，单位为度。该值会保持在0.0到180.0之间，实际上它忽略了180度翻转。"
 
 #. Brush input
 #: ../brushsettings.json:44
@@ -1018,12 +1010,12 @@ msgstr "倾斜度"
 msgid ""
 "Declination of stylus tilt. 0 when stylus is parallel to tablet and 90.0 "
 "when it's perpendicular to tablet."
-msgstr "触控笔的倾斜度。当触控笔与手绘板平行时为0，垂直时为90.0。"
+msgstr "压感笔的倾斜度。当压感笔与数位板平行时为0，垂直时为90.0。"
 
 #. Brush input
 #: ../brushsettings.json:54
 msgid "Ascension"
-msgstr "提升"
+msgstr "指向"
 
 #. Tooltip for the "Ascension" brush input
 #: ../brushsettings.json:61
@@ -1031,9 +1023,7 @@ msgid ""
 "Right ascension of stylus tilt. 0 when stylus working end points to you, +90 "
 "when rotated 90 degrees clockwise, -90 when rotated 90 degrees "
 "counterclockwise."
-msgstr ""
-"触控笔的赤经。当触控笔结束点指向你时为0，顺时针旋转90为+90，逆时针旋转90度"
-"为-90。"
+msgstr "压感笔倾斜时的指向。当压感笔笔尖指向你时为0，顺时针旋转90为+90，逆时针旋转90度为-90。"
 
 #. Brush input - "fine" refers to the accuracy and update frequency of the speed value, as in "fine grained"
 #: ../brushsettings.json:65
@@ -1053,14 +1043,14 @@ msgstr ""
 #. Brush input - changes more smoothly but is less accurate than "Fine speed"
 #: ../brushsettings.json:76
 msgid "Gross speed"
-msgstr "总速度"
+msgstr "粗略速度"
 
 #. Tooltip for the "Gross speed" brush input
 #: ../brushsettings.json:83
 msgid ""
 "Same as fine speed, but changes slower. Also look at the 'gross speed "
 "filter' setting."
-msgstr "同精细速度，但变化地较慢。也可以看看“毛速度滤镜”设置。"
+msgstr "同精细速度，但变化地较慢。也可以看看“粗略速度过滤”设置。"
 
 #. Brush input - the input is the output of the "Custom input" setting
 #: ../brushsettings.json:87
@@ -1103,14 +1093,14 @@ msgstr ""
 #. Brush input
 #: ../brushsettings.json:118
 msgid "Declination/Tilt X"
-msgstr "倾斜 X"
+msgstr "X 轴倾斜"
 
 #. Tooltip for the "Declination/Tilt X" brush input
 #: ../brushsettings.json:125
 msgid ""
 "Declination of stylus tilt on X-Axis. 90/-90 when stylus is parallel to "
 "tablet and 0 when it's perpendicular to tablet."
-msgstr "X 轴上的笔尖倾斜度。笔尖平行于平板时为90/-90，垂直于平板时为0。"
+msgstr "压感笔在 X 轴上的倾斜度。压感笔平行于数位板时为90/-90，垂直于数位板时为0。"
 
 #. Brush input
 #: ../brushsettings.json:128
@@ -1122,7 +1112,7 @@ msgstr "Y 轴倾斜"
 msgid ""
 "Declination of stylus tilt on Y-Axis. 90/-90 when stylus is parallel to "
 "tablet and 0 when it's perpendicular to tablet."
-msgstr "笔尖在 Y 轴上的倾斜度。笔尖平行于平板时为90/-90，垂直于平板时为0。"
+msgstr "压感笔在 Y 轴上的倾斜度。压感笔平行于数位板时为90/-90，垂直于数位板时为0。"
 
 #. Brush input
 #: ../brushsettings.json:138
@@ -1157,7 +1147,7 @@ msgstr ""
 #. Brush input - refers to canvas zoom
 #: ../brushsettings.json:159
 msgid "Zoom Level"
-msgstr ""
+msgstr "缩放级别"
 
 #. Tooltip for the "Zoom Level" brush input
 #: ../brushsettings.json:166
@@ -1167,11 +1157,14 @@ msgid ""
 "For the Radius setting, using a value of -4.15 makes the brush size roughly "
 "constant, relative to the level of zoom."
 msgstr ""
+"画布视图的当前缩放级别。\n"
+"对数：0.0 是 100%，0.69 是 200%，-1.38 是 25%\n"
+"对于半径设置，使用值 -4.15 可使画笔大小相对于缩放级别大致不变。"
 
 #. Brush input
 #: ../brushsettings.json:169
 msgid "Base Brush Radius"
-msgstr ""
+msgstr "基本笔刷半径"
 
 #. Tooltip for the "Base Brush Radius" brush input
 #: ../brushsettings.json:176
@@ -1187,7 +1180,7 @@ msgstr ""
 #. Brush input
 #: ../brushsettings.json:179
 msgid "Barrel Rotation"
-msgstr ""
+msgstr "笔杆旋转"
 
 #. Tooltip for the "Barrel Rotation" brush input
 #: ../brushsettings.json:186
@@ -1197,3 +1190,7 @@ msgid ""
 "+90 when twisted clockwise 90 degrees\n"
 "-90 when twisted counterclockwise 90 degrees"
 msgstr ""
+"压感笔的笔杆旋转。\n"
+"没旋转时为0\n"
+"顺时针旋转90度为+90\n"
+"逆时针旋转90度为-90"

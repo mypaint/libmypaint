@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-03-04 06:53+0100\n"
-"PO-Revision-Date: 2019-02-27 00:18+0000\n"
-"Last-Translator: glixx <roman_romul@mail.ru>\n"
+"PO-Revision-Date: 2022-07-22 16:16+0000\n"
+"Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <https://hosted.weblate.org/projects/mypaint/"
 "libmypaint/ka/>\n"
 "Language: ka\n"
@@ -17,12 +17,12 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.5-dev\n"
+"X-Generator: Weblate 4.14-dev\n"
 
 #. Brush setting
 #: ../brushsettings.json:193
 msgid "Opacity"
-msgstr ""
+msgstr "_გაუმჭვირვალობა"
 
 #. Tooltip for the "Opacity" brush setting
 #: ../brushsettings.json:197
@@ -66,7 +66,7 @@ msgstr ""
 #. Brush setting
 #: ../brushsettings.json:220
 msgid "Radius"
-msgstr ""
+msgstr "რადიუსი"
 
 #. Tooltip for the "Radius" brush setting
 #: ../brushsettings.json:224
@@ -79,7 +79,7 @@ msgstr ""
 #. Brush setting
 #: ../brushsettings.json:229
 msgid "Hardness"
-msgstr ""
+msgstr "სიმაგრე"
 
 #. Tooltip for the "Hardness" brush setting
 #: ../brushsettings.json:233
@@ -91,7 +91,7 @@ msgstr ""
 #. Brush setting
 #: ../brushsettings.json:238
 msgid "Softness"
-msgstr ""
+msgstr "სირბილე"
 
 #. Tooltip for the "Softness" brush setting
 #: ../brushsettings.json:242
@@ -255,7 +255,7 @@ msgstr ""
 #. Brush setting
 #: ../brushsettings.json:355
 msgid "Jitter"
-msgstr ""
+msgstr "თრთოლა"
 
 #. Tooltip for the "Jitter" brush setting
 #: ../brushsettings.json:359
@@ -269,7 +269,7 @@ msgstr ""
 #. Brush setting
 #: ../brushsettings.json:364
 msgid "Offset Y"
-msgstr ""
+msgstr "გადაწევა Y-ით"
 
 #. Tooltip for the "Offset Y" brush setting
 #: ../brushsettings.json:368
@@ -279,7 +279,7 @@ msgstr ""
 #. Brush setting
 #: ../brushsettings.json:373
 msgid "Offset X"
-msgstr ""
+msgstr "გადაწევა X-ით"
 
 #. Tooltip for the "Offset X" brush setting
 #: ../brushsettings.json:377
@@ -515,7 +515,7 @@ msgstr ""
 #. Brush setting
 #: ../brushsettings.json:562
 msgid "Change color value (HSV)"
-msgstr ""
+msgstr "ფერის მნიშვნელობის შეცვლა (HSV)"
 
 #. Tooltip for the "Change color value (HSV)" brush setting
 #: ../brushsettings.json:566
@@ -545,7 +545,7 @@ msgstr ""
 #. Brush setting
 #: ../brushsettings.json:580
 msgid "Smudge"
-msgstr ""
+msgstr "გადღაბნა"
 
 #. Tooltip for the "Smudge" brush setting
 #: ../brushsettings.json:584
@@ -560,7 +560,7 @@ msgstr ""
 #. Brush setting - The name Pigment refers to the fact that this kind of color mixing is more similar to how colors mix in physical paint.
 #: ../brushsettings.json:591
 msgid "Pigment"
-msgstr ""
+msgstr "პიგმენტი"
 
 #. Tooltip for the "Pigment" brush setting - If this string is difficult to translate, feel free to change it to something more descriptive. Just try to be succinct and consistent.
 #: ../brushsettings.json:596
@@ -650,7 +650,7 @@ msgstr ""
 #. Brush setting
 #: ../brushsettings.json:646
 msgid "Eraser"
-msgstr ""
+msgstr "საშლელი"
 
 #. Tooltip for the "Eraser" brush setting
 #: ../brushsettings.json:650
@@ -787,7 +787,7 @@ msgstr ""
 #. Brush setting
 #: ../brushsettings.json:736
 msgid "Colorize"
-msgstr ""
+msgstr "გაფერადება"
 
 #. Tooltip for the "Colorize" brush setting
 #: ../brushsettings.json:740
@@ -799,7 +799,7 @@ msgstr ""
 #. Brush setting
 #: ../brushsettings.json:745
 msgid "Posterize"
-msgstr ""
+msgstr "პოსტერიზაცია"
 
 #. Tooltip for the "Posterize" brush setting
 #: ../brushsettings.json:749
@@ -848,7 +848,7 @@ msgstr ""
 #. Brush input
 #: ../brushsettings.json:4
 msgid "Pressure"
-msgstr ""
+msgstr "წნევა"
 
 #. Tooltip for the "Pressure" brush input
 #: ../brushsettings.json:11
@@ -861,7 +861,7 @@ msgstr ""
 #. Brush input
 #: ../brushsettings.json:14
 msgid "Random"
-msgstr ""
+msgstr "შემთხვევითი"
 
 #. Tooltip for the "Random" brush input
 #: ../brushsettings.json:21
@@ -948,7 +948,7 @@ msgstr ""
 #. Brush input - the input is the output of the "Custom input" setting
 #: ../brushsettings.json:87
 msgid "Custom"
-msgstr ""
+msgstr "ხელით მითითება"
 
 #. Tooltip for the "Custom" brush input
 #: ../brushsettings.json:94
@@ -958,7 +958,6 @@ msgstr ""
 
 #. Brush input - refers to the direction of the stroke
 #: ../brushsettings.json:98
-#, fuzzy
 msgid "Direction 360"
 msgstr "მიმართულება"
 

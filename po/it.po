@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: 0.7.1-git\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-03-04 06:53+0100\n"
-"PO-Revision-Date: 2024-02-25 13:05+0000\n"
+"PO-Revision-Date: 2024-03-02 15:01+0000\n"
 "Last-Translator: albanobattistella <albano_battistella@hotmail.com>\n"
 "Language-Team: Italian <https://hosted.weblate.org/projects/mypaint/"
 "libmypaint/it/>\n"
@@ -118,13 +118,15 @@ msgstr ""
 #. Brush setting
 #: ../brushsettings.json:238
 msgid "Softness"
-msgstr ""
+msgstr "Morbidezza"
 
 #. Tooltip for the "Softness" brush setting
 #: ../brushsettings.json:242
 msgid ""
 "Soften brush-circle from center to edge (setting to 1.0 will draw nothing)."
 msgstr ""
+"Ammorbidisci il cerchio del pennello dal centro al bordo (l'impostazione su "
+"1.0 non disegnerà nulla)."
 
 #. Brush setting
 #: ../brushsettings.json:247
@@ -190,7 +192,7 @@ msgstr ""
 #. Brush setting
 #: ../brushsettings.json:283
 msgid "GridMap Scale"
-msgstr ""
+msgstr "Scala della mappa a griglia"
 
 #. Tooltip for the "GridMap Scale" brush setting
 #: ../brushsettings.json:287
@@ -199,11 +201,15 @@ msgid ""
 "Logarithmic (same scale as brush radius).\n"
 "A scale of 0 will make the grid 256x256 pixels."
 msgstr ""
+"Modifica la scala complessiva su cui opera l'input del pennello Mappa a "
+"griglia.\n"
+"Logaritmico (stessa scala del raggio del pennello).\n"
+"Una scala pari a 0 renderà la griglia di 256x256 pixel."
 
 #. Brush setting
 #: ../brushsettings.json:292
 msgid "GridMap Scale X"
-msgstr ""
+msgstr "Scala X della mappa della griglia"
 
 #. Tooltip for the "GridMap Scale X" brush setting
 #: ../brushsettings.json:296
@@ -213,6 +219,10 @@ msgid ""
 "The range is 0-5x.\n"
 "This allows you to stretch or compress the GridMap pattern."
 msgstr ""
+"Modifica la scala su cui opera l'input del pennello Mappa griglia: influisce "
+"solo sull'asse X.\n"
+"L'intervallo è 0-5x.\n"
+"Ciò consente di allungare o comprimere il modello della Mappa a Griglia."
 
 #. Brush setting
 #: ../brushsettings.json:301
@@ -1219,7 +1229,7 @@ msgstr ""
 #. Brush input
 #: ../brushsettings.json:138
 msgid "GridMap X"
-msgstr ""
+msgstr "Mappa a griglia X"
 
 #. Tooltip for the "GridMap X" brush input
 #: ../brushsettings.json:145
@@ -1230,11 +1240,17 @@ msgid ""
 "The brush size should be considerably smaller than the grid scale for best "
 "results."
 msgstr ""
+"La coordinata X su una griglia da 256 pixel. Questo andrà a capo tra 0 e 256 "
+"mentre il cursore viene spostato sull'asse X. Simile a un\"Colpo\". Può "
+"essere utilizzato per aggiungere texture alla carta modificando l'opacità, "
+"ecc.\n"
+"La dimensione del pennello dovrebbe essere considerevolmente più piccola "
+"della scala della griglia per ottenere i migliori risultati."
 
 #. Brush input
 #: ../brushsettings.json:148
 msgid "GridMap Y"
-msgstr ""
+msgstr "Mappa a griglia Y"
 
 #. Tooltip for the "GridMap Y" brush input
 #: ../brushsettings.json:155
@@ -1245,11 +1261,17 @@ msgid ""
 "The brush size should be considerably smaller than the grid scale for best "
 "results."
 msgstr ""
+"La coordinata Y su una griglia da 256 pixel. Questo andrà a capo tra 0 e 256 "
+"mentre il cursore viene spostato sull'asse Y. Simile a un \"Colpo\". Può "
+"essere utilizzato per aggiungere texture alla carta modificando l'opacità, "
+"ecc.\n"
+"La dimensione del pennello dovrebbe essere considerevolmente più piccola "
+"della scala della griglia per ottenere i migliori risultati."
 
 #. Brush input - refers to canvas zoom
 #: ../brushsettings.json:159
 msgid "Zoom Level"
-msgstr ""
+msgstr "Livello di zoom"
 
 #. Tooltip for the "Zoom Level" brush input
 #: ../brushsettings.json:166
@@ -1259,11 +1281,15 @@ msgid ""
 "For the Radius setting, using a value of -4.15 makes the brush size roughly "
 "constant, relative to the level of zoom."
 msgstr ""
+"Il livello di zoom corrente della visualizzazione tela.\n"
+"Logaritmico: 0,0 è 100%, 0,69 è 200%, -1,38 è 25%\n"
+"Per l'impostazione del Raggio, l'utilizzo di un valore pari a -4,15 rende la "
+"dimensione del pennello più o meno costante, rispetto al livello di zoom."
 
 #. Brush input
 #: ../brushsettings.json:169
 msgid "Base Brush Radius"
-msgstr ""
+msgstr "Raggio pennello base"
 
 #. Tooltip for the "Base Brush Radius" brush input
 #: ../brushsettings.json:176
@@ -1275,6 +1301,12 @@ msgid ""
 "Take note of \"Dabs per basic radius\" and \"Dabs per actual radius\", which "
 "behave much differently."
 msgstr ""
+"Il raggio del pennello base ti consente di modificare il comportamento di un "
+"pennello quando lo ingrandisci o lo rimpicciolisci.\n"
+"Puoi anche annullare l'aumento della dimensione del tocco e modificare "
+"qualcos'altro per ingrandire il pennello.\n"
+"Prendere nota dei \"Tocchi per raggio base\" e dei \"Tocchi per raggio "
+"effettivo\", che si comportano in modo molto diverso."
 
 #. Brush input
 #: ../brushsettings.json:179

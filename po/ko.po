@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: Mypaint Korean\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-03-04 06:53+0100\n"
-"PO-Revision-Date: 2020-02-17 19:32+0000\n"
-"Last-Translator: geun-tak Jeong <beroberos@gmail.com>\n"
+"PO-Revision-Date: 2024-03-17 18:01+0000\n"
+"Last-Translator: simmon <simmon@nplob.com>\n"
 "Language-Team: Korean <https://hosted.weblate.org/projects/mypaint/"
 "libmypaint/ko/>\n"
 "Language: ko\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 3.11\n"
+"X-Generator: Weblate 5.5-dev\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
 #. Brush setting
@@ -110,13 +110,14 @@ msgstr ""
 #. Brush setting
 #: ../brushsettings.json:238
 msgid "Softness"
-msgstr ""
+msgstr "부드러움"
 
 #. Tooltip for the "Softness" brush setting
 #: ../brushsettings.json:242
 msgid ""
 "Soften brush-circle from center to edge (setting to 1.0 will draw nothing)."
-msgstr ""
+msgstr "중앙에서 가장자리로 브러쉬-원을 부드럽게 (1.0로 설정하면 아무것도 그리지 "
+"않습니다)."
 
 #. Brush setting
 #: ../brushsettings.json:247
@@ -283,8 +284,11 @@ msgid ""
 "+8.0 very fast speed increases 'fine speed' a lot\n"
 "For very slow speed the opposite happens."
 msgstr ""
-"이러한 변경 사항을 '정밀한 속도'의 극단적인 물리적 반응 속도로 입력. '정밀한 "
-"속도'반경에 매핑되어 최고의 차이가 나타난다."
+"이것은 극단적인 물리적 속도에 '정밀 속도' 입력의 반응을 변경합니다. 만약 "
+"'정밀 속도'가 반경에 대응되는 경우에 가장 차이를 볼 수 있습니다.\n"
+"-8.0 아주 빠른 속도는 “정밀 속도” 보다 더 증가하지 않습니다\n"
+"+8.0 매우 빠른 속도는 '정밀 속도'를 많이 증가시킵니다\n"
+"매우 느린 속도에서 반대로 발생합니다."
 
 #. Brush setting
 #: ../brushsettings.json:346
@@ -848,7 +852,13 @@ msgid ""
 "If you make it change 'by random' you can generate a slow (smooth) random "
 "input."
 msgstr ""
-"이 값을 사용자 임력하는 설정이다. 값에 따라 입력이 느려지는 겨우도 있다."
+"이 값에 사용자 지정 입력을 설정합니다. 만약 속도가 느려지면, 이 값으로 "
+"이동합니다 (아래 참조). 아이디어는 이와 같은 입력이 압력/속도/무엇이든 "
+"혼합에 따라 달라지도록 만든 다음, 그리고 필요한 모든 곳에서 이 조합을 "
+"반복하는 대신에 이와 같은 '사용자 정의 입력'에서 다른 설정을 만드는 것입니다."
+"\n"
+"만약 당신이 '임의'로 변경하고자 하면 느린 (부드러운) 임의 입력을 생성 할 수 "
+"있습니다."
 
 #. Brush setting
 #: ../brushsettings.json:691

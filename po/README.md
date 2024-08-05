@@ -16,24 +16,18 @@ We use [GNU gettext][gettext] for runtime translation of program text.
 ## After updating program strings
 
 After changing any string in the source text which makes use of the
-gettext macros, you will need to manually run
-
-    cd po/
-    intltool-update -g libmypaint --pot
-
-    for lang in `cat LINGUAS`; do
-      intltool-update -g libmypaint --dist $lang
-    done
-
+gettext macros, you will need to run `./po/update_translation.sh`
 and then commit the modified `po/libmypaint.pot` and `po/*.po`
 files along with your changes.
 Keeping this generated template file in the distribution
 allows WebLate users to create new translations by themselves
 without having to ask us.
 
-The `.pot` file alone can be updated by running
-just the first `intltool-update` command,
-if all you want to do is compare diffs.
+if all you want to do is compare diffs,
+the `.pot` file alone can be updated by running:
+```
+./po/update_translations.sh --only-template
+```
 
 # Information for translators
 
@@ -69,7 +63,7 @@ Before working on a translation,
 update the `.po` file for your language.
 For example, for the French translation, run:
 
-    intltool-update -g libmypaint --dist fr
+    ./po/update_translations.sh fr
 
 ## Use/Test the translation
 

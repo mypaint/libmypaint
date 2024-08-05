@@ -30,31 +30,45 @@ License: ISC, see [COPYING](./COPYING) for details.
 On recent Debian-like systems, you can type the following
 to get started with a standard configuration:
 
-    $ sudo apt install -y build-essential
-    $ sudo apt install -y libjson-c-dev libgirepository1.0-dev libglib2.0-dev
+    # apt install -y build-essential
+    # apt install -y libjson-c-dev libgirepository1.0-dev libglib2.0-dev
 
 When building from git:
 
-    $ sudo apt install -y python autotools-dev intltool gettext libtool
+    # apt install -y python autotools-dev intltool gettext libtool
     
 You might also try using your package manager:
 
-    $ sudo apt build-dep mypaint # will get additional deps for MyPaint (GUI)
-    $ sudo apt build-dep libmypaint  # may not exist; included in mypaint
+    # apt build-dep mypaint # will get additional deps for MyPaint (GUI)
+    # apt build-dep libmypaint  # may not exist; included in mypaint
 
 ### Install dependencies (Red Hat and derivatives)
 
 The following works on a minimal CentOS 7 installation:
 
-    $ sudo yum install -y gcc gobject-introspection-devel json-c-devel glib2-devel
+    # yum install -y gcc gobject-introspection-devel json-c-devel glib2-devel
 
 When building from git, you'll want to add:
 
-    $ sudo yum install -y git python autoconf intltool gettext libtool
+    # yum install -y git python autoconf intltool gettext libtool
     
 You might also try your package manager:
-    
-    $ sudo yum builddep libmypaint
+
+    # yum builddep libmypaint
+
+### Install dependencies (OpenSUSE)
+
+Works with a fresh OpenSUSE Tumbleweed Docker image:
+
+    # zypper install gcc13 gobject-introspection-devel libjson-c-devel glib2-devel
+
+When building from git:
+
+    # zypper install git python311 autoconf intltool gettext-tools libtool
+
+Package manager:
+
+    # zypper install libmypaint0
 
 ## Build and install
 
@@ -67,8 +81,8 @@ The traditional setup works just fine.
 
     $ ./autogen.sh    # Only needed when building from git.
     $ ./configure
-    $ sudo make install
-    $ sudo ldconfig
+    # make install
+    # ldconfig
 
 ### Maintainer mode
 
@@ -110,7 +124,7 @@ This runs all the unit tests.
 
 ### Install
 
-    $ sudo make install
+    # make install
 
 Uninstall libmypaint with `make uninstall`.
 
@@ -123,22 +137,22 @@ Make sure that pkg-config can see libmypaint before trying to build with it.
 If it's not found, you'll need to add the relevant pkgconfig directory to
 the `pkg-config` search path. For example, on CentOS, with a default install:
 
-    $ sudo sh -c "echo 'PKG_CONFIG_PATH=/usr/local/lib/pkgconfig' >>/etc/environment"
+    # sh -c "echo 'PKG_CONFIG_PATH=/usr/local/lib/pkgconfig' >>/etc/environment"
 
 Make sure ldconfig can see libmypaint as well
 
-    $ sudo ldconfig -p |grep -i libmypaint
+    # ldconfig -p |grep -i libmypaint
 
 If it's not found, you'll need to add the relevant lib directory to
 the LD_LIBRARY_PATH:
     
     $ export LD_LIBRARY_PATH=/usr/local/lib
-    $ sudo sh -c "echo 'LD_LIBRARY_PATH=/usr/local/lib' >>/etc/environment
+    # sh -c "echo 'LD_LIBRARY_PATH=/usr/local/lib' >>/etc/environment
 
 Alternatively, you may want to enable /usr/local for libraries.  Arch and Redhat derivatives:
 
-    $ sudo sh -c "echo '/usr/local/lib' > /etc/ld.so.conf.d/usrlocal.conf"
-    $ sudo ldconfig
+    # sh -c "echo '/usr/local/lib' > /etc/ld.so.conf.d/usrlocal.conf"
+    # ldconfig
 
 ## Contributing
 

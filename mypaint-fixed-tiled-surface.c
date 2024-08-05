@@ -68,7 +68,7 @@ tile_request_end(MyPaintTiledSurface *tiled_surface, MyPaintTileRequest *request
     const int ty = request->ty;
 
     if (tx >= self->tiles_width || ty >= self->tiles_height || tx < 0 || ty < 0) {
-        // Wipe any changed done to the null tile
+        // Wipe any changes done to the null tile
         reset_null_tile(self);
     } else {
         // We hand out direct pointers to our buffer, so for the normal case nothing needs to be done

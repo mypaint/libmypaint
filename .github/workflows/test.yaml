@@ -1,0 +1,37 @@
+name: Test
+
+on:
+    - push
+    - pull_request
+
+jobs:
+    linux:
+        name: Linux
+        runs-on: ubuntu-22.04
+        strategy:
+            matrix:
+                configureFlags:
+                    - ""
+                    - "--with-introspection"
+                    - "--with-gegl"
+                include:
+                    - configureFlags: "--with-introspection"
+                      extraDeps: "libgirepository1.0-dev"
+                    - configureFlags: "--with-gegl"
+                      extraDeps: "libgegl-dev"
+        steps:
+            - uses: actions/checkout@v4
+            - name: "Install dependencies"
+              run: |
+                sudo apt-get update
+                sudo apt-get install -y \
+                    libjson-c-dev \
+                    intltool \
+                    ${{ matrix.extraDeps }}
+            - name: "Build"
+              run: |
+                ./autogen.sh
+                ./configure ${{ matrix.configureFlags }}
+                make
+            - name: "Run tests"
+              run: make distcheck

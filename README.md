@@ -12,17 +12,16 @@ License: ISC, see [COPYING](./COPYING) for details.
 ## Dependencies
 
 * All configurations and builds:
+  - C compiler, linker etc.
+  - [Python](http://python.org/)
+  - [Meson](https://en.wikipedia.org/wiki/Meson_(software)) and [ninja](https://en.wikipedia.org/wiki/Ninja_(build_system))
+    - Alternately, Autotools can be used instead but they are now considered deprecated.
   - [json-c](https://github.com/json-c/json-c/wiki) (>= 0.11)
-  - C compiler, `make` etc.
-* Most configurations (all except `--disable-introspection --without-glib`):
+  - [gettext](https://www.gnu.org/software/gettext/gettext.html) (unless `-Di18n=disabled`)
+* Most configurations (all except `-Dintrospection=disabled -Dglib=disabled`):
   - [GObject-Introspection](https://live.gnome.org/GObjectIntrospection)
   - [GLib](https://wiki.gnome.org/Projects/GLib)
-* When building from `git` (developer package names vary by distribution):
-  - [Python](http://python.org/)
-  - [autotools](https://en.wikipedia.org/wiki/GNU_Build_System)
-  - [intltool](https://freedesktop.org/wiki/Software/intltool/)
-  - [gettext](https://www.gnu.org/software/gettext/gettext.html)
-* For `--enable-gegl` (GIMP *does not* require this):
+* For `-Dgegl=enabled` (GIMP *does not* require this):
   - [GEGL + BABL](http://gegl.org/)
 
 ### Install dependencies (Debian and derivatives)
@@ -30,10 +29,10 @@ License: ISC, see [COPYING](./COPYING) for details.
 On recent Debian-like systems, you can type the following
 to get started with a standard configuration:
 
-    # apt install -y build-essential
+    # apt install -y build-essential meson
     # apt install -y libjson-c-dev libgirepository1.0-dev libglib2.0-dev
 
-When building from git:
+Additionally, when using the deprecated Autotools build system:
 
     # apt install -y python autotools-dev intltool gettext libtool
     
@@ -44,11 +43,11 @@ You might also try using your package manager:
 
 ### Install dependencies (Red Hat and derivatives)
 
-The following works on a minimal CentOS 7 installation:
+The following should works on a minimal CentOS 7 installation:
 
-    # yum install -y gcc gobject-introspection-devel json-c-devel glib2-devel
+    # yum install -y gcc meson gobject-introspection-devel json-c-devel glib2-devel
 
-When building from git, you'll want to add:
+Additionally, when using the deprecated Autotools build system:
 
     # yum install -y git python autoconf intltool gettext libtool
     
@@ -60,9 +59,9 @@ You might also try your package manager:
 
 Works with a fresh OpenSUSE Tumbleweed Docker image:
 
-    # zypper install gcc13 gobject-introspection-devel libjson-c-devel glib2-devel
+    # zypper install gcc13 meson gobject-introspection-devel libjson-c-devel glib2-devel
 
-When building from git:
+Additionally, when using the deprecated Autotools build system:
 
     # zypper install git python311 autoconf intltool gettext-tools libtool
 
@@ -72,61 +71,53 @@ Package manager:
 
 ## Build and install
 
+You can use [Meson](https://mesonbuild.com/) build system.
+
+    $ meson setup _build --prefix=/usr
+    $ meson compile -C _build
+    # meson install -C _build
+    # ldconfig
+
 MyPaint and libmypaint benefit dramatically from autovectorization and other compiler optimizations.
-You may want to set your CFLAGS before compiling (for gcc):
+You may want to set your CFLAGS before compiling (for gcc) by passing something like the following as an argument to `meson setup`:
 
-    $ export CFLAGS='-Ofast -ftree-vectorize -fopt-info-vec-optimized -march=native -mtune=native -funsafe-math-optimizations -funsafe-loop-optimizations'
+    -Dc_args='-Ofast -ftree-vectorize -fopt-info-vec-optimized -march=native -mtune=native -funsafe-math-optimizations -funsafe-loop-optimizations'
 
-The traditional setup works just fine.
+Alternately, you can use the traditional Autotools build system for now (it is deprecated and will be eventually removed):
 
-    $ ./autogen.sh    # Only needed when building from git.
+    $ ./autogen.sh
     $ ./configure
     # make install
     # ldconfig
 
-### Maintainer mode
-
-We don't ship a `configure` script in our git repository. If you're
-building from git, you have to kickstart the build environment with:
-
-    $ git clone https://github.com/mypaint/libmypaint.git
-    $ cd libmypaint
-    $ ./autogen.sh
-
-This script generates `configure` from `configure.ac`, after running a
-few checks to make sure your build environment is broadly OK. It also
-regenerates certain important generated headers if they need it.
-
-Folks building from a release tarball don't need to do this: they will
-have a `configure` script from the start.
-
 ### Configure
 
-    $ ./configure
-    $ ./configure --prefix=/tmp/junk/example
+Meson requires out-of-tree builds so you need to specify a build directory.
 
-There are several MyPaint-specific options.
-These can be shown by running
+    $ meson setup _build
+    $ meson setup _build --prefix=/tmp/junk/example
 
-    $ ./configure --help
+In addition to to [Meson options](https://mesonbuild.com/Builtin-options.html#compiler-options), there are several libmypaint-specific options, see `meson_options.txt` file for details.
+
+    $ meson setup _build -Dgegl=disabled -Ddocs=true -Di18n=enabled
 
 ### Build
 
-    $ make
+    $ meson compile -C _build
 
 Once MyPaint is built, you can run the test suite and/or install it.
 
 ### Test
 
-    $ make check
+    $ meson test -C _build
 
 This runs all the unit tests.
 
 ### Install
 
-    # make install
+    # meson install -C _build
 
-Uninstall libmypaint with `make uninstall`.
+Uninstall libmypaint with `meson uninstall -C _build`.
 
 ### Check availability
 
@@ -172,11 +163,7 @@ for details of how you can begin contributing.
 
 The distribution release can be generated with:
 
-    $ make dist
-
-And it should be checked before public release with:
-
-    $ make distcheck
+    $ meson dist -C _build
 
 ## Localization
 
@@ -198,7 +185,7 @@ in `po/POTFILES.in`.
 You can update the .po files when translated strings in the code change
 using:
 
-    $ cd po && make update-po
+    $ meson compile -C _build update-po
 
 When the results of this are pushed, Weblate translators will see the
 new strings immediately.

@@ -16,7 +16,7 @@ We use [GNU gettext][gettext] for runtime translation of program text.
 ## After updating program strings
 
 After changing any string in the source text which makes use of the
-gettext macros, you will need to run `./po/update_translation.sh`
+gettext macros, you will need to run `meson compile -C _build update-po`
 and then commit the modified `po/libmypaint.pot` and `po/*.po`
 files along with your changes.
 Keeping this generated template file in the distribution
@@ -26,7 +26,7 @@ without having to ask us.
 if all you want to do is compare diffs,
 the `.pot` file alone can be updated by running:
 ```
-./po/update_translations.sh --only-template
+meson compile -C _build libmypaint.pot
 ```
 
 # Information for translators
@@ -63,18 +63,16 @@ Before working on a translation,
 update the `.po` file for your language.
 For example, for the French translation, run:
 
-    ./po/update_translations.sh fr
+    meson compile -C _build update-po-fr
 
 ## Use/Test the translation
 
 After modifying the translation,
 you need to rebuild and reinstall libmypaint to see the effect
 in MyPaint, or in other apps that use `libmypaint`.
-If you have already built it, and `make install` does what you want,
-you can just use:
+If you have already built it, you can just use:
 
-    make
-    make install
+    meson install -C _build
 
 To run MyPaint with a specific translation on Linux,
 you can use the LANG environment variable

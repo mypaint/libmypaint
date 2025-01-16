@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-03-04 06:53+0100\n"
-"PO-Revision-Date: 2019-02-23 08:18+0000\n"
-"Last-Translator: glixx <roman_romul@mail.ru>\n"
+"PO-Revision-Date: 2025-01-17 17:00+0000\n"
+"Last-Translator: தமிழ்நேரம் <anishprabu.t@gmail.com>\n"
 "Language-Team: Tamil <https://hosted.weblate.org/projects/mypaint/libmypaint/"
 "ta/>\n"
 "Language: ta\n"
@@ -17,12 +17,12 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.5-dev\n"
+"X-Generator: Weblate 5.10-dev\n"
 
 #. Brush setting
 #: ../brushsettings.json:193
 msgid "Opacity"
-msgstr ""
+msgstr "ஒளிபுகாநிலை"
 
 #. Tooltip for the "Opacity" brush setting
 #: ../brushsettings.json:197
@@ -30,11 +30,13 @@ msgid ""
 "0 means brush is transparent, 1 fully visible\n"
 "(also known as alpha or opacity)"
 msgstr ""
+"0 என்றால் தூரிகை வெளிப்படையானது, 1 முழுமையாக தெரியும்\n"
+" (ஆல்பா அல்லது ஒளிபுகாநிலை என்றும் அழைக்கப்படுகிறது)"
 
 #. Brush setting
 #: ../brushsettings.json:202
 msgid "Opacity multiply"
-msgstr ""
+msgstr "ஒளிபுகா பெருக்கம்"
 
 #. Tooltip for the "Opacity multiply" brush setting
 #: ../brushsettings.json:206
@@ -44,11 +46,15 @@ msgid ""
 "This setting is responsible to stop painting when there is zero pressure. "
 "This is just a convention, the behaviour is identical to 'opaque'."
 msgstr ""
+"இது ஒளிபுகாவுடன் பெருகும். இந்த அமைப்பின் அழுத்தம் உள்ளீட்டை மட்டுமே நீங்கள் மாற்ற வேண்டும். "
+"ஒளிபுகாநிலையை வேகத்தில் சார்ந்து இருக்க 'ஒளிபுகா' ஐப் பயன்படுத்தவும்.\n"
+" சுழிய அழுத்தம் இருக்கும்போது ஓவியத்தை நிறுத்த இந்த அமைப்பு பொறுப்பு. இது ஒரு மாநாடு "
+"மட்டுமே, நடத்தை 'ஒளிபுகா' போன்றது."
 
 #. Brush setting
 #: ../brushsettings.json:211
 msgid "Opacity linearize"
-msgstr ""
+msgstr "ஒளிபுகா நேரியல்"
 
 #. Tooltip for the "Opacity linearize" brush setting
 #: ../brushsettings.json:215
@@ -62,11 +68,19 @@ msgid ""
 "1.0 the opaque value above is for the final brush stroke, assuming each "
 "pixel gets (dabs_per_radius*2) brushdabs on average during a stroke"
 msgstr ""
+"ஒருவருக்கொருவர் மேல் பல DAB களை கலப்பதன் மூலம் அறிமுகப்படுத்தப்பட்ட நேர்கோட்டுத்தன்மையை "
+"சரிசெய்யவும். இந்த திருத்தம் உங்களுக்கு ஒரு நேரியல் (\"இயற்கை\") அழுத்த பதிலைப் பெற "
+"வேண்டும், இது வழக்கமாக செய்யப்படுவதால், ஒளிபுகா_மால்டிபிளிக்கு அழுத்தம் பொருத்தப்படும்போது"
+". நிலையான பக்கவாதம் 0.9 நல்லது, உங்கள் தூரிகை நிறைய சிதறடிக்கப்பட்டால் அதை சிறியதாக "
+"அமைக்கவும், அல்லது நீங்கள் dabs_per_second ஐப் பயன்படுத்தினால் அதிகமாக இருக்கும்.\n"
+" 0.0 மேலே உள்ள ஒளிபுகா மதிப்பு தனிப்பட்ட DAB களுக்கு\n"
+" 1.0 மேலே உள்ள ஒளிபுகா மதிப்பு இறுதி தூரிகை பக்கவாதத்திற்கானது, ஒவ்வொரு பிக்சலும் "
+"பெறுகிறது (dabs_per_radius*2) ஒரு பக்கவாதத்தின் போது சராசரியாக பிரச்டப்கள்"
 
 #. Brush setting
 #: ../brushsettings.json:220
 msgid "Radius"
-msgstr ""
+msgstr "ஆரம்"
 
 #. Tooltip for the "Radius" brush setting
 #: ../brushsettings.json:224
@@ -75,11 +89,14 @@ msgid ""
 " 0.7 means 2 pixels\n"
 " 3.0 means 20 pixels"
 msgstr ""
+"அடிப்படை தூரிகை ஆரம் (மடக்கை)\n"
+" 0.7 என்றால் 2 படப்புள்ளிகள்\n"
+" 3.0 என்றால் 20 படப்புள்ளிகள்"
 
 #. Brush setting
 #: ../brushsettings.json:229
 msgid "Hardness"
-msgstr ""
+msgstr "கடினத்தன்மை"
 
 #. Tooltip for the "Hardness" brush setting
 #: ../brushsettings.json:233
@@ -87,22 +104,26 @@ msgid ""
 "Hard brush-circle borders (setting to zero will draw nothing). To reach the "
 "maximum hardness, you need to disable Pixel feather."
 msgstr ""
+"கடின தூரிகை-வட்ட எல்லைகள் (பூச்சியமாக அமைப்பது எதுவும் வரையப்படாது). அதிகபட்ச "
+"கடினத்தன்மையை அடைய, நீங்கள் படப்புள்ளி இறகுகளை முடக்க வேண்டும்."
 
 #. Brush setting
 #: ../brushsettings.json:238
 msgid "Softness"
-msgstr ""
+msgstr "மென்மையாகும்"
 
 #. Tooltip for the "Softness" brush setting
 #: ../brushsettings.json:242
 msgid ""
 "Soften brush-circle from center to edge (setting to 1.0 will draw nothing)."
 msgstr ""
+"தூரிகை-வட்டத்தை மையத்திலிருந்து விளிம்பிற்கு மென்மையாக்கவும் (1.0 ஆக அமைப்பது எதுவும் "
+"வரையப்படாது)."
 
 #. Brush setting
 #: ../brushsettings.json:247
 msgid "Pixel feather"
-msgstr ""
+msgstr "படப்புள்ளி இறகு"
 
 #. Tooltip for the "Pixel feather" brush setting
 #: ../brushsettings.json:251
@@ -113,11 +134,16 @@ msgid ""
 " 1.0 blur one pixel (good value)\n"
 " 5.0 notable blur, thin strokes will disappear"
 msgstr ""
+"இந்த அமைப்பு ஒரு படப்புள்ளி படிக்கட்டு விளைவை (மாற்றுப்பெயர்) தடுக்க தேவைப்படும்போது "
+"கடினத்தன்மையை குறைக்கிறது.\n"
+" 0.0 முடக்கு (மிகவும் வலுவான அழிப்பான் மற்றும் படப்புள்ளி தூரிகைகளுக்கு)\n"
+" 1.0 ஒரு பிக்சலை மங்கச் செய்யுங்கள் (நல்ல மதிப்பு)\n"
+" 5.0 குறிப்பிடத்தக்க மங்கலானது, மெல்லிய பக்கவாதம் மறைந்துவிடும்"
 
 #. Brush setting
 #: ../brushsettings.json:256
 msgid "Dabs per basic radius"
-msgstr ""
+msgstr "அடிப்படை ஆரம் ஒன்றுக்கு dabs"
 
 #. Tooltip for the "Dabs per basic radius" brush setting
 #: ../brushsettings.json:260
@@ -125,11 +151,13 @@ msgid ""
 "How many dabs to draw while the pointer moves a distance of one brush radius "
 "(more precise: the base value of the radius)"
 msgstr ""
+"சுட்டிக்காட்டி ஒரு தூரிகை ஆரம் தூரத்தை நகர்த்தும்போது எத்தனை DAB கள் வரைய வேண்டும் (இன்னும்"
+" துல்லியமானது: ஆரம் அடிப்படை மதிப்பு)"
 
 #. Brush setting
 #: ../brushsettings.json:265
 msgid "Dabs per actual radius"
-msgstr ""
+msgstr "உண்மையான ஆரம் ஒன்றுக்கு dabs"
 
 #. Tooltip for the "Dabs per actual radius" brush setting
 #: ../brushsettings.json:269
@@ -137,21 +165,24 @@ msgid ""
 "Same as above, but the radius actually drawn is used, which can change "
 "dynamically"
 msgstr ""
+"மேலே உள்ளதைப் போலவே, ஆனால் உண்மையில் வரையப்பட்ட ஆரம் பயன்படுத்தப்படுகிறது, இது மாறும் "
+"வகையில் மாறும்"
 
 #. Brush setting
 #: ../brushsettings.json:274
 msgid "Dabs per second"
-msgstr ""
+msgstr "நொடிக்கு dabs"
 
 #. Tooltip for the "Dabs per second" brush setting
 #: ../brushsettings.json:278
 msgid "Dabs to draw each second, no matter how far the pointer moves"
 msgstr ""
+"சுட்டிக்காட்டி எவ்வளவு தூரம் நகர்ந்தாலும், ஒவ்வொரு நொடியையும் வரைய டப்ச்"
 
 #. Brush setting
 #: ../brushsettings.json:283
 msgid "GridMap Scale"
-msgstr ""
+msgstr "கிரிட்மேப் அளவுகோல்"
 
 #. Tooltip for the "GridMap Scale" brush setting
 #: ../brushsettings.json:287
@@ -160,11 +191,14 @@ msgid ""
 "Logarithmic (same scale as brush radius).\n"
 "A scale of 0 will make the grid 256x256 pixels."
 msgstr ""
+"கிரிட்மேப் தூரிகை உள்ளீடு செயல்படும் ஒட்டுமொத்த அளவை மாற்றுகிறது.\n"
+" மடக்கை (தூரிகை ஆரம் போன்ற அதே அளவு).\n"
+" 0 இன் அளவு கட்டத்தை 256x256 படப்புள்ளிகள் செய்யும்."
 
 #. Brush setting
 #: ../brushsettings.json:292
 msgid "GridMap Scale X"
-msgstr ""
+msgstr "கிரிட்மேப் அளவுகோல் ஃச்"
 
 #. Tooltip for the "GridMap Scale X" brush setting
 #: ../brushsettings.json:296
@@ -174,11 +208,14 @@ msgid ""
 "The range is 0-5x.\n"
 "This allows you to stretch or compress the GridMap pattern."
 msgstr ""
+"கிரிட்மேப் தூரிகை உள்ளீடு செயல்படும் அளவை மாற்றுகிறது - ஃச் அச்சை மட்டுமே பாதிக்கிறது.\n"
+" வரம்பு 0-5x.\n"
+" இது கிரிட்மேப் வடிவத்தை நீட்ட அல்லது சுருக்க உங்களை அனுமதிக்கிறது."
 
 #. Brush setting
 #: ../brushsettings.json:301
 msgid "GridMap Scale Y"
-msgstr ""
+msgstr "கிரிட்மேப் அளவுகோல் ஒய்"
 
 #. Tooltip for the "GridMap Scale Y" brush setting
 #: ../brushsettings.json:305
@@ -188,11 +225,14 @@ msgid ""
 "The range is 0-5x.\n"
 "This allows you to stretch or compress the GridMap pattern."
 msgstr ""
+"கிரிட்மேப் தூரிகை உள்ளீடு செயல்படும் அளவை மாற்றுகிறது - ஒய் அச்சை மட்டுமே பாதிக்கிறது.\n"
+" வரம்பு 0-5x.\n"
+" இது கிரிட்மேப் வடிவத்தை நீட்ட அல்லது சுருக்க உங்களை அனுமதிக்கிறது."
 
 #. Brush setting
 #: ../brushsettings.json:310
 msgid "Radius by random"
-msgstr ""
+msgstr "சீரற்ற மூலம் ஆரம்"
 
 #. Tooltip for the "Radius by random" brush setting
 #: ../brushsettings.json:314
@@ -203,11 +243,16 @@ msgid ""
 "transparent\n"
 "2) it will not change the actual radius seen by dabs_per_actual_radius"
 msgstr ""
+"ஆரம் தோராயமாக ஒவ்வொரு DAB ஐ மாற்றவும். ஆரம் அமைப்பில் பை_ராண்டம் உள்ளீட்டையும் நீங்கள் "
+"செய்யலாம். நீங்கள் அதை இங்கே செய்தால், இரண்டு வேறுபாடுகள் உள்ளன:\n"
+" 1) ஒரு பெரிய-ரேடியச் டாப்ச் மிகவும் வெளிப்படையானதாக இருக்கும் வகையில் ஒளிபுகா மதிப்பு"
+" சரி செய்யப்படும்\n"
+" 2) இது DABS_PER_ACTUAL_RADIUS ஆல் பார்த்த உண்மையான ஆரம் மாற்றாது"
 
 #. Brush setting
 #: ../brushsettings.json:319
 msgid "Fine speed filter"
-msgstr ""
+msgstr "சிறந்த வேக வடிகட்டி"
 
 #. Tooltip for the "Fine speed filter" brush setting
 #: ../brushsettings.json:323
@@ -215,21 +260,25 @@ msgid ""
 "How slow the input fine speed is following the real speed\n"
 "0.0 change immediately as your speed changes (not recommended, but try it)"
 msgstr ""
+"உள்ளீட்டு சிறந்த விரைவு எவ்வளவு மெதுவாக உண்மையான வேகத்தை பின்பற்றுகிறது\n"
+" 0.0 உங்கள் விரைவு மாறும்போது உடனடியாக மாற்றவும் (பரிந்துரைக்கப்படவில்லை, ஆனால் அதை "
+"முயற்சிக்கவும்)"
 
 #. Brush setting
 #: ../brushsettings.json:328
 msgid "Gross speed filter"
-msgstr ""
+msgstr "மொத்த வேக வடிகட்டி"
 
 #. Tooltip for the "Gross speed filter" brush setting
 #: ../brushsettings.json:332
 msgid "Same as 'fine speed filter', but note that the range is different"
 msgstr ""
+"'சிறந்த வேக வடிகட்டி' போலவே, ஆனால் வரம்பு வேறுபட்டது என்பதை நினைவில் கொள்க"
 
 #. Brush setting
 #: ../brushsettings.json:337
 msgid "Fine speed gamma"
-msgstr ""
+msgstr "சிறந்த விரைவு காமா"
 
 #. Tooltip for the "Fine speed gamma" brush setting
 #: ../brushsettings.json:341
@@ -241,21 +290,26 @@ msgid ""
 "+8.0 very fast speed increases 'fine speed' a lot\n"
 "For very slow speed the opposite happens."
 msgstr ""
+"இது 'சிறந்த விரைவு' உள்ளீட்டின் எதிர்வினையை தீவிர உடல் வேகத்திற்கு மாற்றுகிறது. 'சிறந்த "
+"விரைவு' ஆரம் கொண்டு வரைபடமாக இருந்தால் வித்தியாசத்தை நீங்கள் காண்பீர்கள்.\n"
+" -8.0 மிக விரைவான விரைவு 'சிறந்த வேகத்தை' அதிகரிக்காது\n"
+" +8.0 மிக விரைவான விரைவு 'சிறந்த வேகத்தை' நிறைய அதிகரிக்கிறது\n"
+" மிக மெதுவான வேகத்திற்கு இதற்கு நேர்மாறானது நிகழ்கிறது."
 
 #. Brush setting
 #: ../brushsettings.json:346
 msgid "Gross speed gamma"
-msgstr ""
+msgstr "மொத்த விரைவு காமா"
 
 #. Tooltip for the "Gross speed gamma" brush setting
 #: ../brushsettings.json:350
 msgid "Same as 'fine speed gamma' for gross speed"
-msgstr ""
+msgstr "மொத்த வேகத்திற்கு 'ஃபைன் ச்பீட் காமா' போன்றது"
 
 #. Brush setting
 #: ../brushsettings.json:355
 msgid "Jitter"
-msgstr ""
+msgstr "நடுக்கம்"
 
 #. Tooltip for the "Jitter" brush setting
 #: ../brushsettings.json:359
@@ -265,62 +319,69 @@ msgid ""
 " 1.0 standard deviation is one basic radius away\n"
 "<0.0 negative values produce no jitter"
 msgstr ""
+"ஒவ்வொரு DAB ஐ வரையும் நிலைக்கு ஒரு சீரற்ற ஆஃப்செட்டைச் சேர்க்கவும்\n"
+" 0.0 முடக்கப்பட்டது\n"
+" 1.0 நிலையான விலகல் என்பது ஒரு அடிப்படை ஆரம் தொலைவில் உள்ளது\n"
+" <0.0 எதிர்மறை மதிப்புகள் எந்த நடுக்கத்தையும் உருவாக்கவில்லை"
 
 #. Brush setting
 #: ../brushsettings.json:364
 msgid "Offset Y"
-msgstr ""
+msgstr "ஆஃப்செட் ஒய்"
 
 #. Tooltip for the "Offset Y" brush setting
 #: ../brushsettings.json:368
 msgid "Moves the dabs up or down based on canvas coordinates."
 msgstr ""
+"கேன்வாச் ஆயத்தொகுதிகளின் அடிப்படையில் DAB களை மேலே அல்லது கீழ் நகர்த்துகிறது."
 
 #. Brush setting
 #: ../brushsettings.json:373
 msgid "Offset X"
-msgstr ""
+msgstr "ஆஃப்செட் ஃச்"
 
 #. Tooltip for the "Offset X" brush setting
 #: ../brushsettings.json:377
 msgid "Moves the dabs left or right based on canvas coordinates."
 msgstr ""
+"கேன்வாச் ஆயத்தொலைவுகளின் அடிப்படையில் DAB களை இடது அல்லது வலது நகர்த்துகிறது."
 
 #. Brush setting
 #: ../brushsettings.json:382
 msgid "Angular Offset: Direction"
-msgstr ""
+msgstr "கோண ஆஃப்செட்: திசை"
 
 #. Tooltip for the "Angular Offset: Direction" brush setting
 #: ../brushsettings.json:386
 msgid "Follows the stroke direction to offset the dabs to one side."
-msgstr ""
+msgstr "DAB களை ஒரு பக்கத்திற்கு ஈடுசெய்ய பக்கவாதம் திசையைப் பின்பற்றுகிறது."
 
 #. Brush setting
 #: ../brushsettings.json:391
 msgid "Angular Offset: Ascension"
-msgstr ""
+msgstr "கோண ஆஃப்செட்: அசென்சன்"
 
 #. Tooltip for the "Angular Offset: Ascension" brush setting
 #: ../brushsettings.json:395
 msgid ""
 "Follows the tilt direction to offset the dabs to one side. Requires Tilt."
 msgstr ""
+"DAB களை ஒரு பக்கத்திற்கு ஈடுசெய்ய சாய்ந்த திசையைப் பின்பற்றுகிறது. சாய்வு தேவை."
 
 #. Brush setting
 #: ../brushsettings.json:400
 msgid "Angular Offset: View"
-msgstr ""
+msgstr "கோண ஆஃப்செட்: பார்வை"
 
 #. Tooltip for the "Angular Offset: View" brush setting
 #: ../brushsettings.json:404
 msgid "Follows the view orientation to offset the dabs to one side."
-msgstr ""
+msgstr "DAB களை ஒரு பக்கத்திற்கு ஈடுசெய்ய பார்வை நோக்குநிலையைப் பின்பற்றுகிறது."
 
 #. Brush setting
 #: ../brushsettings.json:409
 msgid "Angular Offset Mirrored: Direction"
-msgstr ""
+msgstr "கோண ஆஃப்செட் பிரதிபலித்தது: திசை"
 
 #. Tooltip for the "Angular Offset Mirrored: Direction" brush setting
 #: ../brushsettings.json:413
@@ -328,11 +389,12 @@ msgid ""
 "Follows the stroke direction to offset the dabs, but to both sides of the "
 "stroke."
 msgstr ""
+"DAB களை ஈடுசெய்ய பக்கவாதம் திசையைப் பின்பற்றுகிறது, ஆனால் பக்கவாதத்தின் இருபுறமும்."
 
 #. Brush setting
 #: ../brushsettings.json:418
 msgid "Angular Offset Mirrored: Ascension"
-msgstr ""
+msgstr "கோண ஆஃப்செட் பிரதிபலித்தது: அசென்சன்"
 
 #. Tooltip for the "Angular Offset Mirrored: Ascension" brush setting
 #: ../brushsettings.json:422
@@ -340,11 +402,13 @@ msgid ""
 "Follows the tilt direction to offset the dabs, but to both sides of the "
 "stroke. Requires Tilt."
 msgstr ""
+"DAB களை ஈடுசெய்ய சாய்ந்த திசையைப் பின்பற்றுகிறது, ஆனால் பக்கவாதத்தின் இருபுறமும். சாய்வு "
+"தேவை."
 
 #. Brush setting
 #: ../brushsettings.json:427
 msgid "Angular Offset Mirrored: View"
-msgstr ""
+msgstr "கோண ஆஃப்செட் பிரதிபலித்தது: பார்வை"
 
 #. Tooltip for the "Angular Offset Mirrored: View" brush setting
 #: ../brushsettings.json:431
@@ -352,31 +416,33 @@ msgid ""
 "Follows the view orientation to offset the dabs, but to both sides of the "
 "stroke."
 msgstr ""
+"DAB களை ஈடுசெய்ய பார்வை நோக்குநிலையைப் பின்பற்றுகிறது, ஆனால் பக்கவாதத்தின் இருபுறமும்."
 
 #. Brush setting
 #: ../brushsettings.json:436
 msgid "Angular Offsets Adjustment"
-msgstr ""
+msgstr "கோண ஆஃப்செட்டுகள் சரிசெய்தல்"
 
 #. Tooltip for the "Angular Offsets Adjustment" brush setting
 #: ../brushsettings.json:440
 msgid "Change the Angular Offset angle from the default, which is 90 degrees."
 msgstr ""
+"இயல்புநிலையிலிருந்து கோண ஆஃப்செட் கோணத்தை மாற்றவும், இது 90 டிகிரி ஆகும்."
 
 #. Brush setting
 #: ../brushsettings.json:445
 msgid "Offsets Multiplier"
-msgstr ""
+msgstr "ஆஃப்செட்டுகள் பெருக்கி"
 
 #. Tooltip for the "Offsets Multiplier" brush setting
 #: ../brushsettings.json:449
 msgid "Logarithmic multiplier for X, Y, and Angular Offset settings."
-msgstr ""
+msgstr "ஃச், ஒய் மற்றும் கோண ஆஃப்செட் அமைப்புகளுக்கான மடக்கை பெருக்கி."
 
 #. Brush setting
 #: ../brushsettings.json:454
 msgid "Offset by speed"
-msgstr ""
+msgstr "வேகத்தால் ஈடுசெய்யவும்"
 
 #. Tooltip for the "Offset by speed" brush setting
 #: ../brushsettings.json:458
@@ -386,21 +452,26 @@ msgid ""
 "> 0 draw where the pointer moves to\n"
 "< 0 draw where the pointer comes from"
 msgstr ""
+"சுட்டிக்காட்டி வேகத்தைப் பொறுத்து நிலையை மாற்றவும்\n"
+" = 0 முடக்கு\n"
+" > 0 சுட்டிக்காட்டி நகரும் இடத்தை வரையவும்\n"
+" <0 சுட்டிக்காட்டி எங்கிருந்து வருகிறது என்பதை வரையவும்"
 
 #. Brush setting
 #: ../brushsettings.json:463
 msgid "Offset by speed filter"
-msgstr ""
+msgstr "வேக வடிகட்டி மூலம் ஈடுசெய்யவும்"
 
 #. Tooltip for the "Offset by speed filter" brush setting
 #: ../brushsettings.json:467
 msgid "How slow the offset goes back to zero when the cursor stops moving"
 msgstr ""
+"கர்சர் நகர்வதை நிறுத்தும்போது ஆஃப்செட் எவ்வளவு மெதுவாக பூச்சியத்திற்கு செல்கிறது"
 
 #. Brush setting
 #: ../brushsettings.json:472
 msgid "Slow position tracking"
-msgstr ""
+msgstr "மெதுவான நிலை கண்காணிப்பு"
 
 #. Tooltip for the "Slow position tracking" brush setting
 #: ../brushsettings.json:476
@@ -408,11 +479,14 @@ msgid ""
 "Slowdown pointer tracking speed. 0 disables it, higher values remove more "
 "jitter in cursor movements. Useful for drawing smooth, comic-like outlines."
 msgstr ""
+"மெதுவான சுட்டிக்காட்டி கண்காணிப்பு விரைவு. 0 அதை முடக்குகிறது, அதிக மதிப்புகள் கர்சர் "
+"இயக்கங்களில் அதிக நடுக்கத்தை நீக்குகின்றன. மென்மையான, காமிக் போன்ற வெளிப்புறங்களை வரைவதற்கு"
+" பயனுள்ளதாக இருக்கும்."
 
 #. Brush setting
 #: ../brushsettings.json:481
 msgid "Slow tracking per dab"
-msgstr ""
+msgstr "ஒரு DAB க்கு மெதுவாக கண்காணித்தல்"
 
 #. Tooltip for the "Slow tracking per dab" brush setting
 #: ../brushsettings.json:485
@@ -420,11 +494,13 @@ msgid ""
 "Similar as above but at brushdab level (ignoring how much time has passed if "
 "brushdabs do not depend on time)"
 msgstr ""
+"மேலே உள்ளதைப் போன்றது ஆனால் பிரச்டாப் மட்டத்தில் (பிரச்டப்கள் நேரத்தை சார்ந்து இல்லாவிட்டால் "
+"எவ்வளவு நேரம் கடந்துவிட்டது என்பதை புறக்கணித்தல்)"
 
 #. Brush setting
 #: ../brushsettings.json:490
 msgid "Tracking noise"
-msgstr ""
+msgstr "ஒலி கண்காணிக்கும்"
 
 #. Tooltip for the "Tracking noise" brush setting
 #: ../brushsettings.json:494
@@ -432,33 +508,35 @@ msgid ""
 "Add randomness to the mouse pointer; this usually generates many small lines "
 "in random directions; maybe try this together with 'slow tracking'"
 msgstr ""
+"சுட்டி சுட்டிக்காட்டி சீரற்ற தன்மையைச் சேர்க்கவும்; இது வழக்கமாக பல சிறிய கோடுகளை சீரற்ற "
+"திசைகளில் உருவாக்குகிறது; 'மெதுவான கண்காணிப்பு' உடன் இதை முயற்சிக்கவும்"
 
 #. Brush setting
 #. Tooltip for the "Color hue" brush setting
 #: ../brushsettings.json:499 ../brushsettings.json:503
 msgid "Color hue"
-msgstr ""
+msgstr "வண்ண சாயல்"
 
 #. Brush setting
 #. Tooltip for the "Color saturation" brush setting
 #: ../brushsettings.json:508 ../brushsettings.json:512
 msgid "Color saturation"
-msgstr ""
+msgstr "வண்ண செறிவு"
 
 #. Brush setting
 #: ../brushsettings.json:517
 msgid "Color value"
-msgstr ""
+msgstr "வண்ண மதிப்பு"
 
 #. Tooltip for the "Color value" brush setting
 #: ../brushsettings.json:521
 msgid "Color value (brightness, intensity)"
-msgstr ""
+msgstr "வண்ண மதிப்பு (பிரகாசம், தீவிரம்)"
 
 #. Brush setting
 #: ../brushsettings.json:526
 msgid "Save color"
-msgstr ""
+msgstr "நிறத்தை சேமிக்கவும்"
 
 #. Tooltip for the "Save color" brush setting
 #: ../brushsettings.json:530
@@ -469,11 +547,16 @@ msgid ""
 " 0.5 change active color towards brush color\n"
 " 1.0 set the active color to the brush color when selected"
 msgstr ""
+"ஒரு தூரிகையைத் தேர்ந்தெடுக்கும்போது, தூரிகை சேமிக்கப்பட்ட வண்ணத்திற்கு வண்ணத்தை மீட்டெடுக்க "
+"முடியும்.\n"
+" இந்த தூரிகையைத் தேர்ந்தெடுக்கும்போது 0.0 செயலில் உள்ள வண்ணத்தை மாற்ற வேண்டாம்\n"
+" 0.5 தூரிகை நிறத்தை நோக்கி செயலில் உள்ள வண்ணத்தை மாற்றவும்\n"
+" 1.0 தேர்ந்தெடுக்கப்பட்டால் செயலில் உள்ள வண்ணத்தை தூரிகை நிறத்திற்கு அமைக்கவும்"
 
 #. Brush setting
 #: ../brushsettings.json:535
 msgid "Change color hue"
-msgstr ""
+msgstr "வண்ண சாயலை மாற்றவும்"
 
 #. Tooltip for the "Change color hue" brush setting
 #: ../brushsettings.json:539
@@ -483,11 +566,15 @@ msgid ""
 " 0.0 disable\n"
 " 0.5 counterclockwise hue shift by 180 degrees"
 msgstr ""
+"வண்ண சாயலை மாற்றவும்.\n"
+" -0.1 சிறிய கடிகார திசையில் வண்ண சாயல் மாற்றம்\n"
+" 0.0 முடக்கு\n"
+" 0.5 எதிரெதிர் சாயல் சாயல் 180 டிகிரி"
 
 #. Brush setting
 #: ../brushsettings.json:544
 msgid "Change color lightness (HSL)"
-msgstr ""
+msgstr "வண்ண லேசான தன்மையை மாற்றவும் (HSL)"
 
 #. Tooltip for the "Change color lightness (HSL)" brush setting
 #: ../brushsettings.json:548
@@ -497,11 +584,15 @@ msgid ""
 " 0.0 disable\n"
 " 1.0 whiter"
 msgstr ""
+"HSL வண்ண மாதிரியைப் பயன்படுத்தி வண்ண லேசான தன்மையை மாற்றவும்.\n"
+" -1.0 கருப்பு\n"
+" 0.0 முடக்கு\n"
+" 1.0 வைட்டர்"
 
 #. Brush setting
 #: ../brushsettings.json:553
 msgid "Change color satur. (HSL)"
-msgstr ""
+msgstr "கலர் சதுரத்தை மாற்றவும். (எச்.எச்.எல்)"
 
 #. Tooltip for the "Change color satur. (HSL)" brush setting
 #: ../brushsettings.json:557
@@ -511,11 +602,15 @@ msgid ""
 " 0.0 disable\n"
 " 1.0 more saturated"
 msgstr ""
+"HSL வண்ண மாதிரியைப் பயன்படுத்தி வண்ண செறிவூட்டலை மாற்றவும்.\n"
+" -1.0 மேலும் சாம்பல் நிறத்தில்\n"
+" 0.0 முடக்கு\n"
+" 1.0 மேலும் நிறைவுற்றது"
 
 #. Brush setting
 #: ../brushsettings.json:562
 msgid "Change color value (HSV)"
-msgstr ""
+msgstr "வண்ண மதிப்பை மாற்றவும் (HSV)"
 
 #. Tooltip for the "Change color value (HSV)" brush setting
 #: ../brushsettings.json:566
@@ -526,11 +621,16 @@ msgid ""
 " 0.0 disable\n"
 " 1.0 brigher"
 msgstr ""
+"HSV வண்ண மாதிரியைப் பயன்படுத்தி வண்ண மதிப்பை (பிரகாசம், தீவிரம்) மாற்றவும். HSL க்கு முன் "
+"HSV மாற்றங்கள் பயன்படுத்தப்படுகின்றன.\n"
+" -1.0 இருண்டது\n"
+" 0.0 முடக்கு\n"
+" 1.0 பிரைட்டர்"
 
 #. Brush setting
 #: ../brushsettings.json:571
 msgid "Change color satur. (HSV)"
-msgstr ""
+msgstr "கலர் சதுரத்தை மாற்றவும். (HSV)"
 
 #. Tooltip for the "Change color satur. (HSV)" brush setting
 #: ../brushsettings.json:575
@@ -541,11 +641,16 @@ msgid ""
 " 0.0 disable\n"
 " 1.0 more saturated"
 msgstr ""
+"HSV வண்ண மாதிரியைப் பயன்படுத்தி வண்ண செறிவூட்டலை மாற்றவும். HSL க்கு முன் HSV மாற்றங்கள் "
+"பயன்படுத்தப்படுகின்றன.\n"
+" -1.0 மேலும் சாம்பல் நிறத்தில்\n"
+" 0.0 முடக்கு\n"
+" 1.0 மேலும் நிறைவுற்றது"
 
 #. Brush setting
 #: ../brushsettings.json:580
 msgid "Smudge"
-msgstr ""
+msgstr "ச்மட்ச்"
 
 #. Tooltip for the "Smudge" brush setting
 #: ../brushsettings.json:584
@@ -556,11 +661,16 @@ msgid ""
 " 0.5 mix the smudge color with the brush color\n"
 " 1.0 use only the smudge color"
 msgstr ""
+"தூரிகை நிறத்திற்கு பதிலாக ச்மட்ச் நிறத்துடன் வண்ணம் தீட்டவும். ச்மட்ச் நிறம் மெதுவாக நீங்கள் "
+"ஓவியம் வரைந்த வண்ணத்திற்கு மாற்றப்படுகிறது.\n"
+" 0.0 ச்மட்ச் நிறத்தைப் பயன்படுத்த வேண்டாம்\n"
+" 0.5 தூரிகை நிறத்துடன் ச்மட்ச் நிறத்தை கலக்கவும்\n"
+" 1.0 ச்மட்ச் நிறத்தை மட்டுமே பயன்படுத்துங்கள்"
 
 #. Brush setting - The name Pigment refers to the fact that this kind of color mixing is more similar to how colors mix in physical paint.
 #: ../brushsettings.json:591
 msgid "Pigment"
-msgstr ""
+msgstr "நிறமி"
 
 #. Tooltip for the "Pigment" brush setting - If this string is difficult to translate, feel free to change it to something more descriptive. Just try to be succinct and consistent.
 #: ../brushsettings.json:596
@@ -569,11 +679,14 @@ msgid ""
 "0.0 no spectral mixing\n"
 "1.0 only spectral mixing"
 msgstr ""
+"கழித்தல் நிறமாலை வண்ண கலவை முறை.\n"
+" 0.0 ச்பெக்ட்ரல் கலவை இல்லை\n"
+" 1.0 ச்பெக்ட்ரல் கலவை மட்டுமே"
 
 #. Brush setting
 #: ../brushsettings.json:601
 msgid "Smudge transparency"
-msgstr ""
+msgstr "வெளிப்படைத்தன்மை"
 
 #. Tooltip for the "Smudge transparency" brush setting
 #: ../brushsettings.json:605
@@ -585,11 +698,17 @@ msgid ""
 "0.0 will have no effect.\n"
 "Negative values do the reverse"
 msgstr ""
+"பூட்டு ஆல்பாவைப் போலவே எவ்வளவு வெளிப்படைத்தன்மை எடுக்கப்பட்டு மங்கலானது என்பதைக் "
+"கட்டுப்படுத்தவும்.\n"
+" 1.0 எந்த வெளிப்படைத்தன்மையையும் நகர்த்தாது.\n"
+" 0.5 50% வெளிப்படைத்தன்மை மற்றும் அதற்கு மேல் மட்டுமே நகரும்.\n"
+" 0.0 எந்த விளைவையும் ஏற்படுத்தாது.\n"
+" எதிர்மறை மதிப்புகள் தலைகீழ் செய்கின்றன"
 
 #. Brush setting
 #: ../brushsettings.json:610
 msgid "Smudge length"
-msgstr ""
+msgstr "ச்மட்ச் நீளம்"
 
 #. Tooltip for the "Smudge length" brush setting
 #: ../brushsettings.json:614
@@ -601,11 +720,17 @@ msgid ""
 "0.5 change the smudge color steadily towards the canvas color\n"
 "1.0 never change the smudge color"
 msgstr ""
+"நீங்கள் வரைவதற்கு ச்மட்ச் நிறம் எவ்வளவு விரைவாக மாறுகிறது என்பதை இது கட்டுப்படுத்துகிறது."
+"\n"
+" 0.0 உடனடியாக ச்மட்ச் வண்ணத்தை புதுப்பிக்கவும் (அடிக்கடி வண்ண சோதனைகள் காரணமாக அதிக "
+"சிபியு சுழற்சிகள் தேவை)\n"
+" 0.5 கேன்வாச் நிறத்தை நோக்கி மங்கலான நிறத்தை சீராக மாற்றவும்\n"
+" 1.0 ஒருபோதும் ச்மட்ச் நிறத்தை மாற்ற வேண்டாம்"
 
 #. Brush setting
 #: ../brushsettings.json:619
 msgid "Smudge length multiplier"
-msgstr ""
+msgstr "ச்மட்ச் நீளம் பெருக்கி"
 
 #. Tooltip for the "Smudge length multiplier" brush setting
 #: ../brushsettings.json:623
@@ -615,11 +740,15 @@ msgid ""
 "The longer the smudge length the more a color will spread and will also "
 "boost performance dramatically, as the canvas is sampled less often"
 msgstr ""
+"\"ச்மட்ச் நீளம்\" மதிப்புக்கான மடக்கை பெருக்கி.\n"
+" நிறைய DAB களுடன் உயர் வரையறை/பெரிய தூரிகைகளுக்கு சரிசெய்ய பயனுள்ளதாக இருக்கும்.\n"
+" கேன்வாச் குறைவாக அடிக்கடி மாதிரியாக இருப்பதால், ஒரு வண்ணம் அதிக அளவில் பரவுகிறது, "
+"மேலும் செயல்திறனை வியத்தகு முறையில் அதிகரிக்கும்"
 
 #. Brush setting
 #: ../brushsettings.json:628
 msgid "Smudge bucket"
-msgstr ""
+msgstr "ச்மட்ச் பக்கெட்"
 
 #. Tooltip for the "Smudge bucket" brush setting
 #: ../brushsettings.json:632
@@ -630,11 +759,16 @@ msgid ""
 "Especially useful with the \"Custom input\" setting to correlate buckets "
 "with other settings such as offsets."
 msgstr ""
+"ஒவ்வொன்றும் கேன்வாசிலிருந்து எடுக்கப்பட்ட வண்ணத்தை வைத்திருக்கக்கூடிய 256 வாளிகள் உள்ளன.\n"
+" தூரிகையின் மாறுபாடு மற்றும் யதார்த்தத்தை மேம்படுத்த எந்த வாளியைப் பயன்படுத்த வேண்டும் "
+"என்பதை நீங்கள் கட்டுப்படுத்தலாம்.\n"
+" ஆஃப்செட்டுகள் போன்ற பிற அமைப்புகளுடன் வாளிகளை தொடர்புபடுத்த \"தனிப்பயன் உள்ளீடு\" "
+"அமைப்பில் குறிப்பாக பயனுள்ளதாக இருக்கும்."
 
 #. Brush setting
 #: ../brushsettings.json:637
 msgid "Smudge radius"
-msgstr ""
+msgstr "ச்மட்ச் ஆரம்"
 
 #. Tooltip for the "Smudge radius" brush setting
 #: ../brushsettings.json:641
@@ -646,11 +780,17 @@ msgid ""
 "+0.7 twice the brush radius\n"
 "+1.6 five times the brush radius (slow performance)"
 msgstr ""
+"இது வட்டத்தின் ஆரம் மாற்றியமைக்கிறது, அங்கு வண்ணமயமாக்கப்படுவதற்கு வண்ணம் எடுக்கப்படுகிறது."
+"\n"
+" 0.0 தூரிகை ஆரம் பயன்படுத்தவும்\n"
+" -0.7 பாதி தூரிகை ஆரம் (வேகமாக, ஆனால் எப்போதும் உள்ளுணர்வு இல்லை)\n"
+" +0.7 தூரிகை ஆரம் இரு மடங்கு\n"
+" +1.6 தூரிகை ஆரம் (மெதுவான செயல்திறன்)"
 
 #. Brush setting
 #: ../brushsettings.json:646
 msgid "Eraser"
-msgstr ""
+msgstr "அழிப்பான்"
 
 #. Tooltip for the "Eraser" brush setting
 #: ../brushsettings.json:650
@@ -660,11 +800,15 @@ msgid ""
 " 1.0 standard eraser\n"
 " 0.5 pixels go towards 50% transparency"
 msgstr ""
+"இந்த கருவி அழிப்பான் போல எவ்வளவு செயல்படுகிறது\n"
+" 0.0 சாதாரண ஓவியம்\n"
+" 1.0 நிலையான அழிப்பான்\n"
+" 0.5 படப்புள்ளிகள் 50% வெளிப்படைத்தன்மையை நோக்கி செல்கின்றன"
 
 #. Brush setting
 #: ../brushsettings.json:655
 msgid "Stroke threshold"
-msgstr ""
+msgstr "பக்கவாதம் வாசல்"
 
 #. Tooltip for the "Stroke threshold" brush setting
 #: ../brushsettings.json:659
@@ -672,11 +816,13 @@ msgid ""
 "How much pressure is needed to start a stroke. This affects the stroke input "
 "only. MyPaint does not need a minimum pressure to start drawing."
 msgstr ""
+"பக்கவாதத்தைத் தொடங்க எவ்வளவு அழுத்தம் தேவை. இது பக்கவாதம் உள்ளீட்டை மட்டுமே பாதிக்கிறது. "
+"வரைபடத்தைத் தொடங்க MyPaint க்கு குறைந்தபட்ச அழுத்தம் தேவையில்லை."
 
 #. Brush setting
 #: ../brushsettings.json:664
 msgid "Stroke duration"
-msgstr ""
+msgstr "பக்கவாதம் காலம்"
 
 #. Tooltip for the "Stroke duration" brush setting
 #: ../brushsettings.json:668
@@ -684,11 +830,13 @@ msgid ""
 "How far you have to move until the stroke input reaches 1.0. This value is "
 "logarithmic (negative values will not invert the process)."
 msgstr ""
+"பக்கவாதம் உள்ளீடு 1.0 ஐ அடையும் வரை நீங்கள் எவ்வளவு தூரம் செல்ல வேண்டும். இந்த மதிப்பு மடக்கை"
+" (எதிர்மறை மதிப்புகள் செயல்முறையை மாற்றாது)."
 
 #. Brush setting
 #: ../brushsettings.json:673
 msgid "Stroke hold time"
-msgstr ""
+msgstr "பக்கவாதம் நேரம்"
 
 #. Tooltip for the "Stroke hold time" brush setting
 #: ../brushsettings.json:677
@@ -699,11 +847,15 @@ msgid ""
 "2.0 means twice as long as it takes to go from 0.0 to 1.0\n"
 "9.9 or higher stands for infinite"
 msgstr ""
+"பக்கவாதம் உள்ளீடு எவ்வளவு காலம் 1.0 ஆக இருக்கும் என்பதை இது வரையறுக்கிறது. அதன்பிறகு அது"
+" 0.0 க்கு மீட்டமைக்கப்பட்டு, பக்கவாதம் இன்னும் முடிக்கப்படாவிட்டாலும் மீண்டும் வளரத் தொடங்கும்.\n"
+" 2.0 என்றால் 0.0 முதல் 1.0 வரை செல்ல இரண்டு மடங்கு நீளமானது\n"
+" 9.9 அல்லது அதற்கு மேற்பட்டவை எல்லையற்றவை"
 
 #. Brush setting
 #: ../brushsettings.json:682
 msgid "Custom input"
-msgstr ""
+msgstr "தனிப்பயன் உள்ளீடு"
 
 #. Tooltip for the "Custom input" brush setting
 #: ../brushsettings.json:686
@@ -716,11 +868,16 @@ msgid ""
 "If you make it change 'by random' you can generate a slow (smooth) random "
 "input."
 msgstr ""
+"தனிப்பயன் உள்ளீட்டை இந்த மதிப்புக்கு அமைக்கவும். அது மெதுவாக இருந்தால், அதை இந்த மதிப்பை "
+"நோக்கி நகர்த்தவும் (கீழே காண்க). இந்த உள்ளீட்டை நீங்கள் அழுத்தம்/வேகம்/எதுவாக இருந்தாலும் "
+"சார்ந்து இந்த உள்ளீட்டைச் சார்ந்து, பின்னர் இந்த கலவையை உங்களுக்குத் தேவையான எல்லா இடங்களிலும் "
+"மீண்டும் செய்வதற்குப் பதிலாக இந்த 'தனிப்பயன் உள்ளீட்டை' சார்ந்துள்ளது.\n"
+" நீங்கள் அதை 'சீரற்ற' மூலம் மாற்றினால், மெதுவான (மென்மையான) சீரற்ற உள்ளீட்டை உருவாக்கலாம்."
 
 #. Brush setting
 #: ../brushsettings.json:691
 msgid "Custom input filter"
-msgstr ""
+msgstr "தனிப்பயன் உள்ளீட்டு வடிகட்டி"
 
 #. Tooltip for the "Custom input filter" brush setting
 #: ../brushsettings.json:695
@@ -730,11 +887,15 @@ msgid ""
 "if brushdabs do not depend on time).\n"
 "0.0 no slowdown (changes apply instantly)"
 msgstr ""
+"தனிப்பயன் உள்ளீடு உண்மையில் எவ்வளவு மெதுவாக விரும்பிய மதிப்பைப் பின்பற்றுகிறது (மேலே உள்ள "
+"ஒன்று). இது பிரச்டாப் மட்டத்தில் நிகழ்கிறது (பிரச்டப்கள் நேரத்தை சார்ந்து இல்லாவிட்டால், "
+"எவ்வளவு நேரம் கடந்துவிட்டது என்பதை புறக்கணித்தல்).\n"
+" 0.0 மந்தநிலை இல்லை (மாற்றங்கள் உடனடியாக பொருந்தும்)"
 
 #. Brush setting
 #: ../brushsettings.json:700
 msgid "Elliptical dab: ratio"
-msgstr ""
+msgstr "நீள்வட்ட DAB: விகிதம்"
 
 #. Tooltip for the "Elliptical dab: ratio" brush setting
 #: ../brushsettings.json:704
@@ -742,11 +903,13 @@ msgid ""
 "Aspect ratio of the dabs; must be >= 1.0, where 1.0 means a perfectly round "
 "dab."
 msgstr ""
+"DAB களின் விகித விகிதம்; > = 1.0 ஆக இருக்க வேண்டும், அங்கு 1.0 என்பது ஒரு முழுமையான "
+"வட்டமான டப் என்று பொருள்."
 
 #. Brush setting
 #: ../brushsettings.json:709
 msgid "Elliptical dab: angle"
-msgstr ""
+msgstr "நீள்வட்ட DAB: கோணம்"
 
 #. Tooltip for the "Elliptical dab: angle" brush setting
 #: ../brushsettings.json:713
@@ -756,11 +919,15 @@ msgid ""
 " 45.0 45 degrees, turned clockwise\n"
 " 180.0 horizontal again"
 msgstr ""
+"நீள்வட்ட டப்கள் சாய்ந்த கோணம்\n"
+" 0.0 கிடைமட்ட DAB கள்\n"
+" 45.0 45 டிகிரி, கடிகார திசையில் திரும்பியது\n"
+" 180.0 மீண்டும் கிடைமட்டமாக"
 
 #. Brush setting
 #: ../brushsettings.json:718
 msgid "Direction filter"
-msgstr ""
+msgstr "திசை வடிகட்டி"
 
 #. Tooltip for the "Direction filter" brush setting
 #: ../brushsettings.json:722
@@ -768,11 +935,12 @@ msgid ""
 "A low value will make the direction input adapt more quickly, a high value "
 "will make it smoother"
 msgstr ""
+"குறைந்த மதிப்பு திசை உள்ளீட்டை விரைவாக மாற்றியமைக்கும், அதிக மதிப்பு அதை மென்மையாக்கும்"
 
 #. Brush setting
 #: ../brushsettings.json:727
 msgid "Lock alpha"
-msgstr ""
+msgstr "பூட்டு ஆல்பா"
 
 #. Tooltip for the "Lock alpha" brush setting
 #: ../brushsettings.json:731
@@ -783,11 +951,16 @@ msgid ""
 " 0.5 half of the paint gets applied normally\n"
 " 1.0 alpha channel fully locked"
 msgstr ""
+"அடுக்கின் ஆல்பா சேனலை மாற்ற வேண்டாம் (ஏற்கனவே வண்ணப்பூச்சு இருக்கும் இடத்தில் மட்டுமே வண்ணம் "
+"தீட்டவும்)\n"
+" 0.0 சாதாரண ஓவியம்\n"
+" வண்ணப்பூச்சின் 0.5 பாதி பொதுவாக பயன்படுத்தப்படுகிறது\n"
+" 1.0 ஆல்பா சேனல் முழுமையாக பூட்டப்பட்டுள்ளது"
 
 #. Brush setting
 #: ../brushsettings.json:736
 msgid "Colorize"
-msgstr ""
+msgstr "வண்ணமயமாக்கல்"
 
 #. Tooltip for the "Colorize" brush setting
 #: ../brushsettings.json:740
@@ -795,11 +968,13 @@ msgid ""
 "Colorize the target layer, setting its hue and saturation from the active "
 "brush color while retaining its value and alpha."
 msgstr ""
+"இலக்கு அடுக்கை வண்ணமயமாக்குங்கள், அதன் சாயல் மற்றும் செறிவூட்டலை செயலில் உள்ள தூரிகை "
+"நிறத்திலிருந்து அதன் மதிப்பு மற்றும் ஆல்பாவைத் தக்க வைத்துக் கொள்ளுங்கள்."
 
 #. Brush setting
 #: ../brushsettings.json:745
 msgid "Posterize"
-msgstr ""
+msgstr "சுவரொட்டி"
 
 #. Tooltip for the "Posterize" brush setting
 #: ../brushsettings.json:749
@@ -807,11 +982,13 @@ msgid ""
 "Strength of posterization, reducing number of colors based on the "
 "\"Posterization levels\" setting, while retaining alpha."
 msgstr ""
+"போச்டரைசேசனின் வலிமை, \"போச்டரைசேசன் நிலைகள்\" அமைப்பின் அடிப்படையில் வண்ணங்களின் "
+"எண்ணிக்கையைக் குறைத்தல், ஆல்பாவைத் தக்க வைத்துக் கொள்ளும்போது."
 
 #. Brush setting
 #: ../brushsettings.json:754
 msgid "Posterization levels"
-msgstr ""
+msgstr "சுவரொட்டி நிலைகள்"
 
 #. Tooltip for the "Posterization levels" brush setting
 #: ../brushsettings.json:758
@@ -820,11 +997,14 @@ msgid ""
 "0.05 = 5 levels, 0.2 = 20 levels, etc.\n"
 "Values above 0.5 may not be noticeable."
 msgstr ""
+"சுவரொட்டி நிலைகளின் எண்ணிக்கை (100 ஆல் வகுக்கப்படுகிறது).\n"
+" 0.05 = 5 நிலைகள், 0.2 = 20 நிலைகள், முதலியன.\n"
+" 0.5 க்கு மேலே உள்ள மதிப்புகள் கவனிக்கப்படாமல் இருக்கலாம்."
 
 #. Brush setting
 #: ../brushsettings.json:763
 msgid "Snap to pixel"
-msgstr ""
+msgstr "பிக்சலுக்கு ச்னாப்"
 
 #. Tooltip for the "Snap to pixel" brush setting
 #: ../brushsettings.json:767
@@ -832,11 +1012,13 @@ msgid ""
 "Snap brush dab's center and its radius to pixels. Set this to 1.0 for a thin "
 "pixel brush."
 msgstr ""
+"ச்னாப் தூரிகை டாபின் நடுவண் மற்றும் அதன் ஆரம் பிக்சல்களுக்கு. மெல்லிய படப்புள்ளி தூரிகைக்கு "
+"இதை 1.0 ஆக அமைக்கவும்."
 
 #. Brush setting
 #: ../brushsettings.json:772
 msgid "Pressure gain"
-msgstr ""
+msgstr "அழுத்தம் ஆதாயம்"
 
 #. Tooltip for the "Pressure gain" brush setting
 #: ../brushsettings.json:776
@@ -844,11 +1026,13 @@ msgid ""
 "This changes how hard you have to press. It multiplies tablet pressure by a "
 "constant factor."
 msgstr ""
+"இது நீங்கள் எவ்வளவு கடினமாக அழுத்த வேண்டும் என்பதை மாற்றுகிறது. இது ஒரு நிலையான "
+"காரணியால் டேப்லெட் அழுத்தத்தை பெருக்குகிறது."
 
 #. Brush input
 #: ../brushsettings.json:4
 msgid "Pressure"
-msgstr ""
+msgstr "அழுத்தம்"
 
 #. Tooltip for the "Pressure" brush input
 #: ../brushsettings.json:11
@@ -857,6 +1041,9 @@ msgid ""
 "get larger when a pressure gain is used. If you use the mouse, it will be "
 "0.5 when a button is pressed and 0.0 otherwise."
 msgstr ""
+"டேப்லெட்டால் அறிவிக்கப்பட்ட அழுத்தம். வழக்கமாக 0.0 முதல் 1.0 வரை, ஆனால் அழுத்தம் அதிகரிப்பு"
+" பயன்படுத்தப்படும்போது அது பெரிதாகலாம். நீங்கள் சுட்டியைப் பயன்படுத்தினால், ஒரு பொத்தானை "
+"அழுத்தும்போது அது 0.5 ஆகவும், இல்லையெனில் 0.0 ஆகவும் இருக்கும்."
 
 #. Brush input
 #: ../brushsettings.json:14
@@ -869,11 +1056,13 @@ msgid ""
 "Fast random noise, changing at each evaluation. Evenly distributed between 0 "
 "and 1."
 msgstr ""
+"வேகமான சீரற்ற ஒலி, ஒவ்வொரு மதிப்பீட்டிலும் மாறுகிறது. 0 மற்றும் 1 க்கு இடையில் சமமாக "
+"விநியோகிக்கப்படுகிறது."
 
 #. Brush input
 #: ../brushsettings.json:24
 msgid "Stroke"
-msgstr ""
+msgstr "பக்கவாதம்"
 
 #. Tooltip for the "Stroke" brush input
 #: ../brushsettings.json:31
@@ -882,6 +1071,9 @@ msgid ""
 "be configured to jump back to zero periodically while you move. Look at the "
 "'stroke duration' and 'stroke hold time' settings."
 msgstr ""
+"இந்த உள்ளீடு மெதுவாக பூச்சியத்திலிருந்து ஒன்றுக்குச் செல்லும் போது நீங்கள் ஒரு பக்கவாதம் "
+"வரையும். நீங்கள் நகரும்போது அவ்வப்போது பூச்சியத்திற்குத் திரும்பிச் செல்லவும் இது "
+"கட்டமைக்கப்படலாம். 'பக்கவாதம் காலம்' மற்றும் 'ச்ட்ரோக் ஓல்ட் டைம்' அமைப்புகளைப் பாருங்கள்."
 
 #. Brush input
 #: ../brushsettings.json:34
@@ -894,11 +1086,13 @@ msgid ""
 "The angle of the stroke, in degrees. The value will stay between 0.0 and "
 "180.0, effectively ignoring turns of 180 degrees."
 msgstr ""
+"பக்கவாதத்தின் கோணம், டிகிரிகளில். மதிப்பு 0.0 முதல் 180.0 வரை இருக்கும், இது 180 "
+"டிகிரி திருப்பங்களை திறம்பட புறக்கணிக்கும்."
 
 #. Brush input
 #: ../brushsettings.json:44
 msgid "Declination/Tilt"
-msgstr ""
+msgstr "வீழ்ச்சி/சாய்வு"
 
 #. Tooltip for the "Declination/Tilt" brush input
 #: ../brushsettings.json:51
@@ -906,11 +1100,13 @@ msgid ""
 "Declination of stylus tilt. 0 when stylus is parallel to tablet and 90.0 "
 "when it's perpendicular to tablet."
 msgstr ""
+"ச்டைலச் சாய்வின் வீழ்ச்சி. ச்டைலச் டேப்லெட்டுக்கு இணையாக இருக்கும்போது மற்றும் டேப்லெட்டுக்கு "
+"செங்குத்தாக இருக்கும்போது 90.0."
 
 #. Brush input
 #: ../brushsettings.json:54
 msgid "Ascension"
-msgstr ""
+msgstr "அசென்சன்"
 
 #. Tooltip for the "Ascension" brush input
 #: ../brushsettings.json:61
@@ -919,11 +1115,14 @@ msgid ""
 "when rotated 90 degrees clockwise, -90 when rotated 90 degrees "
 "counterclockwise."
 msgstr ""
+"ச்டைலச் சாய்வின் வலது அசென்சன். 0 ச்டைலச் வேலை இறுதி உங்களுக்கு சுட்டிக்காட்டும்போது, 90 "
+"டிகிரி கடிகார திசையில் சுழற்றும்போது +90, -90 90 டிகிரி எதிரெதிர் திசையில் "
+"சுழற்றும்போது."
 
 #. Brush input - "fine" refers to the accuracy and update frequency of the speed value, as in "fine grained"
 #: ../brushsettings.json:65
 msgid "Fine speed"
-msgstr ""
+msgstr "நல்ல விரைவு"
 
 #. Tooltip for the "Fine speed" brush input
 #: ../brushsettings.json:72
@@ -932,11 +1131,14 @@ msgid ""
 "values' from the 'help' menu to get a feeling for the range; negative values "
 "are rare but possible for very low speed."
 msgstr ""
+"நீங்கள் தற்போது எவ்வளவு வேகமாக நகர்கிறீர்கள். இது மிக விரைவாக மாறக்கூடும். வரம்பிற்கு ஒரு "
+"உணர்வைப் பெற 'உதவி' மெனுவிலிருந்து 'உள்ளீட்டு மதிப்புகளை அச்சிடு' முயற்சிக்கவும்; "
+"எதிர்மறை மதிப்புகள் அரிதானவை, ஆனால் மிகக் குறைந்த வேகத்திற்கு சாத்தியம்."
 
 #. Brush input - changes more smoothly but is less accurate than "Fine speed"
 #: ../brushsettings.json:76
 msgid "Gross speed"
-msgstr ""
+msgstr "மொத்த விரைவு"
 
 #. Tooltip for the "Gross speed" brush input
 #: ../brushsettings.json:83
@@ -944,6 +1146,8 @@ msgid ""
 "Same as fine speed, but changes slower. Also look at the 'gross speed "
 "filter' setting."
 msgstr ""
+"சிறந்த வேகத்தைப் போலவே, ஆனால் மெதுவாக மாறுகிறது. 'மொத்த வேக வடிகட்டி' அமைப்பையும் "
+"பாருங்கள்."
 
 #. Brush input - the input is the output of the "Custom input" setting
 #: ../brushsettings.json:87
@@ -955,22 +1159,22 @@ msgstr "தனிபயன்"
 msgid ""
 "This is a user defined input. Look at the 'custom input' setting for details."
 msgstr ""
+"இது பயனர் வரையறுக்கப்பட்ட உள்ளீடு. விவரங்களுக்கு 'தனிப்பயன் உள்ளீடு' அமைப்பைப் பாருங்கள்."
 
 #. Brush input - refers to the direction of the stroke
 #: ../brushsettings.json:98
-#, fuzzy
 msgid "Direction 360"
-msgstr "திசை"
+msgstr "திசை 360"
 
 #. Tooltip for the "Direction 360" brush input
 #: ../brushsettings.json:105
 msgid "The angle of the stroke, from 0 to 360 degrees."
-msgstr ""
+msgstr "பக்கவாதத்தின் கோணம், 0 முதல் 360 டிகிரி வரை."
 
 #. Brush input
 #: ../brushsettings.json:108
 msgid "Attack Angle"
-msgstr ""
+msgstr "தாக்குதல் கோணம்"
 
 #. Tooltip for the "Attack Angle" brush input
 #: ../brushsettings.json:115
@@ -983,11 +1187,17 @@ msgid ""
 "180 means the angle of the stroke is directly opposite the angle of the "
 "stylus."
 msgstr ""
+"வேறுபாடு, டிகிரிகளில், ச்டைலச் சுட்டிக்காட்டும் கோணத்திற்கும் பக்கவாதம் இயக்கத்தின் "
+"கோணத்திற்கும் இடையில்.\n"
+" வரம்பு +/- 180.0.\n"
+" 0.0 என்றால் பக்கவாதம் கோணம் ச்டைலசின் கோணத்திற்கு ஒத்திருக்கிறது.\n"
+" 90 என்றால் பக்கவாதம் கோணம் ச்டைலசின் கோணத்திற்கு செங்குத்தாக உள்ளது.\n"
+" 180 என்றால் பக்கவாதத்தின் கோணம் நேரடியாக ச்டைலசின் கோணத்திற்கு எதிரே உள்ளது."
 
 #. Brush input
 #: ../brushsettings.json:118
 msgid "Declination/Tilt X"
-msgstr ""
+msgstr "வீழ்ச்சி/சாய்வு ஃச்"
 
 #. Tooltip for the "Declination/Tilt X" brush input
 #: ../brushsettings.json:125
@@ -995,11 +1205,13 @@ msgid ""
 "Declination of stylus tilt on X-Axis. 90/-90 when stylus is parallel to "
 "tablet and 0 when it's perpendicular to tablet."
 msgstr ""
+"எக்ச்-அச்சில் ச்டைலச் சாய்வின் வீழ்ச்சி. 90/-90 ச்டைலச் டேப்லெட்டுக்கு இணையாக இருக்கும்போது "
+"மற்றும் டேப்லெட்டுக்கு செங்குத்தாக இருக்கும்போது 0."
 
 #. Brush input
 #: ../brushsettings.json:128
 msgid "Declination/Tilt Y"
-msgstr ""
+msgstr "வீழ்ச்சி/சாய்வு ஒய்"
 
 #. Tooltip for the "Declination/Tilt Y" brush input
 #: ../brushsettings.json:135
@@ -1007,11 +1219,13 @@ msgid ""
 "Declination of stylus tilt on Y-Axis. 90/-90 when stylus is parallel to "
 "tablet and 0 when it's perpendicular to tablet."
 msgstr ""
+"Y- அச்சில் ச்டைலச் சாய்வின் வீழ்ச்சி. 90/-90 ச்டைலச் டேப்லெட்டுக்கு இணையாக இருக்கும்போது "
+"மற்றும் டேப்லெட்டுக்கு செங்குத்தாக இருக்கும்போது 0."
 
 #. Brush input
 #: ../brushsettings.json:138
 msgid "GridMap X"
-msgstr ""
+msgstr "கிரிட்மேப் ஃச்"
 
 #. Tooltip for the "GridMap X" brush input
 #: ../brushsettings.json:145
@@ -1022,11 +1236,15 @@ msgid ""
 "The brush size should be considerably smaller than the grid scale for best "
 "results."
 msgstr ""
+"ஃச் 256 படப்புள்ளி கட்டத்தில் ஒருங்கிணைக்கிறது. கர்சர் ஃச் அச்சில் நகர்த்தப்படுவதால் இது 0-"
+"256 சுற்றி வரும். \"பக்கவாதம்\" போன்றது. ஒளிபுகாநிலையை மாற்றுவதன் மூலம் காகித அமைப்பைச்"
+" சேர்க்க பயன்படுத்தலாம்.\n"
+" சிறந்த முடிவுகளுக்கான கட்டம் அளவை விட தூரிகை அளவு கணிசமாக சிறியதாக இருக்க வேண்டும்."
 
 #. Brush input
 #: ../brushsettings.json:148
 msgid "GridMap Y"
-msgstr ""
+msgstr "கிரிட்மேப் ஒய்"
 
 #. Tooltip for the "GridMap Y" brush input
 #: ../brushsettings.json:155
@@ -1037,11 +1255,15 @@ msgid ""
 "The brush size should be considerably smaller than the grid scale for best "
 "results."
 msgstr ""
+"ஒய் 256 படப்புள்ளி கட்டத்தில் ஒருங்கிணைக்கிறது. கர்சர் ஒய் அச்சில் நகர்த்தப்படுவதால் இது 0-"
+"256 சுற்றி வரும். \"பக்கவாதம்\" போன்றது. ஒளிபுகாநிலையை மாற்றுவதன் மூலம் காகித அமைப்பைச்"
+" சேர்க்க பயன்படுத்தலாம்.\n"
+" சிறந்த முடிவுகளுக்கான கட்டம் அளவை விட தூரிகை அளவு கணிசமாக சிறியதாக இருக்க வேண்டும்."
 
 #. Brush input - refers to canvas zoom
 #: ../brushsettings.json:159
 msgid "Zoom Level"
-msgstr ""
+msgstr "சூம் நிலை"
 
 #. Tooltip for the "Zoom Level" brush input
 #: ../brushsettings.json:166
@@ -1051,11 +1273,15 @@ msgid ""
 "For the Radius setting, using a value of -4.15 makes the brush size roughly "
 "constant, relative to the level of zoom."
 msgstr ""
+"கேன்வாச் பார்வையின் தற்போதைய சூம் நிலை.\n"
+" மடக்கை: 0.0 100%, 0.69 200%, -1.38 25%ஆகும்\n"
+" ஆரம் அமைப்பைப் பொறுத்தவரை, -4.15 மதிப்பைப் பயன்படுத்துவது தூரிகை அளவை தோராயமாக "
+"மாறாமல், சூம் அளவோடு ஒப்பிடும்போது."
 
 #. Brush input
 #: ../brushsettings.json:169
 msgid "Base Brush Radius"
-msgstr ""
+msgstr "அடிப்படை தூரிகை ஆரம்"
 
 #. Tooltip for the "Base Brush Radius" brush input
 #: ../brushsettings.json:176
@@ -1067,11 +1293,17 @@ msgid ""
 "Take note of \"Dabs per basic radius\" and \"Dabs per actual radius\", which "
 "behave much differently."
 msgstr ""
+"அடிப்படை தூரிகை ஆரம் ஒரு தூரிகையின் நடத்தையை பெரியதாகவோ அல்லது சிறியதாகவோ மாற்ற "
+"அனுமதிக்கிறது.\n"
+" நீங்கள் DAB அளவு அதிகரிப்பை ரத்துசெய்து, தூரிகையை பெரிதாக்க வேறு ஏதாவது ஒன்றை "
+"சரிசெய்யலாம்.\n"
+" மிகவும் வித்தியாசமாக நடந்துகொள்ளும் \"அடிப்படை ஆரம்\" மற்றும் "
+"\"உண்மையான ஆரம் ஒன்றுக்கு DABS\" ஆகியவற்றைக் கவனியுங்கள்."
 
 #. Brush input
 #: ../brushsettings.json:179
 msgid "Barrel Rotation"
-msgstr ""
+msgstr "பீப்பாய் சுழற்சி"
 
 #. Tooltip for the "Barrel Rotation" brush input
 #: ../brushsettings.json:186
@@ -1081,3 +1313,7 @@ msgid ""
 "+90 when twisted clockwise 90 degrees\n"
 "-90 when twisted counterclockwise 90 degrees"
 msgstr ""
+"ச்டைலசின் பீப்பாய் சுழற்சி.\n"
+" 0 முறுக்காதபோது\n"
+" +90 கடிகார திசையில் 90 டிகிரி\n"
+" -90 எதிரெதிர் திசையில் 90 டிகிரி முறுக்கும்போது"

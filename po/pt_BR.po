@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: 0.9.0-git\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-03-04 06:53+0100\n"
-"PO-Revision-Date: 2022-08-01 21:18+0000\n"
-"Last-Translator: José Francisco Candido Filho <jfcandidofilho@gmail.com>\n"
+"PO-Revision-Date: 2025-05-30 15:11+0000\n"
+"Last-Translator: Tiago Matos <tiago@tmatos.net>\n"
 "Language-Team: Portuguese (Brazil) <https://hosted.weblate.org/projects/"
 "mypaint/libmypaint/pt_BR/>\n"
 "Language: pt_BR\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 4.14-dev\n"
+"X-Generator: Weblate 5.12-dev\n"
 "X-Poedit-Language: Brazilian Portuguese\n"
 "X-Poedit-Country: BRAZIL\n"
 "X-Poedit-SourceCharset: utf-8\n"
@@ -143,7 +143,7 @@ msgid ""
 msgstr ""
 "Este controle diminui a dureza quando necessário para evitar o efeito de "
 "serrilhamento de pixels por desfocar a pincelada.\n"
-"0.0 desligado (para borrachas muito fortes e  pincéis de pixel)\n"
+"0.0 desligado (para borrachas muito fortes e pincéis de pixel)\n"
 "1.0 desfoca 1 pixel (um bom valor)\n"
 "5.0 desfocamento notável, pinceladas finas vão desaparecer"
 
@@ -603,7 +603,7 @@ msgid ""
 " 0.0 disable\n"
 " 1.0 whiter"
 msgstr ""
-"Altera o brilho da cor (lightness, luminance),  usando o modelo de cor HSL.\n"
+"Altera o brilho da cor (lightness, luminance), usando o modelo de cor HSL.\n"
 "-1.0 mais escuro\n"
 " 0.0 desligado\n"
 " 1.0 mais branco"
@@ -977,7 +977,7 @@ msgstr ""
 #. Brush setting
 #: ../brushsettings.json:745
 msgid "Posterize"
-msgstr ""
+msgstr "Posterizar"
 
 #. Tooltip for the "Posterize" brush setting
 #: ../brushsettings.json:749
@@ -989,7 +989,7 @@ msgstr ""
 #. Brush setting
 #: ../brushsettings.json:754
 msgid "Posterization levels"
-msgstr ""
+msgstr "Níveis de posterização"
 
 #. Tooltip for the "Posterization levels" brush setting
 #: ../brushsettings.json:758
@@ -998,6 +998,9 @@ msgid ""
 "0.05 = 5 levels, 0.2 = 20 levels, etc.\n"
 "Values above 0.5 may not be noticeable."
 msgstr ""
+"Número de níveis de posterização (dividido por 100).\n"
+"0.05 = 5 níveis, 0.2 = 20 níveis, etc.\n"
+"Valores acima de 0.5 podem não ser muito perceptíveis."
 
 #. Brush setting
 #: ../brushsettings.json:763
@@ -1175,7 +1178,7 @@ msgstr ""
 #. Brush input
 #: ../brushsettings.json:108
 msgid "Attack Angle"
-msgstr ""
+msgstr "Ângulo de ataque"
 
 #. Tooltip for the "Attack Angle" brush input
 #: ../brushsettings.json:115
@@ -1268,7 +1271,7 @@ msgstr ""
 #. Brush input
 #: ../brushsettings.json:169
 msgid "Base Brush Radius"
-msgstr ""
+msgstr "Raio Base do Pincel"
 
 #. Tooltip for the "Base Brush Radius" brush input
 #: ../brushsettings.json:176

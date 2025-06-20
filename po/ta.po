@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-03-04 06:53+0100\n"
-"PO-Revision-Date: 2025-01-17 17:00+0000\n"
+"PO-Revision-Date: 2025-06-21 18:05+0000\n"
 "Last-Translator: தமிழ்நேரம் <anishprabu.t@gmail.com>\n"
 "Language-Team: Tamil <https://hosted.weblate.org/projects/mypaint/libmypaint/"
 "ta/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.10-dev\n"
+"X-Generator: Weblate 5.13-dev\n"
 
 #. Brush setting
 #: ../brushsettings.json:193
@@ -569,7 +569,7 @@ msgstr ""
 "வண்ண சாயலை மாற்றவும்.\n"
 " -0.1 சிறிய கடிகார திசையில் வண்ண சாயல் மாற்றம்\n"
 " 0.0 முடக்கு\n"
-" 0.5 எதிரெதிர் சாயல் சாயல் 180 டிகிரி"
+" 0.5 எதிரெதிர் சாயல் 180 டிகிரி"
 
 #. Brush setting
 #: ../brushsettings.json:544

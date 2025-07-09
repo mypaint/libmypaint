@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: 0.8\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-03-04 06:53+0100\n"
-"PO-Revision-Date: 2023-12-04 04:08+0000\n"
+"PO-Revision-Date: 2024-04-20 22:07+0000\n"
 "Last-Translator: Reza Almanda <rezaalmanda27@gmail.com>\n"
 "Language-Team: Indonesian <https://hosted.weblate.org/projects/mypaint/"
 "libmypaint/id/>\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 5.3-dev\n"
+"X-Generator: Weblate 5.5-dev\n"
 
 #. Brush setting
 #: ../brushsettings.json:193
@@ -110,13 +110,15 @@ msgstr ""
 #. Brush setting
 #: ../brushsettings.json:238
 msgid "Softness"
-msgstr ""
+msgstr "Kehalusan"
 
 #. Tooltip for the "Softness" brush setting
 #: ../brushsettings.json:242
 msgid ""
 "Soften brush-circle from center to edge (setting to 1.0 will draw nothing)."
 msgstr ""
+"Haluskan lingkaran kuas dari tengah ke tepi (pengaturan ke 1,0 tidak akan "
+"menggambar apa pun)."
 
 #. Brush setting
 #: ../brushsettings.json:247
@@ -189,6 +191,9 @@ msgid ""
 "Logarithmic (same scale as brush radius).\n"
 "A scale of 0 will make the grid 256x256 pixels."
 msgstr ""
+"Mengubah skala keseluruhan yang digunakan untuk input kuas GridMap.\n"
+"Logaritmik (skala yang sama dengan radius kuas).\n"
+"Skala 0 akan membuat kisi-kisi 256x256 piksel."
 
 #. Brush setting
 #: ../brushsettings.json:292

@@ -9,10 +9,10 @@
 # tools and you shouldn't use this script.  Just call ./configure
 # directly.
 
-ACLOCAL=${ACLOCAL-aclocal-1.17}
+ACLOCAL=${ACLOCAL-aclocal-1.18}
 AUTOCONF=${AUTOCONF-autoconf}
 AUTOHEADER=${AUTOHEADER-autoheader}
-AUTOMAKE=${AUTOMAKE-automake-1.17}
+AUTOMAKE=${AUTOMAKE-automake-1.18}
 LIBTOOLIZE=${LIBTOOLIZE-libtoolize}
 PYTHON=${PYTHON-python}
 
@@ -128,6 +128,9 @@ printf "checking for automake >= $AUTOMAKE_REQUIRED_VERSION ... "
 if ($AUTOMAKE --version) < /dev/null > /dev/null 2>&1; then
    AUTOMAKE=$AUTOMAKE
    ACLOCAL=$ACLOCAL
+elif (automake-1.18 --version) < /dev/null > /dev/null 2>&1; then
+   AUTOMAKE=automake-1.18
+   ACLOCAL=aclocal-1.18
 elif (automake-1.17 --version) < /dev/null > /dev/null 2>&1; then
    AUTOMAKE=automake-1.17
    ACLOCAL=aclocal-1.17

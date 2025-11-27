@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: 0.9.0-git\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-03-04 06:53+0100\n"
-"PO-Revision-Date: 2025-05-30 15:11+0000\n"
-"Last-Translator: Tiago Matos <tiago@tmatos.net>\n"
+"PO-Revision-Date: 2025-11-28 21:00+0000\n"
+"Last-Translator: Mateus Liberale Gomes <sergiogomes209403@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://hosted.weblate.org/projects/"
 "mypaint/libmypaint/pt_BR/>\n"
 "Language: pt_BR\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 5.12-dev\n"
+"X-Generator: Weblate 5.15-dev\n"
 "X-Poedit-Language: Brazilian Portuguese\n"
 "X-Poedit-Country: BRAZIL\n"
 "X-Poedit-SourceCharset: utf-8\n"
@@ -188,9 +188,8 @@ msgstr ""
 
 #. Brush setting
 #: ../brushsettings.json:283
-#, fuzzy
 msgid "GridMap Scale"
-msgstr "Escala do GridMap"
+msgstr "Escala do mapa em grade"
 
 #. Tooltip for the "GridMap Scale" brush setting
 #: ../brushsettings.json:287
@@ -205,9 +204,8 @@ msgstr ""
 
 #. Brush setting
 #: ../brushsettings.json:292
-#, fuzzy
 msgid "GridMap Scale X"
-msgstr "Escala do GridMap X"
+msgstr "Escala do mapa em grade X"
 
 #. Tooltip for the "GridMap Scale X" brush setting
 #: ../brushsettings.json:296
@@ -224,9 +222,8 @@ msgstr ""
 
 #. Brush setting
 #: ../brushsettings.json:301
-#, fuzzy
 msgid "GridMap Scale Y"
-msgstr "Escala do GridMap Y"
+msgstr "Escala do mapa em grade Y"
 
 #. Tooltip for the "GridMap Scale Y" brush setting
 #: ../brushsettings.json:305
@@ -397,6 +394,7 @@ msgstr "Deslocamento Angular: Ver"
 #: ../brushsettings.json:404
 msgid "Follows the view orientation to offset the dabs to one side."
 msgstr ""
+"Acompanha a orientação da visualização para deslocar os pontos para um lado."
 
 #. Brush setting
 #: ../brushsettings.json:409
@@ -409,11 +407,13 @@ msgid ""
 "Follows the stroke direction to offset the dabs, but to both sides of the "
 "stroke."
 msgstr ""
+"Segue a direção do traço para compensar as pinceladas, mas para ambos os "
+"lados do traço."
 
 #. Brush setting
 #: ../brushsettings.json:418
 msgid "Angular Offset Mirrored: Ascension"
-msgstr ""
+msgstr "Deslocamento angular espelhado: Ascensão"
 
 #. Tooltip for the "Angular Offset Mirrored: Ascension" brush setting
 #: ../brushsettings.json:422
@@ -421,11 +421,13 @@ msgid ""
 "Follows the tilt direction to offset the dabs, but to both sides of the "
 "stroke. Requires Tilt."
 msgstr ""
+"Segue a direção da inclinação para compensar as pinceladas, mas para ambos "
+"os lados da pincelada. Requer inclinação."
 
 #. Brush setting
 #: ../brushsettings.json:427
 msgid "Angular Offset Mirrored: View"
-msgstr ""
+msgstr "Deslocamento angular espelhado: Visualização"
 
 #. Tooltip for the "Angular Offset Mirrored: View" brush setting
 #: ../brushsettings.json:431
@@ -433,16 +435,19 @@ msgid ""
 "Follows the view orientation to offset the dabs, but to both sides of the "
 "stroke."
 msgstr ""
+"Segue a orientação da visualização para compensar os traços, mas para ambos "
+"os lados do traço."
 
 #. Brush setting
 #: ../brushsettings.json:436
 msgid "Angular Offsets Adjustment"
-msgstr ""
+msgstr "Ajuste de deslocamentos angulares"
 
 #. Tooltip for the "Angular Offsets Adjustment" brush setting
 #: ../brushsettings.json:440
 msgid "Change the Angular Offset angle from the default, which is 90 degrees."
 msgstr ""
+"Altere o ângulo de deslocamento angular do valor padrão, que é de 90 graus."
 
 #. Brush setting
 #: ../brushsettings.json:445
@@ -451,10 +456,10 @@ msgstr "Multiplicador de deslocamento"
 
 #. Tooltip for the "Offsets Multiplier" brush setting
 #: ../brushsettings.json:449
-#, fuzzy
 msgid "Logarithmic multiplier for X, Y, and Angular Offset settings."
 msgstr ""
-"Multiplicador logarítmico para configurações de X, Y e deslocamento angular."
+"Multiplicador logarítmico para as configurações de X, Y e deslocamento "
+"angular."
 
 #. Brush setting
 #: ../brushsettings.json:454
@@ -697,6 +702,9 @@ msgid ""
 "0.0 no spectral mixing\n"
 "1.0 only spectral mixing"
 msgstr ""
+"Modo de mistura de cores espectral subtrativa.\n"
+"0,0 sem mistura espectral\n"
+"1,0 somente mistura espectral"
 
 #. Brush setting
 #: ../brushsettings.json:601
@@ -713,6 +721,12 @@ msgid ""
 "0.0 will have no effect.\n"
 "Negative values do the reverse"
 msgstr ""
+"Controla a quantidade de transparência que é selecionada e desfocada, "
+"semelhante ao bloqueio alfa.\n"
+"1.0 não moverá nenhuma transparência.\n"
+"0.5 moverá apenas transparências de 50% ou mais.\n"
+"0.0 não terá efeito.\n"
+"Valores negativos fazem o inverso"
 
 #. Brush setting
 #: ../brushsettings.json:610
@@ -749,6 +763,11 @@ msgid ""
 "The longer the smudge length the more a color will spread and will also "
 "boost performance dramatically, as the canvas is sampled less often"
 msgstr ""
+"Multiplicador logarítmico para o valor \"Comprimento da Borragem\".\n"
+"Útil para corrigir pincéis grandes/de alta definição com muitas pinceladas.\n"
+"Quanto maior o comprimento da borragem, mais a cor se espalhará e o "
+"desempenho aumentará drasticamente, pois a tela será amostrada com menos "
+"frequência"
 
 #. Brush setting
 #: ../brushsettings.json:628
@@ -764,6 +783,12 @@ msgid ""
 "Especially useful with the \"Custom input\" setting to correlate buckets "
 "with other settings such as offsets."
 msgstr ""
+"Existem 256 compartimentos, cada um capaz de armazenar uma cor selecionada "
+"da tela.\n"
+"Você pode controlar qual compartimento usar para melhorar a variabilidade e "
+"o realismo do pincel.\n"
+"Isso é especialmente útil com a configuração \"Entrada personalizada\" para "
+"correlacionar os compartimentos com outras configurações, como deslocamentos."
 
 #. Brush setting
 #: ../brushsettings.json:637
@@ -985,6 +1010,8 @@ msgid ""
 "Strength of posterization, reducing number of colors based on the "
 "\"Posterization levels\" setting, while retaining alpha."
 msgstr ""
+"Intensidade da posterização, reduzindo o número de cores com base na "
+"configuração \"Níveis de posterização\", mantendo o canal alfa."
 
 #. Brush setting
 #: ../brushsettings.json:754
@@ -1173,7 +1200,7 @@ msgstr "Direção 360"
 #. Tooltip for the "Direction 360" brush input
 #: ../brushsettings.json:105
 msgid "The angle of the stroke, from 0 to 360 degrees."
-msgstr ""
+msgstr "O ângulo da tacada, de 0 a 360 graus."
 
 #. Brush input
 #: ../brushsettings.json:108
@@ -1191,43 +1218,47 @@ msgid ""
 "180 means the angle of the stroke is directly opposite the angle of the "
 "stylus."
 msgstr ""
+"A diferença, em graus, entre o ângulo para o qual a caneta está apontando e "
+"o ângulo do movimento do traço.\n"
+"O intervalo é de +/-180,0.\n"
+"0,0 significa que o ângulo do traço corresponde ao ângulo da caneta.\n"
+"90 significa que o ângulo do traço é perpendicular ao ângulo da caneta.\n"
+"180 significa que o ângulo do traço é diretamente oposto ao ângulo da caneta."
 
 #. Brush input
 #: ../brushsettings.json:118
-#, fuzzy
 msgid "Declination/Tilt X"
-msgstr "Declinação"
+msgstr "Declinação/Inclinação X"
 
 #. Tooltip for the "Declination/Tilt X" brush input
 #: ../brushsettings.json:125
-#, fuzzy
 msgid ""
 "Declination of stylus tilt on X-Axis. 90/-90 when stylus is parallel to "
 "tablet and 0 when it's perpendicular to tablet."
 msgstr ""
-"Declinação é a inclinação da caneta. 0.0º quando a caneta está paralela ao "
-"tablet e 90º quando estiver perpendicular ao tablet."
+"Declinação da inclinação da caneta no eixo X. 90/-90 quando a caneta está "
+"paralela à mesa digitalizadora e 0 quando está perpendicular à mesa "
+"digitalizadora."
 
 #. Brush input
 #: ../brushsettings.json:128
-#, fuzzy
 msgid "Declination/Tilt Y"
-msgstr "Declinação"
+msgstr "Declinação/Inclinação Y"
 
 #. Tooltip for the "Declination/Tilt Y" brush input
 #: ../brushsettings.json:135
-#, fuzzy
 msgid ""
 "Declination of stylus tilt on Y-Axis. 90/-90 when stylus is parallel to "
 "tablet and 0 when it's perpendicular to tablet."
 msgstr ""
-"Declinação é a inclinação da caneta. 0.0º quando a caneta está paralela ao "
-"tablet e 90º quando estiver perpendicular ao tablet."
+"Declinação da inclinação da caneta no eixo Y. 90/-90 quando a caneta está "
+"paralela à mesa digitalizadora e 0 quando está perpendicular à mesa "
+"digitalizadora."
 
 #. Brush input
 #: ../brushsettings.json:138
 msgid "GridMap X"
-msgstr ""
+msgstr "Mapa de grade X"
 
 #. Tooltip for the "GridMap X" brush input
 #: ../brushsettings.json:145
@@ -1238,11 +1269,16 @@ msgid ""
 "The brush size should be considerably smaller than the grid scale for best "
 "results."
 msgstr ""
+"A coordenada X em uma grade de 256 pixels. Ela se repetirá de 0 a 256 "
+"conforme o cursor for movido no eixo X. Semelhante a \"Traçado\". Pode ser "
+"usado para adicionar textura de papel modificando a opacidade, etc.\n"
+"O tamanho do pincel deve ser consideravelmente menor que a escala da grade "
+"para obter melhores resultados."
 
 #. Brush input
 #: ../brushsettings.json:148
 msgid "GridMap Y"
-msgstr ""
+msgstr "Mapa de grade Y"
 
 #. Tooltip for the "GridMap Y" brush input
 #: ../brushsettings.json:155
@@ -1253,11 +1289,16 @@ msgid ""
 "The brush size should be considerably smaller than the grid scale for best "
 "results."
 msgstr ""
+"A coordenada Y em uma grade de 256 pixels. Ela se repetirá de 0 a 256 "
+"conforme o cursor for movido no eixo Y. Semelhante a \"Traçado\". Pode ser "
+"usado para adicionar textura de papel modificando a opacidade, etc.\n"
+"O tamanho do pincel deve ser consideravelmente menor que a escala da grade "
+"para obter melhores resultados."
 
 #. Brush input - refers to canvas zoom
 #: ../brushsettings.json:159
 msgid "Zoom Level"
-msgstr ""
+msgstr "Nível de zoom"
 
 #. Tooltip for the "Zoom Level" brush input
 #: ../brushsettings.json:166
@@ -1267,6 +1308,10 @@ msgid ""
 "For the Radius setting, using a value of -4.15 makes the brush size roughly "
 "constant, relative to the level of zoom."
 msgstr ""
+"O nível de zoom atual da visualização da tela.\n"
+"Logarítmico: 0,0 é 100%, 0,69 é 200%, -1,38 é 25%\n"
+"Para a configuração Raio, usar um valor de -4,15 torna o tamanho do pincel "
+"aproximadamente constante, em relação ao nível de zoom."
 
 #. Brush input
 #: ../brushsettings.json:169
@@ -1283,11 +1328,17 @@ msgid ""
 "Take note of \"Dabs per basic radius\" and \"Dabs per actual radius\", which "
 "behave much differently."
 msgstr ""
+"O raio base do pincel permite que você altere o comportamento do pincel ao "
+"aumentá-lo ou diminuí-lo.\n"
+"Você pode até mesmo anular o aumento do tamanho da pincelada e ajustar outra "
+"coisa para aumentar o tamanho do pincel.\n"
+"Observe \"Pintadas por raio base\" e \"Pintadas por raio real\", que se "
+"comportam de maneira bem diferente."
 
 #. Brush input
 #: ../brushsettings.json:179
 msgid "Barrel Rotation"
-msgstr ""
+msgstr "Rotação do cano"
 
 #. Tooltip for the "Barrel Rotation" brush input
 #: ../brushsettings.json:186
@@ -1297,6 +1348,10 @@ msgid ""
 "+90 when twisted clockwise 90 degrees\n"
 "-90 when twisted counterclockwise 90 degrees"
 msgstr ""
+"Rotação da caneta.\n"
+"0 quando não girada\n"
+"+90 quando girada 90 graus no sentido horário\n"
+"-90 quando girada 90 graus no sentido anti-horário"
 
 #~ msgid "Anti-aliasing"
 #~ msgstr "Anti-serrilhamento"

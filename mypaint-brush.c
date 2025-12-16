@@ -54,13 +54,28 @@
 
 #define GRID_SIZE 256.0
 
-/* Named indices for the smudge bucket arrays */
-enum {
-  SMUDGE_R, SMUDGE_G, SMUDGE_B, SMUDGE_A,
-  PREV_COL_R, PREV_COL_G, PREV_COL_B, PREV_COL_A,
-  PREV_COL_RECENTNESS,
-  SMUDGE_BUCKET_SIZE
-};
+#define SMUDGE_BUCKET_SIZE (sizeof(SmudgeBucket) / sizeof(float))
+
+/**
+  * SmudgeBucket:
+  *
+  * Optionally used by MyPaintBrush.
+  *
+  * Usually used for brushes with multiple offset dabs, where each
+  * dab is assigned its own bucket containing a smudge state.
+  */
+typedef struct {
+  float smudge_r;
+  float smudge_g;
+  float smudge_b;
+  float smudge_a;
+  float prev_col_r;
+  float prev_col_g;
+  float prev_col_b;
+  float prev_col_a;
+  float prev_col_recentness;
+  float smudge_bucket_size;
+} SmudgeBucket;
 
 /* The Brush class stores two things:
    b) settings: constant during a stroke (eg. size, spacing, dynamics, color selected by the user)
@@ -94,7 +109,7 @@ struct MyPaintBrush {
     // smudge bucket array: part of the state, but stored separately.
     // Usually used for brushes with multiple offset dabs, where each
     // dab is assigned its own bucket containing a smudge state.
-    float *smudge_buckets;
+    SmudgeBucket *smudge_buckets;
     int num_buckets;
     int min_bucket_used;
     int max_bucket_used;
@@ -158,7 +173,7 @@ brush_reset(MyPaintBrush *self)
       int min_index = self->min_bucket_used;
       if (min_index != -1) {
         int max_index = self->max_bucket_used;
-        size_t num_bytes = (max_index - min_index + 1) * sizeof(self->smudge_buckets[0]) * SMUDGE_BUCKET_SIZE;
+        size_t num_bytes = (max_index - min_index + 1) * sizeof(self->smudge_buckets[0]);
         memset(self->smudge_buckets + min_index, 0, num_bytes);
         self->min_bucket_used = -1;
         self->max_bucket_used = -1;
@@ -195,7 +210,7 @@ mypaint_brush_new_with_buckets(int num_smudge_buckets)
     }
 
     if (num_smudge_buckets > 0) {
-      float *bucket_array = malloc(num_smudge_buckets * SMUDGE_BUCKET_SIZE * sizeof(float));
+      SmudgeBucket *bucket_array = malloc(num_smudge_buckets * sizeof(SmudgeBucket));
       if (!bucket_array) {
         free(self);
         return NULL;
@@ -460,16 +475,16 @@ mypaint_brush_set_smudge_bucket_state(
     float prev_color_recentness)
 {
   if (self->num_buckets > bucket_index) {
-    float* bucket = &self->smudge_buckets[bucket_index];
-    bucket[SMUDGE_R] = r;
-    bucket[SMUDGE_G] = g;
-    bucket[SMUDGE_B] = b;
-    bucket[SMUDGE_A] = a;
-    bucket[PREV_COL_R] = prev_r;
-    bucket[PREV_COL_G] = prev_g;
-    bucket[PREV_COL_B] = prev_b;
-    bucket[PREV_COL_A] = prev_a;
-    bucket[PREV_COL_RECENTNESS] = prev_color_recentness;
+    SmudgeBucket* bucket = &self->smudge_buckets[bucket_index];
+    bucket->smudge_r = r;
+    bucket->smudge_g = g;
+    bucket->smudge_b = b;
+    bucket->smudge_a = a;
+    bucket->prev_col_r = prev_r;
+    bucket->prev_col_g = prev_g;
+    bucket->prev_col_b = prev_b;
+    bucket->prev_col_a = prev_a;
+    bucket->prev_col_recentness = prev_color_recentness;
     return TRUE;
   }
   return FALSE;
@@ -492,16 +507,16 @@ mypaint_brush_get_smudge_bucket_state(
     float* prev_color_recentness)
 {
   if (self->num_buckets > bucket_index) {
-    float* bucket = &self->smudge_buckets[bucket_index];
-    *r = bucket[SMUDGE_R];
-    *g = bucket[SMUDGE_G];
-    *b = bucket[SMUDGE_B];
-    *a = bucket[SMUDGE_A];
-    *prev_r = bucket[PREV_COL_R];
-    *prev_g = bucket[PREV_COL_G];
-    *prev_b = bucket[PREV_COL_B];
-    *prev_a = bucket[PREV_COL_A];
-    *prev_color_recentness = bucket[PREV_COL_RECENTNESS];
+    SmudgeBucket* bucket = &self->smudge_buckets[bucket_index];
+    *r = bucket->smudge_r;
+    *g = bucket->smudge_g;
+    *b = bucket->smudge_b;
+    *a = bucket->smudge_a;
+    *prev_r = bucket->prev_col_r;
+    *prev_g = bucket->prev_col_g;
+    *prev_b = bucket->prev_col_b;
+    *prev_a = bucket->prev_col_a;
+    *prev_color_recentness = bucket->prev_col_recentness;
     return TRUE;
   }
   return FALSE;
@@ -903,9 +918,12 @@ void print_inputs(MyPaintBrush *self, float* inputs)
     STATE(self, ACTUAL_ELLIPTICAL_DAB_ANGLE) = mod_arith(SETTING(self, ELLIPTICAL_DAB_ANGLE) - viewrotation + 180.0, 180.0) - 180.0;
   }
 
-  float *fetch_smudge_bucket(MyPaintBrush *self) {
+  SmudgeBucket *fetch_smudge_bucket(MyPaintBrush *self) {
     if (!self->smudge_buckets || !self->num_buckets) {
-      return &STATE(self, SMUDGE_RA);
+      float *smudge_state = &STATE(self, SMUDGE_RA);
+      // Not sure this can be done in general.
+      // static_assert (sizeof (SmudgeBucket) == sizeof(smudge_state) * SMUDGE_BUCKET_SIZE, "SmudgeBucket includes padding");
+      return (SmudgeBucket*) smudge_state;
     }
     const int bucket_index = CLAMP(roundf(SETTING(self, SMUDGE_BUCKET)), 0, self->num_buckets - 1);
     if (self->min_bucket_used == -1 || self->min_bucket_used > bucket_index) {
@@ -914,12 +932,12 @@ void print_inputs(MyPaintBrush *self, float* inputs)
     if (self->max_bucket_used < bucket_index) {
       self->max_bucket_used = bucket_index;
     }
-    return &self->smudge_buckets[bucket_index * SMUDGE_BUCKET_SIZE];
+    return &self->smudge_buckets[bucket_index];
   }
 
   gboolean
   update_smudge_color(
-      const MyPaintBrush* self, MyPaintSurface* surface, float* const smudge_bucket, const float smudge_length, int px,
+      const MyPaintBrush* self, MyPaintSurface* surface, SmudgeBucket* const smudge_bucket, const float smudge_length, int px,
       int py, const float radius, const float legacy_smudge, const float paint_factor)
   {
 
@@ -934,8 +952,8 @@ void print_inputs(MyPaintBrush *self, float* inputs)
       float r, g, b, a;
       const float smudge_length_log = SETTING(self, SMUDGE_LENGTH_LOG);
 
-      const float recentness = smudge_bucket[PREV_COL_RECENTNESS] * update_factor;
-      smudge_bucket[PREV_COL_RECENTNESS] = recentness;
+      const float recentness = smudge_bucket->prev_col_recentness * update_factor;
+      smudge_bucket->prev_col_recentness = recentness;
 
       const float margin = 0.0000000000000001;
       if (recentness < MIN(1.0, powf(0.5 * update_factor, smudge_length_log) + margin)) {
@@ -943,7 +961,7 @@ void print_inputs(MyPaintBrush *self, float* inputs)
               // first initialization of smudge color (initiate with color sampled from canvas)
               update_factor = 0.0;
           }
-          smudge_bucket[PREV_COL_RECENTNESS] = 1.0;
+          smudge_bucket->prev_col_recentness = 1.0;
 
           const float radius_log = SETTING(self, SMUDGE_RADIUS_LOG);
           const float smudge_radius = CLAMP(radius * expf(radius_log), ACTUAL_RADIUS_MIN, ACTUAL_RADIUS_MAX);
@@ -960,45 +978,45 @@ void print_inputs(MyPaintBrush *self, float* inputs)
           if ((smudge_op_lim > 0.0 && a < smudge_op_lim) || (smudge_op_lim < 0.0 && a > -smudge_op_lim)) {
               return TRUE; // signals the caller to return early
           }
-          smudge_bucket[PREV_COL_R] = r;
-          smudge_bucket[PREV_COL_G] = g;
-          smudge_bucket[PREV_COL_B] = b;
-          smudge_bucket[PREV_COL_A] = a;
+          smudge_bucket->prev_col_r = r;
+          smudge_bucket->prev_col_g = g;
+          smudge_bucket->prev_col_b = b;
+          smudge_bucket->prev_col_a = a;
       } else {
-          r = smudge_bucket[PREV_COL_R];
-          g = smudge_bucket[PREV_COL_G];
-          b = smudge_bucket[PREV_COL_B];
-          a = smudge_bucket[PREV_COL_A];
+          r = smudge_bucket->prev_col_r;
+          g = smudge_bucket->prev_col_g;
+          b = smudge_bucket->prev_col_b;
+          a = smudge_bucket->prev_col_a;
       }
 
       if (legacy_smudge) {
           const float fac_old = update_factor;
           const float fac_new = (1.0 - update_factor) * a;
-          smudge_bucket[SMUDGE_R] = fac_old * smudge_bucket[SMUDGE_R] + fac_new * r;
-          smudge_bucket[SMUDGE_G] = fac_old * smudge_bucket[SMUDGE_G] + fac_new * g;
-          smudge_bucket[SMUDGE_B] = fac_old * smudge_bucket[SMUDGE_B] + fac_new * b;
-          smudge_bucket[SMUDGE_A] = CLAMP((fac_old * smudge_bucket[SMUDGE_A] + fac_new), 0.0, 1.0);
+          smudge_bucket->smudge_r = fac_old * smudge_bucket->smudge_r + fac_new * r;
+          smudge_bucket->smudge_g = fac_old * smudge_bucket->smudge_g + fac_new * g;
+          smudge_bucket->smudge_b = fac_old * smudge_bucket->smudge_b + fac_new * b;
+          smudge_bucket->smudge_a = CLAMP((fac_old * smudge_bucket->smudge_a + fac_new), 0.0, 1.0);
       } else if (a > WGM_EPSILON * 10) {
-          float prev_smudge_color[4] = {smudge_bucket[SMUDGE_R], smudge_bucket[SMUDGE_G], smudge_bucket[SMUDGE_B],
-                                        smudge_bucket[SMUDGE_A]};
+          float prev_smudge_color[4] = {smudge_bucket->smudge_r, smudge_bucket->smudge_g, smudge_bucket->smudge_b,
+                                        smudge_bucket->smudge_a};
           float sampled_color[4] = {r, g, b, a};
 
           float* smudge_new = mix_colors(prev_smudge_color, sampled_color, update_factor, paint_factor);
-          smudge_bucket[SMUDGE_R] = smudge_new[SMUDGE_R];
-          smudge_bucket[SMUDGE_G] = smudge_new[SMUDGE_G];
-          smudge_bucket[SMUDGE_B] = smudge_new[SMUDGE_B];
-          smudge_bucket[SMUDGE_A] = smudge_new[SMUDGE_A];
+          smudge_bucket->smudge_r = smudge_new[0];
+          smudge_bucket->smudge_g = smudge_new[1];
+          smudge_bucket->smudge_b = smudge_new[2];
+          smudge_bucket->smudge_a = smudge_new[3];
       } else {
           // To avoid color noise from spectral mixing with a low alpha,
           // we'll just decrease the alpha of the existing smudge color.
-          smudge_bucket[SMUDGE_A] = (smudge_bucket[SMUDGE_A] + a) / 2;
+          smudge_bucket->smudge_a = (smudge_bucket->smudge_a + a) / 2;
       }
       return FALSE; // signals the caller to not return early (the default)
   }
 
   float
   apply_smudge(
-      const float* const smudge_bucket, const float smudge_value, const gboolean legacy_smudge,
+      const SmudgeBucket* const smudge_bucket, const float smudge_value, const gboolean legacy_smudge,
       const float paint_factor, float* color_r, float* color_g, float* color_b)
   {
       float smudge_factor = MIN(1.0, smudge_value);
@@ -1007,22 +1025,22 @@ void print_inputs(MyPaintBrush *self, float* inputs)
       // dab will do erasing towards that transparency level.
       // see also ../doc/smudge_math.png
       const float eraser_target_alpha =
-          CLAMP((1.0 - smudge_factor) + smudge_factor * smudge_bucket[SMUDGE_A], 0.0, 1.0);
+          CLAMP((1.0 - smudge_factor) + smudge_factor * smudge_bucket->smudge_a, 0.0, 1.0);
 
       if (eraser_target_alpha > 0) {
           if (legacy_smudge) {
               const float col_factor = 1.0 - smudge_factor;
-              *color_r = (smudge_factor * smudge_bucket[SMUDGE_R] + col_factor * *color_r) / eraser_target_alpha;
-              *color_g = (smudge_factor * smudge_bucket[SMUDGE_G] + col_factor * *color_g) / eraser_target_alpha;
-              *color_b = (smudge_factor * smudge_bucket[SMUDGE_B] + col_factor * *color_b) / eraser_target_alpha;
+              *color_r = (smudge_factor * smudge_bucket->smudge_r + col_factor * *color_r) / eraser_target_alpha;
+              *color_g = (smudge_factor * smudge_bucket->smudge_g + col_factor * *color_g) / eraser_target_alpha;
+              *color_b = (smudge_factor * smudge_bucket->smudge_b + col_factor * *color_b) / eraser_target_alpha;
           } else {
-              float smudge_color[4] = {smudge_bucket[SMUDGE_R], smudge_bucket[SMUDGE_G], smudge_bucket[SMUDGE_B],
-                                       smudge_bucket[SMUDGE_A]};
+              float smudge_color[4] = {smudge_bucket->smudge_r, smudge_bucket->smudge_g, smudge_bucket->smudge_b,
+                                       smudge_bucket->smudge_a};
               float brush_color[4] = {*color_r, *color_g, *color_b, 1.0};
               float* color_new = mix_colors(smudge_color, brush_color, smudge_factor, paint_factor);
-              *color_r = color_new[SMUDGE_R];
-              *color_g = color_new[SMUDGE_G];
-              *color_b = color_new[SMUDGE_B];
+              *color_r = color_new[0];
+              *color_g = color_new[1];
+              *color_b = color_new[2];
           }
       } else {
           // we are only erasing; the color does (should) not matter
@@ -1123,7 +1141,7 @@ gboolean prepare_and_draw_dab (MyPaintBrush *self, MyPaintSurface * surface, gbo
     const float smudge_length = SETTING(self, SMUDGE_LENGTH);
     if (smudge_length < 1.0 && // default smudge length is 0.5, so the smudge factor is checked as well
         (SETTING(self, SMUDGE) != 0.0 || !mypaint_mapping_is_constant(self->settings[MYPAINT_BRUSH_SETTING_SMUDGE]))) {
-        float* const bucket = fetch_smudge_bucket(self);
+        SmudgeBucket* const bucket = fetch_smudge_bucket(self);
         gboolean return_early = update_smudge_color(
             self, surface, bucket, smudge_length, ROUND(x), ROUND(y), radius, legacy_smudge, paint_factor);
         if (return_early) {
@@ -1135,7 +1153,7 @@ gboolean prepare_and_draw_dab (MyPaintBrush *self, MyPaintSurface * surface, gbo
     const float smudge_value = SETTING(self, SMUDGE);
 
     if (smudge_value > 0.0) {
-      float* const bucket = fetch_smudge_bucket(self);
+      SmudgeBucket* const bucket = fetch_smudge_bucket(self);
       eraser_target_alpha =
           apply_smudge(bucket, smudge_value, legacy_smudge, paint_factor, &color_h, &color_s, &color_v);
     }

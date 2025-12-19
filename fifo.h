@@ -13,4 +13,5 @@ void* fifo_pop(Fifo* self);
 void* fifo_peek_first(Fifo *queue);
 void* fifo_peek_last(Fifo *queue);
 
+unsigned int fifo_item_count(struct fifo *queue);
 #endif // FIFO_H

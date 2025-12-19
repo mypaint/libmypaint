@@ -39,4 +39,5 @@ OperationDataDrawDab *operation_queue_pop(OperationQueue *self, TileIndex index)
 OperationDataDrawDab *operation_queue_peek_first(OperationQueue *self, TileIndex index);
 OperationDataDrawDab *operation_queue_peek_last(OperationQueue *self, TileIndex index);
 
+unsigned int operation_queue_item_count(OperationQueue *self, TileIndex index);
 #endif // OPERATIONQUEUE_H

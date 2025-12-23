@@ -149,6 +149,7 @@ AC_ARG_ENABLE(profiling,
 if eval "test x$enable_profiling = xyes"; then
   AC_MSG_RESULT([yes])
   CFLAGS="-pg $CFLAGS"
+  LDFLAGS="-pg $LDFLAGS"
 else
   AC_MSG_RESULT([no])
 fi

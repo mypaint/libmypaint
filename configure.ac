@@ -130,13 +130,13 @@ AC_ARG_ENABLE(debug,
 
 if eval "test x$enable_debug = xyes"; then
   AC_MSG_RESULT([yes])
-  CPPDEFINES='HEAVY_DEBUG $CPPDEFINES'
-  CCFLAGS='-O0 $CCFLAGS'
-  LINKFLAGS='-O0 $LINKFLAGS'
+  CPPFLAGS="HEAVY_DEBUG $CPPFLAGS"
+  CFLAGS="-O0 $CFLAGS"
+  LDFLAGS="-O0 $LDFLAGS"
 else
   AC_MSG_RESULT([no])
-  CCFLAGS='-O3 $CCFLAGS'
-  LINKFLAGS='-O3 $LINKFLAGS'
+  CFLAGS="-O3 $CFLAGS"
+  LDFLAGS="-O3 $LDFLAGS"
 fi
 
 ## Profiling ##
@@ -148,7 +148,7 @@ AC_ARG_ENABLE(profiling,
 
 if eval "test x$enable_profiling = xyes"; then
   AC_MSG_RESULT([yes])
-  CCFLAGS='-pg $CCFLAGS'
+  CFLAGS="-pg $CFLAGS"
 else
   AC_MSG_RESULT([no])
 fi

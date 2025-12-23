@@ -130,7 +130,7 @@ AC_ARG_ENABLE(debug,
 
 if eval "test x$enable_debug = xyes"; then
   AC_MSG_RESULT([yes])
-  CPPFLAGS="HEAVY_DEBUG $CPPFLAGS"
+  CPPFLAGS="-DHEAVY_DEBUG $CPPFLAGS"
   CFLAGS="-O0 $CFLAGS"
   LDFLAGS="-O0 $LDFLAGS"
 else

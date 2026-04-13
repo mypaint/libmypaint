@@ -218,10 +218,13 @@ AC_SUBST(JSON_LIBS)
 AC_SUBST(JSON_CFLAGS)
 
 ## Standard maths functions ##
-AC_SEARCH_LIBS([floorf], [m], [], AC_MSG_ERROR([no floorf]))
-AC_SEARCH_LIBS([powf], [m], [], AC_MSG_ERROR([no powf]))
-AC_SEARCH_LIBS([expf], [m], [], AC_MSG_ERROR([no expf]))
-AC_SEARCH_LIBS([fabsf], [m], [], AC_MSG_ERROR([no fabsf]))
+## On Windows, they are provided by the C library (msvcrt or ucrt) ##
+if test "x$platform_win32" != "xyes"; then
+  AC_SEARCH_LIBS([floorf], [m], [], AC_MSG_ERROR([no floorf]))
+  AC_SEARCH_LIBS([powf], [m], [], AC_MSG_ERROR([no powf]))
+  AC_SEARCH_LIBS([expf], [m], [], AC_MSG_ERROR([no expf]))
+  AC_SEARCH_LIBS([fabsf], [m], [], AC_MSG_ERROR([no fabsf]))
+fi
 
 ## Additional compile flags ##
 

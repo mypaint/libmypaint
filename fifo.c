@@ -30,7 +30,7 @@ struct fifo
 {
     struct fifo_item *first;  /* first pushed item */
     struct fifo_item *last;   /* last pushed item */
-    int item_count;
+    unsigned int item_count;
 };
 
 /*
@@ -79,6 +79,8 @@ void fifo_push(struct fifo* queue, void* data)
     else
         queue->last->next = item;
     queue->last = item;
+    
+    queue->item_count++;
 }
 
 /*
@@ -111,4 +113,8 @@ void* fifo_peek_first(struct fifo *queue) {
 
 void* fifo_peek_last(struct fifo *queue) {
     return (!queue->last) ? NULL : queue->last->payload;
+}
+
+unsigned int fifo_item_count(struct fifo *queue) {
+    return (!queue->first) ? 0 : queue->item_count;
 }

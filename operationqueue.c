@@ -253,3 +253,13 @@ operation_queue_peek_last(OperationQueue *self, TileIndex index) {
     Fifo *op_queue = (Fifo *)*tile_map_get(self->tile_map, index);
     return (!op_queue) ? NULL : (OperationDataDrawDab *)fifo_peek_last(op_queue);
 }
+
+unsigned int operation_queue_item_count(OperationQueue *self, TileIndex index) {
+    if (!tile_map_contains(self->tile_map, index)) {
+        return 0;
+    }
+
+    Fifo *op_queue = (Fifo *)*tile_map_get(self->tile_map, index);
+    return (!op_queue) ? 0 : fifo_item_count(op_queue);
+
+}
